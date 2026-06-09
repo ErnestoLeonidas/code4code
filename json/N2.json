@@ -1,0 +1,1137 @@
+{
+  "experience": {
+    "id": "2",
+    "label": "N2",
+    "titulo": "Diagramas de Flujo y Pseudocódigo",
+    "desc": "Representa algoritmos mediante diagramas de flujo y pseudocódigo en PSeInt.",
+    "color": "var(--green)",
+    "icon": "📊"
+  },
+  "exercises": [
+    {
+      "id": "n2-001",
+      "origen": "json/EA 1.2.json #21",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-01",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Identificar entradas y salidas",
+      "conceptos": [
+        "E/P/S",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "El programa lee el nombre y la edad del usuario. El proceso es simplemente almacenar ambos datos. La salida muestra una presentación con los dos datos. Practica identificar cada fase E·P·S.",
+      "entradaProcesoSalida": {
+        "entrada": "nombre (Caracter)\nedad (Entero)",
+        "proceso": "Almacenar nombre y edad en variables",
+        "salida": "\"Me llamo [nombre] y tengo [edad] años.\""
+      },
+      "salidaEsperada": "Tu nombre:\n> Luis\nTu edad:\n> 19\nMe llamo Luis y tengo 19 años.",
+      "pista": "En el modelo E·P·S: la Entrada es todo lo que el usuario ingresa, el Proceso es lo que el algoritmo calcula o decide, y la Salida es lo que se muestra.",
+      "codigoReferencia": "Proceso Presentacion\n  Definir nombre Como Caracter\n  Definir edad Como Entero\n\n  Escribir \"Tu nombre:\"\n  Leer nombre\n  Escribir \"Tu edad:\"\n  Leer edad\n  Escribir \"Me llamo \", nombre, \" y tengo \", edad, \" años.\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-002",
+      "origen": "json/EA 1.2.json #22",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-02",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Saludar y devolver saludo",
+      "conceptos": [
+        "Leer",
+        "Escribir",
+        "Caracter"
+      ],
+      "enunciado": "El programa saluda al usuario por su nombre, luego pregunta \"¿Cómo estás?\" y lee la respuesta. Finalmente responde con un mensaje que incluye la respuesta del usuario. (Basado en caso 1 de Guía 1.2.4.)",
+      "entradaProcesoSalida": {
+        "entrada": "nombre (Caracter)\nestado (Caracter)",
+        "proceso": "Almacenar nombre y respuesta",
+        "salida": "Saludo + pregunta + respuesta final"
+      },
+      "salidaEsperada": "¿Cuál es tu nombre?\n> Ana\n¡Hola, Ana!\n¿Cómo estás?\n> Muy bien\nQué bueno que estás: Muy bien",
+      "pista": "Este ejercicio modela una interacción social básica como algoritmo: entrada → proceso → salida aplicado a una conversación.",
+      "codigoReferencia": "Proceso Saludo\n  Definir nombre, estado Como Caracter\n\n  Escribir \"¿Cuál es tu nombre?\"\n  Leer nombre\n  Escribir \"¡Hola, \", nombre, \"!\"\n  Escribir \"¿Cómo estás?\"\n  Leer estado\n  Escribir \"Qué bueno que estás: \", estado\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-003",
+      "origen": "json/EA 1.2.json #23",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Suma de dos positivos",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Aritmética",
+        "E/P/S"
+      ],
+      "enunciado": "Ingresa dos números enteros positivos, súmalos y entrega el resultado. (Caso directo de Guía 1.2.4.) Dibuja mentalmente el diagrama de flujo antes de codificar.",
+      "entradaProcesoSalida": {
+        "entrada": "num1 (Entero positivo)\nnum2 (Entero positivo)",
+        "proceso": "suma ← num1 + num2",
+        "salida": "\"La suma de [num1] + [num2] = [suma]\""
+      },
+      "salidaEsperada": "Primer número:\n> 12\nSegundo número:\n> 8\nLa suma de 12 + 8 = 20",
+      "pista": "La salida completa muestra los operandos y el resultado. Esto hace el algoritmo más legible y fácil de verificar.",
+      "codigoReferencia": "Proceso SumaPositivos\n  Definir num1, num2, suma Como Entero\n\n  Escribir \"Primer número:\"\n  Leer num1\n  Escribir \"Segundo número:\"\n  Leer num2\n\n  suma = num1 + num2\n\n  Escribir \"La suma de \", num1, \" + \", num2, \" = \", suma\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-004",
+      "origen": "json/EA 1.2.json #24",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Mostrar tres números en orden dado",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Salida",
+        "E/P/S"
+      ],
+      "enunciado": "Lee tres números enteros positivos e imprimelos en pantalla en el mismo orden en que fueron ingresados, con etiquetas. (Preparación para el ejercicio de ordenamiento.)",
+      "entradaProcesoSalida": {
+        "entrada": "a, b, c (Enteros positivos)",
+        "proceso": "(ningún cálculo — solo almacenar)",
+        "salida": "\"Número 1: a\"\n\"Número 2: b\"\n\"Número 3: c\""
+      },
+      "salidaEsperada": "Número 1:\n> 7\nNúmero 2:\n> 3\nNúmero 3:\n> 9\nNúmero 1: 7\nNúmero 2: 3\nNúmero 3: 9",
+      "pista": "Un proceso puede ser tan simple como almacenar datos. No todo algoritmo necesita cálculos; a veces el proceso es solo organizar la información.",
+      "codigoReferencia": "Proceso MostrarTres\n  Definir a, b, c Como Entero\n\n  Escribir \"Número 1:\"\n  Leer a\n  Escribir \"Número 2:\"\n  Leer b\n  Escribir \"Número 3:\"\n  Leer c\n  Escribir \"Número 1: \", a\n  Escribir \"Número 2: \", b\n  Escribir \"Número 3: \", c\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-005",
+      "origen": "json/EA 1.2.json #25",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-05",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Resta y producto de dos números",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Aritmética"
+      ],
+      "enunciado": "Lee dos números reales. Calcula y muestra su resta (a − b) y su producto (a × b).",
+      "entradaProcesoSalida": {
+        "entrada": "a (Real)\nb (Real)",
+        "proceso": "resta ← a − b\nproducto ← a × b",
+        "salida": "\"Resta: \" + resta\n\"Producto: \" + producto"
+      },
+      "salidaEsperada": "Valor a:\n> 10\nValor b:\n> 4\nResta: 6\nProducto: 40",
+      "pista": "Puedes calcular múltiples resultados a partir de las mismas entradas. Cada cálculo se almacena en su propia variable.",
+      "codigoReferencia": "Proceso RestaProducto\n  Definir a, b, resta, producto Como Real\n\n  Escribir \"Valor a:\"\n  Leer a\n  Escribir \"Valor b:\"\n  Leer b\n\n  resta    = a - b\n  producto = a * b\n\n  Escribir \"Resta: \", resta\n  Escribir \"Producto: \", producto\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-006",
+      "origen": "json/EA 1.2.json #26",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-06",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "División y cociente entero",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Entero",
+        "Trunc",
+        "MOD"
+      ],
+      "enunciado": "Lee dos enteros positivos (dividendo y divisor). Muestra la división real, el cociente entero (Trunc) y el resto (MOD).",
+      "entradaProcesoSalida": {
+        "entrada": "dividendo (Entero)\ndivisor (Entero)",
+        "proceso": "divReal ← dividendo / divisor\ncoc ← Trunc(dividendo / divisor)\nresto ← dividendo MOD divisor",
+        "salida": "División real, cociente y resto"
+      },
+      "salidaEsperada": "Dividendo:\n> 17\nDivisor:\n> 5\nDivisión real: 3.4\nCociente entero: 3\nResto: 2",
+      "pista": "DIV y MOD solo funcionan entre enteros. La barra / devuelve resultado real incluso con operandos enteros si lo asignas a una variable Real.",
+      "codigoReferencia": "Proceso Division\n  Definir dividendo, divisor, coc, resto Como Entero\n  Definir divReal Como Real\n\n  Escribir \"Dividendo:\"\n  Leer dividendo\n  Escribir \"Divisor:\"\n  Leer divisor\n\n  divReal = dividendo / divisor\n  coc     = Trunc(dividendo / divisor)\n  resto   = dividendo mod divisor\n\n  Escribir \"División real: \", divReal\n  Escribir \"Cociente entero: \", coc\n  Escribir \"Resto: \", resto\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-007",
+      "origen": "json/EA 1.2.json #27",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-07",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Perímetro de un triángulo",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Geometría",
+        "Fórmula"
+      ],
+      "enunciado": "Lee los tres lados de un triángulo y calcula su perímetro (suma de los tres lados). Muestra el resultado con unidades.",
+      "entradaProcesoSalida": {
+        "entrada": "lado1, lado2, lado3 (Real)",
+        "proceso": "perimetro ← lado1 + lado2 + lado3",
+        "salida": "\"Perímetro: \" + perimetro + \" cm\""
+      },
+      "salidaEsperada": "Lado 1 (cm):\n> 5\nLado 2 (cm):\n> 7\nLado 3 (cm):\n> 6\nPerímetro: 18 cm",
+      "pista": "Aunque la fórmula es simple, el algoritmo completo muestra claramente las 3 fases: 3 entradas → 1 proceso (suma) → 1 salida.",
+      "codigoReferencia": "Proceso Triangulo\n  Definir lado1, lado2, lado3, perimetro Como Real\n\n  Escribir \"Lado 1 (cm):\"\n  Leer lado1\n  Escribir \"Lado 2 (cm):\"\n  Leer lado2\n  Escribir \"Lado 3 (cm):\"\n  Leer lado3\n\n  perimetro = lado1 + lado2 + lado3\n\n  Escribir \"Perímetro: \", perimetro, \" cm\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-008",
+      "origen": "json/EA 1.2.json #28",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-08",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Convertir km a metros y cm",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Conversión"
+      ],
+      "enunciado": "Lee una distancia en kilómetros y conviértela a metros y centímetros. Muestra los tres valores.",
+      "entradaProcesoSalida": {
+        "entrada": "distancia en km (Real)",
+        "proceso": "metros ← km × 1000\ncm ← km × 100000",
+        "salida": "km, metros y centímetros"
+      },
+      "salidaEsperada": "Distancia en km:\n> 2.5\n2.5 km = 2500 metros\n2.5 km = 250000 centímetros",
+      "pista": "A partir de una sola entrada puedes generar múltiples salidas. Las conversiones de unidades son un ejemplo clásico de 1 entrada → N salidas.",
+      "codigoReferencia": "Proceso ConvertirKm\n  Definir km, metros, cm Como Real\n\n  Escribir \"Distancia en km:\"\n  Leer km\n\n  metros = km * 1000\n  cm     = km * 100000\n\n  Escribir km, \" km = \", metros, \" metros\"\n  Escribir km, \" km = \", cm, \" centímetros\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-009",
+      "origen": "json/EA 1.2.json #29",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-09",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Calcular el cuadrado y cubo",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Potencia",
+        "Aritmética"
+      ],
+      "enunciado": "Lee un número real y calcula su cuadrado (n²) y su cubo (n³) usando el operador potencia ^.",
+      "entradaProcesoSalida": {
+        "entrada": "n (Real)",
+        "proceso": "cuadrado ← n ^ 2\ncubo ← n ^ 3",
+        "salida": "\"Cuadrado: \" + cuadrado\n\"Cubo: \" + cubo"
+      },
+      "salidaEsperada": "Ingresa un número:\n> 4\nCuadrado: 16\nCubo: 64",
+      "pista": "El operador ^ es la potencia en PSeInt. n ^ 2 es n², n ^ 3 es n³. Muy útil en fórmulas de geometría y física.",
+      "codigoReferencia": "Proceso CuadradoCubo\n  Definir n, cuadrado, cubo Como Real\n\n  Escribir \"Ingresa un número:\"\n  Leer n\n\n  cuadrado = n ^ 2\n  cubo     = n ^ 3\n\n  Escribir \"Cuadrado: \", cuadrado\n  Escribir \"Cubo: \", cubo\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-010",
+      "origen": "json/EA 1.2.json #30",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-10",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Minutos a horas y minutos",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Trunc",
+        "MOD",
+        "Conversión"
+      ],
+      "enunciado": "Lee una cantidad de minutos totales y conviértelos a horas y minutos restantes usando Trunc y MOD.",
+      "entradaProcesoSalida": {
+        "entrada": "totalMin (Entero)",
+        "proceso": "horas ← Trunc(totalMin / 60)\nminRest ← totalMin MOD 60",
+        "salida": "\"Horas: \" + horas\n\"Minutos restantes: \" + minRest"
+      },
+      "salidaEsperada": "Total de minutos:\n> 145\nHoras: 2\nMinutos restantes: 25",
+      "pista": "145 DIV 60 = 2 (horas completas) y 145 MOD 60 = 25 (minutos que sobran). Este patrón se usa en cualquier conversión de unidades anidadas.",
+      "codigoReferencia": "Proceso MinutosAHoras\n  Definir totalMin, horas, minRest Como Entero\n\n  Escribir \"Total de minutos:\"\n  Leer totalMin\n\n  horas   = Trunc(totalMin / 60)\n  minRest = totalMin mod 60\n\n  Escribir \"Horas: \", horas\n  Escribir \"Minutos restantes: \", minRest\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-011",
+      "origen": "json/EA 1.2.json #31",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-11",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Calcular el IVA de un producto",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Aritmética"
+      ],
+      "enunciado": "Lee el precio neto de un producto. Calcula el IVA (19%) y el precio total con IVA incluido. Muestra el desglose.",
+      "entradaProcesoSalida": {
+        "entrada": "precioNeto (Real)",
+        "proceso": "iva ← precioNeto × 0.19\ntotal ← precioNeto + iva",
+        "salida": "Precio neto, IVA y total"
+      },
+      "salidaEsperada": "Precio neto ($):\n> 10000\nIVA (19%): $1900\nPrecio total: $11900",
+      "pista": "El IVA en Chile es 19%. Expresado como decimal es 0.19. El total incluye el neto más el impuesto.",
+      "codigoReferencia": "Proceso CalcularIVA\n  Definir precioNeto, iva, total Como Real\n\n  Escribir \"Precio neto ($):\"\n  Leer precioNeto\n\n  iva   = precioNeto * 0.19\n  total = precioNeto + iva\n\n  Escribir \"IVA (19%): $\", iva\n  Escribir \"Precio total: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-012",
+      "origen": "json/EA 1.2.json #32",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-12",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Área del trapecio",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Geometría",
+        "Fórmula"
+      ],
+      "enunciado": "Lee la base mayor, la base menor y la altura de un trapecio. Calcula su área: A = (B + b) × h / 2.",
+      "entradaProcesoSalida": {
+        "entrada": "baseMayor, baseMenor, altura (Real)",
+        "proceso": "area ← (baseMayor + baseMenor) × altura / 2",
+        "salida": "\"Área del trapecio: \" + area + \" u²\""
+      },
+      "salidaEsperada": "Base mayor:\n> 10\nBase menor:\n> 6\nAltura:\n> 4\nÁrea del trapecio: 32 u²",
+      "pista": "Los paréntesis son clave: (baseMayor + baseMenor) debe calcularse primero antes de multiplicar por la altura.",
+      "codigoReferencia": "Proceso AreaTrapecio\n  Definir baseMayor, baseMenor, altura, area Como Real\n\n  Escribir \"Base mayor:\"\n  Leer baseMayor\n  Escribir \"Base menor:\"\n  Leer baseMenor\n  Escribir \"Altura:\"\n  Leer altura\n\n  area = (baseMayor + baseMenor) * altura / 2\n\n  Escribir \"Área del trapecio: \", area, \" u²\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-013",
+      "origen": "json/EA 1.2.json #33",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-13",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Calcular propina en restaurante",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Aritmética"
+      ],
+      "enunciado": "Lee el monto de la cuenta en un restaurante. Calcula la propina (10%) y el total a pagar. Muestra el desglose.",
+      "entradaProcesoSalida": {
+        "entrada": "cuenta (Real)",
+        "proceso": "propina ← cuenta × 0.10\ntotal ← cuenta + propina",
+        "salida": "Cuenta, propina y total"
+      },
+      "salidaEsperada": "Monto de la cuenta ($):\n> 25000\nPropina (10%): $2500\nTotal a pagar: $27500",
+      "pista": "El 10% como decimal es 0.10. Siempre muestra el desglose completo para que el resultado sea verificable.",
+      "codigoReferencia": "Proceso Propina\n  Definir cuenta, propina, total Como Real\n\n  Escribir \"Monto de la cuenta ($):\"\n  Leer cuenta\n\n  propina = cuenta * 0.10\n  total   = cuenta + propina\n\n  Escribir \"Propina (10%): $\", propina\n  Escribir \"Total a pagar: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-014",
+      "origen": "json/EA 1.2.json #34",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-14",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Puntaje final ponderado",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Ponderación"
+      ],
+      "enunciado": "Lee la nota de prueba y la nota de proyecto (escala 1–7). Calcula el puntaje final ponderado: prueba vale 60% y proyecto 40%.",
+      "entradaProcesoSalida": {
+        "entrada": "notaPrueba (Real, 1–7)\nnotaProyecto (Real, 1–7)",
+        "proceso": "final ← notaPrueba × 0.60 + notaProyecto × 0.40",
+        "salida": "\"Nota final: \" + final"
+      },
+      "salidaEsperada": "Nota prueba (1-7):\n> 5.5\nNota proyecto (1-7):\n> 6.0\nNota final: 5.7",
+      "pista": "La suma de los pesos siempre debe ser 1.0 (100%). Aquí: 0.60 + 0.40 = 1.0. Verifica esto antes de aplicar cualquier ponderación.",
+      "codigoReferencia": "Proceso NotaPonderada\n  Definir notaPrueba, notaProyecto, final Como Real\n\n  Escribir \"Nota prueba (1-7):\"\n  Leer notaPrueba\n  Escribir \"Nota proyecto (1-7):\"\n  Leer notaProyecto\n\n  final = notaPrueba * 0.60 + notaProyecto * 0.40\n\n  Escribir \"Nota final: \", final\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-015",
+      "origen": "json/EA 1.2.json #35",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-15",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Consumo de combustible",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Aritmética"
+      ],
+      "enunciado": "Lee los litros consumidos y los kilómetros recorridos. Calcula el consumo en L/100km: consumo = (litros / km) × 100.",
+      "entradaProcesoSalida": {
+        "entrada": "litros (Real)\nkm (Real)",
+        "proceso": "consumo ← (litros / km) × 100",
+        "salida": "\"Consumo: \" + consumo + \" L/100km\""
+      },
+      "salidaEsperada": "Litros consumidos:\n> 45\nKilómetros recorridos:\n> 500\nConsumo: 9 L/100km",
+      "pista": "Un consumo menor significa mayor eficiencia. Un auto promedio consume entre 6 y 10 L/100km. Este es un buen ejemplo de fórmula real aplicada a un algoritmo.",
+      "codigoReferencia": "Proceso ConsumoCombustible\n  Definir litros, km, consumo Como Real\n\n  Escribir \"Litros consumidos:\"\n  Leer litros\n  Escribir \"Kilómetros recorridos:\"\n  Leer km\n\n  consumo = (litros / km) * 100\n\n  Escribir \"Consumo: \", consumo, \" L/100km\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-016",
+      "origen": "json/EA 1.2.json #36",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-16",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Mayor de tres números",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Variables",
+        "Auxiliar"
+      ],
+      "enunciado": "Ingresa tres números enteros e indica cuál de ellos es el mayor. Resuélvelo asignando el mayor de a pares usando expresiones con ABS: mayor(a,b) = (a + b + |a − b|) / 2. Sin usar Si-Entonces.",
+      "entradaProcesoSalida": {
+        "entrada": "a, b, c (Entero)",
+        "proceso": "mayAB ← (a + b + ABS(a−b)) / 2\nmayor ← (mayAB + c + ABS(mayAB−c)) / 2",
+        "salida": "\"El mayor es: \" + mayor"
+      },
+      "salidaEsperada": "Número 1:\n> 15\nNúmero 2:\n> 8\nNúmero 3:\n> 23\nEl mayor es: 23",
+      "pista": "ABS() es la función valor absoluto en PSeInt. La fórmula max(a,b) = (a + b + |a−b|) / 2 calcula el máximo sin comparaciones. Es un truco algebraico elegante.",
+      "codigoReferencia": "Proceso MayorDeTres\n  Definir a, b, c Como Entero\n  Definir mayAB, mayor Como Real\n\n  Escribir \"Número 1:\"\n  Leer a\n  Escribir \"Número 2:\"\n  Leer b\n  Escribir \"Número 3:\"\n  Leer c\n\n  mayAB = (a + b + ABS(a - b)) / 2\n  mayor = (mayAB + c + ABS(mayAB - c)) / 2\n\n  Escribir \"El mayor es: \", mayor\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-017",
+      "origen": "json/EA 1.2.json #37",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-17",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Menor y mayor de dos números",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "ABS",
+        "Fórmula"
+      ],
+      "enunciado": "Lee dos números reales. Calcula y muestra cuál es el menor y cuál es el mayor usando fórmulas con valor absoluto: min(a,b) = (a+b−|a−b|)/2 y max(a,b) = (a+b+|a−b|)/2. Sin Si-Entonces.",
+      "entradaProcesoSalida": {
+        "entrada": "a, b (Real)",
+        "proceso": "menor ← (a+b−ABS(a−b)) / 2\nmayor ← (a+b+ABS(a−b)) / 2",
+        "salida": "\"Menor: \" + menor\n\"Mayor: \" + mayor"
+      },
+      "salidaEsperada": "Número 1:\n> 9\nNúmero 2:\n> 3\nMenor: 3\nMayor: 9",
+      "pista": "Estas fórmulas algebraicas son equivalentes a las comparaciones Si-Entonces pero usan solo aritmética. ABS() en PSeInt devuelve el valor absoluto de un número.",
+      "codigoReferencia": "Proceso MenorMayor\n  Definir a, b, menor, mayor Como Real\n\n  Escribir \"Número 1:\"\n  Leer a\n  Escribir \"Número 2:\"\n  Leer b\n\n  menor = (a + b - ABS(a - b)) / 2\n  mayor = (a + b + ABS(a - b)) / 2\n\n  Escribir \"Menor: \", menor\n  Escribir \"Mayor: \", mayor\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-018",
+      "origen": "json/EA 1.2.json #38",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-18",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Ordenar tres números de menor a mayor",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "ABS",
+        "Fórmula"
+      ],
+      "enunciado": "Ingresa tres números reales y muéstralos de menor a mayor. Usa las fórmulas con ABS para calcular min y max sin Si-Entonces: min(a,b)=(a+b−|a−b|)/2, max(a,b)=(a+b+|a−b|)/2.",
+      "entradaProcesoSalida": {
+        "entrada": "a, b, c (Real)",
+        "proceso": "min1 ← min(a,b); max1 ← max(a,b)\nmenor ← min(min1, c)\nmayor ← max(max1, c)\nmedio ← a+b+c − menor − mayor",
+        "salida": "\"De menor a mayor: menor, medio, mayor\""
+      },
+      "salidaEsperada": "Número 1:\n> 8\nNúmero 2:\n> 3\nNúmero 3:\n> 5\nDe menor a mayor: 3, 5, 8",
+      "pista": "El valor del medio se obtiene restando el menor y el mayor de la suma total: medio = a + b + c − menor − mayor. Elegante y sin ninguna condición.",
+      "codigoReferencia": "Proceso OrdenarTres\n  Definir a, b, c, min1, max1, menor, mayor, medio Como Real\n\n  Escribir \"Número 1:\"\n  Leer a\n  Escribir \"Número 2:\"\n  Leer b\n  Escribir \"Número 3:\"\n  Leer c\n\n  min1  = (a + b - ABS(a - b)) / 2\n  max1  = (a + b + ABS(a - b)) / 2\n  menor = (min1 + c - ABS(min1 - c)) / 2\n  mayor = (max1 + c + ABS(max1 - c)) / 2\n  medio = a + b + c - menor - mayor\n\n  Escribir \"De menor a mayor: \", menor, \", \", medio, \", \", mayor\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-019",
+      "origen": "json/EA 1.2.json #39",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-19",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Par o impar: mostrar el resto",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "MOD",
+        "Aritmética"
+      ],
+      "enunciado": "Lee un número entero. Calcula su resto al dividir por 2 (n MOD 2). Muestra el número, el resto y explica en la salida: si el resto es 0 el número es par, si es 1 es impar. Sin usar Si-Entonces — solo muestra los valores.",
+      "entradaProcesoSalida": {
+        "entrada": "n (Entero)",
+        "proceso": "resto ← n MOD 2",
+        "salida": "\"n MOD 2 = resto\"\n\"(0 = par, 1 = impar)\""
+      },
+      "salidaEsperada": "Ingresa un número:\n> 7\n7 mod 2 = 1\nResto 0 → par  |  Resto 1 → impar",
+      "pista": "MOD 2 siempre devuelve 0 o 1. Solo con ver el resultado ya sabes si el número es par o impar, sin necesitar una condición. En EA 1.3 agregaremos el Si-Entonces para mostrar el mensaje apropiado.",
+      "codigoReferencia": "Proceso ParImpar\n  Definir n, resto Como Entero\n\n  Escribir \"Ingresa un número:\"\n  Leer n\n\n  resto = n mod 2\n\n  Escribir n, \" mod 2 = \", resto\n  Escribir \"Resto 0 → par  |  Resto 1 → impar\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-020",
+      "origen": "json/EA 1.2.json #40",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-20",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Calcular perímetro y área del cuadrado",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Geometría",
+        "Potencia"
+      ],
+      "enunciado": "Lee el lado de un cuadrado. Calcula su área (A = lado²) y su perímetro (P = 4 × lado).",
+      "entradaProcesoSalida": {
+        "entrada": "lado (Real)",
+        "proceso": "area ← lado ^ 2\nperimetro ← 4 × lado",
+        "salida": "\"Área: \" + area\n\"Perímetro: \" + perimetro"
+      },
+      "salidaEsperada": "Lado del cuadrado:\n> 5\nÁrea: 25\nPerímetro: 20",
+      "pista": "Un cuadrado tiene todos sus lados iguales. El área es el lado al cuadrado y el perímetro es cuatro veces el lado.",
+      "codigoReferencia": "Proceso Cuadrado\n  Definir lado, area, perimetro Como Real\n\n  Escribir \"Lado del cuadrado:\"\n  Leer lado\n\n  area      = lado ^ 2\n  perimetro = 4 * lado\n\n  Escribir \"Área: \", area\n  Escribir \"Perímetro: \", perimetro\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-021",
+      "origen": "json/EA 1.2.json #41",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-21",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Cálculo de notas con ponderación flexible",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Ponderación"
+      ],
+      "enunciado": "Lee tres notas y sus respectivos porcentajes de ponderación (p1, p2, p3 que suman 100). Calcula la nota final ponderada.",
+      "entradaProcesoSalida": {
+        "entrada": "n1, n2, n3 (Real)\np1, p2, p3 (Real, suman 100)",
+        "proceso": "final ← n1×(p1/100) + n2×(p2/100) + n3×(p3/100)",
+        "salida": "\"Nota final: \" + final"
+      },
+      "salidaEsperada": "Nota 1:\n> 6\nPonderación 1 (%):\n> 40\nNota 2:\n> 5\nPonderación 2 (%):\n> 35\nNota 3:\n> 7\nPonderación 3 (%):\n> 25\nNota final: 5.9",
+      "pista": "Divide cada porcentaje entre 100 para convertirlo a decimal. Verifica que p1 + p2 + p3 = 100 antes de ejecutar.",
+      "codigoReferencia": "Proceso NotasPonderadas\n  Definir n1, n2, n3, p1, p2, p3, final Como Real\n\n  Escribir \"Nota 1:\"\n  Leer n1\n  Escribir \"Ponderación 1 (%):\"\n  Leer p1\n  Escribir \"Nota 2:\"\n  Leer n2\n  Escribir \"Ponderación 2 (%):\"\n  Leer p2\n  Escribir \"Nota 3:\"\n  Leer n3\n  Escribir \"Ponderación 3 (%):\"\n  Leer p3\n\n  final = n1 * (p1 / 100) + n2 * (p2 / 100) + n3 * (p3 / 100)\n\n  Escribir \"Nota final: \", final\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-022",
+      "origen": "json/EA 1.2.json #42",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-22",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Distancia entre dos puntos",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Potencia",
+        "Fórmula",
+        "Geometría"
+      ],
+      "enunciado": "Lee las coordenadas de dos puntos (x1,y1) y (x2,y2). Calcula la distancia euclidiana entre ellos: d = √((x2−x1)² + (y2−y1)²). Usa el operador ^(1/2) para la raíz cuadrada.",
+      "entradaProcesoSalida": {
+        "entrada": "x1, y1, x2, y2 (Real)",
+        "proceso": "dx ← (x2−x1)^2\ndy ← (y2−y1)^2\nd ← (dx + dy)^(1/2)",
+        "salida": "\"Distancia: \" + d"
+      },
+      "salidaEsperada": "Punto 1 — x1:\n> 0\nPunto 1 — y1:\n> 0\nPunto 2 — x2:\n> 3\nPunto 2 — y2:\n> 4\nDistancia: 5",
+      "pista": "El operador ^(1/2) calcula la raíz cuadrada en LiteSeInt: (expr)^(1/2). El trío (3, 4, 5) es el triángulo rectángulo más famoso: √(9+16) = √25 = 5.",
+      "codigoReferencia": "Proceso Distancia\n  Definir x1, y1, x2, y2, dx, dy, d Como Real\n\n  Escribir \"Punto 1 — x1:\"\n  Leer x1\n  Escribir \"Punto 1 — y1:\"\n  Leer y1\n  Escribir \"Punto 2 — x2:\"\n  Leer x2\n  Escribir \"Punto 2 — y2:\"\n  Leer y2\n\n  dx = (x2 - x1) ^ 2\n  dy = (y2 - y1) ^ 2\n  d  = (dx + dy) ^ (1 / 2)\n\n  Escribir \"Distancia: \", d\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-023",
+      "origen": "json/EA 1.2.json #43",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-23",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Conversión de moneda",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Conversión"
+      ],
+      "enunciado": "Lee un monto en pesos chilenos (CLP) y conviértelo a dólares (USD) y euros (EUR). Usa tipos de cambio fijos: 1 USD = 950 CLP, 1 EUR = 1030 CLP.",
+      "entradaProcesoSalida": {
+        "entrada": "montoCLP (Real)",
+        "proceso": "usd ← montoCLP / 950\neur ← montoCLP / 1030",
+        "salida": "Monto en USD y EUR"
+      },
+      "salidaEsperada": "Monto en CLP ($):\n> 97850\nEn USD: 103\nEn EUR: 95",
+      "pista": "Los tipos de cambio son aproximados y varían diariamente. En un sistema real, se obtendrían de una API. Aquí los definimos como constantes para simplificar.",
+      "codigoReferencia": "Proceso ConvertirMoneda\n  Definir montoCLP, usd, eur Como Real\n\n  Escribir \"Monto en CLP ($):\"\n  Leer montoCLP\n\n  usd = montoCLP / 950\n  eur = montoCLP / 1030\n\n  Escribir \"En USD: \", usd\n  Escribir \"En EUR: \", eur\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-024",
+      "origen": "json/EA 1.2.json #44",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-24",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Fuerza, masa y aceleración",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Física"
+      ],
+      "enunciado": "Lee la masa (kg) y la aceleración (m/s²). Calcula la fuerza resultante con la Segunda Ley de Newton: F = m × a. Muestra el resultado en Newtons.",
+      "entradaProcesoSalida": {
+        "entrada": "masa en kg (Real)\naceleracion en m/s² (Real)",
+        "proceso": "fuerza ← masa × aceleracion",
+        "salida": "\"Fuerza: \" + fuerza + \" N\""
+      },
+      "salidaEsperada": "Masa (kg):\n> 10\nAceleración (m/s²):\n> 9.8\nFuerza: 98 N",
+      "pista": "La aceleración de la gravedad terrestre es 9.8 m/s². Un objeto de 10 kg tiene un peso de 98 N. Las fórmulas físicas son algoritmos perfectos para practicar E·P·S.",
+      "codigoReferencia": "Proceso FuerzaNewton\n  Definir masa, aceleracion, fuerza Como Real\n\n  Escribir \"Masa (kg):\"\n  Leer masa\n  Escribir \"Aceleración (m/s²):\"\n  Leer aceleracion\n\n  fuerza = masa * aceleracion\n\n  Escribir \"Fuerza: \", fuerza, \" N\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-025",
+      "origen": "json/EA 1.2.json #45",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-25",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Área del triángulo con fórmula de Herón",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Potencia",
+        "Geometría",
+        "RC"
+      ],
+      "enunciado": "Lee los tres lados de un triángulo. Calcula el semiperímetro s = (a+b+c)/2 y luego el área con la fórmula de Herón: A = √(s(s−a)(s−b)(s−c)).",
+      "entradaProcesoSalida": {
+        "entrada": "a, b, c (Real — lados del triángulo)",
+        "proceso": "s ← (a+b+c)/2\narea ← RC(s×(s-a)×(s-b)×(s-c))",
+        "salida": "\"Semiperímetro: \" + s\n\"Área: \" + area"
+      },
+      "salidaEsperada": "Lado a:\n> 3\nLado b:\n> 4\nLado c:\n> 5\nSemiperímetro: 6\nÁrea: 6",
+      "pista": "La fórmula de Herón permite calcular el área de cualquier triángulo conociendo solo sus tres lados, sin necesidad de la altura. El triángulo 3-4-5 da s=6 y área=6, un buen caso para verificar.",
+      "codigoReferencia": "Proceso AreaHeron\n  Definir a, b, c, s, area Como Real\n\n  Escribir \"Lado a:\"\n  Leer a\n  Escribir \"Lado b:\"\n  Leer b\n  Escribir \"Lado c:\"\n  Leer c\n\n  s    = (a + b + c) / 2\n  area = (s * (s - a) * (s - b) * (s - c)) ^ (1 / 2)\n\n  Escribir \"Semiperímetro: \", s\n  Escribir \"Área: \", area\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-026",
+      "origen": "json/EA 1.2.json #46",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-26",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Energía cinética y potencial",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Potencia",
+        "Fórmula",
+        "Física"
+      ],
+      "enunciado": "Lee la masa (kg), velocidad (m/s) y altura (m). Calcula la energía cinética (Ec = ½ × m × v²) y la energía potencial (Ep = m × g × h) con g=9.8.",
+      "entradaProcesoSalida": {
+        "entrada": "masa (Real), velocidad (Real), altura (Real)\ng = 9.8 (constante)",
+        "proceso": "Ec ← 0.5 × masa × velocidad^2\nEp ← masa × 9.8 × altura",
+        "salida": "\"Ec: \" + Ec + \" J\"\n\"Ep: \" + Ep + \" J\""
+      },
+      "salidaEsperada": "Masa (kg):\n> 5\nVelocidad (m/s):\n> 10\nAltura (m):\n> 3\nEnergía cinética: 250 J\nEnergía potencial: 147 J",
+      "pista": "Definir g como variable al inicio del código facilita cambiarla si necesitas trabajar con la gravedad de otro planeta (Marte: 3.71 m/s²).",
+      "codigoReferencia": "Proceso Energias\n  Definir masa, vel, altura, Ec, Ep, g Como Real\n\n  g = 9.8\n\n  Escribir \"Masa (kg):\"\n  Leer masa\n  Escribir \"Velocidad (m/s):\"\n  Leer vel\n  Escribir \"Altura (m):\"\n  Leer altura\n\n  Ec = 0.5 * masa * vel ^ 2\n  Ep = masa * g * altura\n\n  Escribir \"Energía cinética: \", Ec, \" J\"\n  Escribir \"Energía potencial: \", Ep, \" J\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-027",
+      "origen": "json/EA 1.2.json #47",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-27",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Factorial acumulado paso a paso",
+      "conceptos": [
+        "Entero",
+        "Aritmética",
+        "Acumulador",
+        "Secuencia"
+      ],
+      "enunciado": "Calcula y muestra el factorial acumulado desde 1! hasta 6!, mostrando cada paso. No se lee ningún número del usuario: el proceso calcula todos los valores en secuencia multiplicando paso a paso.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna — valores fijos 1 a 6)",
+        "proceso": "fact ← 1\nfact ← fact×2 → mostrar 2!\nfact ← fact×3 → mostrar 3!\n...\nfact ← fact×6 → mostrar 6!",
+        "salida": "6 líneas: \"n! = fact\""
+      },
+      "salidaEsperada": "1! = 1\n2! = 2\n3! = 6\n4! = 24\n5! = 120\n6! = 720",
+      "pista": "Una variable que acumula resultados multiplicando se llama acumulador. Aquí fact parte en 1 y se multiplica sucesivamente. En EA 1.4 esto se hará con un ciclo Para.",
+      "codigoReferencia": "Proceso FactorialSecuencia\n  Definir fact Como Entero\n\n  fact = 1\n\n  Escribir \"1! = \", fact\n\n  fact = fact * 2\n\n  Escribir \"2! = \", fact\n\n  fact = fact * 3\n\n  Escribir \"3! = \", fact\n\n  fact = fact * 4\n\n  Escribir \"4! = \", fact\n\n  fact = fact * 5\n\n  Escribir \"5! = \", fact\n\n  fact = fact * 6\n\n  Escribir \"6! = \", fact\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-028",
+      "origen": "json/EA 1.2.json #48",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-28",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Temperatura corporal — conversión y rangos",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Conversión"
+      ],
+      "enunciado": "Lee la temperatura corporal en Celsius. Conviértela a Fahrenheit y muestra la temperatura en ambas escalas. Además imprime la tabla de referencia de rangos (texto fijo), sin evaluar en cuál cae. La clasificación se verá en EA 1.3.",
+      "entradaProcesoSalida": {
+        "entrada": "tempC (Real)",
+        "proceso": "tempF ← tempC × 9/5 + 32",
+        "salida": "Temperatura en C y F\n+ tabla de referencia fija"
+      },
+      "salidaEsperada": "Temperatura (°C):\n> 38.5\nTemperatura: 38.5°C = 101.3°F\n--- Referencia ---\n< 36.1°C : Hipotermia\n36.1–37.2°C : Normal\n> 37.2°C : Fiebre",
+      "pista": "Separar la conversión (proceso de EA 1.2) de la clasificación (decisión de EA 1.3) es un buen diseño. Cada unidad tiene su responsabilidad.",
+      "codigoReferencia": "Proceso TempCorporal\n  Definir tempC, tempF Como Real\n\n  Escribir \"Temperatura (°C):\"\n  Leer tempC\n\n  tempF = tempC * 9 / 5 + 32\n\n  Escribir \"Temperatura: \", tempC, \"°C = \", tempF, \"°F\"\n  Escribir \"--- Referencia ---\"\n  Escribir \"< 36.1°C : Hipotermia\"\n  Escribir \"36.1–37.2°C : Normal\"\n  Escribir \"> 37.2°C : Fiebre\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-029",
+      "origen": "json/EA 1.2.json #49",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-29",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Volumen del prisma rectangular",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Geometría",
+        "Fórmula"
+      ],
+      "enunciado": "Lee el largo, ancho y alto de un prisma rectangular (caja). Calcula su volumen (V = largo × ancho × alto) y su área total de superficie (A = 2(lb + lh + bh)).",
+      "entradaProcesoSalida": {
+        "entrada": "largo, ancho, alto (Real)",
+        "proceso": "vol ← largo × ancho × alto\narea ← 2×(largo×ancho + largo×alto + ancho×alto)",
+        "salida": "\"Volumen: \" + vol\n\"Área superficie: \" + area"
+      },
+      "salidaEsperada": "Largo:\n> 5\nAncho:\n> 3\nAlto:\n> 2\nVolumen: 30\nÁrea superficie: 62",
+      "pista": "Una caja tiene 6 caras: 2 de cada par. La fórmula del área total agrupa los tres pares: frente/dorso, izquierda/derecha, techo/piso.",
+      "codigoReferencia": "Proceso PrismaRectangular\n  Definir largo, ancho, alto, vol, area Como Real\n\n  Escribir \"Largo:\"\n  Leer largo\n  Escribir \"Ancho:\"\n  Leer ancho\n  Escribir \"Alto:\"\n  Leer alto\n\n  vol  = largo * ancho * alto\n  area = 2 * (largo * ancho + largo * alto + ancho * alto)\n\n  Escribir \"Volumen: \", vol\n  Escribir \"Área superficie: \", area\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-030",
+      "origen": "json/EA 1.2.json #50",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-30",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Calcular el IMC y tabla de referencia OMS",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Potencia",
+        "Fórmula",
+        "Salud"
+      ],
+      "enunciado": "Lee peso (kg) y estatura (m). Calcula el IMC y muéstralo. Imprime también la tabla de clasificación OMS como texto fijo para que el usuario pueda comparar visualmente. Sin Si-Entonces.",
+      "entradaProcesoSalida": {
+        "entrada": "peso (Real)\nestatura (Real)",
+        "proceso": "imc ← peso / estatura^2",
+        "salida": "\"IMC: \" + imc\n+ tabla de referencia OMS impresa"
+      },
+      "salidaEsperada": "Peso (kg):\n> 100\nEstatura (m):\n> 2\nTu IMC es: 25\n--- Tabla OMS ---\n< 18.5  : Bajo peso\n18.5–24.9 : Normal\n25–29.9  : Sobrepeso\n>= 30    : Obesidad",
+      "pista": "El cálculo del IMC es EA 1.2 (fórmula). La clasificación automática según el resultado es EA 1.3 (decisión). Aquí practicamos solo el cálculo e imprimimos la tabla como referencia.",
+      "codigoReferencia": "Proceso IMCReferencia\n  Definir peso, estatura, imc Como Real\n\n  Escribir \"Peso (kg):\"\n  Leer peso\n  Escribir \"Estatura (m):\"\n  Leer estatura\n\n  imc = peso / (estatura ^ 2)\n\n  Escribir \"Tu IMC es: \", imc\n  Escribir \"--- Tabla OMS ---\"\n  Escribir \"< 18.5    : Bajo peso\"\n  Escribir \"18.5–24.9 : Normal\"\n  Escribir \"25–29.9   : Sobrepeso\"\n  Escribir \">= 30     : Obesidad\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-031",
+      "origen": "json/EA 1.2.json #51",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-31",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Rutina matutina completa",
+      "conceptos": [
+        "Algoritmo",
+        "Secuencia",
+        "Pseudocódigo"
+      ],
+      "enunciado": "Modela en PSeInt la rutina matutina de un estudiante: desde que se despierta hasta que sale del hogar. Incluye al menos 8 pasos secuenciales. Lee la hora de despertar y el nombre del estudiante. (Basado en Guía 1.2.6.)",
+      "entradaProcesoSalida": {
+        "entrada": "nombre (Caracter)\nhoraDespertar (Entero)",
+        "proceso": "Secuencia de 8+ acciones numeradas",
+        "salida": "Lista de pasos hasta salir del hogar"
+      },
+      "salidaEsperada": "Nombre del estudiante:\n> Carlos\nHora de despertar (0-23):\n> 7\n=== Rutina de Carlos (inicio: 7h) ===\nPaso 1: Apagar la alarma\nPaso 2: Bajar de la cama\nPaso 3: Buscar ropa limpia\nPaso 4: Tomar ducha\nPaso 5: Desayunar\nPaso 6: Cepillar dientes\nPaso 7: Preparar mochila\nPaso 8: Salir del hogar. ¡Buen día!",
+      "pista": "Este algoritmo modela una secuencia real. La clave está en que el orden importa: no puedes vestirte antes de ducharte ni salir antes de preparar la mochila. La hora de despertar aparece en el encabezado.",
+      "codigoReferencia": "Proceso RutinaMatutina\n  Definir nombre Como Caracter\n  Definir hora, numPaso Como Entero\n\n  Escribir \"Nombre del estudiante:\"\n  Leer nombre\n  Escribir \"Hora de despertar (0-23):\"\n  Leer hora\n  Escribir \"=== Rutina de \", nombre, \" (inicio: \", hora, \"h) ===\"\n\n  numPaso = 1\n\n  Escribir \"Paso \", numPaso, \": Apagar la alarma\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Bajar de la cama\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Buscar ropa limpia\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Tomar ducha\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Desayunar\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Cepillar dientes\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Preparar mochila\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Salir del hogar. ¡Buen día!\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-032",
+      "origen": "json/EA 1.2.json #52",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-32",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Rutina matutina con paso de ducha",
+      "conceptos": [
+        "Algoritmo",
+        "Secuencia",
+        "Pseudocódigo",
+        "Caracter"
+      ],
+      "enunciado": "Modela la rutina matutina desde despertar hasta salir. Lee el nombre y si el estudiante prefiere ducha fría o caliente. Muestra la secuencia completa de pasos incluyendo el tipo de ducha elegido en la descripción del paso. Sin Si-Entonces: el tipo de ducha se muestra concatenado en la salida.",
+      "entradaProcesoSalida": {
+        "entrada": "nombre (Caracter)\ntipoDucha (Caracter: 'fría'/'caliente')",
+        "proceso": "Secuencia de 8 pasos numerados con tipoDucha concatenado en paso 4",
+        "salida": "Lista completa de pasos de la rutina"
+      },
+      "salidaEsperada": "Nombre:\n> Ana\nTipo de ducha (fría/caliente):\n> caliente\n=== Rutina de Ana ===\nPaso 1: Apagar la alarma\nPaso 2: Bajar de la cama\nPaso 3: Buscar ropa limpia\nPaso 4: Ducha caliente\nPaso 5: Desayunar\nPaso 6: Cepillar dientes\nPaso 7: Preparar mochila\nPaso 8: Salir del hogar. ¡Buen día, Ana!",
+      "pista": "La preferencia de ducha se incorpora directamente en la cadena de texto mediante concatenación. No se necesita condición cuando el valor se usa como dato, no como criterio de decisión.",
+      "codigoReferencia": "Proceso RutinaMatutina\n  Definir nombre, tipoDucha Como Caracter\n  Definir numPaso Como Entero\n\n  Escribir \"Nombre:\"\n  Leer nombre\n  Escribir \"Tipo de ducha (fría/caliente):\"\n  Leer tipoDucha\n  Escribir \"=== Rutina de \", nombre, \" ===\"\n\n  numPaso = 1\n\n  Escribir \"Paso \", numPaso, \": Apagar la alarma\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Bajar de la cama\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Buscar ropa limpia\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Ducha \", tipoDucha\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Desayunar\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Cepillar dientes\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Preparar mochila\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Salir del hogar. ¡Buen día, \", nombre, \"!\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-033",
+      "origen": "json/EA 1.2.json #53",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-33",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Calcular propina dividida entre personas",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Entero",
+        "Aritmética"
+      ],
+      "enunciado": "Lee la cuenta total, el porcentaje de propina y la cantidad de personas. Calcula la propina total, el total a pagar y el monto por persona.",
+      "entradaProcesoSalida": {
+        "entrada": "cuenta (Real)\npctPropina (Real)\npersonas (Entero)",
+        "proceso": "propina ← cuenta × pctPropina/100\ntotal ← cuenta + propina\nporPersona ← total / personas",
+        "salida": "Desglose: cuenta, propina, total y por persona"
+      },
+      "salidaEsperada": "Cuenta total ($):\n> 60000\nPropina (%):\n> 10\nCantidad de personas:\n> 4\nPropina: $6000\nTotal: $66000\nPor persona: $16500",
+      "pista": "Mezclar tipos Entero y Real en el mismo algoritmo es común. Declara las variables con el tipo correcto según si admiten o no decimales.",
+      "codigoReferencia": "Proceso CuentaRestaurant\n  Definir cuenta, pct, propina, total, porPersona Como Real\n  Definir personas Como Entero\n\n  Escribir \"Cuenta total ($):\"\n  Leer cuenta\n  Escribir \"Propina (%):\"\n  Leer pct\n  Escribir \"Cantidad de personas:\"\n  Leer personas\n\n  propina    = cuenta * pct / 100\n  total      = cuenta + propina\n  porPersona = total / personas\n\n  Escribir \"Propina: $\", propina\n  Escribir \"Total: $\", total\n  Escribir \"Por persona: $\", porPersona\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-034",
+      "origen": "json/EA 1.2.json #54",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-34",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Liquidación con horas extras fijas",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Aritmética",
+        "Fórmula"
+      ],
+      "enunciado": "Lee las horas normales trabajadas (máx. 45), las horas extras trabajadas y el valor hora. Calcula el pago normal, el pago extra (valor hora × 1.5 × horas extra) y el sueldo total. El usuario ingresa ambos valores por separado, sin necesidad de comparar.",
+      "entradaProcesoSalida": {
+        "entrada": "horasNorm, horasExtra (Real)\nvalorHora (Real)",
+        "proceso": "pagoNorm ← horasNorm × valorHora\npagoExtra ← horasExtra × valorHora × 1.5\ntotal ← pagoNorm + pagoExtra",
+        "salida": "Desglose y sueldo total"
+      },
+      "salidaEsperada": "Horas normales (máx 45):\n> 45\nHoras extras:\n> 5\nValor hora ($):\n> 5000\nPago normal: $225000\nPago extra (150%): $37500\nSueldo total: $262500",
+      "pista": "Al pedir horas normales y extras por separado, eliminamos la necesidad de comparar. El usuario ya sabe cuántas horas extras hizo. Este rediseño de la entrada simplifica el proceso.",
+      "codigoReferencia": "Proceso HorasExtras\n  Definir horasNorm, horasExtra, valorH, pagNorm, pagExtra, total Como Real\n\n  Escribir \"Horas normales (máx 45):\"\n  Leer horasNorm\n  Escribir \"Horas extras:\"\n  Leer horasExtra\n  Escribir \"Valor hora ($):\"\n  Leer valorH\n\n  pagNorm  = horasNorm * valorH\n  pagExtra = horasExtra * valorH * 1.5\n  total    = pagNorm + pagExtra\n\n  Escribir \"Pago normal: $\", pagNorm\n  Escribir \"Pago extra (150%): $\", pagExtra\n  Escribir \"Sueldo total: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-035",
+      "origen": "json/EA 1.2.json #55",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-35",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Calcular el índice de masa magra",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Fórmula",
+        "Salud"
+      ],
+      "enunciado": "Lee el peso total (kg) y el porcentaje de grasa corporal (%). Calcula la masa grasa y la masa magra (músculo + huesos). Muestra el desglose.",
+      "entradaProcesoSalida": {
+        "entrada": "pesoTotal (Real)\npctGrasa (Real, en %)",
+        "proceso": "masaGrasa ← pesoTotal × pctGrasa / 100\nmasaMagra ← pesoTotal − masaGrasa",
+        "salida": "Desglose: peso, grasa y masa magra"
+      },
+      "salidaEsperada": "Peso total (kg):\n> 75\nPorcentaje de grasa (%):\n> 20\nMasa grasa: 15 kg\nMasa magra: 60 kg",
+      "pista": "La masa magra incluye músculos, huesos y órganos. Un atleta puede tener 15% de grasa, una persona sedentaria entre 25-35%. El desglose de un dato en sus componentes es un proceso muy común en algoritmos.",
+      "codigoReferencia": "Proceso MasaMagra\n  Definir pesoTotal, pctGrasa, masaGrasa, masaMagra Como Real\n\n  Escribir \"Peso total (kg):\"\n  Leer pesoTotal\n  Escribir \"Porcentaje de grasa (%):\"\n  Leer pctGrasa\n\n  masaGrasa = pesoTotal * pctGrasa / 100\n  masaMagra = pesoTotal - masaGrasa\n\n  Escribir \"Masa grasa: \", masaGrasa, \" kg\"\n  Escribir \"Masa magra: \", masaMagra, \" kg\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-036",
+      "origen": "json/EA 1.2.json #56",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-36",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Simulador de caja registradora",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Entero",
+        "Fórmula",
+        "Aritmética"
+      ],
+      "enunciado": "Lee el precio y cantidad de 3 productos. Calcula el subtotal de cada uno, el subtotal general, el IVA (19%) y el total a pagar. Imprime el ticket completo.",
+      "entradaProcesoSalida": {
+        "entrada": "precio1,cant1, precio2,cant2, precio3,cant3",
+        "proceso": "sub1←p1×c1; sub2←p2×c2; sub3←p3×c3\nsubtotal←sub1+sub2+sub3\niva←subtotal×0.19\ntotal←subtotal+iva",
+        "salida": "Ticket detallado con todos los valores"
+      },
+      "salidaEsperada": "--- Producto 1 ---\nPrecio:\n> 2500\nCantidad:\n> 3\n--- Producto 2 ---\nPrecio:\n> 1800\nCantidad:\n> 2\n--- Producto 3 ---\nPrecio:\n> 5000\nCantidad:\n> 1\n=== TICKET ===\nSubtotal: $16100\nIVA (19%): $3059\nTOTAL: $19159",
+      "pista": "Este algoritmo simula una caja real. Notar que con 3 productos la estructura ya se repite: en EA 1.4 usaremos ciclos para manejar N productos.",
+      "codigoReferencia": "Proceso CajaRegistradora\n  Definir p1, p2, p3, sub1, sub2, sub3, subtotal, iva, total Como Real\n  Definir c1, c2, c3 Como Entero\n\n  Escribir \"--- Producto 1 ---\"\n  Escribir \"Precio:\"\n  Leer p1\n  Escribir \"Cantidad:\"\n  Leer c1\n  Escribir \"--- Producto 2 ---\"\n  Escribir \"Precio:\"\n  Leer p2\n  Escribir \"Cantidad:\"\n  Leer c2\n  Escribir \"--- Producto 3 ---\"\n  Escribir \"Precio:\"\n  Leer p3\n  Escribir \"Cantidad:\"\n  Leer c3\n\n  sub1     = p1 * c1\n  sub2     = p2 * c2\n  sub3     = p3 * c3\n  subtotal = sub1 + sub2 + sub3\n  iva      = subtotal * 0.19\n  total    = subtotal + iva\n\n  Escribir \"=== TICKET ===\"\n  Escribir \"Subtotal: $\", subtotal\n  Escribir \"IVA (19%): $\", iva\n  Escribir \"TOTAL: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-037",
+      "origen": "json/EA 1.2.json #57",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-37",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Discriminante de ecuación cuadrática",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Potencia",
+        "RC",
+        "Fórmula"
+      ],
+      "enunciado": "Lee los coeficientes a, b y c. Calcula el discriminante Δ = b²−4ac y las dos fórmulas de raíces. Muestra Δ y ambas expresiones calculadas. Asume que el usuario ingresa valores con Δ ≥ 0 para que RC() sea válido. Sin Si-Entonces.",
+      "entradaProcesoSalida": {
+        "entrada": "a, b, c (Real) — se asume Δ ≥ 0",
+        "proceso": "disc ← b^2 − 4×a×c\nx1 ← (−b + RC(disc)) / (2×a)\nx2 ← (−b − RC(disc)) / (2×a)",
+        "salida": "\"Δ = \" + disc\n\"x1 = \" + x1\n\"x2 = \" + x2"
+      },
+      "salidaEsperada": "Coeficiente a:\n> 1\nCoeficiente b:\n> -5\nCoeficiente c:\n> 6\nDiscriminante Δ = 1\nx1 = 3\nx2 = 2",
+      "pista": "La fórmula general se aplica directamente cuando sabemos que Δ ≥ 0. El caso Δ < 0 requiere una decisión (EA 1.3). Aquí practicamos solo el cálculo algebraico.",
+      "codigoReferencia": "Proceso EcuacionCuadratica\n  Definir a, b, c, disc, x1, x2 Como Real\n\n  Escribir \"Coeficiente a:\"\n  Leer a\n  Escribir \"Coeficiente b:\"\n  Leer b\n  Escribir \"Coeficiente c:\"\n  Leer c\n\n  disc = b ^ 2 - 4 * a * c\n  x1   = (-b + (disc) ^ (1 / 2)) / (2 * a)\n  x2   = (-b - (disc) ^ (1 / 2)) / (2 * a)\n\n  Escribir \"Discriminante Δ = \", disc\n  Escribir \"x1 = \", x1\n  Escribir \"x2 = \", x2\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-038",
+      "origen": "json/EA 1.2.json #58",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-38",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Planilla de tres trabajadores",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Aritmética",
+        "Fórmula"
+      ],
+      "enunciado": "Lee el nombre y sueldo bruto de 3 trabajadores. Calcula para cada uno: AFP (10%), Salud (7%) y líquido. Al final muestra el total de la planilla (suma de los tres líquidos).",
+      "entradaProcesoSalida": {
+        "entrada": "nombre1,bruto1, nombre2,bruto2, nombre3,bruto3",
+        "proceso": "Para cada trabajador:\n  afp ← bruto×0.10\n  salud ← bruto×0.07\n  liq ← bruto−afp−salud\ntotalPlanilla ← liq1+liq2+liq3",
+        "salida": "Ficha de cada trabajador + total planilla"
+      },
+      "salidaEsperada": "Trabajador 1 — Nombre:\n> Juan\nTrabajador 1 — Sueldo bruto:\n> 700000\nTrabajador 2 — Nombre:\n> María\nTrabajador 2 — Sueldo bruto:\n> 600000\nTrabajador 3 — Nombre:\n> Pedro\nTrabajador 3 — Sueldo bruto:\n> 800000\nJuan: AFP $70000 | Salud $49000 | Líquido $581000\nMaría: AFP $60000 | Salud $42000 | Líquido $498000\nPedro: AFP $80000 | Salud $56000 | Líquido $664000\nTotal planilla: $1743000",
+      "pista": "Este algoritmo muestra por qué los arreglos y ciclos son tan importantes: hacer lo mismo para N trabajadores con ciclos es mucho más eficiente que repetir el código.",
+      "codigoReferencia": "Proceso Planilla\n  Definir n1, n2, n3 Como Caracter\n  Definir b1, b2, b3, a1, a2, a3, s1, s2, s3, l1, l2, l3, planilla Como Real\n\n  Escribir \"Trabajador 1 — Nombre:\"\n  Leer n1\n  Escribir \"Trabajador 1 — Sueldo bruto:\"\n  Leer b1\n  Escribir \"Trabajador 2 — Nombre:\"\n  Leer n2\n  Escribir \"Trabajador 2 — Sueldo bruto:\"\n  Leer b2\n  Escribir \"Trabajador 3 — Nombre:\"\n  Leer n3\n  Escribir \"Trabajador 3 — Sueldo bruto:\"\n  Leer b3\n\n  a1 = b1 * 0.10\n  s1 = b1 * 0.07\n  l1 = b1 - a1 - s1\n  a2 = b2 * 0.10\n  s2 = b2 * 0.07\n  l2 = b2 - a2 - s2\n  a3 = b3 * 0.10\n  s3 = b3 * 0.07\n  l3 = b3 - a3 - s3\n\n  Escribir n1, \": AFP $\", a1, \" | Salud $\", s1, \" | Líquido $\", l1\n  Escribir n2, \": AFP $\", a2, \" | Salud $\", s2, \" | Líquido $\", l2\n  Escribir n3, \": AFP $\", a3, \" | Salud $\", s3, \" | Líquido $\", l3\n\n  planilla = l1 + l2 + l3\n\n  Escribir \"Total planilla: $\", planilla\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-039",
+      "origen": "json/EA 1.2.json #59",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-39",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Tiempo total de viaje con escala",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Trunc",
+        "MOD",
+        "Aritmética"
+      ],
+      "enunciado": "Un viaje tiene tres tramos en minutos: vuelo 1, escala y vuelo 2. Calcula el tiempo total y conviértelo a horas y minutos. Muestra también la suma de cada par de tramos como información adicional. Sin Si-Entonces.",
+      "entradaProcesoSalida": {
+        "entrada": "v1, escala, v2 (Entero — minutos)",
+        "proceso": "totalMin ← v1 + escala + v2\nhoras ← Trunc(total / 60)\nminRest ← totalMin MOD 60",
+        "salida": "Tiempo total en h:mm\n+ subtotales por par de tramos"
+      },
+      "salidaEsperada": "Vuelo 1 (min):\n> 180\nEscala (min):\n> 90\nVuelo 2 (min):\n> 240\nVuelo 1 + Escala: 270 min\nEscala + Vuelo 2: 330 min\nTiempo total: 510 min\nEquivale a: 8h 30min",
+      "pista": "Puedes usar expresiones aritméticas directamente dentro de Escribir: Escribir v1+escala calcula y muestra el resultado sin necesidad de una variable extra.",
+      "codigoReferencia": "Proceso ViajeConEscala\n  Definir v1, escala, v2, total, horas, minRest Como Entero\n\n  Escribir \"Vuelo 1 (min):\"\n  Leer v1\n  Escribir \"Escala (min):\"\n  Leer escala\n  Escribir \"Vuelo 2 (min):\"\n  Leer v2\n  Escribir \"Vuelo 1 + Escala: \", v1 + escala, \" min\"\n  Escribir \"Escala + Vuelo 2: \", escala + v2, \" min\"\n\n  total   = v1 + escala + v2\n  horas   = Trunc(total / 60)\n  minRest = total mod 60\n\n  Escribir \"Tiempo total: \", total, \" min\"\n  Escribir \"Equivale a: \", horas, \"h \", minRest, \"min\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n2-040",
+      "origen": "json/EA 1.2.json #60",
+      "modulo": "N2",
+      "experiencia": "Diagramas de Flujo y Pseudocódigo",
+      "nivelLiteSeInt": 2,
+      "numero": "N2-40",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Presupuesto de proyecto tecnológico",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Aritmética",
+        "Fórmula"
+      ],
+      "enunciado": "Lee los costos de un proyecto: hardware, software y horas de desarrollo (con valor hora). Calcula el costo total, agrega un margen de ganancia del 30% y muestra el precio de venta final con IVA.",
+      "entradaProcesoSalida": {
+        "entrada": "costoHW, costoSW (Real)\nhoras (Real), valorHora (Real)",
+        "proceso": "costoDesarrollo ← horas × valorHora\ncostoTotal ← costoHW + costoSW + costoDesarrollo\nmargen ← costoTotal × 0.30\nprecioNeto ← costoTotal + margen\niva ← precioNeto × 0.19\nprecioFinal ← precioNeto + iva",
+        "salida": "Desglose completo del presupuesto"
+      },
+      "salidaEsperada": "Costo hardware ($):\n> 500000\nCosto software ($):\n> 200000\nHoras desarrollo:\n> 80\nValor hora ($):\n> 15000\n=== PRESUPUESTO ===\nCosto desarrollo: $1200000\nCosto total: $1900000\nMargen (30%): $570000\nPrecio neto: $2470000\nIVA (19%): $469300\nPRECIO FINAL: $2939300",
+      "pista": "Este algoritmo integra todos los conceptos de EA 1.2: múltiples entradas, cadena de cálculos donde cada resultado alimenta el siguiente, y salida estructurada como un documento real.",
+      "codigoReferencia": "Proceso PresupuestoProyecto\n  Definir hw, sw, horas, valorH, costoDev, costoTotal, margen, neto, iva, final Como Real\n\n  Escribir \"Costo hardware ($):\"\n  Leer hw\n  Escribir \"Costo software ($):\"\n  Leer sw\n  Escribir \"Horas desarrollo:\"\n  Leer horas\n  Escribir \"Valor hora ($):\"\n  Leer valorH\n\n  costoDev   = horas * valorH\n  costoTotal = hw + sw + costoDev\n  margen     = costoTotal * 0.30\n  neto       = costoTotal + margen\n  iva        = neto * 0.19\n  final      = neto + iva\n\n  Escribir \"=== PRESUPUESTO ===\"\n  Escribir \"Costo desarrollo: $\", costoDev\n  Escribir \"Costo total: $\", costoTotal\n  Escribir \"Margen (30%): $\", margen\n  Escribir \"Precio neto: $\", neto\n  Escribir \"IVA (19%): $\", iva\n  Escribir \"PRECIO FINAL: $\", final\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    }
+  ]
+}

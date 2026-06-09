@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code4Code — Plataforma de aprendizaje de programación</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-theme="hacker">
+  <div class="app-shell">
+    <!-- ========== HEADER ========== -->
+    <header class="app-header">
+      <div class="app-logo">
+        <div class="app-logo-icon">C4</div>
+        <div class="app-logo-text">Code<span>4Code</span></div>
+      </div>
+      <div class="header-right">
+        <!-- FASE 1 (pendiente de cablear): selector de lenguaje.
+             Se habilita cuando app.js consuma Code4Code.registro
+             (core/language-registry.js). Por ahora solo LiteSeInt. -->
+        <select class="ejemplos-select" id="languageSelect" aria-label="Lenguaje" title="Lenguaje" disabled>
+          <option value="liteseint" selected>LiteSeInt</option>
+        </select>
+        <button class="btn-theme" id="btnTheme" aria-label="Cambiar tema" title="Cambiar tema">
+          <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <span class="theme-name" id="themeName">Hacker</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ========== MAIN ========== -->
+    <div class="main-container">
+
+      <!-- Learning panel (LEFT) -->
+      <aside class="learning-panel" id="learningPanel" data-draggable="learning" aria-label="Ejercicios y ruta de aprendizaje">
+        <div class="learning-width-resize-handle" id="learningWidthResizeHandle" role="separator" aria-orientation="vertical" aria-label="Redimensionar panel de aprendizaje" tabindex="0"></div>
+        <div class="learning-panel-header">
+          <button class="panel-drag-handle" aria-label="Arrastrar panel" title="Arrastrar para mover panel">
+            <svg viewBox="0 0 10 16" fill="currentColor" aria-hidden="true">
+              <circle cx="2.5" cy="2.5" r="1.5"/><circle cx="7.5" cy="2.5" r="1.5"/>
+              <circle cx="2.5" cy="8" r="1.5"/><circle cx="7.5" cy="8" r="1.5"/>
+              <circle cx="2.5" cy="13.5" r="1.5"/><circle cx="7.5" cy="13.5" r="1.5"/>
+            </svg>
+          </button>
+          <nav class="learning-tabs" aria-label="Vistas de aprendizaje">
+            <button class="learning-tab active" data-learning-view="ejercicios">Ejercicios</button>
+            <button class="learning-tab" data-learning-view="comandos">Comandos</button>
+            <button class="learning-tab" data-learning-view="ruta">Rutas</button>
+            <button class="learning-tab" data-learning-view="errores">Errores</button>
+          </nav>
+          <div class="lph-actions">
+            <button class="btn-toggle-ej-lista" id="btnToggleEjListaHeader" title="Ocultar lista de ejercicios" aria-label="Ocultar lista de ejercicios">◀</button>
+            <button class="learning-panel-toggle" id="learningPanelToggle" aria-label="Mostrar u ocultar panel de ejercicios">▾</button>
+          </div>
+        </div>
+        <div class="learning-panel-body" id="learningPanelBody">
+          <div class="learning-view active" id="learningViewEjercicios" data-learning-panel-view="ejercicios">
+            <div class="ej-workspace">
+              <div class="ej-filters" id="ejFilters">
+                <div class="ej-filter-group" id="ejFiltroNivelGroup">
+                  <!-- populated by JS -->
+                </div>
+                <div class="ej-filter-group" id="ejFiltroDifGroup">
+                  <span class="ej-filter-label">Dificultad:</span>
+                  <button class="ej-pill active" data-filter="dif" data-val="">Todo</button>
+                  <button class="ej-pill ej-pill-basico" data-filter="dif" data-val="basico">Básico</button>
+                  <button class="ej-pill ej-pill-inter" data-filter="dif" data-val="intermedio">Intermedio</button>
+                  <button class="ej-pill ej-pill-avanz" data-filter="dif" data-val="avanzado">Avanzado</button>
+                </div>
+                <div class="ej-filter-group" id="ejFiltroEstadoGroup">
+                  <span class="ej-filter-label">Estado:</span>
+                  <button class="ej-pill active" data-filter="estado" data-val="">Todo</button>
+                  <button class="ej-pill" data-filter="estado" data-val="pendiente">Pendiente</button>
+                  <button class="ej-pill ej-pill-curso" data-filter="estado" data-val="en-curso">En curso</button>
+                  <button class="ej-pill ej-pill-listo" data-filter="estado" data-val="completado">Completado</button>
+                </div>
+              </div>
+              <div class="ej-list-column">
+                <div class="ej-progress-summary" id="ejProgresoResumen"></div>
+                <ul class="ej-list" id="ejList"></ul>
+              </div>
+              <div class="ej-detail-column">
+                <div class="ej-detail" id="ejDetail">
+                  <p class="ej-detail-empty">
+                    Selecciona un ejercicio para ver su enunciado.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="learning-view" id="learningViewComandos" data-learning-panel-view="comandos"></div>
+          <div class="learning-view" id="learningViewRuta" data-learning-panel-view="ruta"></div>
+          <div class="learning-view" id="learningViewErrores" data-learning-panel-view="errores"></div>
+        </div>
+      </aside>
+
+      <!-- Workspace: editor + console stacked (RIGHT) -->
+      <div class="workspace-column" data-draggable="workspace">
+
+        <!-- Editor -->
+        <div class="editor-panel">
+          <div class="panel-header">
+            <button class="panel-drag-handle" aria-label="Arrastrar panel" title="Arrastrar para mover panel">
+              <svg viewBox="0 0 10 16" fill="currentColor" aria-hidden="true">
+                <circle cx="2.5" cy="2.5" r="1.5"/><circle cx="7.5" cy="2.5" r="1.5"/>
+                <circle cx="2.5" cy="8" r="1.5"/><circle cx="7.5" cy="8" r="1.5"/>
+                <circle cx="2.5" cy="13.5" r="1.5"/><circle cx="7.5" cy="13.5" r="1.5"/>
+              </svg>
+            </button>
+            Editor
+            <div class="console-header-actions">
+              <select class="ejemplos-select" id="ejemplosSelect" aria-label="Cargar ejemplo">
+                <option value="">Cargar ejemplo…</option>
+                <optgroup label="Primeros programas">
+                  <option value="hola">Hola Mundo</option>
+                </optgroup>
+                <optgroup label="Variables y entrada/salida">
+                  <option value="saludo">Saludo</option>
+                  <option value="multivar">Multi-variable</option>
+                </optgroup>
+                <optgroup label="Expresiones y funciones">
+                  <option value="notas">Notas</option>
+                  <option value="numerico">Numérico</option>
+                  <option value="texto">Texto</option>
+                </optgroup>
+                <optgroup label="Condicionales">
+                  <option value="mayor">Mayor de dos</option>
+                  <option value="logico">Lógico</option>
+                </optgroup>
+                <optgroup label="Ciclos">
+                  <option value="contador">Contador</option>
+                  <option value="tabla">Tabla</option>
+                </optgroup>
+                <optgroup label="Arreglos">
+                  <option value="arreglo">Arreglo de notas</option>
+                  <option value="matriz">Matriz 3×3</option>
+                </optgroup>
+                <optgroup label="Segun">
+                  <option value="diasemana">Día de semana</option>
+                </optgroup>
+              </select>
+              <button class="btn-console-clear btn-icon-action" id="btnDescargar" aria-label="Descargar" title="Descargar" data-tooltip="Descargar código:&#10;Guarda el contenido actual como archivo .psc">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <path d="M7 10l5 5 5-5"/>
+                  <path d="M12 15V3"/>
+                </svg>
+              </button>
+              <button class="btn-console-clear btn-icon-action" id="btnImportar" aria-label="Importar archivo .psc" title="Importar archivo .psc" data-tooltip="Cargar archivo:&#10;Importa un archivo .psc y reemplaza el editor previa confirmación">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <path d="M17 8l-5-5-5 5"/>
+                  <path d="M12 3v12"/>
+                </svg>
+              </button>
+              <input type="file" id="inputImportarPsc" accept=".psc,text/plain" hidden />
+              <button class="btn-console-clear btn-icon-action" id="btnLimpiarTodo" aria-label="Borrar editor" title="Borrar editor" data-tooltip="Borrar editor:&#10;Reemplaza el código actual por la estructura base previa confirmación">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 6h18"/>
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                  <path d="M10 11v6"/>
+                  <path d="M14 11v6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="editor-wrapper">
+            <div class="line-numbers" id="lineNumbers"></div>
+            <div class="editor-code-area">
+              <div class="editor-bg-layer"></div>
+              <div class="indent-guide-layer" id="indentGuideLayer"></div>
+              <div class="editor-line-overlays" id="lineOverlays"></div>
+              <div class="error-decoration-layer" id="errorDecoLayer"></div>
+              <div class="syntax-highlight-layer" id="syntaxLayer"></div>
+              <textarea
+                id="editor"
+                spellcheck="false"
+              ></textarea>
+            </div>
+            <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+          </div>
+        </div>
+
+        <!-- Resize handle -->
+        <div class="console-resize-handle" id="consoleResizeHandle" role="separator" aria-orientation="horizontal" aria-label="Redimensionar consola" tabindex="0"></div>
+
+        <!-- Consola -->
+        <div class="console-panel" id="consolePanel">
+          <div class="console-header">
+            <nav class="console-tabs" aria-label="Vistas del panel inferior">
+              <button class="console-tab active" data-console-view="consola">
+                <div class="status-dot" id="statusDot"></div>
+                Consola
+              </button>
+              <button class="console-tab" data-console-view="variables">Variables</button>
+              <button class="console-tab" data-console-view="diagrama">Diagrama</button>
+            </nav>
+            <span id="statusText" class="visually-hidden" aria-live="polite">Listo</span>
+            <div class="console-header-actions console-header-actions-left" id="consolaTabActions">
+              <button class="btn-console-clear btn-icon-action" id="btnToggleConsoleEcho" aria-label="Ocultar trazas de consola" title="Ocultar trazas de consola" data-tooltip="Ocultar trazas:&#10;Oculta entradas y mensajes internos de ejecución">
+                <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                  <path d="M6.61 6.61C3.98 8.27 2 12 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                  <path d="M14.12 14.12A3 3 0 0 1 9.88 9.88"/>
+                  <path d="M3 3l18 18"/>
+                </svg>
+              </button>
+              <button class="btn-console-clear btn-icon-action" id="btnLimpiarConsola" aria-label="Borrar consola" title="Borrar consola" data-tooltip="Borrar consola:&#10;Limpia salidas, errores y trazas visibles">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 6h18"/>
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                  <path d="M10 11v6"/>
+                  <path d="M14 11v6"/>
+                </svg>
+              </button>
+            </div>
+            <div class="console-header-run-actions">
+              <button class="btn-exec" id="btnEjecutar">▶ Ejecutar</button>
+              <button class="btn-stop" id="btnDetener" style="display:none;">◼ Detener</button>
+            </div>
+          </div>
+          <div class="console-view active" id="consolaView">
+            <div id="consola"></div>
+          </div>
+          <div class="console-view" id="variablesView">
+            <div id="inspectorVariables" class="inspector-panel"></div>
+          </div>
+          <div class="console-view" id="diagramaView">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="app-footer">
+      Desarrollado con<span class="heart">♥</span>por
+      <a href="https://github.com/ernestoleonidas" target="_blank" rel="noopener noreferrer" class="ps-1"> Ernesto Velásquez</a>
+      <div class="app-version">v2.0.0-alpha</div>
+    </footer>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Capa multi-lenguaje Code4Code (Fase 1) -->
+  <script src="core/language-provider.js"></script>
+  <script src="core/language-registry.js"></script>
+  <script src="core/runtime-host.js"></script>
+
+  <!-- Núcleo LiteSeInt (intacto, movido a core/liteseint/) -->
+  <script src="core/liteseint/tokenizer.js"></script>
+  <script src="core/liteseint/symbol-table.js"></script>
+  <script src="core/liteseint/validator.js"></script>
+  <script src="core/liteseint/doc_errores.js"></script>
+  <script src="core/liteseint/ast.js"></script>
+  <script src="core/liteseint/parser.js"></script>
+  <script src="core/liteseint/expression-evaluator.js"></script>
+  <script src="core/liteseint/runtime.js"></script>
+  <script src="core/liteseint/diagram-mapper.js"></script>
+
+  <!-- Provider LiteSeInt (registra el lenguaje en Code4Code.registro) -->
+  <script src="core/liteseint/provider.js"></script>
+
+  <!-- UI -->
+  <script src="js/ejercicios-data.js"></script>
+  <script src="js/diagram.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

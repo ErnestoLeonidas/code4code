@@ -1,0 +1,1132 @@
+{
+  "experience": {
+    "id": "6",
+    "label": "N6",
+    "titulo": "Ejercicio Tipo Prueba Parte 1",
+    "desc": "40 ejercicios de decisión anidada al estilo del Ejercicio 1 del parcial. Practica pseudocódigo en LiteSeInt con estructuras Si-Entonces anidadas.",
+    "color": "var(--green)",
+    "icon": "📝"
+  },
+  "exercises": [
+    {
+      "id": "n6-001",
+      "origen": "json/EA 1.6.json #176",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-01",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Inscripción a taller gratuito",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Una persona desea saber si puede inscribirse en un taller gratuito. El sistema debe realizar un control simple.El algoritmo debe solicitar:• Edad de la persona (número entero).• Si la persona está inscrita previamente (responder SI o NO).Reglas:• Si la edad es mayor o igual a 18:  ○ Si la respuesta es SI → Mostrar: \"Inscripción aceptada\"  ○ En caso contrario → Mostrar: \"Inscripción rechazada\"• En caso contrario → Mostrar: \"Debe ser mayor de edad para poder inscribirse\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "edad (Entero)\ninscrita (Caracter: SI/NO)",
+        "proceso": "Si edad >= 18 Entonces\n   Si inscrita = \"SI\" → Inscripción aceptada\n   SiNo → Inscripción rechazada\nSiNo → Debe ser mayor de edad",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Ingrese su edad:\n> 20\n¿Está inscrita previamente? (SI/NO):\n> SI\nInscripción aceptada\nFin del proceso",
+      "pista": "La estructura clave es un Si anidado: primero valida la edad (condición numérica), luego dentro valida la inscripción previa (condición de cadena). El mensaje \"Fin del proceso\" va fuera de ambos Si, por eso se muestra siempre.",
+      "codigoReferencia": "Proceso InscripcionTaller\n  Definir edad Como Entero\n  Definir inscrita Como Caracter\n\n  Escribir \"Ingrese su edad:\"\n  Leer edad\n  Escribir \"¿Está inscrita previamente? (SI/NO):\"\n  Leer inscrita\n  Si edad >= 18 Entonces\n    Si inscrita == \"SI\" Entonces\n      Escribir \"Inscripción aceptada\"\n    Sino\n      Escribir \"Inscripción rechazada\"\n    FinSi\n  Sino\n    Escribir \"Debe ser mayor de edad para poder inscribirse\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-002",
+      "origen": "json/EA 1.6.json #177",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-02",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Retiro de pedido en punto de entrega",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Una persona desea saber si puede retirar un pedido en un punto de entrega. El sistema debe validar el retiro.El algoritmo debe solicitar:• Código de retiro (número entero).• Confirmación de correo recibido (SI o NO).Reglas:• Si el código es mayor a 0:  ○ Si el correo recibido es SI → Mostrar: \"Retiro autorizado\"  ○ En caso contrario → Mostrar: \"Faltan requisitos para retirar\"• En caso contrario → Mostrar: \"Código inválido\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "codigo (Entero)\ncorreo (Caracter: SI/NO)",
+        "proceso": "Si codigo > 0 Entonces\n   Si correo = \"SI\" → Retiro autorizado\n   SiNo → Faltan requisitos para retirar\nSiNo → Código inválido",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Ingrese el código de retiro:\n> 1045\n¿Recibió correo de confirmación? (SI/NO):\n> SI\nRetiro autorizado\nFin del proceso",
+      "pista": "El código 0 o negativo es inválido desde el Si externo. Solo si el código es válido (>0) se evalúa si llegó el correo. Recuerda comparar cadenas con comillas.",
+      "codigoReferencia": "Proceso RetiroPedido\n  Definir codigo Como Entero\n  Definir correo Como Caracter\n\n  Escribir \"Ingrese el código de retiro:\"\n  Leer codigo\n  Escribir \"¿Recibió correo de confirmación? (SI/NO):\"\n  Leer correo\n  Si codigo > 0 Entonces\n    Si correo == \"SI\" Entonces\n      Escribir \"Retiro autorizado\"\n    Sino\n      Escribir \"Faltan requisitos para retirar\"\n    FinSi\n  Sino\n    Escribir \"Código inválido\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-003",
+      "origen": "json/EA 1.6.json #178",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Despacho de pedido por stock",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Entero",
+        "Comparación"
+      ],
+      "enunciado": "Un sistema debe indicar si un pedido puede ser despachado. El sistema debe validar los datos.El algoritmo debe solicitar:• Cantidad solicitada (número entero).• Cantidad disponible (número entero).Reglas:• Si la cantidad solicitada es menor o igual a la disponible:  ○ Si la cantidad solicitada es igual a la disponible → Mostrar: \"Despacho exacto\"  ○ En caso contrario → Mostrar: \"Despacho parcial con stock restante\"• En caso contrario → Mostrar: \"Stock insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "solicitada (Entero)\ndisponible (Entero)",
+        "proceso": "Si solicitada <= disponible Entonces\n   Si solicitada = disponible → Despacho exacto\n   SiNo → Despacho parcial con stock restante\nSiNo → Stock insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Cantidad solicitada:\n> 10\nCantidad disponible:\n> 15\nDespacho parcial con stock restante\nFin del proceso",
+      "pista": "Aquí ambas variables son enteros. El Si externo determina si hay stock suficiente; el Si interno distingue si el despacho es exacto (quedan 0 unidades) o parcial.",
+      "codigoReferencia": "Proceso DespachoPedido\n  Definir solicitada, disponible Como Entero\n\n  Escribir \"Cantidad solicitada:\"\n  Leer solicitada\n  Escribir \"Cantidad disponible:\"\n  Leer disponible\n  Si solicitada <= disponible Entonces\n    Si solicitada == disponible Entonces\n      Escribir \"Despacho exacto\"\n    Sino\n      Escribir \"Despacho parcial con stock restante\"\n    FinSi\n  Sino\n    Escribir \"Stock insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-004",
+      "origen": "json/EA 1.6.json #179",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Compra con saldo disponible",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Entero",
+        "Comparación"
+      ],
+      "enunciado": "Un sistema debe indicar si una compra puede ser procesada con el saldo disponible.El algoritmo debe solicitar:• Saldo disponible (número entero).• Monto de compra (número entero).Reglas:• Si el saldo es mayor o igual al monto:  ○ Si el saldo es igual al monto → Mostrar: \"Compra aprobada: saldo queda en cero\"  ○ En caso contrario → Mostrar: \"Compra aprobada: queda saldo disponible\"• En caso contrario → Mostrar: \"Compra rechazada: saldo insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "saldo (Entero)\nmonto (Entero)",
+        "proceso": "Si saldo >= monto Entonces\n   Si saldo = monto → saldo queda en cero\n   SiNo → queda saldo disponible\nSiNo → saldo insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Saldo disponible:\n> 50000\nMonto de compra:\n> 50000\nCompra aprobada: saldo queda en cero\nFin del proceso",
+      "pista": "Este ejercicio usa solo enteros. La igualdad exacta (saldo = monto) es el caso especial dentro del caso aprobado. Practica distinguir cuándo usar >= en el Si externo y = en el Si interno.",
+      "codigoReferencia": "Proceso CompraConSaldo\n  Definir saldo, monto Como Entero\n\n  Escribir \"Saldo disponible:\"\n  Leer saldo\n  Escribir \"Monto de compra:\"\n  Leer monto\n  Si saldo >= monto Entonces\n    Si saldo == monto Entonces\n      Escribir \"Compra aprobada: saldo queda en cero\"\n    Sino\n      Escribir \"Compra aprobada: queda saldo disponible\"\n    FinSi\n  Sino\n    Escribir \"Compra rechazada: saldo insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-005",
+      "origen": "json/EA 1.6.json #180",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-05",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Ingreso a sala con reserva",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Una persona desea ingresar a una sala. El sistema debe validar el acceso.El algoritmo debe solicitar:• Cupos disponibles (número entero).• Confirmación de reserva (SI / NO).Reglas:• Si los cupos son mayores a 0:  ○ Si la reserva es \"SI\" → Mostrar: \"Ingreso permitido\"  ○ En caso contrario → Mostrar: \"Ingreso rechazado: sin reserva\"• En caso contrario → Mostrar: \"Ingreso rechazado: sin cupos\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "cupos (Entero)\nreserva (Caracter: SI/NO)",
+        "proceso": "Si cupos > 0 Entonces\n   Si reserva = \"SI\" → Ingreso permitido\n   SiNo → Ingreso rechazado: sin reserva\nSiNo → Ingreso rechazado: sin cupos",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Cupos disponibles:\n> 5\n¿Tiene reserva? (SI/NO):\n> NO\nIngreso rechazado: sin reserva\nFin del proceso",
+      "pista": "Hay dos razones diferentes para rechazar: sin cupos (Si externo falla) o con cupos pero sin reserva (Si interno falla). Los mensajes de error son distintos en cada caso.",
+      "codigoReferencia": "Proceso IngresoSala\n  Definir cupos Como Entero\n  Definir reserva Como Caracter\n\n  Escribir \"Cupos disponibles:\"\n  Leer cupos\n  Escribir \"¿Tiene reserva? (SI/NO):\"\n  Leer reserva\n  Si cupos > 0 Entonces\n    Si reserva == \"SI\" Entonces\n      Escribir \"Ingreso permitido\"\n    Sino\n      Escribir \"Ingreso rechazado: sin reserva\"\n    FinSi\n  Sino\n    Escribir \"Ingreso rechazado: sin cupos\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-006",
+      "origen": "json/EA 1.6.json #181",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-06",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Validación de formulario web",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema debe validar si un formulario puede enviarse.El algoritmo debe solicitar:• Cantidad de campos completados (número entero).• Aceptación de términos (SI / NO).Reglas:• Si los campos completados son mayor o igual a 5:  ○ Si aceptó términos es \"SI\" → Mostrar: \"Formulario enviado\"  ○ En caso contrario → Mostrar: \"No se puede enviar: debe aceptar términos\"• En caso contrario → Mostrar: \"No se puede enviar: faltan campos\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "campos (Entero)\nterminos (Caracter: SI/NO)",
+        "proceso": "Si campos >= 5 Entonces\n   Si terminos = \"SI\" → Formulario enviado\n   SiNo → No se puede enviar: debe aceptar términos\nSiNo → No se puede enviar: faltan campos",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Campos completados:\n> 5\n¿Acepta los términos? (SI/NO):\n> SI\nFormulario enviado\nFin del proceso",
+      "pista": "El mínimo es 5 campos (>= 5). Si hay 4 o menos, ya falla en el Si externo sin llegar a preguntar por los términos.",
+      "codigoReferencia": "Proceso ValidarFormulario\n  Definir campos Como Entero\n  Definir terminos Como Caracter\n\n  Escribir \"Campos completados:\"\n  Leer campos\n  Escribir \"¿Acepta los términos? (SI/NO):\"\n  Leer terminos\n  Si campos >= 5 Entonces\n    Si terminos == \"SI\" Entonces\n      Escribir \"Formulario enviado\"\n    Sino\n      Escribir \"No se puede enviar: debe aceptar términos\"\n    FinSi\n  Sino\n    Escribir \"No se puede enviar: faltan campos\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-007",
+      "origen": "json/EA 1.6.json #182",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-07",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Atención en caja abierta",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema debe indicar si una atención puede realizarse en una caja.El algoritmo debe solicitar:• Número de personas en fila (número entero).• Estado de la caja (ABIERTA / CERRADA).Reglas:• Si la caja está \"ABIERTA\":  ○ Si la fila tiene más de 10 personas → Mostrar: \"Atención lenta: fila larga\"  ○ En caso contrario → Mostrar: \"Atención normal\"• En caso contrario → Mostrar: \"No se puede atender: caja cerrada\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "fila (Entero)\nestado (Caracter: ABIERTA/CERRADA)",
+        "proceso": "Si estado = \"ABIERTA\" Entonces\n   Si fila > 10 → Atención lenta: fila larga\n   SiNo → Atención normal\nSiNo → No se puede atender: caja cerrada",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Personas en fila:\n> 12\nEstado de la caja (ABIERTA/CERRADA):\n> ABIERTA\nAtención lenta: fila larga\nFin del proceso",
+      "pista": "Aquí el Si externo compara una cadena (estado de caja) y el Si interno compara un entero (cantidad en fila). El orden importa: si la caja está cerrada, no tiene sentido evaluar la fila.",
+      "codigoReferencia": "Proceso AtencionCaja\n  Definir fila Como Entero\n  Definir estado Como Caracter\n\n  Escribir \"Personas en fila:\"\n  Leer fila\n  Escribir \"Estado de la caja (ABIERTA/CERRADA):\"\n  Leer estado\n  Si estado == \"ABIERTA\" Entonces\n    Si fila > 10 Entonces\n      Escribir \"Atención lenta: fila larga\"\n    Sino\n      Escribir \"Atención normal\"\n    FinSi\n  Sino\n    Escribir \"No se puede atender: caja cerrada\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-008",
+      "origen": "json/EA 1.6.json #183",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-08",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Descuento según tipo de cliente",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema debe indicar si se aplica descuento en una compra.El algoritmo debe solicitar:• Total de la compra (número entero).• Tipo de cliente (NORMAL / PREMIUM).Reglas:• Si el total es mayor o igual a 30000:  ○ Si el tipo es \"PREMIUM\" → Mostrar: \"Descuento a aplicar: 15%\"  ○ En caso contrario → Mostrar: \"Descuento a aplicar: 0%\"• En caso contrario → Mostrar: \"No hay descuento: compra baja\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "total (Entero)\ntipoCliente (Caracter: NORMAL/PREMIUM)",
+        "proceso": "Si total >= 30000 Entonces\n   Si tipoCliente = \"PREMIUM\" → Descuento 15%\n   SiNo → Descuento 0%\nSiNo → No hay descuento: compra baja",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Total de la compra:\n> 45000\nTipo de cliente (NORMAL/PREMIUM):\n> NORMAL\nDescuento a aplicar: 0%\nFin del proceso",
+      "pista": "Un cliente NORMAL que supera $30.000 obtiene 0% de descuento (no es un error: es la regla). Solo PREMIUM califica para el 15%. Monto bajo → sin descuento directamente.",
+      "codigoReferencia": "Proceso DescuentoCompra\n  Definir total Como Entero\n  Definir tipoCliente Como Caracter\n\n  Escribir \"Total de la compra:\"\n  Leer total\n  Escribir \"Tipo de cliente (NORMAL/PREMIUM):\"\n  Leer tipoCliente\n  Si total >= 30000 Entonces\n    Si tipoCliente == \"PREMIUM\" Entonces\n      Escribir \"Descuento a aplicar: 15%\"\n    Sino\n      Escribir \"Descuento a aplicar: 0%\"\n    FinSi\n  Sino\n    Escribir \"No hay descuento: compra baja\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-009",
+      "origen": "json/EA 1.6.json #184",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-09",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Acceso a estacionamiento",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema debe controlar el acceso a un estacionamiento.El algoritmo debe solicitar:• Espacios disponibles (número entero).• Tiene permiso de ingreso (SI / NO).Reglas:• Si los espacios son mayores a 0:  ○ Si tiene permiso es \"SI\" → Mostrar: \"Acceso al estacionamiento permitido\"  ○ En caso contrario → Mostrar: \"Acceso denegado: no tiene permiso\"• En caso contrario → Mostrar: \"Acceso denegado: estacionamiento lleno\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "espacios (Entero)\npermiso (Caracter: SI/NO)",
+        "proceso": "Si espacios > 0 Entonces\n   Si permiso = \"SI\" → Acceso permitido\n   SiNo → Denegado: sin permiso\nSiNo → Denegado: lleno",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Espacios disponibles:\n> 0\n¿Tiene permiso de ingreso? (SI/NO):\n> SI\nAcceso denegado: estacionamiento lleno\nFin del proceso",
+      "pista": "Cuando espacios = 0, el acceso se deniega inmediatamente (Si externo = falso) sin evaluar el permiso. El Si interno solo se ejecuta si hay espacio.",
+      "codigoReferencia": "Proceso AccesoEstacionamiento\n  Definir espacios Como Entero\n  Definir permiso Como Caracter\n\n  Escribir \"Espacios disponibles:\"\n  Leer espacios\n  Escribir \"¿Tiene permiso de ingreso? (SI/NO):\"\n  Leer permiso\n  Si espacios > 0 Entonces\n    Si permiso == \"SI\" Entonces\n      Escribir \"Acceso al estacionamiento permitido\"\n    Sino\n      Escribir \"Acceso denegado: no tiene permiso\"\n    FinSi\n  Sino\n    Escribir \"Acceso denegado: estacionamiento lleno\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-010",
+      "origen": "json/EA 1.6.json #185",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-10",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Entrega de medicamento en farmacia",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Una farmacia debe determinar si puede entregar un medicamento.El algoritmo debe solicitar:• Unidades disponibles en stock (número entero).• El cliente presenta receta médica (SI / NO).Reglas:• Si las unidades son mayores a 0:  ○ Si presenta receta es \"SI\" → Mostrar: \"Medicamento entregado\"  ○ En caso contrario → Mostrar: \"No se puede entregar: requiere receta\"• En caso contrario → Mostrar: \"No se puede entregar: sin stock\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "stock (Entero)\nreceta (Caracter: SI/NO)",
+        "proceso": "Si stock > 0 Entonces\n   Si receta = \"SI\" → Medicamento entregado\n   SiNo → No se puede entregar: requiere receta\nSiNo → No se puede entregar: sin stock",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Unidades en stock:\n> 3\n¿Presenta receta médica? (SI/NO):\n> NO\nNo se puede entregar: requiere receta\nFin del proceso",
+      "pista": "Dos requisitos independientes deben cumplirse para entregar: que haya stock Y que haya receta. Si falla el primero, no se evalúa el segundo.",
+      "codigoReferencia": "Proceso EntregaMedicamento\n  Definir stock Como Entero\n  Definir receta Como Caracter\n\n  Escribir \"Unidades en stock:\"\n  Leer stock\n  Escribir \"¿Presenta receta médica? (SI/NO):\"\n  Leer receta\n  Si stock > 0 Entonces\n    Si receta == \"SI\" Entonces\n      Escribir \"Medicamento entregado\"\n    Sino\n      Escribir \"No se puede entregar: requiere receta\"\n    FinSi\n  Sino\n    Escribir \"No se puede entregar: sin stock\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-011",
+      "origen": "json/EA 1.6.json #186",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-11",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Aprobación de préstamo bancario",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un banco debe determinar si puede aprobar un préstamo.El algoritmo debe solicitar:• Ingreso mensual del solicitante (número entero).• Tiene deudas vigentes (SI / NO).Reglas:• Si el ingreso es mayor o igual a 500000:  ○ Si tiene deudas es \"NO\" → Mostrar: \"Préstamo aprobado\"  ○ En caso contrario → Mostrar: \"Préstamo rechazado: cliente con deudas\"• En caso contrario → Mostrar: \"Préstamo rechazado: ingreso insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "ingreso (Entero)\ndeudas (Caracter: SI/NO)",
+        "proceso": "Si ingreso >= 500000 Entonces\n   Si deudas = \"NO\" → Préstamo aprobado\n   SiNo → Rechazado: con deudas\nSiNo → Rechazado: ingreso insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Ingreso mensual:\n> 600000\n¿Tiene deudas vigentes? (SI/NO):\n> SI\nPréstamo rechazado: cliente con deudas\nFin del proceso",
+      "pista": "Nota que aquí el Si interno aprueba cuando la respuesta es \"NO\" (no tiene deudas). Es habitual que la condición de aprobación sea la negación de un problema.",
+      "codigoReferencia": "Proceso AprobacionPrestamo\n  Definir ingreso Como Entero\n  Definir deudas Como Caracter\n\n  Escribir \"Ingreso mensual:\"\n  Leer ingreso\n  Escribir \"¿Tiene deudas vigentes? (SI/NO):\"\n  Leer deudas\n  Si ingreso >= 500000 Entonces\n    Si deudas == \"NO\" Entonces\n      Escribir \"Préstamo aprobado\"\n    Sino\n      Escribir \"Préstamo rechazado: cliente con deudas\"\n    FinSi\n  Sino\n    Escribir \"Préstamo rechazado: ingreso insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-012",
+      "origen": "json/EA 1.6.json #187",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-12",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Control de temperatura de servidor",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de monitoreo debe evaluar la temperatura de una sala de servidores.El algoritmo debe solicitar:• Temperatura actual en grados Celsius (número entero).• El sistema de enfriamiento está activo (SI / NO).Reglas:• Si la temperatura es mayor a 30:  ○ Si el enfriamiento está activo es \"NO\" → Mostrar: \"Alerta crítica: apague los equipos\"  ○ En caso contrario → Mostrar: \"Temperatura elevada: enfriamiento en curso\"• En caso contrario → Mostrar: \"Temperatura dentro del rango normal\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "temperatura (Entero)\nenfriamiento (Caracter: SI/NO)",
+        "proceso": "Si temperatura > 30 Entonces\n   Si enfriamiento = \"NO\" → Alerta crítica\n   SiNo → Temperatura elevada: enfriamiento en curso\nSiNo → Temperatura normal",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Temperatura actual (°C):\n> 35\n¿Sistema de enfriamiento activo? (SI/NO):\n> SI\nTemperatura elevada: enfriamiento en curso\nFin del proceso",
+      "pista": "La temperatura normal (<=30) no necesita revisar el enfriamiento. La alarma máxima solo se activa si hace calor Y el enfriamiento no está activo.",
+      "codigoReferencia": "Proceso ControlTemperatura\n  Definir temperatura Como Entero\n  Definir enfriamiento Como Caracter\n\n  Escribir \"Temperatura actual (°C):\"\n  Leer temperatura\n  Escribir \"¿Sistema de enfriamiento activo? (SI/NO):\"\n  Leer enfriamiento\n  Si temperatura > 30 Entonces\n    Si enfriamiento == \"NO\" Entonces\n      Escribir \"Alerta crítica: apague los equipos\"\n    Sino\n      Escribir \"Temperatura elevada: enfriamiento en curso\"\n    FinSi\n  Sino\n    Escribir \"Temperatura dentro del rango normal\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-013",
+      "origen": "json/EA 1.6.json #188",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-13",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Descarga de archivo según tamaño",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de archivos debe evaluar si se puede realizar una descarga.El algoritmo debe solicitar:• Tamaño del archivo en MB (número entero).• El usuario tiene cuenta premium (SI / NO).Reglas:• Si el tamaño es menor o igual a 100:  ○ Si el tamaño es igual a 100 → Mostrar: \"Descarga al límite permitido\"  ○ En caso contrario → Mostrar: \"Descarga permitida\"• En caso contrario:  ○ Si es cuenta premium es \"SI\" → Mostrar: \"Descarga permitida por cuenta premium\"  ○ En caso contrario → Mostrar: \"Descarga denegada: archivo muy grande\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "tamaño (Entero)\npremium (Caracter: SI/NO)",
+        "proceso": "Si tamaño <= 100 Entonces\n   Si tamaño = 100 → Descarga al límite\n   SiNo → Descarga permitida\nSiNo\n   Si premium = \"SI\" → Descarga por cuenta premium\n   SiNo → Descarga denegada",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Tamaño del archivo (MB):\n> 150\n¿Tiene cuenta premium? (SI/NO):\n> NO\nDescarga denegada: archivo muy grande\nFin del proceso",
+      "pista": "Este ejercicio tiene Si anidado en ambas ramas (Entonces y SiNo). Es una variante más completa del patrón de la prueba.",
+      "codigoReferencia": "Proceso DescargaArchivo\n  Definir tamanio Como Entero\n  Definir premium Como Caracter\n\n  Escribir \"Tamaño del archivo (MB):\"\n  Leer tamanio\n  Escribir \"¿Tiene cuenta premium? (SI/NO):\"\n  Leer premium\n  Si tamanio <= 100 Entonces\n    Si tamanio == 100 Entonces\n      Escribir \"Descarga al límite permitido\"\n    Sino\n      Escribir \"Descarga permitida\"\n    FinSi\n  Sino\n    Si premium == \"SI\" Entonces\n      Escribir \"Descarga permitida por cuenta premium\"\n    Sino\n      Escribir \"Descarga denegada: archivo muy grande\"\n    FinSi\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-014",
+      "origen": "json/EA 1.6.json #189",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-14",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Reserva de mesa en restaurante",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un restaurante debe controlar la reserva de mesas.El algoritmo debe solicitar:• Número de personas del grupo (número entero).• El cliente tiene reserva previa (SI / NO).Reglas:• Si el número de personas es menor o igual a 8:  ○ Si tiene reserva es \"SI\" → Mostrar: \"Mesa asignada\"  ○ En caso contrario → Mostrar: \"Sin reserva: sujeto a disponibilidad\"• En caso contrario → Mostrar: \"Grupo demasiado grande: no hay mesas disponibles\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "personas (Entero)\nreserva (Caracter: SI/NO)",
+        "proceso": "Si personas <= 8 Entonces\n   Si reserva = \"SI\" → Mesa asignada\n   SiNo → Sujeto a disponibilidad\nSiNo → Grupo demasiado grande",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Número de personas del grupo:\n> 6\n¿Tiene reserva previa? (SI/NO):\n> NO\nSin reserva: sujeto a disponibilidad\nFin del proceso",
+      "pista": "Sin reserva no significa rechazo total: el cliente puede igual esperar. Es diferente a tener el grupo muy grande, que sí bloquea directamente.",
+      "codigoReferencia": "Proceso ReservaMesa\n  Definir personas Como Entero\n  Definir reserva Como Caracter\n\n  Escribir \"Número de personas del grupo:\"\n  Leer personas\n  Escribir \"¿Tiene reserva previa? (SI/NO):\"\n  Leer reserva\n  Si personas <= 8 Entonces\n    Si reserva == \"SI\" Entonces\n      Escribir \"Mesa asignada\"\n    Sino\n      Escribir \"Sin reserva: sujeto a disponibilidad\"\n    FinSi\n  Sino\n    Escribir \"Grupo demasiado grande: no hay mesas disponibles\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-015",
+      "origen": "json/EA 1.6.json #190",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-15",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Acceso al sistema con intentos fallidos",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de seguridad debe controlar el acceso de usuarios.El algoritmo debe solicitar:• Número de intentos fallidos acumulados (número entero).• La contraseña ingresada es correcta (SI / NO).Reglas:• Si los intentos fallidos son menores a 3:  ○ Si la contraseña es correcta es \"SI\" → Mostrar: \"Acceso concedido\"  ○ En caso contrario → Mostrar: \"Contraseña incorrecta: intento registrado\"• En caso contrario → Mostrar: \"Cuenta bloqueada por exceso de intentos\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "intentos (Entero)\nclave (Caracter: SI/NO)",
+        "proceso": "Si intentos < 3 Entonces\n   Si clave = \"SI\" → Acceso concedido\n   SiNo → Contraseña incorrecta: intento registrado\nSiNo → Cuenta bloqueada",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Intentos fallidos acumulados:\n> 3\n¿Contraseña correcta? (SI/NO):\n> SI\nCuenta bloqueada por exceso de intentos\nFin del proceso",
+      "pista": "Con 3 o más intentos (no menor a 3), la cuenta ya está bloqueada aunque la contraseña sea correcta. La condición es estricta: < 3, no <= 3.",
+      "codigoReferencia": "Proceso AccesoSistema\n  Definir intentos Como Entero\n  Definir clave Como Caracter\n\n  Escribir \"Intentos fallidos acumulados:\"\n  Leer intentos\n  Escribir \"¿Contraseña correcta? (SI/NO):\"\n  Leer clave\n  Si intentos < 3 Entonces\n    Si clave == \"SI\" Entonces\n      Escribir \"Acceso concedido\"\n    Sino\n      Escribir \"Contraseña incorrecta: intento registrado\"\n    FinSi\n  Sino\n    Escribir \"Cuenta bloqueada por exceso de intentos\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-016",
+      "origen": "json/EA 1.6.json #191",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-16",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Matrícula universitaria",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema universitario debe validar si un estudiante puede matricularse.El algoritmo debe solicitar:• Promedio de notas del semestre anterior (número entero, escala 1-7).• El pago de arancel está al día (SI / NO).Reglas:• Si el promedio es mayor o igual a 4:  ○ Si el pago está al día es \"SI\" → Mostrar: \"Matrícula aprobada\"  ○ En caso contrario → Mostrar: \"Matrícula bloqueada: deuda pendiente\"• En caso contrario → Mostrar: \"Matrícula bloqueada: promedio insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "promedio (Entero)\npago (Caracter: SI/NO)",
+        "proceso": "Si promedio >= 4 Entonces\n   Si pago = \"SI\" → Matrícula aprobada\n   SiNo → Bloqueada: deuda pendiente\nSiNo → Bloqueada: promedio insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Promedio de notas (1-7):\n> 5\n¿Pago de arancel al día? (SI/NO):\n> SI\nMatrícula aprobada\nFin del proceso",
+      "pista": "Nota de aprobación mínima en Chile es 4.0. El contexto es familiar para el estudiante.",
+      "codigoReferencia": "Proceso MatriculaUniversitaria\n  Definir promedio Como Entero\n  Definir pago Como Caracter\n\n  Escribir \"Promedio de notas (1-7):\"\n  Leer promedio\n  Escribir \"¿Pago de arancel al día? (SI/NO):\"\n  Leer pago\n  Si promedio >= 4 Entonces\n    Si pago == \"SI\" Entonces\n      Escribir \"Matrícula aprobada\"\n    Sino\n      Escribir \"Matrícula bloqueada: deuda pendiente\"\n    FinSi\n  Sino\n    Escribir \"Matrícula bloqueada: promedio insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-017",
+      "origen": "json/EA 1.6.json #192",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-17",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Conexión a red WiFi institucional",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de red debe validar si un dispositivo puede conectarse al WiFi institucional.El algoritmo debe solicitar:• Intensidad de señal del 1 al 10 (número entero).• El dispositivo está registrado en la red (SI / NO).Reglas:• Si la intensidad es mayor o igual a 5:  ○ Si está registrado es \"SI\" → Mostrar: \"Conexión establecida\"  ○ En caso contrario → Mostrar: \"Conexión denegada: dispositivo no registrado\"• En caso contrario → Mostrar: \"Conexión denegada: señal insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "señal (Entero)\nregistrado (Caracter: SI/NO)",
+        "proceso": "Si señal >= 5 Entonces\n   Si registrado = \"SI\" → Conexión establecida\n   SiNo → Denegada: no registrado\nSiNo → Denegada: señal insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Intensidad de señal (1-10):\n> 7\n¿Dispositivo registrado en la red? (SI/NO):\n> NO\nConexión denegada: dispositivo no registrado\nFin del proceso",
+      "pista": "La señal es condición física (si está bajo el umbral, nada más que hacer). El registro es condición administrativa. Ambas deben cumplirse para conectarse.",
+      "codigoReferencia": "Proceso ConexionWiFi\n  Definir senal Como Entero\n  Definir registrado Como Caracter\n\n  Escribir \"Intensidad de señal (1-10):\"\n  Leer senal\n  Escribir \"¿Dispositivo registrado en la red? (SI/NO):\"\n  Leer registrado\n  Si senal >= 5 Entonces\n    Si registrado == \"SI\" Entonces\n      Escribir \"Conexión establecida\"\n    Sino\n      Escribir \"Conexión denegada: dispositivo no registrado\"\n    FinSi\n  Sino\n    Escribir \"Conexión denegada: señal insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-018",
+      "origen": "json/EA 1.6.json #193",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-18",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Procesamiento de reclamo de cliente",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de atención al cliente debe determinar si puede procesar un reclamo.El algoritmo debe solicitar:• Días transcurridos desde la compra (número entero).• El producto fue comprado con garantía (SI / NO).Reglas:• Si los días son menores o iguales a 30:  ○ Si fue con garantía es \"SI\" → Mostrar: \"Reclamo aceptado\"  ○ En caso contrario → Mostrar: \"Reclamo aceptado sin garantía\"• En caso contrario → Mostrar: \"Reclamo rechazado: plazo vencido\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "dias (Entero)\ngarantia (Caracter: SI/NO)",
+        "proceso": "Si dias <= 30 Entonces\n   Si garantia = \"SI\" → Reclamo aceptado\n   SiNo → Reclamo aceptado sin garantía\nSiNo → Reclamo rechazado: plazo vencido",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Días desde la compra:\n> 15\n¿Fue comprado con garantía? (SI/NO):\n> NO\nReclamo aceptado sin garantía\nFin del proceso",
+      "pista": "Ambas ramas del Si interno resultan en aceptación (con o sin garantía). Solo el SiNo externo rechaza. Esto es válido: el Si interno no siempre tiene una rama negativa de rechazo.",
+      "codigoReferencia": "Proceso ProcesamientoReclamo\n  Definir dias Como Entero\n  Definir garantia Como Caracter\n\n  Escribir \"Días desde la compra:\"\n  Leer dias\n  Escribir \"¿Fue comprado con garantía? (SI/NO):\"\n  Leer garantia\n  Si dias <= 30 Entonces\n    Si garantia == \"SI\" Entonces\n      Escribir \"Reclamo aceptado\"\n    Sino\n      Escribir \"Reclamo aceptado sin garantía\"\n    FinSi\n  Sino\n    Escribir \"Reclamo rechazado: plazo vencido\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-019",
+      "origen": "json/EA 1.6.json #194",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-19",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Exportación de producto por aduanas",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema aduanero debe indicar si un producto puede ser exportado.El algoritmo debe solicitar:• Peso total del envío en kilos (número entero).• Los documentos de exportación están completos (SI / NO).Reglas:• Si el peso es menor o igual a 1000:  ○ Si los documentos están completos es \"SI\" → Mostrar: \"Exportación autorizada\"  ○ En caso contrario → Mostrar: \"Exportación en espera: faltan documentos\"• En caso contrario → Mostrar: \"Exportación rechazada: excede el peso permitido\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "peso (Entero)\ndocumentos (Caracter: SI/NO)",
+        "proceso": "Si peso <= 1000 Entonces\n   Si documentos = \"SI\" → Exportación autorizada\n   SiNo → En espera: faltan documentos\nSiNo → Rechazada: excede peso",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Peso total del envío (kg):\n> 800\n¿Documentos completos? (SI/NO):\n> NO\nExportación en espera: faltan documentos\nFin del proceso",
+      "pista": "El peso es el requisito físico (Si externo). Los documentos son el requisito administrativo (Si interno). Falta un documento → en espera, no rechazado definitivamente.",
+      "codigoReferencia": "Proceso ExportacionProducto\n  Definir peso Como Entero\n  Definir documentos Como Caracter\n\n  Escribir \"Peso total del envío (kg):\"\n  Leer peso\n  Escribir \"¿Documentos completos? (SI/NO):\"\n  Leer documentos\n  Si peso <= 1000 Entonces\n    Si documentos == \"SI\" Entonces\n      Escribir \"Exportación autorizada\"\n    Sino\n      Escribir \"Exportación en espera: faltan documentos\"\n    FinSi\n  Sino\n    Escribir \"Exportación rechazada: excede el peso permitido\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-020",
+      "origen": "json/EA 1.6.json #195",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-20",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Renovación de contrato laboral",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Una empresa debe evaluar si puede renovar el contrato de un trabajador.El algoritmo debe solicitar:• Años de antigüedad en la empresa (número entero).• El trabajador tiene evaluación de desempeño aprobada (SI / NO).Reglas:• Si los años de antigüedad son mayores o iguales a 2:  ○ Si la evaluación está aprobada es \"SI\" → Mostrar: \"Contrato renovado\"  ○ En caso contrario → Mostrar: \"Renovación condicionada: evaluación reprobada\"• En caso contrario → Mostrar: \"Contrato no renovado: antigüedad insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "antiguedad (Entero)\nevaluacion (Caracter: SI/NO)",
+        "proceso": "Si antiguedad >= 2 Entonces\n   Si evaluacion = \"SI\" → Contrato renovado\n   SiNo → Renovación condicionada\nSiNo → No renovado: antigüedad insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Años de antigüedad:\n> 3\n¿Evaluación de desempeño aprobada? (SI/NO):\n> NO\nRenovación condicionada: evaluación reprobada\nFin del proceso",
+      "pista": "\"Renovación condicionada\" implica que el trabajador tiene antigüedad suficiente pero la evaluación fue mala: se puede corregir. El rechazo definitivo viene de no tener antigüedad.",
+      "codigoReferencia": "Proceso RenovacionContrato\n  Definir antiguedad Como Entero\n  Definir evaluacion Como Caracter\n\n  Escribir \"Años de antigüedad:\"\n  Leer antiguedad\n  Escribir \"¿Evaluación de desempeño aprobada? (SI/NO):\"\n  Leer evaluacion\n  Si antiguedad >= 2 Entonces\n    Si evaluacion == \"SI\" Entonces\n      Escribir \"Contrato renovado\"\n    Sino\n      Escribir \"Renovación condicionada: evaluación reprobada\"\n    FinSi\n  Sino\n    Escribir \"Contrato no renovado: antigüedad insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-021",
+      "origen": "json/EA 1.6.json #196",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-21",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Habilitación de cuenta bancaria",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema bancario debe habilitar una nueva cuenta corriente a un solicitante.El algoritmo debe solicitar:• Edad del solicitante (número entero).• El solicitante tiene domicilio verificado (SI / NO).Reglas:• Si la edad es mayor o igual a 18:  ○ Si el domicilio está verificado es \"SI\" → Mostrar: \"Cuenta habilitada\"  ○ En caso contrario → Mostrar: \"Cuenta no habilitada: falta verificar domicilio\"• En caso contrario → Mostrar: \"Cuenta no habilitada: menor de edad\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "edad (Entero)\ndomicilio (Caracter: SI/NO)",
+        "proceso": "Si edad >= 18 Entonces\n   Si domicilio = \"SI\" → Cuenta habilitada\n   SiNo → No habilitada: sin domicilio\nSiNo → No habilitada: menor de edad",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Edad del solicitante:\n> 22\n¿Domicilio verificado? (SI/NO):\n> SI\nCuenta habilitada\nFin del proceso",
+      "pista": "La mayoría de edad es el filtro legal. El domicilio es el requisito administrativo. Edad 18 exacta cumple (>=18). Domicilio sin verificar: el banco puede aún habilitarla después.",
+      "codigoReferencia": "Proceso HabilitacionCuenta\n  Definir edad Como Entero\n  Definir domicilio Como Caracter\n\n  Escribir \"Edad del solicitante:\"\n  Leer edad\n  Escribir \"¿Domicilio verificado? (SI/NO):\"\n  Leer domicilio\n  Si edad >= 18 Entonces\n    Si domicilio == \"SI\" Entonces\n      Escribir \"Cuenta habilitada\"\n    Sino\n      Escribir \"Cuenta no habilitada: falta verificar domicilio\"\n    FinSi\n  Sino\n    Escribir \"Cuenta no habilitada: menor de edad\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-022",
+      "origen": "json/EA 1.6.json #197",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-22",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Admisión a programa deportivo",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un centro deportivo debe controlar la admisión a un programa de alto rendimiento.El algoritmo debe solicitar:• Puntaje en prueba física del 0 al 100 (número entero).• El postulante tiene ficha médica vigente (SI / NO).Reglas:• Si el puntaje es mayor o igual a 70:  ○ Si la ficha médica está vigente es \"SI\" → Mostrar: \"Admitido al programa de alto rendimiento\"  ○ En caso contrario → Mostrar: \"No admitido: debe presentar ficha médica vigente\"• En caso contrario → Mostrar: \"No admitido: puntaje insuficiente en prueba física\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "puntaje (Entero)\nfichaMedica (Caracter: SI/NO)",
+        "proceso": "Si puntaje >= 70 Entonces\n   Si fichaMedica = \"SI\" → Admitido\n   SiNo → No admitido: ficha médica\nSiNo → No admitido: puntaje insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Puntaje en prueba física (0-100):\n> 85\n¿Tiene ficha médica vigente? (SI/NO):\n> SI\nAdmitido al programa de alto rendimiento\nFin del proceso",
+      "pista": "Prueba física (capacidad) y ficha médica (habilitación) son requisitos ortogonales: ambos deben cumplirse. El puntaje se valida primero porque sin él la ficha no importa.",
+      "codigoReferencia": "Proceso AdmisionDeportiva\n  Definir puntaje Como Entero\n  Definir fichaMedica Como Caracter\n\n  Escribir \"Puntaje en prueba física (0-100):\"\n  Leer puntaje\n  Escribir \"¿Tiene ficha médica vigente? (SI/NO):\"\n  Leer fichaMedica\n  Si puntaje >= 70 Entonces\n    Si fichaMedica == \"SI\" Entonces\n      Escribir \"Admitido al programa de alto rendimiento\"\n    Sino\n      Escribir \"No admitido: debe presentar ficha médica vigente\"\n    FinSi\n  Sino\n    Escribir \"No admitido: puntaje insuficiente en prueba física\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-023",
+      "origen": "json/EA 1.6.json #198",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-23",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Publicación de aviso en clasificados",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de clasificados en línea debe evaluar si puede publicar un aviso.El algoritmo debe solicitar:• Número de caracteres del texto del aviso (número entero).• El aviso incluye imágenes (SI / NO).Reglas:• Si el número de caracteres es menor o igual a 500:  ○ Si incluye imágenes es \"SI\" → Mostrar: \"Aviso publicado con imágenes\"  ○ En caso contrario → Mostrar: \"Aviso publicado sin imágenes\"• En caso contrario → Mostrar: \"No se puede publicar: texto excede el límite\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "caracteres (Entero)\nimagen (Caracter: SI/NO)",
+        "proceso": "Si caracteres <= 500 Entonces\n   Si imagen = \"SI\" → Publicado con imágenes\n   SiNo → Publicado sin imágenes\nSiNo → No se puede publicar: excede límite",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Caracteres del texto:\n> 300\n¿Incluye imágenes? (SI/NO):\n> SI\nAviso publicado con imágenes\nFin del proceso",
+      "pista": "Ambas ramas del Si interno son resultados positivos (publicado). La diferencia es solo el detalle del mensaje. Este patrón entrena a no confundir SiNo como sinónimo de error.",
+      "codigoReferencia": "Proceso PublicacionAviso\n  Definir caracteres Como Entero\n  Definir imagen Como Caracter\n\n  Escribir \"Caracteres del texto:\"\n  Leer caracteres\n  Escribir \"¿Incluye imágenes? (SI/NO):\"\n  Leer imagen\n  Si caracteres <= 500 Entonces\n    Si imagen == \"SI\" Entonces\n      Escribir \"Aviso publicado con imágenes\"\n    Sino\n      Escribir \"Aviso publicado sin imágenes\"\n    FinSi\n  Sino\n    Escribir \"No se puede publicar: texto excede el límite\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-024",
+      "origen": "json/EA 1.6.json #199",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-24",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Trámite en línea con clave única",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un portal de gobierno debe validar si un ciudadano puede iniciar un trámite en línea.El algoritmo debe solicitar:• Número de documentos adjuntados (número entero).• El ciudadano tiene clave única activa (SI / NO).Reglas:• Si el número de documentos es mayor o igual a 3:  ○ Si la clave única está activa es \"SI\" → Mostrar: \"Trámite iniciado en línea\"  ○ En caso contrario → Mostrar: \"Trámite no iniciado: clave única inactiva\"• En caso contrario → Mostrar: \"Trámite no iniciado: faltan documentos\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "documentos (Entero)\nclaveUnica (Caracter: SI/NO)",
+        "proceso": "Si documentos >= 3 Entonces\n   Si claveUnica = \"SI\" → Trámite iniciado\n   SiNo → No iniciado: clave inactiva\nSiNo → No iniciado: faltan documentos",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Documentos adjuntados:\n> 4\n¿Tiene clave única activa? (SI/NO):\n> NO\nTrámite no iniciado: clave única inactiva\nFin del proceso",
+      "pista": "Contexto familiar para estudiantes chilenos: ClaveÚnica es la identidad digital del Estado. Primero la cantidad de documentos, luego la autenticación.",
+      "codigoReferencia": "Proceso TramiteEnLinea\n  Definir documentos Como Entero\n  Definir claveUnica Como Caracter\n\n  Escribir \"Documentos adjuntados:\"\n  Leer documentos\n  Escribir \"¿Tiene clave única activa? (SI/NO):\"\n  Leer claveUnica\n  Si documentos >= 3 Entonces\n    Si claveUnica == \"SI\" Entonces\n      Escribir \"Trámite iniciado en línea\"\n    Sino\n      Escribir \"Trámite no iniciado: clave única inactiva\"\n    FinSi\n  Sino\n    Escribir \"Trámite no iniciado: faltan documentos\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-025",
+      "origen": "json/EA 1.6.json #200",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-25",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Tarifa escolar en transporte",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de transporte debe evaluar si un pasajero tiene derecho a tarifa escolar.El algoritmo debe solicitar:• Edad del pasajero (número entero).• El pasajero presenta credencial estudiantil vigente (SI / NO).Reglas:• Si la edad es menor o igual a 24:  ○ Si presenta credencial vigente es \"SI\" → Mostrar: \"Tarifa escolar aplicada\"  ○ En caso contrario → Mostrar: \"Tarifa normal aplicada: sin credencial\"• En caso contrario → Mostrar: \"Tarifa normal aplicada: edad fuera del rango\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "edad (Entero)\ncredencial (Caracter: SI/NO)",
+        "proceso": "Si edad <= 24 Entonces\n   Si credencial = \"SI\" → Tarifa escolar\n   SiNo → Tarifa normal: sin credencial\nSiNo → Tarifa normal: edad fuera de rango",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Edad del pasajero:\n> 20\n¿Presenta credencial estudiantil vigente? (SI/NO):\n> SI\nTarifa escolar aplicada\nFin del proceso",
+      "pista": "Nota que el SiNo del Si externo y el SiNo del Si interno pueden dar el mismo resultado (tarifa normal), pero con mensajes distintos. El Si anidado sirve para especificar la razón.",
+      "codigoReferencia": "Proceso TarifaEscolar\n  Definir edad Como Entero\n  Definir credencial Como Caracter\n\n  Escribir \"Edad del pasajero:\"\n  Leer edad\n  Escribir \"¿Presenta credencial estudiantil vigente? (SI/NO):\"\n  Leer credencial\n  Si edad <= 24 Entonces\n    Si credencial == \"SI\" Entonces\n      Escribir \"Tarifa escolar aplicada\"\n    Sino\n      Escribir \"Tarifa normal aplicada: sin credencial\"\n    FinSi\n  Sino\n    Escribir \"Tarifa normal aplicada: edad fuera del rango\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-026",
+      "origen": "json/EA 1.6.json #201",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-26",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Despacho de producto refrigerado",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de logística debe controlar el despacho de productos refrigerados.El algoritmo debe solicitar:• Temperatura del producto al despacho en °C (número entero).• El vehículo tiene sistema de frío activo (SI / NO).Reglas:• Si la temperatura es menor o igual a 5:  ○ Si el sistema de frío está activo es \"SI\" → Mostrar: \"Despacho autorizado\"  ○ En caso contrario → Mostrar: \"Despacho denegado: vehículo sin sistema de frío\"• En caso contrario → Mostrar: \"Despacho denegado: temperatura fuera de rango\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "temperatura (Entero)\nfrio (Caracter: SI/NO)",
+        "proceso": "Si temperatura <= 5 Entonces\n   Si frio = \"SI\" → Despacho autorizado\n   SiNo → Denegado: sin sistema de frío\nSiNo → Denegado: temperatura fuera de rango",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Temperatura del producto (°C):\n> 3\n¿Vehículo con sistema de frío activo? (SI/NO):\n> SI\nDespacho autorizado\nFin del proceso",
+      "pista": "Aquí la temperatura BAJA es la correcta (<=5). No confundir con otros ejercicios donde se evalúa temperatura alta. Leer bien el enunciado antes de programar.",
+      "codigoReferencia": "Proceso DespachoProdRefrig\n  Definir temperatura Como Entero\n  Definir frio Como Caracter\n\n  Escribir \"Temperatura del producto (°C):\"\n  Leer temperatura\n  Escribir \"¿Vehículo con sistema de frío activo? (SI/NO):\"\n  Leer frio\n  Si temperatura <= 5 Entonces\n    Si frio == \"SI\" Entonces\n      Escribir \"Despacho autorizado\"\n    Sino\n      Escribir \"Despacho denegado: vehículo sin sistema de frío\"\n    FinSi\n  Sino\n    Escribir \"Despacho denegado: temperatura fuera de rango\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-027",
+      "origen": "json/EA 1.6.json #202",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-27",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Aplicación de voucher de descuento",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de comercio electrónico debe validar si un voucher puede aplicarse.El algoritmo debe solicitar:• Monto total de la compra (número entero).• El voucher está dentro de su fecha de vigencia (SI / NO).Reglas:• Si el monto es mayor o igual a 20000:  ○ Si el voucher está vigente es \"SI\" → Mostrar: \"Voucher aplicado: descuento del 10%\"  ○ En caso contrario → Mostrar: \"Voucher no aplicado: cupón vencido\"• En caso contrario → Mostrar: \"Voucher no aplicado: monto mínimo no alcanzado\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "monto (Entero)\nvigente (Caracter: SI/NO)",
+        "proceso": "Si monto >= 20000 Entonces\n   Si vigente = \"SI\" → Voucher aplicado\n   SiNo → No aplicado: cupón vencido\nSiNo → No aplicado: monto insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Monto total de la compra:\n> 25000\n¿Voucher dentro de vigencia? (SI/NO):\n> NO\nVoucher no aplicado: cupón vencido\nFin del proceso",
+      "pista": "El monto mínimo es condición del negocio (Si externo). La vigencia del cupón es condición del cupón mismo (Si interno). Separar las responsabilidades ayuda a estructurar el Si anidado.",
+      "codigoReferencia": "Proceso AplicacionVoucher\n  Definir monto Como Entero\n  Definir vigente Como Caracter\n\n  Escribir \"Monto total de la compra:\"\n  Leer monto\n  Escribir \"¿Voucher dentro de vigencia? (SI/NO):\"\n  Leer vigente\n  Si monto >= 20000 Entonces\n    Si vigente == \"SI\" Entonces\n      Escribir \"Voucher aplicado: descuento del 10%\"\n    Sino\n      Escribir \"Voucher no aplicado: cupón vencido\"\n    FinSi\n  Sino\n    Escribir \"Voucher no aplicado: monto mínimo no alcanzado\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-028",
+      "origen": "json/EA 1.6.json #203",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-28",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Ingreso a conferencia con credencial",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de gestión de eventos debe controlar el ingreso a una conferencia.El algoritmo debe solicitar:• Número de entradas disponibles (número entero).• El asistente presenta credencial de registro (SI / NO).Reglas:• Si el número de entradas es mayor a 0:  ○ Si presenta credencial es \"SI\" → Mostrar: \"Ingreso al evento autorizado\"  ○ En caso contrario → Mostrar: \"Ingreso denegado: sin credencial\"• En caso contrario → Mostrar: \"Ingreso denegado: evento sin cupos\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "entradas (Entero)\ncredencial (Caracter: SI/NO)",
+        "proceso": "Si entradas > 0 Entonces\n   Si credencial = \"SI\" → Ingreso autorizado\n   SiNo → Denegado: sin credencial\nSiNo → Denegado: sin cupos",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Entradas disponibles:\n> 50\n¿Presenta credencial de registro? (SI/NO):\n> SI\nIngreso al evento autorizado\nFin del proceso",
+      "pista": "Ejercicio muy similar al de la sala (175) pero con \"entradas\" en lugar de \"cupos\" y el énfasis en la credencial en lugar de la reserva. Útil para ver variaciones del mismo patrón.",
+      "codigoReferencia": "Proceso IngresoConferencia\n  Definir entradas Como Entero\n  Definir credencial Como Caracter\n\n  Escribir \"Entradas disponibles:\"\n  Leer entradas\n  Escribir \"¿Presenta credencial de registro? (SI/NO):\"\n  Leer credencial\n  Si entradas > 0 Entonces\n    Si credencial == \"SI\" Entonces\n      Escribir \"Ingreso al evento autorizado\"\n    Sino\n      Escribir \"Ingreso denegado: sin credencial\"\n    FinSi\n  Sino\n    Escribir \"Ingreso denegado: evento sin cupos\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-029",
+      "origen": "json/EA 1.6.json #204",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-29",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Activación de alarma domiciliaria",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de seguridad domiciliaria debe controlar la habilitación de una alarma.El algoritmo debe solicitar:• Número de sensores activos en el hogar (número entero).• El código de seguridad ingresado es correcto (SI / NO).Reglas:• Si los sensores activos son mayores o iguales a 2:  ○ Si el código es correcto es \"SI\" → Mostrar: \"Alarma activada\"  ○ En caso contrario → Mostrar: \"Alarma no activada: código incorrecto\"• En caso contrario → Mostrar: \"Alarma no activada: sensores insuficientes\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "sensores (Entero)\ncodigo (Caracter: SI/NO)",
+        "proceso": "Si sensores >= 2 Entonces\n   Si codigo = \"SI\" → Alarma activada\n   SiNo → No activada: código incorrecto\nSiNo → No activada: sensores insuficientes",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Sensores activos:\n> 1\n¿Código de seguridad correcto? (SI/NO):\n> SI\nAlarma no activada: sensores insuficientes\nFin del proceso",
+      "pista": "Con 1 sensor (que sería = 2 verifica la infraestructura antes de la autenticación.",
+      "codigoReferencia": "Proceso ActivacionAlarma\n  Definir sensores Como Entero\n  Definir codigo Como Caracter\n\n  Escribir \"Sensores activos:\"\n  Leer sensores\n  Escribir \"¿Código de seguridad correcto? (SI/NO):\"\n  Leer codigo\n  Si sensores >= 2 Entonces\n    Si codigo == \"SI\" Entonces\n      Escribir \"Alarma activada\"\n    Sino\n      Escribir \"Alarma no activada: código incorrecto\"\n    FinSi\n  Sino\n    Escribir \"Alarma no activada: sensores insuficientes\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-030",
+      "origen": "json/EA 1.6.json #205",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-30",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Crédito educativo con aval",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Una institución financiera debe determinar si puede otorgar un crédito educativo.El algoritmo debe solicitar:• Promedio de notas del estudiante (número entero, escala 1-7).• El aval tiene antecedentes comerciales limpios (SI / NO).Reglas:• Si el promedio es mayor o igual a 5:  ○ Si el aval tiene antecedentes limpios es \"SI\" → Mostrar: \"Crédito educativo otorgado\"  ○ En caso contrario → Mostrar: \"Crédito no otorgado: aval con antecedentes\"• En caso contrario → Mostrar: \"Crédito no otorgado: promedio insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "promedio (Entero)\naval (Caracter: SI/NO)",
+        "proceso": "Si promedio >= 5 Entonces\n   Si aval = \"SI\" → Crédito otorgado\n   SiNo → No otorgado: aval con antecedentes\nSiNo → No otorgado: promedio insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Promedio de notas (1-7):\n> 6\n¿El aval tiene antecedentes limpios? (SI/NO):\n> SI\nCrédito educativo otorgado\nFin del proceso",
+      "pista": "El promedio mínimo aquí es 5 (no 4 como para matrícula). Nota el cambio de umbral respecto al ejercicio 186. El aval es una tercera persona: el Si interno valida a alguien diferente al estudiante.",
+      "codigoReferencia": "Proceso CreditoEducativo\n  Definir promedio Como Entero\n  Definir aval Como Caracter\n\n  Escribir \"Promedio de notas (1-7):\"\n  Leer promedio\n  Escribir \"¿El aval tiene antecedentes limpios? (SI/NO):\"\n  Leer aval\n  Si promedio >= 5 Entonces\n    Si aval == \"SI\" Entonces\n      Escribir \"Crédito educativo otorgado\"\n    Sino\n      Escribir \"Crédito no otorgado: aval con antecedentes\"\n    FinSi\n  Sino\n    Escribir \"Crédito no otorgado: promedio insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-031",
+      "origen": "json/EA 1.6.json #206",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-31",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Control de aforo en recinto",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de control de aforo debe indicar si puede ingresar más personas a un recinto.El algoritmo debe solicitar:• Personas actualmente dentro del recinto (número entero).• La persona tiene entrada válida (SI / NO).Reglas:• Si la cantidad de personas es menor a 200:  ○ Si la entrada es válida es \"SI\" → Mostrar: \"Ingreso permitido\"  ○ En caso contrario → Mostrar: \"Ingreso denegado: entrada no válida\"• En caso contrario → Mostrar: \"Ingreso denegado: aforo completo\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "personas (Entero)\nentrada (Caracter: SI/NO)",
+        "proceso": "Si personas < 200 Entonces\n   Si entrada = \"SI\" → Ingreso permitido\n   SiNo → Denegado: entrada no válida\nSiNo → Denegado: aforo completo",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Personas actualmente dentro:\n> 200\n¿Tiene entrada válida? (SI/NO):\n> SI\nIngreso denegado: aforo completo\nFin del proceso",
+      "pista": "El límite es estricto: < 200 (no <=200). Con exactamente 200 ya es aforo completo. Cuidado con el signo del operador de comparación.",
+      "codigoReferencia": "Proceso ControlAforo\n  Definir personas Como Entero\n  Definir entrada Como Caracter\n\n  Escribir \"Personas actualmente dentro:\"\n  Leer personas\n  Escribir \"¿Tiene entrada válida? (SI/NO):\"\n  Leer entrada\n  Si personas < 200 Entonces\n    Si entrada == \"SI\" Entonces\n      Escribir \"Ingreso permitido\"\n    Sino\n      Escribir \"Ingreso denegado: entrada no válida\"\n    FinSi\n  Sino\n    Escribir \"Ingreso denegado: aforo completo\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-032",
+      "origen": "json/EA 1.6.json #207",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-32",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Bono de productividad laboral",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de recursos humanos debe verificar si un trabajador tiene derecho a bono de productividad.El algoritmo debe solicitar:• Horas extras trabajadas en el mes (número entero).• El trabajador tuvo asistencia perfecta en el mes (SI / NO).Reglas:• Si las horas extras son mayores o iguales a 10:  ○ Si tuvo asistencia perfecta es \"SI\" → Mostrar: \"Bono de productividad asignado\"  ○ En caso contrario → Mostrar: \"Bono no asignado: sin asistencia perfecta\"• En caso contrario → Mostrar: \"Bono no asignado: horas extras insuficientes\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "horasExtras (Entero)\nasistencia (Caracter: SI/NO)",
+        "proceso": "Si horasExtras >= 10 Entonces\n   Si asistencia = \"SI\" → Bono asignado\n   SiNo → No asignado: sin asistencia perfecta\nSiNo → No asignado: horas insuficientes",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Horas extras en el mes:\n> 12\n¿Asistencia perfecta? (SI/NO):\n> NO\nBono no asignado: sin asistencia perfecta\nFin del proceso",
+      "pista": "Cumplir con las horas extras (Si externo) es condición cuantitativa. La asistencia perfecta (Si interno) es condición cualitativa de comportamiento. Ambas deben cumplirse.",
+      "codigoReferencia": "Proceso BonoProductividad\n  Definir horasExtras Como Entero\n  Definir asistencia Como Caracter\n\n  Escribir \"Horas extras en el mes:\"\n  Leer horasExtras\n  Escribir \"¿Asistencia perfecta? (SI/NO):\"\n  Leer asistencia\n  Si horasExtras >= 10 Entonces\n    Si asistencia == \"SI\" Entonces\n      Escribir \"Bono de productividad asignado\"\n    Sino\n      Escribir \"Bono no asignado: sin asistencia perfecta\"\n    FinSi\n  Sino\n    Escribir \"Bono no asignado: horas extras insuficientes\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-033",
+      "origen": "json/EA 1.6.json #208",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-33",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de vehículo",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de registro vehicular debe controlar la inscripción de vehículos.El algoritmo debe solicitar:• Año de fabricación del vehículo (número entero).• El vehículo tiene revisión técnica vigente (SI / NO).Reglas:• Si el año de fabricación es mayor o igual a 2010:  ○ Si tiene revisión técnica vigente es \"SI\" → Mostrar: \"Vehículo registrado exitosamente\"  ○ En caso contrario → Mostrar: \"Registro pendiente: debe obtener revisión técnica\"• En caso contrario → Mostrar: \"Vehículo no puede ser registrado: modelo muy antiguo\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "anio (Entero)\nrevision (Caracter: SI/NO)",
+        "proceso": "Si anio >= 2010 Entonces\n   Si revision = \"SI\" → Vehículo registrado\n   SiNo → Pendiente: sin revisión\nSiNo → No puede ser registrado: muy antiguo",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Año de fabricación:\n> 2015\n¿Tiene revisión técnica vigente? (SI/NO):\n> NO\nRegistro pendiente: debe obtener revisión técnica\nFin del proceso",
+      "pista": "Año 2010 inclusive califica (>= 2010). Un vehículo 2009 es muy antiguo. La revisión técnica es el trámite pendiente para modelos modernos sin documentación.",
+      "codigoReferencia": "Proceso RegistroVehiculo\n  Definir anio Como Entero\n  Definir revision Como Caracter\n\n  Escribir \"Año de fabricación:\"\n  Leer anio\n  Escribir \"¿Tiene revisión técnica vigente? (SI/NO):\"\n  Leer revision\n  Si anio >= 2010 Entonces\n    Si revision == \"SI\" Entonces\n      Escribir \"Vehículo registrado exitosamente\"\n    Sino\n      Escribir \"Registro pendiente: debe obtener revisión técnica\"\n    FinSi\n  Sino\n    Escribir \"Vehículo no puede ser registrado: modelo muy antiguo\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-034",
+      "origen": "json/EA 1.6.json #209",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-34",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Solicitud de vacaciones",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de gestión de personal debe procesar solicitudes de vacaciones.El algoritmo debe solicitar:• Días de vacaciones acumulados (número entero).• El jefe directo aprobó la solicitud (SI / NO).Reglas:• Si los días acumulados son mayores o iguales a 5:  ○ Si el jefe aprobó es \"SI\" → Mostrar: \"Vacaciones aprobadas\"  ○ En caso contrario → Mostrar: \"Vacaciones pendientes: requiere aprobación del jefe\"• En caso contrario → Mostrar: \"Vacaciones no aprobadas: días insuficientes acumulados\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "dias (Entero)\naprobacion (Caracter: SI/NO)",
+        "proceso": "Si dias >= 5 Entonces\n   Si aprobacion = \"SI\" → Vacaciones aprobadas\n   SiNo → Pendientes: requiere aprobación\nSiNo → No aprobadas: días insuficientes",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Días de vacaciones acumulados:\n> 10\n¿Jefe aprobó la solicitud? (SI/NO):\n> SI\nVacaciones aprobadas\nFin del proceso",
+      "pista": "Sin los días suficientes (< 5), el jefe no puede ni aprobar. Los días son el requisito objetivo; la aprobación del jefe es el requisito subjetivo.",
+      "codigoReferencia": "Proceso SolicitudVacaciones\n  Definir dias Como Entero\n  Definir aprobacion Como Caracter\n\n  Escribir \"Días de vacaciones acumulados:\"\n  Leer dias\n  Escribir \"¿Jefe aprobó la solicitud? (SI/NO):\"\n  Leer aprobacion\n  Si dias >= 5 Entonces\n    Si aprobacion == \"SI\" Entonces\n      Escribir \"Vacaciones aprobadas\"\n    Sino\n      Escribir \"Vacaciones pendientes: requiere aprobación del jefe\"\n    FinSi\n  Sino\n    Escribir \"Vacaciones no aprobadas: días insuficientes acumulados\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-035",
+      "origen": "json/EA 1.6.json #210",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-35",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Habilitación de cuenta de usuario web",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema web debe habilitar la cuenta de un nuevo usuario.El algoritmo debe solicitar:• Longitud de la contraseña elegida (número entero).• El correo electrónico fue verificado (SI / NO).Reglas:• Si la longitud de la contraseña es mayor o igual a 8:  ○ Si el correo fue verificado es \"SI\" → Mostrar: \"Cuenta habilitada exitosamente\"  ○ En caso contrario → Mostrar: \"Cuenta no habilitada: debe verificar el correo\"• En caso contrario → Mostrar: \"Cuenta no habilitada: contraseña demasiado corta\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "longitud (Entero)\ncorreo (Caracter: SI/NO)",
+        "proceso": "Si longitud >= 8 Entonces\n   Si correo = \"SI\" → Cuenta habilitada\n   SiNo → No habilitada: verificar correo\nSiNo → No habilitada: contraseña corta",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Longitud de la contraseña:\n> 8\n¿Correo verificado? (SI/NO):\n> SI\nCuenta habilitada exitosamente\nFin del proceso",
+      "pista": "Longitud mínima 8 caracteres es el estándar de seguridad. Una contraseña de exactamente 8 sí cumple (>=8). La verificación del correo es paso independiente.",
+      "codigoReferencia": "Proceso HabilitacionUsuarioWeb\n  Definir longitud Como Entero\n  Definir correo Como Caracter\n\n  Escribir \"Longitud de la contraseña:\"\n  Leer longitud\n  Escribir \"¿Correo verificado? (SI/NO):\"\n  Leer correo\n  Si longitud >= 8 Entonces\n    Si correo == \"SI\" Entonces\n      Escribir \"Cuenta habilitada exitosamente\"\n    Sino\n      Escribir \"Cuenta no habilitada: debe verificar el correo\"\n    FinSi\n  Sino\n    Escribir \"Cuenta no habilitada: contraseña demasiado corta\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-036",
+      "origen": "json/EA 1.6.json #211",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-36",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Control de calidad de producto",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de control de calidad debe indicar si un producto puede ponerse a la venta.El algoritmo debe solicitar:• Días restantes para la fecha de vencimiento (número entero).• El producto pasó la inspección de calidad (SI / NO).Reglas:• Si los días restantes son mayores a 10:  ○ Si pasó la inspección es \"SI\" → Mostrar: \"Producto habilitado para la venta\"  ○ En caso contrario → Mostrar: \"Producto no habilitado: no pasó inspección\"• En caso contrario → Mostrar: \"Producto no habilitado: próximo a vencer\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "diasRestantes (Entero)\ninspeccion (Caracter: SI/NO)",
+        "proceso": "Si diasRestantes > 10 Entonces\n   Si inspeccion = \"SI\" → Habilitado para venta\n   SiNo → No habilitado: inspección fallida\nSiNo → No habilitado: próximo a vencer",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Días restantes para vencimiento:\n> 20\n¿Pasó inspección de calidad? (SI/NO):\n> NO\nProducto no habilitado: no pasó inspección\nFin del proceso",
+      "pista": "10 días o menos es considerado 'próximo a vencer' (no > 10). 11 días o más puede venderse si pasa la inspección. Vencimiento y calidad son independientes.",
+      "codigoReferencia": "Proceso ControlCalidadProducto\n  Definir diasRestantes Como Entero\n  Definir inspeccion Como Caracter\n\n  Escribir \"Días restantes para vencimiento:\"\n  Leer diasRestantes\n  Escribir \"¿Pasó inspección de calidad? (SI/NO):\"\n  Leer inspeccion\n  Si diasRestantes > 10 Entonces\n    Si inspeccion == \"SI\" Entonces\n      Escribir \"Producto habilitado para la venta\"\n    Sino\n      Escribir \"Producto no habilitado: no pasó inspección\"\n    FinSi\n  Sino\n    Escribir \"Producto no habilitado: próximo a vencer\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-037",
+      "origen": "json/EA 1.6.json #212",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-37",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Confirmación de turno médico",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de salud debe controlar si puede confirmarse un turno médico.El algoritmo debe solicitar:• Días de anticipación con que se solicita el turno (número entero).• El paciente tiene previsión de salud vigente (SI / NO).Reglas:• Si los días de anticipación son mayores o iguales a 2:  ○ Si tiene previsión vigente es \"SI\" → Mostrar: \"Turno médico confirmado\"  ○ En caso contrario → Mostrar: \"Turno pendiente: debe regularizar previsión\"• En caso contrario → Mostrar: \"Turno no disponible: solicitud con muy poca anticipación\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "anticipacion (Entero)\nprevision (Caracter: SI/NO)",
+        "proceso": "Si anticipacion >= 2 Entonces\n   Si prevision = \"SI\" → Turno confirmado\n   SiNo → Pendiente: regularizar previsión\nSiNo → No disponible: poca anticipación",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Días de anticipación:\n> 3\n¿Tiene previsión de salud vigente? (SI/NO):\n> SI\nTurno médico confirmado\nFin del proceso",
+      "pista": "El mínimo de 2 días es por operativa del sistema de salud. Pedir el turno para el mismo día o el siguiente (0 o 1 días) no alcanza. La previsión se revisa solo si hay tiempo suficiente.",
+      "codigoReferencia": "Proceso ConfirmacionTurno\n  Definir anticipacion Como Entero\n  Definir prevision Como Caracter\n\n  Escribir \"Días de anticipación:\"\n  Leer anticipacion\n  Escribir \"¿Tiene previsión de salud vigente? (SI/NO):\"\n  Leer prevision\n  Si anticipacion >= 2 Entonces\n    Si prevision == \"SI\" Entonces\n      Escribir \"Turno médico confirmado\"\n    Sino\n      Escribir \"Turno pendiente: debe regularizar previsión\"\n    FinSi\n  Sino\n    Escribir \"Turno no disponible: solicitud con muy poca anticipación\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-038",
+      "origen": "json/EA 1.6.json #213",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-38",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Retiro de efectivo en cajero automático",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un cajero automático debe determinar si puede procesar un retiro de efectivo.El algoritmo debe solicitar:• Saldo disponible en la cuenta (número entero).• El PIN ingresado es correcto (SI / NO).Reglas:• Si el saldo es mayor a 0:  ○ Si el PIN es correcto es \"SI\" → Mostrar: \"Retiro procesado\"  ○ En caso contrario → Mostrar: \"Retiro denegado: PIN incorrecto\"• En caso contrario → Mostrar: \"Retiro denegado: saldo insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "saldo (Entero)\npin (Caracter: SI/NO)",
+        "proceso": "Si saldo > 0 Entonces\n   Si pin = \"SI\" → Retiro procesado\n   SiNo → Denegado: PIN incorrecto\nSiNo → Denegado: saldo insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Saldo disponible:\n> 5000\n¿PIN correcto? (SI/NO):\n> SI\nRetiro procesado\nFin del proceso",
+      "pista": "Saldo 0 es insuficiente (no > 0). El PIN es la autenticación, el saldo es el requisito financiero. Primero se verifica el saldo (lo tangible), luego la identidad (lo lógico).",
+      "codigoReferencia": "Proceso RetiroEfectivo\n  Definir saldo Como Entero\n  Definir pin Como Caracter\n\n  Escribir \"Saldo disponible:\"\n  Leer saldo\n  Escribir \"¿PIN correcto? (SI/NO):\"\n  Leer pin\n  Si saldo > 0 Entonces\n    Si pin == \"SI\" Entonces\n      Escribir \"Retiro procesado\"\n    Sino\n      Escribir \"Retiro denegado: PIN incorrecto\"\n    FinSi\n  Sino\n    Escribir \"Retiro denegado: saldo insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-039",
+      "origen": "json/EA 1.6.json #214",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-39",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Acreditación profesional de técnico",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de certificación debe validar si un técnico puede obtener su acreditación profesional.El algoritmo debe solicitar:• Horas de experiencia laboral en el área (número entero).• El postulante aprobó el examen de certificación (SI / NO).Reglas:• Si las horas de experiencia son mayores o iguales a 500:  ○ Si aprobó el examen es \"SI\" → Mostrar: \"Acreditación profesional otorgada\"  ○ En caso contrario → Mostrar: \"Acreditación no otorgada: debe aprobar el examen\"• En caso contrario → Mostrar: \"Acreditación no otorgada: experiencia insuficiente\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "horas (Entero)\nexamen (Caracter: SI/NO)",
+        "proceso": "Si horas >= 500 Entonces\n   Si examen = \"SI\" → Acreditación otorgada\n   SiNo → No otorgada: debe aprobar examen\nSiNo → No otorgada: experiencia insuficiente",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Horas de experiencia laboral:\n> 600\n¿Aprobó el examen de certificación? (SI/NO):\n> NO\nAcreditación no otorgada: debe aprobar el examen\nFin del proceso",
+      "pista": "La experiencia se valida primero porque es el prerrequisito de admisión. El examen es la evaluación final. Sin experiencia suficiente no tiene sentido rendir el examen.",
+      "codigoReferencia": "Proceso AcreditacionTecnico\n  Definir horas Como Entero\n  Definir examen Como Caracter\n\n  Escribir \"Horas de experiencia laboral:\"\n  Leer horas\n  Escribir \"¿Aprobó el examen de certificación? (SI/NO):\"\n  Leer examen\n  Si horas >= 500 Entonces\n    Si examen == \"SI\" Entonces\n      Escribir \"Acreditación profesional otorgada\"\n    Sino\n      Escribir \"Acreditación no otorgada: debe aprobar el examen\"\n    FinSi\n  Sino\n    Escribir \"Acreditación no otorgada: experiencia insuficiente\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n6-040",
+      "origen": "json/EA 1.6.json #215",
+      "modulo": "N6",
+      "experiencia": "Ejercicio Tipo Prueba Parte 1",
+      "nivelLiteSeInt": 6,
+      "numero": "N6-40",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Clasificación de residuo ambiental",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Decisión",
+        "Caracter",
+        "Entero"
+      ],
+      "enunciado": "Un sistema de gestión ambiental debe clasificar un residuo para su tratamiento.El algoritmo debe solicitar:• Nivel de toxicidad del residuo del 1 al 10 (número entero).• El residuo es de origen biológico (SI / NO).Reglas:• Si el nivel de toxicidad es mayor a 5:  ○ Si es biológico es \"SI\" → Mostrar: \"Residuo peligroso biológico: tratamiento especial\"  ○ En caso contrario → Mostrar: \"Residuo peligroso químico: tratamiento especial\"• En caso contrario → Mostrar: \"Residuo no peligroso: disposición estándar\"Al final, siempre mostrar: \"Fin del proceso\" y terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "toxicidad (Entero)\nbiologico (Caracter: SI/NO)",
+        "proceso": "Si toxicidad > 5 Entonces\n   Si biologico = \"SI\" → Peligroso biológico\n   SiNo → Peligroso químico\nSiNo → No peligroso: disposición estándar",
+        "salida": "Mensaje de resultado + \"Fin del proceso\""
+      },
+      "salidaEsperada": "Nivel de toxicidad (1-10):\n> 8\n¿Es de origen biológico? (SI/NO):\n> SI\nResiduo peligroso biológico: tratamiento especial\nFin del proceso",
+      "pista": "Ambas ramas del Si interno son 'tratamiento especial' pero el tipo de tratamiento difiere según si es biológico o químico. El Si anidado aquí sirve para especializar, no para aprobar/rechazar.",
+      "codigoReferencia": "Proceso ClasificacionResiduo\n  Definir toxicidad Como Entero\n  Definir biologico Como Caracter\n\n  Escribir \"Nivel de toxicidad (1-10):\"\n  Leer toxicidad\n  Escribir \"¿Es de origen biológico? (SI/NO):\"\n  Leer biologico\n  Si toxicidad > 5 Entonces\n    Si biologico == \"SI\" Entonces\n      Escribir \"Residuo peligroso biológico: tratamiento especial\"\n    Sino\n      Escribir \"Residuo peligroso químico: tratamiento especial\"\n    FinSi\n  Sino\n    Escribir \"Residuo no peligroso: disposición estándar\"\n  FinSi\n  Escribir \"Fin del proceso\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    }
+  ]
+}
