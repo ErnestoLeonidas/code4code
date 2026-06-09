@@ -1,0 +1,912 @@
+{
+  "experience": {
+    "id": "7",
+    "label": "N7",
+    "titulo": "Ejercicio Tipo Prueba Parte 2",
+    "desc": "30 ejercicios con menú de 3 opciones, ciclo Mientras, contador y acumulador, al estilo del Ejercicio 2 del parcial.",
+    "color": "var(--yellow)",
+    "icon": "🗂️"
+  },
+  "exercises": [
+    {
+      "id": "n7-001",
+      "origen": "json/EA 1.7.json #216",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-01",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de ventas diarias",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Una persona quiere registrar las ventas realizadas en el día y calcular el monto total vendido. El programa debe funcionar mediante un menú de 3 opciones que se repite hasta que el usuario seleccione Salir.Opción 1 – Registrar ventas: solicita la cantidad de ventas (mínimo 2), luego mediante un ciclo Mientras pide el nombre del producto y el monto de cada venta, acumulando el total.Opción 2 – Mostrar análisis: muestra el monto total acumulado y evalúa: si supera $100.000 → \"Día de ventas exitoso\", si no → \"Ventas por mejorar\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalVentas (Real)\nproducto (Caracter)\nmonto (Entero)",
+        "proceso": "Mientras opcion <> 3 Hacer\n  Opción 1: Mientras contador<=N → leer producto,monto; acumular\n  Opción 2: mostrar total; Si total>100000 → exitoso SiNo por mejorar\n  Opción 3: Fin del registro\nFinMientras",
+        "salida": "Total ventas + mensaje de evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar ventas\n2. Mostrar análisis del total vendido\n3. Salir\nIngrese una opción:\n> 1\nCantidad de ventas (mínimo 2):\n> 2\nNombre del producto:\n> Mouse\nMonto de la venta:\n> 25000\nNombre del producto:\n> Teclado\nMonto de la venta:\n> 90000\nRegistro completado.\n--- MENÚ ---\n1. Registrar ventas\n2. Mostrar análisis del total vendido\n3. Salir\nIngrese una opción:\n> 2\nTotal vendido: $115000\nDía de ventas exitoso\n--- MENÚ ---\n1. Registrar ventas\n2. Mostrar análisis del total vendido\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El acumulador totalVentas debe inicializarse en 0 antes del menú. Cada vez que el usuario vuelve a elegir opción 1, los datos se suman al mismo acumulador global.",
+      "codigoReferencia": "Proceso RegistroVentasDiarias\n  Definir N, contador, monto Como Entero\n  Definir totalVentas Como Real\n  Definir producto Como Caracter\n  Definir opcion Como Entero\n\n  N           = 0\n  contador    = 0\n  totalVentas = 0\n  opcion      = 0\n\n  Escribir \"Registro de ventas diarias\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar ventas\"\n    Escribir \"2. Mostrar análisis del total vendido\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de ventas: (mínimo 2):\"\n      Leer N\n      Mientras N < 2 Hacer\n        Escribir \"El valor debe ser mayor o igual a 2. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del producto:\"\n        Leer producto\n        Escribir \"Monto de la venta:\"\n        Leer monto\n\n        totalVentas = totalVentas + monto\n        contador    = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total vendido: $\", totalVentas\n        Si totalVentas > 100000 Entonces\n          Escribir \"Día de ventas exitoso\"\n        Sino\n          Escribir \"Ventas por mejorar\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-002",
+      "origen": "json/EA 1.7.json #217",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-02",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de kilometraje recorrido",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Un conductor quiere registrar los kilómetros recorridos en cada tramo de un viaje y calcular el total del día. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar tramos: solicita cantidad de tramos (mínimo 2), luego con Mientras pide el nombre del tramo y los kilómetros, acumulando el total.Opción 2 – Mostrar análisis: muestra el total de km y evalúa: si supera 300 → \"Recorrido extenso: revisar vehículo\", si no → \"Recorrido dentro del rango normal\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalKm (Real)\ntramo (Caracter)\nkm (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular km por tramo\n  Op2: mostrar total; Si >300 → extenso SiNo normal\n  Op3: Fin",
+        "salida": "Total km + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar tramos\n2. Mostrar análisis del recorrido\n3. Salir\nIngrese una opción:\n> 1\nCantidad de tramos (mínimo 2):\n> 2\nNombre del tramo (origen-destino):\n> Santiago-Rancagua\nKilómetros del tramo:\n> 87\nNombre del tramo (origen-destino):\n> Rancagua-Talca\nKilómetros del tramo:\n> 130\nRegistro completado.\n--- MENÚ ---\n1. Registrar tramos\n2. Mostrar análisis del recorrido\n3. Salir\nIngrese una opción:\n> 2\nTotal km recorridos: 217\nRecorrido dentro del rango normal\n--- MENÚ ---\n1. Registrar tramos\n2. Mostrar análisis del recorrido\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Tramos y kilómetros son la base. El acumulador totalKm se inicializa en 0. La evaluación en opción 2 compara ese acumulador con el umbral 300.",
+      "codigoReferencia": "Proceso RegistroKilometraje\n  Definir N, contador, km Como Entero\n  Definir totalKm Como Real\n  Definir tramo Como Caracter\n  Definir opcion Como Entero\n\n  N        = 0\n  contador = 0\n  totalKm  = 0\n  opcion   = 0\n\n  Escribir \"Registro de kilometraje\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar tramos\"\n    Escribir \"2. Mostrar análisis del recorrido\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de tramos: (mínimo 2):\"\n      Leer N\n      Mientras N < 2 Hacer\n        Escribir \"El valor debe ser mayor o igual a 2. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del tramo (origen-destino):\"\n        Leer tramo\n        Escribir \"Kilómetros del tramo:\"\n        Leer km\n\n        totalKm  = totalKm + km\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total km recorridos: \", totalKm\n        Si totalKm > 300 Entonces\n          Escribir \"Recorrido extenso: revisar vehículo\"\n        Sino\n          Escribir \"Recorrido dentro del rango normal\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-003",
+      "origen": "json/EA 1.7.json #218",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de horas de estudio semanales",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Un estudiante quiere registrar las horas dedicadas al estudio cada día y calcular el total semanal. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar días: solicita cantidad de días (mínimo 3), luego con Mientras pide el nombre del día y las horas estudiadas, acumulando el total.Opción 2 – Mostrar análisis: muestra el total de horas y evalúa: si es mayor o igual a 20 → \"Semana de estudio productiva\", si no → \"Semana con estudio insuficiente\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalHoras (Real)\ndia (Caracter)\nhoras (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular horas por día\n  Op2: Si >=20 → productiva SiNo insuficiente\n  Op3: Fin",
+        "salida": "Total horas + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar días de estudio\n2. Mostrar análisis semanal\n3. Salir\nIngrese una opción:\n> 1\nCantidad de días (mínimo 3):\n> 3\nNombre del día:\n> Lunes\nHoras estudiadas ese día:\n> 4\nNombre del día:\n> Martes\nHoras estudiadas ese día:\n> 5\nNombre del día:\n> Miércoles\nHoras estudiadas ese día:\n> 3\nRegistro completado.\n--- MENÚ ---\n1. Registrar días de estudio\n2. Mostrar análisis semanal\n3. Salir\nIngrese una opción:\n> 2\nTotal horas estudiadas: 12\nSemana con estudio insuficiente\n--- MENÚ ---\n1. Registrar días de estudio\n2. Mostrar análisis semanal\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "La validación del mínimo (>= 3 días) se hace con un Mientras antes de entrar al ciclo de registro. El umbral de la opción 2 es 20 horas.",
+      "codigoReferencia": "Proceso RegistroHorasEstudio\n  Definir N, contador, horas Como Entero\n  Definir totalHoras Como Real\n  Definir dia Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalHoras = 0\n  opcion     = 0\n\n  Escribir \"Registro de horas de estudio\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar días de estudio\"\n    Escribir \"2. Mostrar análisis semanal\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de días de estudio: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del día:\"\n        Leer dia\n        Escribir \"Horas estudiadas ese día:\"\n        Leer horas\n\n        totalHoras = totalHoras + horas\n        contador   = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total horas estudiadas: \", totalHoras\n        Si totalHoras >= 20 Entonces\n          Escribir \"Semana de estudio productiva\"\n        Sino\n          Escribir \"Semana con estudio insuficiente\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-004",
+      "origen": "json/EA 1.7.json #219",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de calorías consumidas",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Una persona desea registrar las calorías consumidas en cada comida del día y calcular el total diario. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar comidas: solicita cantidad de comidas (mínimo 3), luego con Mientras pide el nombre de la comida y sus calorías, acumulando el total.Opción 2 – Mostrar análisis: muestra el total de calorías y evalúa: si supera 2.500 → \"Consumo calórico elevado\", si no → \"Consumo calórico dentro del rango\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalCal (Real)\ncomida (Caracter)\ncalorias (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular calorías por comida\n  Op2: Si >2500 → elevado SiNo dentro del rango\n  Op3: Fin",
+        "salida": "Total calorías + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar comidas\n2. Mostrar análisis calórico\n3. Salir\nIngrese una opción:\n> 1\nCantidad de comidas (mínimo 3):\n> 3\nNombre de la comida:\n> Desayuno\nCalorías de esa comida:\n> 400\nNombre de la comida:\n> Almuerzo\nCalorías de esa comida:\n> 800\nNombre de la comida:\n> Cena\nCalorías de esa comida:\n> 700\nRegistro completado.\n--- MENÚ ---\n1. Registrar comidas\n2. Mostrar análisis calórico\n3. Salir\nIngrese una opción:\n> 2\nTotal calorías del día: 1900\nConsumo calórico dentro del rango\n--- MENÚ ---\n1. Registrar comidas\n2. Mostrar análisis calórico\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Calorías es un entero. El acumulador totalCal suma todos los valores y la opción 2 evalúa si se supera el umbral de 2500.",
+      "codigoReferencia": "Proceso RegistroCalorias\n  Definir N, contador, calorias Como Entero\n  Definir totalCal Como Real\n  Definir comida Como Caracter\n  Definir opcion Como Entero\n\n  N        = 0\n  contador = 0\n  totalCal = 0\n  opcion   = 0\n\n  Escribir \"Registro de calorías diarias\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar comidas\"\n    Escribir \"2. Mostrar análisis calórico\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de comidas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre de la comida:\"\n        Leer comida\n        Escribir \"Calorías de esa comida:\"\n        Leer calorias\n\n        totalCal = totalCal + calorias\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total calorías del día: \", totalCal\n        Si totalCal > 2500 Entonces\n          Escribir \"Consumo calórico elevado\"\n        Sino\n          Escribir \"Consumo calórico dentro del rango\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-005",
+      "origen": "json/EA 1.7.json #220",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-05",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de pagos de servicios del hogar",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Una persona quiere registrar los pagos realizados a los servicios del hogar y calcular el gasto total mensual. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar pagos: solicita cantidad de pagos (mínimo 2), luego con Mientras pide el nombre del servicio y el monto, acumulando el total.Opción 2 – Mostrar análisis: muestra el total pagado y evalúa: si supera $80.000 → \"Gasto en servicios elevado\", si no → \"Gasto en servicios controlado\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalPagos (Real)\nservicio (Caracter)\nmonto (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular montos\n  Op2: Si >80000 → elevado SiNo controlado\n  Op3: Fin",
+        "salida": "Total pagos + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar pagos\n2. Mostrar análisis del gasto total\n3. Salir\nIngrese una opción:\n> 1\nCantidad de pagos (mínimo 2):\n> 2\nNombre del servicio:\n> Luz\nMonto pagado:\n> 35000\nNombre del servicio:\n> Internet\nMonto pagado:\n> 25000\nRegistro completado.\n--- MENÚ ---\n1. Registrar pagos\n2. Mostrar análisis del gasto total\n3. Salir\nIngrese una opción:\n> 2\nTotal pagado en servicios: $60000\nGasto en servicios controlado\n--- MENÚ ---\n1. Registrar pagos\n2. Mostrar análisis del gasto total\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Este programa es idéntico en estructura a los de registro de ventas o gastos. Cambiar el contexto no cambia la lógica: siempre es leer N, ciclo Mientras, acumular, y analizar.",
+      "codigoReferencia": "Proceso RegistroPagosServicios\n  Definir N, contador, monto Como Entero\n  Definir totalPagos Como Real\n  Definir servicio Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalPagos = 0\n  opcion     = 0\n\n  Escribir \"Registro de pagos de servicios\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar pagos\"\n    Escribir \"2. Mostrar análisis del gasto total\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de pagos: (mínimo 2):\"\n      Leer N\n      Mientras N < 2 Hacer\n        Escribir \"El valor debe ser mayor o igual a 2. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del servicio:\"\n        Leer servicio\n        Escribir \"Monto pagado:\"\n        Leer monto\n\n        totalPagos = totalPagos + monto\n        contador   = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total pagado en servicios: $\", totalPagos\n        Si totalPagos > 80000 Entonces\n          Escribir \"Gasto en servicios elevado\"\n        Sino\n          Escribir \"Gasto en servicios controlado\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-006",
+      "origen": "json/EA 1.7.json #221",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-06",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de unidades producidas por turno",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Un operario de fábrica quiere registrar las unidades producidas en cada turno del día y verificar si se alcanzó la meta. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar turnos: solicita cantidad de turnos (mínimo 2), luego con Mientras pide el nombre del turno y las unidades producidas, acumulando el total.Opción 2 – Mostrar análisis: muestra el total producido y evalúa: si es mayor o igual a 500 → \"Meta de producción alcanzada\", si no → \"Meta de producción no alcanzada\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalUnidades (Real)\nturno (Caracter)\nunidades (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular unidades\n  Op2: Si >=500 → meta alcanzada SiNo no alcanzada\n  Op3: Fin",
+        "salida": "Total unidades + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar turnos\n2. Mostrar análisis de producción\n3. Salir\nIngrese una opción:\n> 1\nCantidad de turnos (mínimo 2):\n> 2\nNombre del turno:\n> Mañana\nUnidades producidas:\n> 280\nNombre del turno:\n> Tarde\nUnidades producidas:\n> 260\nRegistro completado.\n--- MENÚ ---\n1. Registrar turnos\n2. Mostrar análisis de producción\n3. Salir\nIngrese una opción:\n> 2\nTotal unidades producidas: 540\nMeta de producción alcanzada\n--- MENÚ ---\n1. Registrar turnos\n2. Mostrar análisis de producción\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El umbral de la meta es 500 unidades (>=500). Nota que el operador es >= en lugar de >: 500 exactas ya cumple la meta.",
+      "codigoReferencia": "Proceso RegistroProduccion\n  Definir N, contador, unidades Como Entero\n  Definir totalUnidades Como Real\n  Definir turno Como Caracter\n  Definir opcion Como Entero\n\n  N             = 0\n  contador      = 0\n  totalUnidades = 0\n  opcion        = 0\n\n  Escribir \"Registro de producción diaria\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar turnos\"\n    Escribir \"2. Mostrar análisis de producción\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de turnos: (mínimo 2):\"\n      Leer N\n      Mientras N < 2 Hacer\n        Escribir \"El valor debe ser mayor o igual a 2. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del turno:\"\n        Leer turno\n        Escribir \"Unidades producidas:\"\n        Leer unidades\n\n        totalUnidades = totalUnidades + unidades\n        contador      = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total unidades producidas: \", totalUnidades\n        Si totalUnidades >= 500 Entonces\n          Escribir \"Meta de producción alcanzada\"\n        Sino\n          Escribir \"Meta de producción no alcanzada\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-007",
+      "origen": "json/EA 1.7.json #222",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-07",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de donaciones en campaña benéfica",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Una organización quiere registrar las donaciones recibidas en una campaña y verificar si se alcanzó la meta. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar donaciones: solicita cantidad de donaciones (mínimo 3), luego con Mientras pide el nombre del donante y el monto, acumulando el total.Opción 2 – Mostrar análisis: muestra el total recolectado y evalúa: si es mayor o igual a $200.000 → \"Meta de campaña alcanzada\", si no → \"Meta de campaña no alcanzada\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalDonaciones (Real)\ndonante (Caracter)\nmonto (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular donaciones\n  Op2: Si >=200000 → meta alcanzada\n  Op3: Fin",
+        "salida": "Total donaciones + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar donaciones\n2. Mostrar análisis de la campaña\n3. Salir\nIngrese una opción:\n> 1\nCantidad de donaciones (mínimo 3):\n> 3\nNombre del donante:\n> Ana\nMonto de la donación:\n> 50000\nNombre del donante:\n> Luis\nMonto de la donación:\n> 80000\nNombre del donante:\n> María\nMonto de la donación:\n> 90000\nRegistro completado.\n--- MENÚ ---\n1. Registrar donaciones\n2. Mostrar análisis de la campaña\n3. Salir\nIngrese una opción:\n> 2\nTotal recolectado: $220000\nMeta de campaña alcanzada\n--- MENÚ ---\n1. Registrar donaciones\n2. Mostrar análisis de la campaña\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Mínimo 3 donaciones. El monto de referencia es $200.000. Si exactamente se llega a esa cifra, se cumple la meta (>=).",
+      "codigoReferencia": "Proceso RegistroDonaciones\n  Definir N, contador, monto Como Entero\n  Definir totalDonaciones Como Real\n  Definir donante Como Caracter\n  Definir opcion Como Entero\n\n  N               = 0\n  contador        = 0\n  totalDonaciones = 0\n  opcion          = 0\n\n  Escribir \"Registro de donaciones\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar donaciones\"\n    Escribir \"2. Mostrar análisis de la campaña\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de donaciones: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del donante:\"\n        Leer donante\n        Escribir \"Monto de la donación:\"\n        Leer monto\n\n        totalDonaciones = totalDonaciones + monto\n        contador        = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total recolectado: $\", totalDonaciones\n        Si totalDonaciones >= 200000 Entonces\n          Escribir \"Meta de campaña alcanzada\"\n        Sino\n          Escribir \"Meta de campaña no alcanzada\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-008",
+      "origen": "json/EA 1.7.json #223",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-08",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de horas extra en el mes",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Un trabajador quiere registrar las horas extra por semana del mes y verificar si excedió el límite. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar semanas: solicita cantidad de semanas (mínimo 2), luego con Mientras pide el número de semana y las horas extra, acumulando el total.Opción 2 – Mostrar análisis: muestra el total de horas extra y evalúa: si supera 20 → \"Cantidad de horas extra excesiva\", si no → \"Cantidad de horas extra dentro del límite\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalExtra (Real)\nsemana (Caracter)\nhoras (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular horas extra\n  Op2: Si >20 → excesiva SiNo dentro del límite\n  Op3: Fin",
+        "salida": "Total horas extra + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar semanas\n2. Mostrar análisis de horas extra\n3. Salir\nIngrese una opción:\n> 1\nCantidad de semanas (mínimo 2):\n> 2\nNúmero de semana:\n> Semana 1\nHoras extra esa semana:\n> 8\nNúmero de semana:\n> Semana 2\nHoras extra esa semana:\n> 15\nRegistro completado.\n--- MENÚ ---\n1. Registrar semanas\n2. Mostrar análisis de horas extra\n3. Salir\nIngrese una opción:\n> 2\nTotal horas extra en el mes: 23\nCantidad de horas extra excesiva\n--- MENÚ ---\n1. Registrar semanas\n2. Mostrar análisis de horas extra\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El límite es 20 horas (estricto: >20). Exactamente 20 horas sigue dentro del límite. Semana es una cadena descriptiva, horas es el entero que se acumula.",
+      "codigoReferencia": "Proceso RegistroHorasExtra\n  Definir N, contador, horas Como Entero\n  Definir totalExtra Como Real\n  Definir semana Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalExtra = 0\n  opcion     = 0\n\n  Escribir \"Registro de horas extra\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar semanas\"\n    Escribir \"2. Mostrar análisis de horas extra\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de semanas: (mínimo 2):\"\n      Leer N\n      Mientras N < 2 Hacer\n        Escribir \"El valor debe ser mayor o igual a 2. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Número de semana:\"\n        Leer semana\n        Escribir \"Horas extra esa semana:\"\n        Leer horas\n\n        totalExtra = totalExtra + horas\n        contador   = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total horas extra en el mes: \", totalExtra\n        Si totalExtra > 20 Entonces\n          Escribir \"Cantidad de horas extra excesiva\"\n        Sino\n          Escribir \"Cantidad de horas extra dentro del límite\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-009",
+      "origen": "json/EA 1.7.json #224",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-09",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de asistencia a clases",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Un docente quiere registrar la cantidad de alumnos presentes en cada clase del mes y analizar el total. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar clases: solicita cantidad de clases (mínimo 3), luego con Mientras pide la fecha de la clase y los alumnos presentes, acumulando el total.Opción 2 – Mostrar análisis: muestra el total de asistencias y evalúa: si es mayor o igual a 90 → \"Asistencia total alta\", si no → \"Asistencia total baja: revisar estrategias\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalAsist (Real)\nfecha (Caracter)\nalumnos (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular asistencias\n  Op2: Si >=90 → alta SiNo baja\n  Op3: Fin",
+        "salida": "Total asistencias + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar clases\n2. Mostrar análisis de asistencia\n3. Salir\nIngrese una opción:\n> 1\nCantidad de clases (mínimo 3):\n> 3\nFecha de la clase:\n> 01/04\nAlumnos presentes:\n> 28\nFecha de la clase:\n> 03/04\nAlumnos presentes:\n> 30\nFecha de la clase:\n> 05/04\nAlumnos presentes:\n> 25\nRegistro completado.\n--- MENÚ ---\n1. Registrar clases\n2. Mostrar análisis de asistencia\n3. Salir\nIngrese una opción:\n> 2\nTotal asistencias registradas: 83\nAsistencia total baja: revisar estrategias\n--- MENÚ ---\n1. Registrar clases\n2. Mostrar análisis de asistencia\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Cada clase tiene una cantidad de alumnos. El acumulador suma todos y la opción 2 evalúa si el total supera 90. Mínimo 3 clases asegura datos significativos.",
+      "codigoReferencia": "Proceso RegistroAsistencia\n  Definir N, contador, alumnos Como Entero\n  Definir totalAsist Como Real\n  Definir fecha Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalAsist = 0\n  opcion     = 0\n\n  Escribir \"Registro de asistencias\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar clases\"\n    Escribir \"2. Mostrar análisis de asistencia\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de clases: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Fecha de la clase:\"\n        Leer fecha\n        Escribir \"Alumnos presentes:\"\n        Leer alumnos\n\n        totalAsist = totalAsist + alumnos\n        contador   = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total asistencias registradas: \", totalAsist\n        Si totalAsist >= 90 Entonces\n          Escribir \"Asistencia total alta\"\n        Sino\n          Escribir \"Asistencia total baja: revisar estrategias\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-010",
+      "origen": "json/EA 1.7.json #225",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-10",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Registro de multas de tránsito",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Si-Entonces",
+        "Total"
+      ],
+      "enunciado": "Un conductor quiere registrar las multas de tránsito recibidas en el mes y calcular el total adeudado. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar multas: solicita cantidad de multas (mínimo 2), luego con Mientras pide la infracción y el monto, acumulando el total.Opción 2 – Mostrar análisis: muestra el total adeudado y evalúa: si supera $150.000 → \"Deuda elevada: se recomienda pagar a la brevedad\", si no → \"Deuda manejable\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalMultas (Real)\ninfraccion (Caracter)\nmonto (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular multas\n  Op2: Si >150000 → deuda elevada\n  Op3: Fin",
+        "salida": "Total multas + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar multas\n2. Mostrar análisis del total adeudado\n3. Salir\nIngrese una opción:\n> 1\nCantidad de multas (mínimo 2):\n> 2\nInfracción cometida:\n> Exceso de velocidad\nMonto de la multa:\n> 100000\nInfracción cometida:\n> Estacionamiento prohibido\nMonto de la multa:\n> 60000\nRegistro completado.\n--- MENÚ ---\n1. Registrar multas\n2. Mostrar análisis del total adeudado\n3. Salir\nIngrese una opción:\n> 2\nTotal adeudado: $160000\nDeuda elevada: se recomienda pagar a la brevedad\n--- MENÚ ---\n1. Registrar multas\n2. Mostrar análisis del total adeudado\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El umbral es $150.000 con operador estricto >. Exactamente $150.000 es deuda manejable. El acumulador suma montos enteros.",
+      "codigoReferencia": "Proceso RegistroMultas\n  Definir N, contador, monto Como Entero\n  Definir totalMultas Como Real\n  Definir infraccion Como Caracter\n  Definir opcion Como Entero\n\n  N           = 0\n  contador    = 0\n  totalMultas = 0\n  opcion      = 0\n\n  Escribir \"Registro de multas\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar multas\"\n    Escribir \"2. Mostrar análisis del total adeudado\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de multas: (mínimo 2):\"\n      Leer N\n      Mientras N < 2 Hacer\n        Escribir \"El valor debe ser mayor o igual a 2. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Infracción cometida:\"\n        Leer infraccion\n        Escribir \"Monto de la multa:\"\n        Leer monto\n\n        totalMultas = totalMultas + monto\n        contador    = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total adeudado: $\", totalMultas\n        Si totalMultas > 150000 Entonces\n          Escribir \"Deuda elevada: se recomienda pagar a la brevedad\"\n        Sino\n          Escribir \"Deuda manejable\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-011",
+      "origen": "json/EA 1.7.json #226",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-11",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de notas del semestre",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un estudiante quiere registrar sus notas del semestre y calcular su promedio final. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar notas: solicita cantidad de notas (mínimo 3), luego con Mientras pide el nombre de la evaluación y la nota (1-7), acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si es mayor o igual a 4 → \"Semestre aprobado\", si no → \"Semestre en riesgo de reprobación\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalNotas, promedio (Real)\nevaluacion (Caracter)\nnota (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular notas\n  Op2: promedio ← total/N; Si >=4 → aprobado SiNo reprobación\n  Op3: Fin",
+        "salida": "Promedio + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis del promedio\n3. Salir\nIngrese una opción:\n> 1\nCantidad de notas (mínimo 3):\n> 3\nNombre de la evaluación:\n> Certamen 1\nNota obtenida (1-7):\n> 5\nNombre de la evaluación:\n> Certamen 2\nNota obtenida (1-7):\n> 4\nNombre de la evaluación:\n> Examen\nNota obtenida (1-7):\n> 3\nRegistro completado.\n--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis del promedio\n3. Salir\nIngrese una opción:\n> 2\nPromedio: 4\nSemestre aprobado\n--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis del promedio\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El promedio se calcula dividiendo el acumulador por N. Protege siempre la división verificando que N > 0 antes de dividir para evitar errores en tiempo de ejecución.",
+      "codigoReferencia": "Proceso RegistroNotas\n  Definir N, contador, nota Como Entero\n  Definir totalNotas, promedio Como Real\n  Definir evaluacion Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalNotas = 0\n  promedio   = 0\n  opcion     = 0\n\n  Escribir \"Registro de notas\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar notas\"\n    Escribir \"2. Mostrar análisis del promedio\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de notas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre de la evaluación:\"\n        Leer evaluacion\n        Escribir \"Nota obtenida (1-7):\"\n        Leer nota\n\n        totalNotas = totalNotas + nota\n        contador   = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalNotas / N\n\n          Escribir \"Promedio: \", promedio\n          Si promedio >= 4 Entonces\n            Escribir \"Semestre aprobado\"\n          Sino\n            Escribir \"Semestre en riesgo de reprobación\"\n          FinSi\n        Sino\n          Escribir \"No hay notas registradas.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-012",
+      "origen": "json/EA 1.7.json #227",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-12",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de temperaturas diarias",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un meteorólogo quiere registrar la temperatura máxima de cada día de la semana y calcular el promedio semanal. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar temperaturas: solicita cantidad de días (mínimo 3), luego con Mientras pide el nombre del día y la temperatura máxima, acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si supera 28°C → \"Semana de calor intenso\", si no → \"Temperatura semanal dentro del rango normal\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalTemp, promedio (Real)\ndia (Caracter)\ntemp (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular temperaturas\n  Op2: promedio ← total/N; Si >28 → calor intenso\n  Op3: Fin",
+        "salida": "Promedio temperatura + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar temperaturas\n2. Mostrar análisis de temperatura\n3. Salir\nIngrese una opción:\n> 1\nCantidad de días (mínimo 3):\n> 3\nNombre del día:\n> Lunes\nTemperatura máxima (°C):\n> 32\nNombre del día:\n> Martes\nTemperatura máxima (°C):\n> 30\nNombre del día:\n> Miércoles\nTemperatura máxima (°C):\n> 29\nRegistro completado.\n--- MENÚ ---\n1. Registrar temperaturas\n2. Mostrar análisis de temperatura\n3. Salir\nIngrese una opción:\n> 2\nTemperatura promedio: 30.33 °C\nSemana de calor intenso\n--- MENÚ ---\n1. Registrar temperaturas\n2. Mostrar análisis de temperatura\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El promedio de temperaturas puede tener decimales, por eso promedio es de tipo Real. El umbral de evaluación es 28°C (estricto >).",
+      "codigoReferencia": "Proceso RegistroTemperaturas\n  Definir N, contador, temp Como Entero\n  Definir totalTemp, promedio Como Real\n  Definir dia Como Caracter\n  Definir opcion Como Entero\n\n  N         = 0\n  contador  = 0\n  totalTemp = 0\n  promedio  = 0\n  opcion    = 0\n\n  Escribir \"Registro de temperaturas\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar temperaturas\"\n    Escribir \"2. Mostrar análisis de temperatura\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de temperaturas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del día:\"\n        Leer dia\n        Escribir \"Temperatura máxima (°C):\"\n        Leer temp\n\n        totalTemp = totalTemp + temp\n        contador  = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalTemp / N\n\n          Escribir \"Temperatura promedio: \", promedio, \" °C\"\n          Si promedio > 28 Entonces\n            Escribir \"Semana de calor intenso\"\n          Sino\n            Escribir \"Temperatura semanal dentro del rango normal\"\n          FinSi\n        Sino\n          Escribir \"No hay días registrados.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-013",
+      "origen": "json/EA 1.7.json #228",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-13",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de tiempos de atención en call center",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un supervisor de call center quiere registrar el tiempo de respuesta de cada llamada y calcular el promedio del turno. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar llamadas: solicita cantidad de llamadas (mínimo 3), luego con Mientras pide el número de llamada y el tiempo en segundos, acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si supera 60 segundos → \"Tiempo de respuesta elevado\", si no → \"Tiempo de respuesta adecuado\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalTiempo, promedio (Real)\nllamada (Caracter)\ntiempo (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular tiempos\n  Op2: promedio ← total/N; Si >60 → elevado\n  Op3: Fin",
+        "salida": "Promedio segundos + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar llamadas\n2. Mostrar análisis del tiempo promedio\n3. Salir\nIngrese una opción:\n> 1\nCantidad de llamadas (mínimo 3):\n> 3\nNúmero de llamada:\n> 001\nTiempo de respuesta (segundos):\n> 45\nNúmero de llamada:\n> 002\nTiempo de respuesta (segundos):\n> 90\nNúmero de llamada:\n> 003\nTiempo de respuesta (segundos):\n> 55\nRegistro completado.\n--- MENÚ ---\n1. Registrar llamadas\n2. Mostrar análisis del tiempo promedio\n3. Salir\nIngrese una opción:\n> 2\nTiempo promedio de respuesta: 63.33 seg\nTiempo de respuesta elevado\n--- MENÚ ---\n1. Registrar llamadas\n2. Mostrar análisis del tiempo promedio\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Guardar el valor de N fuera del ciclo de registro es clave para poder calcular el promedio en la opción 2 sin perder ese dato.",
+      "codigoReferencia": "Proceso RegistroTiemposAtencion\n  Definir N, contador, tiempo Como Entero\n  Definir totalTiempo, promedio Como Real\n  Definir llamada Como Caracter\n  Definir opcion Como Entero\n\n  N           = 0\n  contador    = 0\n  totalTiempo = 0\n  promedio    = 0\n  opcion      = 0\n\n  Escribir \"Registro de tiempos de respuesta\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar llamadas\"\n    Escribir \"2. Mostrar análisis del tiempo promedio\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de llamadas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Número de llamada:\"\n        Leer llamada\n        Escribir \"Tiempo de respuesta (segundos):\"\n        Leer tiempo\n\n        totalTiempo = totalTiempo + tiempo\n        contador    = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalTiempo / N\n\n          Escribir \"Tiempo promedio de respuesta: \", promedio, \" seg\"\n          Si promedio > 60 Entonces\n            Escribir \"Tiempo de respuesta elevado\"\n          Sino\n            Escribir \"Tiempo de respuesta adecuado\"\n          FinSi\n        Sino\n          Escribir \"No hay llamadas registradas.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-014",
+      "origen": "json/EA 1.7.json #229",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-14",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de consumo eléctrico por área",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un encargado de mantención quiere registrar el consumo eléctrico en kWh de cada área y calcular el promedio. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar áreas: solicita cantidad de áreas (mínimo 3), luego con Mientras pide el nombre del área y el consumo en kWh, acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si supera 500 kWh → \"Consumo eléctrico promedio elevado\", si no → \"Consumo eléctrico promedio aceptable\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalKwh, promedio (Real)\narea (Caracter)\nconsumo (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular kWh\n  Op2: promedio ← total/N; Si >500 → elevado\n  Op3: Fin",
+        "salida": "Promedio kWh + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar áreas\n2. Mostrar análisis del consumo promedio\n3. Salir\nIngrese una opción:\n> 1\nCantidad de áreas (mínimo 3):\n> 3\nNombre del área:\n> Producción\nConsumo eléctrico (kWh):\n> 600\nNombre del área:\n> Oficinas\nConsumo eléctrico (kWh):\n> 300\nNombre del área:\n> Bodega\nConsumo eléctrico (kWh):\n> 200\nRegistro completado.\n--- MENÚ ---\n1. Registrar áreas\n2. Mostrar análisis del consumo promedio\n3. Salir\nIngrese una opción:\n> 2\nConsumo promedio por área: 366.67 kWh\nConsumo eléctrico promedio aceptable\n--- MENÚ ---\n1. Registrar áreas\n2. Mostrar análisis del consumo promedio\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El promedio es Real aunque los consumos individuales sean enteros. LiteSeInt hace la división como real automáticamente si el acumulador es Real.",
+      "codigoReferencia": "Proceso RegistroConsumoElectrico\n  Definir N, contador, consumo Como Entero\n  Definir totalKwh, promedio Como Real\n  Definir area Como Caracter\n  Definir opcion Como Entero\n\n  N        = 0\n  contador = 0\n  totalKwh = 0\n  promedio = 0\n  opcion   = 0\n\n  Escribir \"Registro de consumo eléctrico\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar áreas\"\n    Escribir \"2. Mostrar análisis del consumo promedio\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de áreas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del área:\"\n        Leer area\n        Escribir \"Consumo eléctrico (kWh):\"\n        Leer consumo\n\n        totalKwh = totalKwh + consumo\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalKwh / N\n\n          Escribir \"Consumo promedio por área: \", promedio, \" kWh\"\n          Si promedio > 500 Entonces\n            Escribir \"Consumo eléctrico promedio elevado\"\n          Sino\n            Escribir \"Consumo eléctrico promedio aceptable\"\n          FinSi\n        Sino\n          Escribir \"No hay áreas registradas.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-015",
+      "origen": "json/EA 1.7.json #230",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-15",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de tiempo en pantalla semanal",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Una persona quiere registrar el tiempo de uso diario del teléfono y calcular el promedio semanal. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar días: solicita cantidad de días (mínimo 3), luego con Mientras pide el nombre del día y los minutos de uso, acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si supera 240 minutos → \"Uso excesivo del teléfono\", si no → \"Uso moderado del teléfono\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalMin, promedio (Real)\ndia (Caracter)\nminutos (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular minutos\n  Op2: promedio ← total/N; Si >240 → excesivo\n  Op3: Fin",
+        "salida": "Promedio minutos + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar días\n2. Mostrar análisis del promedio diario\n3. Salir\nIngrese una opción:\n> 1\nCantidad de días (mínimo 3):\n> 3\nNombre del día:\n> Lunes\nMinutos de uso del teléfono:\n> 180\nNombre del día:\n> Martes\nMinutos de uso del teléfono:\n> 300\nNombre del día:\n> Miércoles\nMinutos de uso del teléfono:\n> 250\nRegistro completado.\n--- MENÚ ---\n1. Registrar días\n2. Mostrar análisis del promedio diario\n3. Salir\nIngrese una opción:\n> 2\nPromedio diario de uso: 243.33 min\nUso excesivo del teléfono\n--- MENÚ ---\n1. Registrar días\n2. Mostrar análisis del promedio diario\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "240 minutos equivalen a 4 horas diarias. El promedio puede superar este umbral aunque algunos días sean moderados si otros son muy altos.",
+      "codigoReferencia": "Proceso RegistroTiempoPantalla\n  Definir N, contador, minutos Como Entero\n  Definir totalMin, promedio Como Real\n  Definir dia Como Caracter\n  Definir opcion Como Entero\n\n  N        = 0\n  contador = 0\n  totalMin = 0\n  promedio = 0\n  opcion   = 0\n\n  Escribir \"Registro de tiempo en pantalla\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar días\"\n    Escribir \"2. Mostrar análisis del promedio diario\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de días: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del día:\"\n        Leer dia\n        Escribir \"Minutos de uso del teléfono:\"\n        Leer minutos\n\n        totalMin = totalMin + minutos\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalMin / N\n\n          Escribir \"Promedio diario de uso: \", promedio, \" min\"\n          Si promedio > 240 Entonces\n            Escribir \"Uso excesivo del teléfono\"\n          Sino\n            Escribir \"Uso moderado del teléfono\"\n          FinSi\n        Sino\n          Escribir \"No hay días registrados.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-016",
+      "origen": "json/EA 1.7.json #231",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-16",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de peso en controles médicos",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un paciente quiere registrar su peso en cada control médico del mes y calcular el promedio. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar controles: solicita cantidad de controles (mínimo 3), luego con Mientras pide la fecha del control y el peso registrado, acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si supera 90 kg → \"Peso promedio elevado: consultar al médico\", si no → \"Peso promedio dentro del rango esperado\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalPeso, promedio (Real)\nfecha (Caracter)\npeso (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular pesos\n  Op2: promedio ← total/N; Si >90 → elevado\n  Op3: Fin",
+        "salida": "Promedio kg + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar controles\n2. Mostrar análisis del peso promedio\n3. Salir\nIngrese una opción:\n> 1\nCantidad de controles (mínimo 3):\n> 3\nFecha del control:\n> 01/03\nPeso registrado (kg):\n> 88\nFecha del control:\n> 15/03\nPeso registrado (kg):\n> 87\nFecha del control:\n> 30/03\nPeso registrado (kg):\n> 89\nRegistro completado.\n--- MENÚ ---\n1. Registrar controles\n2. Mostrar análisis del peso promedio\n3. Salir\nIngrese una opción:\n> 2\nPeso promedio: 88 kg\nPeso promedio dentro del rango esperado\n--- MENÚ ---\n1. Registrar controles\n2. Mostrar análisis del peso promedio\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Fecha es una cadena (texto), peso es un entero. El promedio se calcula solo en la opción 2, no en el ciclo de registro.",
+      "codigoReferencia": "Proceso RegistroPesoMedico\n  Definir N, contador, peso Como Entero\n  Definir totalPeso, promedio Como Real\n  Definir fecha Como Caracter\n  Definir opcion Como Entero\n\n  N         = 0\n  contador  = 0\n  totalPeso = 0\n  promedio  = 0\n  opcion    = 0\n\n  Escribir \"Registro de controles de peso\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar controles\"\n    Escribir \"2. Mostrar análisis del peso promedio\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de controles: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Fecha del control:\"\n        Leer fecha\n        Escribir \"Peso registrado (kg):\"\n        Leer peso\n\n        totalPeso = totalPeso + peso\n        contador  = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalPeso / N\n\n          Escribir \"Peso promedio: \", promedio, \" kg\"\n          Si promedio > 90 Entonces\n            Escribir \"Peso promedio elevado: consultar al médico\"\n          Sino\n            Escribir \"Peso promedio dentro del rango esperado\"\n          FinSi\n        Sino\n          Escribir \"No hay controles registrados.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-017",
+      "origen": "json/EA 1.7.json #232",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-17",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de pasos caminados",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Una persona quiere registrar los pasos caminados cada día y calcular el promedio diario. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar días: solicita cantidad de días (mínimo 3), luego con Mientras pide el nombre del día y la cantidad de pasos, acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si es mayor o igual a 8.000 → \"Meta de actividad física alcanzada\", si no → \"Meta de actividad física no alcanzada\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalPasos, promedio (Real)\ndia (Caracter)\npasos (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular pasos\n  Op2: promedio ← total/N; Si >=8000 → meta alcanzada\n  Op3: Fin",
+        "salida": "Promedio pasos + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar días\n2. Mostrar análisis del promedio de pasos\n3. Salir\nIngrese una opción:\n> 1\nCantidad de días (mínimo 3):\n> 3\nNombre del día:\n> Lunes\nPasos caminados ese día:\n> 9000\nNombre del día:\n> Martes\nPasos caminados ese día:\n> 7500\nNombre del día:\n> Miércoles\nPasos caminados ese día:\n> 8500\nRegistro completado.\n--- MENÚ ---\n1. Registrar días\n2. Mostrar análisis del promedio de pasos\n3. Salir\nIngrese una opción:\n> 2\nPromedio de pasos diarios: 8333.33\nMeta de actividad física alcanzada\n--- MENÚ ---\n1. Registrar días\n2. Mostrar análisis del promedio de pasos\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "La OMS recomienda 8.000 pasos diarios. El umbral usa >= por lo que exactamente 8.000 ya es suficiente para alcanzar la meta.",
+      "codigoReferencia": "Proceso RegistroPasos\n  Definir N, contador, pasos Como Entero\n  Definir totalPasos, promedio Como Real\n  Definir dia Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalPasos = 0\n  promedio   = 0\n  opcion     = 0\n\n  Escribir \"Registro de pasos caminados\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar días\"\n    Escribir \"2. Mostrar análisis del promedio de pasos\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de días: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del día:\"\n        Leer dia\n        Escribir \"Pasos caminados ese día:\"\n        Leer pasos\n\n        totalPasos = totalPasos + pasos\n        contador   = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalPasos / N\n\n          Escribir \"Promedio de pasos diarios: \", promedio\n          Si promedio >= 8000 Entonces\n            Escribir \"Meta de actividad física alcanzada\"\n          Sino\n            Escribir \"Meta de actividad física no alcanzada\"\n          FinSi\n        Sino\n          Escribir \"No hay días registrados.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-018",
+      "origen": "json/EA 1.7.json #233",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-18",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de precipitaciones mensuales",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un técnico meteorológico quiere registrar la lluvia caída cada mes y calcular el promedio mensual. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar meses: solicita cantidad de meses (mínimo 3), luego con Mientras pide el nombre del mes y los milímetros de lluvia, acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si supera 100 mm → \"Año lluvioso\", si no → \"Año con precipitaciones normales\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalMm, promedio (Real)\nmes (Caracter)\nmm (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular mm\n  Op2: promedio ← total/N; Si >100 → lluvioso\n  Op3: Fin",
+        "salida": "Promedio mm + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar meses\n2. Mostrar análisis de precipitaciones\n3. Salir\nIngrese una opción:\n> 1\nCantidad de meses (mínimo 3):\n> 3\nNombre del mes:\n> Junio\nLluvia caída (mm):\n> 120\nNombre del mes:\n> Julio\nLluvia caída (mm):\n> 150\nNombre del mes:\n> Agosto\nLluvia caída (mm):\n> 80\nRegistro completado.\n--- MENÚ ---\n1. Registrar meses\n2. Mostrar análisis de precipitaciones\n3. Salir\nIngrese una opción:\n> 2\nPromedio mensual de precipitaciones: 116.67 mm\nAño lluvioso\n--- MENÚ ---\n1. Registrar meses\n2. Mostrar análisis de precipitaciones\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El promedio mensual de lluvia compara el promedio (no el total) con el umbral de 100 mm. Si solo 1 mes tiene mucha lluvia pero los demás son secos, puede no superar el promedio.",
+      "codigoReferencia": "Proceso RegistroPrecipitaciones\n  Definir N, contador, mm Como Entero\n  Definir totalMm, promedio Como Real\n  Definir mes Como Caracter\n  Definir opcion Como Entero\n\n  N        = 0\n  contador = 0\n  totalMm  = 0\n  promedio = 0\n  opcion   = 0\n\n  Escribir \"Registro de precipitaciones\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar meses\"\n    Escribir \"2. Mostrar análisis de precipitaciones\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de meses: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del mes:\"\n        Leer mes\n        Escribir \"Lluvia caída (mm):\"\n        Leer mm\n\n        totalMm  = totalMm + mm\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalMm / N\n\n          Escribir \"Promedio mensual de precipitaciones: \", promedio, \" mm\"\n          Si promedio > 100 Entonces\n            Escribir \"Año lluvioso\"\n          Sino\n            Escribir \"Año con precipitaciones normales\"\n          FinSi\n        Sino\n          Escribir \"No hay meses registrados.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-019",
+      "origen": "json/EA 1.7.json #234",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-19",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de tiempo de carga de páginas web",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un desarrollador quiere registrar el tiempo de carga de distintas páginas de un sitio y calcular el promedio. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar páginas: solicita cantidad de páginas (mínimo 3), luego con Mientras pide el nombre o URL y el tiempo de carga en ms, acumulando el total.Opción 2 – Mostrar análisis: calcula el promedio (total / cantidad), lo muestra y evalúa: si supera 2.000 ms → \"Sitio lento: se requiere optimización\", si no → \"Sitio con tiempo de carga aceptable\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalMs, promedio (Real)\npagina (Caracter)\nms (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular ms\n  Op2: promedio ← total/N; Si >2000 → lento\n  Op3: Fin",
+        "salida": "Promedio ms + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar páginas\n2. Mostrar análisis del tiempo promedio\n3. Salir\nIngrese una opción:\n> 1\nCantidad de páginas (mínimo 3):\n> 3\nNombre o URL de la página:\n> inicio\nTiempo de carga (ms):\n> 1800\nNombre o URL de la página:\n> productos\nTiempo de carga (ms):\n> 2500\nNombre o URL de la página:\n> contacto\nTiempo de carga (ms):\n> 1200\nRegistro completado.\n--- MENÚ ---\n1. Registrar páginas\n2. Mostrar análisis del tiempo promedio\n3. Salir\nIngrese una opción:\n> 2\nTiempo promedio de carga: 1833.33 ms\nSitio con tiempo de carga aceptable\n--- MENÚ ---\n1. Registrar páginas\n2. Mostrar análisis del tiempo promedio\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "2000 ms = 2 segundos, tiempo estándar de referencia para performance web. El promedio puede estar bajo el umbral aunque alguna página individualmente lo supere.",
+      "codigoReferencia": "Proceso RegistroCargaWeb\n  Definir N, contador, ms Como Entero\n  Definir totalMs, promedio Como Real\n  Definir pagina Como Caracter\n  Definir opcion Como Entero\n\n  N        = 0\n  contador = 0\n  totalMs  = 0\n  promedio = 0\n  opcion   = 0\n\n  Escribir \"Registro de tiempos de carga\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar páginas\"\n    Escribir \"2. Mostrar análisis del tiempo promedio\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de páginas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre o URL de la página:\"\n        Leer pagina\n        Escribir \"Tiempo de carga (ms):\"\n        Leer ms\n\n        totalMs  = totalMs + ms\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalMs / N\n\n          Escribir \"Tiempo promedio de carga: \", promedio, \" ms\"\n          Si promedio > 2000 Entonces\n            Escribir \"Sitio lento: se requiere optimización\"\n          Sino\n            Escribir \"Sitio con tiempo de carga aceptable\"\n          FinSi\n        Sino\n          Escribir \"No hay páginas registradas.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-020",
+      "origen": "json/EA 1.7.json #235",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-20",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Registro de temperaturas para detectar el más caluroso",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Mayor valor",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un meteorólogo quiere registrar la temperatura máxima de cada día y detectar el día más caluroso. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar temperaturas: solicita cantidad de días (mínimo 3), luego con Mientras pide el nombre del día y la temperatura, acumulando el total y actualizando la temperatura más alta.Opción 2 – Mostrar análisis: muestra la temperatura máxima registrada y evalúa: si es mayor o igual a 35°C → \"Alerta de ola de calor\", si no → \"Temperatura máxima dentro del rango normal\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalTemp, mayorTemp (Real)\ndia (Caracter)\ntemp (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular; Si temp > mayorTemp → mayorTemp ← temp\n  Op2: Si >=35 → alerta SiNo normal\n  Op3: Fin",
+        "salida": "Mayor temperatura + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar temperaturas\n2. Mostrar análisis del día más caluroso\n3. Salir\nIngrese una opción:\n> 1\nCantidad de días (mínimo 3):\n> 3\nNombre del día:\n> Lunes\nTemperatura máxima (°C):\n> 32\nNombre del día:\n> Martes\nTemperatura máxima (°C):\n> 38\nNombre del día:\n> Miércoles\nTemperatura máxima (°C):\n> 35\nRegistro completado.\n--- MENÚ ---\n1. Registrar temperaturas\n2. Mostrar análisis del día más caluroso\n3. Salir\nIngrese una opción:\n> 2\nTemperatura máxima registrada: 38 °C\nAlerta de ola de calor\n--- MENÚ ---\n1. Registrar temperaturas\n2. Mostrar análisis del día más caluroso\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "La variable mayorTemp se inicializa en -999 para garantizar que el primer valor real siempre la actualice. Se compara y actualiza en cada iteración del Mientras.",
+      "codigoReferencia": "Proceso RegistroTempMaxima\n  Definir N, contador, temp Como Entero\n  Definir totalTemp, mayorTemp Como Real\n  Definir dia Como Caracter\n  Definir opcion Como Entero\n\n  N         = 0\n  contador  = 0\n  totalTemp = 0\n  mayorTemp = -999\n  opcion    = 0\n\n  Escribir \"Registro de temperaturas máximas\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar temperaturas\"\n    Escribir \"2. Mostrar análisis del día más caluroso\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de temperaturas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del día:\"\n        Leer dia\n        Escribir \"Temperatura máxima (°C):\"\n        Leer temp\n\n        totalTemp = totalTemp + temp\n        Si temp > mayorTemp Entonces\n          mayorTemp = temp\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Temperatura máxima registrada: \", mayorTemp, \" °C\"\n        Si mayorTemp >= 35 Entonces\n          Escribir \"Alerta de ola de calor\"\n        Sino\n          Escribir \"Temperatura máxima dentro del rango normal\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-021",
+      "origen": "json/EA 1.7.json #236",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-21",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de ventas por vendedor",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Mayor valor",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un jefe de ventas quiere registrar el monto vendido por cada vendedor e identificar el mejor resultado individual. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar vendedores: solicita cantidad de vendedores (mínimo 3), luego con Mientras pide el nombre del vendedor y su monto de ventas, acumulando el total y actualizando el mayor monto.Opción 2 – Mostrar análisis: muestra el mayor monto individual y evalúa: si es mayor o igual a $500.000 → \"Rendimiento de ventas sobresaliente\", si no → \"Rendimiento de ventas por mejorar\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalVentas, mayorVenta (Real)\nvendedor (Caracter)\nmonto (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular; Si monto > mayorVenta → mayorVenta ← monto\n  Op2: Si >=500000 → sobresaliente SiNo por mejorar\n  Op3: Fin",
+        "salida": "Mayor venta individual + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar vendedores\n2. Mostrar análisis de rendimiento\n3. Salir\nIngrese una opción:\n> 1\nCantidad de vendedores (mínimo 3):\n> 3\nNombre del vendedor:\n> Ana\nMonto de ventas:\n> 320000\nNombre del vendedor:\n> Luis\nMonto de ventas:\n> 580000\nNombre del vendedor:\n> María\nMonto de ventas:\n> 450000\nRegistro completado.\n--- MENÚ ---\n1. Registrar vendedores\n2. Mostrar análisis de rendimiento\n3. Salir\nIngrese una opción:\n> 2\nMayor monto individual de ventas: $580000\nRendimiento de ventas sobresaliente\n--- MENÚ ---\n1. Registrar vendedores\n2. Mostrar análisis de rendimiento\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "mayorVenta se inicializa en 0 porque los montos de ventas siempre son positivos. Si se pudieran ingresar valores negativos habría que inicializar en -9999.",
+      "codigoReferencia": "Proceso RegistroVentaVendedor\n  Definir N, contador, monto Como Entero\n  Definir totalVentas, mayorVenta Como Real\n  Definir vendedor Como Caracter\n  Definir opcion Como Entero\n\n  N           = 0\n  contador    = 0\n  totalVentas = 0\n  mayorVenta  = 0\n  opcion      = 0\n\n  Escribir \"Registro de ventas por vendedor\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar vendedores\"\n    Escribir \"2. Mostrar análisis de rendimiento\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de vendedores: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del vendedor:\"\n        Leer vendedor\n        Escribir \"Monto de ventas:\"\n        Leer monto\n\n        totalVentas = totalVentas + monto\n        Si monto > mayorVenta Entonces\n          mayorVenta = monto\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Mayor monto individual de ventas: $\", mayorVenta\n        Si mayorVenta >= 500000 Entonces\n          Escribir \"Rendimiento de ventas sobresaliente\"\n        Sino\n          Escribir \"Rendimiento de ventas por mejorar\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-022",
+      "origen": "json/EA 1.7.json #237",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-22",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de tiempos en competencia de atletismo",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Menor valor",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un entrenador quiere registrar el tiempo de cada atleta en una carrera e identificar el mejor tiempo (el menor). El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar atletas: solicita cantidad de atletas (mínimo 3), luego con Mientras pide el nombre del atleta y su tiempo en segundos, acumulando el total y actualizando el menor tiempo.Opción 2 – Mostrar análisis: muestra el mejor tiempo y evalúa: si es menor a 60 segundos → \"Tiempo de élite registrado\", si no → \"Tiempo competitivo sin récord de élite\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalTiempo, menorTiempo (Real)\natleta (Caracter)\ntiempo (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular; Si tiempo < menorTiempo → menorTiempo ← tiempo\n  Op2: Si <60 → élite SiNo competitivo\n  Op3: Fin",
+        "salida": "Menor tiempo + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar atletas\n2. Mostrar análisis del mejor tiempo\n3. Salir\nIngrese una opción:\n> 1\nCantidad de atletas (mínimo 3):\n> 3\nNombre del atleta:\n> Carlos\nTiempo en segundos:\n> 65\nNombre del atleta:\n> Pedro\nTiempo en segundos:\n> 58\nNombre del atleta:\n> Javier\nTiempo en segundos:\n> 72\nRegistro completado.\n--- MENÚ ---\n1. Registrar atletas\n2. Mostrar análisis del mejor tiempo\n3. Salir\nIngrese una opción:\n> 2\nMejor tiempo registrado: 58 seg\nTiempo de élite registrado\n--- MENÚ ---\n1. Registrar atletas\n2. Mostrar análisis del mejor tiempo\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Para el menor valor, la variable se inicializa en 9999 (un número muy alto). Así, cualquier tiempo real ingresado resultará ser menor y actualizará el mínimo.",
+      "codigoReferencia": "Proceso RegistroCompetenciaAtletismo\n  Definir N, contador, tiempo Como Entero\n  Definir totalTiempo, menorTiempo Como Real\n  Definir atleta Como Caracter\n  Definir opcion Como Entero\n\n  N           = 0\n  contador    = 0\n  totalTiempo = 0\n  menorTiempo = 9999\n  opcion      = 0\n\n  Escribir \"Registro de tiempos en carrera\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar atletas\"\n    Escribir \"2. Mostrar análisis del mejor tiempo\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de atletas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del atleta:\"\n        Leer atleta\n        Escribir \"Tiempo en segundos:\"\n        Leer tiempo\n\n        totalTiempo = totalTiempo + tiempo\n        Si tiempo < menorTiempo Entonces\n          menorTiempo = tiempo\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Mejor tiempo registrado: \", menorTiempo, \" seg\"\n        Si menorTiempo < 60 Entonces\n          Escribir \"Tiempo de élite registrado\"\n        Sino\n          Escribir \"Tiempo competitivo sin récord de élite\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-023",
+      "origen": "json/EA 1.7.json #238",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-23",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de consumo de combustible por viaje",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Mayor valor",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un transportista quiere registrar el consumo de combustible de cada viaje e identificar el de mayor consumo. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar viajes: solicita cantidad de viajes (mínimo 3), luego con Mientras pide el destino y los litros consumidos, acumulando el total y actualizando el mayor consumo.Opción 2 – Mostrar análisis: muestra el mayor consumo individual y evalúa: si supera 80 litros → \"Viaje de alto consumo: revisar vehículo\", si no → \"Consumo por viaje dentro del rango normal\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalLitros, mayorConsumo (Real)\ndestino (Caracter)\nlitros (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular; Si litros > mayorConsumo → actualizar\n  Op2: Si >80 → alto consumo\n  Op3: Fin",
+        "salida": "Mayor consumo + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar viajes\n2. Mostrar análisis de consumo\n3. Salir\nIngrese una opción:\n> 1\nCantidad de viajes (mínimo 3):\n> 3\nDestino del viaje:\n> Valparaíso\nLitros consumidos:\n> 55\nDestino del viaje:\n> Concepción\nLitros consumidos:\n> 95\nDestino del viaje:\n> La Serena\nLitros consumidos:\n> 70\nRegistro completado.\n--- MENÚ ---\n1. Registrar viajes\n2. Mostrar análisis de consumo\n3. Salir\nIngrese una opción:\n> 2\nMayor consumo en un viaje: 95 litros\nViaje de alto consumo: revisar vehículo\n--- MENÚ ---\n1. Registrar viajes\n2. Mostrar análisis de consumo\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El mayor consumo se rastrea en cada iteración. El total acumulado puede mostrarse también en la opción 2 como información adicional.",
+      "codigoReferencia": "Proceso RegistroConsumoCombustible\n  Definir N, contador, litros Como Entero\n  Definir totalLitros, mayorConsumo Como Real\n  Definir destino Como Caracter\n  Definir opcion Como Entero\n\n  N            = 0\n  contador     = 0\n  totalLitros  = 0\n  mayorConsumo = 0\n  opcion       = 0\n\n  Escribir \"Registro de consumo de combustible\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar viajes\"\n    Escribir \"2. Mostrar análisis de consumo\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de viajes: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Destino del viaje:\"\n        Leer destino\n        Escribir \"Litros consumidos:\"\n        Leer litros\n\n        totalLitros = totalLitros + litros\n        Si litros > mayorConsumo Entonces\n          mayorConsumo = litros\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Mayor consumo en un viaje: \", mayorConsumo, \" litros\"\n        Si mayorConsumo > 80 Entonces\n          Escribir \"Viaje de alto consumo: revisar vehículo\"\n        Sino\n          Escribir \"Consumo por viaje dentro del rango normal\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-024",
+      "origen": "json/EA 1.7.json #239",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-24",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de notas para identificar la más alta",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Mayor valor",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un profesor quiere registrar las notas del curso e identificar la nota más alta obtenida. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar notas: solicita cantidad de notas (mínimo 3), luego con Mientras pide el nombre del estudiante y la nota (1-7), acumulando el total y actualizando la nota más alta.Opción 2 – Mostrar análisis: muestra la nota más alta y evalúa: si es igual a 7 → \"Nota máxima alcanzada en el curso\", si no → \"No se alcanzó la nota máxima\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador (Entero)\ntotalNotas, mayorNota (Real)\nestudiante (Caracter)\nnota (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular; Si nota > mayorNota → mayorNota ← nota\n  Op2: Si = 7 → máxima SiNo no alcanzada\n  Op3: Fin",
+        "salida": "Nota más alta + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis de la nota más alta\n3. Salir\nIngrese una opción:\n> 1\nCantidad de notas (mínimo 3):\n> 3\nNombre del estudiante:\n> Ana\nNota obtenida (1-7):\n> 6\nNombre del estudiante:\n> Luis\nNota obtenida (1-7):\n> 7\nNombre del estudiante:\n> María\nNota obtenida (1-7):\n> 5\nRegistro completado.\n--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis de la nota más alta\n3. Salir\nIngrese una opción:\n> 2\nNota más alta del curso: 7\nNota máxima alcanzada en el curso\n--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis de la nota más alta\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Aquí la evaluación usa = (igual a 7) en lugar de > o >=. La nota 7 es el límite de la escala chilena, por eso es el único valor que activa el mensaje especial.",
+      "codigoReferencia": "Proceso RegistroNotasCurso\n  Definir N, contador, nota Como Entero\n  Definir totalNotas, mayorNota Como Real\n  Definir estudiante Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalNotas = 0\n  mayorNota  = 0\n  opcion     = 0\n\n  Escribir \"Registro de notas de evaluación\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar notas\"\n    Escribir \"2. Mostrar análisis de la nota más alta\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de notas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del estudiante:\"\n        Leer estudiante\n        Escribir \"Nota obtenida (1-7):\"\n        Leer nota\n\n        totalNotas = totalNotas + nota\n        Si nota > mayorNota Entonces\n          mayorNota = nota\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Nota más alta del curso: \", mayorNota\n        Si mayorNota == 7 Entonces\n          Escribir \"Nota máxima alcanzada en el curso\"\n        Sino\n          Escribir \"No se alcanzó la nota máxima\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-025",
+      "origen": "json/EA 1.7.json #240",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-25",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de productos con stock bajo",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Contador condicional",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un bodeguero quiere registrar el stock de cada producto y determinar cuántos tienen stock bajo. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar productos: solicita cantidad de productos (mínimo 3), luego con Mientras pide el nombre del producto y las unidades en stock. Si el stock es menor a 5, incrementa un contador de stock bajo.Opción 2 – Mostrar análisis: muestra el total de unidades y la cantidad de productos con stock bajo. Evalúa: si hay más de 2 → \"Alerta: múltiples productos requieren reposición\", si no → \"Stock en niveles aceptables\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador, contStockBajo (Entero)\ntotalStock (Real)\nproducto (Caracter)\nstock (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular; Si stock<5 → contStockBajo++\n  Op2: mostrar total y conteo; Si contStockBajo>2 → alerta\n  Op3: Fin",
+        "salida": "Total stock + conteo + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar productos\n2. Mostrar análisis de stock\n3. Salir\nIngrese una opción:\n> 1\nCantidad de productos (mínimo 3):\n> 3\nNombre del producto:\n> Mouse\nUnidades en stock:\n> 3\nNombre del producto:\n> Teclado\nUnidades en stock:\n> 2\nNombre del producto:\n> Monitor\nUnidades en stock:\n> 4\nRegistro completado.\n--- MENÚ ---\n1. Registrar productos\n2. Mostrar análisis de stock\n3. Salir\nIngrese una opción:\n> 2\nTotal unidades en stock: 9\nProductos con stock bajo (< 5): 3\nAlerta: múltiples productos requieren reposición\n--- MENÚ ---\n1. Registrar productos\n2. Mostrar análisis de stock\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Este ejercicio tiene DOS acumuladores: totalStock (suma de unidades) y contStockBajo (cuenta de productos). El segundo es un contador condicional que solo aumenta cuando la condición se cumple.",
+      "codigoReferencia": "Proceso RegistroStockProductos\n  Definir N, contador, stock, contStockBajo Como Entero\n  Definir totalStock Como Real\n  Definir producto Como Caracter\n  Definir opcion Como Entero\n\n  N             = 0\n  contador      = 0\n  totalStock    = 0\n  contStockBajo = 0\n  opcion        = 0\n\n  Escribir \"Registro de stock de productos\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar productos\"\n    Escribir \"2. Mostrar análisis de stock\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de productos: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del producto:\"\n        Leer producto\n        Escribir \"Unidades en stock:\"\n        Leer stock\n\n        totalStock = totalStock + stock\n        Si stock < 5 Entonces\n          contStockBajo = contStockBajo + 1\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total unidades en stock: \", totalStock\n        Escribir \"Productos con stock bajo (< 5): \", contStockBajo\n        Si contStockBajo > 2 Entonces\n          Escribir \"Alerta: múltiples productos requieren reposición\"\n        Sino\n          Escribir \"Stock en niveles aceptables\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-026",
+      "origen": "json/EA 1.7.json #241",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-26",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de alumnos aprobados y reprobados",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Contador condicional",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un docente quiere registrar las notas finales del curso y determinar cuántos aprobaron. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar alumnos: solicita cantidad de alumnos (mínimo 3), luego con Mientras pide el nombre y la nota final. Si la nota es mayor o igual a 4, incrementa el contador de aprobados.Opción 2 – Mostrar análisis: muestra la cantidad de aprobados. Evalúa: si los aprobados superan la mitad del total → \"Mayoría del curso aprobó\", si no → \"La mayoría del curso reprobó: revisar estrategias\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador, contAprobados (Entero)\ntotalNotas (Real)\nalumno (Caracter)\nnota (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular notas; Si nota>=4 → contAprobados++\n  Op2: Si contAprobados > N/2 → mayoría aprobó\n  Op3: Fin",
+        "salida": "Conteo aprobados + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar alumnos\n2. Mostrar análisis de resultados\n3. Salir\nIngrese una opción:\n> 1\nCantidad de alumnos (mínimo 3):\n> 4\nNombre del alumno:\n> Ana\nNota final (1-7):\n> 5\nNombre del alumno:\n> Luis\nNota final (1-7):\n> 3\nNombre del alumno:\n> María\nNota final (1-7):\n> 6\nNombre del alumno:\n> Pedro\nNota final (1-7):\n> 2\nRegistro completado.\n--- MENÚ ---\n1. Registrar alumnos\n2. Mostrar análisis de resultados\n3. Salir\nIngrese una opción:\n> 2\nAlumnos aprobados: 2 de 4\nLa mayoría del curso reprobó: revisar estrategias\n--- MENÚ ---\n1. Registrar alumnos\n2. Mostrar análisis de resultados\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "La condición compara contAprobados > N / 2. En LiteSeInt la división entera puede redondear, por lo que es buena práctica usar esta comparación directa. Exactamente la mitad aprobados no es mayoría.",
+      "codigoReferencia": "Proceso RegistroAlumnosCurso\n  Definir N, contador, nota, contAprobados Como Entero\n  Definir totalNotas Como Real\n  Definir alumno Como Caracter\n  Definir opcion Como Entero\n\n  N             = 0\n  contador      = 0\n  totalNotas    = 0\n  contAprobados = 0\n  opcion        = 0\n\n  Escribir \"Registro de resultados académicos\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar alumnos\"\n    Escribir \"2. Mostrar análisis de resultados\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de alumnos: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del alumno:\"\n        Leer alumno\n        Escribir \"Nota final (1-7):\"\n        Leer nota\n\n        totalNotas = totalNotas + nota\n        Si nota >= 4 Entonces\n          contAprobados = contAprobados + 1\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Alumnos aprobados: \", contAprobados, \" de \", N\n        Si contAprobados > N / 2 Entonces\n          Escribir \"Mayoría del curso aprobó\"\n        Sino\n          Escribir \"La mayoría del curso reprobó: revisar estrategias\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-027",
+      "origen": "json/EA 1.7.json #242",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-27",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de pedidos con entrega atrasada",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Contador condicional",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un coordinador de despacho quiere registrar el tiempo de entrega de cada pedido y saber cuántos llegaron fuera de plazo. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar pedidos: solicita cantidad de pedidos (mínimo 3), luego con Mientras pide el código del pedido y los días de entrega. Si los días superan 3, incrementa el contador de atrasos.Opción 2 – Mostrar análisis: muestra la cantidad de pedidos atrasados. Evalúa: si hay más de 2 → \"Problema en el sistema de despacho: múltiples atrasos\", si no → \"Sistema de despacho operando normalmente\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador, contAtrasados (Entero)\ntotalDias (Real)\npedido (Caracter)\ndias (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular días; Si dias>3 → contAtrasados++\n  Op2: Si contAtrasados>2 → problema\n  Op3: Fin",
+        "salida": "Conteo atrasos + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar pedidos\n2. Mostrar análisis de despacho\n3. Salir\nIngrese una opción:\n> 1\nCantidad de pedidos (mínimo 3):\n> 3\nCódigo del pedido:\n> P001\nDías que tardó la entrega:\n> 2\nCódigo del pedido:\n> P002\nDías que tardó la entrega:\n> 5\nCódigo del pedido:\n> P003\nDías que tardó la entrega:\n> 4\nRegistro completado.\n--- MENÚ ---\n1. Registrar pedidos\n2. Mostrar análisis de despacho\n3. Salir\nIngrese una opción:\n> 2\nPedidos con atraso (> 3 días): 2\nSistema de despacho operando normalmente\n--- MENÚ ---\n1. Registrar pedidos\n2. Mostrar análisis de despacho\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El contador de atrasos solo aumenta dentro del ciclo cuando la condición se cumple. Exactamente 3 días NO es atraso (condición es > 3, no >= 3).",
+      "codigoReferencia": "Proceso RegistroPedidosDespacho\n  Definir N, contador, dias, contAtrasados Como Entero\n  Definir totalDias Como Real\n  Definir pedido Como Caracter\n  Definir opcion Como Entero\n\n  N             = 0\n  contador      = 0\n  totalDias     = 0\n  contAtrasados = 0\n  opcion        = 0\n\n  Escribir \"Registro de pedidos despachados\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar pedidos\"\n    Escribir \"2. Mostrar análisis de despacho\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de pedidos: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Código del pedido:\"\n        Leer pedido\n        Escribir \"Días que tardó la entrega:\"\n        Leer dias\n\n        totalDias = totalDias + dias\n        Si dias > 3 Entonces\n          contAtrasados = contAtrasados + 1\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Pedidos con atraso (> 3 días): \", contAtrasados\n        Si contAtrasados > 2 Entonces\n          Escribir \"Problema en el sistema de despacho: múltiples atrasos\"\n        Sino\n          Escribir \"Sistema de despacho operando normalmente\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-028",
+      "origen": "json/EA 1.7.json #243",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-28",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de empleados con sueldo alto",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Contador condicional",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un contador quiere registrar los sueldos del departamento y determinar cuántos empleados tienen sueldo superior a $800.000. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar empleados: solicita cantidad de empleados (mínimo 3), luego con Mientras pide el nombre y el sueldo. Si el sueldo supera $800.000, incrementa el contador de sueldos altos.Opción 2 – Mostrar análisis: muestra el total de sueldos y la cantidad con sueldo alto. Evalúa: si son la mitad o más → \"Departamento con perfil salarial alto\", si no → \"Departamento con perfil salarial mixto\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador, contSueldoAlto (Entero)\ntotalSueldos (Real)\nempleado (Caracter)\nsueldo (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular sueldos; Si sueldo>800000 → contSueldoAlto++\n  Op2: Si contSueldoAlto >= N/2 → perfil alto\n  Op3: Fin",
+        "salida": "Total sueldos + conteo + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar empleados\n2. Mostrar análisis salarial\n3. Salir\nIngrese una opción:\n> 1\nCantidad de empleados (mínimo 3):\n> 3\nNombre del empleado:\n> Ana\nSueldo mensual:\n> 950000\nNombre del empleado:\n> Luis\nSueldo mensual:\n> 720000\nNombre del empleado:\n> María\nSueldo mensual:\n> 1100000\nRegistro completado.\n--- MENÚ ---\n1. Registrar empleados\n2. Mostrar análisis salarial\n3. Salir\nIngrese una opción:\n> 2\nTotal sueldos del departamento: $2770000\nEmpleados con sueldo > $800.000: 2\nDepartamento con perfil salarial alto\n--- MENÚ ---\n1. Registrar empleados\n2. Mostrar análisis salarial\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Aquí la condición de evaluación usa >= N/2 (mitad o más). A diferencia del ejercicio de aprobados que usa > N/2 (más de la mitad). Leer el enunciado con atención es clave.",
+      "codigoReferencia": "Proceso RegistroSueldosDepartamento\n  Definir N, contador, sueldo, contSueldoAlto Como Entero\n  Definir totalSueldos Como Real\n  Definir empleado Como Caracter\n  Definir opcion Como Entero\n\n  N              = 0\n  contador       = 0\n  totalSueldos   = 0\n  contSueldoAlto = 0\n  opcion         = 0\n\n  Escribir \"Registro de sueldos del departamento\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar empleados\"\n    Escribir \"2. Mostrar análisis salarial\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de empleados: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del empleado:\"\n        Leer empleado\n        Escribir \"Sueldo mensual:\"\n        Leer sueldo\n\n        totalSueldos = totalSueldos + sueldo\n        Si sueldo > 800000 Entonces\n          contSueldoAlto = contSueldoAlto + 1\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total sueldos del departamento: $\", totalSueldos\n        Escribir \"Empleados con sueldo > $800.000: \", contSueldoAlto\n        Si contSueldoAlto >= N / 2 Entonces\n          Escribir \"Departamento con perfil salarial alto\"\n        Sino\n          Escribir \"Departamento con perfil salarial mixto\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-029",
+      "origen": "json/EA 1.7.json #244",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-29",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de artículos sobre el presupuesto",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Contador condicional",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un comprador quiere registrar los precios de una lista de compras y saber cuántos artículos superan el presupuesto individual. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar artículos: solicita cantidad de artículos (mínimo 3), luego con Mientras pide el nombre y el precio. Si el precio supera $10.000, incrementa el contador de artículos sobre el límite.Opción 2 – Mostrar análisis: muestra el total de la lista y la cantidad de artículos fuera del presupuesto. Evalúa: si el total supera $60.000 → \"Lista de compras sobre el presupuesto\", si no → \"Lista de compras dentro del presupuesto\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador, contFuera (Entero)\ntotalLista (Real)\narticulo (Caracter)\nprecio (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular; Si precio>10000 → contFuera++\n  Op2: mostrar total y conteo; Si total>60000 → sobre presupuesto\n  Op3: Fin",
+        "salida": "Total lista + conteo + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar artículos\n2. Mostrar análisis del presupuesto\n3. Salir\nIngrese una opción:\n> 1\nCantidad de artículos (mínimo 3):\n> 3\nNombre del artículo:\n> Leche\nPrecio del artículo:\n> 2500\nNombre del artículo:\n> Detergente\nPrecio del artículo:\n> 15000\nNombre del artículo:\n> Carne\nPrecio del artículo:\n> 22000\nRegistro completado.\n--- MENÚ ---\n1. Registrar artículos\n2. Mostrar análisis del presupuesto\n3. Salir\nIngrese una opción:\n> 2\nTotal de la lista: $39500\nArtículos sobre $10.000: 2\nLista de compras dentro del presupuesto\n--- MENÚ ---\n1. Registrar artículos\n2. Mostrar análisis del presupuesto\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "Este ejercicio evalúa el TOTAL en la opción 2, no el contador. El contador de artículos fuera del límite se muestra como información adicional pero no es el criterio de evaluación principal.",
+      "codigoReferencia": "Proceso RegistroListaCompras\n  Definir N, contador, precio, contFuera Como Entero\n  Definir totalLista Como Real\n  Definir articulo Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalLista = 0\n  contFuera  = 0\n  opcion     = 0\n\n  Escribir \"Registro de lista de compras\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar artículos\"\n    Escribir \"2. Mostrar análisis del presupuesto\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de artículos: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del artículo:\"\n        Leer articulo\n        Escribir \"Precio del artículo:\"\n        Leer precio\n\n        totalLista = totalLista + precio\n        Si precio > 10000 Entonces\n          contFuera = contFuera + 1\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Total de la lista: $\", totalLista\n        Escribir \"Artículos sobre $10.000: \", contFuera\n        Si totalLista > 60000 Entonces\n          Escribir \"Lista de compras sobre el presupuesto\"\n        Sino\n          Escribir \"Lista de compras dentro del presupuesto\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n7-030",
+      "origen": "json/EA 1.7.json #245",
+      "modulo": "N7",
+      "experiencia": "Ejercicio Tipo Prueba Parte 2",
+      "nivelLiteSeInt": 7,
+      "numero": "N7-30",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registro de velocidades en tramos de ruta",
+      "conceptos": [
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Contador condicional",
+        "Si-Entonces"
+      ],
+      "enunciado": "Un conductor quiere registrar la velocidad promedio de cada tramo de un viaje y detectar cuántos tramos superaron el límite de velocidad. El programa debe funcionar mediante un menú de 3 opciones.Opción 1 – Registrar tramos: solicita cantidad de tramos (mínimo 3), luego con Mientras pide el nombre del tramo y la velocidad promedio. Si supera 100 km/h, incrementa el contador de excesos.Opción 2 – Mostrar análisis: muestra el total de tramos con exceso de velocidad. Evalúa: si hay más de 1 → \"Manejo riesgoso: múltiples excesos de velocidad\", si no → \"Conducción dentro de los límites\".Opción 3 – Salir: muestra \"Fin del registro\" y termina.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador, contExcesos (Entero)\ntotalVelocidades (Real)\ntramo (Caracter)\nvelocidad (Entero)",
+        "proceso": "Mientras opcion <> 3\n  Op1: acumular velocidades; Si velocidad>100 → contExcesos++\n  Op2: Si contExcesos>1 → manejo riesgoso\n  Op3: Fin",
+        "salida": "Conteo excesos + evaluación"
+      },
+      "salidaEsperada": "--- MENÚ ---\n1. Registrar tramos\n2. Mostrar análisis de velocidad\n3. Salir\nIngrese una opción:\n> 1\nCantidad de tramos (mínimo 3):\n> 3\nNombre del tramo:\n> Autopista norte\nVelocidad promedio (km/h):\n> 110\nNombre del tramo:\n> Paso la cuesta\nVelocidad promedio (km/h):\n> 80\nNombre del tramo:\n> Ruta 5 sur\nVelocidad promedio (km/h):\n> 120\nRegistro completado.\n--- MENÚ ---\n1. Registrar tramos\n2. Mostrar análisis de velocidad\n3. Salir\nIngrese una opción:\n> 2\nTramos con exceso de velocidad (> 100 km/h): 2\nManejo riesgoso: múltiples excesos de velocidad\n--- MENÚ ---\n1. Registrar tramos\n2. Mostrar análisis de velocidad\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+      "pista": "El umbral de evaluación en la opción 2 es > 1 (más de un exceso). Un solo exceso aislado no activa la alerta de manejo riesgoso. Exactamente 100 km/h no es exceso (condición > 100, no >= 100).",
+      "codigoReferencia": "Proceso RegistroVelocidadRuta\n  Definir N, contador, velocidad, contExcesos Como Entero\n  Definir totalVelocidades Como Real\n  Definir tramo Como Caracter\n  Definir opcion Como Entero\n\n  N                = 0\n  contador         = 0\n  totalVelocidades = 0\n  contExcesos      = 0\n  opcion           = 0\n\n  Escribir \"Registro de velocidades en ruta\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar tramos\"\n    Escribir \"2. Mostrar análisis de velocidad\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de tramos: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre del tramo:\"\n        Leer tramo\n        Escribir \"Velocidad promedio (km/h):\"\n        Leer velocidad\n\n        totalVelocidades = totalVelocidades + velocidad\n        Si velocidad > 100 Entonces\n          contExcesos = contExcesos + 1\n        FinSi\n        contador = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Tramos con exceso de velocidad (> 100 km/h): \", contExcesos\n        Si contExcesos > 1 Entonces\n          Escribir \"Manejo riesgoso: múltiples excesos de velocidad\"\n        Sino\n          Escribir \"Conducción dentro de los límites\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    }
+  ]
+}

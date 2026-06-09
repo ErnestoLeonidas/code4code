@@ -1,0 +1,1805 @@
+{
+  "experience": {
+    "id": "4",
+    "label": "N4",
+    "titulo": "Estructuras de Repetición",
+    "desc": "Implementa ciclos Mientras, Para y Repetir-Hasta en LiteSeInt.",
+    "color": "var(--pink)",
+    "icon": "🔁"
+  },
+  "exercises": [
+    {
+      "id": "n4-001",
+      "origen": "json/EA 1.4.json #101",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-01",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Números del 1 al 10",
+      "conceptos": [
+        "Mientras",
+        "Contador",
+        "Entero",
+        "Escribir",
+        "Ciclos"
+      ],
+      "enunciado": "Muestra los números del 1 al 10 usando un ciclo Mientras. Debes utilizar una variable contador que comience en 1 y aumente de uno en uno hasta llegar a 10.",
+      "entradaProcesoSalida": {
+        "entrada": "contador = 1",
+        "proceso": "Mientras contador <= 10 Hacer\n   mostrar contador\n   contador ← contador + 1\nFinMientras",
+        "salida": "Números del 1 al 10"
+      },
+      "salidaEsperada": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+      "pista": "Todo ciclo Mientras necesita una condición de término y una actualización de la variable de control.",
+      "codigoReferencia": "Proceso NumerosDelUnoAlDiez\n  Definir contador Como Entero\n\n  contador = 1\n  Mientras contador <= 10 Hacer\n    Escribir contador\n\n    contador = contador + 1\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-002",
+      "origen": "json/EA 1.4.json #102",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-02",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Ingresar números hasta 0",
+      "conceptos": [
+        "Mientras",
+        "Leer",
+        "Entero",
+        "Condición de salida",
+        "Ciclos"
+      ],
+      "enunciado": "Pide números al usuario de forma repetida hasta que ingrese el número 0. Cada vez que se ingrese un número distinto de 0, el programa debe seguir solicitando otro valor. Cuando se ingrese 0, el programa termina.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Entero)",
+        "proceso": "Leer numero\nMientras numero <> 0 Hacer\n   Leer numero\nFinMientras",
+        "salida": "Programa terminado"
+      },
+      "salidaEsperada": "Ingrese un número (0 para terminar):\n> 8\nIngrese un número (0 para terminar):\n> 15\nIngrese un número (0 para terminar):\n> 0\nPrograma terminado",
+      "pista": "En este tipo de ejercicio, el valor 0 funciona como centinela para detener el ciclo.",
+      "codigoReferencia": "Proceso PedirNumerosHastaCero\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número (0 para terminar):\"\n  Leer numero\n  Mientras numero <> 0 Hacer\n    Escribir \"Ingrese un número (0 para terminar):\"\n    Leer numero\n  FinMientras\n  Escribir \"Programa terminado\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-003",
+      "origen": "json/EA 1.4.json #103",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Cuenta regresiva del 10 al 1",
+      "conceptos": [
+        "Mientras",
+        "Contador",
+        "Entero",
+        "Cuenta regresiva",
+        "Ciclos"
+      ],
+      "enunciado": "Muestra una cuenta regresiva desde 10 hasta 1 usando un ciclo Mientras. Debes utilizar una variable contador que vaya disminuyendo de uno en uno.",
+      "entradaProcesoSalida": {
+        "entrada": "contador = 10",
+        "proceso": "Mientras contador >= 1 Hacer\n   mostrar contador\n   contador ← contador - 1\nFinMientras",
+        "salida": "Cuenta regresiva del 10 al 1"
+      },
+      "salidaEsperada": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1",
+      "pista": "Un contador descendente también necesita actualización en cada vuelta para evitar un ciclo infinito.",
+      "codigoReferencia": "Proceso CuentaRegresiva\n  Definir contador Como Entero\n\n  contador = 10\n  Mientras contador >= 1 Hacer\n    Escribir contador\n\n    contador = contador - 1\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-004",
+      "origen": "json/EA 1.4.json #104",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Suma de los primeros N números",
+      "conceptos": [
+        "Mientras",
+        "Leer",
+        "Entero",
+        "Acumulador",
+        "Suma"
+      ],
+      "enunciado": "Lee un número entero positivo N y calcula la suma acumulada de los primeros N números enteros positivos. Por ejemplo, si N = 5, el programa debe calcular 1 + 2 + 3 + 4 + 5.",
+      "entradaProcesoSalida": {
+        "entrada": "N (Entero)\ncontador = 1\nsuma = 0",
+        "proceso": "Mientras contador <= N Hacer\n   suma ← suma + contador\n   contador ← contador + 1\nFinMientras",
+        "salida": "Suma acumulada"
+      },
+      "salidaEsperada": "Ingrese N:\n> 5\nSuma acumulada: 15",
+      "pista": "Un acumulador suele iniciarse en 0 cuando se van sumando valores.",
+      "codigoReferencia": "Proceso SumaPrimerosN\n  Definir N, contador, suma Como Entero\n\n  Escribir \"Ingrese N:\"\n  Leer N\n\n  contador = 1\n  suma     = 0\n  Mientras contador <= N Hacer\n    suma     = suma + contador\n    contador = contador + 1\n  FinMientras\n  Escribir \"Suma acumulada: \", suma\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-005",
+      "origen": "json/EA 1.4.json #105",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-05",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Tabla de multiplicar",
+      "conceptos": [
+        "Mientras",
+        "Leer",
+        "Entero",
+        "Multiplicación",
+        "Contador"
+      ],
+      "enunciado": "Lee un número entero y muestra su tabla de multiplicar del 1 al 10 usando un ciclo Mientras.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Entero)\ncontador = 1",
+        "proceso": "Mientras contador <= 10 Hacer\n   resultado ← numero * contador\n   mostrar numero, \" x \", contador, \" = \", resultado\n   contador ← contador + 1\nFinMientras",
+        "salida": "Tabla de multiplicar"
+      },
+      "salidaEsperada": "Ingrese un número:\n> 4\n4 x 1 = 4\n4 x 2 = 8\n4 x 3 = 12\n4 x 4 = 16\n4 x 5 = 20\n4 x 6 = 24\n4 x 7 = 28\n4 x 8 = 32\n4 x 9 = 36\n4 x 10 = 40",
+      "pista": "Este ejercicio combina un contador con un cálculo repetitivo.",
+      "codigoReferencia": "Proceso TablaMultiplicar\n  Definir numero, contador, resultado Como Entero\n\n  Escribir \"Ingrese un número:\"\n  Leer numero\n\n  contador = 1\n  Mientras contador <= 10 Hacer\n    resultado = numero * contador\n\n    Escribir numero, \" x \", contador, \" = \", resultado\n\n    contador = contador + 1\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-006",
+      "origen": "json/EA 1.4.json #106",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-06",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Factorial de un número",
+      "conceptos": [
+        "Mientras",
+        "Leer",
+        "Entero",
+        "Factorial",
+        "Acumulador"
+      ],
+      "enunciado": "Lee un número entero positivo y calcula su factorial usando un ciclo Mientras. Recuerda que el factorial de un número se obtiene multiplicando todos los enteros desde 1 hasta ese número.",
+      "entradaProcesoSalida": {
+        "entrada": "n (Entero)\ncontador = 1\nfactorial = 1",
+        "proceso": "Mientras contador <= n Hacer\n   factorial ← factorial * contador\n   contador ← contador + 1\nFinMientras",
+        "salida": "Factorial del número"
+      },
+      "salidaEsperada": "Ingrese un número:\n> 5\nFactorial: 120",
+      "pista": "Cuando el proceso requiere multiplicar valores sucesivos, el acumulador suele iniciarse en 1.",
+      "codigoReferencia": "Proceso FactorialNumero\n  Definir n, contador, factorial Como Entero\n\n  Escribir \"Ingrese un número:\"\n  Leer n\n\n  contador  = 1\n  factorial = 1\n  Mientras contador <= n Hacer\n    factorial = factorial * contador\n    contador  = contador + 1\n  FinMientras\n  Escribir \"Factorial: \", factorial\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-007",
+      "origen": "json/EA 1.4.json #107",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-07",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Contraseña correcta",
+      "conceptos": [
+        "Mientras",
+        "Leer",
+        "Caracter",
+        "Validación",
+        "Contraseña"
+      ],
+      "enunciado": "Pide una contraseña al usuario de forma repetida hasta que ingrese la contraseña correcta: \"duoc123\". Cuando la escriba correctamente, muestra \"Acceso concedido\".",
+      "entradaProcesoSalida": {
+        "entrada": "clave (Caracter)",
+        "proceso": "Leer clave\nMientras clave <> \"duoc123\" Hacer\n   Leer clave\nFinMientras",
+        "salida": "\"Acceso concedido\""
+      },
+      "salidaEsperada": "Ingrese la contraseña:\n> hola\nClave incorrecta. Intente nuevamente:\n> 1234\nClave incorrecta. Intente nuevamente:\n> duoc123\nAcceso concedido",
+      "pista": "Este ejercicio usa el ciclo Mientras como mecanismo de validación repetitiva.",
+      "codigoReferencia": "Proceso ValidarContrasena\n  Definir clave Como Caracter\n\n  Escribir \"Ingrese la contraseña:\"\n  Leer clave\n  Mientras clave <> \"duoc123\" Hacer\n    Escribir \"Clave incorrecta. Intente nuevamente:\"\n    Leer clave\n  FinMientras\n  Escribir \"Acceso concedido\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-008",
+      "origen": "json/EA 1.4.json #108",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-08",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Par o impar en 10 iteraciones",
+      "conceptos": [
+        "Mientras",
+        "Si-Entonces",
+        "Entero",
+        "MOD",
+        "Contador",
+        "Intermedio"
+      ],
+      "enunciado": "Pide 10 números enteros al usuario. En cada iteración, indica si el número ingresado es par o impar usando una estructura Si-Entonces dentro del ciclo Mientras.",
+      "entradaProcesoSalida": {
+        "entrada": "contador = 1\nnumero (Entero)",
+        "proceso": "Mientras contador <= 10 Hacer\n   Leer numero\n   Si numero MOD 2 = 0 Entonces\n      mostrar \"Par\"\n   SiNo\n      mostrar \"Impar\"\n   FinSi\n   contador ← contador + 1\nFinMientras",
+        "salida": "Mensaje par o impar en cada iteración"
+      },
+      "salidaEsperada": "Ingrese número 1:\n> 8\nPar\nIngrese número 2:\n> 7\nImpar",
+      "pista": "Aquí el ciclo controla cuántas veces se repite la entrada, y el Si decide qué mensaje mostrar en cada vuelta.",
+      "codigoReferencia": "Proceso DiezNumerosParImpar\n  Definir contador, numero Como Entero\n\n  contador = 1\n  Mientras contador <= 10 Hacer\n    Escribir \"Ingrese número \", contador, \":\"\n    Leer numero\n    Si numero mod 2 == 0 Entonces\n      Escribir \"Par\"\n    Sino\n      Escribir \"Impar\"\n    FinSi\n    contador = contador + 1\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-009",
+      "origen": "json/EA 1.4.json #109",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-09",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Contar positivos y negativos",
+      "conceptos": [
+        "Mientras",
+        "Si-Entonces",
+        "Entero",
+        "Contadores",
+        "Centinela",
+        "Intermedio"
+      ],
+      "enunciado": "Ingresa números enteros de forma indefinida hasta escribir 0. El programa debe contar por separado cuántos números fueron positivos y cuántos fueron negativos. Al final, muestra ambos conteos.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Entero)\npositivos = 0\nnegativos = 0",
+        "proceso": "Leer numero\nMientras numero <> 0 Hacer\n   Si numero > 0 Entonces\n      positivos ← positivos + 1\n   SiNo\n      Si numero < 0 Entonces\n         negativos ← negativos + 1\n      FinSi\n   FinSi\n   Leer numero\nFinMientras",
+        "salida": "Cantidad de positivos y cantidad de negativos"
+      },
+      "salidaEsperada": "Ingrese un número (0 para terminar):\n> 5\nIngrese un número (0 para terminar):\n> -2\nIngrese un número (0 para terminar):\n> 9\nIngrese un número (0 para terminar):\n> 0\nPositivos: 2\nNegativos: 1",
+      "pista": "El 0 sirve como centinela: detiene el ciclo, pero no se cuenta como positivo ni como negativo.",
+      "codigoReferencia": "Proceso ContarPositivosNegativos\n  Definir numero, positivos, negativos Como Entero\n\n  positivos = 0\n  negativos = 0\n\n  Escribir \"Ingrese un número (0 para terminar):\"\n  Leer numero\n  Mientras numero <> 0 Hacer\n    Si numero > 0 Entonces\n      positivos = positivos + 1\n    Sino\n      Si numero < 0 Entonces\n        negativos = negativos + 1\n      FinSi\n    FinSi\n    Escribir \"Ingrese un número (0 para terminar):\"\n    Leer numero\n  FinMientras\n  Escribir \"Positivos: \", positivos\n  Escribir \"Negativos: \", negativos\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-010",
+      "origen": "json/EA 1.4.json #110",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-10",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Divisibles por 3 y por 5 hasta 50",
+      "conceptos": [
+        "Mientras",
+        "Si anidado",
+        "Entero",
+        "MOD",
+        "Divisibilidad",
+        "Intermedio"
+      ],
+      "enunciado": "Muestra los números del 1 al 50, pero imprime solo aquellos que sean divisibles tanto por 3 como por 5. Usa un ciclo Mientras y un Si anidado para verificar ambas condiciones.",
+      "entradaProcesoSalida": {
+        "entrada": "contador = 1",
+        "proceso": "Mientras contador <= 50 Hacer\n   Si contador MOD 3 = 0 Entonces\n      Si contador MOD 5 = 0 Entonces\n         mostrar contador\n      FinSi\n   FinSi\n   contador ← contador + 1\nFinMientras",
+        "salida": "Números divisibles por 3 y por 5"
+      },
+      "salidaEsperada": "15\n30\n45",
+      "pista": "Un número divisible por 3 y por 5 al mismo tiempo también es múltiplo de 15.",
+      "codigoReferencia": "Proceso DivisiblesPorTresYCinco\n  Definir contador Como Entero\n\n  contador = 1\n  Mientras contador <= 50 Hacer\n    Si contador mod 3 == 0 Entonces\n      Si contador mod 5 == 0 Entonces\n        Escribir contador\n      FinSi\n    FinSi\n    contador = contador + 1\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-011",
+      "origen": "json/EA 1.4.json #111",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-11",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Promedio de notas hasta -1",
+      "conceptos": [
+        "Mientras",
+        "Si-Entonces",
+        "Real",
+        "Acumulador",
+        "Promedio",
+        "Centinela"
+      ],
+      "enunciado": "Pide la nota de un estudiante repetidamente hasta que se ingrese -1. Debes acumular las notas válidas y contar cuántas se ingresaron. Al final, calcula el promedio y muestra si está aprobado o reprobado.",
+      "entradaProcesoSalida": {
+        "entrada": "nota (Real)\nsuma = 0\ncantidad = 0",
+        "proceso": "Leer nota\nMientras nota <> -1 Hacer\n   suma ← suma + nota\n   cantidad ← cantidad + 1\n   Leer nota\nFinMientras\npromedio ← suma / cantidad\nSi promedio >= 4 Entonces\n   mostrar \"Aprobado\"\nSiNo\n   mostrar \"Reprobado\"\nFinSi",
+        "salida": "Promedio y resultado final"
+      },
+      "salidaEsperada": "Ingrese una nota (-1 para terminar):\n> 5.0\nIngrese una nota (-1 para terminar):\n> 4.2\nIngrese una nota (-1 para terminar):\n> 3.8\nIngrese una nota (-1 para terminar):\n> -1\nPromedio: 4.33333\nAprobado",
+      "pista": "El valor -1 es un centinela y no debe incluirse en el cálculo del promedio.",
+      "codigoReferencia": "Proceso PromedioNotasHastaMenosUno\n  Definir nota, suma, promedio Como Real\n  Definir cantidad Como Entero\n\n  suma     = 0\n  cantidad = 0\n\n  Escribir \"Ingrese una nota (-1 para terminar):\"\n  Leer nota\n  Mientras nota <> -1 Hacer\n    suma     = suma + nota\n    cantidad = cantidad + 1\n\n    Escribir \"Ingrese una nota (-1 para terminar):\"\n    Leer nota\n  FinMientras\n  promedio = suma / cantidad\n\n  Escribir \"Promedio: \", promedio\n  Si promedio >= 4 Entonces\n    Escribir \"Aprobado\"\n  Sino\n    Escribir \"Reprobado\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-012",
+      "origen": "json/EA 1.4.json #112",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-12",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Cajero automático con saldo",
+      "conceptos": [
+        "Mientras",
+        "Si-Entonces",
+        "Real",
+        "Saldo",
+        "Validación",
+        "Intermedio"
+      ],
+      "enunciado": "Simula un cajero automático con un saldo inicial. Pide montos a retirar en un ciclo Mientras hasta ingresar 0. En cada retiro, verifica con Si-Entonces si hay saldo suficiente. Si lo hay, descuéntalo del saldo; si no, muestra un mensaje de error.",
+      "entradaProcesoSalida": {
+        "entrada": "saldo = 50000\nretiro (Real)",
+        "proceso": "Leer retiro\nMientras retiro <> 0 Hacer\n   Si retiro <= saldo Entonces\n      saldo ← saldo - retiro\n      mostrar saldo\n   SiNo\n      mostrar \"Fondos insuficientes\"\n   FinSi\n   Leer retiro\nFinMientras",
+        "salida": "Nuevo saldo o mensaje de error"
+      },
+      "salidaEsperada": "Saldo inicial: 50000\nIngrese monto a retirar (0 para terminar):\n> 12000\nRetiro realizado. Saldo actual: 38000\nIngrese monto a retirar (0 para terminar):\n> 40000\nFondos insuficientes\nIngrese monto a retirar (0 para terminar):\n> 0\nOperación finalizada",
+      "pista": "Una validación dentro del ciclo permite decidir si la operación se ejecuta o se rechaza en cada iteración.",
+      "codigoReferencia": "Proceso CajeroConSaldo\n  Definir saldo, retiro Como Real\n\n  saldo = 50000\n\n  Escribir \"Saldo inicial: \", saldo\n  Escribir \"Ingrese monto a retirar (0 para terminar):\"\n  Leer retiro\n  Mientras retiro <> 0 Hacer\n    Si retiro <= saldo Entonces\n      saldo = saldo - retiro\n\n      Escribir \"Retiro realizado. Saldo actual: \", saldo\n    Sino\n      Escribir \"Fondos insuficientes\"\n    FinSi\n    Escribir \"Ingrese monto a retirar (0 para terminar):\"\n    Leer retiro\n  FinMientras\n  Escribir \"Operación finalizada\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-013",
+      "origen": "json/EA 1.4.json #113",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-13",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Mayor y menor hasta ingresar 0",
+      "conceptos": [
+        "Mientras",
+        "Si-Entonces",
+        "Entero",
+        "Mayor",
+        "Menor",
+        "Comparación"
+      ],
+      "enunciado": "Pide números enteros hasta ingresar 0 y determina cuál fue el mayor y cuál fue el menor de todos los valores ingresados. Debes usar Si-Entonces para comparar cada nuevo número con los valores guardados.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Entero)\nmayor, menor (Entero)",
+        "proceso": "Leer numero\nSi numero <> 0 Entonces\n   mayor ← numero\n   menor ← numero\n   Leer numero\n   Mientras numero <> 0 Hacer\n      Si numero > mayor Entonces\n         mayor ← numero\n      FinSi\n      Si numero < menor Entonces\n         menor ← numero\n      FinSi\n      Leer numero\n   FinMientras\nFinSi",
+        "salida": "Mayor y menor ingresado"
+      },
+      "salidaEsperada": "Ingrese un número (0 para terminar):\n> 8\nIngrese un número (0 para terminar):\n> 3\nIngrese un número (0 para terminar):\n> 15\nIngrese un número (0 para terminar):\n> -4\nIngrese un número (0 para terminar):\n> 0\nMayor: 15\nMenor: -4",
+      "pista": "El primer número válido suele usarse para inicializar tanto el mayor como el menor.",
+      "codigoReferencia": "Proceso MayorYMenorHastaCero\n  Definir numero, mayor, menor Como Entero\n\n  Escribir \"Ingrese un número (0 para terminar):\"\n  Leer numero\n  Si numero <> 0 Entonces\n    mayor = numero\n    menor = numero\n\n    Escribir \"Ingrese un número (0 para terminar):\"\n    Leer numero\n    Mientras numero <> 0 Hacer\n      Si numero > mayor Entonces\n        mayor = numero\n      FinSi\n      Si numero < menor Entonces\n        menor = numero\n      FinSi\n      Escribir \"Ingrese un número (0 para terminar):\"\n      Leer numero\n    FinMientras\n    Escribir \"Mayor: \", mayor\n    Escribir \"Menor: \", menor\n  Sino\n    Escribir \"No se ingresaron números válidos\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-014",
+      "origen": "json/EA 1.4.json #114",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-14",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Menú interactivo de operaciones",
+      "conceptos": [
+        "Mientras",
+        "Según",
+        "Si-Entonces",
+        "Real",
+        "Menú",
+        "División"
+      ],
+      "enunciado": "Implementa un menú interactivo que se repita usando Mientras. El menú debe ofrecer las opciones: 1 sumar, 2 restar, 3 multiplicar, 4 dividir y 0 salir. Usa Según para seleccionar la operación y Si-Entonces para validar que en la división el segundo número no sea 0.",
+      "entradaProcesoSalida": {
+        "entrada": "opcion (Entero)\na, b (Real)",
+        "proceso": "Leer opcion\nMientras opcion <> 0 Hacer\n   Leer a, b\n   Según opcion Hacer\n      1: mostrar a + b\n      2: mostrar a - b\n      3: mostrar a * b\n      4: Si b <> 0 Entonces mostrar a / b SiNo mostrar \"No se puede dividir por cero\" FinSi\n      De Otro Modo: mostrar \"Opción inválida\"\n   FinSegún\n   Leer opcion\nFinMientras",
+        "salida": "Resultado de cada operación"
+      },
+      "salidaEsperada": "Menú: 1 sumar, 2 restar, 3 multiplicar, 4 dividir, 0 salir\nOpción:\n> 1\nPrimer número:\n> 8\nSegundo número:\n> 4\nResultado: 12\nMenú: 1 sumar, 2 restar, 3 multiplicar, 4 dividir, 0 salir\nOpción:\n> 0\nPrograma finalizado",
+      "pista": "Este ejercicio combina repetición, selección múltiple y validación específica para la división.",
+      "codigoReferencia": "Proceso MenuInteractivoOperaciones\n  Definir opcion Como Entero\n  Definir a, b, resultado Como Real\n\n  Escribir \"Menú: 1 sumar, 2 restar, 3 multiplicar, 4 dividir, 0 salir\"\n  Escribir \"Opción:\"\n  Leer opcion\n  Mientras opcion <> 0 Hacer\n    Escribir \"Primer número:\"\n    Leer a\n    Escribir \"Segundo número:\"\n    Leer b\n    Segun opcion Hacer\n      1:\n        resultado = a + b\n\n        Escribir \"Resultado: \", resultado\n      2:\n        resultado = a - b\n\n        Escribir \"Resultado: \", resultado\n      3:\n        resultado = a * b\n\n        Escribir \"Resultado: \", resultado\n      4:\n        Si b <> 0 Entonces\n          resultado = a / b\n\n          Escribir \"Resultado: \", resultado\n        Sino\n          Escribir \"No se puede dividir por cero\"\n        FinSi\n      De Otro Modo:\n        Escribir \"Opción inválida\"\n    FinSegun\n    Escribir \"Menú: 1 sumar, 2 restar, 3 multiplicar, 4 dividir, 0 salir\"\n    Escribir \"Opción:\"\n    Leer opcion\n  FinMientras\n  Escribir \"Programa finalizado\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-015",
+      "origen": "json/EA 1.4.json #115",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-15",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Sistema de votación",
+      "conceptos": [
+        "Mientras",
+        "Según",
+        "Si anidado",
+        "Entero",
+        "Contadores",
+        "Votación"
+      ],
+      "enunciado": "Implementa un sistema de votación que pida votos en un ciclo hasta ingresar 0. Las opciones válidas son 1, 2 y 3. Usa Según para contar votos por candidato y Si-Entonces anidado para validar la opción y, al final, mostrar el ganador.",
+      "entradaProcesoSalida": {
+        "entrada": "voto (Entero)\nc1 = 0\nc2 = 0\nc3 = 0",
+        "proceso": "Leer voto\nMientras voto <> 0 Hacer\n   Si voto >= 1 Y voto <= 3 Entonces\n      Según voto Hacer\n         1: c1 ← c1 + 1\n         2: c2 ← c2 + 1\n         3: c3 ← c3 + 1\n      FinSegún\n   SiNo\n      mostrar \"Voto inválido\"\n   FinSi\n   Leer voto\nFinMientras\nComparar c1, c2 y c3 con Si anidado para mostrar ganador",
+        "salida": "Votos por candidato y ganador"
+      },
+      "salidaEsperada": "Ingrese voto (1, 2, 3 o 0 para terminar):\n> 1\nIngrese voto (1, 2, 3 o 0 para terminar):\n> 3\nIngrese voto (1, 2, 3 o 0 para terminar):\n> 3\nIngrese voto (1, 2, 3 o 0 para terminar):\n> 0\nCandidato 1: 1 votos\nCandidato 2: 0 votos\nCandidato 3: 2 votos\nGanador: Candidato 3",
+      "pista": "El ciclo permite ingresar muchos votos, Según distribuye el conteo y los Si finales comparan quién obtuvo más.",
+      "codigoReferencia": "Proceso SistemaVotacion\n  Definir voto, c1, c2, c3 Como Entero\n\n  c1 = 0\n  c2 = 0\n  c3 = 0\n\n  Escribir \"Ingrese voto (1, 2, 3 o 0 para terminar):\"\n  Leer voto\n  Mientras voto <> 0 Hacer\n    Si voto >= 1 Y voto <= 3 Entonces\n      Segun voto Hacer\n        1: c1 = c1 + 1\n        2: c2 = c2 + 1\n        3: c3 = c3 + 1\n      FinSegun\n    Sino\n      Escribir \"Voto inválido\"\n    FinSi\n    Escribir \"Ingrese voto (1, 2, 3 o 0 para terminar):\"\n    Leer voto\n  FinMientras\n  Escribir \"Candidato 1: \", c1, \" votos\"\n  Escribir \"Candidato 2: \", c2, \" votos\"\n  Escribir \"Candidato 3: \", c3, \" votos\"\n  Si c1 > c2 Y c1 > c3 Entonces\n    Escribir \"Ganador: Candidato 1\"\n  Sino\n    Si c2 > c1 Y c2 > c3 Entonces\n      Escribir \"Ganador: Candidato 2\"\n    Sino\n      Si c3 > c1 Y c3 > c2 Entonces\n        Escribir \"Ganador: Candidato 3\"\n      Sino\n        Escribir \"Empate o sin votos suficientes\"\n      FinSi\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-016",
+      "origen": "json/EA 1.4.json #116",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-16",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Clasificar números en cinco rangos",
+      "conceptos": [
+        "Mientras",
+        "Según",
+        "Si anidado",
+        "Entero",
+        "Contadores",
+        "Rangos"
+      ],
+      "enunciado": "Pide números indefinidamente hasta ingresar 999 para terminar. Debes clasificarlos en cinco rangos: <0, 1 a 10, 11 a 50, 51 a 100 y >100. Usa Según para asignar la categoría y luego Si-Entonces anidado para mostrar cuál rango tuvo más números.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Entero)\nr1,r2,r3,r4,r5 = 0",
+        "proceso": "Leer numero\nMientras numero <> 999 Hacer\n   Según Verdadero Hacer\n      numero < 0: r1 ← r1 + 1\n      numero >= 1 Y numero <= 10: r2 ← r2 + 1\n      numero >= 11 Y numero <= 50: r3 ← r3 + 1\n      numero >= 51 Y numero <= 100: r4 ← r4 + 1\n      numero > 100: r5 ← r5 + 1\n   FinSegún\n   Leer numero\nFinMientras\nComparar contadores con Si anidado",
+        "salida": "Conteo por rango y rango con más valores"
+      },
+      "salidaEsperada": "Ingrese número (999 para terminar):\n> -5\nIngrese número (999 para terminar):\n> 8\nIngrese número (999 para terminar):\n> 120\nIngrese número (999 para terminar):\n> 999\nRango < 0: 1\nRango 1-10: 1\nRango 11-50: 0\nRango 51-100: 0\nRango >100: 1\nRango con más números: empate o múltiple máximo",
+      "pista": "Aquí Según clasifica por rango y los Si finales comparan los contadores para decidir cuál predominó.",
+      "codigoReferencia": "Proceso ClasificarCincoRangos\n  Definir numero, r1, r2, r3, r4, r5 Como Entero\n\n  r1 = 0\n  r2 = 0\n  r3 = 0\n  r4 = 0\n  r5 = 0\n\n  Escribir \"Ingrese número (999 para terminar):\"\n  Leer numero\n  Mientras numero <> 999 Hacer\n    Si numero < 0 Entonces\n      r1 = r1 + 1\n    Sino\n      Si numero >= 1 Y numero <= 10 Entonces\n        r2 = r2 + 1\n      Sino\n        Si numero >= 11 Y numero <= 50 Entonces\n          r3 = r3 + 1\n        Sino\n          Si numero >= 51 Y numero <= 100 Entonces\n            r4 = r4 + 1\n          Sino\n            Si numero > 100 Entonces\n              r5 = r5 + 1\n            FinSi\n          FinSi\n        FinSi\n      FinSi\n    FinSi\n    Escribir \"Ingrese número (999 para terminar):\"\n    Leer numero\n  FinMientras\n  Escribir \"Rango < 0: \", r1\n  Escribir \"Rango 1-10: \", r2\n  Escribir \"Rango 11-50: \", r3\n  Escribir \"Rango 51-100: \", r4\n  Escribir \"Rango >100: \", r5\n  Si r1 > r2 Y r1 > r3 Y r1 > r4 Y r1 > r5 Entonces\n    Escribir \"Rango con más números: < 0\"\n  Sino\n    Si r2 > r1 Y r2 > r3 Y r2 > r4 Y r2 > r5 Entonces\n      Escribir \"Rango con más números: 1-10\"\n    Sino\n      Si r3 > r1 Y r3 > r2 Y r3 > r4 Y r3 > r5 Entonces\n        Escribir \"Rango con más números: 11-50\"\n      Sino\n        Si r4 > r1 Y r4 > r2 Y r4 > r3 Y r4 > r5 Entonces\n          Escribir \"Rango con más números: 51-100\"\n        Sino\n          Si r5 > r1 Y r5 > r2 Y r5 > r3 Y r5 > r4 Entonces\n            Escribir \"Rango con más números: >100\"\n          Sino\n            Escribir \"Rango con más números: empate o múltiple máximo\"\n          FinSi\n        FinSi\n      FinSi\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-017",
+      "origen": "json/EA 1.4.json #117",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-17",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Mini-sistema de notas",
+      "conceptos": [
+        "Mientras",
+        "Según",
+        "Si anidado",
+        "Caracter",
+        "Real",
+        "Notas"
+      ],
+      "enunciado": "Crea un mini-sistema de notas que pida el nombre del estudiante, su nota y su asistencia. El ciclo debe repetirse hasta que el nombre ingresado sea \"fin\". Usa Según para asignar un concepto MB, B, S o I según la nota, y Si-Entonces anidado para determinar si aprueba considerando también que la asistencia debe ser al menos 75%.",
+      "entradaProcesoSalida": {
+        "entrada": "nombre (Caracter)\nnota, asistencia (Real)",
+        "proceso": "Leer nombre\nMientras nombre <> \"fin\" Hacer\n   Leer nota, asistencia\n   Según Trunc(nota) Hacer ... asignar concepto\n   Si asistencia >= 75 Entonces\n      Si nota >= 4 Entonces mostrar \"Aprueba\" SiNo mostrar \"Reprueba\" FinSi\n   SiNo\n      mostrar \"Reprueba por asistencia\"\n   FinSi\n   Leer nombre\nFinMientras",
+        "salida": "Concepto y situación final de cada estudiante"
+      },
+      "salidaEsperada": "Nombre del estudiante (fin para terminar):\n> Ana\nNota:\n> 5.6\nAsistencia (%):\n> 82\nConcepto: B\nSituación: Aprueba\nNombre del estudiante (fin para terminar):\n> fin",
+      "pista": "El concepto depende de la nota; la aprobación final depende de nota y asistencia.",
+      "codigoReferencia": "Proceso MiniSistemaNotas\n  Definir nombre, concepto Como Caracter\n  Definir nota, asistencia Como Real\n  Definir notaEntera Como Entero\n\n  Escribir \"Nombre del estudiante (fin para terminar):\"\n  Leer nombre\n  Mientras nombre <> \"fin\" Hacer\n    Escribir \"Nota:\"\n    Leer nota\n    Escribir \"Asistencia (%):\"\n    Leer asistencia\n\n    notaEntera = Trunc(nota)\n    Segun notaEntera Hacer\n      6, 7: concepto = \"MB\"\n      5: concepto = \"B\"\n      4: concepto = \"S\"\n      De Otro Modo:\n        concepto = \"I\"\n    FinSegun\n    Escribir \"Concepto: \", concepto\n    Si asistencia >= 75 Entonces\n      Si nota >= 4 Entonces\n        Escribir \"Situación: Aprueba\"\n      Sino\n        Escribir \"Situación: Reprueba\"\n      FinSi\n    Sino\n      Escribir \"Situación: Reprueba por asistencia\"\n    FinSi\n    Escribir \"Nombre del estudiante (fin para terminar):\"\n    Leer nombre\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-018",
+      "origen": "json/EA 1.4.json #118",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-18",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Simulador de semáforo",
+      "conceptos": [
+        "Mientras",
+        "Según",
+        "Si-Entonces",
+        "Caracter",
+        "Validación",
+        "Semáforo"
+      ],
+      "enunciado": "Crea un simulador de semáforo que en cada iteración pida un color. Usa Según para indicar la acción correspondiente: verde = avanzar, amarillo = precaución, rojo = detener. Usa Si-Entonces para verificar si el color es válido. El ciclo se repite hasta que el usuario escriba \"salir\".",
+      "entradaProcesoSalida": {
+        "entrada": "color (Caracter)",
+        "proceso": "Leer color\nMientras color <> \"salir\" Hacer\n   Si color = \"rojo\" O color = \"amarillo\" O color = \"verde\" Entonces\n      Según color Hacer\n         \"verde\": mostrar \"Avanzar\"\n         \"amarillo\": mostrar \"Precaución\"\n         \"rojo\": mostrar \"Detener\"\n      FinSegún\n   SiNo\n      mostrar \"Color inválido\"\n   FinSi\n   Leer color\nFinMientras",
+        "salida": "Acción según color"
+      },
+      "salidaEsperada": "Ingrese color del semáforo (o salir):\n> verde\nAvanzar\nIngrese color del semáforo (o salir):\n> azul\nColor inválido\nIngrese color del semáforo (o salir):\n> salir",
+      "pista": "La validación previa evita ejecutar Según con valores que no corresponden al problema.",
+      "codigoReferencia": "Proceso SimuladorSemaforo\n  Definir color Como Caracter\n\n  Escribir \"Ingrese color del semáforo (o salir):\"\n  Leer color\n  Mientras color <> \"salir\" Hacer\n    Si color == \"rojo\" O color == \"amarillo\" O color == \"verde\" Entonces\n      Segun color Hacer\n        \"verde\": Escribir \"Avanzar\"\n        \"amarillo\": Escribir \"Precaución\"\n        \"rojo\": Escribir \"Detener\"\n      FinSegun\n    Sino\n      Escribir \"Color inválido\"\n    FinSi\n    Escribir \"Ingrese color del semáforo (o salir):\"\n    Leer color\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-019",
+      "origen": "json/EA 1.4.json #119",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-19",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Área de figuras",
+      "conceptos": [
+        "Mientras",
+        "Según",
+        "Si-Entonces",
+        "Real",
+        "Geometría",
+        "Áreas"
+      ],
+      "enunciado": "Pide repetidamente el tipo de figura: 1 círculo, 2 rectángulo, 3 triángulo y 0 salir. Luego solicita sus medidas y usa Según para calcular el área correspondiente. Usa Si-Entonces para validar que todos los valores ingresados sean positivos.",
+      "entradaProcesoSalida": {
+        "entrada": "opcion (Entero)\nmedidas (Real)",
+        "proceso": "Leer opcion\nMientras opcion <> 0 Hacer\n   Según opcion Hacer\n      1: leer radio; Si radio > 0 Entonces area ← PI * radio^2 SiNo mostrar error FinSi\n      2: leer base, altura; Si base > 0 Y altura > 0 Entonces area ← base * altura SiNo mostrar error FinSi\n      3: leer base, altura; Si base > 0 Y altura > 0 Entonces area ← base * altura / 2 SiNo mostrar error FinSi\n      De Otro Modo: mostrar \"Opción inválida\"\n   FinSegún\n   Leer opcion\nFinMientras",
+        "salida": "Área calculada o mensaje de error"
+      },
+      "salidaEsperada": "Figura (1 círculo, 2 rectángulo, 3 triángulo, 0 salir):\n> 2\nBase:\n> 5\nAltura:\n> 3\nÁrea: 15\nFigura (1 círculo, 2 rectángulo, 3 triángulo, 0 salir):\n> 0",
+      "pista": "Según elige la fórmula adecuada y Si valida que las medidas tengan sentido físico.",
+      "codigoReferencia": "Proceso AreaDeFiguras\n  Definir opcion Como Entero\n  Definir radio, base, altura, area, PI Como Real\n\n  PI = 3.14159\n\n  Escribir \"Figura (1 círculo, 2 rectángulo, 3 triángulo, 0 salir):\"\n  Leer opcion\n  Mientras opcion <> 0 Hacer\n    Segun opcion Hacer\n      1:\n        Escribir \"Radio:\"\n        Leer radio\n        Si radio > 0 Entonces\n          area = PI * radio ^ 2\n\n          Escribir \"Área: \", area\n        Sino\n          Escribir \"Valor inválido\"\n        FinSi\n      2:\n        Escribir \"Base:\"\n        Leer base\n        Escribir \"Altura:\"\n        Leer altura\n        Si base > 0 Y altura > 0 Entonces\n          area = base * altura\n\n          Escribir \"Área: \", area\n        Sino\n          Escribir \"Valores inválidos\"\n        FinSi\n      3:\n        Escribir \"Base:\"\n        Leer base\n        Escribir \"Altura:\"\n        Leer altura\n        Si base > 0 Y altura > 0 Entonces\n          area = base * altura / 2\n\n          Escribir \"Área: \", area\n        Sino\n          Escribir \"Valores inválidos\"\n        FinSi\n      De Otro Modo:\n        Escribir \"Opción inválida\"\n    FinSegun\n    Escribir \"Figura (1 círculo, 2 rectángulo, 3 triángulo, 0 salir):\"\n    Leer opcion\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-020",
+      "origen": "json/EA 1.4.json #120",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-20",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Sistema de compras con descuentos",
+      "conceptos": [
+        "Mientras",
+        "Según",
+        "Si anidado",
+        "Real",
+        "Descuentos",
+        "Compras"
+      ],
+      "enunciado": "Crea un sistema de compras que, en un ciclo, pida la categoría del producto y su precio. Las categorías son: 1 = 10%, 2 = 20% y 3 = 30% de descuento. Usa Según para aplicar el descuento por categoría y Si-Entonces anidado para verificar si el cliente tiene tarjeta de puntos y aplicar un 5% adicional. El proceso termina al ingresar 0 y al final muestra el total acumulado.",
+      "entradaProcesoSalida": {
+        "entrada": "categoria (Entero)\nprecio (Real)\ntarjeta (Caracter)\ntotal = 0",
+        "proceso": "Leer categoria\nMientras categoria <> 0 Hacer\n   Leer precio\n   Según categoria Hacer\n      1: subtotal ← precio - precio*0.10\n      2: subtotal ← precio - precio*0.20\n      3: subtotal ← precio - precio*0.30\n      De Otro Modo: mostrar \"Categoría inválida\"\n   FinSegún\n   Si categoria >=1 Y categoria <=3 Entonces\n      Leer tarjeta\n      Si tarjeta = \"si\" Entonces\n         subtotal ← subtotal - subtotal*0.05\n      FinSi\n      total ← total + subtotal\n   FinSi\n   Leer categoria\nFinMientras",
+        "salida": "Subtotal por producto y total acumulado"
+      },
+      "salidaEsperada": "Categoría del producto (1, 2, 3 o 0 para terminar):\n> 2\nPrecio del producto:\n> 10000\n¿Tiene tarjeta de puntos? (si/no):\n> si\nSubtotal con descuentos: 7600\nCategoría del producto (1, 2, 3 o 0 para terminar):\n> 0\nTotal acumulado: 7600",
+      "pista": "El descuento por categoría se aplica primero y luego, si corresponde, el descuento adicional por tarjeta.",
+      "codigoReferencia": "Proceso SistemaCompras\n  Definir categoria Como Entero\n  Definir precio, subtotal, total Como Real\n  Definir tarjeta Como Caracter\n\n  total = 0\n\n  Escribir \"Categoría del producto (1, 2, 3 o 0 para terminar):\"\n  Leer categoria\n  Mientras categoria <> 0 Hacer\n    Escribir \"Precio del producto:\"\n    Leer precio\n    Segun categoria Hacer\n      1: subtotal = precio - precio * 0.10\n      2: subtotal = precio - precio * 0.20\n      3: subtotal = precio - precio * 0.30\n      De Otro Modo:\n        Escribir \"Categoría inválida\"\n    FinSegun\n    Si categoria >= 1 Y categoria <= 3 Entonces\n      Escribir \"¿Tiene tarjeta de puntos? (si/no):\"\n      Leer tarjeta\n      Si tarjeta == \"si\" Entonces\n        subtotal = subtotal - subtotal * 0.05\n      FinSi\n      Escribir \"Subtotal con descuentos: \", subtotal\n\n      total = total + subtotal\n    FinSi\n    Escribir \"Categoría del producto (1, 2, 3 o 0 para terminar):\"\n    Leer categoria\n  FinMientras\n  Escribir \"Total acumulado: \", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-021",
+      "origen": "json/EA 1.4.json #121",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-21",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Ingresar un número positivo",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Leer",
+        "Entero",
+        "Validación",
+        "Básico"
+      ],
+      "enunciado": "Pide un número al usuario y repite la entrada hasta que ingrese un valor positivo mayor que cero. Al finalizar, muestra el número válido ingresado.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Entero)",
+        "proceso": "Repetir\n   Leer numero\nHasta Que numero > 0",
+        "salida": "Número positivo ingresado"
+      },
+      "salidaEsperada": "Ingrese un número positivo:\n> -3\nIngrese un número positivo:\n> 0\nIngrese un número positivo:\n> 7\nNúmero válido: 7",
+      "pista": "En Repetir-Hasta el bloque se ejecuta al menos una vez antes de evaluar la condición.",
+      "codigoReferencia": "Proceso NumeroPositivo\n  Definir numero Como Entero\n\n  Repetir\n    Escribir \"Ingrese un número positivo:\"\n    Leer numero\n  Hasta Que numero > 0\n  Escribir \"Número válido: \", numero\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-022",
+      "origen": "json/EA 1.4.json #122",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-22",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Impares del 1 al 19",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Contador",
+        "Entero",
+        "Impares",
+        "Básico"
+      ],
+      "enunciado": "Muestra los números impares del 1 al 19 usando una variable que comience en 1 y aumente de 2 en 2 dentro de un ciclo Repetir-Hasta.",
+      "entradaProcesoSalida": {
+        "entrada": "numero = 1",
+        "proceso": "Repetir\n   mostrar numero\n   numero ← numero + 2\nHasta Que numero > 19",
+        "salida": "Números impares del 1 al 19"
+      },
+      "salidaEsperada": "1\n3\n5\n7\n9\n11\n13\n15\n17\n19",
+      "pista": "Sumar 2 en cada iteración permite recorrer solo los números impares.",
+      "codigoReferencia": "Proceso ImparesUnoAlDiecinueve\n  Definir numero Como Entero\n\n  numero = 1\n  Repetir\n    Escribir numero\n\n    numero = numero + 2\n  Hasta Que numero > 19\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-023",
+      "origen": "json/EA 1.4.json #123",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-23",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Adivinar número secreto",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Leer",
+        "Entero",
+        "Contador",
+        "Adivinanza"
+      ],
+      "enunciado": "Pide al usuario que adivine un número secreto definido en el código, por ejemplo 42. Repite la entrada hasta que lo acierte y muestra al final cuántos intentos realizó.",
+      "entradaProcesoSalida": {
+        "entrada": "secreto = 42\nnumero (Entero)\nintentos = 0",
+        "proceso": "Repetir\n   Leer numero\n   intentos ← intentos + 1\nHasta Que numero = secreto",
+        "salida": "Cantidad de intentos"
+      },
+      "salidaEsperada": "Adivine el número secreto:\n> 20\nAdivine el número secreto:\n> 50\nAdivine el número secreto:\n> 42\n¡Correcto!\nIntentos: 3",
+      "pista": "El contador de intentos se incrementa cada vez que el usuario ingresa un valor.",
+      "codigoReferencia": "Proceso AdivinarNumeroSecreto\n  Definir secreto, numero, intentos Como Entero\n\n  secreto  = 42\n  intentos = 0\n  Repetir\n    Escribir \"Adivine el número secreto:\"\n    Leer numero\n\n    intentos = intentos + 1\n  Hasta Que numero == secreto\n  Escribir \"¡Correcto!\"\n  Escribir \"Intentos: \", intentos\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-024",
+      "origen": "json/EA 1.4.json #124",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-24",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Suma de dígitos",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Entero",
+        "MOD",
+        "DIV",
+        "Acumulador"
+      ],
+      "enunciado": "Lee un número entero positivo y calcula la suma de sus dígitos usando el operador MOD y la división entera dentro de un ciclo Repetir-Hasta.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Entero)\nsuma = 0",
+        "proceso": "Repetir\n   digito ← numero MOD 10\n   suma ← suma + digito\n   numero ← numero DIV 10\nHasta Que numero = 0",
+        "salida": "Suma de dígitos"
+      },
+      "salidaEsperada": "Ingrese un número entero positivo:\n> 538\nSuma de dígitos: 16",
+      "pista": "MOD obtiene el último dígito y DIV elimina ese dígito del número.",
+      "codigoReferencia": "Proceso SumaDigitos\n  Definir numero, digito, suma Como Entero\n\n  Escribir \"Ingrese un número entero positivo:\"\n  Leer numero\n\n  suma = 0\n  Repetir\n    digito = numero mod 10\n    suma   = suma + digito\n    numero = Trunc(numero / 10)\n  Hasta Que numero == 0\n  Escribir \"Suma de dígitos: \", suma\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-025",
+      "origen": "json/EA 1.4.json #125",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-25",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Suma de edades",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Leer",
+        "Entero",
+        "Acumulador",
+        "Centinela"
+      ],
+      "enunciado": "Pide las edades de personas una a una y repite el proceso hasta que se ingrese la edad 0. Al final, muestra la suma total de todas las edades ingresadas, sin considerar el 0.",
+      "entradaProcesoSalida": {
+        "entrada": "edad (Entero)\nsuma = 0",
+        "proceso": "Repetir\n   Leer edad\n   suma ← suma + edad\nHasta Que edad = 0\nsuma ← suma - 0",
+        "salida": "Suma de edades"
+      },
+      "salidaEsperada": "Ingrese edad (0 para terminar):\n> 18\nIngrese edad (0 para terminar):\n> 25\nIngrese edad (0 para terminar):\n> 32\nIngrese edad (0 para terminar):\n> 0\nSuma total de edades: 75",
+      "pista": "El valor 0 solo sirve para detener el ciclo; como no altera la suma, no genera problema al acumularlo.",
+      "codigoReferencia": "Proceso SumaEdades\n  Definir edad, suma Como Entero\n\n  suma = 0\n  Repetir\n    Escribir \"Ingrese edad (0 para terminar):\"\n    Leer edad\n\n    suma = suma + edad\n  Hasta Que edad == 0\n  Escribir \"Suma total de edades: \", suma\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-026",
+      "origen": "json/EA 1.4.json #126",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-26",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Fibonacci hasta un límite",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Entero",
+        "Fibonacci",
+        "Secuencia",
+        "Básico"
+      ],
+      "enunciado": "Lee un límite entero positivo y genera la secuencia de Fibonacci mostrando sus términos hasta que el siguiente valor supere el límite ingresado por el usuario.",
+      "entradaProcesoSalida": {
+        "entrada": "limite (Entero)\na = 0\nb = 1",
+        "proceso": "Repetir\n   mostrar a\n   c ← a + b\n   a ← b\n   b ← c\nHasta Que a > limite",
+        "salida": "Secuencia de Fibonacci hasta el límite"
+      },
+      "salidaEsperada": "Ingrese límite:\n> 20\n0\n1\n1\n2\n3\n5\n8\n13",
+      "pista": "Cada nuevo término de Fibonacci se obtiene sumando los dos anteriores.",
+      "codigoReferencia": "Proceso FibonacciHastaLimite\n  Definir limite, a, b, c Como Entero\n\n  Escribir \"Ingrese límite:\"\n  Leer limite\n\n  a = 0\n  b = 1\n  Repetir\n    Escribir a\n\n    c = a + b\n    a = b\n    b = c\n  Hasta Que a > limite\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-027",
+      "origen": "json/EA 1.4.json #127",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-27",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Ingresar solo vocales",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Leer",
+        "Caracter",
+        "Validación",
+        "Vocales"
+      ],
+      "enunciado": "Pide al usuario que ingrese una vocal. Si escribe algo distinto de \"a\", \"e\", \"i\", \"o\" o \"u\", debes mostrar un mensaje de error y repetir la solicitud hasta que ingrese una vocal correcta.",
+      "entradaProcesoSalida": {
+        "entrada": "letra (Caracter)",
+        "proceso": "Repetir\n   Leer letra\n   Si letra no es vocal Entonces\n      mostrar error\n   FinSi\nHasta Que letra es vocal",
+        "salida": "Vocal válida ingresada"
+      },
+      "salidaEsperada": "Ingrese una vocal:\n> b\nError: debe ingresar una vocal\nIngrese una vocal:\n> u\nVocal válida: u",
+      "pista": "Repetir-Hasta es ideal para validaciones donde quieres obligar al usuario a ingresar un dato correcto.",
+      "codigoReferencia": "Proceso IngresarSoloVocales\n  Definir letra Como Caracter\n\n  Repetir\n    Escribir \"Ingrese una vocal:\"\n    Leer letra\n    Si letra <> \"a\" Y letra <> \"e\" Y letra <> \"i\" Y letra <> \"o\" Y letra <> \"u\" Entonces\n      Escribir \"Error: debe ingresar una vocal\"\n    FinSi\n  Hasta Que letra == \"a\" O letra == \"e\" O letra == \"i\" O letra == \"o\" O letra == \"u\"\n  Escribir \"Vocal válida: \", letra\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-028",
+      "origen": "json/EA 1.4.json #128",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-28",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Acumular hasta superar 100",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Si-Entonces",
+        "Real",
+        "Acumulador",
+        "Promedio",
+        "Intermedio"
+      ],
+      "enunciado": "Pide números al usuario y ve acumulándolos hasta que la suma total supere 100. En cada iteración, usa Si-Entonces para indicar si el número ingresado es mayor o menor o igual que el promedio actual calculado con los datos ingresados hasta ese momento.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Real)\nsuma = 0\ncantidad = 0",
+        "proceso": "Repetir\n   Leer numero\n   suma ← suma + numero\n   cantidad ← cantidad + 1\n   promedio ← suma / cantidad\n   Si numero > promedio Entonces\n      mostrar \"Mayor que el promedio actual\"\n   SiNo\n      mostrar \"Menor o igual que el promedio actual\"\n   FinSi\nHasta Que suma > 100",
+        "salida": "Comparación en cada iteración y suma final"
+      },
+      "salidaEsperada": "Ingrese un número:\n> 40\nMenor o igual que el promedio actual\nIngrese un número:\n> 30\nMenor o igual que el promedio actual\nIngrese un número:\n> 50\nMayor que el promedio actual\nSuma acumulada: 120",
+      "pista": "El promedio actual cambia en cada iteración, porque depende de la suma y de la cantidad de datos ingresados.",
+      "codigoReferencia": "Proceso AcumularHastaSuperarCien\n  Definir numero, suma, promedio Como Real\n  Definir cantidad Como Entero\n\n  suma     = 0\n  cantidad = 0\n  Repetir\n    Escribir \"Ingrese un número:\"\n    Leer numero\n\n    suma     = suma + numero\n    cantidad = cantidad + 1\n    promedio = suma / cantidad\n    Si numero > promedio Entonces\n      Escribir \"Mayor que el promedio actual\"\n    Sino\n      Escribir \"Menor o igual que el promedio actual\"\n    FinSi\n  Hasta Que suma > 100\n  Escribir \"Suma acumulada: \", suma\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-029",
+      "origen": "json/EA 1.4.json #129",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-29",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Simular un dado hasta obtener 6",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Si-Entonces",
+        "Aleatorio",
+        "Entero",
+        "Dado",
+        "Intermedio"
+      ],
+      "enunciado": "Simula el lanzamiento de un dado generando un número aleatorio entre 1 y 6 en cada iteración. Muestra si el valor obtenido es mayor que 3 o menor o igual que 3 usando Si-Entonces. Repite el proceso hasta obtener un 6.",
+      "entradaProcesoSalida": {
+        "entrada": "dado (Entero)",
+        "proceso": "Repetir\n   dado ← Aleatorio(1,6)\n   mostrar dado\n   Si dado > 3 Entonces\n      mostrar \"Mayor que 3\"\n   SiNo\n      mostrar \"Menor o igual que 3\"\n   FinSi\nHasta Que dado = 6",
+        "salida": "Valores del dado hasta obtener 6"
+      },
+      "salidaEsperada": "Dado: 2\nMenor o igual que 3\nDado: 5\nMayor que 3\nDado: 6\nMayor que 3",
+      "pista": "Aleatorio(1,6) permite simular un dado estándar.",
+      "codigoReferencia": "Proceso SimularDadoHastaSeis\n  Definir dado Como Entero\n\n  Repetir\n    dado = 6\n\n    Escribir \"Dado: \", dado\n    Si dado > 3 Entonces\n      Escribir \"Mayor que 3\"\n    Sino\n      Escribir \"Menor o igual que 3\"\n    FinSi\n  Hasta Que dado == 6\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-030",
+      "origen": "json/EA 1.4.json #130",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-30",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Clasificar temperatura en Celsius",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Si anidado",
+        "Real",
+        "Temperatura",
+        "Clasificación",
+        "Intermedio"
+      ],
+      "enunciado": "Pide la temperatura en Celsius repetidamente y clasifícala con Si-Entonces anidado como \"frío\", \"templado\" o \"caluroso\". El proceso debe repetirse hasta que el usuario ingrese 999 para salir.",
+      "entradaProcesoSalida": {
+        "entrada": "temp (Real)",
+        "proceso": "Repetir\n   Leer temp\n   Si temp <> 999 Entonces\n      Si temp < 15 Entonces\n         mostrar \"Frío\"\n      SiNo\n         Si temp < 25 Entonces\n            mostrar \"Templado\"\n         SiNo\n            mostrar \"Caluroso\"\n         FinSi\n      FinSi\n   FinSi\nHasta Que temp = 999",
+        "salida": "Clasificación de cada temperatura"
+      },
+      "salidaEsperada": "Ingrese temperatura en Celsius (999 para salir):\n> 10\nFrío\nIngrese temperatura en Celsius (999 para salir):\n> 20\nTemplado\nIngrese temperatura en Celsius (999 para salir):\n> 30\nCaluroso\nIngrese temperatura en Celsius (999 para salir):\n> 999",
+      "pista": "El 999 funciona como valor especial de salida y no debe clasificarse como temperatura.",
+      "codigoReferencia": "Proceso ClasificarTemperaturaCelsius\n  Definir temp Como Real\n\n  Repetir\n    Escribir \"Ingrese temperatura en Celsius (999 para salir):\"\n    Leer temp\n    Si temp <> 999 Entonces\n      Si temp < 15 Entonces\n        Escribir \"Frío\"\n      Sino\n        Si temp < 25 Entonces\n          Escribir \"Templado\"\n        Sino\n          Escribir \"Caluroso\"\n        FinSi\n      FinSi\n    FinSi\n  Hasta Que temp == 999\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-031",
+      "origen": "json/EA 1.4.json #131",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-31",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Clasificar números por signo y paridad",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Si anidado",
+        "Entero",
+        "MOD",
+        "Contadores",
+        "Intermedio"
+      ],
+      "enunciado": "Pide números enteros y clasifícalos con Si-Entonces anidado en una de estas categorías: pares positivos, pares negativos, impares positivos o impares negativos. Repite hasta que el usuario ingrese 0 y al final muestra los conteos de cada grupo.",
+      "entradaProcesoSalida": {
+        "entrada": "numero (Entero)\npp = 0\npn = 0\nip = 0\nin = 0",
+        "proceso": "Repetir\n   Leer numero\n   Si numero <> 0 Entonces\n      Si numero MOD 2 = 0 Entonces\n         Si numero > 0 Entonces pp ← pp + 1 SiNo pn ← pn + 1 FinSi\n      SiNo\n         Si numero > 0 Entonces ip ← ip + 1 SiNo in ← in + 1 FinSi\n      FinSi\n   FinSi\nHasta Que numero = 0",
+        "salida": "Conteo de las cuatro categorías"
+      },
+      "salidaEsperada": "Ingrese un número entero (0 para terminar):\n> 4\nIngrese un número entero (0 para terminar):\n> -8\nIngrese un número entero (0 para terminar):\n> 7\nIngrese un número entero (0 para terminar):\n> -3\nIngrese un número entero (0 para terminar):\n> 0\nPares positivos: 1\nPares negativos: 1\nImpares positivos: 1\nImpares negativos: 1",
+      "pista": "Este problema primero distingue por paridad y luego por signo.",
+      "codigoReferencia": "Proceso ClasificarSignoParidad\n  Definir numero, pp, pn, ip, in Como Entero\n\n  pp = 0\n  pn = 0\n  ip = 0\n  in = 0\n  Repetir\n    Escribir \"Ingrese un número entero (0 para terminar):\"\n    Leer numero\n    Si numero <> 0 Entonces\n      Si numero mod 2 == 0 Entonces\n        Si numero > 0 Entonces\n          pp = pp + 1\n        Sino\n          pn = pn + 1\n        FinSi\n      Sino\n        Si numero > 0 Entonces\n          ip = ip + 1\n        Sino\n          in = in + 1\n        FinSi\n      FinSi\n    FinSi\n  Hasta Que numero == 0\n  Escribir \"Pares positivos: \", pp\n  Escribir \"Pares negativos: \", pn\n  Escribir \"Impares positivos: \", ip\n  Escribir \"Impares negativos: \", in\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-032",
+      "origen": "json/EA 1.4.json #132",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-32",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Bono según salario",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Si-Entonces",
+        "Real",
+        "Contadores",
+        "Salario",
+        "Intermedio"
+      ],
+      "enunciado": "Solicita el salario de empleados y determina con Si-Entonces si aplican a bono. Reciben bono quienes tengan un salario menor a 500000. Repite hasta ingresar -1 y al final muestra cuántos empleados reciben bono y cuántos no.",
+      "entradaProcesoSalida": {
+        "entrada": "salario (Real)\nconBono = 0\nsinBono = 0",
+        "proceso": "Repetir\n   Leer salario\n   Si salario <> -1 Entonces\n      Si salario < 500000 Entonces\n         conBono ← conBono + 1\n      SiNo\n         sinBono ← sinBono + 1\n      FinSi\n   FinSi\nHasta Que salario = -1",
+        "salida": "Cantidad con bono y sin bono"
+      },
+      "salidaEsperada": "Ingrese salario (-1 para terminar):\n> 450000\nIngrese salario (-1 para terminar):\n> 700000\nIngrese salario (-1 para terminar):\n> -1\nEmpleados con bono: 1\nEmpleados sin bono: 1",
+      "pista": "El valor -1 se usa solo para terminar la repetición; no debe contarse como salario válido.",
+      "codigoReferencia": "Proceso BonoSegunSalario\n  Definir salario Como Real\n  Definir conBono, sinBono Como Entero\n\n  conBono = 0\n  sinBono = 0\n  Repetir\n    Escribir \"Ingrese salario (-1 para terminar):\"\n    Leer salario\n    Si salario <> -1 Entonces\n      Si salario < 500000 Entonces\n        conBono = conBono + 1\n      Sino\n        sinBono = sinBono + 1\n      FinSi\n    FinSi\n  Hasta Que salario == -1\n  Escribir \"Empleados con bono: \", conBono\n  Escribir \"Empleados sin bono: \", sinBono\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-033",
+      "origen": "json/EA 1.4.json #133",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-33",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Juego de mayor o menor",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Si anidado",
+        "Entero",
+        "Adivinanza",
+        "Pistas",
+        "Intermedio"
+      ],
+      "enunciado": "Implementa un juego de mayor o menor donde el programa “piensa” un número fijo. El usuario debe adivinarlo y, con Si-Entonces anidado, recibe pistas: \"muy alto\", \"muy bajo\" o \"correcto\". Repite hasta acertar.",
+      "entradaProcesoSalida": {
+        "entrada": "secreto = 30\nnumero (Entero)",
+        "proceso": "Repetir\n   Leer numero\n   Si numero = secreto Entonces\n      mostrar \"Correcto\"\n   SiNo\n      Si numero > secreto Entonces\n         mostrar \"Muy alto\"\n      SiNo\n         mostrar \"Muy bajo\"\n      FinSi\n   FinSi\nHasta Que numero = secreto",
+        "salida": "Pistas hasta acertar"
+      },
+      "salidaEsperada": "Adivine el número:\n> 50\nMuy alto\nAdivine el número:\n> 10\nMuy bajo\nAdivine el número:\n> 30\nCorrecto",
+      "pista": "El Si más externo revisa si acertó; si no, el Si interno decide qué pista mostrar.",
+      "codigoReferencia": "Proceso JuegoMayorMenor\n  Definir secreto, numero Como Entero\n\n  secreto = 30\n  Repetir\n    Escribir \"Adivine el número:\"\n    Leer numero\n    Si numero == secreto Entonces\n      Escribir \"Correcto\"\n    Sino\n      Si numero > secreto Entonces\n        Escribir \"Muy alto\"\n      Sino\n        Escribir \"Muy bajo\"\n      FinSi\n    FinSi\n  Hasta Que numero == secreto\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-034",
+      "origen": "json/EA 1.4.json #134",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-34",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registrar ventas diarias",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Según",
+        "Si-Entonces",
+        "Entero",
+        "Real",
+        "Ventas",
+        "Avanzado"
+      ],
+      "enunciado": "Registra ventas diarias pidiendo el día de la semana como número y el monto vendido. Usa Según para mostrar el nombre del día y Si-Entonces para clasificar si fue una \"buena venta\" cuando el monto sea mayor a 100000. Repite hasta ingresar 0 como día y al final muestra el día con mayor venta.",
+      "entradaProcesoSalida": {
+        "entrada": "dia (Entero)\nmonto, mayorVenta (Real)\nmejorDia (Caracter)",
+        "proceso": "Repetir\n   Leer dia\n   Si dia <> 0 Entonces\n      Leer monto\n      Según dia Hacer ... mostrar nombre día\n      Si monto > 100000 Entonces mostrar \"Buena venta\" SiNo mostrar \"Venta normal\" FinSi\n      Si monto > mayorVenta Entonces actualizar mayorVenta y mejorDia\n   FinSi\nHasta Que dia = 0",
+        "salida": "Clasificación de venta y día con mayor monto"
+      },
+      "salidaEsperada": "Día (1-7, 0 para terminar):\n> 3\nMonto vendido:\n> 150000\nMiércoles\nBuena venta\nDía (1-7, 0 para terminar):\n> 0\nDía con mayor venta: Miércoles\nMonto mayor: 150000",
+      "pista": "Conviene guardar tanto el monto máximo como el nombre del día asociado a ese máximo.",
+      "codigoReferencia": "Proceso RegistrarVentasDiarias\n  Definir dia Como Entero\n  Definir monto, mayorVenta Como Real\n  Definir nombreDia, mejorDia Como Caracter\n\n  mayorVenta = -1\n  mejorDia   = \"\"\n  Repetir\n    Escribir \"Día (1-7, 0 para terminar):\"\n    Leer dia\n    Si dia <> 0 Entonces\n      Escribir \"Monto vendido:\"\n      Leer monto\n      Segun dia Hacer\n        1: nombreDia = \"Lunes\"\n        2: nombreDia = \"Martes\"\n        3: nombreDia = \"Miércoles\"\n        4: nombreDia = \"Jueves\"\n        5: nombreDia = \"Viernes\"\n        6: nombreDia = \"Sábado\"\n        7: nombreDia = \"Domingo\"\n        De Otro Modo:\n          nombreDia = \"Día inválido\"\n      FinSegun\n      Escribir nombreDia\n      Si monto > 100000 Entonces\n        Escribir \"Buena venta\"\n      Sino\n        Escribir \"Venta normal\"\n      FinSi\n      Si monto > mayorVenta Entonces\n        mayorVenta = monto\n        mejorDia   = nombreDia\n      FinSi\n    FinSi\n  Hasta Que dia == 0\n  Escribir \"Día con mayor venta: \", mejorDia\n  Escribir \"Monto mayor: \", mayorVenta\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-035",
+      "origen": "json/EA 1.4.json #135",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-35",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Login con intentos",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Si anidado",
+        "Según",
+        "Caracter",
+        "Intentos",
+        "Login",
+        "Avanzado"
+      ],
+      "enunciado": "Crea un sistema de login que pida usuario y contraseña. Usa Si-Entonces anidado para validar los datos y Según para mostrar un mensaje distinto según si es el 1°, 2° o 3° intento. Repite hasta que el usuario acierte o agote los 3 intentos.",
+      "entradaProcesoSalida": {
+        "entrada": "usuario, clave (Caracter)\nintentos = 0",
+        "proceso": "Repetir\n   intentos ← intentos + 1\n   Leer usuario, clave\n   validar con Si anidado\n   Según intentos Hacer ... mostrar mensaje\nHasta Que acceso = verdadero O intentos = 3",
+        "salida": "Acceso concedido o bloqueado"
+      },
+      "salidaEsperada": "Usuario:\n> admin\nContraseña:\n> 123\nPrimer intento fallido\nUsuario:\n> admin\nContraseña:\n> duoc123\nAcceso concedido",
+      "pista": "Aquí la repetición depende de dos condiciones de salida: acertar o llegar al máximo de intentos.",
+      "codigoReferencia": "Proceso LoginConIntentos\n  Definir usuario, clave Como Caracter\n  Definir intentos Como Entero\n  Definir acceso Como Logico\n\n  intentos = 0\n  acceso   = Falso\n  Repetir\n    intentos = intentos + 1\n\n    Escribir \"Usuario:\"\n    Leer usuario\n    Escribir \"Contraseña:\"\n    Leer clave\n    Si usuario == \"admin\" Entonces\n      Si clave == \"duoc123\" Entonces\n        acceso = Verdadero\n\n        Escribir \"Acceso concedido\"\n      Sino\n        Segun intentos Hacer\n          1: Escribir \"Primer intento fallido\"\n          2: Escribir \"Segundo intento fallido\"\n          3: Escribir \"Tercer intento fallido\"\n        FinSegun\n      FinSi\n    Sino\n      Segun intentos Hacer\n        1: Escribir \"Primer intento fallido\"\n        2: Escribir \"Segundo intento fallido\"\n        3: Escribir \"Tercer intento fallido\"\n      FinSegun\n    FinSi\n  Hasta Que acceso == Verdadero O intentos == 3\n  Si acceso == Falso Entonces\n    Escribir \"Cuenta bloqueada\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-036",
+      "origen": "json/EA 1.4.json #136",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-36",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Calculadora de IMC",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Si-Entonces",
+        "Según",
+        "Real",
+        "IMC",
+        "Salud",
+        "Avanzado"
+      ],
+      "enunciado": "Pide el peso y la altura de una persona en un ciclo. Usa Si-Entonces para calcular el IMC solo si la altura es válida y luego usa Según para clasificarlo como bajo peso, normal, sobrepeso u obesidad. Repite hasta que el usuario indique que no desea continuar.",
+      "entradaProcesoSalida": {
+        "entrada": "peso, altura, imc (Real)\ncontinuar (Caracter)",
+        "proceso": "Repetir\n   Leer peso, altura\n   Si altura > 0 Entonces\n      imc ← peso / (altura^2)\n      Según Verdadero Hacer ... clasificar IMC\n   SiNo\n      mostrar error\n   FinSi\n   Leer continuar\nHasta Que continuar = \"no\"",
+        "salida": "IMC y clasificación"
+      },
+      "salidaEsperada": "Peso (kg):\n> 70\nAltura (m):\n> 1.75\nIMC: 22.8571\nClasificación: Normal\n¿Desea continuar? (si/no):\n> no",
+      "pista": "Según con Verdadero sirve para clasificar valores por rangos.",
+      "codigoReferencia": "Proceso CalculadoraIMC\n  Definir peso, altura, imc Como Real\n  Definir continuar, clasificacion Como Caracter\n\n  Repetir\n    Escribir \"Peso (kg):\"\n    Leer peso\n    Escribir \"Altura (m):\"\n    Leer altura\n    Si altura > 0 Entonces\n      imc = peso / (altura ^ 2)\n\n      Escribir \"IMC: \", imc\n      Si imc < 18.5 Entonces\n        clasificacion = \"Bajo peso\"\n      Sino\n        Si imc < 25 Entonces\n          clasificacion = \"Normal\"\n        Sino\n          Si imc < 30 Entonces\n            clasificacion = \"Sobrepeso\"\n          Sino\n            clasificacion = \"Obesidad\"\n          FinSi\n        FinSi\n      FinSi\n      Escribir \"Clasificación: \", clasificacion\n    Sino\n      Escribir \"Altura inválida\"\n    FinSi\n    Escribir \"¿Desea continuar? (si/no):\"\n    Leer continuar\n  Hasta Que continuar == \"no\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-037",
+      "origen": "json/EA 1.4.json #137",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-37",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Registrar notas de estudiantes",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Según",
+        "Si-Entonces",
+        "Caracter",
+        "Real",
+        "Notas",
+        "Estadísticas"
+      ],
+      "enunciado": "Pide el nombre y la nota de estudiantes. Usa Según para asignar una letra de calificación A, B, C, D o F y Si-Entonces para acumular cuántos están aprobados y reprobados. Repite hasta ingresar \"fin\" como nombre y luego muestra las estadísticas.",
+      "entradaProcesoSalida": {
+        "entrada": "nombre (Caracter)\nnota (Real)\naprobados, reprobados (Entero)",
+        "proceso": "Repetir\n   Leer nombre\n   Si nombre <> \"fin\" Entonces\n      Leer nota\n      Según Verdadero Hacer ... asignar letra\n      Si nota >= 4 Entonces aprobados++ SiNo reprobados++ FinSi\n   FinSi\nHasta Que nombre = \"fin\"",
+        "salida": "Letra de cada estudiante y totales"
+      },
+      "salidaEsperada": "Nombre del estudiante (fin para terminar):\n> Ana\nNota:\n> 5.8\nLetra: B\nNombre del estudiante (fin para terminar):\n> fin\nAprobados: 1\nReprobados: 0",
+      "pista": "La letra y la condición de aprobación son dos clasificaciones distintas del mismo dato.",
+      "codigoReferencia": "Proceso RegistrarNotasEstudiantes\n  Definir nombre, letra Como Caracter\n  Definir nota Como Real\n  Definir aprobados, reprobados Como Entero\n\n  aprobados  = 0\n  reprobados = 0\n  Repetir\n    Escribir \"Nombre del estudiante (fin para terminar):\"\n    Leer nombre\n    Si nombre <> \"fin\" Entonces\n      Escribir \"Nota:\"\n      Leer nota\n      Si nota >= 6.5 Entonces\n        letra = \"A\"\n      Sino\n        Si nota >= 5.5 Entonces\n          letra = \"B\"\n        Sino\n          Si nota >= 4.5 Entonces\n            letra = \"C\"\n          Sino\n            Si nota >= 4.0 Entonces\n              letra = \"D\"\n            Sino\n              letra = \"F\"\n            FinSi\n          FinSi\n        FinSi\n      FinSi\n      Escribir \"Letra: \", letra\n      Si nota >= 4 Entonces\n        aprobados = aprobados + 1\n      Sino\n        reprobados = reprobados + 1\n      FinSi\n    FinSi\n  Hasta Que nombre == \"fin\"\n  Escribir \"Aprobados: \", aprobados\n  Escribir \"Reprobados: \", reprobados\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-038",
+      "origen": "json/EA 1.4.json #138",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-38",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Sistema de turnos",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Según",
+        "Si anidado",
+        "Entero",
+        "Turnos",
+        "Atención",
+        "Avanzado"
+      ],
+      "enunciado": "Implementa un sistema de turnos que pida un número de turno entre 1 y 5 en cada vuelta. Usa Según para asignar la ventanilla correspondiente y Si-Entonces anidado para verificar si la ventanilla está disponible o si tiene tiempo de espera. Repite hasta ingresar 0 y al final muestra un resumen de atenciones.",
+      "entradaProcesoSalida": {
+        "entrada": "turno (Entero)\natendidos, enEspera (Entero)",
+        "proceso": "Repetir\n   Leer turno\n   Si turno <> 0 Entonces\n      Según turno Hacer ... asignar ventanilla\n      Si turno es válido Entonces\n         Si turno MOD 2 = 0 Entonces esperar SiNo disponible FinSi\n      FinSi\n   FinSi\nHasta Que turno = 0",
+        "salida": "Estado de cada turno y resumen"
+      },
+      "salidaEsperada": "Ingrese turno (1-5, 0 para terminar):\n> 2\nVentanilla asignada: B\nEstado: con tiempo de espera\nIngrese turno (1-5, 0 para terminar):\n> 1\nVentanilla asignada: A\nEstado: disponible\nIngrese turno (1-5, 0 para terminar):\n> 0\nAtendidos: 1\nEn espera: 1",
+      "pista": "Puedes modelar la disponibilidad con una regla simple, como usar la paridad del turno para decidir si espera o no.",
+      "codigoReferencia": "Proceso SistemaDeTurnos\n  Definir turno, atendidos, enEspera Como Entero\n  Definir ventanilla Como Caracter\n\n  atendidos = 0\n  enEspera  = 0\n  Repetir\n    Escribir \"Ingrese turno (1-5, 0 para terminar):\"\n    Leer turno\n    Si turno <> 0 Entonces\n      Segun turno Hacer\n        1: ventanilla = \"A\"\n        2: ventanilla = \"B\"\n        3: ventanilla = \"C\"\n        4: ventanilla = \"D\"\n        5: ventanilla = \"E\"\n        De Otro Modo:\n          ventanilla = \"INV\"\n      FinSegun\n      Si ventanilla <> \"INV\" Entonces\n        Escribir \"Ventanilla asignada: \", ventanilla\n        Si turno mod 2 == 0 Entonces\n          Escribir \"Estado: con tiempo de espera\"\n\n          enEspera = enEspera + 1\n        Sino\n          Escribir \"Estado: disponible\"\n\n          atendidos = atendidos + 1\n        FinSi\n      Sino\n        Escribir \"Turno inválido\"\n      FinSi\n    FinSi\n  Hasta Que turno == 0\n  Escribir \"Atendidos: \", atendidos\n  Escribir \"En espera: \", enEspera\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-039",
+      "origen": "json/EA 1.4.json #139",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-39",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Encuesta de satisfacción",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Según",
+        "Si anidado",
+        "Entero",
+        "Encuesta",
+        "Satisfacción",
+        "Avanzado"
+      ],
+      "enunciado": "Implementa una encuesta de satisfacción con calificaciones del 1 al 5. Usa Según para mostrar el texto descriptivo de cada puntaje y Si-Entonces anidado para acumular cuántos son satisfechos (4-5), insatisfechos (1-2) y neutros (3). Repite hasta ingresar 0.",
+      "entradaProcesoSalida": {
+        "entrada": "calificacion (Entero)\nsatisfechos, insatisfechos, neutros (Entero)",
+        "proceso": "Repetir\n   Leer calificacion\n   Si calificacion <> 0 Entonces\n      Según calificacion Hacer ... texto\n      Si calificacion >= 4 Entonces satisfechos++\n      SiNo\n         Si calificacion <= 2 Entonces insatisfechos++\n         SiNo neutros++\n         FinSi\n      FinSi\n   FinSi\nHasta Que calificacion = 0",
+        "salida": "Texto descriptivo y totales por grupo"
+      },
+      "salidaEsperada": "Calificación (1-5, 0 para terminar):\n> 5\nExcelente\nCalificación (1-5, 0 para terminar):\n> 2\nMala\nCalificación (1-5, 0 para terminar):\n> 0\nSatisfechos: 1\nInsatisfechos: 1\nNeutros: 0",
+      "pista": "Este ejercicio separa dos tareas: interpretar el puntaje y agruparlo en categorías generales.",
+      "codigoReferencia": "Proceso EncuestaSatisfaccion\n  Definir calificacion, satisfechos, insatisfechos, neutros Como Entero\n\n  satisfechos   = 0\n  insatisfechos = 0\n  neutros       = 0\n  Repetir\n    Escribir \"Calificación (1-5, 0 para terminar):\"\n    Leer calificacion\n    Si calificacion <> 0 Entonces\n      Segun calificacion Hacer\n        1: Escribir \"Muy mala\"\n        2: Escribir \"Mala\"\n        3: Escribir \"Regular\"\n        4: Escribir \"Buena\"\n        5: Escribir \"Excelente\"\n        De Otro Modo:\n          Escribir \"Valor inválido\"\n      FinSegun\n      Si calificacion >= 4 Entonces\n        satisfechos = satisfechos + 1\n      Sino\n        Si calificacion <= 2 Entonces\n          insatisfechos = insatisfechos + 1\n        Sino\n          neutros = neutros + 1\n        FinSi\n      FinSi\n    FinSi\n  Hasta Que calificacion == 0\n  Escribir \"Satisfechos: \", satisfechos\n  Escribir \"Insatisfechos: \", insatisfechos\n  Escribir \"Neutros: \", neutros\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-040",
+      "origen": "json/EA 1.4.json #140",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-40",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Mini ERP de inventario",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Según",
+        "Si anidado",
+        "Entero",
+        "Inventario",
+        "Stock",
+        "Avanzado"
+      ],
+      "enunciado": "Implementa un mini ERP de inventario que pida una acción: 1 agregar, 2 vender, 3 consultar stock y 4 salir. Usa Según para ejecutar la acción y Si-Entonces anidado para validar que no se ingresen cantidades inválidas y que no se produzca stock negativo.",
+      "entradaProcesoSalida": {
+        "entrada": "accion (Entero)\ncantidad, stock (Entero)",
+        "proceso": "Repetir\n   Leer accion\n   Según accion Hacer\n      1: leer cantidad; validar positiva; stock ← stock + cantidad\n      2: leer cantidad; validar positiva; si cantidad <= stock entonces stock ← stock - cantidad si no error\n      3: mostrar stock\n      4: salir\n      De Otro Modo: error\n   FinSegún\nHasta Que accion = 4",
+        "salida": "Operaciones sobre stock"
+      },
+      "salidaEsperada": "Acción (1 agregar, 2 vender, 3 consultar, 4 salir):\n> 1\nCantidad a agregar:\n> 10\nStock actualizado: 10\nAcción (1 agregar, 2 vender, 3 consultar, 4 salir):\n> 2\nCantidad a vender:\n> 4\nStock actualizado: 6\nAcción (1 agregar, 2 vender, 3 consultar, 4 salir):\n> 4",
+      "pista": "La validación de cantidades y la verificación de stock deben hacerse antes de modificar el inventario.",
+      "codigoReferencia": "Proceso MiniERPInventario\n  Definir accion, cantidad, stock Como Entero\n\n  stock = 0\n  Repetir\n    Escribir \"Acción (1 agregar, 2 vender, 3 consultar, 4 salir):\"\n    Leer accion\n    Segun accion Hacer\n      1:\n        Escribir \"Cantidad a agregar:\"\n        Leer cantidad\n        Si cantidad > 0 Entonces\n          stock = stock + cantidad\n\n          Escribir \"Stock actualizado: \", stock\n        Sino\n          Escribir \"Cantidad inválida\"\n        FinSi\n      2:\n        Escribir \"Cantidad a vender:\"\n        Leer cantidad\n        Si cantidad > 0 Entonces\n          Si cantidad <= stock Entonces\n            stock = stock - cantidad\n\n            Escribir \"Stock actualizado: \", stock\n          Sino\n            Escribir \"No hay stock suficiente\"\n          FinSi\n        Sino\n          Escribir \"Cantidad inválida\"\n        FinSi\n      3:\n        Escribir \"Stock actual: \", stock\n      4:\n        Escribir \"Saliendo del sistema\"\n      De Otro Modo:\n        Escribir \"Acción inválida\"\n    FinSegun\n  Hasta Que accion == 4\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-041",
+      "origen": "json/EA 1.4.json #141",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-41",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Números del 1 al N",
+      "conceptos": [
+        "Para",
+        "Leer",
+        "Entero",
+        "Contador",
+        "Básico"
+      ],
+      "enunciado": "Lee un número entero N y muestra los números desde 1 hasta N usando un ciclo Para con incremento de 1.",
+      "entradaProcesoSalida": {
+        "entrada": "N (Entero)\ni (Entero)",
+        "proceso": "Leer N\nPara i ← 1 Hasta N Con Paso 1 Hacer\n   mostrar i\nFinPara",
+        "salida": "Números del 1 al N"
+      },
+      "salidaEsperada": "Ingrese N:\n> 5\n1\n2\n3\n4\n5",
+      "pista": "El ciclo Para es ideal cuando conoces desde el inicio cuántas veces debe repetirse un proceso.",
+      "codigoReferencia": "Proceso NumerosDelUnoAlN\n  Definir N, i Como Entero\n\n  Escribir \"Ingrese N:\"\n  Leer N\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    Escribir i\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-042",
+      "origen": "json/EA 1.4.json #142",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-42",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Suma entre A y B",
+      "conceptos": [
+        "Para",
+        "Leer",
+        "Entero",
+        "Acumulador",
+        "Suma"
+      ],
+      "enunciado": "Lee dos números enteros A y B y calcula la suma de todos los números comprendidos entre ellos, usando un ciclo Para desde A hasta B.",
+      "entradaProcesoSalida": {
+        "entrada": "A, B (Entero)\ni, suma (Entero)",
+        "proceso": "Leer A, B\nsuma ← 0\nPara i ← A Hasta B Con Paso 1 Hacer\n   suma ← suma + i\nFinPara",
+        "salida": "Suma total entre A y B"
+      },
+      "salidaEsperada": "Ingrese A:\n> 3\nIngrese B:\n> 6\nSuma total: 18",
+      "pista": "Cuando se quiere sumar una secuencia de valores, suele usarse un acumulador inicializado en 0.",
+      "codigoReferencia": "Proceso SumaEntreAyB\n  Definir A, B, i, suma Como Entero\n\n  Escribir \"Ingrese A:\"\n  Leer A\n  Escribir \"Ingrese B:\"\n  Leer B\n\n  suma = 0\n  Para i = A Hasta B Con Paso 1 Hacer\n    suma = suma + i\n  FinPara\n  Escribir \"Suma total: \", suma\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-043",
+      "origen": "json/EA 1.4.json #143",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-43",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Tabla de multiplicar del 1 al 10",
+      "conceptos": [
+        "Para",
+        "Leer",
+        "Entero",
+        "Multiplicación",
+        "Tabla"
+      ],
+      "enunciado": "Lee un número entero y muestra su tabla de multiplicar del 1 al 10 usando un ciclo Para que recorra los valores desde 1 hasta 10.",
+      "entradaProcesoSalida": {
+        "entrada": "numero, i, resultado (Entero)",
+        "proceso": "Leer numero\nPara i ← 1 Hasta 10 Con Paso 1 Hacer\n   resultado ← numero * i\n   mostrar numero, \" x \", i, \" = \", resultado\nFinPara",
+        "salida": "Tabla de multiplicar"
+      },
+      "salidaEsperada": "Ingrese un número:\n> 3\n3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15\n3 x 6 = 18\n3 x 7 = 21\n3 x 8 = 24\n3 x 9 = 27\n3 x 10 = 30",
+      "pista": "El ciclo Para permite recorrer exactamente los 10 valores que necesita la tabla.",
+      "codigoReferencia": "Proceso TablaMultiplicarPara\n  Definir numero, i, resultado Como Entero\n\n  Escribir \"Ingrese un número:\"\n  Leer numero\n  Para i = 1 Hasta 10 Con Paso 1 Hacer\n    resultado = numero * i\n\n    Escribir numero, \" x \", i, \" = \", resultado\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-044",
+      "origen": "json/EA 1.4.json #144",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-44",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Potencia iterativa",
+      "conceptos": [
+        "Para",
+        "Leer",
+        "Entero",
+        "Potencia",
+        "Acumulador"
+      ],
+      "enunciado": "Lee una base y un exponente, ambos enteros, y calcula la potencia usando un ciclo Para que multiplique la base de forma iterativa tantas veces como indique el exponente.",
+      "entradaProcesoSalida": {
+        "entrada": "base, exponente, i, potencia (Entero)",
+        "proceso": "Leer base, exponente\npotencia ← 1\nPara i ← 1 Hasta exponente Con Paso 1 Hacer\n   potencia ← potencia * base\nFinPara",
+        "salida": "Resultado de la potencia"
+      },
+      "salidaEsperada": "Ingrese base:\n> 2\nIngrese exponente:\n> 5\nPotencia: 32",
+      "pista": "El acumulador debe comenzar en 1, porque 1 es el elemento neutro de la multiplicación.",
+      "codigoReferencia": "Proceso PotenciaIterativa\n  Definir base, exponente, i, potencia Como Entero\n\n  Escribir \"Ingrese base:\"\n  Leer base\n  Escribir \"Ingrese exponente:\"\n  Leer exponente\n\n  potencia = 1\n  Para i = 1 Hasta exponente Con Paso 1 Hacer\n    potencia = potencia * base\n  FinPara\n  Escribir \"Potencia: \", potencia\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-045",
+      "origen": "json/EA 1.4.json #145",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-45",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Triángulo de asteriscos",
+      "conceptos": [
+        "Para",
+        "Anidado",
+        "Entero",
+        "Patrones",
+        "Asteriscos"
+      ],
+      "enunciado": "Muestra un triángulo de asteriscos donde la primera fila tenga 1, la segunda 2, y así sucesivamente hasta completar N filas. Usa ciclos Para anidados.",
+      "entradaProcesoSalida": {
+        "entrada": "N, i, j (Entero)\nlinea (Caracter)",
+        "proceso": "Leer N\nPara i ← 1 Hasta N Hacer\n   linea ← \"\"\n   Para j ← 1 Hasta i Hacer\n      linea ← linea + \"*\"\n   FinPara\n   mostrar linea\nFinPara",
+        "salida": "Triángulo de asteriscos"
+      },
+      "salidaEsperada": "Ingrese cantidad de filas:\n> 4\n*\n**\n***\n****",
+      "pista": "El ciclo externo controla las filas y el interno la cantidad de asteriscos de cada fila.",
+      "codigoReferencia": "Proceso TrianguloAsteriscos\n  Definir N, i, j Como Entero\n  Definir linea Como Caracter\n\n  Escribir \"Ingrese cantidad de filas:\"\n  Leer N\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    linea = \"\"\n    Para j = 1 Hasta i Con Paso 1 Hacer\n      linea = linea + \"*\"\n    FinPara\n    Escribir linea\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-046",
+      "origen": "json/EA 1.4.json #146",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-46",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Promedio de N notas",
+      "conceptos": [
+        "Para",
+        "Leer",
+        "Real",
+        "Promedio",
+        "Acumulador"
+      ],
+      "enunciado": "Lee una cantidad N de notas y luego pide esas N notas una a una. Usa un ciclo Para para recorrerlas, acumular sus valores y finalmente calcular el promedio.",
+      "entradaProcesoSalida": {
+        "entrada": "N (Entero)\nnota, suma, promedio (Real)\ni (Entero)",
+        "proceso": "Leer N\nsuma ← 0\nPara i ← 1 Hasta N Hacer\n   Leer nota\n   suma ← suma + nota\nFinPara\npromedio ← suma / N",
+        "salida": "Promedio de notas"
+      },
+      "salidaEsperada": "Ingrese cantidad de notas:\n> 3\nIngrese nota 1:\n> 5.0\nIngrese nota 2:\n> 4.5\nIngrese nota 3:\n> 6.0\nPromedio: 5.16667",
+      "pista": "Después de acumular todas las notas, el promedio se obtiene dividiendo la suma por la cantidad.",
+      "codigoReferencia": "Proceso PromedioDeNNotas\n  Definir N, i Como Entero\n  Definir nota, suma, promedio Como Real\n\n  Escribir \"Ingrese cantidad de notas:\"\n  Leer N\n\n  suma = 0\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese nota \", i, \":\"\n    Leer nota\n\n    suma = suma + nota\n  FinPara\n  promedio = suma / N\n\n  Escribir \"Promedio: \", promedio\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-047",
+      "origen": "json/EA 1.4.json #147",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-47",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Múltiplos de K entre 1 y 100",
+      "conceptos": [
+        "Para",
+        "Leer",
+        "Entero",
+        "Múltiplos",
+        "Paso"
+      ],
+      "enunciado": "Lee un número entero K y muestra todos sus múltiplos entre 1 y 100 usando un ciclo Para con paso K, es decir, recorriendo desde K hasta 100.",
+      "entradaProcesoSalida": {
+        "entrada": "K, i (Entero)",
+        "proceso": "Leer K\nPara i ← K Hasta 100 Con Paso K Hacer\n   mostrar i\nFinPara",
+        "salida": "Múltiplos de K entre 1 y 100"
+      },
+      "salidaEsperada": "Ingrese K:\n> 20\n20\n40\n60\n80\n100",
+      "pista": "Modificar el paso del ciclo permite avanzar directamente entre múltiplos, sin revisar todos los números.",
+      "codigoReferencia": "Proceso MultiplosDeK\n  Definir K, i Como Entero\n\n  Escribir \"Ingrese K:\"\n  Leer K\n  Para i = K Hasta 100 Con Paso K Hacer\n    Escribir i\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-048",
+      "origen": "json/EA 1.4.json #148",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-48",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Números primos del 1 al 100",
+      "conceptos": [
+        "Para",
+        "Si-Entonces",
+        "Entero",
+        "Primos",
+        "Divisores",
+        "Intermedio"
+      ],
+      "enunciado": "Recorre los números del 1 al 100 usando un ciclo Para y utiliza Si-Entonces para imprimir únicamente aquellos que sean primos.",
+      "entradaProcesoSalida": {
+        "entrada": "i, j, divisores (Entero)",
+        "proceso": "Para i ← 1 Hasta 100 Hacer\n   divisores ← 0\n   Para j ← 1 Hasta i Hacer\n      Si i MOD j = 0 Entonces\n         divisores ← divisores + 1\n      FinSi\n   FinPara\n   Si divisores = 2 Entonces\n      mostrar i\n   FinSi\nFinPara",
+        "salida": "Números primos entre 1 y 100"
+      },
+      "salidaEsperada": "2\n3\n5\n7\n11\n13",
+      "pista": "Un número primo tiene exactamente dos divisores: 1 y él mismo.",
+      "codigoReferencia": "Proceso PrimosDelUnoAlCien\n  Definir i, j, divisores Como Entero\n\n  Para i = 1 Hasta 100 Con Paso 1 Hacer\n    divisores = 0\n    Para j = 1 Hasta i Con Paso 1 Hacer\n      Si i mod j == 0 Entonces\n        divisores = divisores + 1\n      FinSi\n    FinPara\n    Si divisores == 2 Entonces\n      Escribir i\n    FinSi\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-049",
+      "origen": "json/EA 1.4.json #149",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-49",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Clasificar N calificaciones",
+      "conceptos": [
+        "Para",
+        "Si-Entonces",
+        "Real",
+        "Calificaciones",
+        "Porcentaje",
+        "Intermedio"
+      ],
+      "enunciado": "Pide N calificaciones usando un ciclo Para. Usa Si-Entonces para clasificar cada una como aprobado o reprobado, contabilizarlas y mostrar al final el porcentaje de aprobación.",
+      "entradaProcesoSalida": {
+        "entrada": "N (Entero)\nnota, porcentaje (Real)\ni, aprobados, reprobados (Entero)",
+        "proceso": "Leer N\naprobados ← 0\nreprobados ← 0\nPara i ← 1 Hasta N Hacer\n   Leer nota\n   Si nota >= 4 Entonces\n      aprobados ← aprobados + 1\n   SiNo\n      reprobados ← reprobados + 1\n   FinSi\nFinPara\nporcentaje ← aprobados * 100 / N",
+        "salida": "Cantidad de aprobados, reprobados y porcentaje"
+      },
+      "salidaEsperada": "Cantidad de calificaciones:\n> 4\nIngrese calificación 1:\n> 5.0\nAprobado\nIngrese calificación 2:\n> 3.5\nReprobado\nAprobados: 1\nReprobados: 1\nPorcentaje de aprobación: 25",
+      "pista": "El porcentaje de aprobación se calcula con la proporción de aprobados respecto del total.",
+      "codigoReferencia": "Proceso ClasificarNCalificaciones\n  Definir N, i, aprobados, reprobados Como Entero\n  Definir nota, porcentaje Como Real\n\n  Escribir \"Cantidad de calificaciones:\"\n  Leer N\n\n  aprobados  = 0\n  reprobados = 0\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese calificación \", i, \":\"\n    Leer nota\n    Si nota >= 4 Entonces\n      Escribir \"Aprobado\"\n\n      aprobados = aprobados + 1\n    Sino\n      Escribir \"Reprobado\"\n\n      reprobados = reprobados + 1\n    FinSi\n  FinPara\n  porcentaje = aprobados * 100 / N\n\n  Escribir \"Aprobados: \", aprobados\n  Escribir \"Reprobados: \", reprobados\n  Escribir \"Porcentaje de aprobación: \", porcentaje\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-050",
+      "origen": "json/EA 1.4.json #150",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-50",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Conversión de temperatura de 0°C a N°C",
+      "conceptos": [
+        "Para",
+        "Si anidado",
+        "Real",
+        "Temperatura",
+        "Conversión",
+        "Intermedio"
+      ],
+      "enunciado": "Genera una tabla de conversión de temperatura desde 0°C hasta N°C usando un ciclo Para. Para cada valor, calcula su equivalencia en Fahrenheit y usa Si-Entonces anidado para categorizarlo como frío, templado o caluroso.",
+      "entradaProcesoSalida": {
+        "entrada": "N, celsius (Entero)\nfahrenheit (Real)",
+        "proceso": "Leer N\nPara celsius ← 0 Hasta N Hacer\n   fahrenheit ← celsius * 9 / 5 + 32\n   Si celsius < 15 Entonces\n      mostrar \"Frío\"\n   SiNo\n      Si celsius < 25 Entonces\n         mostrar \"Templado\"\n      SiNo\n         mostrar \"Caluroso\"\n      FinSi\n   FinSi\nFinPara",
+        "salida": "Tabla Celsius-Fahrenheit con categoría"
+      },
+      "salidaEsperada": "Ingrese temperatura máxima en °C:\n> 3\n0 °C = 32 °F - Frío\n1 °C = 33.8 °F - Frío\n2 °C = 35.6 °F - Frío\n3 °C = 37.4 °F - Frío",
+      "pista": "La clasificación se basa en °C, mientras que Fahrenheit se calcula solo para mostrar la conversión.",
+      "codigoReferencia": "Proceso ConversionTemperatura\n  Definir N, celsius Como Entero\n  Definir fahrenheit Como Real\n\n  Escribir \"Ingrese temperatura máxima en °C:\"\n  Leer N\n  Para celsius = 0 Hasta N Con Paso 1 Hacer\n    fahrenheit = celsius * 9 / 5 + 32\n    Si celsius < 15 Entonces\n      Escribir celsius, \" °C = \", fahrenheit, \" °F - Frío\"\n    Sino\n      Si celsius < 25 Entonces\n        Escribir celsius, \" °C = \", fahrenheit, \" °F - Templado\"\n      Sino\n        Escribir celsius, \" °C = \", fahrenheit, \" °F - Caluroso\"\n      FinSi\n    FinSi\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-051",
+      "origen": "json/EA 1.4.json #151",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-51",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Divisores y números perfectos del 1 al 20",
+      "conceptos": [
+        "Para",
+        "Si-Entonces",
+        "Entero",
+        "Divisores",
+        "Perfectos",
+        "Intermedio"
+      ],
+      "enunciado": "Usa un ciclo Para para recorrer los números del 1 al 20. Para cada número, imprime sus divisores y utiliza Si-Entonces para indicar si se trata de un número perfecto, es decir, si la suma de sus divisores propios es igual al número.",
+      "entradaProcesoSalida": {
+        "entrada": "i, j, suma (Entero)",
+        "proceso": "Para i ← 1 Hasta 20 Hacer\n   suma ← 0\n   Para j ← 1 Hasta i - 1 Hacer\n      Si i MOD j = 0 Entonces\n         mostrar j\n         suma ← suma + j\n      FinSi\n   FinPara\n   Si suma = i Entonces\n      mostrar \"Perfecto\"\n   SiNo\n      mostrar \"No perfecto\"\n   FinSi\nFinPara",
+        "salida": "Divisores y clasificación de cada número"
+      },
+      "salidaEsperada": "Número: 6\nDivisores propios: 1 2 3\nPerfecto",
+      "pista": "Los divisores propios de un número son todos sus divisores positivos menores que él mismo.",
+      "codigoReferencia": "Proceso DivisoresYPerfectos\n  Definir i, j, suma Como Entero\n  Definir linea Como Caracter\n\n  Para i = 1 Hasta 20 Con Paso 1 Hacer\n    suma  = 0\n    linea = \"\"\n    Para j = 1 Hasta i - 1 Con Paso 1 Hacer\n      Si i mod j == 0 Entonces\n        linea = linea + j + \" \"\n        suma  = suma + j\n      FinSi\n    FinPara\n    Escribir \"Número: \", i\n    Escribir \"Divisores propios: \", linea\n    Si suma == i Entonces\n      Escribir \"Perfecto\"\n    Sino\n      Escribir \"No perfecto\"\n    FinSi\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-052",
+      "origen": "json/EA 1.4.json #152",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-52",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Sueldo líquido de N trabajadores",
+      "conceptos": [
+        "Para",
+        "Si-Entonces",
+        "Real",
+        "Sueldos",
+        "Descuento",
+        "Intermedio"
+      ],
+      "enunciado": "Pide los N sueldos de trabajadores usando un ciclo Para. Usa Si-Entonces para determinar si cada uno tiene descuento cuando supera un cierto umbral y muestra el sueldo líquido de cada trabajador.",
+      "entradaProcesoSalida": {
+        "entrada": "N (Entero)\nsueldo, liquido (Real)\ni (Entero)",
+        "proceso": "Leer N\nPara i ← 1 Hasta N Hacer\n   Leer sueldo\n   Si sueldo > 1000000 Entonces\n      liquido ← sueldo - sueldo * 0.10\n   SiNo\n      liquido ← sueldo\n   FinSi\n   mostrar liquido\nFinPara",
+        "salida": "Sueldo líquido de cada trabajador"
+      },
+      "salidaEsperada": "Cantidad de trabajadores:\n> 2\nIngrese sueldo trabajador 1:\n> 1200000\nSueldo líquido: 1080000\nIngrese sueldo trabajador 2:\n> 800000\nSueldo líquido: 800000",
+      "pista": "El sueldo líquido depende de si el valor supera o no el umbral definido para el descuento.",
+      "codigoReferencia": "Proceso SueldoLiquidoTrabajadores\n  Definir N, i Como Entero\n  Definir sueldo, liquido Como Real\n\n  Escribir \"Cantidad de trabajadores:\"\n  Leer N\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese sueldo trabajador \", i, \":\"\n    Leer sueldo\n    Si sueldo > 1000000 Entonces\n      liquido = sueldo - sueldo * 0.10\n    Sino\n      liquido = sueldo\n    FinSi\n    Escribir \"Sueldo líquido: \", liquido\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-053",
+      "origen": "json/EA 1.4.json #153",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-53",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Triángulo de Pascal",
+      "conceptos": [
+        "Para",
+        "Anidado",
+        "Si-Entonces",
+        "Entero",
+        "Pascal",
+        "Intermedio"
+      ],
+      "enunciado": "Genera las primeras N filas del triángulo de Pascal usando ciclos Para anidados. Usa Si-Entonces para manejar los extremos de cada fila, donde el valor siempre es 1.",
+      "entradaProcesoSalida": {
+        "entrada": "N, i, j (Entero)",
+        "proceso": "Leer N\nPara i ← 0 Hasta N-1 Hacer\n   Para j ← 0 Hasta i Hacer\n      Si j = 0 O j = i Entonces\n         valor ← 1\n      SiNo\n         valor ← combinacion calculada\n      FinSi\n      mostrar valor\n   FinPara\nFinPara",
+        "salida": "Filas del triángulo de Pascal"
+      },
+      "salidaEsperada": "Ingrese cantidad de filas:\n> 5\n1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1",
+      "pista": "Los extremos de cada fila del triángulo de Pascal siempre valen 1; el resto se puede calcular con combinaciones.",
+      "codigoReferencia": "Proceso TrianguloDePascal\n  Definir N, i, j, k, valor Como Entero\n  Definir linea Como Caracter\n\n  Escribir \"Ingrese cantidad de filas:\"\n  Leer N\n  Para i = 0 Hasta N - 1 Con Paso 1 Hacer\n    linea = \"\"\n    Para j = 0 Hasta i Con Paso 1 Hacer\n      Si j == 0 O j == i Entonces\n        valor = 1\n      Sino\n        valor = 1\n        Para k = 1 Hasta j Con Paso 1 Hacer\n          valor = valor * (i - k + 1) / k\n        FinPara\n      FinSi\n      linea = linea + valor + \" \"\n    FinPara\n    Escribir linea\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-054",
+      "origen": "json/EA 1.4.json #154",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-54",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Informe de notas de 5 estudiantes",
+      "conceptos": [
+        "Para",
+        "Anidado",
+        "Según",
+        "Si-Entonces",
+        "Notas",
+        "Informe",
+        "Avanzado"
+      ],
+      "enunciado": "Procesa las notas de 5 estudiantes usando un Para externo para los estudiantes y un Para interno para sus 4 asignaturas. Usa Según para asignar un concepto MB, B, S o I a cada nota y Si-Entonces para determinar si el estudiante reprueba alguna asignatura. Al final, muestra un informe final por estudiante.",
+      "entradaProcesoSalida": {
+        "entrada": "i, j, notaEntera (Entero)\nnota (Real)\nnombre, concepto (Caracter)",
+        "proceso": "Para i ← 1 Hasta 5 Hacer\n   Leer nombre\n   repruebaAlguna ← Falso\n   Para j ← 1 Hasta 4 Hacer\n      Leer nota\n      Según Trunc(nota) Hacer ... asignar concepto\n      Si nota < 4 Entonces repruebaAlguna ← Verdadero FinSi\n      mostrar concepto\n   FinPara\n   Si repruebaAlguna Entonces mostrar \"Reprueba alguna asignatura\" SiNo mostrar \"Aprueba todas\" FinSi\nFinPara",
+        "salida": "Informe final por estudiante"
+      },
+      "salidaEsperada": "Estudiante 1 - Nombre:\n> Ana\nNota asignatura 1:\n> 5.5\nConcepto: B\nInforme final: Aprueba todas",
+      "pista": "Puedes usar un indicador lógico para recordar si el estudiante reprobó al menos una asignatura.",
+      "codigoReferencia": "Proceso InformeNotasEstudiantes\n  Definir i, j, notaEntera Como Entero\n  Definir nota Como Real\n  Definir nombre, concepto Como Caracter\n  Definir repruebaAlguna Como Logico\n\n  Para i = 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Estudiante \", i, \" - Nombre:\"\n    Leer nombre\n\n    repruebaAlguna = Falso\n    Para j = 1 Hasta 4 Con Paso 1 Hacer\n      Escribir \"Nota asignatura \", j, \":\"\n      Leer nota\n\n      notaEntera = Trunc(nota)\n      Segun notaEntera Hacer\n        6, 7: concepto = \"MB\"\n        5: concepto = \"B\"\n        4: concepto = \"S\"\n        De Otro Modo:\n          concepto = \"I\"\n      FinSegun\n      Escribir \"Concepto: \", concepto\n      Si nota < 4 Entonces\n        repruebaAlguna = Verdadero\n      FinSi\n    FinPara\n    Si repruebaAlguna == Verdadero Entonces\n      Escribir \"Informe final: Reprueba alguna asignatura\"\n    Sino\n      Escribir \"Informe final: Aprueba todas\"\n    FinSi\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-055",
+      "origen": "json/EA 1.4.json #155",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-55",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Costo de estacionamiento",
+      "conceptos": [
+        "Para",
+        "Según",
+        "Si-Entonces",
+        "Real",
+        "Estacionamiento",
+        "Descuento",
+        "Avanzado"
+      ],
+      "enunciado": "Calcula el costo de estacionamiento para N autos. Debes pedir las horas de permanencia, usar Según para aplicar una tarifa según el tramo horario 1-2h, 3-5h o 6+ h, y luego usar Si-Entonces para aplicar descuento a clientes frecuentes.",
+      "entradaProcesoSalida": {
+        "entrada": "N, i, tramo (Entero)\nhoras, costo (Real)\nfrecuente (Caracter)",
+        "proceso": "Leer N\nPara i ← 1 Hasta N Hacer\n   Leer horas\n   determinar tramo\n   Según tramo Hacer ... asignar costo\n   Leer frecuente\n   Si frecuente = \"si\" Entonces aplicar descuento FinSi\n   mostrar costo final\nFinPara",
+        "salida": "Costo final por auto"
+      },
+      "salidaEsperada": "Cantidad de autos:\n> 1\nHoras de permanencia del auto 1:\n> 4\n¿Cliente frecuente? (si/no):\n> si\nCosto final: 3600",
+      "pista": "Puedes usar un paso previo con Si para traducir las horas a un tramo y luego resolver la tarifa con Según.",
+      "codigoReferencia": "Proceso CostoEstacionamiento\n  Definir N, i, tramo Como Entero\n  Definir horas, costo Como Real\n  Definir frecuente Como Caracter\n\n  Escribir \"Cantidad de autos:\"\n  Leer N\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Horas de permanencia del auto \", i, \":\"\n    Leer horas\n    Si horas <= 2 Entonces\n      tramo = 1\n    Sino\n      Si horas <= 5 Entonces\n        tramo = 2\n      Sino\n        tramo = 3\n      FinSi\n    FinSi\n    Segun tramo Hacer\n      1: costo = horas * 1000\n      2: costo = horas * 1000\n      3: costo = horas * 800\n    FinSegun\n    Escribir \"¿Cliente frecuente? (si/no):\"\n    Leer frecuente\n    Si frecuente == \"si\" Entonces\n      costo = costo - costo * 0.10\n    FinSi\n    Escribir \"Costo final: \", costo\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-056",
+      "origen": "json/EA 1.4.json #156",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-56",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Tabla de amortización",
+      "conceptos": [
+        "Para",
+        "Según",
+        "Si anidado",
+        "Real",
+        "Préstamo",
+        "Amortización",
+        "Avanzado"
+      ],
+      "enunciado": "Crea una tabla de amortización de un préstamo en N cuotas. Usa un ciclo Para, Según para categorizar cada cuota como inicio, medio o final del crédito, y Si-Entonces anidado para alertar si el saldo restante supera cierto umbral.",
+      "entradaProcesoSalida": {
+        "entrada": "monto, cuota, saldo, umbral (Real)\nN, i, categoria (Entero)",
+        "proceso": "Leer monto, N, umbral\ncuota ← monto / N\nsaldo ← monto\nPara i ← 1 Hasta N Hacer\n   saldo ← saldo - cuota\n   determinar categoria con Si\n   Según categoria Hacer ... mostrar inicio/medio/final\n   Si saldo > umbral Entonces mostrar alerta FinSi\nFinPara",
+        "salida": "Tabla de cuotas"
+      },
+      "salidaEsperada": "Monto del préstamo:\n> 120000\nNúmero de cuotas:\n> 4\nUmbral de alerta:\n> 50000\nCuota 1 - Inicio - Saldo restante: 90000\nAlerta: saldo restante alto",
+      "pista": "Puedes definir la categoría de la cuota según su posición dentro del crédito.",
+      "codigoReferencia": "Proceso TablaAmortizacion\n  Definir monto, cuota, saldo, umbral Como Real\n  Definir N, i, categoria Como Entero\n\n  Escribir \"Monto del préstamo:\"\n  Leer monto\n  Escribir \"Número de cuotas:\"\n  Leer N\n  Escribir \"Umbral de alerta:\"\n  Leer umbral\n\n  cuota = monto / N\n  saldo = monto\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    saldo = saldo - cuota\n    Si i == 1 Entonces\n      categoria = 1\n    Sino\n      Si i == N Entonces\n        categoria = 3\n      Sino\n        categoria = 2\n      FinSi\n    FinSi\n    Segun categoria Hacer\n      1: Escribir \"Cuota \", i, \" - Inicio - Saldo restante: \", saldo\n      2: Escribir \"Cuota \", i, \" - Medio - Saldo restante: \", saldo\n      3: Escribir \"Cuota \", i, \" - Final - Saldo restante: \", saldo\n    FinSegun\n    Si saldo > umbral Entonces\n      Escribir \"Alerta: saldo restante alto\"\n    FinSi\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-057",
+      "origen": "json/EA 1.4.json #157",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-57",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Torneo deportivo por rondas",
+      "conceptos": [
+        "Para",
+        "Según",
+        "Si anidado",
+        "Entero",
+        "Torneo",
+        "Puntos",
+        "Avanzado"
+      ],
+      "enunciado": "Simula N rondas de un torneo deportivo. En cada ronda pide el marcador del equipo local y del equipo visita. Usa Según para determinar el resultado victoria local, empate o victoria visita, y Si-Entonces anidado para acumular puntos y detectar si algún equipo ya aseguró el campeonato.",
+      "entradaProcesoSalida": {
+        "entrada": "N, ronda, local, visita, estado (Entero)\npuntosLocal, puntosVisita (Entero)",
+        "proceso": "Leer N\nPara ronda ← 1 Hasta N Hacer\n   Leer local, visita\n   determinar estado con Si\n   Según estado Hacer ... asignar puntos\n   Si puntosLocal >= meta O puntosVisita >= meta Entonces mostrar campeonato asegurado FinSi\nFinPara",
+        "salida": "Resultados y acumulación de puntos"
+      },
+      "salidaEsperada": "Cantidad de rondas:\n> 2\nMarcador local ronda 1:\n> 2\nMarcador visita ronda 1:\n> 1\nResultado: Victoria local",
+      "pista": "Puedes usar una codificación intermedia para el resultado y luego resolverla con Según.",
+      "codigoReferencia": "Proceso TorneoDeportivo\n  Definir N, ronda, local, visita, estado Como Entero\n  Definir puntosLocal, puntosVisita Como Entero\n\n  puntosLocal  = 0\n  puntosVisita = 0\n\n  Escribir \"Cantidad de rondas:\"\n  Leer N\n  Para ronda = 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Marcador local ronda \", ronda, \":\"\n    Leer local\n    Escribir \"Marcador visita ronda \", ronda, \":\"\n    Leer visita\n    Si local > visita Entonces\n      estado = 1\n    Sino\n      Si local == visita Entonces\n        estado = 2\n      Sino\n        estado = 3\n      FinSi\n    FinSi\n    Segun estado Hacer\n      1:\n        Escribir \"Resultado: Victoria local\"\n\n        puntosLocal = puntosLocal + 3\n\n      2:\n        Escribir \"Resultado: Empate\"\n\n        puntosLocal  = puntosLocal + 1\n        puntosVisita = puntosVisita + 1\n\n      3:\n        Escribir \"Resultado: Victoria visita\"\n\n        puntosVisita = puntosVisita + 3\n    FinSegun\n    Si puntosLocal >= 9 O puntosVisita >= 9 Entonces\n      Escribir \"Algún equipo aseguró el campeonato\"\n    FinSi\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-058",
+      "origen": "json/EA 1.4.json #158",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-58",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Transacciones bancarias",
+      "conceptos": [
+        "Para",
+        "Según",
+        "Si anidado",
+        "Real",
+        "Banco",
+        "Transacciones",
+        "Avanzado"
+      ],
+      "enunciado": "Analiza N transacciones bancarias con un ciclo Para. Usa Según para clasificar el tipo de transacción: depósito, retiro, transferencia o pago de servicio. Luego, con Si-Entonces anidado, valida el saldo disponible y aplica comisiones según el tipo de operación.",
+      "entradaProcesoSalida": {
+        "entrada": "N, i, tipo (Entero)\nmonto, saldo (Real)",
+        "proceso": "Leer N, saldo\nPara i ← 1 Hasta N Hacer\n   Leer tipo, monto\n   Según tipo Hacer ... resolver operación\n   usar Si anidado para validar saldo y aplicar comisión\nFinPara",
+        "salida": "Saldo actualizado tras cada transacción"
+      },
+      "salidaEsperada": "Cantidad de transacciones:\n> 1\nSaldo inicial:\n> 100000\nTipo (1 depósito, 2 retiro, 3 transferencia, 4 pago servicio):\n> 2\nMonto:\n> 20000\nSaldo actualizado: 80000",
+      "pista": "El tipo de transacción define la lógica base, y la validación del saldo decide si la operación se puede ejecutar.",
+      "codigoReferencia": "Proceso TransaccionesBancarias\n  Definir N, i, tipo Como Entero\n  Definir monto, saldo Como Real\n\n  Escribir \"Cantidad de transacciones:\"\n  Leer N\n  Escribir \"Saldo inicial:\"\n  Leer saldo\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Tipo (1 depósito, 2 retiro, 3 transferencia, 4 pago servicio):\"\n    Leer tipo\n    Escribir \"Monto:\"\n    Leer monto\n    Segun tipo Hacer\n      1:\n        saldo = saldo + monto\n\n      2:\n        Si monto <= saldo Entonces\n          saldo = saldo - monto\n        Sino\n          Escribir \"Saldo insuficiente\"\n        FinSi\n      3:\n        Si monto + 500 <= saldo Entonces\n          saldo = saldo - monto - 500\n        Sino\n          Escribir \"Saldo insuficiente para transferencia\"\n        FinSi\n      4:\n        Si monto + 200 <= saldo Entonces\n          saldo = saldo - monto - 200\n        Sino\n          Escribir \"Saldo insuficiente para pago\"\n        FinSi\n      De Otro Modo:\n        Escribir \"Tipo inválido\"\n    FinSegun\n    Escribir \"Saldo actualizado: \", saldo\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-059",
+      "origen": "json/EA 1.4.json #159",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-59",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Horario semanal de un empleado",
+      "conceptos": [
+        "Para",
+        "Anidado",
+        "Según",
+        "Si anidado",
+        "Horario",
+        "Horas extra",
+        "Avanzado"
+      ],
+      "enunciado": "Genera el horario semanal de un empleado usando un Para externo para los 5 días y un Para interno para las 8 horas del día. Usa Según para asignar la actividad según la hora y Si-Entonces anidado para marcar horas extra si el turno supera cierto límite.",
+      "entradaProcesoSalida": {
+        "entrada": "dia, hora (Entero)",
+        "proceso": "Para dia ← 1 Hasta 5 Hacer\n   Para hora ← 1 Hasta 8 Hacer\n      Según hora Hacer ... actividad\n      Si hora > 6 Entonces mostrar hora extra FinSi\n   FinPara\nFinPara",
+        "salida": "Horario semanal y horas extra"
+      },
+      "salidaEsperada": "Día 1\nHora 1: Atención\nHora 7: Cierre - Hora extra",
+      "pista": "El ciclo externo recorre los días y el interno organiza las horas dentro de cada jornada.",
+      "codigoReferencia": "Proceso HorarioSemanalEmpleado\n  Definir dia, hora Como Entero\n  Definir actividad Como Caracter\n\n  Para dia = 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Día \", dia\n    Para hora = 1 Hasta 8 Con Paso 1 Hacer\n      Segun hora Hacer\n        1, 2, 3: actividad = \"Atención\"\n        4, 5, 6: actividad = \"Gestión interna\"\n        7, 8: actividad = \"Cierre\"\n      FinSegun\n      Si hora > 6 Entonces\n        Escribir \"Hora \", hora, \": \", actividad, \" - Hora extra\"\n      Sino\n        Escribir \"Hora \", hora, \": \", actividad\n      FinSi\n    FinPara\n  FinPara\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n4-060",
+      "origen": "json/EA 1.4.json #160",
+      "modulo": "N4",
+      "experiencia": "Estructuras de Repetición",
+      "nivelLiteSeInt": 4,
+      "numero": "N4-60",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Inventario de N productos",
+      "conceptos": [
+        "Para",
+        "Según",
+        "Si anidado",
+        "Caracter",
+        "Real",
+        "Inventario",
+        "Avanzado"
+      ],
+      "enunciado": "Procesa el inventario de N productos. Para cada producto pide nombre, precio y cantidad. Usa Según para categorizar el producto como económico, estándar o premium según el precio, y Si-Entonces anidado para alertar si hay stock bajo, calcular el valor total del inventario y mostrar el producto de mayor valor acumulado.",
+      "entradaProcesoSalida": {
+        "entrada": "N, i, categoria (Entero)\nprecio, valor, totalInventario, mayorValor (Real)\ncantidad (Entero)\nnombre, productoMayor (Caracter)",
+        "proceso": "Leer N\nPara i ← 1 Hasta N Hacer\n   Leer nombre, precio, cantidad\n   determinar categoria con Si\n   Según categoria Hacer ... mostrar económico/estándar/premium\n   Si cantidad < 5 Entonces alertar stock bajo FinSi\n   valor ← precio * cantidad\n   acumular totalInventario\n   Si valor > mayorValor Entonces actualizar productoMayor FinSi\nFinPara",
+        "salida": "Categoría, alertas y resumen final"
+      },
+      "salidaEsperada": "Cantidad de productos:\n> 1\nNombre del producto 1:\n> Mouse\nPrecio:\n> 15000\nCantidad:\n> 3\nCategoría: Económico\nAlerta: stock bajo\nValor total inventario: 45000\nProducto de mayor valor acumulado: Mouse",
+      "pista": "El valor acumulado de un producto se obtiene multiplicando su precio por su cantidad en stock.",
+      "codigoReferencia": "Proceso InventarioProductos\n  Definir N, i, cantidad, categoria Como Entero\n  Definir precio, valor, totalInventario, mayorValor Como Real\n  Definir nombre, productoMayor Como Caracter\n\n  totalInventario = 0\n  mayorValor      = -1\n  productoMayor   = \"\"\n\n  Escribir \"Cantidad de productos:\"\n  Leer N\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Nombre del producto \", i, \":\"\n    Leer nombre\n    Escribir \"Precio:\"\n    Leer precio\n    Escribir \"Cantidad:\"\n    Leer cantidad\n    Si precio < 20000 Entonces\n      categoria = 1\n    Sino\n      Si precio <= 50000 Entonces\n        categoria = 2\n      Sino\n        categoria = 3\n      FinSi\n    FinSi\n    Segun categoria Hacer\n      1: Escribir \"Categoría: Económico\"\n      2: Escribir \"Categoría: Estándar\"\n      3: Escribir \"Categoría: Premium\"\n    FinSegun\n    Si cantidad < 5 Entonces\n      Escribir \"Alerta: stock bajo\"\n    FinSi\n    valor           = precio * cantidad\n    totalInventario = totalInventario + valor\n    Si valor > mayorValor Entonces\n      mayorValor    = valor\n      productoMayor = nombre\n    FinSi\n  FinPara\n  Escribir \"Valor total inventario: \", totalInventario\n  Escribir \"Producto de mayor valor acumulado: \", productoMayor\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    }
+  ]
+}

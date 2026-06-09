@@ -1,0 +1,583 @@
+{
+  "experience": {
+    "id": "1",
+    "label": "N1",
+    "titulo": "Introducción a los Algoritmos",
+    "desc": "Identifica componentes de un algoritmo: variables, estructuras y expresiones.",
+    "color": "var(--accent)",
+    "icon": "⚙"
+  },
+  "exercises": [
+    {
+      "id": "n1-001",
+      "origen": "guia.html EA 1.1 #1",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-01",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Mostrar un saludo fijo",
+      "conceptos": [
+        "Escribir",
+        "Proceso"
+      ],
+      "enunciado": "Crea un programa que muestre el mensaje \"Hola, mundo!\" en la pantalla. No necesita leer ningún dato del usuario. Es el ejercicio más simple posible: una sola instrucción de salida.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna — no se lee ningún dato)",
+        "proceso": "No hay cálculo. Solo mostrar texto fijo.",
+        "salida": "\"Hola, mundo!\" impreso en pantalla"
+      },
+      "salidaEsperada": "Hola, mundo!",
+      "pista": "Escribir muestra texto en consola. Las cadenas de texto van entre comillas dobles.",
+      "codigoReferencia": "Proceso saludo\n  Escribir \"Hola, mundo!\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-002",
+      "origen": "guia.html EA 1.1 #2",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-02",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Mostrar tres líneas de texto",
+      "conceptos": [
+        "Escribir"
+      ],
+      "enunciado": "Crea un programa que muestre tres líneas de texto fijo: tu nombre, tu carrera y el nombre de la asignatura. Cada dato debe aparecer en una línea separada.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna)",
+        "proceso": "Tres instrucciones Escribir independientes.",
+        "salida": "Tres líneas de texto en consola"
+      },
+      "salidaEsperada": "Nombre: Ana González\nCarrera: Analista Programador\nAsignatura: Fundamentos de Programación",
+      "pista": "Cada Escribir produce una nueva línea. Puedes concatenar texto y variables separando con comas.",
+      "codigoReferencia": "Proceso mis_datos\n  Escribir \"Nombre: Ana González\"\n  Escribir \"Carrera: Analista Programador\"\n  Escribir \"Asignatura: Fundamentos de Programación\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-003",
+      "origen": "guia.html EA 1.1 #3",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Declarar y mostrar una variable entera",
+      "conceptos": [
+        "Definir",
+        "Entero",
+        "asignación",
+        "Escribir"
+      ],
+      "enunciado": "Declara una variable entera llamada edad, asígnale el valor 20 directamente en el código (sin leer del usuario) y muéstrala en pantalla.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna — valor asignado en el código)",
+        "proceso": "edad = 20",
+        "salida": "\"Mi edad es: 20\""
+      },
+      "salidaEsperada": "Mi edad es: 20",
+      "pista": "En LiteSeInt el operador de asignación es =. Declara la variable con Definir antes de usarla.",
+      "codigoReferencia": "Proceso mostrar_edad\n  Definir edad Como Entero\n\n  edad = 20\n\n  Escribir \"Mi edad es: \", edad\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-004",
+      "origen": "guia.html EA 1.1 #4",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Variables de distintos tipos",
+      "conceptos": [
+        "Definir",
+        "Entero",
+        "Real",
+        "Caracter"
+      ],
+      "enunciado": "Declara tres variables: nombre (Caracter), edad (Entero) y altura (Real). Asígnales valores fijos y muéstralos con etiquetas descriptivas.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna — valores asignados en código)",
+        "proceso": "nombre = \"Pedro\"\nedad = 21\naltura = 1.75",
+        "salida": "Tres líneas mostrando cada variable con su etiqueta"
+      },
+      "salidaEsperada": "Nombre: Pedro\nEdad: 21\nAltura: 1.75 m",
+      "pista": "Los tres tipos básicos son Entero (sin decimales), Real (con decimales) y Caracter (texto).",
+      "codigoReferencia": "Proceso tipos_datos\n  Definir nombre Como Caracter\n  Definir edad Como Entero\n  Definir altura Como Real\n\n  nombre = \"Pedro\"\n  edad   = 21\n  altura = 1.75\n\n  Escribir \"Nombre: \", nombre\n  Escribir \"Edad: \", edad\n  Escribir \"Altura: \", altura, \" m\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-005",
+      "origen": "guia.html EA 1.1 #5",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-05",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Leer el nombre del usuario",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Escribir"
+      ],
+      "enunciado": "El programa pide el nombre del usuario con un mensaje, lo lee con Leer y muestra un saludo personalizado.",
+      "entradaProcesoSalida": {
+        "entrada": "Nombre del usuario (tipo Caracter)",
+        "proceso": "Almacenar el nombre en la variable nombre",
+        "salida": "\"Bienvenido/a, [nombre]!\""
+      },
+      "salidaEsperada": "¿Cuál es tu nombre?\nBienvenido/a, Ana!",
+      "pista": "Leer pausa la ejecución hasta que el usuario ingresa un valor en la consola.",
+      "codigoReferencia": "Proceso saludo\n  Definir nombre Como Caracter\n\n  Escribir \"¿Cuál es tu nombre?\"\n  Leer nombre\n  Escribir \"Bienvenido/a, \", nombre, \"!\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-006",
+      "origen": "guia.html EA 1.1 #6",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-06",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Suma de dos números",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "asignación",
+        "+"
+      ],
+      "enunciado": "El programa solicita dos números enteros, calcula su suma y muestra el resultado. Identifica la entrada, el proceso y la salida.",
+      "entradaProcesoSalida": {
+        "entrada": "a, b (enteros)",
+        "proceso": "suma = a + b",
+        "salida": "\"La suma es: [suma]\""
+      },
+      "salidaEsperada": "Ingresa el primer número:\nIngresa el segundo número:\nLa suma es: 12",
+      "pista": "Define las variables antes de leerlas. Lee cada número en una instrucción separada.",
+      "codigoReferencia": "Proceso suma\n  Definir a, b, total Como Entero\n\n  Escribir \"Ingresa el primer número:\"\n  Leer a\n  Escribir \"Ingresa el segundo número:\"\n  Leer b\n\n  total = a + b\n\n  Escribir \"La suma es: \", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-007",
+      "origen": "guia.html EA 1.1 #7",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-07",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Calcular el doble de un número",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "*",
+        "asignación"
+      ],
+      "enunciado": "El usuario ingresa un número real. El programa calcula su doble (número × 2) y muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número real ingresado por el usuario",
+        "proceso": "doble = num * 2",
+        "salida": "\"El doble es: \" + doble"
+      },
+      "salidaEsperada": "Ingresa un número:\nEl doble es: 14",
+      "pista": "Declara la variable como Real para que acepte decimales. El resultado se guarda en una segunda variable antes de mostrarlo.",
+      "codigoReferencia": "Proceso doble_numero\n  Definir num, doble Como Real\n\n  Escribir \"Ingresa un número:\"\n  Leer num\n\n  doble = num * 2\n\n  Escribir \"El doble es: \", doble\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-008",
+      "origen": "guia.html EA 1.1 #8",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-08",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Promedio de tres notas",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "+",
+        "/",
+        "paréntesis"
+      ],
+      "enunciado": "Lee tres notas de un alumno (reales entre 1.0 y 7.0) y calcula su promedio. Recuerda usar paréntesis para agrupar la suma antes de dividir.",
+      "entradaProcesoSalida": {
+        "entrada": "n1, n2, n3 (reales)",
+        "proceso": "promedio = (n1 + n2 + n3) / 3",
+        "salida": "\"Promedio: [valor]\""
+      },
+      "salidaEsperada": "Ingresa la primera nota:\nIngresa la segunda nota:\nIngresa la tercera nota:\nPromedio: 5.5",
+      "pista": "Sin paréntesis, n1 + n2 + n3 / 3 calcula primero n3 / 3, lo que da un resultado equivocado.",
+      "codigoReferencia": "Proceso promedio_notas\n  Definir n1, n2, n3, promedio Como Real\n\n  Escribir \"Ingresa la primera nota:\"\n  Leer n1\n  Escribir \"Ingresa la segunda nota:\"\n  Leer n2\n  Escribir \"Ingresa la tercera nota:\"\n  Leer n3\n\n  promedio = (n1 + n2 + n3) / 3\n\n  Escribir \"Promedio: \", promedio\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-009",
+      "origen": "guia.html EA 1.1 #9",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-09",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Celsius a Fahrenheit",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "fórmula",
+        "*",
+        "/",
+        "+"
+      ],
+      "enunciado": "El usuario ingresa una temperatura en grados Celsius. Conviértela a Fahrenheit usando F = C × 9 / 5 + 32. Muestra ambos valores.",
+      "entradaProcesoSalida": {
+        "entrada": "Temperatura en Celsius (Real)",
+        "proceso": "fahrenheit = celsius * 9 / 5 + 32",
+        "salida": "celsius + \"°C equivale a \" + fahrenheit + \"°F\""
+      },
+      "salidaEsperada": "Temperatura en Celsius:\n100°C equivale a 212°F",
+      "pista": "No necesitas paréntesis: * y / tienen mayor precedencia que +, así que la fórmula funciona directo.",
+      "codigoReferencia": "Proceso celsius_fahrenheit\n  Definir celsius, fahrenheit Como Real\n\n  Escribir \"Temperatura en Celsius:\"\n  Leer celsius\n\n  fahrenheit = celsius * 9 / 5 + 32\n\n  Escribir celsius, \"°C equivale a \", fahrenheit, \"°F\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-010",
+      "origen": "guia.html EA 1.1 #10",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-10",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Precio con descuento",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "-",
+        "*",
+        "/",
+        "fórmula"
+      ],
+      "enunciado": "Lee el precio original y el porcentaje de descuento. Calcula el monto del descuento y el precio final con ese descuento aplicado. Muestra ambos resultados.",
+      "entradaProcesoSalida": {
+        "entrada": "Precio original (Real)\nPorcentaje de descuento en % (Real)",
+        "proceso": "descuento = precio * pct / 100\nfinal = precio - descuento",
+        "salida": "\"Descuento: $\" + descuento\n\"Precio final: $\" + final"
+      },
+      "salidaEsperada": "Precio original ($):\nDescuento (%):\nDescuento: $3000\nPrecio final: $17000",
+      "pista": "El descuento se calcula como precio * pct / 100. Guarda el resultado intermedio para mostrarlo.",
+      "codigoReferencia": "Proceso precio_descuento\n  Definir precio, pct, descuento, final Como Real\n\n  Escribir \"Precio original ($):\"\n  Leer precio\n  Escribir \"Descuento (%):\"\n  Leer pct\n\n  descuento = precio * pct / 100\n  final     = precio - descuento\n\n  Escribir \"Descuento: $\", descuento\n  Escribir \"Precio final: $\", final\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-011",
+      "origen": "guia.html EA 1.1 #11",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-11",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Área y perímetro del rectángulo",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "*",
+        "+",
+        "fórmula",
+        "geometría"
+      ],
+      "enunciado": "Solicita el ancho y el alto de un rectángulo. Calcula su área (A = ancho × alto) y su perímetro (P = 2 × (ancho + alto)). Muestra ambos resultados.",
+      "entradaProcesoSalida": {
+        "entrada": "Ancho del rectángulo (Real)\nAlto del rectángulo (Real)",
+        "proceso": "area = ancho * alto\nperimetro = 2 * (ancho + alto)",
+        "salida": "\"Área: \" + area + \" m²\"\n\"Perímetro: \" + perimetro + \" m\""
+      },
+      "salidaEsperada": "Ancho (m):\nAlto (m):\nÁrea: 24 m²\nPerímetro: 20 m",
+      "pista": "Los paréntesis en 2 * (ancho + alto) son necesarios: sin ellos solo se multiplicaría alto por 2.",
+      "codigoReferencia": "Proceso rectangulo\n  Definir ancho, alto, area, perimetro Como Real\n\n  Escribir \"Ancho (m):\"\n  Leer ancho\n  Escribir \"Alto (m):\"\n  Leer alto\n\n  area      = ancho * alto\n  perimetro = 2 * (ancho + alto)\n\n  Escribir \"Área: \", area, \" m²\"\n  Escribir \"Perímetro: \", perimetro, \" m\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-012",
+      "origen": "guia.html EA 1.1 #12",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-12",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Área y perímetro del círculo",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "^",
+        "*",
+        "PI",
+        "geometría"
+      ],
+      "enunciado": "Lee el radio de un círculo. Calcula su área (π × r²) y su perímetro (2 × π × r). Define PI = 3.14159 como variable en el código.",
+      "entradaProcesoSalida": {
+        "entrada": "Radio del círculo (Real)\nPI = 3.14159 (definido en código)",
+        "proceso": "area = PI * radio ^ 2\nperimetro = 2 * PI * radio",
+        "salida": "\"Área: \" + area\n\"Perímetro: \" + perimetro"
+      },
+      "salidaEsperada": "Radio del círculo:\nÁrea: 78.53975\nPerímetro: 31.4159",
+      "pista": "El operador ^ representa la potencia en LiteSeInt. radio ^ 2 equivale a radio².",
+      "codigoReferencia": "Proceso circulo\n  Definir radio, area, perimetro, PI Como Real\n\n  PI = 3.14159\n\n  Escribir \"Radio del círculo:\"\n  Leer radio\n\n  area      = PI * radio ^ 2\n  perimetro = 2 * PI * radio\n\n  Escribir \"Área: \", area\n  Escribir \"Perímetro: \", perimetro\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-013",
+      "origen": "guia.html EA 1.1 #13",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-13",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Calcular el IMC",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "^",
+        "/",
+        "fórmula"
+      ],
+      "enunciado": "Lee el peso en kg y la estatura en metros. Calcula el IMC usando IMC = peso / estatura². Muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Peso en kg (Real)\nEstatura en metros (Real)",
+        "proceso": "imc = peso / (estatura ^ 2)",
+        "salida": "\"Tu IMC es: \" + imc"
+      },
+      "salidaEsperada": "Peso (kg):\nEstatura (m):\nTu IMC es: 25",
+      "pista": "Los paréntesis en (estatura ^ 2) aseguran que la potencia se calcula antes de la división.",
+      "codigoReferencia": "Proceso calcular_imc\n  Definir peso, estatura, imc Como Real\n\n  Escribir \"Peso (kg):\"\n  Leer peso\n  Escribir \"Estatura (m):\"\n  Leer estatura\n\n  imc = peso / (estatura ^ 2)\n\n  Escribir \"Tu IMC es: \", imc\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-014",
+      "origen": "guia.html EA 1.1 #14",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-14",
+      "dificultad": "intermedio",
+      "gradoAyuda": "con-pista",
+      "titulo": "Calcular el vuelto",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "-",
+        "asignación"
+      ],
+      "enunciado": "Lee el precio del producto y el monto pagado por el cliente. Calcula el vuelto (asume que el pago siempre es suficiente) y muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Precio del producto (Entero)\nMonto pagado (Entero)",
+        "proceso": "vuelto = pagado - precio",
+        "salida": "\"Su vuelto es: $\" + vuelto"
+      },
+      "salidaEsperada": "Precio del producto ($):\nMonto pagado ($):\nSu vuelto es: $1500",
+      "pista": "La resta es directa: vuelto = pagado - precio. Guarda el resultado en una variable antes de mostrarlo.",
+      "codigoReferencia": "Proceso vuelto\n  Definir precio, pagado, vuelto Como Entero\n\n  Escribir \"Precio del producto ($):\"\n  Leer precio\n  Escribir \"Monto pagado ($):\"\n  Leer pagado\n\n  vuelto = pagado - precio\n\n  Escribir \"Su vuelto es: $\", vuelto\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-015",
+      "origen": "guia.html EA 1.1 #15",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-15",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Velocidad promedio de un viaje",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "/",
+        "fórmula"
+      ],
+      "enunciado": "El usuario ingresa la distancia recorrida (en km) y el tiempo del viaje (en horas). Calcula la velocidad promedio usando v = distancia / tiempo.",
+      "entradaProcesoSalida": {
+        "entrada": "Distancia en km (Real)\nTiempo en horas (Real)",
+        "proceso": "velocidad = distancia / tiempo",
+        "salida": "\"Velocidad promedio: \" + velocidad + \" km/h\""
+      },
+      "salidaEsperada": "Distancia recorrida (km):\nTiempo del viaje (horas):\nVelocidad promedio: 80 km/h",
+      "pista": "La fórmula es directa: una división entre dos variables leídas del usuario.",
+      "codigoReferencia": "Proceso velocidad_promedio\n  Definir distancia, tiempo, velocidad Como Real\n\n  Escribir \"Distancia recorrida (km):\"\n  Leer distancia\n  Escribir \"Tiempo del viaje (horas):\"\n  Leer tiempo\n\n  velocidad = distancia / tiempo\n\n  Escribir \"Velocidad promedio: \", velocidad, \" km/h\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-016",
+      "origen": "guia.html EA 1.1 #16",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-16",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "titulo": "Intercambiar dos variables",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "variable auxiliar",
+        "asignación"
+      ],
+      "enunciado": "El usuario ingresa dos números enteros A y B. El programa los intercambia usando una variable auxiliar y muestra los valores antes y después del intercambio.",
+      "entradaProcesoSalida": {
+        "entrada": "Número A (Entero)\nNúmero B (Entero)",
+        "proceso": "aux = a; a = b; b = aux",
+        "salida": "Valores antes y después del intercambio"
+      },
+      "salidaEsperada": "Ingresa A:\nIngresa B:\nAntes  → A: 10  B: 25\nDespués → A: 25  B: 10",
+      "pista": "Si haces a = b directamente, pierdes el valor original de a. Necesitas una tercera variable (aux) para guardar ese valor temporalmente.",
+      "codigoReferencia": "Proceso intercambio\n  Definir a, b, aux Como Entero\n\n  Escribir \"Ingresa A:\"\n  Leer a\n  Escribir \"Ingresa B:\"\n  Leer b\n  Escribir \"Antes  → A: \", a, \"  B: \", b\n\n  aux = a\n  a   = b\n  b   = aux\n\n  Escribir \"Después → A: \", a, \"  B: \", b\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-017",
+      "origen": "guia.html EA 1.1 #17",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-17",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Calcular sueldo líquido",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "*",
+        "-",
+        "fórmula",
+        "desglose"
+      ],
+      "enunciado": "Lee el sueldo bruto mensual. Calcula el descuento AFP (10%) y el descuento Salud (7%). El sueldo líquido es el bruto menos ambos descuentos. Muestra el desglose completo.",
+      "entradaProcesoSalida": {
+        "entrada": "Sueldo bruto mensual (Real)",
+        "proceso": "afp = bruto * 0.10\nsalud = bruto * 7 / 100\nliquido = bruto - afp - salud",
+        "salida": "Desglose: bruto, AFP, salud y líquido"
+      },
+      "salidaEsperada": "Sueldo bruto ($):\n--- Liquidación ---\nSueldo bruto:  $800000\nDescuento AFP: $80000\nDescuento Sal: $56000\nSueldo líquido: $664000",
+      "pista": "AFP: bruto * 0.10. Salud: usa bruto * 7 / 100 en lugar de bruto * 0.07 para evitar imprecisión decimal. Guarda cada descuento en su propia variable para mostrar el desglose.",
+      "codigoReferencia": "Proceso sueldo_liquido\n  Definir bruto, afp, salud, liquido Como Real\n\n  Escribir \"Sueldo bruto ($):\"\n  Leer bruto\n\n  afp     = bruto * 0.10\n  salud   = bruto * 7 / 100\n  liquido = bruto - afp - salud\n\n  Escribir \"--- Liquidación ---\"\n  Escribir \"Sueldo bruto:  $\", bruto\n  Escribir \"Descuento AFP: $\", afp\n  Escribir \"Descuento Sal: $\", salud\n  Escribir \"Sueldo líquido: $\", liquido\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-018",
+      "origen": "guia.html EA 1.1 #18",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-18",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Conversión de segundos a h:m:s",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "mod",
+        "Trunc",
+        "fórmula"
+      ],
+      "enunciado": "El usuario ingresa una cantidad de segundos totales. El programa los desglosa en horas, minutos y segundos restantes. En LiteSeInt no existe DIV: usa Trunc para la división entera y mod para el resto.",
+      "entradaProcesoSalida": {
+        "entrada": "Total de segundos (Entero)",
+        "proceso": "horas = Trunc(total / 3600)\nminutos = Trunc((total mod 3600) / 60)\nsegundos = total mod 60",
+        "salida": "\"Horas: \" + horas\n\"Minutos: \" + minutos\n\"Segundos: \" + segs"
+      },
+      "salidaEsperada": "Total de segundos:\nHoras: 1\nMinutos: 2\nSegundos: 5",
+      "pista": "LiteSeInt no tiene DIV. Usa Trunc(a / b) para la parte entera de una división y mod para el resto.",
+      "codigoReferencia": "Proceso segundos_a_hms\n  Definir total, horas, minutos, segundos Como Entero\n\n  Escribir \"Total de segundos:\"\n  Leer total\n\n  horas    = Trunc(total / 3600)\n  minutos  = Trunc((total mod 3600) / 60)\n  segundos = total mod 60\n\n  Escribir \"Horas: \", horas\n  Escribir \"Minutos: \", minutos\n  Escribir \"Segundos: \", segundos\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-019",
+      "origen": "guia.html EA 1.1 #19",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-19",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Interés simple",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "*",
+        "/",
+        "+",
+        "fórmula financiera"
+      ],
+      "enunciado": "Lee el capital inicial, la tasa anual (en %) y el tiempo en años. Calcula el interés simple (I = C × (r/100) × t) y el monto final (M = C + I). Muestra ambos.",
+      "entradaProcesoSalida": {
+        "entrada": "Capital C (Real)\nTasa r en % (Real)\nTiempo t en años (Real)",
+        "proceso": "interes = capital * (tasa / 100) * tiempo\nmonto = capital + interes",
+        "salida": "\"Interés generado: $\" + interes\n\"Monto final: $\" + monto"
+      },
+      "salidaEsperada": "Capital inicial ($):\nTasa anual (%):\nPlazo (años):\nInterés generado: $75000\nMonto final: $575000",
+      "pista": "Divide la tasa por 100 dentro de la fórmula para convertirla de porcentaje a decimal: capital * (tasa / 100) * tiempo.",
+      "codigoReferencia": "Proceso interes_simple\n  Definir capital, tasa, tiempo, interes, monto Como Real\n\n  Escribir \"Capital inicial ($):\"\n  Leer capital\n  Escribir \"Tasa anual (%):\"\n  Leer tasa\n  Escribir \"Plazo (años):\"\n  Leer tiempo\n\n  interes = capital * (tasa / 100) * tiempo\n  monto   = capital + interes\n\n  Escribir \"Interés generado: $\", interes\n  Escribir \"Monto final: $\", monto\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n1-020",
+      "origen": "guia.html EA 1.1 #20",
+      "modulo": "N1",
+      "experiencia": "Introducción a los Algoritmos",
+      "nivelLiteSeInt": 1,
+      "numero": "N1-20",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Receta para el robot doméstico",
+      "conceptos": [
+        "Escribir",
+        "Leer",
+        "Caracter",
+        "Entero",
+        "asignación",
+        "secuencia"
+      ],
+      "enunciado": "Modela la rutina matutina de un robot doméstico. Lee el nombre del habitante y ejecuta una secuencia de al menos 6 acciones. Usa una variable numPaso para numerar cada acción.",
+      "entradaProcesoSalida": {
+        "entrada": "Nombre del habitante (Caracter)",
+        "proceso": "Secuencia de 6 pasos numerados; numPaso = numPaso + 1 en cada acción",
+        "salida": "Lista numerada de acciones del robot en consola"
+      },
+      "salidaEsperada": "Nombre del habitante:\n=== Robot Doméstico activo ===\nPaso 1: Activando sensores de movimiento...\nPaso 2: Reconocimiento del hogar completado.\nPaso 3: Despertando a: Carlos\nPaso 4: Verificando temperatura del agua...\nPaso 5: Preparando café.\nPaso 6: Desayuno listo. ¡Buen día!",
+      "pista": "Inicializa numPaso = 1 antes de la primera acción. Suma 1 con numPaso = numPaso + 1 antes de cada siguiente acción. La palabra \"paso\" sola es reservada en LiteSeInt.",
+      "codigoReferencia": "Proceso robot_domestico\n  Definir habitante Como Caracter\n  Definir numPaso Como Entero\n\n  Escribir \"Nombre del habitante:\"\n  Leer habitante\n  Escribir \"=== Robot Doméstico activo ===\"\n\n  numPaso = 1\n\n  Escribir \"Paso \", numPaso, \": Activando sensores de movimiento...\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Reconocimiento del hogar completado.\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Despertando a: \", habitante\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Verificando temperatura del agua...\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Preparando café.\"\n\n  numPaso = numPaso + 1\n\n  Escribir \"Paso \", numPaso, \": Desayuno listo. ¡Buen día!\"\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    }
+  ]
+}

@@ -1,0 +1,462 @@
+{
+  "experience": {
+    "id": "5",
+    "label": "N5",
+    "titulo": "Desafíos",
+    "desc": "Ejercicios tipo prueba en LiteSeInt.",
+    "color": "var(--accent)",
+    "icon": "🔁"
+  },
+  "exercises": [
+    {
+      "id": "n5-001",
+      "origen": "json/EA 1.5.json #161",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-01",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Estacionamiento municipal",
+      "conceptos": [
+        "Variables",
+        "Según",
+        "Si-Entonces anidado",
+        "Operaciones",
+        "Salida estructurada",
+        "Descuentos"
+      ],
+      "enunciado": "En un estacionamiento municipal se cobra según las horas de permanencia: de 1 a 2 horas se pagan $1.500, de 3 a 4 horas se pagan $2.500 y por 5 horas o más se pagan $4.000. Si el vehículo es moto, se aplica un 30% de descuento sobre el subtotal. Si el vehículo es camión, se aplica un 20% de recargo. Además, el cliente puede ser vecino, en cuyo caso recibe un 50% de descuento adicional, o público general. El programa debe mostrar un resumen con el subtotal, descuentos o recargos aplicados y el total final a pagar.",
+      "entradaProcesoSalida": {
+        "entrada": "horas (Entero)\ntipoVehiculo, tipoCliente (Caracter)",
+        "proceso": "Según horas calcular subtotal\nSi tipoVehiculo = moto aplicar descuento 30%\nSiNo, si tipoVehiculo = camion aplicar recargo 20%\nSi tipoCliente = vecino aplicar descuento 50% adicional\nCalcular total final",
+        "salida": "Resumen de cobro"
+      },
+      "salidaEsperada": "Horas de permanencia:\n> 3\nTipo de vehículo (auto/moto/camion):\n> moto\nTipo de cliente (vecino/general):\n> vecino\n===== RESUMEN ESTACIONAMIENTO =====\nSubtotal: $2500\nDescuento/Reacargo vehículo: -$750\nDescuento vecino: -$875\nTotal a pagar: $875",
+      "pista": "Primero conviene calcular el subtotal base y luego aplicar recargos o descuentos en el orden definido.",
+      "codigoReferencia": "Proceso EstacionamientoMunicipal\n  Definir horas Como Entero\n  Definir subtotal, ajusteVehiculo, descuentoVecino, total Como Real\n  Definir tipoVehiculo, tipoCliente Como Caracter\n\n  Escribir \"Horas de permanencia:\"\n  Leer horas\n  Escribir \"Tipo de vehículo (auto/moto/camion):\"\n  Leer tipoVehiculo\n  Escribir \"Tipo de cliente (vecino/general):\"\n  Leer tipoCliente\n  Segun horas Hacer\n    1, 2:\n      subtotal = 1500\n\n    3, 4:\n      subtotal = 2500\n\n    De Otro Modo:\n      subtotal = 4000\n  FinSegun\n  ajusteVehiculo = 0\n  Si tipoVehiculo == \"moto\" Entonces\n    ajusteVehiculo = subtotal * 0.30\n    subtotal       = subtotal - ajusteVehiculo\n  Sino\n    Si tipoVehiculo == \"camion\" Entonces\n      ajusteVehiculo = subtotal * 0.20\n      subtotal       = subtotal + ajusteVehiculo\n    FinSi\n  FinSi\n  descuentoVecino = 0\n  Si tipoCliente == \"vecino\" Entonces\n    descuentoVecino = subtotal * 0.50\n  FinSi\n  total = subtotal - descuentoVecino\n\n  Escribir \"===== RESUMEN ESTACIONAMIENTO =====\"\n  Escribir \"Subtotal: $\", subtotal\n  Escribir \"Ajuste vehículo: $\", ajusteVehiculo\n  Escribir \"Descuento vecino: $\", descuentoVecino\n  Escribir \"Total a pagar: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-002",
+      "origen": "json/EA 1.5.json #162",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-02",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Farmacia turno noche",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Según",
+        "Operaciones",
+        "Salida estructurada",
+        "Boleta",
+        "Descuentos"
+      ],
+      "enunciado": "Una farmacia aplica distintos precios según horario. Entre 08 y 20 horas el precio es normal, y entre 20 y 08 horas se aplica un recargo del 15%. Además, según el tipo de cliente se aplica un descuento: Fonasa A/B 50%, Fonasa C/D 20%, Isapre 10% y Particular 0%. Si existe recargo nocturno y descuento, se aplican ambos. El programa debe mostrar una boleta con precio base, recargo, descuento y total final.",
+      "entradaProcesoSalida": {
+        "entrada": "precioBase (Real)\nhora (Entero)\ntipoCliente (Caracter)",
+        "proceso": "Si horario nocturno aplicar recargo\nSegún tipo cliente calcular descuento\nTotal ← precioBase + recargo - descuento",
+        "salida": "Boleta de compra"
+      },
+      "salidaEsperada": "Precio base del medicamento:\n> 10000\nHora de compra:\n> 22\nTipo cliente (AB/CD/isapre/particular):\n> CD\n===== BOLETA FARMACIA =====\nPrecio base: $10000\nRecargo nocturno: $1500\nDescuento cliente: $2000\nTotal final: $9500",
+      "pista": "El recargo nocturno y el descuento del cliente no se excluyen: ambos deben aplicarse si corresponde.",
+      "codigoReferencia": "Proceso FarmaciaTurnoNoche\n  Definir precioBase, recargo, descuento, total Como Real\n  Definir hora Como Entero\n  Definir tipoCliente Como Caracter\n\n  Escribir \"Precio base del medicamento:\"\n  Leer precioBase\n  Escribir \"Hora de compra:\"\n  Leer hora\n  Escribir \"Tipo cliente (AB/CD/isapre/particular):\"\n  Leer tipoCliente\n\n  recargo = 0\n  Si hora >= 20 O hora < 8 Entonces\n    recargo = precioBase * 0.15\n  FinSi\n  Segun tipoCliente Hacer\n    \"AB\":\n      descuento = precioBase * 0.50\n\n    \"CD\":\n      descuento = precioBase * 0.20\n\n    \"isapre\":\n      descuento = precioBase * 0.10\n\n    De Otro Modo:\n      descuento = 0\n  FinSegun\n  total = precioBase + recargo - descuento\n\n  Escribir \"===== BOLETA FARMACIA =====\"\n  Escribir \"Precio base: $\", precioBase\n  Escribir \"Recargo nocturno: $\", recargo\n  Escribir \"Descuento cliente: $\", descuento\n  Escribir \"Total final: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-003",
+      "origen": "json/EA 1.5.json #163",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Boletería cine",
+      "conceptos": [
+        "Según",
+        "Si-Entonces anidado",
+        "Variables",
+        "Salida estructurada",
+        "Descuentos",
+        "Boleta"
+      ],
+      "enunciado": "Una boletería de cine vende entradas para tres salas: normal $4.500, 3D $6.500 y 4DX $9.000. Los descuentos son: menor de 12 años 40%, 60 años o más 30%, estudiante 20% y adulto regular sin descuento. Además, los miércoles se aplica un descuento adicional fijo de $500. El programa debe mostrar un resumen con sala, tipo cliente, precio base, descuentos y total final.",
+      "entradaProcesoSalida": {
+        "entrada": "tipoSala, tipoCliente, dia (Caracter)",
+        "proceso": "Según sala obtener precio base\nSi-Entonces anidado para descuento cliente\nSi día = miércoles descontar 500 adicionales\nCalcular total",
+        "salida": "Resumen de compra"
+      },
+      "salidaEsperada": "Sala (normal/3D/4DX):\n> 3D\nTipo cliente (menor/mayor/estudiante/adulto):\n> estudiante\nDía de compra:\n> miercoles\n===== RESUMEN CINE =====\nPrecio base: $6500\nDescuento cliente: $1300\nDescuento miércoles: $500\nTotal a pagar: $4700",
+      "pista": "Aquí se combinan dos descuentos distintos: uno porcentual por cliente y otro fijo por día.",
+      "codigoReferencia": "Proceso BoleteriaCine\n  Definir precioBase, descuentoCliente, descuentoMiercoles, total Como Real\n  Definir tipoSala, tipoCliente, dia Como Caracter\n\n  Escribir \"Sala (normal/3D/4DX):\"\n  Leer tipoSala\n  Escribir \"Tipo cliente (menor/mayor/estudiante/adulto):\"\n  Leer tipoCliente\n  Escribir \"Día de compra:\"\n  Leer dia\n  Segun tipoSala Hacer\n    \"normal\":\n      precioBase = 4500\n\n    \"3D\":\n      precioBase = 6500\n\n    De Otro Modo:\n      precioBase = 9000\n  FinSegun\n  Si tipoCliente == \"menor\" Entonces\n    descuentoCliente = precioBase * 0.40\n  Sino\n    Si tipoCliente == \"mayor\" Entonces\n      descuentoCliente = precioBase * 0.30\n    Sino\n      Si tipoCliente == \"estudiante\" Entonces\n        descuentoCliente = precioBase * 0.20\n      Sino\n        descuentoCliente = 0\n      FinSi\n    FinSi\n  FinSi\n  descuentoMiercoles = 0\n  Si dia == \"miercoles\" Entonces\n    descuentoMiercoles = 500\n  FinSi\n  total = precioBase - descuentoCliente - descuentoMiercoles\n\n  Escribir \"===== RESUMEN CINE =====\"\n  Escribir \"Precio base: $\", precioBase\n  Escribir \"Descuento cliente: $\", descuentoCliente\n  Escribir \"Descuento miércoles: $\", descuentoMiercoles\n  Escribir \"Total a pagar: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-004",
+      "origen": "json/EA 1.5.json #164",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Gimnasio FitLife",
+      "conceptos": [
+        "Variables",
+        "Si-Entonces anidado",
+        "Según",
+        "Acumulación de descuentos",
+        "Salida estructurada",
+        "Planes"
+      ],
+      "enunciado": "Un gimnasio ofrece tres planes: Básico $15.000, Estándar $25.000 y Premium $40.000. Según la permanencia se aplica un descuento: 1 año 10%, 2 años 20% y 3 o más años 30%. Si el socio trae un referido, obtiene un descuento adicional fijo de $2.000. Además, el pago puede ser mensual, trimestral con 5% de descuento adicional, o anual con 10% adicional. Mostrar un resumen con plan, descuentos y total final.",
+      "entradaProcesoSalida": {
+        "entrada": "plan, modalidad, referido (Caracter)\nanios (Entero)",
+        "proceso": "Según plan obtener precio base\nSi-Entonces anidado para descuento por años\nSegún modalidad aplicar descuento adicional\nSi referido = si descontar 2000\nCalcular total final",
+        "salida": "Resumen de pago"
+      },
+      "salidaEsperada": "Plan (basico/estandar/premium):\n> estandar\nAños de permanencia:\n> 2\nModalidad (mensual/trimestral/anual):\n> anual\n¿Trae referido? (si/no):\n> si\n===== RESUMEN FITLIFE =====\nPrecio base: $25000\nDescuento permanencia: $5000\nDescuento modalidad: $2000\nDescuento referido: $2000\nTotal a pagar: $16000",
+      "pista": "Aquí el foco está en acumular correctamente descuentos de distintas fuentes sobre un mismo precio base.",
+      "codigoReferencia": "Proceso GimnasioFitLife\n  Definir precioBase, descuentoPermanencia, descuentoModalidad, descuentoReferido, total Como Real\n  Definir anios Como Entero\n  Definir plan, modalidad, referido Como Caracter\n\n  Escribir \"Plan (basico/estandar/premium):\"\n  Leer plan\n  Escribir \"Años de permanencia:\"\n  Leer anios\n  Escribir \"Modalidad (mensual/trimestral/anual):\"\n  Leer modalidad\n  Escribir \"¿Trae referido? (si/no):\"\n  Leer referido\n  Segun plan Hacer\n    \"basico\":\n      precioBase = 15000\n\n    \"estandar\":\n      precioBase = 25000\n\n    De Otro Modo:\n      precioBase = 40000\n  FinSegun\n  Si anios == 1 Entonces\n    descuentoPermanencia = precioBase * 0.10\n  Sino\n    Si anios == 2 Entonces\n      descuentoPermanencia = precioBase * 0.20\n    Sino\n      Si anios >= 3 Entonces\n        descuentoPermanencia = precioBase * 0.30\n      Sino\n        descuentoPermanencia = 0\n      FinSi\n    FinSi\n  FinSi\n  Segun modalidad Hacer\n    \"trimestral\":\n      descuentoModalidad = precioBase * 0.05\n\n    \"anual\":\n      descuentoModalidad = precioBase * 0.10\n\n    De Otro Modo:\n      descuentoModalidad = 0\n  FinSegun\n  descuentoReferido = 0\n  Si referido == \"si\" Entonces\n    descuentoReferido = 2000\n  FinSi\n  total = precioBase - descuentoPermanencia - descuentoModalidad - descuentoReferido\n\n  Escribir \"===== RESUMEN FITLIFE =====\"\n  Escribir \"Precio base: $\", precioBase\n  Escribir \"Descuento permanencia: $\", descuentoPermanencia\n  Escribir \"Descuento modalidad: $\", descuentoModalidad\n  Escribir \"Descuento referido: $\", descuentoReferido\n  Escribir \"Total a pagar: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-005",
+      "origen": "json/EA 1.5.json #165",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-05",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Servicio de delivery",
+      "conceptos": [
+        "Si-Entonces anidado",
+        "Según",
+        "Operaciones",
+        "Lógica de prioridad",
+        "Salida estructurada",
+        "Delivery"
+      ],
+      "enunciado": "Un restaurante cobra el valor del pedido más un cargo de envío según la distancia: hasta 2 km $990, entre 2 y 5 km $1.490 y más de 5 km $1.990. Si el pedido supera $15.000, el envío es gratis. Además, los descuentos sobre el pedido son: cliente frecuente con más de 10 pedidos recibe 15%, y primera compra recibe 10%. Solo se aplica un descuento, siempre el mayor. Debe mostrarse el desglose del pedido, descuento, envío y total final.",
+      "entradaProcesoSalida": {
+        "entrada": "subtotalPedido, distancia (Real)\npedidosPrevios (Entero)",
+        "proceso": "Si subtotal > 15000 envío gratis\nSiNo según distancia calcular envío\nSi-Entonces anidado para elegir descuento mayor\nTotal ← subtotal - descuento + envío",
+        "salida": "Desglose final"
+      },
+      "salidaEsperada": "Subtotal del pedido:\n> 12000\nDistancia en km:\n> 3\nCantidad de pedidos previos:\n> 12\n===== RESUMEN DELIVERY =====\nSubtotal pedido: $12000\nDescuento aplicado: $1800\nCargo envío: $1490\nTotal final: $11690",
+      "pista": "Cuando hay varios beneficios posibles pero solo uno puede aplicarse, primero debes decidir cuál tiene prioridad.",
+      "codigoReferencia": "Proceso ServicioDelivery\n  Definir subtotalPedido, distancia, descuento, envio, total Como Real\n  Definir pedidosPrevios Como Entero\n\n  Escribir \"Subtotal del pedido:\"\n  Leer subtotalPedido\n  Escribir \"Distancia en km:\"\n  Leer distancia\n  Escribir \"Cantidad de pedidos previos:\"\n  Leer pedidosPrevios\n  Si subtotalPedido > 15000 Entonces\n    envio = 0\n  Sino\n    Si distancia <= 2 Entonces\n      envio = 990\n    Sino\n      Si distancia <= 5 Entonces\n        envio = 1490\n      Sino\n        envio = 1990\n      FinSi\n    FinSi\n  FinSi\n  Si pedidosPrevios == 0 Entonces\n    descuento = subtotalPedido * 0.10\n  Sino\n    Si pedidosPrevios > 10 Entonces\n      descuento = subtotalPedido * 0.15\n    Sino\n      descuento = 0\n    FinSi\n  FinSi\n  total = subtotalPedido - descuento + envio\n\n  Escribir \"===== RESUMEN DELIVERY =====\"\n  Escribir \"Subtotal pedido: $\", subtotalPedido\n  Escribir \"Descuento aplicado: $\", descuento\n  Escribir \"Cargo envío: $\", envio\n  Escribir \"Total final: $\", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-006",
+      "origen": "json/EA 1.5.json #166",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-06",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Sistema de ventas teatro",
+      "conceptos": [
+        "Ciclo",
+        "Acumuladores múltiples",
+        "Según",
+        "Si anidado",
+        "Estadísticas",
+        "Ventas"
+      ],
+      "enunciado": "El teatro La Junta vende entradas de forma repetida hasta que se ingrese 0 para salir. En cada venta se debe ingresar el sector y el tipo de cliente, aplicando las mismas reglas de precio y descuento del sistema base del teatro. Al finalizar, el programa debe mostrar el total recaudado, la cantidad de entradas vendidas por sector, el sector más vendido y cuántos clientes recibieron descuento.",
+      "entradaProcesoSalida": {
+        "entrada": "sector (Entero)\ntipoCliente (Caracter)\nprecioBase, descuento, totalVenta, totalRecaudado (Real)\ncontVip, contPlatea, contGeneral, clientesConDescuento (Entero)",
+        "proceso": "Repetir\n   Leer sector\n   Si sector <> 0 Entonces\n      Leer tipoCliente\n      Según sector calcular precio base\n      Según tipoCliente calcular descuento\n      totalVenta ← precioBase - descuento\n      acumular totalRecaudado\n      acumular contador por sector\n      si descuento > 0 contar cliente con descuento\n   FinSi\nHasta Que sector = 0\nComparar contadores para hallar sector más vendido",
+        "salida": "Resumen final de ventas"
+      },
+      "salidaEsperada": "Sector (1=VIP, 2=Platea, 3=General, 0=Salir):\n> 2\nTipo cliente (nino/estudiante/adulto/mayor):\n> estudiante\nVenta registrada: $5600\n===== RESUMEN FINAL =====\nTotal recaudado: $5600\nVIP: 0\nPlatea: 1\nGeneral: 0\nSector más vendido: Platea\nClientes con descuento: 1",
+      "pista": "Debes llevar varios acumuladores al mismo tiempo: recaudación, cantidad por sector y cantidad de clientes con descuento.",
+      "codigoReferencia": "Proceso SistemaVentasTeatro\n  Definir sector, contVip, contPlatea, contGeneral, clientesConDescuento Como Entero\n  Definir precioBase, descuento, totalVenta, totalRecaudado Como Real\n  Definir tipoCliente, sectorMasVendido Como Caracter\n\n  contVip              = 0\n  contPlatea           = 0\n  contGeneral          = 0\n  clientesConDescuento = 0\n  totalRecaudado       = 0\n  Repetir\n    Escribir \"Sector (1=VIP, 2=Platea, 3=General, 0=Salir):\"\n    Leer sector\n    Si sector <> 0 Entonces\n      Escribir \"Tipo cliente (nino/estudiante/adulto/mayor):\"\n      Leer tipoCliente\n      Segun sector Hacer\n        1:\n          precioBase = 12000\n          contVip    = contVip + 1\n\n        2:\n          precioBase = 8000\n          contPlatea = contPlatea + 1\n\n        3:\n          precioBase  = 5000\n          contGeneral = contGeneral + 1\n      FinSegun\n      Segun tipoCliente Hacer\n        \"nino\":\n          descuento = precioBase * 0.40\n\n        \"mayor\":\n          descuento = precioBase * 0.30\n\n        \"estudiante\":\n          descuento = precioBase * 0.20\n\n        De Otro Modo:\n          descuento = 0\n      FinSegun\n      Si descuento > 0 Entonces\n        clientesConDescuento = clientesConDescuento + 1\n      FinSi\n      totalVenta     = precioBase - descuento\n      totalRecaudado = totalRecaudado + totalVenta\n\n      Escribir \"Venta registrada: $\", totalVenta\n    FinSi\n  Hasta Que sector == 0\n  Si contVip > contPlatea Y contVip > contGeneral Entonces\n    sectorMasVendido = \"VIP\"\n  Sino\n    Si contPlatea > contVip Y contPlatea > contGeneral Entonces\n      sectorMasVendido = \"Platea\"\n    Sino\n      sectorMasVendido = \"General\"\n    FinSi\n  FinSi\n  Escribir \"===== RESUMEN FINAL =====\"\n  Escribir \"Total recaudado: $\", totalRecaudado\n  Escribir \"VIP: \", contVip\n  Escribir \"Platea: \", contPlatea\n  Escribir \"General: \", contGeneral\n  Escribir \"Sector más vendido: \", sectorMasVendido\n  Escribir \"Clientes con descuento: \", clientesConDescuento\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-007",
+      "origen": "json/EA 1.5.json #167",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-07",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Nómina de empleados",
+      "conceptos": [
+        "Para",
+        "Operaciones encadenadas",
+        "Tramos",
+        "Acumuladores",
+        "Máximos y mínimos",
+        "Nómina"
+      ],
+      "enunciado": "Procesa la nómina de N empleados. Para cada uno se debe ingresar el sueldo base y las horas extra. El valor de la hora extra se calcula como (sueldo base / 160) × 1,5. El descuento AFP depende del sueldo bruto: hasta $500.000 se descuenta 10%, hasta $1.000.000 se descuenta 12% y sobre ese valor 13%. La salud descuenta 7% fijo. Mostrar por empleado sueldo bruto, descuentos y líquido. Al final: promedio de líquidos, mayor y menor sueldo líquido.",
+      "entradaProcesoSalida": {
+        "entrada": "N, i (Entero)\nsueldoBase, horasExtra, valorHoraExtra, sueldoBruto, afp, salud, liquido (Real)",
+        "proceso": "Para cada empleado calcular sueldo bruto\nSi-Entonces anidado para tramo AFP\nCalcular salud y líquido\nAcumular líquidos\nComparar mayor y menor líquido",
+        "salida": "Detalle por empleado y resumen final"
+      },
+      "salidaEsperada": "Cantidad de empleados:\n> 1\nSueldo base empleado 1:\n> 600000\nHoras extra:\n> 10\nSueldo bruto: $656250\nAFP: $78750\nSalud: $45937.5\nLíquido: $531562.5",
+      "pista": "En este tipo de ejercicio es importante separar bien: sueldo bruto, descuentos y sueldo líquido.",
+      "codigoReferencia": "Proceso NominaEmpleados\n  Definir N, i, empleadoMayor, empleadoMenor Como Entero\n  Definir sueldoBase, horasExtra, valorHoraExtra, sueldoBruto, afp, salud, liquido, sumaLiquidos, mayorLiquido, menorLiquido, promedioLiquidos Como Real\n\n  Escribir \"Cantidad de empleados:\"\n  Leer N\n\n  sumaLiquidos = 0\n  mayorLiquido = -1\n  menorLiquido = 999999999\n  Para i = 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Sueldo base empleado \", i, \":\"\n    Leer sueldoBase\n    Escribir \"Horas extra:\"\n    Leer horasExtra\n\n    valorHoraExtra = (sueldoBase / 160) * 1.5\n    sueldoBruto    = sueldoBase + (horasExtra * valorHoraExtra)\n    Si sueldoBruto <= 500000 Entonces\n      afp = sueldoBruto * 0.10\n    Sino\n      Si sueldoBruto <= 1000000 Entonces\n        afp = sueldoBruto * 0.12\n      Sino\n        afp = sueldoBruto * 0.13\n      FinSi\n    FinSi\n    salud        = sueldoBruto * 0.07\n    liquido      = sueldoBruto - afp - salud\n    sumaLiquidos = sumaLiquidos + liquido\n    Si liquido > mayorLiquido Entonces\n      mayorLiquido  = liquido\n      empleadoMayor = i\n    FinSi\n    Si liquido < menorLiquido Entonces\n      menorLiquido  = liquido\n      empleadoMenor = i\n    FinSi\n    Escribir \"Sueldo bruto: $\", sueldoBruto\n    Escribir \"AFP: $\", afp\n    Escribir \"Salud: $\", salud\n    Escribir \"Líquido: $\", liquido\n  FinPara\n  promedioLiquidos = sumaLiquidos / N\n\n  Escribir \"Promedio líquidos: $\", promedioLiquidos\n  Escribir \"Empleado con mayor líquido: \", empleadoMayor\n  Escribir \"Empleado con menor líquido: \", empleadoMenor\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-008",
+      "origen": "json/EA 1.5.json #168",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-08",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Control de inventario",
+      "conceptos": [
+        "Para",
+        "Múltiples variables",
+        "Condiciones",
+        "Acumuladores",
+        "Comparación",
+        "Inventario"
+      ],
+      "enunciado": "Un almacén registra el movimiento de 5 productos. Para cada uno se debe ingresar nombre, stock inicial, cantidad vendida, cantidad recibida y precio unitario. El programa calcula el stock final y, si es menor a 10 unidades, debe mostrar la alerta \"ALERTA STOCK BAJO\". Al final se debe informar: producto con mayor stock, producto con menor stock, valor total del inventario y cuántos productos están en alerta.",
+      "entradaProcesoSalida": {
+        "entrada": "nombre (Caracter)\nstockInicial, vendida, recibida, stockFinal (Entero)\nprecioUnitario, valorInventario, totalInventario (Real)",
+        "proceso": "Para cada producto calcular stock final\nSi stock final < 10 mostrar alerta y acumular\nComparar mayor y menor stock\nAcumular valor total del inventario",
+        "salida": "Resumen final de inventario"
+      },
+      "salidaEsperada": "Nombre producto 1:\n> Arroz\nStock inicial:\n> 20\nCantidad vendida:\n> 15\nCantidad recibida:\n> 2\nPrecio unitario:\n> 1200\nStock final: 7\nALERTA STOCK BAJO",
+      "pista": "Aquí debes controlar varias cosas a la vez: stock final, alertas, valor monetario y comparación de máximos y mínimos.",
+      "codigoReferencia": "Proceso ControlInventario\n  Definir i, stockInicial, vendida, recibida, stockFinal, mayorStock, menorStock, productosEnAlerta Como Entero\n  Definir precioUnitario, valorInventario, totalInventario Como Real\n  Definir nombre, productoMayor, productoMenor Como Caracter\n\n  mayorStock        = -1\n  menorStock        = 999999\n  productosEnAlerta = 0\n  totalInventario   = 0\n  Para i = 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Nombre producto \", i, \":\"\n    Leer nombre\n    Escribir \"Stock inicial:\"\n    Leer stockInicial\n    Escribir \"Cantidad vendida:\"\n    Leer vendida\n    Escribir \"Cantidad recibida:\"\n    Leer recibida\n    Escribir \"Precio unitario:\"\n    Leer precioUnitario\n\n    stockFinal      = stockInicial - vendida + recibida\n    valorInventario = stockFinal * precioUnitario\n    totalInventario = totalInventario + valorInventario\n\n    Escribir \"Stock final: \", stockFinal\n    Si stockFinal < 10 Entonces\n      Escribir \"ALERTA STOCK BAJO\"\n\n      productosEnAlerta = productosEnAlerta + 1\n    FinSi\n    Si stockFinal > mayorStock Entonces\n      mayorStock    = stockFinal\n      productoMayor = nombre\n    FinSi\n    Si stockFinal < menorStock Entonces\n      menorStock    = stockFinal\n      productoMenor = nombre\n    FinSi\n  FinPara\n  Escribir \"Producto con mayor stock: \", productoMayor\n  Escribir \"Producto con menor stock: \", productoMenor\n  Escribir \"Valor total del inventario: $\", totalInventario\n  Escribir \"Productos en alerta: \", productosEnAlerta\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-009",
+      "origen": "json/EA 1.5.json #169",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-09",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Torneo deportivo",
+      "conceptos": [
+        "Repetir-Hasta",
+        "Según",
+        "Si anidado",
+        "Acumuladores paralelos",
+        "Lógica condicional compleja",
+        "Torneo"
+      ],
+      "enunciado": "Se registran los resultados de N partidos de un torneo. Cada partido informa: equipo local, equipo visita, goles local y goles visita. El programa debe acumular puntos para dos equipos fijos, Rojo y Azul, tanto cuando juegan entre ellos como cuando juegan contra otros. Al final debe mostrar la tabla de posiciones, la diferencia de goles de cada equipo y si alguno ya aseguró el campeonato con más de 9 puntos de ventaja.",
+      "entradaProcesoSalida": {
+        "entrada": "N, contador, golesLocal, golesVisita (Entero)\nlocal, visita (Caracter)",
+        "proceso": "Repetir leer partido hasta completar N\nDeterminar resultado del partido\nActualizar puntos y diferencia de goles de Rojo y Azul\nSegún resultado asignar 3,1,0 puntos\nAl final comparar diferencia de puntos",
+        "salida": "Tabla final del torneo"
+      },
+      "salidaEsperada": "Cantidad de partidos:\n> 1\nEquipo local:\n> Rojo\nEquipo visita:\n> Azul\nGoles local:\n> 2\nGoles visita:\n> 1\n===== TABLA FINAL =====\nRojo - Puntos: 3 - DG: 1\nAzul - Puntos: 0 - DG: -1",
+      "pista": "Debes llevar en paralelo dos acumulaciones distintas para cada equipo: puntos y diferencia de goles.",
+      "codigoReferencia": "Proceso TorneoDeportivoEA15\n  Definir N, contador, golesLocal, golesVisita, estado Como Entero\n  Definir local, visita Como Caracter\n  Definir puntosRojo, puntosAzul, dgRojo, dgAzul Como Entero\n\n  Escribir \"Cantidad de partidos:\"\n  Leer N\n\n  contador   = 1\n  puntosRojo = 0\n  puntosAzul = 0\n  dgRojo     = 0\n  dgAzul     = 0\n  Repetir\n    Escribir \"Equipo local:\"\n    Leer local\n    Escribir \"Equipo visita:\"\n    Leer visita\n    Escribir \"Goles local:\"\n    Leer golesLocal\n    Escribir \"Goles visita:\"\n    Leer golesVisita\n    Si golesLocal > golesVisita Entonces\n      estado = 1\n    Sino\n      Si golesLocal == golesVisita Entonces\n        estado = 2\n      Sino\n        estado = 3\n      FinSi\n    FinSi\n    Si local == \"Rojo\" Entonces\n      dgRojo = dgRojo + (golesLocal - golesVisita)\n    FinSi\n    Si visita == \"Rojo\" Entonces\n      dgRojo = dgRojo + (golesVisita - golesLocal)\n    FinSi\n    Si local == \"Azul\" Entonces\n      dgAzul = dgAzul + (golesLocal - golesVisita)\n    FinSi\n    Si visita == \"Azul\" Entonces\n      dgAzul = dgAzul + (golesVisita - golesLocal)\n    FinSi\n    Segun estado Hacer\n      1:\n        Si local == \"Rojo\" Entonces\n          puntosRojo = puntosRojo + 3\n        FinSi\n        Si local == \"Azul\" Entonces\n          puntosAzul = puntosAzul + 3\n        FinSi\n      2:\n        Si local == \"Rojo\" O visita == \"Rojo\" Entonces\n          puntosRojo = puntosRojo + 1\n        FinSi\n        Si local == \"Azul\" O visita == \"Azul\" Entonces\n          puntosAzul = puntosAzul + 1\n        FinSi\n      3:\n        Si visita == \"Rojo\" Entonces\n          puntosRojo = puntosRojo + 3\n        FinSi\n        Si visita == \"Azul\" Entonces\n          puntosAzul = puntosAzul + 3\n        FinSi\n    FinSegun\n    contador = contador + 1\n  Hasta Que contador > N\n  Escribir \"===== TABLA FINAL =====\"\n  Escribir \"Rojo - Puntos: \", puntosRojo, \" - DG: \", dgRojo\n  Escribir \"Azul - Puntos: \", puntosAzul, \" - DG: \", dgAzul\n  Si Abs(puntosRojo - puntosAzul) > 9 Entonces\n    Escribir \"Alguno aseguró el campeonato\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-010",
+      "origen": "json/EA 1.5.json #170",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-10",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Facturación clínica",
+      "conceptos": [
+        "Mientras",
+        "Según anidado",
+        "Múltiples acumuladores",
+        "Porcentajes encadenados",
+        "Estadísticas",
+        "Facturación"
+      ],
+      "enunciado": "Una clínica atiende pacientes de forma repetida hasta que se ingrese \"fin\". Para cada atención se debe ingresar el tipo de prestación (consulta $25.000, examen $15.000, procedimiento $80.000), la previsión (Fonasa A 80%, Fonasa B 60%, Isapre 70%, Particular 0%) y si tiene bono de caja de $5.000 sobre el copago. Mostrar por paciente el desglose completo. Al cerrar el día: total facturado, total cubierto por previsiones, total cobrado a pacientes y prestación más solicitada.",
+      "entradaProcesoSalida": {
+        "entrada": "nombrePaciente, prestacion, prevision, bono (Caracter)\nprecioBase, cobertura, copago, descuentoBono, totalPaciente (Real)",
+        "proceso": "Mientras nombre <> fin\n   Según prestación obtener precio base\n   Según previsión obtener porcentaje cobertura\n   Calcular monto cubierto y copago\n   Si bono = si descontar 5000 al copago sin dejarlo negativo\n   Acumular totales\n   Contar prestación más solicitada\nFinMientras",
+        "salida": "Desglose por paciente y cierre diario"
+      },
+      "salidaEsperada": "Nombre paciente (fin para cerrar):\n> Juan\nPrestación (consulta/examen/procedimiento):\n> consulta\nPrevisión (fonasaA/fonasaB/isapre/particular):\n> isapre\n¿Tiene bono de caja? (si/no):\n> si\n===== DESGLOSE PACIENTE =====\nPrecio base: $25000\nCubierto por previsión: $17500\nBono de caja: $5000\nTotal paciente: $2500",
+      "pista": "Aquí conviene separar claramente tres montos distintos: precio base, parte cubierta por la previsión y copago final del paciente.",
+      "codigoReferencia": "Proceso FacturacionClinica\n  Definir nombrePaciente, prestacion, prevision, bono, prestacionMasSolicitada Como Caracter\n  Definir precioBase, porcentajeCobertura, montoCubierto, copago, descuentoBono, totalPaciente, totalFacturado, totalCubierto, totalPacientes Como Real\n  Definir contConsulta, contExamen, contProcedimiento Como Entero\n\n  totalFacturado    = 0\n  totalCubierto     = 0\n  totalPacientes    = 0\n  contConsulta      = 0\n  contExamen        = 0\n  contProcedimiento = 0\n\n  Escribir \"Nombre paciente (fin para cerrar):\"\n  Leer nombrePaciente\n  Mientras nombrePaciente <> \"fin\" Hacer\n    Escribir \"Prestación (consulta/examen/procedimiento):\"\n    Leer prestacion\n    Escribir \"Previsión (fonasaA/fonasaB/isapre/particular):\"\n    Leer prevision\n    Escribir \"¿Tiene bono de caja? (si/no):\"\n    Leer bono\n    Segun prestacion Hacer\n      \"consulta\":\n        precioBase   = 25000\n        contConsulta = contConsulta + 1\n\n      \"examen\":\n        precioBase = 15000\n        contExamen = contExamen + 1\n\n      De Otro Modo:\n        precioBase        = 80000\n        contProcedimiento = contProcedimiento + 1\n    FinSegun\n    Segun prevision Hacer\n      \"fonasaA\":\n        porcentajeCobertura = 0.80\n\n      \"fonasaB\":\n        porcentajeCobertura = 0.60\n\n      \"isapre\":\n        porcentajeCobertura = 0.70\n\n      De Otro Modo:\n        porcentajeCobertura = 0\n    FinSegun\n    montoCubierto = precioBase * porcentajeCobertura\n    copago        = precioBase - montoCubierto\n    descuentoBono = 0\n    Si bono == \"si\" Entonces\n      Si copago >= 5000 Entonces\n        descuentoBono = 5000\n      Sino\n        descuentoBono = copago\n      FinSi\n    FinSi\n    totalPaciente  = copago - descuentoBono\n    totalFacturado = totalFacturado + precioBase\n    totalCubierto  = totalCubierto + montoCubierto\n    totalPacientes = totalPacientes + totalPaciente\n\n    Escribir \"===== DESGLOSE PACIENTE =====\"\n    Escribir \"Precio base: $\", precioBase\n    Escribir \"Cubierto por previsión: $\", montoCubierto\n    Escribir \"Bono de caja: $\", descuentoBono\n    Escribir \"Total paciente: $\", totalPaciente\n    Escribir \"Nombre paciente (fin para cerrar):\"\n    Leer nombrePaciente\n  FinMientras\n  Si contConsulta > contExamen Y contConsulta > contProcedimiento Entonces\n    prestacionMasSolicitada = \"consulta\"\n  Sino\n    Si contExamen > contConsulta Y contExamen > contProcedimiento Entonces\n      prestacionMasSolicitada = \"examen\"\n    Sino\n      prestacionMasSolicitada = \"procedimiento\"\n    FinSi\n  FinSi\n  Escribir \"===== CIERRE DEL DÍA =====\"\n  Escribir \"Total facturado: $\", totalFacturado\n  Escribir \"Total cubierto por previsiones: $\", totalCubierto\n  Escribir \"Total cobrado a pacientes: $\", totalPacientes\n  Escribir \"Prestación más solicitada: \", prestacionMasSolicitada\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-011",
+      "origen": "json/EA 1.5.json #171",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-11",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Sistema de reservas hotel",
+      "conceptos": [
+        "Doble menú",
+        "Mientras",
+        "Según anidado",
+        "Descuentos encadenados",
+        "Acumuladores por categoría",
+        "Estadísticas"
+      ],
+      "enunciado": "Un hotel administra sus reservas con un menú principal: 1) Nueva reserva, 2) Ver resumen del día y 3) Salir. En la opción de nueva reserva, el sistema solicita el tipo de habitación (Simple, Doble o Suite), la temporada (alta o baja), la cantidad de noches y el tipo de cliente (turista, corporativo, frecuente). Cada tipo de habitación tiene un precio distinto según temporada. Los clientes corporativos y frecuentes reciben descuentos, y si la estadía supera 5 noches se aplica además un descuento adicional por volumen. Al cerrar el día, el sistema muestra la habitación más reservada, el ingreso total por categoría y la ocupación promedio.",
+      "entradaProcesoSalida": {
+        "entrada": "opcion, tipoHabitacion, noches (Entero)\ntemporada, tipoCliente, habitacionMasReservada (Caracter)\nprecioNoche, subtotal, descuentoCliente, descuentoVolumen, totalReserva (Real)",
+        "proceso": "Mientras opcion <> 3 Hacer\n   Mostrar menú principal\n   Si opcion = 1 Entonces\n      Leer tipoHabitacion, temporada, noches, tipoCliente\n      Según habitación y temporada obtener precio por noche\n      Calcular subtotal\n      Aplicar descuento por tipo de cliente\n      Si noches > 5 aplicar descuento adicional por volumen\n      Acumular ingresos y reservas por categoría\n   SiNo\n      Si opcion = 2 mostrar resumen parcial\n   FinSi\nFinMientras",
+        "salida": "Resumen del día"
+      },
+      "salidaEsperada": "1) Nueva reserva\n2) Ver resumen del día\n3) Salir\nOpción:\n> 1\nTipo habitación (1=Simple,2=Doble,3=Suite):\n> 2\nTemporada (alta/baja):\n> alta\nNoches:\n> 6\nTipo cliente (turista/corporativo/frecuente):\n> corporativo\nReserva registrada: $307800",
+      "pista": "Este tipo de problema requiere separar con claridad la lógica del menú, la lógica de la reserva y la lógica estadística del cierre.",
+      "codigoReferencia": "Proceso SistemaReservasHotel\n  Definir opcion, tipoHabitacion, noches, contSimple, contDoble, contSuite, totalReservas Como Entero\n  Definir temporada, tipoCliente, habitacionMasReservada Como Caracter\n  Definir precioNoche, subtotal, descuentoCliente, descuentoVolumen, totalReserva, ingresoSimple, ingresoDoble, ingresoSuite, ocupacionPromedio Como Real\n\n  contSimple    = 0\n  contDoble     = 0\n  contSuite     = 0\n  totalReservas = 0\n  ingresoSimple = 0\n  ingresoDoble  = 0\n  ingresoSuite  = 0\n  opcion        = 0\n  Mientras opcion <> 3 Hacer\n    Escribir \"1) Nueva reserva\"\n    Escribir \"2) Ver resumen del día\"\n    Escribir \"3) Salir\"\n    Escribir \"Opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Tipo habitación (1=Simple,2=Doble,3=Suite):\"\n      Leer tipoHabitacion\n      Escribir \"Temporada (alta/baja):\"\n      Leer temporada\n      Escribir \"Noches:\"\n      Leer noches\n      Escribir \"Tipo cliente (turista/corporativo/frecuente):\"\n      Leer tipoCliente\n      Segun tipoHabitacion Hacer\n        1:\n          Si temporada == \"alta\" Entonces\n            precioNoche = 35000\n          Sino\n            precioNoche = 25000\n          FinSi\n          contSimple = contSimple + 1\n\n        2:\n          Si temporada == \"alta\" Entonces\n            precioNoche = 57000\n          Sino\n            precioNoche = 42000\n          FinSi\n          contDoble = contDoble + 1\n\n        3:\n          Si temporada == \"alta\" Entonces\n            precioNoche = 95000\n          Sino\n            precioNoche = 70000\n          FinSi\n          contSuite = contSuite + 1\n      FinSegun\n      subtotal = precioNoche * noches\n      Segun tipoCliente Hacer\n        \"corporativo\":\n          descuentoCliente = subtotal * 0.12\n\n        \"frecuente\":\n          descuentoCliente = subtotal * 0.18\n\n        De Otro Modo:\n          descuentoCliente = 0\n      FinSegun\n      descuentoVolumen = 0\n      Si noches > 5 Entonces\n        descuentoVolumen = (subtotal - descuentoCliente) * 0.08\n      FinSi\n      totalReserva  = subtotal - descuentoCliente - descuentoVolumen\n      totalReservas = totalReservas + 1\n      Segun tipoHabitacion Hacer\n        1: ingresoSimple = ingresoSimple + totalReserva\n        2: ingresoDoble = ingresoDoble + totalReserva\n        3: ingresoSuite = ingresoSuite + totalReserva\n      FinSegun\n      Escribir \"Reserva registrada: $\", totalReserva\n    Sino\n      Si opcion == 2 Entonces\n        Escribir \"Simple: $\", ingresoSimple\n        Escribir \"Doble: $\", ingresoDoble\n        Escribir \"Suite: $\", ingresoSuite\n      FinSi\n    FinSi\n  FinMientras\n  Si contSimple > contDoble Y contSimple > contSuite Entonces\n    habitacionMasReservada = \"Simple\"\n  Sino\n    Si contDoble > contSimple Y contDoble > contSuite Entonces\n      habitacionMasReservada = \"Doble\"\n    Sino\n      habitacionMasReservada = \"Suite\"\n    FinSi\n  FinSi\n  Si totalReservas > 0 Entonces\n    ocupacionPromedio = (contSimple + contDoble + contSuite) / totalReservas\n  Sino\n    ocupacionPromedio = 0\n  FinSi\n  Escribir \"===== CIERRE DEL DÍA =====\"\n  Escribir \"Habitación más reservada: \", habitacionMasReservada\n  Escribir \"Ingreso Simple: $\", ingresoSimple\n  Escribir \"Ingreso Doble: $\", ingresoDoble\n  Escribir \"Ingreso Suite: $\", ingresoSuite\n  Escribir \"Ocupación promedio: \", ocupacionPromedio\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-012",
+      "origen": "json/EA 1.5.json #172",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-12",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Banco sucursal",
+      "conceptos": [
+        "Doble menú",
+        "Validaciones de saldo",
+        "Comisiones condicionales",
+        "Historial acumulado",
+        "Límites diarios",
+        "Banco"
+      ],
+      "enunciado": "Una sucursal bancaria opera con el menú: 1) Depósito, 2) Retiro, 3) Transferencia, 4) Resumen cuenta, 5) Salir. En la opción de retiro existe un submenú: 1) Cajero con límite de $200.000 diarios y comisión de $990 si es otra cuenta, y 2) Caja sin límite con comisión de $500. Las transferencias cobran comisión según monto: hasta $100.000 gratis, hasta $500.000 $590 y más de $500.000 $990. El saldo nunca puede quedar negativo. Al salir, el sistema muestra movimientos del día, total de comisiones y saldo final.",
+      "entradaProcesoSalida": {
+        "entrada": "opcion, subRetiro (Entero)\nsaldo, monto, comision, totalComisiones, retiradoCajero (Real)\notraCuenta, historial (Caracter)",
+        "proceso": "Mientras opcion <> 5 Hacer\n   Mostrar menú principal\n   Según opcion resolver depósito, retiro, transferencia o resumen\n   En retiro usar submenú y validar límite diario y saldo\n   En transferencia calcular comisión por tramo\n   Acumular movimientos y comisiones\nFinMientras",
+        "salida": "Resumen final de cuenta"
+      },
+      "salidaEsperada": "1) Depósito\n2) Retiro\n3) Transferencia\n4) Resumen cuenta\n5) Salir\nOpción:\n> 1\nMonto depósito:\n> 50000\nDepósito realizado",
+      "pista": "Este problema exige controlar varias restricciones al mismo tiempo: saldo, límite diario y tipo de comisión.",
+      "codigoReferencia": "Proceso BancoSucursal\n  Definir opcion, subRetiro Como Entero\n  Definir saldo, monto, comision, totalComisiones, retiradoCajero Como Real\n  Definir otraCuenta, historial Como Caracter\n\n  saldo           = 0\n  totalComisiones = 0\n  retiradoCajero  = 0\n  historial       = \"\"\n  opcion          = 0\n  Mientras opcion <> 5 Hacer\n    Escribir \"1) Depósito\"\n    Escribir \"2) Retiro\"\n    Escribir \"3) Transferencia\"\n    Escribir \"4) Resumen cuenta\"\n    Escribir \"5) Salir\"\n    Escribir \"Opción:\"\n    Leer opcion\n    Segun opcion Hacer\n      1:\n        Escribir \"Monto depósito:\"\n        Leer monto\n\n        saldo     = saldo + monto\n        historial = historial + \"Depósito $\" + monto + \" | \"\n\n        Escribir \"Depósito realizado\"\n      2:\n        Escribir \"1) Cajero\"\n        Escribir \"2) Caja\"\n        Escribir \"Seleccione tipo de retiro:\"\n        Leer subRetiro\n        Escribir \"Monto retiro:\"\n        Leer monto\n\n        comision = 0\n        Si subRetiro == 1 Entonces\n          Escribir \"¿Es otra cuenta? (si/no):\"\n          Leer otraCuenta\n          Si retiradoCajero + monto <= 200000 Entonces\n            Si otraCuenta == \"si\" Entonces\n              comision = 990\n            FinSi\n            Si monto + comision <= saldo Entonces\n              saldo           = saldo - monto - comision\n              retiradoCajero  = retiradoCajero + monto\n              totalComisiones = totalComisiones + comision\n            FinSi\n          FinSi\n        Sino\n          comision = 500\n          Si monto + comision <= saldo Entonces\n            saldo           = saldo - monto - comision\n            totalComisiones = totalComisiones + comision\n          FinSi\n        FinSi\n      3:\n        Escribir \"Monto transferencia:\"\n        Leer monto\n        Si monto <= 100000 Entonces\n          comision = 0\n        Sino\n          Si monto <= 500000 Entonces\n            comision = 590\n          Sino\n            comision = 990\n          FinSi\n        FinSi\n        Si monto + comision <= saldo Entonces\n          saldo           = saldo - monto - comision\n          totalComisiones = totalComisiones + comision\n        FinSi\n      4:\n        Escribir \"Saldo actual: $\", saldo\n    FinSegun\n  FinMientras\n  Escribir \"===== CIERRE BANCO =====\"\n  Escribir \"Movimientos del día: \", historial\n  Escribir \"Total comisiones: $\", totalComisiones\n  Escribir \"Saldo final: $\", saldo\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-013",
+      "origen": "json/EA 1.5.json #173",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-13",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Cadena de comida rápida",
+      "conceptos": [
+        "Triple ciclo anidado",
+        "Doble menú",
+        "Lógica de combos",
+        "Acumuladores por ítem",
+        "Estadísticas de turno",
+        "Caja"
+      ],
+      "enunciado": "Una cadena de comida rápida opera con el menú: 1) Nuevo pedido, 2) Ver caja del turno, 3) Cerrar turno. En un pedido nuevo se abre un submenú de categorías: Hamburguesas, Bebidas y Acompañamientos. El cliente puede agregar varios ítems al mismo pedido. Si compra al menos un producto de las 3 categorías, obtiene descuento combo del 15%. Además, en horario valle 11–13 y 15–17 se aplica un 10%. Solo se aplica el mayor. También puede dejar propina opcional. Al cerrar turno se informa: producto más vendido, ticket promedio, total por categoría e ingreso neto.",
+      "entradaProcesoSalida": {
+        "entrada": "opcionPrincipal, opcionCategoria, opcionItem, hora (Entero)\nsubtotalPedido, descuento, propina, totalPedido, ingresoNeto (Real)\nllevaHamburguesa, llevaBebida, llevaAcompanamiento (Logico)",
+        "proceso": "Mientras no cerrar turno\n   Si nuevo pedido iniciar ciclo interno de ítems\n   Según categoría e ítem sumar precios y contar ventas\n   Al cerrar pedido decidir descuento mayor entre combo y valle\n   Agregar propina si corresponde\n   Acumular ingresos y tickets\nFinMientras",
+        "salida": "Cierre del turno"
+      },
+      "salidaEsperada": "1) Nuevo pedido\n2) Ver caja del turno\n3) Cerrar turno\nOpción:\n> 1\nHora del pedido:\n> 12\nPedido total: $9630",
+      "pista": "La parte clave es separar el subtotal del pedido, el descuento aplicable y el total final con propina.",
+      "codigoReferencia": "Proceso CadenaComidaRapida\n  Definir opcionPrincipal, opcionCategoria, opcionItem, hora, cantidadPedidos Como Entero\n  Definir subtotalPedido, descuento, propina, totalPedido, cajaTurno, ticketPromedio, totalHamburguesas, totalBebidas, totalAcompanamientos, ingresoNeto Como Real\n  Definir llevaHamburguesa, llevaBebida, llevaAcompanamiento Como Logico\n  Definir contBurgerClasica, contBebida, contPapas Como Entero\n\n  cajaTurno            = 0\n  cantidadPedidos      = 0\n  totalHamburguesas    = 0\n  totalBebidas         = 0\n  totalAcompanamientos = 0\n  ingresoNeto          = 0\n  contBurgerClasica    = 0\n  contBebida           = 0\n  contPapas            = 0\n  opcionPrincipal      = 0\n  Mientras opcionPrincipal <> 3 Hacer\n    Escribir \"1) Nuevo pedido\"\n    Escribir \"2) Ver caja del turno\"\n    Escribir \"3) Cerrar turno\"\n    Escribir \"Opción:\"\n    Leer opcionPrincipal\n    Si opcionPrincipal == 1 Entonces\n      subtotalPedido      = 0\n      llevaHamburguesa    = Falso\n      llevaBebida         = Falso\n      llevaAcompanamiento = Falso\n\n      Escribir \"Hora del pedido:\"\n      Leer hora\n\n      opcionCategoria = 1\n      Mientras opcionCategoria <> 0 Hacer\n        Escribir \"Categoría: 1) Hamburguesas 2) Bebidas 3) Acompañamientos 0) Finalizar\"\n        Leer opcionCategoria\n        Segun opcionCategoria Hacer\n          1:\n            Escribir \"Hamburguesa: 1) Clásica\"\n            Leer opcionItem\n\n            subtotalPedido    = subtotalPedido + 5500\n            totalHamburguesas = totalHamburguesas + 5500\n            contBurgerClasica = contBurgerClasica + 1\n            llevaHamburguesa  = Verdadero\n\n          2:\n            Escribir \"Bebida: 1) Bebida lata\"\n            Leer opcionItem\n\n            subtotalPedido = subtotalPedido + 1800\n            totalBebidas   = totalBebidas + 1800\n            contBebida     = contBebida + 1\n            llevaBebida    = Verdadero\n\n          3:\n            Escribir \"Acompañamiento: 1) Papas fritas\"\n            Leer opcionItem\n\n            subtotalPedido       = subtotalPedido + 2400\n            totalAcompanamientos = totalAcompanamientos + 2400\n            contPapas            = contPapas + 1\n            llevaAcompanamiento  = Verdadero\n        FinSegun\n      FinMientras\n      descuento = 0\n      Si llevaHamburguesa == Verdadero Y llevaBebida == Verdadero Y llevaAcompanamiento == Verdadero Entonces\n        descuento = subtotalPedido * 0.15\n      FinSi\n      Si ((hora >= 11 Y hora <= 13) O (hora >= 15 Y hora <= 17)) Entonces\n        Si subtotalPedido * 0.10 > descuento Entonces\n          descuento = subtotalPedido * 0.10\n        FinSi\n      FinSi\n      Escribir \"Propina:\"\n      Leer propina\n\n      totalPedido     = subtotalPedido - descuento + propina\n      cajaTurno       = cajaTurno + totalPedido\n      ingresoNeto     = ingresoNeto + (subtotalPedido - descuento)\n      cantidadPedidos = cantidadPedidos + 1\n\n      Escribir \"Pedido total: $\", totalPedido\n    Sino\n      Si opcionPrincipal == 2 Entonces\n        Escribir \"Caja del turno: $\", cajaTurno\n      FinSi\n    FinSi\n  FinMientras\n  Si cantidadPedidos > 0 Entonces\n    ticketPromedio = cajaTurno / cantidadPedidos\n  Sino\n    ticketPromedio = 0\n  FinSi\n  Escribir \"===== CIERRE TURNO =====\"\n  Escribir \"Ticket promedio: $\", ticketPromedio\n  Escribir \"Total hamburguesas: $\", totalHamburguesas\n  Escribir \"Total bebidas: $\", totalBebidas\n  Escribir \"Total acompañamientos: $\", totalAcompanamientos\n  Escribir \"Ingreso neto: $\", ingresoNeto\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-014",
+      "origen": "json/EA 1.5.json #174",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-14",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Clínica veterinaria",
+      "conceptos": [
+        "Doble menú",
+        "Reglas cruzadas",
+        "Flags",
+        "Acumuladores multidimensionales",
+        "Ticket promedio",
+        "Veterinaria"
+      ],
+      "enunciado": "Una clínica veterinaria opera con el menú: 1) Registrar atención, 2) Buscar paciente por nombre, 3) Estadísticas del día, 4) Salir. En registrar atención se solicita el tipo de mascota (perro, gato, ave, exótico), lo que define un arancel base. Luego se solicita el tipo de prestación (consulta, vacuna, cirugía, urgencia) con recargos distintos según especie. Si es primera visita, se aplica un descuento de bienvenida del 20%. Las urgencias tienen un recargo del 50% independiente del resto. En estadísticas del día se muestra la especie más atendida, la prestación más frecuente, el ingreso por prestación y el ticket promedio.",
+      "entradaProcesoSalida": {
+        "entrada": "opcion, especie, prestacion (Caracter)\nprimeraVisita (Caracter)\narancelBase, recargo, descuento, total, ticketPromedio (Real)",
+        "proceso": "Mientras opcion <> salir\n   Si registrar atención\n      definir base por especie\n      definir recargo por prestación\n      si primera visita aplicar descuento\n      si urgencia aplicar recargo especial\n      acumular por especie y prestación\n   Si estadísticas mostrar acumulados y máximos\nFinMientras",
+        "salida": "Cierre veterinario"
+      },
+      "salidaEsperada": "1) Registrar atención\n2) Buscar paciente por nombre\n3) Estadísticas del día\n4) Salir\nOpción:\n> 1\nNombre mascota:\n> Luna\nEspecie (perro/gato/ave/exotico):\n> gato\nPrestación (consulta/vacuna/cirugia/urgencia):\n> consulta\n¿Primera visita? (si/no):\n> si\nTotal atención: $20000",
+      "pista": "Este problema cruza dos dimensiones distintas: especie y tipo de prestación. Conviene acumular ambas por separado.",
+      "codigoReferencia": "Proceso ClinicaVeterinaria\n  Definir opcion, contPerro, contGato, contAve, contExotico, contConsulta, contVacuna, contCirugia, contUrgencia, cantidadAtenciones Como Entero\n  Definir nombreMascota, especie, prestacion, primeraVisita, especieMasAtendida, prestacionMasFrecuente Como Caracter\n  Definir arancelBase, recargo, descuento, total, ingresoConsulta, ingresoVacuna, ingresoCirugia, ingresoUrgencia, ticketPromedio, totalDelDia Como Real\n\n  contPerro          = 0\n  contGato           = 0\n  contAve            = 0\n  contExotico        = 0\n  contConsulta       = 0\n  contVacuna         = 0\n  contCirugia        = 0\n  contUrgencia       = 0\n  cantidadAtenciones = 0\n  ingresoConsulta    = 0\n  ingresoVacuna      = 0\n  ingresoCirugia     = 0\n  ingresoUrgencia    = 0\n  totalDelDia        = 0\n  opcion             = 0\n  Mientras opcion <> 4 Hacer\n    Escribir \"1) Registrar atención\"\n    Escribir \"2) Buscar paciente por nombre\"\n    Escribir \"3) Estadísticas del día\"\n    Escribir \"4) Salir\"\n    Escribir \"Opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Nombre mascota:\"\n      Leer nombreMascota\n      Escribir \"Especie (perro/gato/ave/exotico):\"\n      Leer especie\n      Escribir \"Prestación (consulta/vacuna/cirugia/urgencia):\"\n      Leer prestacion\n      Escribir \"¿Primera visita? (si/no):\"\n      Leer primeraVisita\n      Segun especie Hacer\n        \"perro\":\n          arancelBase = 25000\n          contPerro   = contPerro + 1\n\n        \"gato\":\n          arancelBase = 22000\n          contGato    = contGato + 1\n\n        \"ave\":\n          arancelBase = 18000\n          contAve     = contAve + 1\n\n        De Otro Modo:\n          arancelBase = 30000\n          contExotico = contExotico + 1\n      FinSegun\n      Segun prestacion Hacer\n        \"consulta\":\n          recargo      = 0\n          contConsulta = contConsulta + 1\n\n        \"vacuna\":\n          recargo    = 5000\n          contVacuna = contVacuna + 1\n\n        \"cirugia\":\n          recargo     = 30000\n          contCirugia = contCirugia + 1\n\n        De Otro Modo:\n          recargo      = arancelBase * 0.50\n          contUrgencia = contUrgencia + 1\n      FinSegun\n      descuento = 0\n      Si primeraVisita == \"si\" Entonces\n        descuento = (arancelBase + recargo) * 0.20\n      FinSi\n      total              = arancelBase + recargo - descuento\n      totalDelDia        = totalDelDia + total\n      cantidadAtenciones = cantidadAtenciones + 1\n      Segun prestacion Hacer\n        \"consulta\": ingresoConsulta = ingresoConsulta + total\n        \"vacuna\": ingresoVacuna = ingresoVacuna + total\n        \"cirugia\": ingresoCirugia = ingresoCirugia + total\n        \"urgencia\": ingresoUrgencia = ingresoUrgencia + total\n      FinSegun\n      Escribir \"Total atención: $\", total\n    FinSi\n    Si opcion == 3 Entonces\n      Si contPerro > contGato Y contPerro > contAve Y contPerro > contExotico Entonces\n        especieMasAtendida = \"perro\"\n      Sino\n        especieMasAtendida = \"gato\"\n      FinSi\n      Si contConsulta > contVacuna Y contConsulta > contCirugia Y contConsulta > contUrgencia Entonces\n        prestacionMasFrecuente = \"consulta\"\n      Sino\n        prestacionMasFrecuente = \"vacuna\"\n      FinSi\n      Si cantidadAtenciones > 0 Entonces\n        ticketPromedio = totalDelDia / cantidadAtenciones\n      Sino\n        ticketPromedio = 0\n      FinSi\n      Escribir \"Especie más atendida: \", especieMasAtendida\n      Escribir \"Prestación más frecuente: \", prestacionMasFrecuente\n      Escribir \"Ingreso consulta: $\", ingresoConsulta\n      Escribir \"Ingreso vacuna: $\", ingresoVacuna\n      Escribir \"Ingreso cirugía: $\", ingresoCirugia\n      Escribir \"Ingreso urgencia: $\", ingresoUrgencia\n      Escribir \"Ticket promedio: $\", ticketPromedio\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n5-015",
+      "origen": "json/EA 1.5.json #175",
+      "modulo": "N5",
+      "experiencia": "Desafíos",
+      "nivelLiteSeInt": 5,
+      "numero": "N5-15",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Agencia de viajes",
+      "conceptos": [
+        "Menú",
+        "Submenús anidados",
+        "Tarifas por persona",
+        "Descuento grupal",
+        "Acumuladores",
+        "Reportes"
+      ],
+      "enunciado": "Una agencia de viajes opera con el menú: 1) Nueva cotización, 2) Confirmar reserva, 3) Reporte del día, 4) Salir. En una nueva cotización se elige primero el tipo de destino: Nacional o Internacional, luego un destino específico con precio base por persona. Después se ingresa la cantidad de pasajeros, el tipo de pasajero (adulto precio completo, niño 50%, adulto mayor 30%) y si incluye seguro de viaje de $15.000 por persona. Si viajan 5 o más pasajeros, se aplica un descuento grupal del 10% sobre el total base. Las reservas confirmadas se acumulan. Al cierre se debe mostrar: destino más solicitado, ingreso por tipo de destino, promedio de pasajeros por reserva y total del día con y sin seguros.",
+      "entradaProcesoSalida": {
+        "entrada": "opcion, tipoDestino, destino, pasajeros, reservaConfirmada (Entero)\ntipoPasajero, seguro (Caracter)\nprecioBase, subtotal, descuentoGrupal, totalSeguro, totalCotizacion (Real)",
+        "proceso": "Mientras opcion <> 4 Hacer\n   Si nueva cotización seleccionar destino y tarifas\n   Calcular subtotal según tipo de pasajero\n   Si pasajeros >= 5 aplicar descuento grupal\n   Si incluye seguro sumar valor por persona\n   Si confirmar reserva acumular estadísticas\nFinMientras",
+        "salida": "Reporte del día"
+      },
+      "salidaEsperada": "1) Nueva cotización\n2) Confirmar reserva\n3) Reporte del día\n4) Salir\nOpción:\n> 1\nTipo destino (1=Nacional,2=Internacional):\n> 1\nDestino nacional (1=La Serena,2=Puerto Varas):\n> 1\nCantidad pasajeros:\n> 5\nTipo pasajero (adulto/nino/mayor):\n> adulto\n¿Incluye seguro? (si/no):\n> si\nTotal cotización: $495000",
+      "pista": "Conviene distinguir entre cotización calculada y reserva efectivamente confirmada, porque solo esta última debe acumularse en el reporte final.",
+      "codigoReferencia": "Proceso AgenciaViajes\n  Definir opcion, tipoDestino, destino, pasajeros, confirmar, contNacional, contInternacional, totalReservas, pasajerosAcumulados, contLaSerena, contPuertoVaras, contBuenosAires, contMadrid Como Entero\n  Definir tipoPasajero, seguro, destinoMasSolicitado Como Caracter\n  Definir precioBase, subtotal, descuentoGrupal, totalSeguro, totalCotizacion, totalDiaSinSeguro, totalDiaConSeguro, promedioPasajeros Como Real\n\n  contNacional        = 0\n  contInternacional   = 0\n  totalReservas       = 0\n  pasajerosAcumulados = 0\n  totalDiaSinSeguro   = 0\n  totalDiaConSeguro   = 0\n  contLaSerena        = 0\n  contPuertoVaras     = 0\n  contBuenosAires     = 0\n  contMadrid          = 0\n  opcion              = 0\n  Mientras opcion <> 4 Hacer\n    Escribir \"1) Nueva cotización\"\n    Escribir \"2) Confirmar reserva\"\n    Escribir \"3) Reporte del día\"\n    Escribir \"4) Salir\"\n    Escribir \"Opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Tipo destino (1=Nacional,2=Internacional):\"\n      Leer tipoDestino\n      Si tipoDestino == 1 Entonces\n        Escribir \"Destino nacional (1=La Serena,2=Puerto Varas):\"\n        Leer destino\n        Segun destino Hacer\n          1: precioBase = 80000\n          2: precioBase = 95000\n        FinSegun\n      Sino\n        Escribir \"Destino internacional (1=Buenos Aires,2=Madrid):\"\n        Leer destino\n        Segun destino Hacer\n          1: precioBase = 250000\n          2: precioBase = 700000\n        FinSegun\n      FinSi\n      Escribir \"Cantidad pasajeros:\"\n      Leer pasajeros\n      Escribir \"Tipo pasajero (adulto/nino/mayor):\"\n      Leer tipoPasajero\n      Escribir \"¿Incluye seguro? (si/no):\"\n      Leer seguro\n      Segun tipoPasajero Hacer\n        \"adulto\":\n          subtotal = precioBase * pasajeros\n\n        \"nino\":\n          subtotal = (precioBase * 0.50) * pasajeros\n\n        De Otro Modo:\n          subtotal = (precioBase * 0.70) * pasajeros\n      FinSegun\n      descuentoGrupal = 0\n      Si pasajeros >= 5 Entonces\n        descuentoGrupal = subtotal * 0.10\n      FinSi\n      totalSeguro = 0\n      Si seguro == \"si\" Entonces\n        totalSeguro = 15000 * pasajeros\n      FinSi\n      totalCotizacion = subtotal - descuentoGrupal + totalSeguro\n\n      Escribir \"Total cotización: $\", totalCotizacion\n    FinSi\n    Si opcion == 2 Entonces\n      Escribir \"¿Confirmar reserva? (1=si,0=no):\"\n      Leer confirmar\n      Si confirmar == 1 Entonces\n        totalReservas       = totalReservas + 1\n        pasajerosAcumulados = pasajerosAcumulados + pasajeros\n        Si tipoDestino == 1 Entonces\n          contNacional = contNacional + 1\n        Sino\n          contInternacional = contInternacional + 1\n        FinSi\n        totalDiaSinSeguro = totalDiaSinSeguro + (subtotal - descuentoGrupal)\n        totalDiaConSeguro = totalDiaConSeguro + totalCotizacion\n      FinSi\n    FinSi\n    Si opcion == 3 Entonces\n      Si totalReservas > 0 Entonces\n        promedioPasajeros = pasajerosAcumulados / totalReservas\n      Sino\n        promedioPasajeros = 0\n      FinSi\n      Si contLaSerena > contPuertoVaras Y contLaSerena > contBuenosAires Y contLaSerena > contMadrid Entonces\n        destinoMasSolicitado = \"La Serena\"\n      Sino\n        destinoMasSolicitado = \"Puerto Varas\"\n      FinSi\n      Escribir \"Destino más solicitado: \", destinoMasSolicitado\n      Escribir \"Ingreso día sin seguros: $\", totalDiaSinSeguro\n      Escribir \"Ingreso día con seguros: $\", totalDiaConSeguro\n      Escribir \"Promedio pasajeros por reserva: \", promedioPasajeros\n    FinSi\n  FinMientras\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    }
+  ]
+}

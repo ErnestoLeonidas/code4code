@@ -1,0 +1,1137 @@
+{
+  "experience": {
+    "id": "3",
+    "label": "N3",
+    "titulo": "Estructuras de Decisión",
+    "desc": "Programa estructuras Si-Entonces, Según y decisiones anidadas.",
+    "color": "var(--yellow)",
+    "icon": "🔀"
+  },
+  "exercises": [
+    {
+      "id": "n3-001",
+      "origen": "json/EA 1.3.json #61",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-01",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Mayor de edad",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Si-Entonces",
+        "Comparación"
+      ],
+      "enunciado": "Lee la edad de una persona. Si la edad es mayor o igual a 18, muestra el mensaje \"Es mayor de edad\". En caso contrario, muestra \"Es menor de edad\".",
+      "entradaProcesoSalida": {
+        "entrada": "edad (Entero)",
+        "proceso": "Si edad >= 18 Entonces\n   mensaje ← \"Es mayor de edad\"\nSiNo\n   mensaje ← \"Es menor de edad\"\nFinSi",
+        "salida": "Mensaje según la edad ingresada"
+      },
+      "salidaEsperada": "Edad:\n> 20\nEs mayor de edad",
+      "pista": "El operador >= significa “mayor o igual que”.",
+      "codigoReferencia": "Proceso MayorDeEdad\n  Definir edad Como Entero\n\n  Escribir \"Edad:\"\n  Leer edad\n  Si edad >= 18 Entonces\n    Escribir \"Es mayor de edad\"\n  Sino\n    Escribir \"Es menor de edad\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-002",
+      "origen": "json/EA 1.3.json #62",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-02",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Aprobar o reprobar examen",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si-Entonces",
+        "Notas"
+      ],
+      "enunciado": "Lee una nota. Si la nota es mayor o igual a 4.0, muestra \"Aprobado\". En caso contrario, muestra \"Reprobado\".",
+      "entradaProcesoSalida": {
+        "entrada": "nota (Real)",
+        "proceso": "Si nota >= 4.0 Entonces\n   mostrar \"Aprobado\"\nSiNo\n   mostrar \"Reprobado\"\nFinSi",
+        "salida": "Resultado del examen"
+      },
+      "salidaEsperada": "Nota:\n> 3.8\nReprobado",
+      "pista": "Cuando trabajes con notas decimales, define la variable como Real.",
+      "codigoReferencia": "Proceso AprobarExamen\n  Definir nota Como Real\n\n  Escribir \"Nota:\"\n  Leer nota\n  Si nota >= 4.0 Entonces\n    Escribir \"Aprobado\"\n  Sino\n    Escribir \"Reprobado\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-003",
+      "origen": "json/EA 1.3.json #63",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Número positivo, negativo o cero",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si-Entonces",
+        "Anidado"
+      ],
+      "enunciado": "Lee un número. Si es mayor que 0, muestra \"Positivo\". Si es menor que 0, muestra \"Negativo\". En caso contrario, muestra \"Cero\".",
+      "entradaProcesoSalida": {
+        "entrada": "n (Real)",
+        "proceso": "Si n > 0 Entonces\n   mostrar \"Positivo\"\nSiNo\n   Si n < 0 Entonces\n      mostrar \"Negativo\"\n   SiNo\n      mostrar \"Cero\"\n   FinSi\nFinSi",
+        "salida": "Clasificación del número"
+      },
+      "salidaEsperada": "Número:\n> -7\nNegativo",
+      "pista": "Este caso usa dos comparaciones para distinguir tres resultados posibles.",
+      "codigoReferencia": "Proceso SignoNumero\n  Definir n Como Real\n\n  Escribir \"Número:\"\n  Leer n\n  Si n > 0 Entonces\n    Escribir \"Positivo\"\n  Sino\n    Si n < 0 Entonces\n      Escribir \"Negativo\"\n    Sino\n      Escribir \"Cero\"\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-004",
+      "origen": "json/EA 1.3.json #64",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Acceso con contraseña",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Si-Entonces",
+        "Comparación"
+      ],
+      "enunciado": "Lee una contraseña. Si la contraseña es exactamente \"1234\", muestra \"Acceso concedido\". En caso contrario, muestra \"Acceso denegado\".",
+      "entradaProcesoSalida": {
+        "entrada": "clave (Caracter)",
+        "proceso": "Si clave = \"1234\" Entonces\n   mostrar \"Acceso concedido\"\nSiNo\n   mostrar \"Acceso denegado\"\nFinSi",
+        "salida": "Resultado del acceso"
+      },
+      "salidaEsperada": "Ingrese contraseña:\n> 1234\nAcceso concedido",
+      "pista": "Para comparar Caracter en LiteSeInt se usa el operador ==.",
+      "codigoReferencia": "Proceso AccesoClave\n  Definir clave Como Caracter\n\n  Escribir \"Ingrese contraseña:\"\n  Leer clave\n  Si clave == \"1234\" Entonces\n    Escribir \"Acceso concedido\"\n  Sino\n    Escribir \"Acceso denegado\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-005",
+      "origen": "json/EA 1.3.json #65",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-05",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Descuento para cliente socio",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Real",
+        "Si-Entonces"
+      ],
+      "enunciado": "Lee el precio de un producto y si el cliente es socio o no. Si la respuesta es \"si\", aplica un 10% de descuento. En caso contrario, deja el precio normal. Muestra el total a pagar.",
+      "entradaProcesoSalida": {
+        "entrada": "precio (Real)\nesSocio (Caracter)",
+        "proceso": "Si esSocio = \"si\" Entonces\n   total ← precio - precio * 0.10\nSiNo\n   total ← precio\nFinSi",
+        "salida": "Total a pagar"
+      },
+      "salidaEsperada": "Precio del producto:\n> 20000\n¿Es socio? (si/no):\n> si\nTotal a pagar: 18000",
+      "pista": "Un descuento del 10% equivale a multiplicar por 0.10.",
+      "codigoReferencia": "Proceso DescuentoSocio\n  Definir precio, total Como Real\n  Definir esSocio Como Caracter\n\n  Escribir \"Precio del producto:\"\n  Leer precio\n  Escribir \"¿Es socio? (si/no):\"\n  Leer esSocio\n  Si esSocio == \"si\" Entonces\n    total = precio - precio * 0.10\n  Sino\n    total = precio\n  FinSi\n  Escribir \"Total a pagar: \", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-006",
+      "origen": "json/EA 1.3.json #66",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-06",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Temperatura: frío o agradable",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si-Entonces",
+        "Comparación"
+      ],
+      "enunciado": "Lee una temperatura en grados. Si es menor que 15, muestra \"Abrígate\". En caso contrario, muestra \"Día agradable\".",
+      "entradaProcesoSalida": {
+        "entrada": "temp (Real)",
+        "proceso": "Si temp < 15 Entonces\n   mostrar \"Abrígate\"\nSiNo\n   mostrar \"Día agradable\"\nFinSi",
+        "salida": "Mensaje según temperatura"
+      },
+      "salidaEsperada": "Temperatura actual:\n> 12\nAbrígate",
+      "pista": "Las decisiones simples comparan un valor de entrada con una condición.",
+      "codigoReferencia": "Proceso TemperaturaDia\n  Definir temp Como Real\n\n  Escribir \"Temperatura actual:\"\n  Leer temp\n  Si temp < 15 Entonces\n    Escribir \"Abrígate\"\n  Sino\n    Escribir \"Día agradable\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-007",
+      "origen": "json/EA 1.3.json #67",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-07",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Verificar stock de producto",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Si-Entonces",
+        "Inventario"
+      ],
+      "enunciado": "Lee la cantidad de stock disponible de un producto. Si el stock es mayor que 0, muestra \"Hay disponibilidad\". En caso contrario, muestra \"Producto agotado\".",
+      "entradaProcesoSalida": {
+        "entrada": "stock (Entero)",
+        "proceso": "Si stock > 0 Entonces\n   mostrar \"Hay disponibilidad\"\nSiNo\n   mostrar \"Producto agotado\"\nFinSi",
+        "salida": "Estado del producto"
+      },
+      "salidaEsperada": "Stock disponible:\n> 0\nProducto agotado",
+      "pista": "Si el stock es 0, ya no hay unidades disponibles.",
+      "codigoReferencia": "Proceso VerificarStock\n  Definir stock Como Entero\n\n  Escribir \"Stock disponible:\"\n  Leer stock\n  Si stock > 0 Entonces\n    Escribir \"Hay disponibilidad\"\n  Sino\n    Escribir \"Producto agotado\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-008",
+      "origen": "json/EA 1.3.json #68",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-08",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Número par o impar",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "MOD",
+        "Si-Entonces"
+      ],
+      "enunciado": "Lee un número entero. Si el residuo de dividirlo por 2 es 0, muestra \"Es par\". En caso contrario, muestra \"Es impar\".",
+      "entradaProcesoSalida": {
+        "entrada": "n (Entero)",
+        "proceso": "Si n MOD 2 = 0 Entonces\n   mostrar \"Es par\"\nSiNo\n   mostrar \"Es impar\"\nFinSi",
+        "salida": "Clasificación del número"
+      },
+      "salidaEsperada": "Número entero:\n> 11\nEs impar",
+      "pista": "El operador MOD entrega el resto de una división entera.",
+      "codigoReferencia": "Proceso ParImpar\n  Definir n Como Entero\n\n  Escribir \"Número entero:\"\n  Leer n\n  Si n mod 2 == 0 Entonces\n    Escribir \"Es par\"\n  Sino\n    Escribir \"Es impar\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-009",
+      "origen": "json/EA 1.3.json #69",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-09",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "¿Llueve hoy?",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Si-Entonces",
+        "Texto"
+      ],
+      "enunciado": "Lee si hoy llueve o no. Si la respuesta es \"si\", muestra \"Lleva paraguas\". En caso contrario, muestra \"No necesitas paraguas\".",
+      "entradaProcesoSalida": {
+        "entrada": "llueve (Caracter)",
+        "proceso": "Si llueve = \"si\" Entonces\n   mostrar \"Lleva paraguas\"\nSiNo\n   mostrar \"No necesitas paraguas\"\nFinSi",
+        "salida": "Recomendación"
+      },
+      "salidaEsperada": "¿Llueve hoy? (si/no):\n> si\nLleva paraguas",
+      "pista": "Cuando uses respuestas tipo si/no, conviene indicar el formato esperado en el mensaje de entrada.",
+      "codigoReferencia": "Proceso LlevarParaguas\n  Definir llueve Como Caracter\n\n  Escribir \"¿Llueve hoy? (si/no):\"\n  Leer llueve\n  Si llueve == \"si\" Entonces\n    Escribir \"Lleva paraguas\"\n  Sino\n    Escribir \"No necesitas paraguas\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-010",
+      "origen": "json/EA 1.3.json #70",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-10",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Carrera de obstáculos — valla",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Si-Entonces",
+        "Guía 1.3.2"
+      ],
+      "enunciado": "En una carrera de obstáculos, lee si hay una valla al frente. Si la respuesta es \"si\", muestra \"Salta la valla\". En caso contrario, muestra \"Continúa avanzando\".",
+      "entradaProcesoSalida": {
+        "entrada": "hayValla (Caracter)",
+        "proceso": "Si hayValla = \"si\" Entonces\n   mostrar \"Salta la valla\"\nSiNo\n   mostrar \"Continúa avanzando\"\nFinSi",
+        "salida": "Acción del corredor"
+      },
+      "salidaEsperada": "¿Hay valla? (si/no):\n> si\nSalta la valla",
+      "pista": "Este ejercicio modela una decisión binaria muy simple: obstáculo presente o ausente.",
+      "codigoReferencia": "Proceso ObstaculoValla\n  Definir hayValla Como Caracter\n\n  Escribir \"¿Hay valla? (si/no):\"\n  Leer hayValla\n  Si hayValla == \"si\" Entonces\n    Escribir \"Salta la valla\"\n  Sino\n    Escribir \"Continúa avanzando\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-011",
+      "origen": "json/EA 1.3.json #71",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-11",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Carrera de obstáculos — túnel",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Si-Entonces",
+        "Guía 1.3.2"
+      ],
+      "enunciado": "En una carrera de obstáculos, lee si hay un túnel al frente. Si la respuesta es \"si\", muestra \"Atraviesa el túnel\". En caso contrario, muestra \"Continúa avanzando\".",
+      "entradaProcesoSalida": {
+        "entrada": "hayTunel (Caracter)",
+        "proceso": "Si hayTunel = \"si\" Entonces\n   mostrar \"Atraviesa el túnel\"\nSiNo\n   mostrar \"Continúa avanzando\"\nFinSi",
+        "salida": "Acción del corredor"
+      },
+      "salidaEsperada": "¿Hay túnel? (si/no):\n> si\nAtraviesa el túnel",
+      "pista": "La estructura Si-Entonces permite elegir una acción según una condición.",
+      "codigoReferencia": "Proceso ObstaculoTunel\n  Definir hayTunel Como Caracter\n\n  Escribir \"¿Hay túnel? (si/no):\"\n  Leer hayTunel\n  Si hayTunel == \"si\" Entonces\n    Escribir \"Atraviesa el túnel\"\n  Sino\n    Escribir \"Continúa avanzando\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-012",
+      "origen": "json/EA 1.3.json #72",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-12",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Carrera de obstáculos — laguna",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Si-Entonces",
+        "Guía 1.3.2"
+      ],
+      "enunciado": "En una carrera de obstáculos, lee si hay una laguna al frente. Si la respuesta es \"si\", muestra \"Cae a la laguna y pierde\". En caso contrario, muestra \"Llega a la meta\".",
+      "entradaProcesoSalida": {
+        "entrada": "hayLaguna (Caracter)",
+        "proceso": "Si hayLaguna = \"si\" Entonces\n   mostrar \"Cae a la laguna y pierde\"\nSiNo\n   mostrar \"Llega a la meta\"\nFinSi",
+        "salida": "Resultado de la carrera"
+      },
+      "salidaEsperada": "¿Hay laguna? (si/no):\n> no\nLlega a la meta",
+      "pista": "Aunque el problema tiene contexto de juego, sigue siendo una decisión simple.",
+      "codigoReferencia": "Proceso ObstaculoLaguna\n  Definir hayLaguna Como Caracter\n\n  Escribir \"¿Hay laguna? (si/no):\"\n  Leer hayLaguna\n  Si hayLaguna == \"si\" Entonces\n    Escribir \"Cae a la laguna y pierde\"\n  Sino\n    Escribir \"Llega a la meta\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-013",
+      "origen": "json/EA 1.3.json #73",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-13",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Vuelto suficiente",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si-Entonces",
+        "Aritmética"
+      ],
+      "enunciado": "Lee el precio de un producto y el monto pagado. Si el monto pagado es mayor o igual al precio, calcula y muestra el vuelto. En caso contrario, muestra \"Pago insuficiente\".",
+      "entradaProcesoSalida": {
+        "entrada": "precio (Real)\npagado (Real)",
+        "proceso": "Si pagado >= precio Entonces\n   vuelto ← pagado - precio\n   mostrar vuelto\nSiNo\n   mostrar \"Pago insuficiente\"\nFinSi",
+        "salida": "Vuelto o mensaje de pago insuficiente"
+      },
+      "salidaEsperada": "Precio del producto:\n> 3500\nMonto pagado:\n> 5000\nVuelto: 1500",
+      "pista": "Solo se calcula el vuelto si el dinero entregado alcanza para pagar el producto.",
+      "codigoReferencia": "Proceso VueltoCompra\n  Definir precio, pagado, vuelto Como Real\n\n  Escribir \"Precio del producto:\"\n  Leer precio\n  Escribir \"Monto pagado:\"\n  Leer pagado\n  Si pagado >= precio Entonces\n    vuelto = pagado - precio\n\n    Escribir \"Vuelto: \", vuelto\n  Sino\n    Escribir \"Pago insuficiente\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-014",
+      "origen": "json/EA 1.3.json #74",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-14",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Velocidad dentro del límite",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si-Entonces",
+        "Comparación"
+      ],
+      "enunciado": "Lee la velocidad de un vehículo. Si la velocidad es menor o igual a 60, muestra \"Dentro del límite\". En caso contrario, muestra \"Excede velocidad\".",
+      "entradaProcesoSalida": {
+        "entrada": "velocidad (Real)",
+        "proceso": "Si velocidad <= 60 Entonces\n   mostrar \"Dentro del límite\"\nSiNo\n   mostrar \"Excede velocidad\"\nFinSi",
+        "salida": "Resultado del control"
+      },
+      "salidaEsperada": "Velocidad del vehículo:\n> 72\nExcede velocidad",
+      "pista": "El operador <= evalúa si un valor es menor o igual que otro.",
+      "codigoReferencia": "Proceso LimiteVelocidad\n  Definir velocidad Como Real\n\n  Escribir \"Velocidad del vehículo:\"\n  Leer velocidad\n  Si velocidad <= 60 Entonces\n    Escribir \"Dentro del límite\"\n  Sino\n    Escribir \"Excede velocidad\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-015",
+      "origen": "json/EA 1.3.json #75",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-15",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "¿Necesita cargar bencina?",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si-Entonces",
+        "Guía 1.3.3"
+      ],
+      "enunciado": "Lee la cantidad de litros de combustible en el vehículo. Si los litros son menores que 10, muestra \"Debe cargar bencina\". En caso contrario, muestra \"Nivel adecuado\".",
+      "entradaProcesoSalida": {
+        "entrada": "litros (Real)",
+        "proceso": "Si litros < 10 Entonces\n   mostrar \"Debe cargar bencina\"\nSiNo\n   mostrar \"Nivel adecuado\"\nFinSi",
+        "salida": "Estado del combustible"
+      },
+      "salidaEsperada": "Litros de combustible:\n> 8\nDebe cargar bencina",
+      "pista": "Este problema compara una cantidad medida con un valor mínimo esperado.",
+      "codigoReferencia": "Proceso CargarBencina\n  Definir litros Como Real\n\n  Escribir \"Litros de combustible:\"\n  Leer litros\n  Si litros < 10 Entonces\n    Escribir \"Debe cargar bencina\"\n  Sino\n    Escribir \"Nivel adecuado\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-016",
+      "origen": "json/EA 1.3.json #76",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-16",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Clasificar nota",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Notas"
+      ],
+      "enunciado": "Lee una nota y clasifícala según esta escala: si es menor que 4.0, muestra \"Insuficiente\"; si es menor que 5.0, muestra \"Suficiente\"; si es menor que 6.0, muestra \"Muy bueno\"; en cualquier otro caso, muestra \"Excelente\".",
+      "entradaProcesoSalida": {
+        "entrada": "nota (Real)",
+        "proceso": "Si nota < 4 Entonces\n   mostrar \"Insuficiente\"\nSiNo\n   Si nota < 5 Entonces\n      mostrar \"Suficiente\"\n   SiNo\n      Si nota < 6 Entonces\n         mostrar \"Muy bueno\"\n      SiNo\n         mostrar \"Excelente\"\n      FinSi\n   FinSi\nFinSi",
+        "salida": "Clasificación de la nota"
+      },
+      "salidaEsperada": "Nota final:\n> 5.4\nMuy bueno",
+      "pista": "En una cadena de decisiones anidadas, el orden de las comparaciones sí importa.",
+      "codigoReferencia": "Proceso ClasificarNota\n  Definir nota Como Real\n\n  Escribir \"Nota final:\"\n  Leer nota\n  Si nota < 4 Entonces\n    Escribir \"Insuficiente\"\n  Sino\n    Si nota < 5 Entonces\n      Escribir \"Suficiente\"\n    Sino\n      Si nota < 6 Entonces\n        Escribir \"Muy bueno\"\n      Sino\n        Escribir \"Excelente\"\n      FinSi\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-017",
+      "origen": "json/EA 1.3.json #77",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-17",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Tipo de triángulo",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Geometría"
+      ],
+      "enunciado": "Lee las longitudes de los tres lados de un triángulo. Si los tres lados son iguales, muestra \"Equilátero\". Si solo dos lados son iguales, muestra \"Isósceles\". En caso contrario, muestra \"Escaleno\".",
+      "entradaProcesoSalida": {
+        "entrada": "a, b, c (Real)",
+        "proceso": "Si a = b Y b = c Entonces\n   mostrar \"Equilátero\"\nSiNo\n   Si a = b O a = c O b = c Entonces\n      mostrar \"Isósceles\"\n   SiNo\n      mostrar \"Escaleno\"\n   FinSi\nFinSi",
+        "salida": "Tipo de triángulo"
+      },
+      "salidaEsperada": "Lado 1:\n> 5\nLado 2:\n> 5\nLado 3:\n> 8\nIsósceles",
+      "pista": "Primero conviene comprobar si los tres lados son iguales, porque ese es el caso más específico.",
+      "codigoReferencia": "Proceso TipoTriangulo\n  Definir a, b, c Como Real\n\n  Escribir \"Lado 1:\"\n  Leer a\n  Escribir \"Lado 2:\"\n  Leer b\n  Escribir \"Lado 3:\"\n  Leer c\n  Si a == b Y b == c Entonces\n    Escribir \"Equilátero\"\n  Sino\n    Si a == b O a == c O b == c Entonces\n      Escribir \"Isósceles\"\n    Sino\n      Escribir \"Escaleno\"\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-018",
+      "origen": "json/EA 1.3.json #78",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-18",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Rango de IMC",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Salud"
+      ],
+      "enunciado": "Lee el IMC de una persona. Si el IMC es menor que 18.5, muestra \"Bajo peso\". Si es menor que 25, muestra \"Normal\". Si es menor que 30, muestra \"Sobrepeso\". En cualquier otro caso, muestra \"Obesidad\".",
+      "entradaProcesoSalida": {
+        "entrada": "imc (Real)",
+        "proceso": "Si imc < 18.5 Entonces\n   mostrar \"Bajo peso\"\nSiNo\n   Si imc < 25 Entonces\n      mostrar \"Normal\"\n   SiNo\n      Si imc < 30 Entonces\n         mostrar \"Sobrepeso\"\n      SiNo\n         mostrar \"Obesidad\"\n      FinSi\n   FinSi\nFinSi",
+        "salida": "Categoría de IMC"
+      },
+      "salidaEsperada": "Ingrese IMC:\n> 27.3\nSobrepeso",
+      "pista": "Cada rango se evalúa en orden ascendente para evitar condiciones redundantes.",
+      "codigoReferencia": "Proceso ClasificarIMC\n  Definir imc Como Real\n\n  Escribir \"Ingrese IMC:\"\n  Leer imc\n  Si imc < 18.5 Entonces\n    Escribir \"Bajo peso\"\n  Sino\n    Si imc < 25 Entonces\n      Escribir \"Normal\"\n    Sino\n      Si imc < 30 Entonces\n        Escribir \"Sobrepeso\"\n      Sino\n        Escribir \"Obesidad\"\n      FinSi\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-019",
+      "origen": "json/EA 1.3.json #79",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-19",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Tipo de bencina a cargar",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Si anidado",
+        "Guía 1.3.3"
+      ],
+      "enunciado": "Lee el tipo de bencina que desea cargar el cliente. Si el valor es 93, muestra \"Bencina regular\". Si es 95, muestra \"Bencina plus\". Si es 97, muestra \"Bencina premium\". En cualquier otro caso, muestra \"Tipo inválido\".",
+      "entradaProcesoSalida": {
+        "entrada": "tipo (Entero)",
+        "proceso": "Si tipo = 93 Entonces\n   mostrar \"Bencina regular\"\nSiNo\n   Si tipo = 95 Entonces\n      mostrar \"Bencina plus\"\n   SiNo\n      Si tipo = 97 Entonces\n         mostrar \"Bencina premium\"\n      SiNo\n         mostrar \"Tipo inválido\"\n      FinSi\n   FinSi\nFinSi",
+        "salida": "Tipo de combustible"
+      },
+      "salidaEsperada": "Tipo de bencina:\n> 95\nBencina plus",
+      "pista": "Cuando hay varios valores posibles exactos, una cadena de Si anidados permite evaluarlos uno a uno.",
+      "codigoReferencia": "Proceso TipoBencina\n  Definir tipo Como Entero\n\n  Escribir \"Tipo de bencina:\"\n  Leer tipo\n  Si tipo == 93 Entonces\n    Escribir \"Bencina regular\"\n  Sino\n    Si tipo == 95 Entonces\n      Escribir \"Bencina plus\"\n    Sino\n      Si tipo == 97 Entonces\n        Escribir \"Bencina premium\"\n      Sino\n        Escribir \"Tipo inválido\"\n      FinSi\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-020",
+      "origen": "json/EA 1.3.json #80",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-20",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Diagnóstico de temperatura corporal",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Salud"
+      ],
+      "enunciado": "Lee la temperatura corporal de una persona. Si es menor que 36.1, muestra \"Hipotermia\". Si es menor o igual a 37.2, muestra \"Temperatura normal\". En caso contrario, muestra \"Fiebre\".",
+      "entradaProcesoSalida": {
+        "entrada": "temperatura (Real)",
+        "proceso": "Si temperatura < 36.1 Entonces\n   mostrar \"Hipotermia\"\nSiNo\n   Si temperatura <= 37.2 Entonces\n      mostrar \"Temperatura normal\"\n   SiNo\n      mostrar \"Fiebre\"\n   FinSi\nFinSi",
+        "salida": "Diagnóstico de temperatura"
+      },
+      "salidaEsperada": "Temperatura corporal:\n> 38.1\nFiebre",
+      "pista": "Aquí se mezclan operadores <, <= y el caso final por descarte.",
+      "codigoReferencia": "Proceso TemperaturaCorporal\n  Definir temperatura Como Real\n\n  Escribir \"Temperatura corporal:\"\n  Leer temperatura\n  Si temperatura < 36.1 Entonces\n    Escribir \"Hipotermia\"\n  Sino\n    Si temperatura <= 37.2 Entonces\n      Escribir \"Temperatura normal\"\n    Sino\n      Escribir \"Fiebre\"\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-021",
+      "origen": "json/EA 1.3.json #81",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-21",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Cálculo de multa por exceso de velocidad",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Tránsito"
+      ],
+      "enunciado": "Lee la velocidad de un vehículo. Si la velocidad es menor o igual a 60, muestra \"Sin multa\". Si es menor o igual a 80, muestra \"Multa leve\". En caso contrario, muestra \"Multa grave\".",
+      "entradaProcesoSalida": {
+        "entrada": "velocidad (Real)",
+        "proceso": "Si velocidad <= 60 Entonces\n   mostrar \"Sin multa\"\nSiNo\n   Si velocidad <= 80 Entonces\n      mostrar \"Multa leve\"\n   SiNo\n      mostrar \"Multa grave\"\n   FinSi\nFinSi",
+        "salida": "Tipo de multa"
+      },
+      "salidaEsperada": "Velocidad registrada:\n> 76\nMulta leve",
+      "pista": "Ordena las comparaciones desde el límite menor al mayor para clasificar correctamente.",
+      "codigoReferencia": "Proceso MultaVelocidad\n  Definir velocidad Como Real\n\n  Escribir \"Velocidad registrada:\"\n  Leer velocidad\n  Si velocidad <= 60 Entonces\n    Escribir \"Sin multa\"\n  Sino\n    Si velocidad <= 80 Entonces\n      Escribir \"Multa leve\"\n    Sino\n      Escribir \"Multa grave\"\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-022",
+      "origen": "json/EA 1.3.json #82",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-22",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Descuento por monto de compra",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Porcentaje"
+      ],
+      "enunciado": "Lee el monto de una compra. Si la compra es mayor o igual a 100000, aplica un 20% de descuento. Si es mayor o igual a 50000, aplica un 10%. En caso contrario, no aplica descuento. Muestra el total a pagar.",
+      "entradaProcesoSalida": {
+        "entrada": "compra (Real)",
+        "proceso": "Si compra >= 100000 Entonces\n   total ← compra - compra * 0.20\nSiNo\n   Si compra >= 50000 Entonces\n      total ← compra - compra * 0.10\n   SiNo\n      total ← compra\n   FinSi\nFinSi",
+        "salida": "Total a pagar"
+      },
+      "salidaEsperada": "Monto de la compra:\n> 75000\nTotal a pagar: 67500",
+      "pista": "Primero evalúa el mayor descuento, porque también cumple las compras más altas.",
+      "codigoReferencia": "Proceso DescuentoCompra\n  Definir compra, total Como Real\n\n  Escribir \"Monto de la compra:\"\n  Leer compra\n  Si compra >= 100000 Entonces\n    total = compra - compra * 0.20\n  Sino\n    Si compra >= 50000 Entonces\n      total = compra - compra * 0.10\n    Sino\n      total = compra\n    FinSi\n  FinSi\n  Escribir \"Total a pagar: \", total\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-023",
+      "origen": "json/EA 1.3.json #83",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-23",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Verificar triángulo válido",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si-Entonces",
+        "Y lógico"
+      ],
+      "enunciado": "Lee las longitudes de tres lados a, b y c. Si se cumple que a + b > c, a + c > b y b + c > a, muestra \"Triángulo válido\". En caso contrario, muestra \"Triángulo inválido\".",
+      "entradaProcesoSalida": {
+        "entrada": "a, b, c (Real)",
+        "proceso": "Si a + b > c Y a + c > b Y b + c > a Entonces\n   mostrar \"Triángulo válido\"\nSiNo\n   mostrar \"Triángulo inválido\"\nFinSi",
+        "salida": "Validez del triángulo"
+      },
+      "salidaEsperada": "Lado a:\n> 3\nLado b:\n> 4\nLado c:\n> 8\nTriángulo inválido",
+      "pista": "El operador Y exige que todas las condiciones sean verdaderas al mismo tiempo.",
+      "codigoReferencia": "Proceso TrianguloValido\n  Definir a, b, c Como Real\n\n  Escribir \"Lado a:\"\n  Leer a\n  Escribir \"Lado b:\"\n  Leer b\n  Escribir \"Lado c:\"\n  Leer c\n  Si a + b > c Y a + c > b Y b + c > a Entonces\n    Escribir \"Triángulo válido\"\n  Sino\n    Escribir \"Triángulo inválido\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-024",
+      "origen": "json/EA 1.3.json #84",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-24",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Acceso por usuario y contraseña",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Si-Entonces",
+        "Y lógico"
+      ],
+      "enunciado": "Lee un usuario y una contraseña. Si el usuario es \"admin\" y la clave es \"1234\", muestra \"Acceso permitido\". En caso contrario, muestra \"Acceso denegado\".",
+      "entradaProcesoSalida": {
+        "entrada": "usuario (Caracter)\nclave (Caracter)",
+        "proceso": "Si usuario = \"admin\" Y clave = \"1234\" Entonces\n   mostrar \"Acceso permitido\"\nSiNo\n   mostrar \"Acceso denegado\"\nFinSi",
+        "salida": "Resultado del acceso"
+      },
+      "salidaEsperada": "Usuario:\n> admin\nClave:\n> 1234\nAcceso permitido",
+      "pista": "Ambos datos deben coincidir para permitir el acceso.",
+      "codigoReferencia": "Proceso AccesoUsuarioClave\n  Definir usuario, clave Como Caracter\n\n  Escribir \"Usuario:\"\n  Leer usuario\n  Escribir \"Clave:\"\n  Leer clave\n  Si usuario == \"admin\" Y clave == \"1234\" Entonces\n    Escribir \"Acceso permitido\"\n  Sino\n    Escribir \"Acceso denegado\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-025",
+      "origen": "json/EA 1.3.json #85",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-25",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Clasificar edad",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Si anidado",
+        "Clasificación"
+      ],
+      "enunciado": "Lee una edad. Si es menor que 12, muestra \"Niño\". Si es menor que 18, muestra \"Joven\". Si es menor que 65, muestra \"Adulto\". En caso contrario, muestra \"Adulto mayor\".",
+      "entradaProcesoSalida": {
+        "entrada": "edad (Entero)",
+        "proceso": "Si edad < 12 Entonces\n   mostrar \"Niño\"\nSiNo\n   Si edad < 18 Entonces\n      mostrar \"Joven\"\n   SiNo\n      Si edad < 65 Entonces\n         mostrar \"Adulto\"\n      SiNo\n         mostrar \"Adulto mayor\"\n      FinSi\n   FinSi\nFinSi",
+        "salida": "Categoría de edad"
+      },
+      "salidaEsperada": "Edad:\n> 70\nAdulto mayor",
+      "pista": "Cada rango se evalúa de menor a mayor para que no se solapen las categorías.",
+      "codigoReferencia": "Proceso ClasificarEdad\n  Definir edad Como Entero\n\n  Escribir \"Edad:\"\n  Leer edad\n  Si edad < 12 Entonces\n    Escribir \"Niño\"\n  Sino\n    Si edad < 18 Entonces\n      Escribir \"Joven\"\n    Sino\n      Si edad < 65 Entonces\n        Escribir \"Adulto\"\n      Sino\n        Escribir \"Adulto mayor\"\n      FinSi\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-026",
+      "origen": "json/EA 1.3.json #86",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-26",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Ganó o perdió la carrera de obstáculos",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Si-Entonces",
+        "Y lógico"
+      ],
+      "enunciado": "Lee si en la carrera hubo valla, túnel y laguna. Si los tres valores son \"no\", muestra \"Ganó la carrera\". En caso contrario, muestra \"Perdió la carrera\".",
+      "entradaProcesoSalida": {
+        "entrada": "valla, tunel, laguna (Caracter)",
+        "proceso": "Si valla = \"no\" Y tunel = \"no\" Y laguna = \"no\" Entonces\n   mostrar \"Ganó la carrera\"\nSiNo\n   mostrar \"Perdió la carrera\"\nFinSi",
+        "salida": "Resultado de la carrera"
+      },
+      "salidaEsperada": "¿Hay valla? (si/no):\n> no\n¿Hay túnel? (si/no):\n> no\n¿Hay laguna? (si/no):\n> si\nPerdió la carrera",
+      "pista": "Basta con que una condición no se cumpla para que el resultado sea perder.",
+      "codigoReferencia": "Proceso CarreraObstaculos\n  Definir valla, tunel, laguna Como Caracter\n\n  Escribir \"¿Hay valla? (si/no):\"\n  Leer valla\n  Escribir \"¿Hay túnel? (si/no):\"\n  Leer tunel\n  Escribir \"¿Hay laguna? (si/no):\"\n  Leer laguna\n  Si valla == \"no\" Y tunel == \"no\" Y laguna == \"no\" Entonces\n    Escribir \"Ganó la carrera\"\n  Sino\n    Escribir \"Perdió la carrera\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-027",
+      "origen": "json/EA 1.3.json #87",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-27",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Nota final con asistencia",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Promedio"
+      ],
+      "enunciado": "Lee tres notas y el porcentaje de asistencia. Si la asistencia es mayor o igual a 75, calcula el promedio y luego muestra \"Aprobado\" si el promedio es mayor o igual a 4.0, o \"Reprobado\" en caso contrario. Si la asistencia es menor a 75, muestra \"Reprobado por inasistencia\".",
+      "entradaProcesoSalida": {
+        "entrada": "n1, n2, n3, asistencia (Real)",
+        "proceso": "Si asistencia >= 75 Entonces\n   promedio ← (n1 + n2 + n3) / 3\n   Si promedio >= 4 Entonces\n      mostrar \"Aprobado\"\n   SiNo\n      mostrar \"Reprobado\"\n   FinSi\nSiNo\n   mostrar \"Reprobado por inasistencia\"\nFinSi",
+        "salida": "Resultado final"
+      },
+      "salidaEsperada": "Nota 1:\n> 5.0\nNota 2:\n> 4.2\nNota 3:\n> 3.8\nAsistencia (%):\n> 80\nAprobado",
+      "pista": "Primero se valida la asistencia; solo después se revisa el promedio.",
+      "codigoReferencia": "Proceso NotaFinalAsistencia\n  Definir n1, n2, n3, asistencia, promedio Como Real\n\n  Escribir \"Nota 1:\"\n  Leer n1\n  Escribir \"Nota 2:\"\n  Leer n2\n  Escribir \"Nota 3:\"\n  Leer n3\n  Escribir \"Asistencia (%):\"\n  Leer asistencia\n  Si asistencia >= 75 Entonces\n    promedio = (n1 + n2 + n3) / 3\n    Si promedio >= 4 Entonces\n      Escribir \"Aprobado\"\n    Sino\n      Escribir \"Reprobado\"\n    FinSi\n  Sino\n    Escribir \"Reprobado por inasistencia\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-028",
+      "origen": "json/EA 1.3.json #88",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-28",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Costo de envío por peso y destino",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Real",
+        "Si anidado"
+      ],
+      "enunciado": "Lee el destino del envío y el peso en kg. Si el destino es \"nacional\" y el peso es menor o igual a 5, el costo es 2000; si es nacional y pesa más de 5, el costo es 3500. Si el destino es \"internacional\" y el peso es menor o igual a 5, el costo es 8000; si pesa más de 5, el costo es 12000. Si el destino no corresponde, muestra \"Destino inválido\".",
+      "entradaProcesoSalida": {
+        "entrada": "destino (Caracter)\npeso (Real)",
+        "proceso": "Si destino = \"nacional\" Entonces\n   Si peso <= 5 Entonces\n      costo ← 2000\n   SiNo\n      costo ← 3500\n   FinSi\nSiNo\n   Si destino = \"internacional\" Entonces\n      Si peso <= 5 Entonces\n         costo ← 8000\n      SiNo\n         costo ← 12000\n      FinSi\n   SiNo\n      mostrar \"Destino inválido\"\n   FinSi\nFinSi",
+        "salida": "Costo del envío o mensaje de error"
+      },
+      "salidaEsperada": "Destino (nacional/internacional):\n> internacional\nPeso en kg:\n> 3\nCosto del envío: 8000",
+      "pista": "Este ejercicio combina una decisión por tipo de destino con otra por peso.",
+      "codigoReferencia": "Proceso CostoEnvio\n  Definir destino Como Caracter\n  Definir peso, costo Como Real\n\n  Escribir \"Destino (nacional/internacional):\"\n  Leer destino\n  Escribir \"Peso en kg:\"\n  Leer peso\n  Si destino == \"nacional\" Entonces\n    Si peso <= 5 Entonces\n      costo = 2000\n    Sino\n      costo = 3500\n    FinSi\n    Escribir \"Costo del envío: \", costo\n  Sino\n    Si destino == \"internacional\" Entonces\n      Si peso <= 5 Entonces\n        costo = 8000\n      Sino\n        costo = 12000\n      FinSi\n      Escribir \"Costo del envío: \", costo\n    Sino\n      Escribir \"Destino inválido\"\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-029",
+      "origen": "json/EA 1.3.json #89",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-29",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Bienvenida por hora",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Si anidado",
+        "Horario"
+      ],
+      "enunciado": "Lee una hora en formato de 0 a 23. Si la hora es menor que 12, muestra \"Buenos días\". Si es menor que 18, muestra \"Buenas tardes\". En caso contrario, muestra \"Buenas noches\".",
+      "entradaProcesoSalida": {
+        "entrada": "hora (Entero)",
+        "proceso": "Si hora < 12 Entonces\n   mostrar \"Buenos días\"\nSiNo\n   Si hora < 18 Entonces\n      mostrar \"Buenas tardes\"\n   SiNo\n      mostrar \"Buenas noches\"\n   FinSi\nFinSi",
+        "salida": "Saludo correspondiente"
+      },
+      "salidaEsperada": "Hora actual (0-23):\n> 19\nBuenas noches",
+      "pista": "Una misma entrada puede clasificarse en distintos rangos horarios.",
+      "codigoReferencia": "Proceso SaludoHora\n  Definir hora Como Entero\n\n  Escribir \"Hora actual (0-23):\"\n  Leer hora\n  Si hora < 12 Entonces\n    Escribir \"Buenos días\"\n  Sino\n    Si hora < 18 Entonces\n      Escribir \"Buenas tardes\"\n    Sino\n      Escribir \"Buenas noches\"\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-030",
+      "origen": "json/EA 1.3.json #90",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-30",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "¿Es año bisiesto?",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Si-Entonces",
+        "MOD"
+      ],
+      "enunciado": "Lee un año. Si el año es divisible por 4 y además no es divisible por 100, o bien es divisible por 400, muestra \"Es bisiesto\". En caso contrario, muestra \"No es bisiesto\".",
+      "entradaProcesoSalida": {
+        "entrada": "anio (Entero)",
+        "proceso": "Si anio MOD 4 = 0 Y (anio MOD 100 <> 0 O anio MOD 400 = 0) Entonces\n   mostrar \"Es bisiesto\"\nSiNo\n   mostrar \"No es bisiesto\"\nFinSi",
+        "salida": "Resultado de la evaluación"
+      },
+      "salidaEsperada": "Ingrese año:\n> 2024\nEs bisiesto",
+      "pista": "Este es un buen ejemplo de uso combinado de MOD, Y, O y paréntesis.",
+      "codigoReferencia": "Proceso AnioBisiesto\n  Definir anio Como Entero\n\n  Escribir \"Ingrese año:\"\n  Leer anio\n  Si anio mod 4 == 0 Y (anio mod 100 <> 0 O anio mod 400 == 0) Entonces\n    Escribir \"Es bisiesto\"\n  Sino\n    Escribir \"No es bisiesto\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-031",
+      "origen": "json/EA 1.3.json #91",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-31",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Menú de operaciones",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Real",
+        "Según"
+      ],
+      "enunciado": "Lee una opción de menú y dos números reales. Según la opción ingresada: si es 1, muestra la suma; si es 2, muestra la resta; si es 3, muestra \"Saliendo del programa\". En cualquier otro caso, muestra \"Opción inválida\".",
+      "entradaProcesoSalida": {
+        "entrada": "opcion (Entero)\na (Real)\nb (Real)",
+        "proceso": "Según opcion Hacer\n   1: resultado ← a + b\n   2: resultado ← a - b\n   3: mostrar \"Saliendo del programa\"\n   De Otro Modo: mostrar \"Opción inválida\"\nFinSegún",
+        "salida": "Resultado de la operación o mensaje"
+      },
+      "salidaEsperada": "Opción (1=sumar, 2=restar, 3=salir):\n> 1\nPrimer número:\n> 8\nSegundo número:\n> 5\nResultado: 13",
+      "pista": "La estructura Según es útil cuando una sola variable puede tomar varios valores exactos.",
+      "codigoReferencia": "Proceso MenuOperaciones\n  Definir opcion Como Entero\n  Definir a, b, resultado Como Real\n\n  Escribir \"Opción (1=sumar, 2=restar, 3=salir):\"\n  Leer opcion\n  Escribir \"Primer número:\"\n  Leer a\n  Escribir \"Segundo número:\"\n  Leer b\n  Segun opcion Hacer\n    1:\n      resultado = a + b\n\n      Escribir \"Resultado: \", resultado\n    2:\n      resultado = a - b\n\n      Escribir \"Resultado: \", resultado\n    3:\n      Escribir \"Saliendo del programa\"\n    De Otro Modo:\n      Escribir \"Opción inválida\"\n  FinSegun\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-032",
+      "origen": "json/EA 1.3.json #92",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-32",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Día de la semana por número",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Según",
+        "Selección múltiple"
+      ],
+      "enunciado": "Lee un número entre 1 y 7. Según el valor ingresado, muestra el día correspondiente: 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado, 7=Domingo. En cualquier otro caso, muestra \"Número inválido\".",
+      "entradaProcesoSalida": {
+        "entrada": "num (Entero)",
+        "proceso": "Según num Hacer\n   1: mostrar \"Lunes\"\n   2: mostrar \"Martes\"\n   3: mostrar \"Miércoles\"\n   4: mostrar \"Jueves\"\n   5: mostrar \"Viernes\"\n   6: mostrar \"Sábado\"\n   7: mostrar \"Domingo\"\n   De Otro Modo: mostrar \"Número inválido\"\nFinSegún",
+        "salida": "Día de la semana"
+      },
+      "salidaEsperada": "Número del día (1-7):\n> 5\nViernes",
+      "pista": "Usa Según cuando los casos dependen de valores concretos de una misma variable.",
+      "codigoReferencia": "Proceso DiaSemana\n  Definir num Como Entero\n\n  Escribir \"Número del día (1-7):\"\n  Leer num\n  Segun num Hacer\n    1: Escribir \"Lunes\"\n    2: Escribir \"Martes\"\n    3: Escribir \"Miércoles\"\n    4: Escribir \"Jueves\"\n    5: Escribir \"Viernes\"\n    6: Escribir \"Sábado\"\n    7: Escribir \"Domingo\"\n    De Otro Modo:\n      Escribir \"Número inválido\"\n  FinSegun\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-033",
+      "origen": "json/EA 1.3.json #93",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-33",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Estación del año por mes",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Según",
+        "Meses"
+      ],
+      "enunciado": "Lee un mes representado por un número del 1 al 12. Según el mes, muestra la estación del año: 12, 1 y 2 = Verano; 3, 4 y 5 = Otoño; 6, 7 y 8 = Invierno; 9, 10 y 11 = Primavera. En cualquier otro caso, muestra \"Mes inválido\".",
+      "entradaProcesoSalida": {
+        "entrada": "mes (Entero)",
+        "proceso": "Según mes Hacer\n   12,1,2: mostrar \"Verano\"\n   3,4,5: mostrar \"Otoño\"\n   6,7,8: mostrar \"Invierno\"\n   9,10,11: mostrar \"Primavera\"\n   De Otro Modo: mostrar \"Mes inválido\"\nFinSegún",
+        "salida": "Estación del año"
+      },
+      "salidaEsperada": "Mes (1-12):\n> 8\nInvierno",
+      "pista": "En Según puedes agrupar varios valores que conducen al mismo resultado.",
+      "codigoReferencia": "Proceso EstacionAnio\n  Definir mes Como Entero\n\n  Escribir \"Mes (1-12):\"\n  Leer mes\n  Segun mes Hacer\n    12, 1, 2: Escribir \"Verano\"\n    3, 4, 5: Escribir \"Otoño\"\n    6, 7, 8: Escribir \"Invierno\"\n    9, 10, 11: Escribir \"Primavera\"\n    De Otro Modo:\n      Escribir \"Mes inválido\"\n  FinSegun\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-034",
+      "origen": "json/EA 1.3.json #94",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-34",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Tipo de bencina y nivel bajo",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Entero",
+        "Si anidado",
+        "Según"
+      ],
+      "enunciado": "Lee el nivel de combustible del vehículo. Si el nivel es menor que 10, pide además el tipo de bencina. Según el tipo, muestra: 93 = Cargar bencina regular, 95 = Cargar bencina plus, 97 = Cargar bencina premium. En cualquier otro caso, muestra \"Tipo inválido\". Si el nivel es 10 o más, muestra \"No necesita cargar\".",
+      "entradaProcesoSalida": {
+        "entrada": "nivel (Real)\ntipo (Entero)",
+        "proceso": "Si nivel < 10 Entonces\n   Según tipo Hacer\n      93: mostrar \"Cargar bencina regular\"\n      95: mostrar \"Cargar bencina plus\"\n      97: mostrar \"Cargar bencina premium\"\n      De Otro Modo: mostrar \"Tipo inválido\"\n   FinSegún\nSiNo\n   mostrar \"No necesita cargar\"\nFinSi",
+        "salida": "Recomendación de carga"
+      },
+      "salidaEsperada": "Nivel de combustible:\n> 6\nTipo de bencina (93/95/97):\n> 97\nCargar bencina premium",
+      "pista": "Aquí primero se toma una decisión general con Si, y luego una selección múltiple con Según.",
+      "codigoReferencia": "Proceso TipoBencinaCompleto\n  Definir nivel Como Real\n  Definir tipo Como Entero\n\n  Escribir \"Nivel de combustible:\"\n  Leer nivel\n  Si nivel < 10 Entonces\n    Escribir \"Tipo de bencina (93/95/97):\"\n    Leer tipo\n    Segun tipo Hacer\n      93: Escribir \"Cargar bencina regular\"\n      95: Escribir \"Cargar bencina plus\"\n      97: Escribir \"Cargar bencina premium\"\n      De Otro Modo:\n        Escribir \"Tipo inválido\"\n    FinSegun\n  Sino\n    Escribir \"No necesita cargar\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-035",
+      "origen": "json/EA 1.3.json #95",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-35",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Calculadora de cuatro operaciones",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Real",
+        "Según",
+        "Si anidado"
+      ],
+      "enunciado": "Lee dos números reales y un operador matemático. Según el operador ingresado: +, -, * o /, realiza la operación correspondiente. En el caso de la división, primero verifica que el segundo número sea distinto de 0. Si es 0, muestra \"No se puede dividir por cero\". En cualquier otro caso de operador, muestra \"Operador inválido\".",
+      "entradaProcesoSalida": {
+        "entrada": "a, b (Real)\noperador (Caracter)",
+        "proceso": "Según operador Hacer\n   \"+\": resultado ← a + b\n   \"-\": resultado ← a - b\n   \"*\": resultado ← a * b\n   \"/\": Si b <> 0 Entonces resultado ← a / b SiNo mostrar \"No se puede dividir por cero\" FinSi\n   De Otro Modo: mostrar \"Operador inválido\"\nFinSegún",
+        "salida": "Resultado o mensaje de error"
+      },
+      "salidaEsperada": "Primer número:\n> 15\nSegundo número:\n> 3\nOperador (+,-,*,/):\n> /\nResultado: 5",
+      "pista": "La división requiere una validación extra para evitar un error matemático.",
+      "codigoReferencia": "Proceso CalculadoraCuatro\n  Definir operador Como Caracter\n  Definir a, b, resultado Como Real\n\n  Escribir \"Primer número:\"\n  Leer a\n  Escribir \"Segundo número:\"\n  Leer b\n  Escribir \"Operador (+,-,*,/):\"\n  Leer operador\n  Segun operador Hacer\n    \"+\":\n      resultado = a + b\n\n      Escribir \"Resultado: \", resultado\n    \"-\":\n      resultado = a - b\n\n      Escribir \"Resultado: \", resultado\n    \"*\":\n      resultado = a * b\n\n      Escribir \"Resultado: \", resultado\n    \"/\":\n      Si b <> 0 Entonces\n        resultado = a / b\n\n        Escribir \"Resultado: \", resultado\n      Sino\n        Escribir \"No se puede dividir por cero\"\n      FinSi\n    De Otro Modo:\n      Escribir \"Operador inválido\"\n  FinSegun\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-036",
+      "origen": "json/EA 1.3.json #96",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-36",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Clasificación tributaria por renta",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Porcentaje",
+        "Finanzas"
+      ],
+      "enunciado": "Lee una renta. Si la renta es menor o igual a 500000, muestra \"Exento\". Si es menor o igual a 1000000, muestra \"Impuesto 4%\". Si es menor o igual a 2000000, muestra \"Impuesto 8%\". Si es menor o igual a 4000000, muestra \"Impuesto 13.5%\". En cualquier otro caso, muestra \"Impuesto 23%\".",
+      "entradaProcesoSalida": {
+        "entrada": "renta (Real)",
+        "proceso": "Si renta <= 500000 Entonces\n   mostrar \"Exento\"\nSiNo\n   Si renta <= 1000000 Entonces\n      mostrar \"Impuesto 4%\"\n   SiNo\n      Si renta <= 2000000 Entonces\n         mostrar \"Impuesto 8%\"\n      SiNo\n         Si renta <= 4000000 Entonces\n            mostrar \"Impuesto 13.5%\"\n         SiNo\n            mostrar \"Impuesto 23%\"\n         FinSi\n      FinSi\n   FinSi\nFinSi",
+        "salida": "Tramo tributario"
+      },
+      "salidaEsperada": "Renta mensual:\n> 1750000\nImpuesto 8%",
+      "pista": "Los tramos deben evaluarse de menor a mayor para asignar correctamente la categoría.",
+      "codigoReferencia": "Proceso ClasificacionTributaria\n  Definir renta Como Real\n\n  Escribir \"Renta mensual:\"\n  Leer renta\n  Si renta <= 500000 Entonces\n    Escribir \"Exento\"\n  Sino\n    Si renta <= 1000000 Entonces\n      Escribir \"Impuesto 4%\"\n    Sino\n      Si renta <= 2000000 Entonces\n        Escribir \"Impuesto 8%\"\n      Sino\n        Si renta <= 4000000 Entonces\n          Escribir \"Impuesto 13.5%\"\n        Sino\n          Escribir \"Impuesto 23%\"\n        FinSi\n      FinSi\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-037",
+      "origen": "json/EA 1.3.json #97",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-37",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Sistema de semáforo con duración",
+      "conceptos": [
+        "Leer",
+        "Caracter",
+        "Según",
+        "Tránsito"
+      ],
+      "enunciado": "Lee el color de un semáforo. Según el color ingresado: \"rojo\" muestra \"Detenerse\" y 60 segundos; \"amarillo\" muestra \"Precaución\" y 5 segundos; \"verde\" muestra \"Avanzar\" y 45 segundos. En cualquier otro caso, muestra \"Color inválido\".",
+      "entradaProcesoSalida": {
+        "entrada": "color (Caracter)",
+        "proceso": "Según color Hacer\n   \"rojo\": mostrar \"Detenerse - 60 segundos\"\n   \"amarillo\": mostrar \"Precaución - 5 segundos\"\n   \"verde\": mostrar \"Avanzar - 45 segundos\"\n   De Otro Modo: mostrar \"Color inválido\"\nFinSegún",
+        "salida": "Acción del semáforo"
+      },
+      "salidaEsperada": "Color del semáforo:\n> amarillo\nPrecaución - 5 segundos",
+      "pista": "Según también funciona con cadenas, no solo con números.",
+      "codigoReferencia": "Proceso SemaforoDuracion\n  Definir color Como Caracter\n\n  Escribir \"Color del semáforo:\"\n  Leer color\n  Segun color Hacer\n    \"rojo\": Escribir \"Detenerse - 60 segundos\"\n    \"amarillo\": Escribir \"Precaución - 5 segundos\"\n    \"verde\": Escribir \"Avanzar - 45 segundos\"\n    De Otro Modo:\n      Escribir \"Color inválido\"\n  FinSegun\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-038",
+      "origen": "json/EA 1.3.json #98",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-38",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Convertidor de calificación a letra",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Notas"
+      ],
+      "enunciado": "Lee una calificación numérica entre 0 y 100. Si es 90 o más, muestra \"A\". Si es 80 o más, muestra \"B\". Si es 70 o más, muestra \"C\". Si es 60 o más, muestra \"D\". En caso contrario, muestra \"F\".",
+      "entradaProcesoSalida": {
+        "entrada": "nota (Real)",
+        "proceso": "Si nota >= 90 Entonces\n   mostrar \"A\"\nSiNo\n   Si nota >= 80 Entonces\n      mostrar \"B\"\n   SiNo\n      Si nota >= 70 Entonces\n         mostrar \"C\"\n      SiNo\n         Si nota >= 60 Entonces\n            mostrar \"D\"\n         SiNo\n            mostrar \"F\"\n         FinSi\n      FinSi\n   FinSi\nFinSi",
+        "salida": "Calificación en letra"
+      },
+      "salidaEsperada": "Calificación numérica:\n> 84\nB",
+      "pista": "Cuando los rangos son descendentes, conviene comparar desde el valor más alto.",
+      "codigoReferencia": "Proceso CalificacionLetra\n  Definir nota Como Real\n\n  Escribir \"Calificación numérica:\"\n  Leer nota\n  Si nota >= 90 Entonces\n    Escribir \"A\"\n  Sino\n    Si nota >= 80 Entonces\n      Escribir \"B\"\n    Sino\n      Si nota >= 70 Entonces\n        Escribir \"C\"\n      Sino\n        Si nota >= 60 Entonces\n          Escribir \"D\"\n        Sino\n          Escribir \"F\"\n        FinSi\n      FinSi\n    FinSi\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-039",
+      "origen": "json/EA 1.3.json #99",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-39",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Simulador de cajero ATM",
+      "conceptos": [
+        "Leer",
+        "Entero",
+        "Real",
+        "Según",
+        "Si anidado"
+      ],
+      "enunciado": "Lee el saldo actual, una operación y un monto. Según la operación ingresada: si es 1, muestra el saldo actual; si es 2, realiza un retiro, pero antes verifica que el monto no sea mayor al saldo; si lo es, muestra \"Fondos insuficientes\"; si es 3, realiza un depósito. En cualquier otro caso, muestra \"Operación inválida\".",
+      "entradaProcesoSalida": {
+        "entrada": "saldo, monto (Real)\noperacion (Entero)",
+        "proceso": "Según operacion Hacer\n   1: mostrar saldo\n   2: Si monto <= saldo Entonces saldo ← saldo - monto SiNo mostrar \"Fondos insuficientes\" FinSi\n   3: saldo ← saldo + monto\n   De Otro Modo: mostrar \"Operación inválida\"\nFinSegún",
+        "salida": "Nuevo saldo o mensaje"
+      },
+      "salidaEsperada": "Saldo actual:\n> 50000\nOperación (1=saldo, 2=retiro, 3=depósito):\n> 2\nMonto:\n> 12000\nNuevo saldo: 38000",
+      "pista": "El retiro necesita validación adicional, por eso combina Según con un Si interno.",
+      "codigoReferencia": "Proceso CajeroATM\n  Definir operacion Como Entero\n  Definir saldo, monto Como Real\n\n  Escribir \"Saldo actual:\"\n  Leer saldo\n  Escribir \"Operación (1=saldo, 2=retiro, 3=depósito):\"\n  Leer operacion\n  Escribir \"Monto:\"\n  Leer monto\n  Segun operacion Hacer\n    1:\n      Escribir \"Saldo actual: \", saldo\n    2:\n      Si monto <= saldo Entonces\n        saldo = saldo - monto\n\n        Escribir \"Nuevo saldo: \", saldo\n      Sino\n        Escribir \"Fondos insuficientes\"\n      FinSi\n    3:\n      saldo = saldo + monto\n\n      Escribir \"Nuevo saldo: \", saldo\n    De Otro Modo:\n      Escribir \"Operación inválida\"\n  FinSegun\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "n3-040",
+      "origen": "json/EA 1.3.json #100",
+      "modulo": "N3",
+      "experiencia": "Estructuras de Decisión",
+      "nivelLiteSeInt": 3,
+      "numero": "N3-40",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Diagnóstico integral de salud",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "Si anidado",
+        "Salud",
+        "Diagnóstico"
+      ],
+      "enunciado": "Lee el IMC, la presión sistólica y la temperatura corporal de una persona. Si el IMC es menor que 18.5, muestra \"Bajo peso\"; si es menor que 25, muestra \"Peso normal\"; en caso contrario, muestra \"Sobrepeso\". Luego, si la presión sistólica es mayor o igual a 140, muestra \"Presión alta\"; en caso contrario, \"Presión normal\". Finalmente, si la temperatura es mayor a 37.2, muestra \"Fiebre\"; en caso contrario, \"Sin fiebre\".",
+      "entradaProcesoSalida": {
+        "entrada": "imc, presion, temperatura (Real)",
+        "proceso": "Clasificar IMC con Si anidado\nClasificar presión con Si\nClasificar temperatura con Si",
+        "salida": "Diagnóstico integral en tres partes"
+      },
+      "salidaEsperada": "IMC:\n> 27\nPresión sistólica:\n> 145\nTemperatura corporal:\n> 38\nEstado IMC: Sobrepeso\nEstado presión: Presión alta\nEstado temperatura: Fiebre",
+      "pista": "Este ejercicio combina varias decisiones independientes para construir un diagnóstico más completo.",
+      "codigoReferencia": "Proceso DiagnosticoSalud\n  Definir imc, presion, temperatura Como Real\n\n  Escribir \"IMC:\"\n  Leer imc\n  Escribir \"Presión sistólica:\"\n  Leer presion\n  Escribir \"Temperatura corporal:\"\n  Leer temperatura\n  Si imc < 18.5 Entonces\n    Escribir \"Estado IMC: Bajo peso\"\n  Sino\n    Si imc < 25 Entonces\n      Escribir \"Estado IMC: Peso normal\"\n    Sino\n      Escribir \"Estado IMC: Sobrepeso\"\n    FinSi\n  FinSi\n  Si presion >= 140 Entonces\n    Escribir \"Estado presión: Presión alta\"\n  Sino\n    Escribir \"Estado presión: Presión normal\"\n  FinSi\n  Si temperatura > 37.2 Entonces\n    Escribir \"Estado temperatura: Fiebre\"\n  Sino\n    Escribir \"Estado temperatura: Sin fiebre\"\n  FinSi\nFinProceso",
+      "estadoAdaptacion": "adaptado",
+      "motivoExclusion": ""
+    }
+  ]
+}
