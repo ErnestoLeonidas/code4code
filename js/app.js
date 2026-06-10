@@ -1804,50 +1804,17 @@ function mostrarAutocompletado() {
   const cur = editor.selectionStart;
   const txt = editor.value;
 
-  const textBefore = txt.substring(0, cur);
-  const lastNewline = textBefore.lastIndexOf("\n");
-  const lineUpToCursor = textBefore.substring(lastNewline + 1);
-
-  const colInLine = lineUpToCursor.length;
-  const fullLine = txt.split("\n")[textBefore.split("\n").length - 1] || "";
-  const context = DocErrores.cursorContext(fullLine, colInLine - 1);
-
-  if (context.inString || context.inComment) {
-    ocultarAutocompletado();
-    return;
-  }
-
-  let ini = cur - 1;
-  while (ini >= 0 && /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(txt[ini])) ini--;
-  ini++;
-  const palabra = txt.substring(ini, cur);
-
-  if (palabra.length < 2) {
-    ocultarAutocompletado();
-    return;
-  }
-
-  const userVars = DocErrores.extraerVariablesDelCodigo(txt).map((v) => ({
-    texto: v,
-    tipo: "variable",
-  }));
-  const todas = [...LiteSeInt.PALABRAS_RESERVADAS, ...userVars];
-
-  const matches = todas.filter(
-    (p) =>
-      p.texto.toLowerCase().startsWith(palabra.toLowerCase()) &&
-      p.texto.toLowerCase() !== palabra.toLowerCase(),
+  // Los DATOS (contexto de cursor, candidatos, filtro por prefijo y orden)
+  // los decide el provider activo vía js/editor/autocomplete.js; aquí solo
+  // queda el render del dropdown. Devuelve [] cuando no amerita sugerir
+  // (dentro de cadena/comentario, prefijo corto, sin coincidencias).
+  const contexto = Code4CodeAutocomplete.contextoDesdePosicion(txt, cur);
+  const candidatos = Code4CodeAutocomplete.obtenerCandidatos(
+    providerActivo(),
+    contexto,
   );
 
-  const seen = new Set();
-  const unique = matches.filter((m) => {
-    const key = m.texto.toLowerCase();
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-
-  if (!unique.length) {
+  if (!candidatos.length) {
     ocultarAutocompletado();
     return;
   }
@@ -1855,12 +1822,12 @@ function mostrarAutocompletado() {
   const $dd = $("#autocompleteDropdown").empty();
   acIndice = 0;
 
-  unique.forEach((item, idx) => {
+  candidatos.forEach((item, idx) => {
     const $it = $("<div>")
       .addClass("autocomplete-item")
       .attr("data-texto", item.texto)
       .html(
-        `<span>${item.texto}</span><span class="kw-badge">${item.tipo}</span>`,
+        `<span>${item.texto}</span><span class="kw-badge">${item.detalle || item.tipo}</span>`,
       )
       .on("click", () => {
         insertarAutocompletado(item.texto);
