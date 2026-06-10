@@ -202,13 +202,19 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
       `tests/editor-tests.js`. El autocompletado también quedó dirigido por
       el provider (`js/editor/autocomplete.js` + `provider.autocompletar`,
       suite `tests/autocomplete-tests.js`).
-- [ ] Coincidencia y autocierre de pares (`()`, `""`, bloques `Si/FinSi`).
-- [ ] Búsqueda y reemplazo (`Ctrl+F` / `Ctrl+H`) con resaltado de coincidencias.
+- [x] Autocierre de pares (`()`, `""`): `js/editor/pairs.js` con suite
+      `tests/pairs-tests.js`. *Pendiente de este ítem: resaltado visual del
+      par coincidente bajo el cursor y autocierre de bloques `Si/FinSi`.*
+- [x] Búsqueda y reemplazo (`Ctrl+F` / `Ctrl+H`) con resaltado de coincidencias:
+      `js/editor/search.js` + capa espejo `searchLayer`, con suite
+      `tests/search-tests.js`. Los reemplazos respetan la plantilla protegida.
 - [ ] Plegado de bloques (`Si/FinSi`, `Para/FinPara`, `def:`/indentación en Python).
 - [ ] Historial undo/redo robusto con agrupación de ediciones (no solo `Ctrl+Z`
       simple) y `Ctrl+Shift+Z`/`Ctrl+Y`.
-- [ ] Indentación automática al crear línea dentro de un bloque, y
-      `Tab`/`Shift+Tab` sobre selección múltiple de líneas.
+- [x] Indentación automática al crear línea dentro de un bloque
+      (`pairs.alNuevaLinea` según `reglasIndentacion()` del provider), y
+      `Tab`/`Shift+Tab` sobre selección múltiple de líneas (existente
+      desde 1.x, conservado).
 - [ ] Mejoras móviles: scroll/teclado virtual, botones táctiles de símbolos
       frecuentes (`<-`, `==`, `[]`).
 - [ ] Temas claro/oscuro del editor.
