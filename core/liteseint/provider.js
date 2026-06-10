@@ -5,17 +5,10 @@
  * core/liteseint/) al contrato Code4Code (core/language-provider.js) y lo
  * registra en Code4Code.registro.
  *
- * IMPORTANTE — Estado Fase 1 (parcial):
- * El núcleo LiteSeInt expone sus APIs como globals de script clásico
- * (DocErrores, parsearPrograma, runtime de core/liteseint/runtime.js, etc.).
- * Este provider detecta esos globals de forma defensiva y deja marcados con
- * `TODO(FASE1)` los puntos donde el cableado fino debe hacerse con el código
- * fuente a la vista (sesión de Claude Code sobre el repo completo), porque
- * las firmas exactas del núcleo no deben adivinarse.
- *
- * Mientras el cableado no se complete, app.js sigue usando el núcleo
- * directamente como en v1.x — este provider NO se interpone y la app
- * funciona igual que antes (regresión cero de la Fase 0).
+ * El núcleo expone sus APIs como globals de script clásico (DocErrores,
+ * LiteSeInt, LiteSeIntParser, ...). Este provider es la única pieza que
+ * los conoce: la UI (js/app.js) habla solo con el contrato y ejecuta a
+ * través del RuntimeHost (core/runtime-host.js).
  */
 (function (raiz) {
   'use strict';
@@ -29,8 +22,27 @@
 
   var g = raiz;
 
-  /** Plantilla protegida del editor (igual que v1.x). */
-  var PLANTILLA = 'Proceso sin_titulo\n\t\nFinProceso';
+  /** Plantilla protegida del editor (idéntica a la estructura base v1.x). */
+  var PLANTILLA = 'Proceso nombre_proceso\n\n\n\n\n\n\n\n\nFinProceso';
+
+  /** Tipos de token del núcleo → tipos genéricos del contrato. */
+  var MAPA_TOKENS = null;
+  function mapaTokens() {
+    if (MAPA_TOKENS) return MAPA_TOKENS;
+    var TK = g.DocErrores.TK;
+    MAPA_TOKENS = {};
+    MAPA_TOKENS[TK.KEYWORD] = 'palabra-clave';
+    MAPA_TOKENS[TK.STRING] = 'cadena';
+    MAPA_TOKENS[TK.STRING_UNCLOSED] = 'cadena';
+    MAPA_TOKENS[TK.NUMBER] = 'numero';
+    MAPA_TOKENS[TK.COMMENT] = 'comentario';
+    MAPA_TOKENS[TK.ASSIGN] = 'asignacion';
+    MAPA_TOKENS[TK.OPERATOR] = 'operador';
+    MAPA_TOKENS[TK.LPAREN] = 'parentesis-abre';
+    MAPA_TOKENS[TK.RPAREN] = 'parentesis-cierra';
+    MAPA_TOKENS[TK.IDENTIFIER] = 'identificador';
+    return MAPA_TOKENS;
+  }
 
   function definicion() {
     return {
@@ -49,58 +61,95 @@
       },
 
       /**
-       * TODO(FASE1): conectar con el tokenizer real
-       * (core/liteseint/tokenizer.js) para que el editor multi-lenguaje
-       * obtenga los tokens de resaltado desde aquí. Hoy el resaltado lo
-       * hace app.js directamente, así que devolver la línea como un único
-       * token plano es seguro y no se usa todavía.
+       * Tokens para el resaltado, desde el tokenizer real del núcleo.
+       * Conserva el token original en `nucleo` para consumidores que
+       * necesiten detalle (columnas, tipo TK exacto).
        */
       tokenizarLinea: function (linea) {
-        return { tokens: [{ tipo: 'plano', texto: String(linea) }] };
+        if (!g.DocErrores || typeof g.DocErrores.tokenizarLinea !== 'function') {
+          return { tokens: [{ tipo: 'plano', texto: String(linea) }] };
+        }
+        var mapa = mapaTokens();
+        var tokens = g.DocErrores.tokenizarLinea(String(linea)).map(function (tk) {
+          return { tipo: mapa[tk.type] || 'plano', texto: tk.value, nucleo: tk };
+        });
+        return { tokens: tokens };
       },
 
       /**
-       * Validación estática. TODO(FASE1): confirmar la firma pública real
-       * del validador (core/liteseint/validator.js o doc_errores.js) y
-       * normalizar su salida a [{ linea, mensaje, tipo }].
+       * Validación estática vía el validador real. Devuelve los objetos de
+       * error del núcleo, que ya cumplen el contrato mínimo
+       * { linea, mensaje, tipo } y agregan columnaInicio/columnaFin/token
+       * para las decoraciones del editor.
        */
       validar: function (codigo) {
-        var candidatos = [
-          g.DocErrores && g.DocErrores.validar,
-          g.DocErrores && g.DocErrores.validarDocumento,
-          g.validarDocumento,
-          g.Validator && g.Validator.validar
-        ];
-        for (var i = 0; i < candidatos.length; i++) {
-          if (typeof candidatos[i] === 'function') {
-            try {
-              var resultado = candidatos[i](codigo);
-              return Array.isArray(resultado) ? resultado
-                : (resultado && Array.isArray(resultado.errores) ? resultado.errores : []);
-            } catch (e) {
-              if (g.console) g.console.warn('liteseint/provider validar():', e);
-              return [];
-            }
-          }
-        }
-        // TODO(FASE1): si llegamos aquí, mapear la API real del validador.
-        return [];
+        return g.DocErrores.validarDocumento(String(codigo || '')).errores;
       },
 
       /**
-       * Ejecución a través del RuntimeHost.
-       * TODO(FASE1): adaptar la invocación real del runtime
-       * (core/liteseint/runtime.js, global de la v1.x) a los callbacks del
-       * host: escribir/leer/lineaActiva/variables/contarPaso. Hoy app.js
-       * sigue invocando el runtime directamente, por lo que esta función
-       * aún no se usa en producción.
+       * Ejecución a través del RuntimeHost: todo el I/O (consola, Leer,
+       * línea activa, inspector de variables, detención) pasa por el host.
+       * @param {object} [opciones] - pausaPorLinea en ms (default 100,
+       *        igual que v1.x; 0 en pruebas).
        */
-      ejecutar: function (codigo, host) {
+      ejecutar: function (codigo, host, opciones) {
+        var interprete = new g.LiteSeInt({
+          onEscribir: function (texto) {
+            host.escribir(texto, { tipo: 'salida' });
+          },
+          onSistema: function (texto) {
+            host.escribir(texto, { tipo: 'sistema' });
+          },
+          onLeer: function (nombreVar) {
+            // Si se detiene mientras espera entrada, el núcleo ya quedó con
+            // `ejecutando = false` (detener del control), recibe '' y corta
+            // el bloque: mismo comportamiento que v1.x.
+            return host.leer(nombreVar).catch(function (e) {
+              if (e && e.esDetencionDeHost) return '';
+              throw e;
+            });
+          },
+          onError: function (lineaIdx, mensaje) {
+            if (host.fueDetenido()) return; // la detención no es un error
+            host.reportarError({ message: mensaje, linea: lineaIdx });
+          },
+          onLineaActiva: function (lineaIdx) {
+            host.contarPaso(lineaIdx);
+          },
+          onScopeEntered: function () {
+            host.reportarVariables({ evento: 'reiniciar' });
+          },
+          onVariableChanged: function (info) {
+            host.reportarVariables({ evento: 'cambio', variable: info });
+          }
+        });
+
+        if (opciones && typeof opciones.pausaPorLinea === 'number') {
+          interprete.velocidadPausa = opciones.pausaPorLinea;
+        }
+
         host.iniciar();
-        host.reportarError(new Error(
-          '[Code4Code] El provider LiteSeInt aún no está cableado al runtime ' +
-          '(TODO FASE1). La app sigue ejecutando por la vía v1.x.'));
-        return { detener: function () { host.detener(); } };
+        interprete.ejecutar(codigo).then(
+          function (resultado) {
+            if (resultado.detenido || host.fueDetenido()) {
+              host.detener();
+            } else if (resultado.exito) {
+              host.finalizar();
+            }
+            // Si exito es false, los errores ya pasaron por reportarError
+            // (estado 'error') a medida que ocurrieron.
+          },
+          function (err) {
+            host.reportarError(err);
+          }
+        );
+
+        return {
+          detener: function (motivo) {
+            interprete.detener();
+            host.detener(motivo);
+          }
+        };
       },
 
       reglasIndentacion: function () {
