@@ -160,6 +160,58 @@
             'Hasta Que', 'FinSegun', 'FinSubProceso', 'FinFuncion'],
           intermedios: ['Sino', 'De Otro Modo:']
         };
+      },
+
+      /**
+       * Candidatos de autocompletado (función opcional del contrato).
+       * Replica los datos que la UI v1.x calculaba directo del núcleo:
+       * palabras reservadas + variables del usuario, filtradas por el
+       * prefijo bajo el cursor (insensible a mayúsculas, sin sugerir la
+       * palabra ya completa) y sin duplicados (gana la primera aparición).
+       *
+       * Nota: DocErrores (const) y LiteSeInt (class) son declaraciones
+       * léxicas de script clásico; se referencian como identificadores
+       * libres, nunca como propiedades de window/globalThis.
+       *
+       * @param {object} contexto - { linea, columna, codigo } donde columna
+       *        es el índice 0-based del cursor dentro de la línea.
+       * @returns {Array<{texto: string, tipo: string, detalle?: string}>}
+       */
+      autocompletar: function (contexto) {
+        var linea = String((contexto && contexto.linea) || '');
+        var columna = contexto && typeof contexto.columna === 'number'
+          ? contexto.columna : linea.length;
+        var codigo = String((contexto && contexto.codigo) || '');
+
+        // Sin sugerencias dentro de cadenas o comentarios (igual que v1.x).
+        var entorno = DocErrores.cursorContext(linea, columna - 1);
+        if (entorno.inString || entorno.inComment) return [];
+
+        // Prefijo: caracteres de palabra hacia atrás desde el cursor.
+        var ini = columna - 1;
+        while (ini >= 0 && /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(linea[ini])) ini--;
+        ini++;
+        var palabra = linea.substring(ini, columna);
+        if (palabra.length < 2) return [];
+
+        // Mismo orden que v1.x: palabras reservadas y luego variables.
+        var candidatos = LiteSeInt.PALABRAS_RESERVADAS.map(function (p) {
+          return { texto: p.texto, tipo: 'palabra-clave', detalle: p.tipo };
+        }).concat(
+          DocErrores.extraerVariablesDelCodigo(codigo).map(function (v) {
+            return { texto: v, tipo: 'variable' };
+          })
+        );
+
+        var prefijo = palabra.toLowerCase();
+        var vistos = {};
+        return candidatos.filter(function (c) {
+          var clave = c.texto.toLowerCase();
+          if (clave === prefijo || clave.indexOf(prefijo) !== 0) return false;
+          if (Object.prototype.hasOwnProperty.call(vistos, clave)) return false;
+          vistos[clave] = true;
+          return true;
+        });
       }
     };
   }
