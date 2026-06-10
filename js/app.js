@@ -1481,91 +1481,23 @@ $("#editor").on("click keyup mouseup", function () {
 // =========================================
 // 8. SYNTAX HIGHLIGHTING
 // =========================================
+// Fase 2: la lógica vive en js/editor/highlight.js (Code4CodeHighlight)
+// y está dirigida por el provider activo. Aquí solo quedan envoltorios
+// finos que pintan en la capa espejo "syntaxLayer".
 
 function actualizarSyntaxHighlight() {
-  const texto = $("#editor").val();
-  const lineas = texto.split("\n");
-  const userVars = DocErrores.extraerVariablesDelCodigo(texto);
-  const userVarsSet = new Set(userVars.map((v) => v.toLowerCase()));
-
-  let depth = 0;
-  const htmlLines = lineas.map((linea) => {
-    const r = resaltarLinea_syntax(linea, userVarsSet, depth);
-    depth = r.depth;
-    return r.html;
-  });
-  setMirrorLayerHTML("syntaxLayer", htmlLines.join("\n"));
+  const html = Code4CodeHighlight.resaltarCodigo(providerActivo(), $("#editor").val());
+  setMirrorLayerHTML("syntaxLayer", html);
 }
 
-function resaltarLinea_syntax(linea, userVarsSet, depth = 0) {
-  if (linea === "") return { html: "", depth };
-
-  const tokens = DocErrores.tokenizarLinea(linea);
-  let result = "";
-
-  for (const tk of tokens) {
-    const escaped = escapeHtml(tk.value);
-    switch (tk.type) {
-      case DocErrores.TK.KEYWORD:
-        result += `<span class="sh-keyword">${escaped}</span>`;
-        break;
-      case DocErrores.TK.STRING:
-      case DocErrores.TK.STRING_UNCLOSED:
-        result += `<span class="sh-string">${escaped}</span>`;
-        break;
-      case DocErrores.TK.NUMBER:
-        result += `<span class="sh-number">${escaped}</span>`;
-        break;
-      case DocErrores.TK.COMMENT:
-        result += `<span class="sh-comment">${escaped}</span>`;
-        break;
-      case DocErrores.TK.ASSIGN:
-        result += `<span class="sh-assign">${escaped}</span>`;
-        break;
-      case DocErrores.TK.OPERATOR:
-        result += `<span class="sh-operator">${escaped}</span>`;
-        break;
-      case DocErrores.TK.LPAREN:
-        result += `<span class="sh-bracket-${depth % 3}">${escaped}</span>`;
-        depth++;
-        break;
-      case DocErrores.TK.RPAREN:
-        depth = Math.max(0, depth - 1);
-        result += `<span class="sh-bracket-${depth % 3}">${escaped}</span>`;
-        break;
-      case DocErrores.TK.IDENTIFIER:
-        if (userVarsSet.has(tk.value.toLowerCase())) {
-          result += `<span class="sh-variable">${escaped}</span>`;
-        } else {
-          result += `<span class="sh-plain">${escaped}</span>`;
-        }
-        break;
-      default:
-        result += `<span class="sh-plain">${escaped}</span>`;
-        break;
-    }
-  }
-
-  return { html: result, depth };
-}
-
+// La usa también renderErrorUnderlines (sección 5); delega en el módulo
+// de resaltado para no duplicar la lógica de escape.
 function escapeHtml(str) {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+  return Code4CodeHighlight.escapeHtml(str);
 }
 
 function resaltarCodigo(codigo) {
-  const vars = DocErrores.extraerVariablesDelCodigo(codigo);
-  const userVarsSet = new Set(vars.map(v => v.toLowerCase()));
-  let depth = 0;
-  return codigo.split("\n").map(linea => {
-    const { html, depth: d } = resaltarLinea_syntax(linea, userVarsSet, depth);
-    depth = d;
-    return html;
-  }).join("\n");
+  return Code4CodeHighlight.resaltarCodigo(providerActivo(), codigo);
 }
 
 // =========================================
