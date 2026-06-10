@@ -48,6 +48,11 @@
   /**
    * Funciones opcionales:
    *
+   * extraerVariables   function(codigo): [string]
+   *                    nombres de las variables declaradas por el usuario;
+   *                    el resaltado del editor (js/editor/highlight.js) las
+   *                    marca con la clase sh-variable. Si el provider no la
+   *                    implementa, el editor asume lista vacía.
    * autocompletar      function(contexto): [{ texto, tipo, detalle? }]
    * reglasIndentacion  function(): { aperturas: [string], cierres: [string],
    *                                  intermedios?: [string] }
