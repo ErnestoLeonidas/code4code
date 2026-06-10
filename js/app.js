@@ -1728,8 +1728,60 @@ $("#editor").on("keydown", function (e) {
         insertarTabEnCaret(this);
       }
     }
+    return;
   }
+
+  manejarParesEIndentacion(this, e);
 });
+
+/**
+ * Fase 2: autocierre de pares y auto-indentación (js/editor/pairs.js).
+ * Se invoca al final del keydown central del editor, cuando el dropdown
+ * de autocompletado no consumió la tecla. Solo actúa dentro de la zona
+ * editable de la plantilla (misma comprobación que tabularLineas).
+ */
+function manejarParesEIndentacion(editor, e) {
+  if (typeof Code4CodePairs === "undefined") return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+  const s = editor.selectionStart;
+  const en = editor.selectionEnd;
+  const v = editor.value;
+  const lastNL = v.lastIndexOf("\nFinProceso");
+
+  // Zona protegida: nunca editar antes del prefijo "Proceso " ni desde
+  // el "\nFinProceso" final (réplica de la comprobación de tabularLineas).
+  if (s < PROCESO_PREFIX_LEN || s > lastNL || en > lastNL) return;
+
+  let resultado = null;
+  if (e.key === "(" || e.key === '"') {
+    resultado = Code4CodePairs.alTeclearApertura(v, s, en, e.key);
+  } else if (e.key === ")") {
+    resultado = Code4CodePairs.alTeclearCierre(v, s, en, e.key);
+  } else if (e.key === "Backspace") {
+    // El borrado del par elimina también el carácter previo al caret:
+    // exigir que ese carácter siga dentro de la zona editable.
+    if (s - 1 < PROCESO_PREFIX_LEN) return;
+    resultado = Code4CodePairs.alBorrarAtras(v, s, en);
+  } else if (e.key === "Enter") {
+    resultado = Code4CodePairs.alNuevaLinea(
+      v, s, en, providerActivo().reglasIndentacion());
+  }
+
+  if (!resultado) return;
+
+  e.preventDefault();
+  registrarHistorialEditor(editor);
+  editor.value = resultado.valor;
+  editor.selectionStart = resultado.selStart;
+  editor.selectionEnd = resultado.selEnd;
+  // Asignar .value no dispara "input": replicar aquí lo que hace el
+  // handler de input del editor (errores obsoletos, resalte, vista).
+  if (errorVisualState.activo) invalidarErroresVisuales();
+  quitarResalteNombreInvalido();
+  actualizarLineas();
+  mostrarAutocompletado();
+}
 
 function mostrarAutocompletado() {
   const editor = document.getElementById("editor");
