@@ -169,12 +169,33 @@
               </button>
             </div>
           </div>
+          <!-- Barra de búsqueda y reemplazo (Ctrl+F / Ctrl+H) -->
+          <div class="search-bar" id="searchBar" hidden>
+            <div class="search-row">
+              <input type="text" id="searchInput" class="search-input"
+                     placeholder="Buscar…" aria-label="Buscar en el código"
+                     autocomplete="off" spellcheck="false" />
+              <span class="search-count" id="searchCount" aria-live="polite"></span>
+              <button class="search-btn" id="searchPrev" title="Coincidencia anterior (Shift+Enter)" aria-label="Coincidencia anterior">↑</button>
+              <button class="search-btn" id="searchNext" title="Coincidencia siguiente (Enter)" aria-label="Coincidencia siguiente">↓</button>
+              <button class="search-btn" id="searchToggleReplace" title="Mostrar reemplazo (Ctrl+H)" aria-label="Mostrar fila de reemplazo">⇄</button>
+              <button class="search-btn" id="searchClose" title="Cerrar (Esc)" aria-label="Cerrar búsqueda">✕</button>
+            </div>
+            <div class="search-row" id="searchReplaceRow" hidden>
+              <input type="text" id="replaceInput" class="search-input"
+                     placeholder="Reemplazar por…" aria-label="Texto de reemplazo"
+                     autocomplete="off" spellcheck="false" />
+              <button class="search-text-btn" id="replaceOne" title="Reemplazar la coincidencia activa">Reemplazar</button>
+              <button class="search-text-btn" id="replaceAll" title="Reemplazar todas las coincidencias">Todos</button>
+            </div>
+          </div>
           <div class="editor-wrapper">
             <div class="line-numbers" id="lineNumbers"></div>
             <div class="editor-code-area">
               <div class="editor-bg-layer"></div>
               <div class="indent-guide-layer" id="indentGuideLayer"></div>
               <div class="editor-line-overlays" id="lineOverlays"></div>
+              <div class="search-highlight-layer" id="searchLayer"></div>
               <div class="error-decoration-layer" id="errorDecoLayer"></div>
               <div class="syntax-highlight-layer" id="syntaxLayer"></div>
               <textarea
@@ -273,10 +294,11 @@
   <!-- Provider LiteSeInt (registra el lenguaje en Code4Code.registro) -->
   <script src="core/liteseint/provider.js"></script>
 
-  <!-- Editor propio (Fase 2): resaltado, autocompletado y pares desde el provider activo -->
+  <!-- Editor propio (Fase 2): resaltado, autocompletado, pares y búsqueda -->
   <script src="js/editor/highlight.js"></script>
   <script src="js/editor/autocomplete.js"></script>
   <script src="js/editor/pairs.js"></script>
+  <script src="js/editor/search.js"></script>
 
   <!-- UI -->
   <script src="js/ejercicios-data.js"></script>

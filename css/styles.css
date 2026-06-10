@@ -485,6 +485,57 @@ body::before {
 .syntax-highlight-layer .sh-bracket-1 { color: var(--bracket-1); font-weight: 500; }
 .syntax-highlight-layer .sh-bracket-2 { color: var(--bracket-2); font-weight: 500; }
 
+/* ---- Search bar y capa de coincidencias (Fase 2) ---- */
+.search-bar {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--border-color);
+}
+.search-row { display: flex; align-items: center; gap: 6px; }
+.search-input {
+  flex: 1; min-width: 0;
+  background: var(--bg-editor); color: var(--text-primary);
+  border: 1px solid var(--border-color); border-radius: 6px;
+  padding: 4px 8px; font-family: var(--font-code); font-size: 12px;
+  outline: none;
+}
+.search-input:focus { border-color: var(--accent); }
+.search-count {
+  color: var(--text-secondary); font-size: 11px; white-space: nowrap;
+  min-width: 56px; text-align: right;
+}
+.search-btn,
+.search-text-btn {
+  background: transparent; color: var(--text-secondary);
+  border: 1px solid var(--border-color); border-radius: 6px;
+  cursor: pointer; font-size: 12px; line-height: 1;
+  padding: 4px 8px;
+}
+.search-text-btn { font-size: 11px; white-space: nowrap; }
+.search-btn:hover,
+.search-text-btn:hover {
+  color: var(--accent); border-color: var(--accent); background: var(--accent-bg);
+}
+
+.search-highlight-layer {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 2; pointer-events: none;
+  font-family: var(--font-code); font-size: 12px;
+  line-height: var(--line-height-val);
+  white-space: pre; overflow: hidden;
+  color: transparent;
+  margin: 0; border: none;
+}
+.search-highlight-layer .search-match {
+  background: rgba(255, 200, 0, 0.22);
+  border-radius: 2px;
+}
+.search-highlight-layer .search-match-active {
+  background: rgba(255, 200, 0, 0.45);
+  outline: 1px solid rgba(255, 200, 0, 0.8);
+}
+
 /* ---- Error decoration layer (underlines) ---- */
 .error-decoration-layer {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;

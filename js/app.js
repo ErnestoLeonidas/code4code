@@ -1182,7 +1182,7 @@ function syncEditorMirrorScroll() {
   if (!editor) return;
 
   const transform = `translate(${-editor.scrollLeft}px, ${-editor.scrollTop}px)`;
-  for (const layerId of ["syntaxLayer", "errorDecoLayer"]) {
+  for (const layerId of ["syntaxLayer", "errorDecoLayer", "searchLayer"]) {
     const content = getMirrorLayerContent(layerId);
     if (content) content.style.transform = transform;
   }
@@ -1499,6 +1499,193 @@ function escapeHtml(str) {
 function resaltarCodigo(codigo) {
   return Code4CodeHighlight.resaltarCodigo(providerActivo(), codigo);
 }
+
+// =========================================
+// 8b. BÚSQUEDA Y REEMPLAZO (Ctrl+F / Ctrl+H)
+// =========================================
+// Fase 2: la lógica vive en js/editor/search.js (Code4CodeSearch). Aquí
+// solo están la barra, la capa espejo "searchLayer" y los atajos.
+
+const busquedaEstado = {
+  visible: false,
+  coincidencias: [],
+  indiceActivo: -1,
+};
+
+function busquedaRecalcular(mantenerIndice = false) {
+  const editor = document.getElementById("editor");
+  const consulta = $("#searchInput").val();
+  const previo = busquedaEstado.indiceActivo;
+  busquedaEstado.coincidencias = Code4CodeSearch.buscar(editor.value, consulta);
+  if (mantenerIndice && previo >= 0 &&
+      previo < busquedaEstado.coincidencias.length) {
+    busquedaEstado.indiceActivo = previo;
+  } else {
+    busquedaEstado.indiceActivo = Code4CodeSearch.indiceSiguiente(
+      busquedaEstado.coincidencias, editor.selectionStart);
+  }
+  busquedaRender();
+}
+
+function busquedaRender() {
+  const editor = document.getElementById("editor");
+  const n = busquedaEstado.coincidencias.length;
+  $("#searchCount").text(
+    n === 0
+      ? ($("#searchInput").val() ? "0 de 0" : "")
+      : `${busquedaEstado.indiceActivo + 1} de ${n}`,
+  );
+  setMirrorLayerHTML(
+    "searchLayer",
+    Code4CodeSearch.resaltarHtml(
+      editor.value,
+      busquedaEstado.coincidencias,
+      busquedaEstado.indiceActivo,
+      escapeHtml,
+    ),
+  );
+}
+
+function abrirBusqueda(conReemplazo) {
+  const editor = document.getElementById("editor");
+  $("#searchBar").prop("hidden", false);
+  if (conReemplazo) $("#searchReplaceRow").prop("hidden", false);
+  busquedaEstado.visible = true;
+  // Precarga la selección del editor si es de una sola línea.
+  const sel = editor.value.substring(editor.selectionStart, editor.selectionEnd);
+  if (sel && !sel.includes("\n")) $("#searchInput").val(sel);
+  const campo = document.getElementById("searchInput");
+  campo.focus();
+  campo.select();
+  busquedaRecalcular();
+}
+
+function cerrarBusqueda() {
+  busquedaEstado.visible = false;
+  busquedaEstado.coincidencias = [];
+  busquedaEstado.indiceActivo = -1;
+  $("#searchBar").prop("hidden", true);
+  $("#searchCount").text("");
+  setMirrorLayerHTML("searchLayer", "");
+  document.getElementById("editor").focus();
+}
+
+function busquedaDesplazarHastaActiva() {
+  const editor = document.getElementById("editor");
+  const c = busquedaEstado.coincidencias[busquedaEstado.indiceActivo];
+  if (!c) return;
+  const lineaIdx = editor.value.substring(0, c.inicio).split("\n").length - 1;
+  const lineHeight = parseCssPx(getComputedStyle(editor).lineHeight, 18);
+  const objetivo = lineaIdx * lineHeight;
+  const visibleDesde = editor.scrollTop;
+  const visibleHasta = editor.scrollTop + editor.clientHeight - lineHeight * 2;
+  if (objetivo < visibleDesde || objetivo > visibleHasta) {
+    // Asignar scrollTop dispara el evento scroll, que sincroniza las capas.
+    editor.scrollTop = Math.max(0, objetivo - editor.clientHeight / 2);
+  }
+}
+
+function busquedaSiguiente() {
+  const n = busquedaEstado.coincidencias.length;
+  if (n === 0) return;
+  busquedaEstado.indiceActivo = (busquedaEstado.indiceActivo + 1) % n;
+  busquedaRender();
+  busquedaDesplazarHastaActiva();
+}
+
+function busquedaAnterior() {
+  const n = busquedaEstado.coincidencias.length;
+  if (n === 0) return;
+  busquedaEstado.indiceActivo = (busquedaEstado.indiceActivo - 1 + n) % n;
+  busquedaRender();
+  busquedaDesplazarHastaActiva();
+}
+
+// Zona editable de la plantilla: tras "Proceso " y antes del
+// "\nFinProceso" final (misma protección que el handler beforeinput).
+function busquedaEsReemplazable(c, valor) {
+  const lastNL = valor.lastIndexOf("\nFinProceso");
+  return lastNL >= 0 && c.inicio >= PROCESO_PREFIX_LEN && c.fin <= lastNL;
+}
+
+function busquedaAplicarTexto(editor, texto, caret) {
+  registrarHistorialEditor(editor);
+  editor.value = texto;
+  editor.setSelectionRange(caret, caret);
+  // Asignar .value no dispara "input": replicar el handler de input.
+  if (errorVisualState.activo) invalidarErroresVisuales();
+  quitarResalteNombreInvalido();
+  actualizarLineas();
+}
+
+function busquedaReemplazarActiva() {
+  const editor = document.getElementById("editor");
+  const c = busquedaEstado.coincidencias[busquedaEstado.indiceActivo];
+  if (!c || !busquedaEsReemplazable(c, editor.value)) return;
+  const reemplazo = $("#replaceInput").val();
+  const r = Code4CodeSearch.reemplazar(editor.value, c, reemplazo);
+  busquedaAplicarTexto(editor, r.texto, c.inicio + reemplazo.length);
+  busquedaRecalcular(true);
+}
+
+function busquedaReemplazarTodas() {
+  const editor = document.getElementById("editor");
+  const reemplazables = busquedaEstado.coincidencias.filter((c) =>
+    busquedaEsReemplazable(c, editor.value),
+  );
+  if (reemplazables.length === 0) return;
+  const r = Code4CodeSearch.reemplazarTodas(
+    editor.value, reemplazables, $("#replaceInput").val());
+  busquedaAplicarTexto(editor, r.texto, editor.selectionStart);
+  busquedaRecalcular();
+}
+
+$(document).on("keydown.busqueda", function (e) {
+  if ((e.ctrlKey || e.metaKey) && !e.altKey) {
+    const k = e.key.toLowerCase();
+    if (k === "f" || k === "h") {
+      e.preventDefault();
+      abrirBusqueda(k === "h");
+    }
+  }
+});
+
+$("#searchInput").on("input", () => busquedaRecalcular());
+
+$("#searchInput, #replaceInput").on("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    if (e.shiftKey) busquedaAnterior();
+    else busquedaSiguiente();
+  } else if (e.key === "Escape") {
+    e.preventDefault();
+    cerrarBusqueda();
+  }
+});
+
+// Escape dentro del editor cierra la búsqueda, salvo que el dropdown de
+// autocompletado esté visible (su handler ya consume esa tecla).
+$("#editor").on("keydown.busqueda", function (e) {
+  if (e.key === "Escape" && busquedaEstado.visible &&
+      !$("#autocompleteDropdown").hasClass("visible")) {
+    cerrarBusqueda();
+  }
+});
+
+$("#editor").on("input.busqueda", () => {
+  if (busquedaEstado.visible) busquedaRecalcular();
+});
+
+$("#searchNext").on("click", busquedaSiguiente);
+$("#searchPrev").on("click", busquedaAnterior);
+$("#searchClose").on("click", cerrarBusqueda);
+$("#searchToggleReplace").on("click", () => {
+  const fila = $("#searchReplaceRow");
+  fila.prop("hidden", !fila.prop("hidden"));
+  if (!fila.prop("hidden")) document.getElementById("replaceInput").focus();
+});
+$("#replaceOne").on("click", busquedaReemplazarActiva);
+$("#replaceAll").on("click", busquedaReemplazarTodas);
 
 // =========================================
 // 9. AUTOCOMPLETE
