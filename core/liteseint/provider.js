@@ -23,9 +23,18 @@
   var g = raiz;
 
   // OJO: DocErrores (const) y LiteSeInt (class) son declaraciones léxicas
-  // de script clásico: NO cuelgan de window/globalThis. Por eso aquí se
-  // referencian como identificadores libres (DocErrores, LiteSeInt) y
-  // nunca como propiedades (raiz.DocErrores no existe en el navegador).
+  // de script clásico: NO cuelgan de window/globalThis. En todo el archivo
+  // se referencian como identificadores libres, nunca como propiedades
+  // (raiz.DocErrores no existe en el navegador).
+
+  /**
+   * Acceso defensivo al núcleo DocErrores: el `typeof` evita el
+   * ReferenceError cuando el núcleo no está cargado (p. ej. require
+   * directo de este archivo en las pruebas de contrato).
+   */
+  function nucleoDocErrores() {
+    return typeof DocErrores !== 'undefined' ? DocErrores : null;
+  }
 
   /** Plantilla protegida del editor (idéntica a la estructura base v1.x). */
   var PLANTILLA = 'Proceso nombre_proceso\n\n\n\n\n\n\n\n\nFinProceso';
@@ -34,7 +43,7 @@
   var MAPA_TOKENS = null;
   function mapaTokens() {
     if (MAPA_TOKENS) return MAPA_TOKENS;
-    var TK = DocErrores.TK;
+    var TK = nucleoDocErrores().TK;
     MAPA_TOKENS = {};
     MAPA_TOKENS[TK.KEYWORD] = 'palabra-clave';
     MAPA_TOKENS[TK.STRING] = 'cadena';
@@ -71,15 +80,29 @@
        * necesiten detalle (columnas, tipo TK exacto).
        */
       tokenizarLinea: function (linea) {
-        if (typeof DocErrores === 'undefined' ||
-            typeof DocErrores.tokenizarLinea !== 'function') {
+        var nucleo = nucleoDocErrores();
+        if (!nucleo || typeof nucleo.tokenizarLinea !== 'function') {
           return { tokens: [{ tipo: 'plano', texto: String(linea) }] };
         }
         var mapa = mapaTokens();
-        var tokens = DocErrores.tokenizarLinea(String(linea)).map(function (tk) {
+        var tokens = nucleo.tokenizarLinea(String(linea)).map(function (tk) {
           return { tipo: mapa[tk.type] || 'plano', texto: tk.value, nucleo: tk };
         });
         return { tokens: tokens };
+      },
+
+      /**
+       * Función OPCIONAL del contrato: nombres de las variables declaradas
+       * por el usuario en el código. El resaltado del editor
+       * (js/editor/highlight.js) las distingue de los identificadores
+       * sueltos con la clase sh-variable.
+       */
+      extraerVariables: function (codigo) {
+        var nucleo = nucleoDocErrores();
+        if (!nucleo || typeof nucleo.extraerVariablesDelCodigo !== 'function') {
+          return [];
+        }
+        return nucleo.extraerVariablesDelCodigo(String(codigo || ''));
       },
 
       /**
