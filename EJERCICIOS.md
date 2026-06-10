@@ -10,17 +10,17 @@ Para 1.0, **los ejercicios se adaptan a LiteSeInt**. LiteSeInt no debe crecer si
 
 ## Estructura del banco de ejercicios LiteSeInt
 
-El banco contiene **245 ejercicios** distribuidos en 7 niveles (N1–N7). Cada nivel tiene su propio archivo JSON en `json/N*.json` y corresponde a una Experiencia de Aprendizaje original de `guia.html`.
+El banco contiene **245 ejercicios** distribuidos en 7 niveles (N1–N7). Cada nivel tiene su propio archivo JSON en `json/liteseint/N*.json` y corresponde a una Experiencia de Aprendizaje original de `guia.html`.
 
 | Nivel | Archivo | EA de origen | Título | Cant. | Visible en app |
 |---|---|---|---|---|---|
-| N1 | `json/N1.json` | EA 1.1 | Introducción a los Algoritmos | 20 | Sí |
-| N2 | `json/N2.json` | EA 1.2 | Diagramas de Flujo y Pseudocódigo | 40 | Sí |
-| N3 | `json/N3.json` | EA 1.3 | Estructuras de Decisión | 40 | Sí |
-| N4 | `json/N4.json` | EA 1.4 | Estructuras de Repetición | 60 | Sí |
-| N5 | `json/N5.json` | EA 1.5 | Desafíos | 15 | Sí |
-| N6 | `json/N6.json` | EA 1.6 | Tipo Prueba Parte 1 | 40 | Sí |
-| N7 | `json/N7.json` | EA 1.7 | Tipo Prueba Parte 2 | 30 | Sí |
+| N1 | `json/liteseint/N1.json` | EA 1.1 | Introducción a los Algoritmos | 20 | Sí |
+| N2 | `json/liteseint/N2.json` | EA 1.2 | Diagramas de Flujo y Pseudocódigo | 40 | Sí |
+| N3 | `json/liteseint/N3.json` | EA 1.3 | Estructuras de Decisión | 40 | Sí |
+| N4 | `json/liteseint/N4.json` | EA 1.4 | Estructuras de Repetición | 60 | Sí |
+| N5 | `json/liteseint/N5.json` | EA 1.5 | Desafíos | 15 | Sí |
+| N6 | `json/liteseint/N6.json` | EA 1.6 | Tipo Prueba Parte 1 | 40 | Sí |
+| N7 | `json/liteseint/N7.json` | EA 1.7 | Tipo Prueba Parte 2 | 30 | Sí |
 
 N1–N7 se cargan y aparecen en el banco visible de la app (`NIVELES_VISIBLES = [1, 2, 3, 4, 5, 6, 7]` en `js/app.js`).
 
@@ -177,7 +177,7 @@ Notas de adaptación:
 - EA 1.1 #18 (Segundos a h:m:s): también existe como `ea1-2-015`. El `ea1-1-018` usa el origen correcto (EA 1.1). DIV/MOD adaptados a `Trunc`/`mod`.
 - EA 1.1 #20: la variable `paso` es reservada en LiteSeInt (por `Con Paso` de `Para`); se renombra a `numPaso` en el código de referencia.
 
-A **v1.0.0** el banco mantiene **245 ejercicios adaptados** desde `ejercicios/guia.html`, reorganizados en `json/N1.json` a `json/N7.json`. `js/ejercicios-data.js` es el punto único de carga del banco y consume esos JSON normalizados para exponer `EjerciciosLiteSeInt` al panel de aprendizaje. Los `codigoReferencia` mantienen formato consistente: 2 espacios por nivel, comas con espacio en declaraciones, bloques de declaraciones separados del cuerpo y cálculos separados de entrada/salida.
+A **v1.0.0** el banco mantiene **245 ejercicios adaptados** desde `ejercicios/guia.html`, reorganizados en `json/liteseint/N1.json` a `json/liteseint/N7.json`. `js/ejercicios-data.js` es el punto único de carga del banco y consume esos JSON normalizados para exponer `EjerciciosLiteSeInt` al panel de aprendizaje. Los `codigoReferencia` mantienen formato consistente: 2 espacios por nivel, comas con espacio en declaraciones, bloques de declaraciones separados del cuerpo y cálculos separados de entrada/salida.
 
 Mejora posterior sugerida: revisar pedagógicamente **EA 1.6** y **EA 1.7** para reducir repetición, mejorar enunciados/pistas y ajustar progresión. No bloquea 1.0 porque sus ejercicios ya están normalizados, visibles y pasan validación estática.
 
