@@ -1,8 +1,45 @@
 /* ==============================================
    app.js — UI Controller
-   Conecta LiteSeInt con la interfaz de usuario.
-   Depende de: Bootstrap, jQuery, doc_errores.js, LiteSeInt.js
+   Conecta la capa multi-lenguaje Code4Code con la interfaz de usuario.
+   Depende de: Bootstrap, jQuery y la capa Code4Code
+   (core/language-provider.js, core/language-registry.js,
+   core/runtime-host.js) con al menos un lenguaje registrado.
    ============================================== */
+
+// =========================================
+// 0. ALMACENAMIENTO LOCAL (claves code4code:* con lectura retro-compatible)
+// =========================================
+
+// Mapa clave nueva → clave v1.x. Mismo origen en GitHub Pages, así que el
+// progreso guardado por LiteSeInt 1.x se migra en la primera lectura.
+const CLAVES_LEGADO = {
+  'code4code:theme': 'liteseint_theme',
+  'code4code:panelOrder': 'liteseint_panel_order',
+  'code4code:learningPanelWidth': 'liteseint_learning_panel_width',
+  'code4code:consoleEcho': 'liteseint_console_echo',
+  'code4code:ejLista': 'liteseint_ej_lista',
+  'code4code:exerciseProgress': 'liteseint:exerciseProgress',
+  'code4code:consoleHeight': 'liteseint:consoleHeight',
+};
+
+function lsGet(clave) {
+  try {
+    let valor = localStorage.getItem(clave);
+    if (valor === null && CLAVES_LEGADO[clave]) {
+      valor = localStorage.getItem(CLAVES_LEGADO[clave]);
+      // Migra una sola vez; la clave v1.x se conserva por si el estudiante
+      // vuelve a abrir la app LiteSeInt archivada.
+      if (valor !== null) localStorage.setItem(clave, valor);
+    }
+    return valor;
+  } catch (e) {
+    return null;
+  }
+}
+
+function lsSet(clave, valor) {
+  try { localStorage.setItem(clave, valor); } catch (e) { /* sin persistencia */ }
+}
 
 // =========================================
 // 1. STATE MANAGEMENT
@@ -34,7 +71,7 @@ function resetErrorVisualState() {
 // THEME SYSTEM
 // =========================================
 
-const THEME_KEY = 'liteseint_theme';
+const THEME_KEY = 'code4code:theme';
 const THEMES = [
   { id: 'hacker', label: 'Hacker' },
   { id: 'ocean',  label: 'Ocean'  },
@@ -43,7 +80,7 @@ const THEMES = [
 ];
 
 function initTheme() {
-  const saved = localStorage.getItem(THEME_KEY);
+  const saved = lsGet(THEME_KEY);
   const theme = THEMES.find(t => t.id === saved) || THEMES[0];
   applyTheme(theme);
 }
@@ -52,7 +89,7 @@ function applyTheme(theme) {
   document.body.setAttribute('data-theme', theme.id);
   const nameEl = document.getElementById('themeName');
   if (nameEl) nameEl.textContent = theme.label;
-  try { localStorage.setItem(THEME_KEY, theme.id); } catch(e) {}
+  lsSet(THEME_KEY, theme.id);
 }
 
 function cycleTheme() {
@@ -66,12 +103,12 @@ function cycleTheme() {
 // PANEL DRAG-TO-SWAP
 // =========================================
 
-const PANEL_ORDER_KEY = 'liteseint_panel_order';
-const LEARNING_PANEL_WIDTH_KEY = 'liteseint_learning_panel_width';
+const PANEL_ORDER_KEY = 'code4code:panelOrder';
+const LEARNING_PANEL_WIDTH_KEY = 'code4code:learningPanelWidth';
 const LEARNING_PANEL_MIN_PX = 320;
 const LEARNING_PANEL_MAX_RATIO = 0.72;
 const LEARNING_PANEL_AUTO_COLLAPSE_PX = 560;
-const CONSOLE_ECHO_KEY = 'liteseint_console_echo';
+const CONSOLE_ECHO_KEY = 'code4code:consoleEcho';
 
 function initPanelDrag() {
   const container = document.querySelector('.main-container');
@@ -142,11 +179,11 @@ function savePanelOrder() {
   const lp = document.querySelector('.learning-panel');
   if (!container || !lp) return;
   const isLeft = [...container.querySelectorAll('[data-draggable]')][0] === lp;
-  try { localStorage.setItem(PANEL_ORDER_KEY, isLeft ? 'left' : 'right'); } catch(e) {}
+  lsSet(PANEL_ORDER_KEY, isLeft ? 'left' : 'right');
 }
 
 function restorePanelOrder() {
-  const saved = localStorage.getItem(PANEL_ORDER_KEY);
+  const saved = lsGet(PANEL_ORDER_KEY);
   if (!saved) return;
   const container = document.querySelector('.main-container');
   const lp = document.querySelector('.learning-panel');
@@ -215,22 +252,14 @@ function aplicarAnchoLearningPanel(px, opciones = {}) {
 }
 
 function guardarAnchoLearningPanel(px) {
-  try {
-    localStorage.setItem(LEARNING_PANEL_WIDTH_KEY, String(Math.round(px)));
-  } catch (_) {
-    /* localStorage no disponible: ignorar */
-  }
+  lsSet(LEARNING_PANEL_WIDTH_KEY, String(Math.round(px)));
 }
 
 function cargarAnchoLearningPanelPersistido() {
-  try {
-    const v = localStorage.getItem(LEARNING_PANEL_WIDTH_KEY);
-    if (!v) return;
-    const px = parseInt(v, 10);
-    if (Number.isFinite(px) && px > 0) aplicarAnchoLearningPanel(px);
-  } catch (_) {
-    /* localStorage no disponible: ignorar */
-  }
+  const v = lsGet(LEARNING_PANEL_WIDTH_KEY);
+  if (!v) return;
+  const px = parseInt(v, 10);
+  if (Number.isFinite(px) && px > 0) aplicarAnchoLearningPanel(px);
 }
 
 function inicializarResizeLearningPanel() {
@@ -294,7 +323,7 @@ function inicializarResizeLearningPanel() {
 // EXERCISE LIST TOGGLE
 // =========================================
 
-const EJ_LISTA_KEY = 'liteseint_ej_lista';
+const EJ_LISTA_KEY = 'code4code:ejLista';
 
 function initEjListaToggle() {
   setEjListaVisible(true);
@@ -313,60 +342,128 @@ function setEjListaVisible(visible) {
     btn.title = visible ? 'Ocultar lista de ejercicios' : 'Mostrar lista de ejercicios';
     btn.setAttribute('aria-label', btn.title);
   });
-  try { localStorage.setItem(EJ_LISTA_KEY, visible ? 'visible' : 'hidden'); } catch(e) {}
+  lsSet(EJ_LISTA_KEY, visible ? 'visible' : 'hidden');
 }
 
 // =========================================
-// 2. INTÉRPRETE
+// 2. EJECUCIÓN (provider activo + RuntimeHost)
 // =========================================
 
-const interprete = new LiteSeInt({
-  onEscribir(texto) {
-    consolaImprimir(texto, "output");
-  },
+function providerActivo() {
+  return Code4Code.registro.activo();
+}
 
-  onLeer(nombreVar) {
-    return new Promise((resolve) => {
-      inputResolver = resolve;
-      mostrarInputConsola(nombreVar);
-    });
-  },
+// Control devuelto por provider.ejecutar(); null cuando no hay ejecución.
+let controlEjecucion = null;
 
-  onError(lineaIdx, mensaje) {
-    if (!errorVisualState.erroresMapa[lineaIdx]) {
-      errorVisualState.erroresMapa[lineaIdx] = mensaje;
-    } else {
-      errorVisualState.erroresMapa[lineaIdx] += "\n" + mensaje;
-    }
-    consolaImprimir(`Error en línea ${lineaIdx + 1}: ${mensaje}`, "error");
-    marcarErrorLinea(lineaIdx, errorVisualState.erroresMapa[lineaIdx]);
-    errorVisualState.activo = true;
-  },
+function crearHostDeEjecucion() {
+  return Code4Code.crearRuntimeHost({
+    escribir(texto, meta) {
+      const tipo = meta && meta.tipo;
+      if (tipo === "error") {
+        const lineaIdx = meta && typeof meta.linea === "number" ? meta.linea : null;
+        if (lineaIdx !== null) {
+          if (!errorVisualState.erroresMapa[lineaIdx]) {
+            errorVisualState.erroresMapa[lineaIdx] = texto;
+          } else {
+            errorVisualState.erroresMapa[lineaIdx] += "\n" + texto;
+          }
+          consolaImprimir(`Error en línea ${lineaIdx + 1}: ${texto}`, "error");
+          marcarErrorLinea(lineaIdx, errorVisualState.erroresMapa[lineaIdx]);
+          errorVisualState.activo = true;
+        } else {
+          consolaImprimir(texto, "error");
+        }
+      } else if (tipo === "sistema") {
+        consolaImprimir(texto, "input-echo");
+      } else {
+        consolaImprimir(texto, "output");
+      }
+    },
 
-  onLineaActiva(lineaIdx) {
-    resaltarLineaEjecutando(lineaIdx);
-  },
+    leer(nombreVar) {
+      return new Promise((resolve) => {
+        inputResolver = resolve;
+        mostrarInputConsola(nombreVar);
+      });
+    },
 
-  onSistema(texto) {
-    consolaImprimir(texto, "input-echo");
-  },
+    lineaActiva(lineaIdx) {
+      resaltarLineaEjecutando(lineaIdx);
+    },
 
-  onFin() {
-    /* handled in ejecutar() */
-  },
+    variables(evento) {
+      if (!evento) return;
+      if (evento.evento === "reiniciar") {
+        limpiarInspector();
+      } else if (evento.evento === "cambio" && evento.variable) {
+        actualizarInspector(evento.variable);
+      }
+    },
 
-  onScopeEntered() {
-    limpiarInspector();
-  },
+    alCambiarEstado(estado) {
+      switch (estado) {
+        case "ejecutando":
+          setEstado("running", "Ejecutando...");
+          break;
+        case "esperando-entrada":
+          // La consola ya muestra la fila de entrada inline.
+          break;
+        case "finalizado":
+          consolaImprimir("Fin de ejecución", "system");
+          setEstado("", "Listo");
+          finalizarEjecucionUI();
+          break;
+        case "detenido":
+          setEstado("", "Detenido");
+          finalizarEjecucionUI();
+          break;
+        case "error":
+          setEstado("error", "Error");
+          finalizarEjecucionUI();
+          break;
+      }
+    },
+  });
+}
 
-  onScopeExited() {
-    /* inspector already has final state */
-  },
+function finalizarEjecucionUI() {
+  controlEjecucion = null;
+  limpiarEjecucionHighlight();
+  $("#btnEjecutar").prop("disabled", false);
+  $("#btnDetener").hide();
+}
 
-  onVariableChanged(info) {
-    actualizarInspector(info);
-  },
-});
+// =========================================
+// 2b. SELECTOR DE LENGUAJE
+// =========================================
+
+function initLanguageSelect() {
+  const $select = $("#languageSelect");
+  if (!$select.length) return;
+  const registro = Code4Code.registro;
+
+  $select.empty();
+  for (const provider of registro.lista()) {
+    $select.append($("<option>").val(provider.id).text(provider.nombre));
+  }
+  $select.val(registro.activo().id);
+  $select.prop("disabled", false);
+
+  $select.on("change", function () {
+    registro.activar(this.value);
+  });
+
+  registro.onCambio((provider) => {
+    $select.val(provider.id);
+    $("#inputImportarPsc").attr("accept", `${provider.extension},text/plain`);
+    // Fase 1: con un solo lenguaje registrado no hay más que refrescar.
+    // Al sumar lenguajes (Fase 3+) aquí se recargan plantilla, ejemplos,
+    // resaltado y banco de ejercicios del provider activo.
+  });
+
+  $("#inputImportarPsc").attr("accept", `${registro.activo().extension},text/plain`);
+}
 
 // =========================================
 // 3. INSPECTOR DE VARIABLES (v1.7.0)
@@ -530,12 +627,12 @@ function setConsoleEchoVisible(visible) {
         : "Mostrar trazas:\nMuestra entradas y mensajes internos de ejecución",
     );
   }
-  try { localStorage.setItem(CONSOLE_ECHO_KEY, visible ? "visible" : "hidden"); } catch(e) {}
+  lsSet(CONSOLE_ECHO_KEY, visible ? "visible" : "hidden");
 }
 
 function initConsoleEchoToggle() {
   const btn = document.getElementById("btnToggleConsoleEcho");
-  const saved = localStorage.getItem(CONSOLE_ECHO_KEY);
+  const saved = lsGet(CONSOLE_ECHO_KEY);
   setConsoleEchoVisible(saved === "visible");
   if (!btn) return;
   btn.addEventListener("click", () => {
@@ -559,7 +656,7 @@ function toggleMobileConsoleCollapsed() {
   shell.classList.toggle("mobile-console-collapsed");
 }
 
-const ESTRUCTURA_INICIAL = "Proceso nombre_proceso\n\n\n\n\n\n\n\n\nFinProceso";
+const ESTRUCTURA_INICIAL = providerActivo().plantillaInicial();
 const PROCESO_PREFIX_LEN = "Proceso ".length; // 8
 
 function obtenerNombreProceso() {
@@ -790,11 +887,12 @@ function editorTieneInstruccionesDescargables(contenido) {
 function descargar() {
   const nombre = obtenerNombreProceso();
   const contenido = $("#editor").val();
+  const extension = providerActivo().extension;
   if (!editorTieneInstruccionesDescargables(contenido)) {
     liteSwal({
       icon: "warning",
       title: "No hay código para descargar",
-      text: "Escribe al menos una instrucción dentro del proceso antes de guardar el archivo .psc.",
+      text: `Escribe al menos una instrucción dentro del proceso antes de guardar el archivo ${extension}.`,
       confirmButtonText: "Entendido",
     });
     return;
@@ -805,7 +903,7 @@ function descargar() {
     liteSwal({
       icon: "warning",
       title: "No se puede descargar",
-      text: 'Cambia "nombre_proceso" por un nombre válido para guardar el archivo .psc.',
+      text: `Cambia "nombre_proceso" por un nombre válido para guardar el archivo ${extension}.`,
       confirmButtonText: "Entendido",
     });
     return;
@@ -815,7 +913,7 @@ function descargar() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `${nombre}.psc`;
+  a.download = `${nombre}${extension}`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -835,11 +933,13 @@ function mostrarAlertaImportacion(icon, title, text) {
 
 function importarArchivoPsc(file) {
   if (!file) return;
-  if (!/\.psc$/i.test(file.name)) {
+  const extension = providerActivo().extension;
+  const regexExtension = new RegExp(extension.replace(".", "\\.") + "$", "i");
+  if (!regexExtension.test(file.name)) {
     mostrarAlertaImportacion(
       "warning",
       "Archivo no compatible",
-      "Selecciona un archivo con extensión .psc.",
+      `Selecciona un archivo con extensión ${extension}.`,
     );
     return;
   }
@@ -852,7 +952,7 @@ function importarArchivoPsc(file) {
       `Se reemplazará el contenido del editor por el archivo "${file.name}".`,
       true,
       {
-        title: "¿Importar archivo .psc?",
+        title: `¿Importar archivo ${extension}?`,
         confirmButtonText: "Importar archivo",
       },
     );
@@ -861,7 +961,7 @@ function importarArchivoPsc(file) {
     mostrarAlertaImportacion(
       "error",
       "No se pudo importar",
-      "El archivo no se pudo leer. Intenta abrir otro .psc.",
+      `El archivo no se pudo leer. Intenta abrir otro ${extension}.`,
     );
   };
   reader.readAsText(file);
@@ -1840,8 +1940,27 @@ function setEstado(estado, texto) {
   $("#statusText").text(texto);
 }
 
-async function ejecutar() {
-  if (interprete.ejecutando) return;
+function validarYDecorar() {
+  const codigo = $("#editor").val();
+  const errores = providerActivo().validar(codigo);
+  if (errores.length > 0) {
+    aplicarErroresVisuales(agruparErroresPorLinea(errores));
+  } else {
+    invalidarErroresVisuales();
+  }
+}
+
+function agruparErroresPorLinea(errores) {
+  const porLinea = new Map();
+  for (const err of errores) {
+    if (!porLinea.has(err.linea)) porLinea.set(err.linea, []);
+    porLinea.get(err.linea).push(err);
+  }
+  return porLinea;
+}
+
+function ejecutar() {
+  if (controlEjecucion) return;
 
   setMobileConsoleCollapsed(false);
   limpiarConsola();
@@ -1851,57 +1970,41 @@ async function ejecutar() {
   const codigo = $("#editor").val();
   if (codigo.trim() === "") return;
 
-  const validacion = DocErrores.validarDocumento(codigo);
+  const provider = providerActivo();
+  const errores = provider.validar(codigo);
 
-  if (validacion.errores.length > 0) {
-    for (const err of validacion.errores) {
+  if (errores.length > 0) {
+    for (const err of errores) {
       consolaImprimir(
         `Error en línea ${err.linea + 1}: ${err.mensaje}`,
         "error",
       );
     }
-    aplicarErroresVisuales(validacion.erroresPorLinea);
+    aplicarErroresVisuales(agruparErroresPorLinea(errores));
     setEstado("error", "Error");
     return;
   }
 
-  setEstado("running", "Ejecutando...");
   $("#btnEjecutar").prop("disabled", true);
   $("#btnDetener").show();
 
   consolaImprimir("Inicio de ejecución", "system");
 
-  const resultado = await interprete.ejecutar(codigo, validacion);
-
-  if (resultado.detenido) {
-    setEstado("", "Detenido");
-  } else if (resultado.exito) {
-    consolaImprimir("Fin de ejecución", "system");
-    setEstado("", "Listo");
-  } else {
-    setEstado("error", "Error");
-    if (resultado.erroresPorLinea && resultado.erroresPorLinea.size > 0) {
-      errorVisualState.erroresPorLinea = resultado.erroresPorLinea;
-      renderizarSubrayados();
-    }
-  }
-
-  limpiarEjecucionHighlight();
-  $("#btnEjecutar").prop("disabled", false);
-  $("#btnDetener").hide();
+  // El cierre del ciclo (Listo/Detenido/Error, botones, resaltado) lo maneja
+  // alCambiarEstado del host; ver crearHostDeEjecucion().
+  controlEjecucion = provider.ejecutar(codigo, crearHostDeEjecucion());
 }
 
 function detener() {
-  const estabaEjecutando = interprete.ejecutando;
-  interprete.detener();
+  const control = controlEjecucion;
+  if (control) {
+    consolaImprimir("Ejecución detenida por el usuario.", "system");
+    control.detener();
+  }
   if (inputResolver) {
     const r = inputResolver;
     inputResolver = null;
     r("");
-  }
-  if (estabaEjecutando) {
-    consolaImprimir("Ejecución detenida por el usuario.", "system");
-    setEstado("", "Detenido");
   }
   $("#btnEjecutar").prop("disabled", false);
   $("#btnDetener").hide();
@@ -2522,7 +2625,7 @@ const DOC_ERRORES_COMUNES = [
   },
 ];
 
-const PROGRESO_KEY = "liteseint:exerciseProgress";
+const PROGRESO_KEY = "code4code:exerciseProgress";
 const ESTADOS_PROGRESO = ["pendiente", "en-curso", "completado"];
 const ESTADO_LABEL = {
   "pendiente": "Pendiente",
@@ -2542,7 +2645,7 @@ async function cargarBancoEjerciciosDesdeJson() {
 
 function cargarProgreso() {
   try {
-    const raw = localStorage.getItem(PROGRESO_KEY);
+    const raw = lsGet(PROGRESO_KEY);
     progresoEjercicios = raw ? JSON.parse(raw) : {};
     if (typeof progresoEjercicios !== "object" || progresoEjercicios === null) {
       progresoEjercicios = {};
@@ -2554,7 +2657,7 @@ function cargarProgreso() {
 
 function guardarProgreso() {
   try {
-    localStorage.setItem(PROGRESO_KEY, JSON.stringify(progresoEjercicios));
+    lsSet(PROGRESO_KEY, JSON.stringify(progresoEjercicios));
   } catch (_) {
     /* ignorar */
   }
@@ -3200,7 +3303,7 @@ async function inicializarBancoEjercicios() {
 // 11.c CONSOLA REDIMENSIONABLE
 // =========================================
 
-const CONSOLE_HEIGHT_KEY = "liteseint:consoleHeight";
+const CONSOLE_HEIGHT_KEY = "code4code:consoleHeight";
 const CONSOLE_MIN_PX = 96;
 
 function clampConsoleHeight(px) {
@@ -3223,22 +3326,14 @@ function aplicarAlturaConsola(px) {
 }
 
 function cargarAlturaConsolaPersistida() {
-  try {
-    const v = localStorage.getItem(CONSOLE_HEIGHT_KEY);
-    if (!v) return;
-    const px = parseInt(v, 10);
-    if (Number.isFinite(px) && px > 0) aplicarAlturaConsola(px);
-  } catch (_) {
-    /* localStorage no disponible: ignorar */
-  }
+  const v = lsGet(CONSOLE_HEIGHT_KEY);
+  if (!v) return;
+  const px = parseInt(v, 10);
+  if (Number.isFinite(px) && px > 0) aplicarAlturaConsola(px);
 }
 
 function guardarAlturaConsola(px) {
-  try {
-    localStorage.setItem(CONSOLE_HEIGHT_KEY, String(Math.round(px)));
-  } catch (_) {
-    /* localStorage no disponible: ignorar */
-  }
+  lsSet(CONSOLE_HEIGHT_KEY, String(Math.round(px)));
 }
 
 function inicializarResizeConsola() {
@@ -3304,6 +3399,7 @@ $(document).ready(function () {
   const editor = document.getElementById("editor");
   editor.value = ESTRUCTURA_INICIAL;
   actualizarLineas();
+  initLanguageSelect();
   initTheme();
   restorePanelOrder();
   cargarAnchoLearningPanelPersistido();
