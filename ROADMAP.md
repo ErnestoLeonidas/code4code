@@ -139,18 +139,19 @@ Notas:
 
 Objetivo: nace el repo `Code4Code` con el código de LiteSeInt funcionando idéntico.
 
-- [ ] Crear repo `Code4Code` importando el historial de `LiteSeInt`
+- [x] Crear repo `Code4Code` importando el historial de `LiteSeInt`
       (`git clone` + `git push` al remoto nuevo) para no perder los 64 commits.
 - [ ] Archivar `LiteSeInt`: README con aviso de migración y enlace al repo nuevo;
       marcar el repo como *archived* en GitHub cuando Code4Code esté publicado.
-- [ ] Renombrar marca en UI, `index.html`, `package.json`, README, CHANGELOG.
-- [ ] Migrar claves `localStorage` (`liteseint:*` → `code4code:*`) con lectura
+- [x] Renombrar marca en UI, `index.html`, `package.json`, README, CHANGELOG.
+- [x] Migrar claves `localStorage` (`liteseint:*` → `code4code:*`) con lectura
       retro-compatible: mismo origen `ernestoleonidas.github.io`, así que el
-      progreso de los estudiantes se conserva.
-- [ ] Mover `core/` actual a `core/liteseint/` y renombrar
+      progreso de los estudiantes se conserva. *(Cerrado en Fase 1: helpers
+      `lsGet`/`lsSet` en `js/app.js` migran en la primera lectura.)*
+- [x] Mover `core/` actual a `core/liteseint/` y renombrar
       `LiteSeInt.js` → `runtime.js`, sin cambios de comportamiento.
 - [ ] Publicar GitHub Pages del repo nuevo.
-- [ ] `npm test` en verde (los tests actuales son la red de seguridad de todo
+- [x] `npm test` en verde (los tests actuales son la red de seguridad de todo
       el refactor).
 
 **Criterio de salida:** la app funciona idéntica a v1.x bajo el nuevo nombre y URL.
@@ -159,22 +160,29 @@ Objetivo: nace el repo `Code4Code` con el código de LiteSeInt funcionando idén
 
 Objetivo: la UI deja de conocer a LiteSeInt directamente.
 
-- [ ] Implementar `language-provider.js`, `language-registry.js` y
+- [x] Implementar `language-provider.js`, `language-registry.js` y
       `runtime-host.js`.
-- [ ] Envolver el núcleo LiteSeInt actual como primer provider (sin tocar su
-      lógica interna).
-- [ ] Extraer el editor de `app.js` a `js/editor/` y conectarlo al provider
+- [x] Envolver el núcleo LiteSeInt actual como primer provider (sin tocar su
+      lógica interna). *Ojo: `DocErrores`/`LiteSeInt` son declaraciones
+      léxicas de script clásico (no cuelgan de `window`); el provider los
+      referencia como identificadores libres.*
+- [x] Extraer el editor de `app.js` a `js/editor/` y conectarlo al provider
       activo (tokens, indentación, autocompletado) — preparación de la Fase 2.
-- [ ] Selector de lenguaje en la cabecera del editor; persistir elección.
-- [ ] Asociar extensión de archivo y plantilla inicial por lenguaje en
+      *(Hecho al iniciar la Fase 2: `js/editor/highlight.js` y
+      `js/editor/autocomplete.js`.)*
+- [x] Selector de lenguaje en la cabecera del editor; persistir elección.
+- [x] Asociar extensión de archivo y plantilla inicial por lenguaje en
       importar/descargar.
-- [ ] Mover el banco de ejercicios a `json/<lenguaje>/` y filtrar por lenguaje
+- [x] Mover el banco de ejercicios a `json/<lenguaje>/` y filtrar por lenguaje
       activo (solo LiteSeInt tiene contenido en esta fase).
-- [ ] Tests del contrato del provider (suite genérica que cualquier lenguaje
-      nuevo debe pasar).
+- [x] Tests del contrato del provider (suite genérica que cualquier lenguaje
+      nuevo debe pasar; `tests/contract-tests.js` incluye integración con el
+      núcleo real cargando cada script por separado, fiel al navegador).
 
 **Criterio de salida:** con un solo lenguaje registrado, la app es funcionalmente
 igual a la Fase 0, pero `app.js` ya no importa nada de `core/liteseint/` directo.
+**Cumplido en `v2.0.0-beta`**: `js/app.js` no usa `DocErrores` ni `LiteSeInt`
+en ninguna parte.
 
 ### Fase 2 — Editor propio mejorado `v2.1.0`
 
@@ -189,7 +197,11 @@ Se conserva (regresión cero):
 
 Mejoras nuevas (orden sugerido por valor/esfuerzo):
 
-- [ ] Resaltado dirigido por el provider activo (multi-lenguaje real).
+- [x] Resaltado dirigido por el provider activo (multi-lenguaje real):
+      `js/editor/highlight.js` + `provider.extraerVariables`, con suite
+      `tests/editor-tests.js`. El autocompletado también quedó dirigido por
+      el provider (`js/editor/autocomplete.js` + `provider.autocompletar`,
+      suite `tests/autocomplete-tests.js`).
 - [ ] Coincidencia y autocierre de pares (`()`, `""`, bloques `Si/FinSi`).
 - [ ] Búsqueda y reemplazo (`Ctrl+F` / `Ctrl+H`) con resaltado de coincidencias.
 - [ ] Plegado de bloques (`Si/FinSi`, `Para/FinPara`, `def:`/indentación en Python).
@@ -202,7 +214,8 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
 - [ ] Temas claro/oscuro del editor.
 - [ ] Rendimiento: render incremental por línea (solo repintar líneas cambiadas)
       para soportar archivos largos sin lag.
-- [ ] Suite de tests del editor (documento, undo, indentación, folding) en Node.
+- [ ] Suite de tests del editor (documento, undo, indentación, folding) en Node
+      *(en curso: resaltado y autocompletado ya tienen suites propias)*.
 
 **Criterio de salida:** checklist de regresión cero completo + pruebas manuales
 del flujo estudiante en escritorio y móvil.
