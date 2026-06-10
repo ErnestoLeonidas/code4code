@@ -28,16 +28,18 @@ identifica en qué fase está el proyecto.
    `core/runtime-host.js`. No agregar dependencias directas nuevas.
 5. **Sin dependencias de build.** Nada de bundlers, transpiladores ni
    frameworks. Scripts clásicos + CDN, como hasta ahora.
-6. **Buscar `TODO(FASE1)`** antes de empezar trabajo de Fase 1: marcan los
-   puntos de cableado pendientes en `core/liteseint/provider.js`.
+6. La Fase 1 cerró el cableado de `core/liteseint/provider.js` (ya no hay
+   `TODO(FASE1)`); las pruebas de integración del provider viven en
+   `tests/contract-tests.js`.
 
 ## Estado de las fases (actualizar al avanzar)
 
 - [x] Fase 0 — Renombrado y estructura `core/liteseint/` (este kit).
-- [ ] Fase 1 — Cierre: cablear `js/app.js` al registro/host, activar el
-      selector `#languageSelect` de `index.html`, migrar claves
-      `liteseint:*` → `code4code:*` con lectura retro-compatible, mover
-      ejercicios a `json/liteseint/` actualizando `js/ejercicios-data.js`.
+- [x] Fase 1 — Cierre: `js/app.js` cableado al registro/host, selector
+      `#languageSelect` activo, claves `liteseint:*` → `code4code:*` con
+      lectura retro-compatible, ejercicios en `json/liteseint/`
+      (`v2.0.0-beta`). El resaltado y el autocompletado del editor siguen
+      usando `DocErrores` directo: se migran al extraer el editor en Fase 2.
 - [ ] Fase 2 — Editor propio mejorado (extraer a `js/editor/`).
 - [ ] Fase 3 — Lenguaje PSeInt (`core/pseint/`), perfiles estricto/flexible.
 - [ ] Fase 4 — Python con Pyodide (`core/python/`), en Web Worker.

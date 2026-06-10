@@ -1,6 +1,6 @@
 {
   "name": "code4code",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0-beta",
   "description": "Plataforma web educativa de programación multi-lenguaje: LiteSeInt, PSeInt y Python.",
   "scripts": {
     "test": "node tests/run-tests.js && node tests/contract-tests.js",

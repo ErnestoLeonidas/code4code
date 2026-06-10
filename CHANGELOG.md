@@ -1,5 +1,49 @@
 # Changelog — Code4Code
 
+## [2.0.0-beta] - 2026-06-09
+
+Cierre de la **Fase 1 — Capa multi-lenguaje**: la UI deja de conocer el
+núcleo LiteSeInt directamente; validación y ejecución pasan por el contrato
+de providers y el RuntimeHost. Regresión cero para el estudiante.
+
+### Cambiado
+- `js/app.js` valida y ejecuta a través de `Code4Code.registro.activo()` y
+  `Code4Code.crearRuntimeHost(...)`: desaparecen la instancia global
+  `new LiteSeInt(...)` y la llamada directa a `DocErrores.validarDocumento`
+  del flujo de ejecución. El cierre del ciclo (Listo/Detenido/Error, botones,
+  resaltado de línea) lo maneja el estado del host.
+- `core/liteseint/provider.js` cablea el núcleo real (se eliminan los
+  `TODO(FASE1)`): `validar` usa el validador, `tokenizarLinea` el tokenizer
+  (tokens con tipos genéricos del contrato) y `ejecutar` crea un intérprete
+  por corrida conectado al RuntimeHost (salida, `Leer`, línea activa,
+  inspector de variables, detención).
+- Selector de lenguaje `#languageSelect` activo: se puebla desde el registro,
+  persiste la elección (`code4code:lenguaje`) y deja a la app lista para
+  registrar más lenguajes (Fases 3–4).
+- Claves de `localStorage` migradas a `code4code:*` (tema, orden y ancho de
+  paneles, lista de ejercicios, trazas y altura de consola, progreso de
+  ejercicios) con **lectura retro-compatible**: el progreso guardado por
+  LiteSeInt 1.x se migra en la primera lectura y la clave antigua se conserva.
+- Banco de ejercicios movido a `json/liteseint/N1.json`–`N7.json` (banco por
+  lenguaje); `js/ejercicios-data.js` actualiza sus rutas.
+- Descarga e importación de archivos usan la extensión del lenguaje activo
+  (`provider.extension`) en lugar de `.psc` fijo.
+- `core/runtime-host.js`: `reportarError` propaga la línea del error en el
+  meta de consola, y el corte por límite de pasos informa el motivo
+  ("posible ciclo infinito") antes de detener.
+
+### Corregido
+- `validarYDecorar()` no existía y se invocaba al editar el diagrama NS
+  (ReferenceError latente); ahora valida vía provider y pinta los errores.
+
+### Agregado
+- `tests/contract-tests.js` pasa de 14 a 21 pruebas: meta de línea en
+  `reportarError`, motivo del límite de pasos, y 5 pruebas de integración
+  que cargan el núcleo real y ejecutan programas completos (con `Leer` y
+  con error de runtime) a través del provider y el host.
+
+---
+
 ## [2.0.0-alpha] - 2026-06-09
 
 Primera versión bajo el nombre **Code4Code** (antes LiteSeInt). Sin cambios
