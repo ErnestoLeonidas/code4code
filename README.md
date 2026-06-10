@@ -16,10 +16,12 @@ La ruta del estudiante recorre tres lenguajes dentro del mismo entorno:
 
 ## Estado actual
 
-- Versión: `v2.0.0-alpha` — renombrado desde LiteSeInt v1.9.0 con
-  **regresión cero**: toda la funcionalidad 1.x sigue operativa.
-- Capa multi-lenguaje creada y probada (`core/language-*.js`,
-  `core/runtime-host.js`); LiteSeInt registrado como primer lenguaje.
+- Versión: `v2.0.0-beta` — Fase 1 cerrada: la UI valida y ejecuta a través
+  del registro de lenguajes y el RuntimeHost, con **regresión cero**: toda
+  la funcionalidad 1.x sigue operativa.
+- Capa multi-lenguaje creada, cableada y probada (`core/language-*.js`,
+  `core/runtime-host.js`); LiteSeInt registrado como primer lenguaje y
+  selector de lenguaje activo en la cabecera.
 - El plan completo de evolución está en [`ROADMAP.md`](ROADMAP.md).
 
 ## Funcionalidad (heredada de LiteSeInt 1.x)
@@ -63,7 +65,8 @@ desde la 1.0 y documentada en el repositorio original y en la app.
 │       ├── diagram-mapper.js
 │       ├── runtime.js          # (antes LiteSeInt.js)
 │       └── provider.js         # LiteSeInt como lenguaje registrado
-├── json/                       # ejercicios N1–N7
+├── json/
+│   └── liteseint/              # ejercicios N1–N7 del lenguaje LiteSeInt
 ├── tests/
 │   ├── run-tests.js            # regresión del núcleo y los ejercicios
 │   └── contract-tests.js       # contrato de la capa multi-lenguaje
