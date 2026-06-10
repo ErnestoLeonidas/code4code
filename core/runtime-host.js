@@ -92,6 +92,11 @@
           detenido = true;
           motivoDetencion = 'Se superó el límite de ' + maxPasos +
             ' pasos. Posible ciclo infinito.';
+          if (typeof callbacks.escribir === 'function') {
+            // Se informa el motivo aquí porque tras la detención el runtime
+            // ya no puede escribir a través del host.
+            try { callbacks.escribir(motivoDetencion, { tipo: 'error' }); } catch (e) { /* no romper */ }
+          }
           cambiarEstado('detenido');
           throw new EjecucionDetenida(motivoDetencion);
         }
@@ -177,8 +182,10 @@
         }
         cambiarEstado('error');
         if (typeof callbacks.escribir === 'function') {
+          var meta = { tipo: 'error' };
+          if (error && typeof error.linea === 'number') meta.linea = error.linea;
           callbacks.escribir(String(error && error.message ? error.message : error),
-            { tipo: 'error' });
+            meta);
         }
       }
     };
