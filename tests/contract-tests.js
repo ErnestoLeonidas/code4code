@@ -45,30 +45,36 @@ function storageFalso() {
 
 /**
  * Carga la capa multi-lenguaje + el núcleo LiteSeInt + el provider real en
- * un contexto aislado (como hace el navegador con scripts clásicos) y
- * devuelve el contexto con Code4Code.registro ya poblado.
+ * un contexto aislado, ejecutando CADA archivo como un script separado en
+ * el MISMO orden que index.html. Esto reproduce fielmente al navegador:
+ * los const/class de nivel superior (DocErrores, LiteSeInt) quedan en el
+ * entorno léxico global pero NO como propiedades de globalThis, igual que
+ * con <script> clásicos. No asignar globals a mano aquí: ocultaría bugs
+ * de acceso vía window.X.
  */
 function cargarAppEnContexto() {
   const raizRepo = path.join(__dirname, '..');
-  const leer = (rel) => fs.readFileSync(path.join(raizRepo, rel), 'utf8');
   const ctx = { console, setTimeout, clearTimeout, Promise };
   vm.createContext(ctx);
-  vm.runInContext([
-    leer('core/language-provider.js'),
-    leer('core/language-registry.js'),
-    leer('core/runtime-host.js'),
-    leer('core/liteseint/tokenizer.js'),
-    leer('core/liteseint/symbol-table.js'),
-    leer('core/liteseint/validator.js'),
-    leer('core/liteseint/doc_errores.js'),
-    leer('core/liteseint/ast.js'),
-    leer('core/liteseint/parser.js'),
-    leer('core/liteseint/expression-evaluator.js'),
-    leer('core/liteseint/runtime.js'),
-    'globalThis.DocErrores = DocErrores;',
-    'globalThis.LiteSeInt = LiteSeInt;',
-    leer('core/liteseint/provider.js')
-  ].join('\n'), ctx);
+  // Mismo orden de carga que index.html.
+  const scripts = [
+    'core/language-provider.js',
+    'core/language-registry.js',
+    'core/runtime-host.js',
+    'core/liteseint/tokenizer.js',
+    'core/liteseint/symbol-table.js',
+    'core/liteseint/validator.js',
+    'core/liteseint/doc_errores.js',
+    'core/liteseint/ast.js',
+    'core/liteseint/parser.js',
+    'core/liteseint/expression-evaluator.js',
+    'core/liteseint/runtime.js',
+    'core/liteseint/provider.js'
+  ];
+  for (const rel of scripts) {
+    vm.runInContext(fs.readFileSync(path.join(raizRepo, rel), 'utf8'), ctx,
+      { filename: rel });
+  }
   return ctx;
 }
 
