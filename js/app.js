@@ -3540,12 +3540,31 @@ function inicializarResizeConsola() {
 // 12. INIT
 // =========================================
 
+function initBarraMovil() {
+  $(document).on("click", ".bm-btn", function () {
+    const editor = document.getElementById("editor");
+    if (!editor) return;
+    const texto = $(this).data("insert");
+    const cursorDentro = $(this).data("cursor-inside");
+    const inicio = editor.selectionStart;
+    const fin = editor.selectionEnd;
+    const valor = editor.value;
+    editor.value = valor.slice(0, inicio) + texto + valor.slice(fin);
+    const nuevaPos = cursorDentro ? inicio + 1 : inicio + texto.length;
+    editor.selectionStart = editor.selectionEnd = nuevaPos;
+    editor.focus();
+    editor.dispatchEvent(new Event("input", { bubbles: true }));
+    registrarHistorialEditor(editor);
+  });
+}
+
 $(document).ready(function () {
   const editor = document.getElementById("editor");
   editor.value = ESTRUCTURA_INICIAL;
   actualizarLineas();
   initLanguageSelect();
   initTheme();
+  initBarraMovil();
   restorePanelOrder();
   cargarAnchoLearningPanelPersistido();
   initPanelDrag();
