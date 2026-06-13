@@ -3246,3 +3246,169 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   --bracket-1: #f4a261;
   --bracket-2: #c099e8;
 }
+
+/* ========================================
+    Theme: Noche — VS Code Dark+ style
+   ======================================== */
+[data-theme="noche"] {
+  --bg-deep: #1e1e1e;
+  --bg-panel: #252526;
+  --bg-editor: #1e1e1e;
+  --bg-console: #1e1e1e;
+  --border-color: #3e3e42;
+  --scrollbar-track: rgba(62,62,66,0.30);
+  --scrollbar-thumb: rgba(100,100,104,0.55);
+  --scrollbar-thumb-hover: rgba(0,122,204,0.60);
+  --accent: #007acc;
+  --accent-dim: #005f9e;
+  --accent-bg: rgba(0,122,204,0.10);
+  --selected: #264f78;
+  --selected-dim: #1a3a5c;
+  --selected-bg: rgba(38,79,120,0.40);
+  --selected-shadow: rgba(38,79,120,0.30);
+  --surface-learning-panel: rgba(0,0,0,0.12);
+  --surface-learning-header: rgba(0,0,0,0.16);
+  --surface-exercise-list: transparent;
+  --surface-exercise-detail: transparent;
+  --surface-exercise-card: rgba(255,255,255,0.02);
+  --surface-exercise-card-hover: rgba(0,122,204,0.08);
+  --surface-exercise-card-selected: rgba(38,79,120,0.35);
+  --surface-exercise-subpanel: rgba(255,255,255,0.025);
+  --surface-exercise-subpanel-strong: #1e1e1e;
+  --surface-exercise-progress: rgba(255,255,255,0.04);
+  --text-primary: #d4d4d4;
+  --text-secondary: #858585;
+  --text-muted: #555555;
+  --line-number: #858585;
+  --error: #f44747;
+  --danger: #f44747;
+  --danger-dim: #d43030;
+  --warning: #dcdcaa;
+  --info: #9cdcfe;
+  --dif-basic: #4ec9b0;
+  --dif-basic-border: rgba(78,201,176,0.42);
+  --dif-basic-bg: rgba(78,201,176,0.08);
+  --state-pending: #858585;
+  --state-pending-border: rgba(133,133,133,0.46);
+  --state-pending-bg: rgba(133,133,133,0.10);
+  --state-running: #007acc;
+  --state-running-border: rgba(0,122,204,0.44);
+  --state-running-bg: rgba(0,122,204,0.10);
+  --state-done: #4ec9b0;
+  --state-done-border: rgba(78,201,176,0.44);
+  --state-done-bg: rgba(78,201,176,0.10);
+  --reference-action: #dcdcaa;
+  --reference-action-bg: rgba(220,220,170,0.10);
+  --reference-tooltip-bg: #252526;
+  --exec-highlight: #b5cea8;
+  --exec-highlight-bg: rgba(78,201,176,0.12);
+  --error-highlight-bg: rgba(244,71,71,0.14);
+  --syntax-keyword: #569cd6;
+  --syntax-string: #ce9178;
+  --syntax-variable: #9cdcfe;
+  --syntax-comment: #6a9955;
+  --syntax-number: #b5cea8;
+  --syntax-assign: #d4d4d4;
+  --bracket-0: #ffd700;
+  --bracket-1: #da70d6;
+  --bracket-2: #179fff;
+}
+
+/* ========================================
+    Theme: Día — VS Code Light+ style
+   ======================================== */
+[data-theme="dia"] {
+  --bg-deep: #f3f3f3;
+  --bg-panel: #ffffff;
+  --bg-editor: #ffffff;
+  --bg-console: #f8f8f8;
+  --border-color: #d4d4d4;
+  --scrollbar-track: rgba(212,212,212,0.35);
+  --scrollbar-thumb: rgba(100,100,100,0.40);
+  --scrollbar-thumb-hover: rgba(0,122,204,0.55);
+  --accent: #0066b8;
+  --accent-dim: #004f8e;
+  --accent-bg: rgba(0,102,184,0.08);
+  --selected: #007acc;
+  --selected-dim: #0062a3;
+  --selected-bg: rgba(0,122,204,0.12);
+  --selected-shadow: rgba(0,122,204,0.16);
+  --surface-learning-panel: rgba(0,0,0,0.02);
+  --surface-learning-header: rgba(0,0,0,0.03);
+  --surface-exercise-list: transparent;
+  --surface-exercise-detail: rgba(0,0,0,0.02);
+  --surface-exercise-card: rgba(255,255,255,0.70);
+  --surface-exercise-card-hover: rgba(0,102,184,0.06);
+  --surface-exercise-card-selected: rgba(0,122,204,0.10);
+  --surface-exercise-subpanel: rgba(0,0,0,0.03);
+  --surface-exercise-subpanel-strong: rgba(0,0,0,0.04);
+  --surface-exercise-progress: rgba(0,0,0,0.08);
+  --text-primary: #1f1f1f;
+  --text-secondary: #595959;
+  --text-muted: #a0a0a0;
+  --line-number: #237893;
+  --error: #cd3131;
+  --danger: #cd3131;
+  --danger-dim: #a51515;
+  --warning: #795e26;
+  --info: #0066b8;
+  --dif-basic: #007166;
+  --dif-basic-border: rgba(0,113,102,0.40);
+  --dif-basic-bg: rgba(0,113,102,0.08);
+  --state-pending: #a0a0a0;
+  --state-pending-border: rgba(160,160,160,0.45);
+  --state-pending-bg: rgba(160,160,160,0.09);
+  --state-running: #0066b8;
+  --state-running-border: rgba(0,102,184,0.44);
+  --state-running-bg: rgba(0,102,184,0.09);
+  --state-done: #007166;
+  --state-done-border: rgba(0,113,102,0.42);
+  --state-done-bg: rgba(0,113,102,0.09);
+  --reference-action: #795e26;
+  --reference-action-bg: rgba(121,94,38,0.10);
+  --reference-tooltip-bg: #ffffff;
+  --exec-highlight: #007166;
+  --exec-highlight-bg: rgba(0,113,102,0.10);
+  --error-highlight-bg: rgba(205,49,49,0.09);
+  --syntax-keyword: #0000ff;
+  --syntax-string: #a31515;
+  --syntax-variable: #001080;
+  --syntax-comment: #008000;
+  --syntax-number: #098658;
+  --syntax-assign: #1f1f1f;
+  --bracket-0: #0431fa;
+  --bracket-1: #319331;
+  --bracket-2: #7b3814;
+}
+
+[data-theme="dia"] .app-header {
+  background: linear-gradient(180deg, rgba(0,102,184,0.04) 0%, transparent 100%);
+}
+[data-theme="dia"] .toolbar {
+  background: rgba(243,243,243,0.96);
+}
+[data-theme="dia"] .line-numbers {
+  background: rgba(0,0,0,0.02);
+}
+[data-theme="dia"] .editor-bg-layer {
+  background: #ffffff;
+}
+[data-theme="dia"] #editor {
+  caret-color: #007acc;
+}
+[data-theme="dia"] .console-input-field {
+  background: rgba(0,0,0,0.04);
+  color: #1f1f1f;
+  border-color: #d4d4d4;
+}
+[data-theme="dia"] .autocomplete-dropdown {
+  background: #ffffff;
+  border-color: #d4d4d4;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+[data-theme="dia"] .indent-guide {
+  background: rgba(0,0,0,0.12);
+}
+[data-theme="dia"] .indent-guide.active {
+  background: rgba(0,0,0,0.25);
+}

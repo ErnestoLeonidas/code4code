@@ -78,6 +78,8 @@ const THEMES = [
   { id: 'ocean',  label: 'Ocean'  },
   { id: 'sunset', label: 'Sunset' },
   { id: 'papel',  label: 'Papel'  },
+  { id: 'noche',  label: 'Noche'  },
+  { id: 'dia',    label: 'Día'    },
 ];
 
 function initTheme() {
