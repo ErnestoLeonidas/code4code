@@ -209,8 +209,12 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
       `js/editor/search.js` + capa espejo `searchLayer`, con suite
       `tests/search-tests.js`. Los reemplazos respetan la plantilla protegida.
 - [ ] Plegado de bloques (`Si/FinSi`, `Para/FinPara`, `def:`/indentación en Python).
-- [ ] Historial undo/redo robusto con agrupación de ediciones (no solo `Ctrl+Z`
-      simple) y `Ctrl+Shift+Z`/`Ctrl+Y`.
+- [x] Historial undo/redo robusto con agrupación de ediciones (no solo `Ctrl+Z`
+      simple) y `Ctrl+Shift+Z`/`Ctrl+Y`: `js/editor/history.js` (módulo puro)
+      agrupa tecleos/borrados contiguos en un solo paso y rompe el grupo al
+      cambiar de tipo, saltar el caret, cruzar el límite palabra/espacio o tras
+      una pausa de tecleo; las ediciones estructurales quedan como pasos
+      discretos. Suite `tests/history-tests.js`.
 - [x] Indentación automática al crear línea dentro de un bloque
       (`pairs.alNuevaLinea` según `reglasIndentacion()` del provider), y
       `Tab`/`Shift+Tab` sobre selección múltiple de líneas (existente
