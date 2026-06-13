@@ -56,6 +56,9 @@ const editorHistory = Object.assign(
   { applying: false },
 );
 
+// Estado de plegado de bloques (js/editor/folding.js).
+const editorFolding = Code4CodeFolding.crear();
+
 let errorVisualState = {
   activo: false,
   erroresPorLinea: null,
@@ -1096,10 +1099,19 @@ function renderErrorUnderlines(linea, errores) {
 
 function actualizarLineas() {
   const texto = $("#editor").val();
-  const numLineas = texto.split("\n").length;
+  const lineas = texto.split("\n");
+  const numLineas = lineas.length;
   const total = Math.max(numLineas, 10);
   const $gutter = $("#lineNumbers");
   const $overlays = $("#lineOverlays");
+
+  // Recalcular bloques plegables con las reglas del provider activo
+  const provider = providerActivo();
+  if (provider && typeof provider.reglasIndentacion === 'function') {
+    editorFolding.plegables = Code4CodeFolding.calcularPlegables(lineas, provider.reglasIndentacion());
+  } else {
+    editorFolding.plegables = new Map();
+  }
 
   $gutter.empty();
   $overlays.empty();
@@ -1107,6 +1119,12 @@ function actualizarLineas() {
   for (let i = 0; i < total; i++) {
     const $row = $("<div>").addClass("line-num-row").attr("data-line", i);
     $row.append($("<span>").addClass("exec-arrow").text(">"));
+    if (Code4CodeFolding.esPlegable(editorFolding.plegables, i)) {
+      const icono = Code4CodeFolding.esPlegado(editorFolding.plegados, i) ? "▶" : "▼";
+      $row.append(
+        $("<span>").addClass("fold-toggle").attr("data-line", i).text(icono)
+      );
+    }
     $row.append(
       $("<span>")
         .addClass("num-text")
@@ -3609,6 +3627,16 @@ $(document).ready(function () {
     }
 
     registrarHistorialEditor(this, Code4CodeHistory.contexto(e.inputType, s, se, e.data));
+  });
+
+  // Plegado de bloques: toggle al hacer clic en el ícono ▼/▶ del gutter
+  $(document).on("click", ".fold-toggle", function (e) {
+    e.stopPropagation();
+    const idx = parseInt($(this).attr("data-line"));
+    editorFolding.plegados = Code4CodeFolding.togglePlegar(
+      editorFolding.plegados, editorFolding.plegables, idx
+    );
+    actualizarLineas();
   });
 
   $("#btnEjecutar").on("click", ejecutar);
