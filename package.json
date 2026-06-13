@@ -3,7 +3,7 @@
   "version": "2.0.0-beta",
   "description": "Plataforma web educativa de programación multi-lenguaje: LiteSeInt, PSeInt y Python.",
   "scripts": {
-    "test": "node tests/run-tests.js && node tests/contract-tests.js && node tests/editor-tests.js && node tests/autocomplete-tests.js && node tests/pairs-tests.js && node tests/search-tests.js && node tests/history-tests.js && node tests/folding-tests.js && node tests/gutter-tests.js",
+    "test": "node tests/run-tests.js && node tests/contract-tests.js && node tests/editor-tests.js && node tests/autocomplete-tests.js && node tests/pairs-tests.js && node tests/search-tests.js && node tests/history-tests.js && node tests/folding-tests.js && node tests/gutter-tests.js && node tests/pseint-tokenizer-tests.js && node tests/pseint-builtins-tests.js",
     "test:contrato": "node tests/contract-tests.js"
   }
 }
