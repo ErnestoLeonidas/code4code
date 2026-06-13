@@ -354,6 +354,26 @@ body::before {
   text-align: right;
 }
 
+.line-num-row .fold-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  font-size: 9px;
+  line-height: 1;
+  margin-right: 2px;
+  cursor: pointer;
+  color: var(--line-number);
+  opacity: 0.7;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.line-num-row .fold-toggle:hover {
+  opacity: 1;
+}
+
 .line-num-row.executing {
   background: var(--exec-highlight-bg);
   color: var(--exec-highlight);
