@@ -1,5 +1,29 @@
 # Changelog — Code4Code
 
+## [2.2.0] - 2026-06-13
+
+Cierre del primer hito de la **Fase 3 — Lenguaje PSeInt**: el provider PSeInt
+queda integrado en la UI; el estudiante puede seleccionar PSeInt en el selector
+de lenguaje y ejecutar algoritmos con el perfil estricto.
+
+### Agregado
+- `core/pseint/provider.js`: adapta el núcleo PSeInt al contrato `Code4Code`
+  (`tokenizarLinea`, `reglasIndentacion`, `extraerVariables`, `autocompletar`,
+  `validar`, `ejecutar`). El método `ejecutar` construye un puente entre la
+  interfaz simple de `RuntimePSeInt` y el `RuntimeHost` de Code4Code.
+- `index.html`: carga los nueve scripts del núcleo PSeInt (tokenizer → provider)
+  entre el provider LiteSeInt y el editor propio. Agrega la opción
+  `<option value="pseint">PSeInt</option>` al selector de lenguaje.
+- `tests/contract-tests.js`: sección PSeInt con 11 pruebas nuevas (definición
+  del provider, integración completa con el núcleo real: plantilla, tokenizado,
+  reglas de indentación, autocompletado, validación y ejecución con Leer/Escribir).
+
+### Estado de Fase 3a
+Implementado: núcleo completo (tokenizer, AST, parser, builtins, symbol-table,
+validator, expression-evaluator, runtime), provider e integración en la UI.
+Pendiente: golden tests contra PSeInt escritorio, documentación en el panel de
+aprendizaje, aviso de migración bidireccional y conversión implícita de tipos avanzada.
+
 ## [2.0.0-beta] - 2026-06-09
 
 Cierre de la **Fase 1 — Capa multi-lenguaje**: la UI deja de conocer el

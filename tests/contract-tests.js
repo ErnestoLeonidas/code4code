@@ -349,6 +349,147 @@ async function main() {
       'errores: ' + JSON.stringify(errores));
   });
 
+  // ---- provider PSeInt (definición, sin núcleo) ----
+  await prueba('PSeInt: la definición del provider cumple el contrato', () => {
+    const mod = require(path.join(__dirname, '..', 'core', 'pseint', 'provider.js'));
+    const problemas = Code4Code.validarProvider(mod.definicion());
+    asegurar(problemas.length === 0, problemas.join(' | '));
+  });
+
+  // ---- provider PSeInt cableado al núcleo real (integración) ----
+  /**
+   * Carga la capa multi-lenguaje + el núcleo PSeInt + el provider real en
+   * un contexto aislado, ejecutando cada archivo como un script separado
+   * en el mismo orden que index.html.
+   */
+  function cargarPSeIntEnContexto() {
+    const raizRepo = path.join(__dirname, '..');
+    const ctx2 = { console, setTimeout, clearTimeout, Promise };
+    vm.createContext(ctx2);
+    const scripts = [
+      'core/language-provider.js',
+      'core/language-registry.js',
+      'core/runtime-host.js',
+      'core/pseint/tokenizer.js',
+      'core/pseint/ast.js',
+      'core/pseint/builtins.js',
+      'core/pseint/symbol-table.js',
+      'core/pseint/parser.js',
+      'core/pseint/validator.js',
+      'core/pseint/expression-evaluator.js',
+      'core/pseint/runtime.js',
+      'core/pseint/provider.js',
+    ];
+    for (const rel of scripts) {
+      vm.runInContext(fs.readFileSync(path.join(raizRepo, rel), 'utf8'), ctx2,
+        { filename: rel });
+    }
+    return ctx2;
+  }
+
+  const ctxPS = cargarPSeIntEnContexto();
+  const proveedorPS = ctxPS.Code4Code.registro.activo();
+
+  await prueba('PSeInt integración: el registro queda con PSeInt activo', () => {
+    asegurar(proveedorPS && proveedorPS.id === 'pseint',
+      'provider activo: ' + (proveedorPS && proveedorPS.id));
+    asegurar(ctxPS.Code4Code.tieneCapacidad(proveedorPS,
+      ctxPS.Code4Code.CAPACIDADES.INSPECTOR_VARIABLES));
+  });
+
+  await prueba('PSeInt integración: plantillaInicial contiene Algoritmo y FinAlgoritmo', () => {
+    const plantilla = proveedorPS.plantillaInicial();
+    asegurar(typeof plantilla === 'string' && plantilla.length > 0,
+      'plantilla vacía');
+    asegurar(plantilla.indexOf('Algoritmo') !== -1, 'falta Algoritmo');
+    asegurar(plantilla.indexOf('FinAlgoritmo') !== -1, 'falta FinAlgoritmo');
+  });
+
+  await prueba('PSeInt integración: tokenizarLinea usa el tokenizer real', () => {
+    const r = proveedorPS.tokenizarLinea('Escribir "hola"');
+    const tipos = r.tokens.map((t) => t.tipo);
+    asegurar(tipos.indexOf('palabra-clave') !== -1, 'tipos: ' + tipos.join(','));
+    asegurar(tipos.indexOf('cadena') !== -1, 'tipos: ' + tipos.join(','));
+  });
+
+  await prueba('PSeInt integración: tokenizarLinea reconoce flecha y número', () => {
+    const r = proveedorPS.tokenizarLinea('x <- 42');
+    const tipos = r.tokens.map((t) => t.tipo);
+    asegurar(tipos.indexOf('identificador') !== -1, 'tipos: ' + tipos.join(','));
+    asegurar(tipos.indexOf('asignacion') !== -1, 'falta asignacion: ' + tipos.join(','));
+    asegurar(tipos.indexOf('numero') !== -1, 'tipos: ' + tipos.join(','));
+  });
+
+  await prueba('PSeInt integración: reglasIndentacion incluye Algoritmo y FinAlgoritmo', () => {
+    const reglas = proveedorPS.reglasIndentacion();
+    asegurar(Array.isArray(reglas.aperturas) && reglas.aperturas.indexOf('Algoritmo') !== -1,
+      'falta Algoritmo en aperturas');
+    asegurar(Array.isArray(reglas.cierres) && reglas.cierres.indexOf('FinAlgoritmo') !== -1,
+      'falta FinAlgoritmo en cierres');
+    asegurar(Array.isArray(reglas.intermedios) && reglas.intermedios.indexOf('Sino') !== -1,
+      'falta Sino en intermedios');
+  });
+
+  await prueba('PSeInt integración: autocompletar devuelve palabras clave y funciones', () => {
+    const candidatos = proveedorPS.autocompletar({});
+    asegurar(Array.isArray(candidatos) && candidatos.length > 0, 'candidatos vacíos');
+    const tipos = candidatos.map((c) => c.tipo);
+    asegurar(tipos.indexOf('keyword') !== -1, 'faltan keywords');
+    asegurar(tipos.indexOf('funcion') !== -1, 'faltan funciones nativas');
+    // Verificar que hay funciones con paréntesis y keywords con capitalización
+    const fns = candidatos.filter((c) => c.tipo === 'funcion');
+    asegurar(fns.some((f) => f.texto.indexOf('()') !== -1), 'funciones sin paréntesis');
+  });
+
+  await prueba('PSeInt integración: validar acepta un programa correcto', () => {
+    const errores = proveedorPS.validar(
+      'Algoritmo suma\n' +
+      '  Definir a, b, r Como Entero\n' +
+      '  a <- 3\n' +
+      '  b <- 5\n' +
+      '  r <- a + b\n' +
+      '  Escribir r\n' +
+      'FinAlgoritmo');
+    asegurar(errores.length === 0, 'esperaba sin errores: ' + JSON.stringify(errores));
+  });
+
+  await prueba('PSeInt integración: validar reporta error con linea y tipo', () => {
+    const errores = proveedorPS.validar('Escribir "hola"');
+    asegurar(errores.length > 0, 'esperaba al menos un error');
+    asegurar(typeof errores[0].linea === 'number', 'error sin linea: ' + JSON.stringify(errores[0]));
+    asegurar(typeof errores[0].mensaje === 'string', 'error sin mensaje');
+    asegurar(errores[0].tipo === 'error', 'tipo incorrecto: ' + errores[0].tipo);
+  });
+
+  await prueba('PSeInt integración: ejecutar corre el núcleo real a través del host', async () => {
+    const salidas = [];
+    const resultado = await ejecutarConHost(ctxPS, proveedorPS,
+      'Algoritmo suma\n' +
+      '  Definir a, b Como Entero\n' +
+      '  a <- 3\n' +
+      '  b <- 4\n' +
+      '  Escribir a + b\n' +
+      'FinAlgoritmo',
+      { salidas });
+    asegurar(resultado === 'finalizado', 'estado final: ' + resultado);
+    const textos = salidas.filter((s) => s.tipo === 'salida').map((s) => s.texto);
+    asegurar(textos.indexOf('7') !== -1, 'salidas: ' + textos.join(' | '));
+  });
+
+  await prueba('PSeInt integración: ejecutar con Leer y Escribir usa el host correctamente', async () => {
+    const salidas = [];
+    const resultado = await ejecutarConHost(ctxPS, proveedorPS,
+      'Algoritmo doblar\n' +
+      '  Definir x Como Entero\n' +
+      '  Leer x\n' +
+      '  Escribir x * 2\n' +
+      'FinAlgoritmo',
+      { entradas: ['21'], salidas });
+    asegurar(resultado === 'finalizado', 'estado final: ' + resultado);
+    const textos = salidas.filter((s) => s.tipo === 'salida').map((s) => s.texto);
+    asegurar(textos.indexOf('42') !== -1, 'salidas: ' + textos.join(' | '));
+  });
+
   console.log('\n' + (total - fallas) + '/' + total + ' pruebas OK');
   if (fallas > 0) process.exit(1);
 }

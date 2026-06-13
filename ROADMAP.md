@@ -239,25 +239,29 @@ algoritmos, con **sistema de perfiles configurable** (D4). Las fuentes C++
 
 #### 3a — Núcleo en perfil estricto `v2.2.0`
 
-- [ ] Diseño del objeto `perfil` desde el día uno: tokenizer/parser/validador
+- [x] Diseño del objeto `perfil` desde el día uno: tokenizer/parser/validador
       reciben las opciones aunque inicialmente solo exista el preset estricto
       (evita un refactor posterior).
-- [ ] `Algoritmo|Proceso … FinAlgoritmo|FinProceso`.
-- [ ] Asignación `<-` (y `=` como comparador en condiciones).
-- [ ] `Escribir` / `Escribir Sin Saltar` / `Leer` multivariable.
-- [ ] Tipos PSeInt: `Entero, Real, Caracter, Cadena, Logico` y conversión
-      implícita según PSeInt.
-- [ ] Estructuras: `Si/Sino`, `Segun`, `Mientras`, `Repetir…Hasta Que`,
+- [x] `Algoritmo|Proceso … FinAlgoritmo|FinProceso`.
+- [x] Asignación `<-` (y `=` como comparador en condiciones).
+- [x] `Escribir` / `Escribir Sin Saltar` / `Leer` multivariable.
+- [ ] Tipos PSeInt con conversión implícita (Fase 3a avanzada): los tipos
+      básicos están implementados pero la conversión implícita entre ellos
+      está parcialmente cubierta.
+- [x] Estructuras: `Si/Sino`, `Segun`, `Mientras`, `Repetir…Hasta Que`,
       `Para … Con Paso`.
-- [ ] Arreglos `Dimension` (1D/2D) con la semántica de índices de PSeInt.
-- [ ] `SubProceso`/`Funcion` con retorno y paso por referencia.
-- [ ] Funciones nativas de PSeInt: `RC/RAIZ, ABS, LN, EXP, SEN, COS, TAN, ATAN,
+- [x] Arreglos `Dimension` (1D/2D) con la semántica de índices de PSeInt.
+- [x] `SubProceso`/`Funcion` con retorno y paso por referencia.
+- [x] Funciones nativas de PSeInt: `RC/RAIZ, ABS, LN, EXP, SEN, COS, TAN, ATAN,
       TRUNC, REDON, AZAR, ALEATORIO, LONGITUD, SUBCADENA, CONCATENAR, MAYUSCULAS,
       MINUSCULAS, CONVERTIRANUMERO, CONVERTIRATEXTO` (lista a cerrar contra las
       fuentes).
-- [ ] Validador con mensajes de error alineados al vocabulario de PSeInt.
-- [ ] Suite de tests: programas de referencia ejecutados en PSeInt escritorio
-      (perfil estricto) vs Code4Code comparando salida (golden tests).
+- [x] Validador con mensajes de error alineados al vocabulario de PSeInt.
+- [x] Provider PSeInt (`core/pseint/provider.js`): adapta el núcleo al contrato
+      Code4Code; registrado en `index.html`; opción PSeInt en el selector de
+      lenguaje; pruebas de integración en `tests/contract-tests.js`.
+- [ ] Suite de golden tests: programas de referencia ejecutados en PSeInt
+      escritorio (perfil estricto) vs Code4Code comparando salida.
 - [ ] Documentación de comandos PSeInt en el panel de aprendizaje.
 - [ ] Aviso de migración bidireccional: detectar sintaxis PSeInt en modo
       LiteSeInt (ya existe el error "sintaxis PSeInt no soportada") y viceversa.

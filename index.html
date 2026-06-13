@@ -21,6 +21,7 @@
              (core/language-registry.js). Por ahora solo LiteSeInt. -->
         <select class="ejemplos-select" id="languageSelect" aria-label="Lenguaje" title="Lenguaje">
           <option value="liteseint" selected>LiteSeInt</option>
+          <option value="pseint">PSeInt</option>
         </select>
         <button class="btn-theme" id="btnTheme" aria-label="Cambiar tema" title="Cambiar tema">
           <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -307,6 +308,18 @@
 
   <!-- Provider LiteSeInt (registra el lenguaje en Code4Code.registro) -->
   <script src="core/liteseint/provider.js"></script>
+
+  <!-- Núcleo PSeInt (Fase 3) — orden crítico: cada archivo referencia globals del anterior -->
+  <script src="core/pseint/tokenizer.js"></script>
+  <script src="core/pseint/ast.js"></script>
+  <script src="core/pseint/builtins.js"></script>
+  <script src="core/pseint/symbol-table.js"></script>
+  <script src="core/pseint/parser.js"></script>
+  <script src="core/pseint/validator.js"></script>
+  <script src="core/pseint/expression-evaluator.js"></script>
+  <script src="core/pseint/runtime.js"></script>
+  <!-- Provider PSeInt (registra el lenguaje en Code4Code.registro) -->
+  <script src="core/pseint/provider.js"></script>
 
   <!-- Editor propio (Fase 2): resaltado, autocompletado, pares, búsqueda, historial, plegado y gutter -->
   <script src="js/editor/highlight.js"></script>
