@@ -1006,14 +1006,25 @@ function confirmarInputConsola($row) {
 
 function invalidarErroresVisuales() {
   resetErrorVisualState();
-  $(".line-num-row").removeClass("has-error");
-  $(".line-overlay").removeClass("has-error");
+  // Delega el borrado de clases de error en el gutter al módulo;
+  // si aún no está inicializado, cae al selector jQuery como respaldo.
+  if (typeof Code4CodeGutter !== 'undefined' && Code4CodeGutter._filaAnterior.length) {
+    Code4CodeGutter.limpiar();
+  } else {
+    $(".line-num-row").removeClass("has-error");
+    $(".line-overlay").removeClass("has-error");
+  }
   setMirrorLayerHTML("errorDecoLayer", "");
 }
 
 function limpiarEjecucionHighlight() {
-  $(".line-num-row.executing").removeClass("executing");
-  $(".line-overlay.executing").removeClass("executing");
+  // Delega en el módulo gutter; cae al selector jQuery como respaldo.
+  if (typeof Code4CodeGutter !== 'undefined' && Code4CodeGutter._filaAnterior.length) {
+    Code4CodeGutter.limpiarEjecucion();
+  } else {
+    $(".line-num-row.executing").removeClass("executing");
+    $(".line-overlay.executing").removeClass("executing");
+  }
 }
 
 function aplicarErroresVisuales(erroresPorLinea) {
@@ -1100,10 +1111,6 @@ function renderErrorUnderlines(linea, errores) {
 function actualizarLineas() {
   const texto = $("#editor").val();
   const lineas = texto.split("\n");
-  const numLineas = lineas.length;
-  const total = Math.max(numLineas, 10);
-  const $gutter = $("#lineNumbers");
-  const $overlays = $("#lineOverlays");
 
   // Recalcular bloques plegables con las reglas del provider activo
   const provider = providerActivo();
@@ -1113,44 +1120,22 @@ function actualizarLineas() {
     editorFolding.plegables = new Map();
   }
 
-  $gutter.empty();
-  $overlays.empty();
-
-  for (let i = 0; i < total; i++) {
-    const $row = $("<div>").addClass("line-num-row").attr("data-line", i);
-    $row.append($("<span>").addClass("exec-arrow").text(">"));
-    if (Code4CodeFolding.esPlegable(editorFolding.plegables, i)) {
-      const icono = Code4CodeFolding.esPlegado(editorFolding.plegados, i) ? "▶" : "▼";
-      $row.append(
-        $("<span>").addClass("fold-toggle").attr("data-line", i).text(icono)
-      );
-    }
-    $row.append(
-      $("<span>")
-        .addClass("num-text")
-        .text(i + 1),
-    );
-    $gutter.append($row);
-
-    const $overlay = $("<div>").addClass("line-overlay").attr("data-line", i);
-    $overlays.append($overlay);
-  }
-
-  if (errorVisualState.activo) {
-    for (const [idx, msg] of Object.entries(errorVisualState.erroresMapa)) {
-      marcarErrorLinea(parseInt(idx), msg);
-    }
-  }
+  // Render incremental del gutter (numbers + overlays) vía Code4CodeGutter.
+  // Solo se tocan las filas que cambiaron respecto de la llamada anterior.
+  Code4CodeGutter.renderizar({
+    lineas:          lineas,
+    erroresMapa:     errorVisualState.activo ? errorVisualState.erroresMapa : {},
+    lineaEjecutando: -1,   // la línea ejecutando se gestiona por resaltarLineaEjecutando()
+    plegables:       editorFolding.plegables,
+    plegados:        editorFolding.plegados,
+  });
 
   actualizarSyntaxHighlight();
   actualizarIndentGuides();
 }
 
 function resaltarLineaEjecutando(lineaIdx) {
-  $(".line-num-row.executing").removeClass("executing");
-  $(".line-overlay.executing").removeClass("executing");
-  $(`.line-num-row[data-line="${lineaIdx}"]`).addClass("executing");
-  $(`.line-overlay[data-line="${lineaIdx}"]`).addClass("executing");
+  Code4CodeGutter.marcarLineaEjecutando(lineaIdx);
 }
 
 $("#editor").on("scroll", function () {
@@ -3560,6 +3545,13 @@ function initBarraMovil() {
 
 $(document).ready(function () {
   const editor = document.getElementById("editor");
+
+  // Inicializar el módulo de gutter incremental (Fase 2).
+  Code4CodeGutter.init({
+    gutter:   document.getElementById("lineNumbers"),
+    overlays: document.getElementById("lineOverlays"),
+  });
+
   editor.value = ESTRUCTURA_INICIAL;
   actualizarLineas();
   initLanguageSelect();
