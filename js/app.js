@@ -49,11 +49,12 @@ let inputResolver = null;
 const mobileConsoleQuery = window.matchMedia("(max-width: 768px)");
 const EDITOR_HISTORY_LIMIT = 100;
 
-const editorHistory = {
-  undo: [],
-  redo: [],
-  applying: false,
-};
+// Historial undo/redo con agrupación de ediciones (js/editor/history.js):
+// `applying` es la bandera de la UI para no registrar las restauraciones.
+const editorHistory = Object.assign(
+  Code4CodeHistory.crear(EDITOR_HISTORY_LIMIT),
+  { applying: false },
+);
 
 let errorVisualState = {
   activo: false,
@@ -726,27 +727,13 @@ function getEditorHistorySnapshot(editor = document.getElementById("editor")) {
   };
 }
 
-function snapshotsIguales(a, b) {
-  return (
-    a &&
-    b &&
-    a.value === b.value &&
-    a.selectionStart === b.selectionStart &&
-    a.selectionEnd === b.selectionEnd
-  );
-}
-
-function registrarHistorialEditor(editor = document.getElementById("editor")) {
+// Registra el estado actual del editor en el historial. `contexto`
+// (construido desde el evento beforeinput) habilita la agrupación de
+// tecleos/borrados contiguos; las ediciones estructurales lo omiten y
+// quedan como pasos discretos.
+function registrarHistorialEditor(editor = document.getElementById("editor"), contexto = null) {
   if (!editor || editorHistory.applying) return;
-  const snapshot = getEditorHistorySnapshot(editor);
-  const last = editorHistory.undo[editorHistory.undo.length - 1];
-  if (snapshotsIguales(last, snapshot)) return;
-
-  editorHistory.undo.push(snapshot);
-  if (editorHistory.undo.length > EDITOR_HISTORY_LIMIT) {
-    editorHistory.undo.shift();
-  }
-  editorHistory.redo = [];
+  Code4CodeHistory.registrar(editorHistory, getEditorHistorySnapshot(editor), contexto);
 }
 
 function restaurarSnapshotEditor(snapshot) {
@@ -773,21 +760,21 @@ function restaurarSnapshotEditor(snapshot) {
 
 function deshacerEditor() {
   const editor = document.getElementById("editor");
-  if (!editor || editorHistory.undo.length === 0) return false;
-  const actual = getEditorHistorySnapshot(editor);
-  const previo = editorHistory.undo.pop();
-  editorHistory.redo.push(actual);
-  restaurarSnapshotEditor(previo);
+  if (!editor) return false;
+  const { snapshot } = Code4CodeHistory.deshacer(
+    editorHistory, getEditorHistorySnapshot(editor));
+  if (!snapshot) return false;
+  restaurarSnapshotEditor(snapshot);
   return true;
 }
 
 function rehacerEditor() {
   const editor = document.getElementById("editor");
-  if (!editor || editorHistory.redo.length === 0) return false;
-  const actual = getEditorHistorySnapshot(editor);
-  const siguiente = editorHistory.redo.pop();
-  editorHistory.undo.push(actual);
-  restaurarSnapshotEditor(siguiente);
+  if (!editor) return false;
+  const { snapshot } = Code4CodeHistory.rehacer(
+    editorHistory, getEditorHistorySnapshot(editor));
+  if (!snapshot) return false;
+  restaurarSnapshotEditor(snapshot);
   return true;
 }
 
@@ -3619,7 +3606,7 @@ $(document).ready(function () {
       return;
     }
 
-    registrarHistorialEditor(this);
+    registrarHistorialEditor(this, Code4CodeHistory.contexto(e.inputType, s, se, e.data));
   });
 
   $("#btnEjecutar").on("click", ejecutar);

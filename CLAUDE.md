@@ -44,9 +44,11 @@ identifica en qué fase está el proyecto.
       resaltado (`js/editor/highlight.js`) y datos de autocompletado
       (`js/editor/autocomplete.js`) ya extraídos y dirigidos por el provider
       activo, con suites propias en `tests/editor-tests.js` y
-      `tests/autocomplete-tests.js`. `js/app.js` ya no usa `DocErrores` ni
-      `LiteSeInt` directamente. Pendiente: núcleo del editor, gutter,
-      pares/autocierre, búsqueda, folding, undo robusto, móvil, temas.
+      `tests/autocomplete-tests.js`. Pares/autocierre (`js/editor/pairs.js`),
+      búsqueda/reemplazo (`js/editor/search.js`) e historial undo/redo con
+      agrupación (`js/editor/history.js`) ya extraídos, con sus suites.
+      `js/app.js` ya no usa `DocErrores` ni `LiteSeInt` directamente.
+      Pendiente: núcleo del editor, gutter, folding, móvil, temas.
 - [ ] Fase 3 — Lenguaje PSeInt (`core/pseint/`), perfiles estricto/flexible.
 - [ ] Fase 4 — Python con Pyodide (`core/python/`), en Web Worker.
 - [ ] Fase 5 — Ejercicios multi-lenguaje.
