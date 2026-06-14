@@ -463,9 +463,7 @@ function initLanguageSelect() {
   registro.onCambio((provider) => {
     $select.val(provider.id);
     $("#inputImportarPsc").attr("accept", `${provider.extension},text/plain`);
-    // Fase 1: con un solo lenguaje registrado no hay más que refrescar.
-    // Al sumar lenguajes (Fase 3+) aquí se recargan plantilla, ejemplos,
-    // resaltado y banco de ejercicios del provider activo.
+    renderizarAprendizajeIntegrado();
   });
 
   $("#inputImportarPsc").attr("accept", `${registro.activo().extension},text/plain`);
@@ -2856,11 +2854,21 @@ function renderizarDocsComandos() {
   const $cont = $("#learningViewComandos");
   if (!$cont.length) return;
   $cont.empty();
-  $cont.append($("<p>").addClass("learning-doc-intro").text(
-    "Guía de comandos soportados por LiteSeInt: qué hace cada uno, cuándo usarlo, ejemplo mínimo, errores típicos y ejercicios para practicar.",
-  ));
 
-  DOC_COMANDOS.forEach((doc) => {
+  const provider = Code4Code.registro.activo();
+  let comandos;
+  let intro;
+  if (typeof provider.documentacion === 'function') {
+    const docData = provider.documentacion();
+    comandos = docData.comandos || [];
+    intro = `Guía de comandos de ${provider.nombre}: qué hace cada uno, cuándo usarlo, ejemplo mínimo y errores típicos.`;
+  } else {
+    comandos = DOC_COMANDOS;
+    intro = 'Guía de comandos soportados por LiteSeInt: qué hace cada uno, cuándo usarlo, ejemplo mínimo, errores típicos y ejercicios para practicar.';
+  }
+  $cont.append($("<p>").addClass("learning-doc-intro").text(intro));
+
+  comandos.forEach((doc) => {
     const $card = $("<article>").addClass("learning-doc-card");
 
     const $trigger = $("<button>")
@@ -2906,6 +2914,14 @@ function renderizarRutaEstudiante() {
   const $cont = $("#learningViewRuta");
   if (!$cont.length) return;
   $cont.empty();
+
+  const provider = Code4Code.registro.activo();
+  if (provider.id !== 'liteseint') {
+    $cont.append($("<p>").addClass("learning-doc-intro").text(
+      `La ruta de aprendizaje de ${provider.nombre} estará disponible próximamente.`
+    ));
+    return;
+  }
   $cont.append($("<p>").addClass("learning-doc-intro").text(
     "Ruta de N1 a N7. Cada nivel describe qué aprender, qué comandos usar y cuándo es momento de avanzar.",
   ));
@@ -2992,6 +3008,14 @@ function renderizarErroresComunes() {
   const $cont = $("#learningViewErrores");
   if (!$cont.length) return;
   $cont.empty();
+
+  const provider = Code4Code.registro.activo();
+  if (provider.id !== 'liteseint') {
+    $cont.append($("<p>").addClass("learning-doc-intro").text(
+      `La guía de errores comunes de ${provider.nombre} estará disponible próximamente.`
+    ));
+    return;
+  }
   $cont.append($("<p>").addClass("learning-doc-intro").text(
     "Guía de errores frecuentes: cómo reconocer el síntoma, por qué ocurre y cuál es la corrección más directa en el dialecto LiteSeInt.",
   ));

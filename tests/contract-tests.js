@@ -490,6 +490,19 @@ async function main() {
     asegurar(textos.indexOf('42') !== -1, 'salidas: ' + textos.join(' | '));
   });
 
+  await prueba('PSeInt integración: documentacion() devuelve comandos con nombre y ejemplo', () => {
+    asegurar(typeof proveedorPS.documentacion === 'function',
+      'documentacion debe ser función');
+    const doc = proveedorPS.documentacion();
+    asegurar(doc && Array.isArray(doc.comandos), 'doc.comandos debe ser array');
+    asegurar(doc.comandos.length > 0, 'debe haber al menos un comando');
+    const primero = doc.comandos[0];
+    asegurar(typeof primero.nombre === 'string' && primero.nombre.length > 0,
+      'nombre del primer comando');
+    asegurar(typeof primero.ejemplo === 'string' && primero.ejemplo.length > 0,
+      'ejemplo del primer comando');
+  });
+
   console.log('\n' + (total - fallas) + '/' + total + ' pruebas OK');
   if (fallas > 0) process.exit(1);
 }
