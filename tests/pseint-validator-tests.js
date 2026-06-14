@@ -262,6 +262,37 @@ t('función builtin Azar es reconocida', function() {
   ok(errores.length === 0, 'Se esperaban 0 errores: ' + JSON.stringify(errores));
 });
 
+// 16. Aviso de migración: usar = para asignar en perfil estricto
+t('aviso de migración: = como asignación en perfil estricto genera error', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir x Como Entero',
+    '  x = 5',
+    '  Escribir x',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, { asignacionConIgual: false });
+  ok(hayError(errores, '<-'), 'Debe mencionar "<-" en el error de migración');
+  const errL3 = errores.filter(function(e) { return e.linea === 3; });
+  ok(errL3.length > 0, 'El error debe estar en línea 3');
+});
+
+// 17. Asignación con <- en perfil estricto → sin error de migración
+t('asignación con <- en perfil estricto no genera aviso', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir x Como Entero',
+    '  x <- 5',
+    '  Escribir x',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, { asignacionConIgual: false });
+  const avisoMigracion = errores.filter(function(e) {
+    return e.mensaje.indexOf('asignaci') >= 0 && e.mensaje.indexOf('<-') >= 0;
+  });
+  ok(avisoMigracion.length === 0, 'No debe haber aviso de migración con <-');
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 //  Resumen
 // ─────────────────────────────────────────────────────────────────────────────
