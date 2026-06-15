@@ -463,6 +463,35 @@ body::before {
   background: var(--bg-editor); z-index: 0;
 }
 
+/* Capa de plegado (fold layer) — cubre visualmente las líneas interiores
+   de los bloques plegados con el color de fondo del editor. */
+.fold-layer {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none; overflow: hidden; z-index: 1;
+}
+
+/* Rectángulo que cubre las líneas ocultas de un bloque plegado */
+.fold-hidden-block {
+  position: absolute;
+  left: 0; right: 0;
+  background: var(--bg-editor);
+}
+
+/* Indicador "…" que aparece al final de la línea de apertura plegada */
+.fold-ellipsis {
+  position: absolute;
+  font-family: var(--font-code);
+  font-size: 12px;
+  line-height: var(--line-height-val);
+  color: var(--text-muted);
+  background: var(--bg-editor);
+  padding: 0 4px;
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 /* Indent guide layer */
 .indent-guide-layer {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;

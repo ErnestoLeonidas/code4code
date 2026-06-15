@@ -23,6 +23,12 @@
           <option value="liteseint" selected>LiteSeInt</option>
           <option value="pseint">PSeInt</option>
         </select>
+        <span id="perfilPSeIntWrap" style="display:none">
+          <select class="ejemplos-select" id="perfilPSeInt" aria-label="Perfil PSeInt" title="Perfil PSeInt">
+            <option value="estricto">Estricto</option>
+            <option value="flexible">Flexible</option>
+          </select>
+        </span>
         <button class="btn-theme" id="btnTheme" aria-label="Cambiar tema" title="Cambiar tema">
           <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="4"/>
@@ -194,6 +200,7 @@
             <div class="line-numbers" id="lineNumbers"></div>
             <div class="editor-code-area">
               <div class="editor-bg-layer"></div>
+              <div class="fold-layer" id="foldLayer"></div>
               <div class="indent-guide-layer" id="indentGuideLayer"></div>
               <div class="editor-line-overlays" id="lineOverlays"></div>
               <div class="search-highlight-layer" id="searchLayer"></div>
@@ -281,7 +288,7 @@
     <footer class="app-footer">
       Desarrollado con<span class="heart">♥</span>por
       <a href="https://github.com/ernestoleonidas" target="_blank" rel="noopener noreferrer" class="ps-1"> Ernesto Velásquez</a>
-      <div class="app-version">v2.0.0-beta</div>
+      <div class="app-version">v2.2.0-beta</div>
     </footer>
   </div>
 
@@ -332,6 +339,8 @@
 
   <!-- UI -->
   <script src="js/ejercicios-data.js"></script>
+  <!-- Banco de ejercicios PSeInt (Fase 3) -->
+  <script src="js/ejercicios-pseint-data.js"></script>
   <script src="js/diagram.js"></script>
   <script src="js/app.js"></script>
 </body>
