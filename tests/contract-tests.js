@@ -534,6 +534,133 @@ async function main() {
       'preset desconocido debe caer en estricto');
   });
 
+  // ---- provider Python (definición, con tokenizador real en Node) ----
+
+  /**
+   * Carga el tokenizador Python + el provider en un contexto aislado, sin
+   * PythonWorkerBridge (no hay Worker en Node). El provider maneja la
+   * ausencia de la bridge de forma segura.
+   */
+  function cargarPythonEnContexto() {
+    const raizRepo = path.join(__dirname, '..');
+    const ctxPy = { console, setTimeout, clearTimeout, Promise };
+    vm.createContext(ctxPy);
+    const scripts = [
+      'core/language-provider.js',
+      'core/language-registry.js',
+      'core/runtime-host.js',
+      'core/python/tokenizer.js',
+      'core/python/provider.js',
+    ];
+    for (const rel of scripts) {
+      vm.runInContext(fs.readFileSync(path.join(raizRepo, rel), 'utf8'), ctxPy,
+        { filename: rel });
+    }
+    return ctxPy;
+  }
+
+  await prueba('Python: la definición del provider cumple el contrato', () => {
+    const mod = require(path.join(__dirname, '..', 'core', 'python', 'provider.js'));
+    const problemas = Code4Code.validarProvider(mod.definicion);
+    asegurar(problemas.length === 0, problemas.join(' | '));
+  });
+
+  const ctxPy = cargarPythonEnContexto();
+  const proveedorPy = ctxPy.Code4Code.registro.activo();
+
+  await prueba('Python integración: el registro queda con Python activo', () => {
+    asegurar(proveedorPy && proveedorPy.id === 'python',
+      'provider activo: ' + (proveedorPy && proveedorPy.id));
+  });
+
+  await prueba('Python integración: plantillaInicial contiene print', () => {
+    const plantilla = proveedorPy.plantillaInicial();
+    asegurar(typeof plantilla === 'string' && plantilla.length > 0, 'plantilla vacía');
+    asegurar(plantilla.indexOf('print') !== -1, 'falta print en la plantilla');
+  });
+
+  await prueba('Python integración: tokenizarLinea reconoce keywords Python', () => {
+    const r = proveedorPy.tokenizarLinea('if x > 0:');
+    const tipos = r.tokens.map((t) => t.tipo);
+    asegurar(tipos.indexOf('keyword') !== -1, 'tipos: ' + tipos.join(','));
+    asegurar(tipos.indexOf('operator') !== -1, 'falta operator: ' + tipos.join(','));
+    asegurar(tipos.indexOf('colon') !== -1 || tipos.indexOf('plain') !== -1,
+      'falta colon/plain al final: ' + tipos.join(','));
+  });
+
+  await prueba('Python integración: tokenizarLinea reconoce string y comentario', () => {
+    const r = proveedorPy.tokenizarLinea('print("hola")  # saludo');
+    const tipos = r.tokens.map((t) => t.tipo);
+    asegurar(tipos.indexOf('keyword') !== -1, 'falta keyword: ' + tipos.join(','));
+    asegurar(tipos.indexOf('string') !== -1, 'falta string: ' + tipos.join(','));
+    asegurar(tipos.indexOf('comment') !== -1, 'falta comment: ' + tipos.join(','));
+  });
+
+  await prueba('Python integración: reglasIndentacion incluye def e if', () => {
+    const reglas = proveedorPy.reglasIndentacion();
+    asegurar(Array.isArray(reglas.aperturas), 'aperturas debe ser array');
+    asegurar(reglas.aperturas.some((a) => a.startsWith('def')),
+      'falta def en aperturas');
+    asegurar(reglas.aperturas.some((a) => a.startsWith('if')),
+      'falta if en aperturas');
+    asegurar(Array.isArray(reglas.cierres), 'cierres debe ser array');
+  });
+
+  await prueba('Python integración: autocompletar devuelve palabras clave', () => {
+    const candidatos = proveedorPy.autocompletar({ prefijo: 'de' });
+    asegurar(Array.isArray(candidatos), 'candidatos debe ser array');
+    asegurar(candidatos.length > 0, 'candidatos vacíos para prefijo "de"');
+    const textos = candidatos.map((c) => c.texto);
+    asegurar(textos.indexOf('def') !== -1, 'falta def en candidatos');
+    const tipos = candidatos.map((c) => c.tipo);
+    asegurar(tipos.indexOf('keyword') !== -1, 'faltan keywords');
+  });
+
+  await prueba('Python integración: autocompletar devuelve array vacío con prefijo corto', () => {
+    const candidatos = proveedorPy.autocompletar({ prefijo: 'd' });
+    asegurar(Array.isArray(candidatos) && candidatos.length === 0,
+      'prefijo de 1 carácter debe devolver vacío');
+  });
+
+  await prueba('Python integración: validar devuelve array vacío para código correcto', () => {
+    const errores = proveedorPy.validar('print("hola")\nx = 1 + 2\nprint(x)');
+    asegurar(Array.isArray(errores), 'validar debe devolver array');
+    asegurar(errores.length === 0, 'código correcto no debe tener errores: ' +
+      JSON.stringify(errores));
+  });
+
+  await prueba('Python integración: validar detecta string sin cerrar', () => {
+    const errores = proveedorPy.validar('x = "cadena sin cerrar\nprint(x)');
+    asegurar(errores.length > 0, 'esperaba al menos un error por string sin cerrar');
+    asegurar(typeof errores[0].linea === 'number', 'error sin linea: ' + JSON.stringify(errores[0]));
+    asegurar(typeof errores[0].mensaje === 'string', 'error sin mensaje');
+    asegurar(errores[0].tipo === 'error', 'tipo incorrecto: ' + errores[0].tipo);
+  });
+
+  await prueba('Python integración: ejecutar devuelve { detener: Function } sin bridge', () => {
+    // En Node no hay PythonWorkerBridge, el provider lo detecta y devuelve el stub.
+    const host = ctxPy.Code4Code.crearRuntimeHost({
+      escribir: () => {},
+      alCambiarEstado: () => {},
+    });
+    const control = proveedorPy.ejecutar('print("hola")', host);
+    asegurar(control && typeof control.detener === 'function',
+      'ejecutar debe devolver { detener: Function }');
+  });
+
+  await prueba('Python integración: documentacion() devuelve comandos con nombre y ejemplo', () => {
+    asegurar(typeof proveedorPy.documentacion === 'function',
+      'documentacion debe ser función');
+    const doc = proveedorPy.documentacion();
+    asegurar(doc && Array.isArray(doc.comandos), 'doc.comandos debe ser array');
+    asegurar(doc.comandos.length > 0, 'debe haber al menos un comando');
+    const primero = doc.comandos[0];
+    asegurar(typeof primero.nombre === 'string' && primero.nombre.length > 0,
+      'nombre del primer comando');
+    asegurar(typeof primero.ejemplo === 'string' && primero.ejemplo.length > 0,
+      'ejemplo del primer comando');
+  });
+
   console.log('\n' + (total - fallas) + '/' + total + ' pruebas OK');
   if (fallas > 0) process.exit(1);
 }
