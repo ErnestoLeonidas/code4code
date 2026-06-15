@@ -3510,3 +3510,42 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
     display: flex;
   }
 }
+
+/* ── Panel stdin Python ── */
+#pythonStdinPanel {
+  border-top: 1px solid var(--border-color);
+  padding: 6px 8px 4px;
+  background: var(--bg-editor);
+  flex-shrink: 0;
+}
+
+.python-stdin-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  margin-bottom: 4px;
+  user-select: none;
+}
+
+.python-stdin-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  font-family: var(--font-code);
+  font-size: 12px;
+  padding: 4px 6px;
+  resize: vertical;
+  min-height: 52px;
+  max-height: 180px;
+  outline: none;
+}
+
+.python-stdin-input:focus {
+  border-color: var(--accent);
+}

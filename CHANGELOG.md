@@ -1,5 +1,60 @@
 # Changelog — Code4Code
 
+## [2.3.0-beta] - 2026-06-14
+
+### Fase 4 — Lenguaje Python (base funcional)
+
+#### Agregado — Núcleo Python (`core/python/`)
+
+- `core/python/tokenizer.js`: tokenizador Python con 37 keywords (incluyendo builtins
+  educativos `print`, `input`, `range`, `len`, tipos), strings simples y dobles con
+  escape, comentarios `#`, operadores de 1 y 2 caracteres (`**`, `//`, `==`, `!=`,
+  `+=`, etc.), delimitadores `{}`, `[]`, `()`, `,`, `:`.
+- `core/python/worker.js`: Web Worker que carga Pyodide 0.26.2 desde CDN y ejecuta
+  código Python 3 de forma asíncrona; redirige `sys.stdout`, `sys.stderr` e `input()`
+  al hilo principal via `postMessage`; v1 usa cola de entradas pre-cargadas (sin
+  `SharedArrayBuffer`, compatible con GitHub Pages).
+- `core/python/bridge.js`: conecta el worker con el `RuntimeHost` de Code4Code;
+  lee entradas del textarea `#pythonStdin`; maneja mensajes de carga, salida, error
+  y fin.
+- `core/python/provider.js`: implementa el contrato `LanguageProvider` para Python:
+  `tokenizarLinea`, `reglasIndentacion`, `autocompletar`, `validar` (cadenas sin
+  cerrar), `ejecutar` (vía Pyodide Worker), `documentacion` (10 comandos).
+
+#### Agregado — UI Python
+
+- Opción `Python` en el selector de lenguaje.
+- Panel stdin (`#pythonStdinPanel`) en la consola: textarea donde el usuario escribe
+  las entradas antes de ejecutar (una por línea), solo visible cuando Python está activo.
+- Indicador de carga de Pyodide en la consola la primera vez que se activa.
+- Barra de símbolos táctiles renovada (`mobile-symbol-bar`): 11 botones con inserción
+  inteligente de pares (`""`, `()`, `[]`) y auto-indentación; adaptable al lenguaje
+  (muestra `=` en lugar de `<-` con Python activo).
+
+#### Agregado — Tests
+
+- `tests/python-tokenizer-tests.js`: 28 pruebas del tokenizador Python.
+- `tests/contract-tests.js`: extendido con 10 pruebas de integración del provider Python.
+
+#### Agregado — Banco de ejercicios Python
+
+- `json/python/N1.json`: 20 ejercicios básicos (variables, print, input, aritmética).
+- `json/python/N2.json`: 15 ejercicios de condicionales (if/elif/else).
+- `json/python/N3.json`: 15 ejercicios de bucles (for/while/range).
+- `json/python/N4.json`: 15 ejercicios de listas y colecciones.
+- `json/python/N5.json`: 15 ejercicios de funciones y recursión.
+- `json/python/N6.json`: 15 ejercicios de cadenas (métodos de string).
+- `js/ejercicios-python-data.js`: módulo de carga del banco Python (igual patrón
+  que LiteSeInt y PSeInt).
+
+### Fase 3b completada
+
+- `core/pseint/validator.js` + `core/pseint/runtime.js`: en perfil flexible,
+  las variables se crean automáticamente en el primer uso (sin `Definir` obligatorio);
+  la inferencia de tipo usa el valor asignado (`Entero`, `Real`, `Cadena`, `Logico`).
+- Banco de ejercicios PSeInt completo: N3 (18 bucles), N4 (15 arreglos), N5 (15
+  subprocesos), N6 (15 cadenas), N7 (12 integradores) — 95 ejercicios PSeInt en total.
+
 ## [2.2.0-beta] - 2026-06-14
 
 Cierre del primer hito de la **Fase 3a — Lenguaje PSeInt** (perfil estricto):

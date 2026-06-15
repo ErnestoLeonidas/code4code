@@ -48,6 +48,14 @@
         } else if (msg.tipo === 'fin') {
           // El programa Python terminó con éxito
           host.finalizar();
+
+        } else if (msg.tipo === 'cargando') {
+          // Pyodide aún no estaba cacheado, se está descargando
+          try { host.escribir('⏳ ' + msg.mensaje, { tipo: 'salida' }); } catch (_) { /* detenido */ }
+
+        } else if (msg.tipo === 'listo') {
+          // Pyodide terminó de cargar por primera vez
+          try { host.escribir('✓ Python listo\n', { tipo: 'salida' }); } catch (_) { /* detenido */ }
         }
       };
 

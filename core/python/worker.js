@@ -22,6 +22,7 @@ importScripts('https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js');
 
 var pyodide = null;
 var detenido = false;
+var _primeraVez = true;
 
 /**
  * Carga Pyodide una sola vez. Las llamadas subsiguientes devuelven de inmediato.
@@ -87,7 +88,14 @@ self.onmessage = async function (e) {
     var entradas = Array.isArray(msg.entradas) ? msg.entradas.slice() : [];
 
     try {
+      if (!pyodide) {
+        self.postMessage({ tipo: 'cargando', mensaje: 'Cargando Python (Pyodide)... puede tardar unos segundos la primera vez.' });
+      }
       await cargarPyodide();
+      if (_primeraVez) {
+        _primeraVez = false;
+        if (!detenido) self.postMessage({ tipo: 'listo' });
+      }
       configurarIO(entradas);
 
       await pyodide.runPythonAsync(String(msg.codigo || ''));

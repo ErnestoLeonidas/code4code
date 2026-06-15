@@ -494,12 +494,24 @@ function initLanguageSelect() {
     } catch (e) { /* ignorar */ }
   })();
 
+  // ── Panel stdin Python ─────────────────────────────────────────────────
+  function actualizarPanelPython(provider) {
+    var $stdinPanel = $("#pythonStdinPanel");
+    if (provider.id === "python") {
+      $stdinPanel.show();
+    } else {
+      $stdinPanel.hide();
+    }
+  }
+
   actualizarVisibilidadPerfil(registro.activo());
+  actualizarPanelPython(registro.activo());
 
   registro.onCambio((provider) => {
     $select.val(provider.id);
     $("#inputImportarPsc").attr("accept", `${provider.extension},text/plain`);
     actualizarVisibilidadPerfil(provider);
+    actualizarPanelPython(provider);
     actualizarBarraSimbolos(provider);
     if (provider.id === "pseint" && typeof provider.configurarPerfil === "function") {
       try {
@@ -2901,9 +2913,13 @@ async function cargarBancoEjerciciosDesdeJson() {
   if (!window.EjerciciosPSeInt || !window.EjerciciosPSeInt.cargarDesdeJson) {
     throw new Error("No se cargó js/ejercicios-pseint-data.js antes de js/app.js.");
   }
+  if (!window.EjerciciosPython || !window.EjerciciosPython.cargarDesdeJson) {
+    throw new Error("No se cargó js/ejercicios-python-data.js antes de js/app.js.");
+  }
   await Promise.all([
     window.EjerciciosLiteSeInt.cargarDesdeJson(),
     window.EjerciciosPSeInt.cargarDesdeJson(),
+    window.EjerciciosPython.cargarDesdeJson(),
   ]);
 }
 
@@ -2944,6 +2960,10 @@ function setEstadoEjercicio(id, estado) {
 
 function ejerciciosVisibles() {
   const provider = providerActivo();
+  if (provider.id === 'python') {
+    if (!window.EjerciciosPython) return [];
+    return window.EjerciciosPython.listarAdaptados();
+  }
   if (provider.id === 'pseint') {
     if (!window.EjerciciosPSeInt) return [];
     return window.EjerciciosPSeInt.listarAdaptados();
@@ -2955,6 +2975,10 @@ function ejerciciosVisibles() {
 }
 
 function ejercicioPorId(id) {
+  if (window.EjerciciosPython) {
+    const e = window.EjerciciosPython.porId(id);
+    if (e) return e;
+  }
   if (window.EjerciciosPSeInt) {
     const e = window.EjerciciosPSeInt.porId(id);
     if (e) return e;
@@ -3224,7 +3248,10 @@ function initLearningTabs() {
 }
 
 function campoNivel() {
-  return providerActivo().id === 'pseint' ? 'nivelPSeInt' : 'nivelLiteSeInt';
+  const id = providerActivo().id;
+  if (id === 'python') return 'nivelPython';
+  if (id === 'pseint') return 'nivelPSeInt';
+  return 'nivelLiteSeInt';
 }
 
 function poblarFiltroNivel() {
@@ -3493,6 +3520,9 @@ function plantillaInicial(ejercicio) {
     .replace(/[^a-z0-9áéíóúüñ]+/g, "_")
     .replace(/^_+|_+$/g, "")
     .replace(/^[0-9]/, "p_$&") || "ejercicio";
+  if (providerActivo().id === 'python') {
+    return `# ${ejercicio.titulo}\n# Enunciado: revisa el panel de aprendizaje.\n\n`;
+  }
   if (providerActivo().id === 'pseint') {
     return `Algoritmo ${nombre}\n  // ${ejercicio.titulo}\n  // Enunciado: revisa el panel de aprendizaje.\n\n\nFinAlgoritmo`;
   }
