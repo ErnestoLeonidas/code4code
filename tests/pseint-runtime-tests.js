@@ -393,6 +393,24 @@ await t('10 MOD 3 = 1', async () => {
   ok(t1.length === 1 && Number(t1[0]) === 1, `esperaba ["1"], obtuvo ${JSON.stringify(t1)}`);
 });
 
+// 16. Perfil flexible: variables sin Definir se crean automáticamente
+await t('perfil flexible: variables sin Definir se crean en el primer uso', async () => {
+  const rt = new RuntimePSeInt({ asignacionConIgual: true });
+  const mock = crearHostConInputs();
+  await rt.ejecutar(`
+    Algoritmo prueba
+      a = 10
+      b = 3
+      c = a + b
+      Escribir c
+    FinAlgoritmo
+  `, mock.host);
+  const t1 = textos(mock.salida);
+  const errs = errores(mock.salida);
+  ok(t1.length === 1 && Number(t1[0]) === 13,
+    `esperaba ["13"], obtuvo ${JSON.stringify(t1)}; errores: ${JSON.stringify(errs)}`);
+});
+
 // ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------

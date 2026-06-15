@@ -293,8 +293,11 @@ function _validarNodo(nodo, ctx, tablaLocal) {
       }
       const liz = _parsearLadoIzqAsignar(nodo.texto);
       if (liz) {
-        // Variable no definida (solo si hay al menos un Definir en el programa)
-        if (ctx.hayDefinir && !tabla.existeVariable(liz.nombre) && !ctx.tablaGlobal.existeVariable(liz.nombre)) {
+        // Variable no definida (solo si hay al menos un Definir en el programa
+        // Y estamos en perfil estricto — en perfil flexible las variables se
+        // crean automáticamente en el primer uso).
+        const perfilFlexible = ctx.perfil && ctx.perfil.asignacionConIgual === true;
+        if (!perfilFlexible && ctx.hayDefinir && !tabla.existeVariable(liz.nombre) && !ctx.tablaGlobal.existeVariable(liz.nombre)) {
           _agregarError(ctx, linea, 'Variable "' + liz.nombre + '" usada sin definir.');
         }
         // Asignación con índice pero sin Dimension
@@ -312,9 +315,10 @@ function _validarNodo(nodo, ctx, tablaLocal) {
 
     case 'Leer': {
       const vars = _parsearLeer(nodo.texto);
+      const perfilFlexibleLeer = ctx.perfil && ctx.perfil.asignacionConIgual === true;
       for (let j = 0; j < vars.length; j++) {
         const nombre = vars[j];
-        if (ctx.hayDefinir && !tabla.existeVariable(nombre) && !ctx.tablaGlobal.existeVariable(nombre)) {
+        if (!perfilFlexibleLeer && ctx.hayDefinir && !tabla.existeVariable(nombre) && !ctx.tablaGlobal.existeVariable(nombre)) {
           _agregarError(ctx, linea, 'Variable "' + nombre + '" usada sin definir.');
         }
         if (tabla.existeVariable(nombre)) {

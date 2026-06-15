@@ -71,8 +71,12 @@ class RuntimePSeInt {
       detener: () => { detenido = true; },
     };
 
+    // Capturar perfil para que las funciones anidadas puedan accederlo
+    // (las closures anidadas no tienen acceso a this de la clase)
+    const perfil = this._perfil;
+
     // Parsear
-    const { ast, errores: erroresParser } = parsearPSeInt(codigo, this._perfil);
+    const { ast, errores: erroresParser } = parsearPSeInt(codigo, perfil);
 
     if (erroresParser.length > 0) {
       for (const e of erroresParser) {
@@ -286,6 +290,22 @@ class RuntimePSeInt {
       }
     }
 
+    /**
+     * Infiere el tipo PSeInt de un valor JS (para perfil flexible).
+     * - number entero → Entero
+     * - number con decimales → Real
+     * - string → Cadena
+     * - boolean → Logico
+     */
+    function _inferirTipo(valor) {
+      if (typeof valor === 'boolean') return TIPOS_PSEINT.LOGICO;
+      if (typeof valor === 'number') {
+        return Number.isInteger(valor) ? TIPOS_PSEINT.ENTERO : TIPOS_PSEINT.REAL;
+      }
+      if (typeof valor === 'string') return TIPOS_PSEINT.CADENA;
+      return TIPOS_PSEINT.CADENA; // fallback
+    }
+
     // ── Dimension ─────────────────────────────────────────────────────────────
 
     function ejecutarDimension(nodo, lineaIdx) {
@@ -385,8 +405,17 @@ class RuntimePSeInt {
       }
 
       const valorExpr = evaluador.evaluar(der);
-      const entrada = scopes.lookup(nombre);
-      if (!entrada) throw new Error(`Variable "${nombre}" no definida. Use "Definir ${nombre} Como Tipo" primero.`);
+      let entrada = scopes.lookup(nombre);
+      if (!entrada) {
+        // En perfil flexible, crear la variable automáticamente con tipo inferido
+        if (perfil.asignacionConIgual === true) {
+          const tipoInferido = _inferirTipo(valorExpr);
+          scopes.definir(nombre, tipoInferido, lineaIdx);
+          entrada = scopes.lookup(nombre);
+        } else {
+          throw new Error(`Variable "${nombre}" no definida. Use "Definir ${nombre} Como Tipo" primero.`);
+        }
+      }
       const valorFinal = entrada.tipo ? coercionarValor(valorExpr, entrada.tipo) : valorExpr;
       evaluador.setValor(nombre, valorFinal);
       scopes.inicializar(nombre);
@@ -403,9 +432,17 @@ class RuntimePSeInt {
       for (const nombre of nombres) {
         if (!nombre) continue;
         const nombreLimpio = nombre.trim();
-        const entrada = scopes.lookup(nombreLimpio);
+        let entrada = scopes.lookup(nombreLimpio);
         if (!entrada) {
-          throw new Error(`Variable "${nombreLimpio}" no definida. Use Definir antes de Leer.`);
+          // En perfil flexible, crear la variable automáticamente como Cadena
+          // (el tipo real se infiere tras leer; lo dejamos como Cadena por defecto
+          // ya que el input del usuario siempre llega como string).
+          if (perfil.asignacionConIgual === true) {
+            scopes.definir(nombreLimpio, TIPOS_PSEINT.CADENA, 0);
+            entrada = scopes.lookup(nombreLimpio);
+          } else {
+            throw new Error(`Variable "${nombreLimpio}" no definida. Use Definir antes de Leer.`);
+          }
         }
         exigirVivo();
         const valorStr = await host.leer(nombreLimpio);
@@ -499,9 +536,15 @@ class RuntimePSeInt {
       const hastaExpr = m[3].trim();
       const pasoExpr  = m[4] ? m[4].trim() : '1';
 
-      const entrada = scopes.lookup(varNombre);
+      let entrada = scopes.lookup(varNombre);
       if (!entrada) {
-        throw new Error(`Variable "${varNombre}" no definida. Use "Definir ${varNombre} Como Entero" antes del Para.`);
+        // En perfil flexible, crear la variable de iteración automáticamente como Entero
+        if (perfil.asignacionConIgual === true) {
+          scopes.definir(varNombre, TIPOS_PSEINT.ENTERO, lineaIdx);
+          entrada = scopes.lookup(varNombre);
+        } else {
+          throw new Error(`Variable "${varNombre}" no definida. Use "Definir ${varNombre} Como Entero" antes del Para.`);
+        }
       }
 
       let desde = evaluador.evaluar(desdeExpr);
