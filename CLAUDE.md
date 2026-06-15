@@ -49,7 +49,19 @@ identifica en qué fase está el proyecto.
       agrupación (`js/editor/history.js`) ya extraídos, con sus suites.
       `js/app.js` ya no usa `DocErrores` ni `LiteSeInt` directamente.
       Pendiente: núcleo del editor, gutter, folding, móvil, temas.
-- [ ] Fase 3 — Lenguaje PSeInt (`core/pseint/`), perfiles estricto/flexible.
+- [x] Fase 3a — Lenguaje PSeInt, perfil estricto (`v2.2.0-beta`). Implementado:
+      diseño del objeto `perfil`, `Algoritmo/Proceso … FinAlgoritmo/FinProceso`,
+      asignación `<-` (y `=` como comparador), `Escribir`/`Escribir Sin Saltar`/
+      `Leer` multivariable, estructuras `Si/Sino`, `Segun`, `Mientras`,
+      `Repetir…HastaQue`, `Para…Con Paso`, arreglos `Dimension` 1D/2D,
+      `SubProceso`/`Funcion` con retorno y paso por referencia, 18 funciones
+      nativas, validador con mensajes PSeInt y aviso de migración (`=` vs `<-`),
+      provider registrado en `index.html`, documentación de comandos en el panel
+      de aprendizaje, `onCambio` refresca el panel al cambiar lenguaje, y suites
+      de tests propias (tokenizer 25, builtins 61, parser 15, runtime 15,
+      validator 17, contract-tests extendido a 33 pruebas).
+      Pendiente (Fase 3b): golden tests, conversión implícita avanzada y perfil
+      flexible.
 - [ ] Fase 4 — Python con Pyodide (`core/python/`), en Web Worker.
 - [ ] Fase 5 — Ejercicios multi-lenguaje.
 

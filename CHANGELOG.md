@@ -1,28 +1,69 @@
 # Changelog — Code4Code
 
-## [2.2.0] - 2026-06-13
+## [2.2.0-beta] - 2026-06-14
 
-Cierre del primer hito de la **Fase 3 — Lenguaje PSeInt**: el provider PSeInt
-queda integrado en la UI; el estudiante puede seleccionar PSeInt en el selector
-de lenguaje y ejecutar algoritmos con el perfil estricto.
+Cierre del primer hito de la **Fase 3a — Lenguaje PSeInt** (perfil estricto):
+el núcleo PSeInt completo queda integrado en la UI; el estudiante puede
+seleccionar PSeInt en el selector de lenguaje y ejecutar algoritmos con el
+perfil estricto.
 
-### Agregado
+### Agregado — Núcleo PSeInt (`core/pseint/`)
+
+- `core/pseint/tokenizer.js`: tokenizador PSeInt con 25 tipos de token,
+  `KEYWORDS` y `FUNCIONES_NATIVAS_SET`; distingue identificadores, literales,
+  operadores y palabras reservadas del dialecto.
+- `core/pseint/parser.js`: parser recursivo descendente que produce un AST con
+  todos los nodos de estructuras PSeInt (`Algoritmo`, `Asignar`, `Escribir`,
+  `Leer`, `Si/Sino`, `Segun`, `Mientras`, `Repetir/HastaQue`, `Para/ConPaso`,
+  `Dimension`, `SubProceso/Funcion`, `Llamar`).
+- `core/pseint/expression-evaluator.js`: evaluador de expresiones mediante el
+  algoritmo shunting-yard; soporta operadores aritméticos, relacionales y
+  lógicos con la precedencia de PSeInt, incluyendo `^` y `mod`.
+- `core/pseint/symbol-table.js`: tabla de símbolos con `TIPOS_PSEINT` y la
+  función `coercionarValor` para conversión de tipos básicos.
+- `core/pseint/builtins.js`: 18 funciones nativas (`RC`/`RAIZ`, `ABS`, `LN`,
+  `EXP`, `SEN`, `COS`, `TAN`, `ATAN`, `TRUNC`, `REDON`, `AZAR`, `ALEATORIO`,
+  `LONGITUD`, `SUBCADENA`, `CONCATENAR`, `MAYUSCULAS`, `MINUSCULAS`,
+  `CONVERTIRANUMERO`, `CONVERTIRATEXTO`).
+- `core/pseint/runtime.js`: intérprete asíncrono (`RuntimePSeInt`) que ejecuta
+  el AST instrucción a instrucción, comunicándose con el `RuntimeHost` de
+  Code4Code para I/O (`Escribir`/`Leer`), línea activa e inspector de variables.
+- `core/pseint/validator.js`: análisis semántico estático con mensajes de error
+  alineados al vocabulario de PSeInt; emite aviso de migración al detectar `=`
+  usado como asignación en lugar de `<-`.
 - `core/pseint/provider.js`: adapta el núcleo PSeInt al contrato `Code4Code`
   (`tokenizarLinea`, `reglasIndentacion`, `extraerVariables`, `autocompletar`,
   `validar`, `ejecutar`). El método `ejecutar` construye un puente entre la
-  interfaz simple de `RuntimePSeInt` y el `RuntimeHost` de Code4Code.
+  interfaz simple de `RuntimePSeInt` y el `RuntimeHost` de Code4Code. Incluye
+  documentación de los 18 comandos principales para el panel de aprendizaje.
+
+### Agregado — UI
+
 - `index.html`: carga los nueve scripts del núcleo PSeInt (tokenizer → provider)
   entre el provider LiteSeInt y el editor propio. Agrega la opción
   `<option value="pseint">PSeInt</option>` al selector de lenguaje.
-- `tests/contract-tests.js`: sección PSeInt con 11 pruebas nuevas (definición
-  del provider, integración completa con el núcleo real: plantilla, tokenizado,
-  reglas de indentación, autocompletado, validación y ejecución con Leer/Escribir).
+- Panel de aprendizaje: la pestaña "Comandos" muestra la documentación PSeInt
+  cuando ese lenguaje está activo; `onCambio` del registro refresca el panel
+  al cambiar de lenguaje. Las pestañas "Ruta" y "Errores" muestran un
+  placeholder para lenguajes que aún no tienen esa data.
+
+### Agregado — Tests
+
+- `tests/pseint-tokenizer-tests.js`: 25 pruebas del tokenizador PSeInt.
+- `tests/pseint-builtins-tests.js`: 61 pruebas de las 18 funciones nativas.
+- `tests/pseint-parser-tests.js`: 15 pruebas del parser y el AST generado.
+- `tests/pseint-runtime-tests.js`: 15 pruebas de ejecución del runtime
+  (asignaciones, estructuras de control, arreglos, subprocesos, I/O).
+- `tests/pseint-validator-tests.js`: 17 pruebas del validador estático.
+- `tests/contract-tests.js`: extendido a 33 pruebas; la sección PSeInt cubre
+  definición del provider, plantilla, tokenizado, reglas de indentación,
+  autocompletado, validación, ejecución con `Leer`/`Escribir` y documentación.
 
 ### Estado de Fase 3a
-Implementado: núcleo completo (tokenizer, AST, parser, builtins, symbol-table,
-validator, expression-evaluator, runtime), provider e integración en la UI.
-Pendiente: golden tests contra PSeInt escritorio, documentación en el panel de
-aprendizaje, aviso de migración bidireccional y conversión implícita de tipos avanzada.
+Implementado: núcleo completo (tokenizer, parser, expression-evaluator,
+symbol-table, builtins, runtime, validator), provider e integración en la UI.
+Pendiente (Fase 3b): golden tests contra PSeInt escritorio, aviso de migración
+bidireccional completo, conversión implícita de tipos avanzada y perfil flexible.
 
 ## [2.0.0-beta] - 2026-06-09
 
