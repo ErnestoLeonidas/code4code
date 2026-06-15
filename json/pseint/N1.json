@@ -1,0 +1,435 @@
+{
+  "version": "1.0.0",
+  "lenguaje": "pseint",
+  "nivel": 1,
+  "experience": {
+    "id": "ps-1",
+    "label": "N1",
+    "titulo": "Introducción a los Algoritmos PSeInt",
+    "desc": "Estructura Algoritmo/FinAlgoritmo, Definir, tipos de dato, asignación con <-, Leer y Escribir.",
+    "color": "var(--accent)",
+    "icon": "⚙"
+  },
+  "ejercicios": [
+    {
+      "id": "ps-n1-001",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-01",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Hola mundo",
+      "conceptos": ["Algoritmo", "FinAlgoritmo", "Escribir"],
+      "enunciado": "Crea un algoritmo que muestre el mensaje \"Hola, mundo!\" en la pantalla. Es el ejercicio más simple posible: una sola instrucción de salida dentro de la estructura Algoritmo/FinAlgoritmo.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna — no se lee ningún dato)",
+        "proceso": "No hay cálculo. Solo mostrar texto fijo.",
+        "salida": "\"Hola, mundo!\" impreso en pantalla"
+      },
+      "salidaEsperada": "Hola, mundo!",
+      "pista": "Todo algoritmo PSeInt comienza con 'Algoritmo nombre' y termina con 'FinAlgoritmo'. La instrucción Escribir muestra texto en consola.",
+      "codigoReferencia": "Algoritmo hola_mundo\n  Escribir \"Hola, mundo!\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-002",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-02",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Mostrar tres líneas de texto",
+      "conceptos": ["Escribir", "Algoritmo"],
+      "enunciado": "Crea un algoritmo que muestre tres líneas de texto fijo: tu nombre, tu carrera y el nombre de la asignatura. Cada dato debe aparecer en una línea separada.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna)",
+        "proceso": "Tres instrucciones Escribir independientes.",
+        "salida": "Tres líneas de texto en consola"
+      },
+      "salidaEsperada": "Nombre: Ana González\nCarrera: Analista Programador\nAsignatura: Fundamentos de Programación",
+      "pista": "Cada instrucción Escribir produce una nueva línea automáticamente.",
+      "codigoReferencia": "Algoritmo mis_datos\n  Escribir \"Nombre: Ana González\"\n  Escribir \"Carrera: Analista Programador\"\n  Escribir \"Asignatura: Fundamentos de Programación\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-003",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-03",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Definir y mostrar una variable entera",
+      "conceptos": ["Definir", "Entero", "asignación <-", "Escribir"],
+      "enunciado": "Declara una variable entera llamada edad, asígnale el valor 20 usando el operador de asignación <- y muéstrala en pantalla con una etiqueta descriptiva.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna — valor asignado en el código)",
+        "proceso": "edad <- 20",
+        "salida": "\"Mi edad es: 20\""
+      },
+      "salidaEsperada": "Mi edad es: 20",
+      "pista": "En PSeInt el operador de asignación es <- (flecha). Declara la variable con 'Definir edad Como Entero' antes de usarla.",
+      "codigoReferencia": "Algoritmo mostrar_edad\n  Definir edad Como Entero\n\n  edad <- 20\n\n  Escribir \"Mi edad es: \", edad\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-004",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-04",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Variables de distintos tipos",
+      "conceptos": ["Definir", "Entero", "Real", "Cadena"],
+      "enunciado": "Declara tres variables: nombre (Cadena), edad (Entero) y altura (Real). Asígnales valores fijos con <- y muéstralos con etiquetas descriptivas. Nota: en PSeInt el tipo de texto se llama Cadena, no Caracter.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna — valores asignados en código)",
+        "proceso": "nombre <- \"Pedro\"\nedad <- 21\naltura <- 1.75",
+        "salida": "Tres líneas mostrando cada variable con su etiqueta"
+      },
+      "salidaEsperada": "Nombre: Pedro\nEdad: 21\nAltura: 1.75 m",
+      "pista": "Los tipos básicos en PSeInt son Entero, Real y Cadena. Usa <- para asignar valores.",
+      "codigoReferencia": "Algoritmo tipos_datos\n  Definir nombre Como Cadena\n  Definir edad Como Entero\n  Definir altura Como Real\n\n  nombre <- \"Pedro\"\n  edad   <- 21\n  altura <- 1.75\n\n  Escribir \"Nombre: \", nombre\n  Escribir \"Edad: \", edad\n  Escribir \"Altura: \", altura, \" m\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-005",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-05",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Leer y mostrar un número",
+      "conceptos": ["Leer", "Entero", "Escribir"],
+      "enunciado": "El algoritmo solicita al usuario que ingrese un número entero, lo lee con Leer y lo muestra en pantalla indicando que fue ingresado por el usuario.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero ingresado por el usuario",
+        "proceso": "Almacenar el número en la variable numero",
+        "salida": "\"El número ingresado es: [numero]\""
+      },
+      "salidaEsperada": "Ingrese un número entero: \nEl número ingresado es: 42",
+      "pista": "Usa Escribir para mostrar el mensaje al usuario, luego Leer para capturar el valor. Recuerda declarar la variable con Definir antes.",
+      "codigoReferencia": "Algoritmo leer_numero\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número entero: \"\n  Leer numero\n\n  Escribir \"El número ingresado es: \", numero\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-006",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-06",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Suma de dos números",
+      "conceptos": ["Leer", "Entero", "asignación <-", "Escribir", "suma"],
+      "enunciado": "El algoritmo pide al usuario dos números enteros, calcula su suma y muestra el resultado con formato: 'La suma de [a] y [b] es: [resultado]'.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números enteros a y b",
+        "proceso": "suma <- a + b",
+        "salida": "\"La suma de 5 y 3 es: 8\""
+      },
+      "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nLa suma de 5 y 3 es: 8",
+      "pista": "Declara tres variables: dos para los operandos y una para el resultado. Asigna la suma con suma <- a + b.",
+      "codigoReferencia": "Algoritmo suma_dos_numeros\n  Definir a, b, suma Como Entero\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n\n  suma <- a + b\n\n  Escribir \"La suma de \", a, \" y \", b, \" es: \", suma\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-007",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-07",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Área de un rectángulo",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "multiplicación"],
+      "enunciado": "El algoritmo pide la base y la altura de un rectángulo (valores reales), calcula el área (base × altura) y muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Base y altura del rectángulo (Real)",
+        "proceso": "area <- base * altura",
+        "salida": "\"El área del rectángulo es: [area]\""
+      },
+      "salidaEsperada": "Ingrese la base: \nIngrese la altura: \nEl área del rectángulo es: 15",
+      "pista": "Usa variables de tipo Real para permitir decimales. El operador de multiplicación es *.",
+      "codigoReferencia": "Algoritmo area_rectangulo\n  Definir base, altura, area Como Real\n\n  Escribir \"Ingrese la base: \"\n  Leer base\n  Escribir \"Ingrese la altura: \"\n  Leer altura\n\n  area <- base * altura\n\n  Escribir \"El área del rectángulo es: \", area\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-008",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-08",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Convertir Celsius a Fahrenheit",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "fórmula"],
+      "enunciado": "El algoritmo pide una temperatura en grados Celsius y la convierte a Fahrenheit usando la fórmula: F = (C × 9 / 5) + 32. Muestra ambos valores al finalizar.",
+      "entradaProcesoSalida": {
+        "entrada": "Temperatura en Celsius (Real)",
+        "proceso": "fahrenheit <- (celsius * 9 / 5) + 32",
+        "salida": "\"[celsius] °C equivale a [fahrenheit] °F\""
+      },
+      "salidaEsperada": "Ingrese la temperatura en Celsius: \n100 °C equivale a 212 °F",
+      "pista": "Aplica la fórmula matemática directamente en la asignación. Recuerda el orden de las operaciones.",
+      "codigoReferencia": "Algoritmo celsius_a_fahrenheit\n  Definir celsius, fahrenheit Como Real\n\n  Escribir \"Ingrese la temperatura en Celsius: \"\n  Leer celsius\n\n  fahrenheit <- (celsius * 9 / 5) + 32\n\n  Escribir celsius, \" °C equivale a \", fahrenheit, \" °F\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-009",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-09",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Promedio de tres notas",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "promedio"],
+      "enunciado": "El algoritmo lee tres notas de un alumno (valores reales entre 1.0 y 7.0), calcula su promedio y muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Tres notas reales nota1, nota2, nota3",
+        "proceso": "promedio <- (nota1 + nota2 + nota3) / 3",
+        "salida": "\"Promedio: [promedio]\""
+      },
+      "salidaEsperada": "Ingrese la nota 1: \nIngrese la nota 2: \nIngrese la nota 3: \nPromedio: 5.5",
+      "pista": "Suma las tres notas y divide por 3. Para que el resultado sea Real, asegúrate de que las variables sean tipo Real.",
+      "codigoReferencia": "Algoritmo promedio_notas\n  Definir nota1, nota2, nota3, promedio Como Real\n\n  Escribir \"Ingrese la nota 1: \"\n  Leer nota1\n  Escribir \"Ingrese la nota 2: \"\n  Leer nota2\n  Escribir \"Ingrese la nota 3: \"\n  Leer nota3\n\n  promedio <- (nota1 + nota2 + nota3) / 3\n\n  Escribir \"Promedio: \", promedio\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-010",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-10",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Calcular el IMC",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "división", "fórmula"],
+      "enunciado": "El algoritmo pide el peso en kilogramos y la talla en metros del usuario, calcula el Índice de Masa Corporal (IMC = peso / talla²) y muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Peso en kg (Real) y talla en metros (Real)",
+        "proceso": "imc <- peso / (talla * talla)",
+        "salida": "\"Su IMC es: [imc]\""
+      },
+      "salidaEsperada": "Ingrese su peso en kg: \nIngrese su talla en metros: \nSu IMC es: 22.86",
+      "pista": "Para elevar al cuadrado multiplica la variable por sí misma: talla * talla.",
+      "codigoReferencia": "Algoritmo calcular_imc\n  Definir peso, talla, imc Como Real\n\n  Escribir \"Ingrese su peso en kg: \"\n  Leer peso\n  Escribir \"Ingrese su talla en metros: \"\n  Leer talla\n\n  imc <- peso / (talla * talla)\n\n  Escribir \"Su IMC es: \", imc\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-011",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-11",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Convertir segundos a minutos y segundos",
+      "conceptos": ["Leer", "Entero", "asignación <-", "Escribir", "división entera", "MOD"],
+      "enunciado": "El algoritmo pide un total de segundos (número entero), lo convierte a minutos y segundos restantes usando división entera (DIV) y MOD, y muestra el resultado en formato 'X minutos y Y segundos'.",
+      "entradaProcesoSalida": {
+        "entrada": "Total de segundos (Entero)",
+        "proceso": "minutos <- totalSegundos DIV 60\nrestoSegundos <- totalSegundos MOD 60",
+        "salida": "\"2 minutos y 35 segundos\""
+      },
+      "salidaEsperada": "Ingrese el total de segundos: \n2 minutos y 35 segundos",
+      "pista": "Usa DIV para la división entera (cuántas veces cabe 60) y MOD para el resto (los segundos sobrantes).",
+      "codigoReferencia": "Algoritmo segundos_a_minutos\n  Definir totalSegundos, minutos, restoSegundos Como Entero\n\n  Escribir \"Ingrese el total de segundos: \"\n  Leer totalSegundos\n\n  minutos       <- totalSegundos DIV 60\n  restoSegundos <- totalSegundos MOD 60\n\n  Escribir minutos, \" minutos y \", restoSegundos, \" segundos\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-012",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-12",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Precio con IVA del 19%",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "porcentaje"],
+      "enunciado": "El algoritmo pide el precio neto de un producto, calcula el IVA (19%) y muestra el precio neto, el monto del IVA y el precio final con IVA incluido.",
+      "entradaProcesoSalida": {
+        "entrada": "Precio neto (Real)",
+        "proceso": "iva <- precioNeto * 0.19\nprecioFinal <- precioNeto + iva",
+        "salida": "Precio neto, monto IVA y precio final"
+      },
+      "salidaEsperada": "Ingrese el precio neto: \nPrecio neto:   $1000\nIVA (19%):     $190\nPrecio final:  $1190",
+      "pista": "El 19% se expresa como 0.19 en la multiplicación. Calcula el IVA primero y luego súmalo al neto.",
+      "codigoReferencia": "Algoritmo precio_con_iva\n  Definir precioNeto, iva, precioFinal Como Real\n\n  Escribir \"Ingrese el precio neto: \"\n  Leer precioNeto\n\n  iva         <- precioNeto * 0.19\n  precioFinal <- precioNeto + iva\n\n  Escribir \"Precio neto:   $\", precioNeto\n  Escribir \"IVA (19%):     $\", iva\n  Escribir \"Precio final:  $\", precioFinal\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-013",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-13",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Aplicar descuento porcentual",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "porcentaje", "descuento"],
+      "enunciado": "El algoritmo pide el precio original de un producto y el porcentaje de descuento a aplicar. Calcula el monto del descuento y el precio final, mostrando ambos resultados.",
+      "entradaProcesoSalida": {
+        "entrada": "Precio original (Real) y porcentaje de descuento (Real)",
+        "proceso": "descuento <- precio * (porcentaje / 100)\nprecioFinal <- precio - descuento",
+        "salida": "Monto de descuento y precio final"
+      },
+      "salidaEsperada": "Ingrese el precio original: \nIngrese el porcentaje de descuento: \nDescuento aplicado: $200\nPrecio final: $800",
+      "pista": "Divide el porcentaje por 100 para obtener la fracción decimal. Luego multiplica por el precio para el monto.",
+      "codigoReferencia": "Algoritmo descuento_porcentual\n  Definir precio, porcentaje, descuento, precioFinal Como Real\n\n  Escribir \"Ingrese el precio original: \"\n  Leer precio\n  Escribir \"Ingrese el porcentaje de descuento: \"\n  Leer porcentaje\n\n  descuento   <- precio * (porcentaje / 100)\n  precioFinal <- precio - descuento\n\n  Escribir \"Descuento aplicado: $\", descuento\n  Escribir \"Precio final: $\", precioFinal\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-014",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-14",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Número al cuadrado y al cubo",
+      "conceptos": ["Leer", "Entero", "asignación <-", "Escribir", "potencia"],
+      "enunciado": "El algoritmo pide un número entero al usuario y calcula su cuadrado (n²) y su cubo (n³), mostrando ambos resultados en líneas separadas.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero n",
+        "proceso": "cuadrado <- n * n\ncubo <- n * n * n",
+        "salida": "\"4 al cuadrado es: 16\"\n\"4 al cubo es: 64\""
+      },
+      "salidaEsperada": "Ingrese un número: \n4 al cuadrado es: 16\n4 al cubo es: 64",
+      "pista": "Multiplica el número por sí mismo para el cuadrado, y el resultado anterior por el número para el cubo.",
+      "codigoReferencia": "Algoritmo potencias\n  Definir n, cuadrado, cubo Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer n\n\n  cuadrado <- n * n\n  cubo     <- n * n * n\n\n  Escribir n, \" al cuadrado es: \", cuadrado\n  Escribir n, \" al cubo es: \", cubo\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-015",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-15",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "titulo": "Intercambiar dos variables con auxiliar",
+      "conceptos": ["Definir", "asignación <-", "variable auxiliar", "Leer", "Escribir"],
+      "enunciado": "El algoritmo lee dos números enteros a y b, luego intercambia sus valores usando una variable auxiliar, y muestra los valores antes y después del intercambio.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números enteros a y b",
+        "proceso": "aux <- a\na <- b\nb <- aux",
+        "salida": "Valores antes y después del intercambio"
+      },
+      "salidaEsperada": "Ingrese el valor de a: \nIngrese el valor de b: \nAntes: a = 5, b = 8\nDespués: a = 8, b = 5",
+      "pista": "Sin una variable auxiliar perderías uno de los valores al sobreescribir. Guarda a en aux antes de modificarla.",
+      "codigoReferencia": "Algoritmo intercambiar_variables\n  Definir a, b, aux Como Entero\n\n  Escribir \"Ingrese el valor de a: \"\n  Leer a\n  Escribir \"Ingrese el valor de b: \"\n  Leer b\n\n  Escribir \"Antes: a = \", a, \", b = \", b\n\n  aux <- a\n  a   <- b\n  b   <- aux\n\n  Escribir \"Después: a = \", a, \", b = \", b\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-016",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-16",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "titulo": "Suma de dígitos de número de 3 cifras",
+      "conceptos": ["Leer", "Entero", "asignación <-", "Escribir", "MOD", "DIV"],
+      "enunciado": "El algoritmo lee un número entero de exactamente 3 cifras (100–999) y calcula la suma de sus dígitos usando DIV y MOD. Por ejemplo, para 234: 2 + 3 + 4 = 9.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero de 3 cifras (Entero)",
+        "proceso": "centenas <- numero DIV 100\ndecenas <- (numero MOD 100) DIV 10\nunidades <- numero MOD 10\nsuma <- centenas + decenas + unidades",
+        "salida": "\"Dígitos: 2, 3, 4 — Suma: 9\""
+      },
+      "salidaEsperada": "Ingrese un número de 3 cifras: \nDígitos: 2, 3, 4 — Suma: 9",
+      "pista": "Las centenas se obtienen con DIV 100. Las decenas con (numero MOD 100) DIV 10. Las unidades con MOD 10.",
+      "codigoReferencia": "Algoritmo suma_digitos\n  Definir numero, centenas, decenas, unidades, suma Como Entero\n\n  Escribir \"Ingrese un número de 3 cifras: \"\n  Leer numero\n\n  centenas  <- numero DIV 100\n  decenas   <- (numero MOD 100) DIV 10\n  unidades  <- numero MOD 10\n  suma      <- centenas + decenas + unidades\n\n  Escribir \"Dígitos: \", centenas, \", \", decenas, \", \", unidades, \" — Suma: \", suma\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-017",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-17",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "titulo": "Distancia entre dos puntos",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "raíz cuadrada", "potencia"],
+      "enunciado": "El algoritmo lee las coordenadas (x1, y1) y (x2, y2) de dos puntos en el plano y calcula la distancia euclidiana entre ellos usando la fórmula: d = raíz_cuadrada((x2-x1)² + (y2-y1)²). Muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Coordenadas x1, y1, x2, y2 (Real)",
+        "proceso": "distancia <- RC( (x2-x1)^2 + (y2-y1)^2 )",
+        "salida": "\"La distancia entre los puntos es: [distancia]\""
+      },
+      "salidaEsperada": "Ingrese x1: \nIngrese y1: \nIngrese x2: \nIngrese y2: \nLa distancia entre los puntos es: 5",
+      "pista": "En PSeInt la raíz cuadrada se calcula con RC(). El operador ^ eleva a potencia: (x2-x1)^2.",
+      "codigoReferencia": "Algoritmo distancia_puntos\n  Definir x1, y1, x2, y2, distancia Como Real\n\n  Escribir \"Ingrese x1: \"\n  Leer x1\n  Escribir \"Ingrese y1: \"\n  Leer y1\n  Escribir \"Ingrese x2: \"\n  Leer x2\n  Escribir \"Ingrese y2: \"\n  Leer y2\n\n  distancia <- RC( (x2 - x1)^2 + (y2 - y1)^2 )\n\n  Escribir \"La distancia entre los puntos es: \", distancia\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-018",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-18",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "titulo": "Volumen de un cilindro",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "constante", "fórmula"],
+      "enunciado": "El algoritmo pide el radio y la altura de un cilindro y calcula su volumen usando la fórmula V = π × r² × h. Usa 3.14159 como aproximación de π. Muestra el volumen calculado.",
+      "entradaProcesoSalida": {
+        "entrada": "Radio r y altura h (Real)",
+        "proceso": "volumen <- 3.14159 * radio * radio * altura",
+        "salida": "\"El volumen del cilindro es: [volumen]\""
+      },
+      "salidaEsperada": "Ingrese el radio: \nIngrese la altura: \nEl volumen del cilindro es: 314.159",
+      "pista": "Declara una variable para PI y asígnale 3.14159. Luego aplica la fórmula multiplicando PI * radio * radio * altura.",
+      "codigoReferencia": "Algoritmo volumen_cilindro\n  Definir radio, altura, volumen, PI Como Real\n\n  PI <- 3.14159\n\n  Escribir \"Ingrese el radio: \"\n  Leer radio\n  Escribir \"Ingrese la altura: \"\n  Leer altura\n\n  volumen <- PI * radio * radio * altura\n\n  Escribir \"El volumen del cilindro es: \", volumen\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-019",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-19",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Calcular propina",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "porcentaje"],
+      "enunciado": "El algoritmo pide el total de una cuenta de restaurante y el porcentaje de propina que el cliente desea dar. Calcula el monto de la propina y el total a pagar (cuenta + propina), mostrando ambos.",
+      "entradaProcesoSalida": {
+        "entrada": "Total de la cuenta (Real) y porcentaje de propina (Real)",
+        "proceso": "propina <- cuenta * (porcentaje / 100)\ntotalAPagar <- cuenta + propina",
+        "salida": "Monto de propina y total a pagar"
+      },
+      "salidaEsperada": "Ingrese el total de la cuenta: \nIngrese el porcentaje de propina: \nPropina: $1500\nTotal a pagar: $11500",
+      "pista": "Divide el porcentaje por 100 para convertirlo a decimal antes de multiplicar por la cuenta.",
+      "codigoReferencia": "Algoritmo calcular_propina\n  Definir cuenta, porcentaje, propina, totalAPagar Como Real\n\n  Escribir \"Ingrese el total de la cuenta: \"\n  Leer cuenta\n  Escribir \"Ingrese el porcentaje de propina: \"\n  Leer porcentaje\n\n  propina      <- cuenta * (porcentaje / 100)\n  totalAPagar  <- cuenta + propina\n\n  Escribir \"Propina: $\", propina\n  Escribir \"Total a pagar: $\", totalAPagar\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n1-020",
+      "modulo": "N1",
+      "nivelLiteSeInt": 1,
+      "numero": "PS-N1-20",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Vuelto de una compra",
+      "conceptos": ["Leer", "Real", "asignación <-", "Escribir", "resta"],
+      "enunciado": "El algoritmo pide el precio de un artículo y el monto que entrega el cliente. Calcula y muestra el vuelto que debe recibir el cliente. Si el cliente entrega menos de lo necesario, el vuelto será negativo (no valida esto, solo calcula).",
+      "entradaProcesoSalida": {
+        "entrada": "Precio del artículo (Real) y monto entregado (Real)",
+        "proceso": "vuelto <- montoEntregado - precio",
+        "salida": "\"El vuelto es: $[vuelto]\""
+      },
+      "salidaEsperada": "Ingrese el precio del artículo: \nIngrese el monto entregado: \nEl vuelto es: $500",
+      "pista": "El vuelto es simplemente la diferencia entre lo que entrega el cliente y el precio del artículo.",
+      "codigoReferencia": "Algoritmo vuelto_compra\n  Definir precio, montoEntregado, vuelto Como Real\n\n  Escribir \"Ingrese el precio del artículo: \"\n  Leer precio\n  Escribir \"Ingrese el monto entregado: \"\n  Leer montoEntregado\n\n  vuelto <- montoEntregado - precio\n\n  Escribir \"El vuelto es: $\", vuelto\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    }
+  ]
+}
