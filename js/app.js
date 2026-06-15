@@ -500,6 +500,7 @@ function initLanguageSelect() {
     $select.val(provider.id);
     $("#inputImportarPsc").attr("accept", `${provider.extension},text/plain`);
     actualizarVisibilidadPerfil(provider);
+    actualizarBarraSimbolos(provider);
     if (provider.id === "pseint" && typeof provider.configurarPerfil === "function") {
       try {
         const guardado = localStorage.getItem("code4code:perfilPSeInt");
@@ -3707,21 +3708,83 @@ function inicializarResizeConsola() {
 // 12. INIT
 // =========================================
 
-function initBarraMovil() {
-  $(document).on("click", ".bm-btn", function () {
-    const editor = document.getElementById("editor");
+function actualizarBarraSimbolos(provider) {
+  var $btnFlecha = $(".sym-btn[data-sym='<-']");
+  if (provider && provider.id === "python") {
+    $btnFlecha.attr("data-sym", "=").text("=").attr("title", "Asignación Python");
+  } else {
+    $btnFlecha.attr("data-sym", "<-").html("&lt;-").attr("title", "Asignación");
+  }
+}
+
+function initBarraSimbolos() {
+  $(document).on("click", ".sym-btn", function (e) {
+    e.preventDefault();
+    var editor = document.getElementById("editor");
     if (!editor) return;
-    const texto = $(this).data("insert");
-    const cursorDentro = $(this).data("cursor-inside");
-    const inicio = editor.selectionStart;
-    const fin = editor.selectionEnd;
-    const valor = editor.value;
-    editor.value = valor.slice(0, inicio) + texto + valor.slice(fin);
-    const nuevaPos = cursorDentro ? inicio + 1 : inicio + texto.length;
-    editor.selectionStart = editor.selectionEnd = nuevaPos;
+
+    var sym = this.dataset.sym;
+    var start = editor.selectionStart;
+    var end   = editor.selectionEnd;
+    var val   = editor.value;
+
+    var insercion = sym;
+    var offset = sym.length;  // posición del cursor tras insertar
+
+    // Pares: insertar apertura+cierre, cursor en medio (o envolver selección)
+    if (sym === '"') {
+      if (start !== end) {
+        insercion = '"' + val.slice(start, end) + '"';
+        offset = insercion.length;
+      } else {
+        insercion = '""';
+        offset = 1;
+      }
+    } else if (sym === "(") {
+      if (start !== end) {
+        insercion = "(" + val.slice(start, end) + ")";
+        offset = insercion.length;
+      } else {
+        insercion = "()";
+        offset = 1;
+      }
+    } else if (sym === "[") {
+      if (start !== end) {
+        insercion = "[" + val.slice(start, end) + "]";
+        offset = insercion.length;
+      } else {
+        insercion = "[]";
+        offset = 1;
+      }
+    } else if (sym === "\n") {
+      // Nueva línea con la misma indentación que la línea actual
+      var lineaActual = val.lastIndexOf("\n", start - 1);
+      var textoLinea = val.slice(lineaActual + 1, start);
+      var indentMatch = textoLinea.match(/^(\s+)/);
+      var indent = indentMatch ? indentMatch[1] : "";
+      insercion = "\n" + indent;
+      offset = insercion.length;
+    }
+
+    // Insertar en el textarea con soporte de undo del navegador
     editor.focus();
+    editor.setSelectionRange(start, end);
+    var insertado = false;
+    if (document.execCommand) {
+      try {
+        insertado = document.execCommand("insertText", false, insercion);
+      } catch (err) {
+        insertado = false;
+      }
+    }
+    if (!insertado) {
+      // Fallback directo (no integra con undo nativo, pero activa el historial propio)
+      editor.value = val.slice(0, start) + insercion + val.slice(end);
+      editor.setSelectionRange(start + offset, start + offset);
+    }
+
+    // Disparar input para actualizar resaltado e historial propio
     editor.dispatchEvent(new Event("input", { bubbles: true }));
-    registrarHistorialEditor(editor);
   });
 }
 
@@ -3738,7 +3801,8 @@ $(document).ready(function () {
   actualizarLineas();
   initLanguageSelect();
   initTheme();
-  initBarraMovil();
+  initBarraSimbolos();
+  actualizarBarraSimbolos(typeof Code4Code !== "undefined" ? Code4Code.registro.activo() : null);
   restorePanelOrder();
   cargarAnchoLearningPanelPersistido();
   initPanelDrag();

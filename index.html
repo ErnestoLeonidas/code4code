@@ -22,6 +22,7 @@
         <select class="ejemplos-select" id="languageSelect" aria-label="Lenguaje" title="Lenguaje">
           <option value="liteseint" selected>LiteSeInt</option>
           <option value="pseint">PSeInt</option>
+          <option value="python">Python</option>
         </select>
         <span id="perfilPSeIntWrap" style="display:none">
           <select class="ejemplos-select" id="perfilPSeInt" aria-label="Perfil PSeInt" title="Perfil PSeInt">
@@ -215,18 +216,19 @@
           </div>
         </div>
 
-        <!-- Barra móvil de símbolos frecuentes (solo visible en ≤ 768px) -->
-        <div class="barra-movil" id="barraMovil" aria-label="Símbolos frecuentes">
-          <button class="bm-btn" data-insert="&lt;-" aria-label="flecha asignación">&lt;-</button>
-          <button class="bm-btn" data-insert="==" aria-label="igual igual">==</button>
-          <button class="bm-btn" data-insert="!=" aria-label="distinto">!=</button>
-          <button class="bm-btn" data-insert="&lt;=" aria-label="menor o igual">&lt;=</button>
-          <button class="bm-btn" data-insert=">=" aria-label="mayor o igual">>=</button>
-          <button class="bm-btn" data-insert='""' data-cursor-inside="true" aria-label="comillas">""</button>
-          <button class="bm-btn" data-insert="[]" data-cursor-inside="true" aria-label="corchetes">[]</button>
-          <button class="bm-btn" data-insert="()" data-cursor-inside="true" aria-label="paréntesis">()</button>
-          <button class="bm-btn" data-insert="//" aria-label="comentario">//</button>
-          <button class="bm-btn" data-insert=".." aria-label="punto punto">..</button>
+        <!-- Barra de símbolos táctiles (solo móvil, Fase 2) -->
+        <div class="mobile-symbol-bar" id="mobileSymbolBar" aria-label="Barra de símbolos">
+          <button class="sym-btn" data-sym="&lt;-" title="Asignación">&lt;-</button>
+          <button class="sym-btn" data-sym="&quot;" title="Comillas">&quot;</button>
+          <button class="sym-btn" data-sym="(" title="Paréntesis abre">(</button>
+          <button class="sym-btn" data-sym=")" title="Paréntesis cierra">)</button>
+          <button class="sym-btn" data-sym="[" title="Corchete abre">[</button>
+          <button class="sym-btn" data-sym="]" title="Corchete cierra">]</button>
+          <button class="sym-btn" data-sym=", " title="Coma">,</button>
+          <button class="sym-btn sym-btn--wide" data-sym="  " title="Indentar (2 espacios)">⇥</button>
+          <button class="sym-btn" data-sym=":" title="Dos puntos (Python)">:</button>
+          <button class="sym-btn" data-sym="!= " title="Distinto">!=</button>
+          <button class="sym-btn sym-btn--wide" data-sym="&#10;" title="Nueva línea">↵</button>
         </div>
 
         <!-- Resize handle -->
@@ -327,6 +329,11 @@
   <script src="core/pseint/runtime.js"></script>
   <!-- Provider PSeInt (registra el lenguaje en Code4Code.registro) -->
   <script src="core/pseint/provider.js"></script>
+
+  <!-- ══ Núcleo Python (Fase 4) ══ -->
+  <script src="core/python/tokenizer.js"></script>
+  <script src="core/python/bridge.js"></script>
+  <script src="core/python/provider.js"></script>
 
   <!-- Editor propio (Fase 2): resaltado, autocompletado, pares, búsqueda, historial, plegado y gutter -->
   <script src="js/editor/highlight.js"></script>

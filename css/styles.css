@@ -3462,46 +3462,51 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   background: rgba(0,0,0,0.25);
 }
 
-/* Barra móvil de símbolos frecuentes — solo visible en móvil */
-.barra-movil {
+/* ── Barra de símbolos táctiles (solo móvil, Fase 2) ── */
+.mobile-symbol-bar {
   display: none;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px 8px;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border-color);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex-shrink: 0;
 }
-@media (max-width: 768px) {
-  .barra-movil {
+
+.sym-btn {
+  font-family: var(--font-code);
+  font-size: 13px;
+  padding: 6px 10px;
+  background: var(--bg-editor);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 36px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s, border-color 0.1s;
+}
+
+.sym-btn--wide {
+  min-width: 54px;
+}
+
+.sym-btn:active {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 767px) {
+  .mobile-symbol-bar {
     display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 4px;
-    padding: 4px 8px;
-    background: var(--bg-panel);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    flex-shrink: 0;
-    min-height: 44px;
-    align-items: center;
-  }
-  .bm-btn {
-    flex-shrink: 0;
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 13px;
-    font-family: monospace;
-    cursor: pointer;
-    min-width: 36px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.1s;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-  }
-  .bm-btn:active {
-    background: var(--accent-bg);
-    border-color: var(--accent);
   }
 }
