@@ -42,8 +42,19 @@
   /** Plantilla inicial del editor para PSeInt. */
   var PLANTILLA = 'Algoritmo nombre_algoritmo\n\n\n\n\n\nFinAlgoritmo';
 
-  /** Perfil estricto: `<-` para asignación, `=` siempre es comparador. */
-  var PERFIL_ESTRICTO = Object.freeze({ asignacionConIgual: false });
+  /** Perfiles disponibles. */
+  var PERFILES = Object.freeze({
+    estricto: Object.freeze({ asignacionConIgual: false }),
+    flexible: Object.freeze({ asignacionConIgual: true })
+  });
+
+  /**
+   * Perfil activo del provider. Es una variable del closure — no una
+   * propiedad del objeto provider — por lo que `configurarPerfil` puede
+   * mutar este valor aunque el objeto provider esté congelado por
+   * `Code4Code.crearProvider`.
+   */
+  var _perfilActivo = PERFILES.estricto;
 
   /** Tipos de token del núcleo PSeInt → tipos genéricos del contrato. */
   var MAPA_TOKENS = null;
@@ -94,7 +105,7 @@
           return { tokens: [{ tipo: 'plano', texto: String(linea) }] };
         }
         var mapa = mapaTokens();
-        var tokens = nucleo.tokenizarLinea(String(linea), PERFIL_ESTRICTO).map(function (tk) {
+        var tokens = nucleo.tokenizarLinea(String(linea), _perfilActivo).map(function (tk) {
           return { tipo: mapa[tk.tipo] || 'plano', texto: tk.valor, nucleo: tk };
         });
         return { tokens: tokens };
@@ -151,7 +162,7 @@
        */
       validar: function (codigo) {
         if (typeof validarPSeInt !== 'function') return [];
-        return validarPSeInt(String(codigo || ''), PERFIL_ESTRICTO).map(function (e) {
+        return validarPSeInt(String(codigo || ''), _perfilActivo).map(function (e) {
           return { linea: e.linea, mensaje: e.mensaje, tipo: 'error' };
         });
       },
@@ -203,7 +214,7 @@
           return { detener: function () {} };
         }
 
-        var rt = new RuntimePSeInt(PERFIL_ESTRICTO);
+        var rt = new RuntimePSeInt(_perfilActivo);
         var detenido = false;
 
         // Objeto puente que RuntimePSeInt recibe como `host` interno.
@@ -263,6 +274,21 @@
             host.detener(motivo);
           }
         };
+      },
+
+      /**
+       * Cambia el perfil activo. Acepta 'estricto' o 'flexible'.
+       * Aunque el objeto provider esté congelado por crearProvider, esta
+       * función muta `_perfilActivo` que es una variable del closure, no
+       * una propiedad del objeto.
+       */
+      configurarPerfil: function (preset) {
+        _perfilActivo = PERFILES[preset] || PERFILES.estricto;
+      },
+
+      /** Devuelve el objeto de perfil actualmente activo. */
+      obtenerPerfil: function () {
+        return _perfilActivo;
       },
 
       /**

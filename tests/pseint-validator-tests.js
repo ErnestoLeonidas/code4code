@@ -293,6 +293,24 @@ t('asignación con <- en perfil estricto no genera aviso', function() {
   ok(avisoMigracion.length === 0, 'No debe haber aviso de migración con <-');
 });
 
+// 18. Perfil flexible: x = 5 NO genera error de migración
+t('perfil flexible: x = 5 no genera error de migración', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir x Como Entero',
+    '  x = 5',
+    '  Escribir x',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, { asignacionConIgual: true });
+  const avisoMigracion = errores.filter(function(e) {
+    return e.mensaje.indexOf('asignaci') >= 0 && e.mensaje.indexOf('<-') >= 0;
+  });
+  ok(avisoMigracion.length === 0,
+    'En perfil flexible no debe haber aviso de migración por usar =: ' +
+    JSON.stringify(avisoMigracion));
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 //  Resumen
 // ─────────────────────────────────────────────────────────────────────────────

@@ -503,6 +503,37 @@ async function main() {
       'ejemplo del primer comando');
   });
 
+  await prueba('PSeInt integración: configurarPerfil y obtenerPerfil existen y funcionan', () => {
+    // configurarPerfil y obtenerPerfil deben existir en el provider
+    asegurar(typeof proveedorPS.configurarPerfil === 'function',
+      'configurarPerfil debe ser función');
+    asegurar(typeof proveedorPS.obtenerPerfil === 'function',
+      'obtenerPerfil debe ser función');
+
+    // El perfil inicial debe ser estricto
+    const perfilInicial = proveedorPS.obtenerPerfil();
+    asegurar(perfilInicial.asignacionConIgual === false,
+      'perfil inicial debe ser estricto (asignacionConIgual: false)');
+
+    // Cambiar a flexible
+    proveedorPS.configurarPerfil('flexible');
+    const perfilFlexible = proveedorPS.obtenerPerfil();
+    asegurar(perfilFlexible.asignacionConIgual === true,
+      'después de configurarPerfil("flexible") asignacionConIgual debe ser true');
+
+    // Volver a estricto
+    proveedorPS.configurarPerfil('estricto');
+    const perfilEstricto = proveedorPS.obtenerPerfil();
+    asegurar(perfilEstricto.asignacionConIgual === false,
+      'después de configurarPerfil("estricto") asignacionConIgual debe ser false');
+
+    // Preset desconocido cae en estricto
+    proveedorPS.configurarPerfil('desconocido');
+    const perfilDesconocido = proveedorPS.obtenerPerfil();
+    asegurar(perfilDesconocido.asignacionConIgual === false,
+      'preset desconocido debe caer en estricto');
+  });
+
   console.log('\n' + (total - fallas) + '/' + total + ' pruebas OK');
   if (fallas > 0) process.exit(1);
 }
