@@ -49,51 +49,42 @@ identifica en qué fase está el proyecto.
       agrupación (`js/editor/history.js`) ya extraídos, con sus suites.
       `js/app.js` ya no usa `DocErrores` ni `LiteSeInt` directamente.
       Pendiente: núcleo del editor, gutter, folding, móvil, temas.
-- [x] Fase 3a — Lenguaje PSeInt, perfil estricto (`v2.2.0-beta`). Implementado:
+- [x] Fase 3a — Lenguaje PSeInt, perfil estricto (`v2.3.5-beta`). Implementado:
       diseño del objeto `perfil`, `Algoritmo/Proceso … FinAlgoritmo/FinProceso`,
       asignación `<-` (y `=` como comparador), `Escribir`/`Escribir Sin Saltar`/
       `Leer` multivariable, estructuras `Si/Sino`, `Segun`, `Mientras`,
       `Repetir…HastaQue`, `Para…Con Paso`, arreglos `Dimension` 1D/2D,
-      `SubProceso`/`Funcion` con retorno y paso por referencia, 18 funciones
-      nativas, validador con mensajes PSeInt, aviso de migración bidireccional
-      (`=` vs `<-`, y detección de sintaxis cruzada entre lenguajes),
-      documentación de comandos PSeInt en el panel de aprendizaje,
-      provider registrado en `index.html`, `onCambio` refresca el panel al
-      cambiar lenguaje, y suites de tests propias (tokenizer 25, builtins 61,
-      parser 15, runtime 15, validator 17, contract-tests extendido a 33 pruebas).
-      Pendiente (Fase 3b): golden tests y conversión implícita avanzada.
-- [x] Fase 3b — Perfil flexible y banco de ejercicios PSeInt completo (`v2.3.2-beta`).
+      `SubProceso`/`Funcion` con retorno y paso por referencia, 19 funciones nativas
+      + instrucción procedimental `Ordenar(arr[, n])`, validador con mensajes PSeInt
+      (incluyendo caso `Ordenar` sobre arreglo no dimensionado), correcciones de
+      coerción implícita de tipos, aviso de migración bidireccional, documentación
+      de comandos PSeInt en el panel de aprendizaje, provider registrado en `index.html`,
+      suites de tests propias (tokenizer 25, builtins 61, parser 15, runtime 24,
+      validator 20, golden tests 33, contract-tests 33 pruebas).
+- [x] Fase 3b — Perfil flexible y banco de ejercicios PSeInt completo (`v2.3.5-beta`).
       Implementado: selector de perfil (presets *Estricto*/*Flexible*) visible solo en
       PSeInt, `configurarPerfil`/`obtenerPerfil` en el provider, elección persistida
-      en `localStorage`; `Definir` opcional en modo flexible (auto-creación de variables
-      en el primer uso con inferencia de tipo por valor asignado); asignación con `=`
-      en perfil flexible (`asignacionConIgual: true`); palabras opcionales `Entonces`
-      y `Hacer` ya soportadas por el parser (se ignoran si no están); perfil embebido
-      en el archivo descargado (`// Perfil: Estricto`) y detectado al importar;
-      banco N1–N7 completo en `json/pseint/` (110 ejercicios PSeInt en total);
-      `Dimension` base-0 en perfil flexible; 25 golden tests de runtime;
-      documentación de perfiles en el panel de aprendizaje; 4 bugs corregidos en el
-      validador (strings, operadores Y/O, Leer con índices, scope de subprocesos).
-- [x] Fase 4 — Python con Pyodide (`core/python/`), funcional (`v2.3.2-beta`).
-      Hecho: tokenizador Python (37 keywords + 22 builtins en autocompletado,
-      `core/python/tokenizer.js`), Web Worker con Pyodide 0.26.2 (`core/python/worker.js`),
-      bridge con RuntimeHost (`core/python/bridge.js`), provider completo con contrato
-      `LanguageProvider` (`core/python/provider.js`), panel stdin `#pythonStdinPanel`,
-      opción Python en el selector de lenguaje, barra de símbolos táctiles adaptable,
+      en `localStorage`; `Definir` opcional en modo flexible; asignación con `=`
+      en perfil flexible; palabras opcionales `Entonces` y `Hacer` en el parser;
+      perfil embebido en el archivo descargado (`// Perfil: Estricto`) y detectado
+      al importar; banco N1–N7 completo en `json/pseint/` (110 ejercicios);
+      `Dimension` base-0 en perfil flexible; documentación de perfiles en el panel.
+      Pendiente: golden tests duplicados por preset (mismo programa en Estricto y Flexible).
+- [x] Fase 4 — Python con Pyodide (`core/python/`), funcional (`v2.3.5-beta`).
+      Hecho: tokenizador Python (37 keywords + 22 builtins en autocompletado),
+      Web Worker con Pyodide 0.26.2, bridge con RuntimeHost, provider completo,
+      panel stdin `#pythonStdinPanel`, barra de símbolos táctiles adaptable,
       28 pruebas de tokenizador, 10 pruebas de contrato, banco N1–N7 en `json/python/`
-      (110 ejercicios Python) con `js/ejercicios-python-data.js`; inspector de variables
-      Python; tracebacks mejorados con número de línea; documentación expandida (27 entradas
-      incluyendo métodos de string/lista, comprehensions, dict, try/except, math, f-strings,
-      enumerate/zip); validación de sintaxis con `compile()` antes de ejecutar.
+      (110 ejercicios) con metadatos completos (`numero`, `modulo`, `conceptos`,
+      `pista`, `entradaProcesoSalida`); inspector de variables Python; tracebacks
+      mejorados; validación de sintaxis con `compile()` antes de ejecutar.
       Pendiente: testing de ejecución real (requiere browser), mejoras de rendimiento.
-- [x] Fase 5 — Ejercicios multi-lenguaje (inicio, `v2.3.2-beta`).
-      Implementado: progreso separado por lenguaje en `localStorage`
-      (`code4code:exerciseProgress`, `:pseint`, `:python`), se recarga al cambiar
-      lenguaje; datos de ejercicios PSeInt/Python cargan correctamente (`data.ejercicios`,
-      paths N1-N7/N1-N6 completos); 8 nuevos tests en `run-tests.js` validando los
-      bancos PSeInt y Python (count, IDs, codigoReferencia, sintaxis). Total: 85 pruebas.
-      Pendiente: esquema multi-lenguaje (un enunciado, N soluciones), validación de
-      referencias cruzadas, estadísticas por lenguaje.
+- [x] Fase 5 — Ejercicios multi-lenguaje (inicio, `v2.3.5-beta`).
+      Implementado: progreso separado por lenguaje en `localStorage`; datos de
+      ejercicios PSeInt/Python cargados correctamente; 89 tests en suite total
+      validando los tres bancos (LiteSeInt 245 ejercicios, PSeInt 110, Python 110).
+      Pendiente: esquema multi-lenguaje (un enunciado, N soluciones), estadísticas
+      comparadas por lenguaje.
 
 ## Tareas típicas y dónde mirar
 
