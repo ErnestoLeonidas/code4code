@@ -770,6 +770,78 @@ await t('golden 33 — Ordenar arreglo de cadenas', async () => {
     `esperaba ["banana","cereza","manzana"], obtuvo ${JSON.stringify(t1)}`);
 });
 
+// ── Equivalencia por preset ──────────────────────────────────────────────────
+// Las pruebas 34-37 verifican que programas equivalentes producen la misma
+// salida en ambos perfiles (Estricto y Flexible).
+
+// 34. Suma 1..5 en estricto (Definir + <-)
+await t('golden 34 — preset estricto: suma 1 a 5 con Definir y <-', async () => {
+  const s = await ejecutar(`
+    Algoritmo suma_estricto
+      Definir i, suma Como Entero
+      suma <- 0
+      Para i <- 1 Hasta 5 Hacer
+        suma <- suma + i
+      FinPara
+      Escribir suma
+    FinAlgoritmo
+  `, [], { asignacionConIgual: false });
+  const t1 = textos(s);
+  ok(t1.length === 1 && t1[0] === '15',
+    `estricto: esperaba ["15"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 35. Suma 1..5 en flexible (sin Definir, con =)
+await t('golden 35 — preset flexible: suma 1 a 5 sin Definir con =', async () => {
+  const s = await ejecutar(`
+    Algoritmo suma_flexible
+      suma = 0
+      Para i <- 1 Hasta 5 Hacer
+        suma = suma + i
+      FinPara
+      Escribir suma
+    FinAlgoritmo
+  `, [], { asignacionConIgual: true, indicesDesde0: false });
+  const t1 = textos(s);
+  ok(t1.length === 1 && t1[0] === '15',
+    `flexible: esperaba ["15"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 36. Arreglo en estricto (índices desde 1) vs flexible (índices desde 0) —
+//     mismo dato en posición diferente.
+await t('golden 36 — arreglo en estricto: arr[1] = primer elemento', async () => {
+  const s = await ejecutar(`
+    Algoritmo arr_estricto
+      Definir arr Como Entero
+      Dimension arr[3]
+      arr[1] <- 10
+      arr[2] <- 20
+      arr[3] <- 30
+      Escribir arr[1]
+      Escribir arr[3]
+    FinAlgoritmo
+  `, [], { asignacionConIgual: false, indicesDesde0: false });
+  const t1 = textos(s);
+  ok(t1.length === 2 && t1[0] === '10' && t1[1] === '30',
+    `estricto: esperaba ["10","30"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+await t('golden 37 — arreglo en flexible: arr[0] = primer elemento', async () => {
+  const s = await ejecutar(`
+    Algoritmo arr_flexible
+      Dimension arr[3]
+      arr[0] <- 10
+      arr[1] <- 20
+      arr[2] <- 30
+      Escribir arr[0]
+      Escribir arr[2]
+    FinAlgoritmo
+  `, [], { asignacionConIgual: true, indicesDesde0: true });
+  const t1 = textos(s);
+  ok(t1.length === 2 && t1[0] === '10' && t1[1] === '30',
+    `flexible: esperaba ["10","30"], obtuvo ${JSON.stringify(t1)}`);
+});
+
 // ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------
