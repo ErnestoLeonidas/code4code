@@ -1,5 +1,36 @@
 # Changelog — Code4Code
 
+## [2.3.5-beta] - 2026-06-16
+
+### Fase 3a — ORDENAR (ordenamiento de arreglos)
+
+- `core/pseint/ast.js`: nuevo nodo `Ordenar` + función `nodoOrdenar`.
+- `core/pseint/parser.js`: detecta `Ordenar(arreglo[, n])` como instrucción
+  procedimental antes del fallback a `nodoDesconocido`.
+- `core/pseint/runtime.js`: función `ejecutarOrdenar` — ordena los primeros `n`
+  elementos de un arreglo 1D en su lugar (ascendente numérico o lexicográfico).
+  Corrección clave: los datos internos del arreglo son 1-based (`datos[1..n]`).
+- `core/pseint/provider.js`: documentación "Ordenar (arreglos)" en el panel de
+  aprendizaje con sintaxis, ejemplo ejecutable y descripción de errores.
+- `tests/pseint-golden-tests.js`: 2 nuevos golden tests (32 y 33) —
+  ordenar arreglo numérico `[5,3,1,4,2] → [1,2,3,4,5]` y cadenas
+  `["manzana","cereza","banana"] → ["banana","cereza","manzana"]`. Total: 33/33.
+
+### Fase 4 — Metadatos banco Python N1–N7
+
+- `json/python/N{1..7}.json`: los 110 ejercicios Python ahora tienen los campos
+  `numero` (formato `PY-Nn-nn`), `modulo`, `conceptos`, `pista` y
+  `entradaProcesoSalida`, igualando la riqueza de metadatos de LiteSeInt y PSeInt.
+  Generados con `scripts/enrich-python.py`.
+- `tests/run-tests.js`: 2 nuevas pruebas validan que todos los ejercicios tengan
+  `numero`/`modulo`/`conceptos` y que los adaptados tengan `pista` y EPS.
+
+### Docs
+
+- `ROADMAP.md`: actualizado al estado real v2.3.4-beta: Fase 3b y 4 marcadas como
+  completas, Fase 5 in-progress con los tres bancos existentes. Tabla de versiones
+  corregida.
+
 ## [2.3.4-beta] - 2026-06-15
 
 ### Fase 3a — Correcciones de coerción de tipos PSeInt
