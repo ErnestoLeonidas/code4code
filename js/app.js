@@ -964,7 +964,15 @@ function descargar() {
     return;
   }
 
-  const blob = new Blob([contenido], { type: "text/plain" });
+  let contenidoFinal = contenido;
+  const provider = providerActivo();
+  if (provider.id === "pseint" && typeof provider.obtenerPerfil === "function") {
+    const perfil = provider.obtenerPerfil();
+    const presetNombre = perfil.asignacionConIgual ? "Flexible" : "Estricto";
+    contenidoFinal = `// Perfil: ${presetNombre}\n${contenido}`;
+  }
+
+  const blob = new Blob([contenidoFinal], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -988,9 +996,10 @@ function mostrarAlertaImportacion(icon, title, text) {
 
 function importarArchivoPsc(file) {
   if (!file) return;
+  const esPsc = /\.psc$/i.test(file.name);
   const extension = providerActivo().extension;
   const regexExtension = new RegExp(extension.replace(".", "\\.") + "$", "i");
-  if (!regexExtension.test(file.name)) {
+  if (!regexExtension.test(file.name) && !esPsc) {
     mostrarAlertaImportacion(
       "warning",
       "Archivo no compatible",
@@ -1001,13 +1010,34 @@ function importarArchivoPsc(file) {
 
   const reader = new FileReader();
   reader.onload = () => {
-    const contenido = String(reader.result || "").replace(/^\uFEFF/, "");
+    let contenido = String(reader.result || "").replace(/^\uFEFF/, "");
+    const primeraLinea = contenido.split("\n")[0].trim();
+    const matchPerfil = /^\/\/ Perfil:\s*(Estricto|Flexible)$/i.exec(primeraLinea);
+    if (matchPerfil) {
+      const preset = matchPerfil[1].toLowerCase();
+      contenido = contenido.replace(/^[^\n]*\n?/, "");
+      if (esPsc || providerActivo().id === "pseint") {
+        if (esPsc && providerActivo().id !== "pseint") {
+          Code4Code.registro.activar("pseint");
+        }
+        const providerPseint = Code4Code.registro.activo();
+        if (typeof providerPseint.configurarPerfil === "function") {
+          providerPseint.configurarPerfil(preset);
+          try { localStorage.setItem("code4code:perfilPSeInt", preset); } catch (e) { /* ignorar */ }
+          const $perfilSelect = document.getElementById("perfilPSeInt");
+          if ($perfilSelect) $perfilSelect.value = preset;
+        }
+      }
+    } else if (esPsc && providerActivo().id !== "pseint") {
+      Code4Code.registro.activar("pseint");
+    }
+    const extUsada = esPsc ? ".psc" : extension;
     reemplazarEditorConfirmando(
       contenido,
       `Se reemplazará el contenido del editor por el archivo "${file.name}".`,
       true,
       {
-        title: `¿Importar archivo ${extension}?`,
+        title: `¿Importar archivo ${extUsada}?`,
         confirmButtonText: "Importar archivo",
       },
     );
