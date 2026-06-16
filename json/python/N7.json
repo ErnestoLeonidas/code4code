@@ -288,7 +288,7 @@
       "titulo": "Generador de tabla de multiplicar completa",
       "enunciado": "Pide al usuario un número N (entre 2 y 10). Genera e imprime la tabla de multiplicar de 1 a N de forma formateada: cada fila es un número del 1 al N y cada columna es otro número del 1 al N. Usa comprensión de listas y str.join().",
       "nivelPython": 7,
-      "dificultad": "desafio",
+      "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
