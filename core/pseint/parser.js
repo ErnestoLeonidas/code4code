@@ -27,7 +27,7 @@
           nodoDefinir, nodoAsignar, nodoLeer, nodoEscribir, nodoDimension,
           nodoSi, nodoMientras, nodoPara, nodoRepetir,
           nodoSegun, nodoCaso, nodoSubProceso, nodoRetornar, nodoLlamar,
-          nodoDesconocido, module */
+          nodoOrdenar, nodoDesconocido, module */
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Helpers internos
@@ -138,6 +138,11 @@ function _parsearLineaSimple(lineaNorm, lineaRaw, idx) {
   // Llamar SubProceso(...)
   if (/^llamar\s+/i.test(linea)) {
     return nodoLlamar(linea, loc);
+  }
+
+  // Ordenar(arreglo) o Ordenar(arreglo, n)
+  if (/^ordenar\s*\(/i.test(linea)) {
+    return nodoOrdenar(linea, loc);
   }
 
   // Asignación: variable <- expresion  (también arr[i] <- expr)

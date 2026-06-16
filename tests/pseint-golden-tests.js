@@ -726,6 +726,50 @@ await t('golden 31 — Segun con etiquetas de cadena ("Hola", "mundo")', async (
     `esperaba ["coincide Hola"], obtuvo ${JSON.stringify(t1)}`);
 });
 
+// 32. Ordenar arreglo numérico
+await t('golden 32 — Ordenar arreglo numérico', async () => {
+  const s = await ejecutar(`
+    Algoritmo ordenar_nums
+      Definir arr Como Entero
+      Dimension arr[5]
+      arr[1] <- 5
+      arr[2] <- 3
+      arr[3] <- 1
+      arr[4] <- 4
+      arr[5] <- 2
+      Ordenar(arr, 5)
+      Escribir arr[1]
+      Escribir arr[2]
+      Escribir arr[3]
+      Escribir arr[4]
+      Escribir arr[5]
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 5 && t1[0] === '1' && t1[1] === '2' && t1[2] === '3' && t1[3] === '4' && t1[4] === '5',
+    `esperaba ["1","2","3","4","5"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 33. Ordenar arreglo de cadenas
+await t('golden 33 — Ordenar arreglo de cadenas', async () => {
+  const s = await ejecutar(`
+    Algoritmo ordenar_cads
+      Definir arr Como Cadena
+      Dimension arr[3]
+      arr[1] <- "manzana"
+      arr[2] <- "cereza"
+      arr[3] <- "banana"
+      Ordenar(arr)
+      Escribir arr[1]
+      Escribir arr[2]
+      Escribir arr[3]
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 3 && t1[0] === 'banana' && t1[1] === 'cereza' && t1[2] === 'manzana',
+    `esperaba ["banana","cereza","manzana"], obtuvo ${JSON.stringify(t1)}`);
+});
+
 // ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------

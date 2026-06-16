@@ -242,6 +242,12 @@ class RuntimePSeInt {
             publicarVariables();
             break;
 
+          case 'Ordenar':
+            contarPaso(lineaIdx);
+            ejecutarOrdenar(nodo, lineaIdx);
+            publicarVariables();
+            break;
+
           case 'Desconocido':
             throw new Error(`Instrucción no reconocida: "${nodo.texto}"`);
 
@@ -625,6 +631,50 @@ class RuntimePSeInt {
       const resto = linea.replace(/^retornar\s*/i, '').trim();
       const valor = resto ? evaluador.evaluar(resto) : undefined;
       throw new _RetornarExcepcion(valor);
+    }
+
+    // ── Ordenar ───────────────────────────────────────────────────────────────
+
+    function ejecutarOrdenar(nodo) {
+      const linea = nodo.texto.trim();
+      const m = linea.match(/^ordenar\s*\(\s*(\w+)\s*(?:,\s*(.+?))?\s*\)\s*$/i);
+      if (!m) {
+        throw new Error(
+          `Sintaxis inválida en Ordenar: "${linea}". Use: Ordenar(arreglo) o Ordenar(arreglo, n)`
+        );
+      }
+
+      const nombre = m[1];
+      const clave  = nombre.toLowerCase();
+      const arr    = arreglos.get(clave);
+      if (!arr) {
+        throw new Error(`"${nombre}" no es un arreglo declarado con Dimension.`);
+      }
+      if (arr.dimensiones.length > 1) {
+        throw new Error(`Ordenar solo opera sobre arreglos unidimensionales.`);
+      }
+
+      let n = arr.dimensiones[0];
+      if (m[2]) {
+        const nVal = evaluador.evaluar(m[2].trim());
+        if (typeof nVal !== 'number' || isNaN(nVal) || nVal < 0) {
+          throw new Error(
+            `El segundo argumento de Ordenar debe ser un número no negativo.`
+          );
+        }
+        n = Math.min(Math.trunc(nVal), arr.dimensiones[0]);
+      }
+
+      // datos[0] no se usa (arreglo 1-based internamente aunque el perfil sea 0-based).
+      // Los elementos válidos son datos[1] .. datos[n].
+      const datos = arr.datos;
+      const slice = datos.slice(1, n + 1).sort(function(a, b) {
+        if (typeof a === 'number' && typeof b === 'number') return a - b;
+        return String(a).localeCompare(String(b));
+      });
+      for (let i = 0; i < n; i++) {
+        datos[i + 1] = slice[i];
+      }
     }
 
     // ── Llamar ────────────────────────────────────────────────────────────────

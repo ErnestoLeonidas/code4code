@@ -148,6 +148,11 @@ function nodoLlamar(texto, loc) {
   return { tipo: 'Llamar', texto, loc };
 }
 
+/** Ordenar(arreglo) o Ordenar(arreglo, n) */
+function nodoOrdenar(texto, loc) {
+  return { tipo: 'Ordenar', texto, loc };
+}
+
 /** Nodo comodín para instrucciones no reconocidas */
 function nodoDesconocido(texto, loc) {
   return { tipo: 'Desconocido', texto, loc };
@@ -175,6 +180,7 @@ if (typeof module !== 'undefined' && module.exports) {
     nodoSubProceso,
     nodoRetornar,
     nodoLlamar,
+    nodoOrdenar,
     nodoDesconocido,
   };
 }
