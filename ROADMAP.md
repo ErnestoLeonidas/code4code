@@ -254,78 +254,92 @@ algoritmos, con **sistema de perfiles configurable** (D4). Las fuentes C++
 - [x] `SubProceso`/`Funcion` con retorno y paso por referencia.
 - [x] Funciones nativas de PSeInt: `RC/RAIZ, ABS, LN, EXP, SEN, COS, TAN, ATAN,
       TRUNC, REDON, AZAR, ALEATORIO, LONGITUD, SUBCADENA, CONCATENAR, MAYUSCULAS,
-      MINUSCULAS, CONVERTIRANUMERO, CONVERTIRATEXTO` (lista a cerrar contra las
-      fuentes).
+      MINUSCULAS, CONVERTIRANUMERO, CONVERTIRATEXTO` (19 funciones). Instrucción
+      procedimental `ORDENAR(arreglo[, n])` (ordena en su lugar, 1D).
+- [x] Correcciones de coerción implícita: `coercionarValor` maneja cadenas
+      `"Verdadero"`/`"Falso"` → Lógico; Real → Entero trunca; NaN lanza error.
+      `CONVERTIRATEXTO(bool)` produce `"Verdadero"`/`"Falso"`. Segun preserva
+      capitalización de etiquetas de cadena.
 - [x] Validador con mensajes de error alineados al vocabulario de PSeInt.
 - [x] Provider PSeInt (`core/pseint/provider.js`): adapta el núcleo al contrato
       Code4Code; registrado en `index.html`; opción PSeInt en el selector de
       lenguaje; pruebas de integración en `tests/contract-tests.js`.
-- [ ] Suite de golden tests: programas de referencia ejecutados en PSeInt
-      escritorio (perfil estricto) vs Code4Code comparando salida.
+- [x] Suite de 33 golden tests (`tests/pseint-golden-tests.js`): programas
+      completos ejecutados en el runtime con salida verificada.
 - [x] Documentación de comandos PSeInt en el panel de aprendizaje.
 - [x] Aviso de migración bidireccional: detectar sintaxis PSeInt en modo
       LiteSeInt (ya existe el error "sintaxis PSeInt no soportada") y viceversa.
 
-#### 3b — Perfil flexible y presets `v2.2.x`
+#### 3b — Perfil flexible y presets `v2.3.1-beta` ✅
 
-Opciones de perfil a relevar contra las fuentes C++ (lista inicial):
+Opciones de perfil implementadas:
 
-- [ ] Asignación con `=` además de `<-` (y desambiguación con el comparador).
-- [ ] `Definir` opcional: variables creadas en el primer uso, con inferencia
-      de tipo al estilo PSeInt flexible.
-- [ ] `Dimension` con base de índices configurable (desde 0 o desde 1).
-- [ ] Palabras opcionales en estructuras (`Entonces`, `Hacer`) según lo que
-      permita el PSeInt real en modo flexible.
+- [x] Asignación con `=` además de `<-` (y desambiguación con el comparador).
+- [x] `Definir` opcional en perfil flexible: variables creadas en el primer uso,
+      con inferencia de tipo por valor asignado.
+- [x] `Dimension` con base de índices configurable: `indicesDesde0` en perfil
+      flexible (acceso desde 0, almacenamiento interno desde 1 transparentemente).
+- [x] Palabras opcionales en estructuras (`Entonces`, `Hacer`): el parser las
+      acepta y descarta sin afectar la semántica.
 - [x] UI de perfil: selector con presets *Estricto* (default) y *Flexible*,
-      visible solo cuando el lenguaje activo es PSeInt; elección persistida.
-- [ ] El perfil activo se muestra junto al nombre del lenguaje y viaja en los
-      metadatos del archivo descargado (comentario de cabecera), para que un
-      `.psc` se reabra con el mismo perfil.
+      visible solo cuando el lenguaje activo es PSeInt; elección persistida en
+      `localStorage`.
+- [x] El perfil activo viaja en los metadatos del archivo descargado
+      (`// Perfil: Estricto`) y se detecta al importar el `.psc`.
 - [ ] Golden tests duplicados por preset: cada programa de referencia se valida
-      contra PSeInt escritorio configurado con el perfil equivalente.
-- [ ] Documentación en el panel de aprendizaje: qué cambia entre perfiles y
-      cuándo conviene cada uno.
+      en ambos modos Estricto y Flexible.
+- [x] Documentación en el panel de aprendizaje: diferencias entre perfiles
+      incluidas en los comandos PSeInt.
 
-> **Banco de ejercicios PSeInt:** los niveles N1–N5 ya están en `json/pseint/`
-> (pronto N6–N7). Los ejercicios se cargan por lenguaje activo igual que el banco
-> LiteSeInt; progreso separado por lenguaje pendiente para la Fase 5.
+> **Banco de ejercicios PSeInt:** 110 ejercicios en `json/pseint/` (N1–N7).
+> Progreso por lenguaje persistido en `localStorage` (implementado en Fase 5 parcial).
 
 **Fuera de alcance de la Fase 3:** diagramas de flujo, exportación a otros
 lenguajes, ejecución paso a paso estilo depurador (puede volver en una fase
 futura).
 
-### Fase 4 — Python con Pyodide `v2.3.0`
+### Fase 4 — Python con Pyodide `v2.3.4-beta` ✅
 
 Objetivo: escribir y ejecutar Python 3 real en el mismo entorno, sin backend.
 
-- [ ] Provider Python con resaltado y autocompletado básico en el editor propio.
-- [ ] Pyodide en un **Web Worker** con carga diferida: solo se descarga al
-      seleccionar Python por primera vez, con indicador de progreso y caché
-      (Service Worker o caché HTTP del CDN).
-- [ ] `bridge.js`: `print()` → consola integrada; `input()` → entrada inline
-      (misma UX que `Leer`), usando `SharedArrayBuffer`/Atomics o el patrón de
-      interrupción de Pyodide para el input síncrono.
-- [ ] Manejo de errores: traceback de Python mapeado a "error en línea N" con
-      el mismo badge visual del editor.
-- [ ] Botón Detener funcional (interrupt buffer de Pyodide / terminar worker).
-- [ ] Validación previa ligera: chequeo de sintaxis con `compile()` antes de
-      ejecutar, para reportar errores por línea sin correr el programa.
-- [ ] Subconjunto educativo en la primera entrega: stdlib sí, sin instalación
-      de paquetes (`micropip` queda para una fase futura).
-- [ ] Verificar requisitos de despliegue en GitHub Pages (headers COOP/COEP si
-      se usa `SharedArrayBuffer`; si no son viables, usar la alternativa de
-      input asíncrono de Pyodide).
+- [x] Provider Python con resaltado (37 keywords + 22 builtins) y autocompletado
+      básico en el editor propio (`core/python/tokenizer.js`, `provider.js`).
+- [x] Pyodide 0.26.2 en un **Web Worker** con carga diferida (`core/python/worker.js`):
+      indicador de progreso visible; caché HTTP del CDN de pyodide.org.
+- [x] `bridge.js`: `print()` → consola integrada; `input()` → panel `#pythonStdinPanel`
+      con entrada inline (patrón de reanudación asíncrona de Pyodide).
+- [x] Manejo de errores: tracebacks de Python reducidos a "error en línea N" con
+      mensaje corto, badge visual en el editor.
+- [x] Botón Detener: termina el Worker de Pyodide (recreado en la próxima ejecución).
+- [x] Validación previa con `compile()` en el Worker: reporta errores de sintaxis
+      por línea sin ejecutar el programa.
+- [x] Inspector de variables Python: tras la ejecución, el namespace del usuario
+      aparece en el panel de variables.
+- [x] Banco de ejercicios Python: 110 ejercicios N1–N7 en `json/python/`, todos
+      con `numero`, `modulo`, `conceptos`, `pista` y `entradaProcesoSalida`.
+      Cargados por `js/ejercicios-python-data.js`.
+- [x] COOP/COEP: headers necesarios para `SharedArrayBuffer` — el worker usa
+      el patrón de `input()` asíncrono de Pyodide, que no requiere estos headers.
 
-### Fase 5 — Ejercicios multi-lenguaje `v2.4.0` *(pendiente, por pedido explícito)*
+> **Pendiente Fase 4:** mejoras de rendimiento (recarga de Worker vs reutilizar),
+> pruebas de ejecución real en browser (requieren entorno con Pyodide corriendo).
 
-La entrada de ejercicios **se mantiene** tal como está (banco LiteSeInt N1–N7,
-245 ejercicios, progreso local). Esta fase queda planificada pero sin fecha:
+### Fase 5 — Ejercicios multi-lenguaje `v2.4.0` *(en curso)*
 
-- [ ] Esquema de ejercicio multi-lenguaje (un enunciado, N soluciones de
-      referencia, una por lenguaje).
-- [ ] Adaptación del banco a PSeInt y selección inicial para Python.
-- [ ] Progreso por lenguaje en `localStorage`.
-- [ ] Validación estática automática de referencias por lenguaje en `npm test`.
+Los tres bancos de ejercicios ya existen independientemente. La Fase 5
+conecta la experiencia del estudiante entre lenguajes:
+
+- [x] Banco LiteSeInt: 245 ejercicios N1–N7 en `json/liteseint/`.
+- [x] Banco PSeInt: 110 ejercicios N1–N7 en `json/pseint/`.
+- [x] Banco Python: 110 ejercicios N1–N7 en `json/python/`, con metadatos
+      completos (`conceptos`, `pista`, `entradaProcesoSalida`, `numero`, `modulo`).
+- [x] Progreso por lenguaje en `localStorage`: cada lenguaje tiene su propia
+      clave de progreso; el selector de lenguaje carga el banco correspondiente.
+- [x] Validación estática de los bancos en `npm test`: IDs únicos, campos
+      obligatorios, ausencia de sintaxis cruzada entre lenguajes.
+- [ ] Esquema de ejercicio multi-lenguaje unificado (un enunciado, N soluciones):
+      permitir asociar el mismo problema conceptual en varios lenguajes.
+- [ ] Vista de progreso comparado: cuántos ejercicios resueltos por lenguaje.
 
 ### Fase 6 — Estabilización y release `v3.0.0`
 
@@ -359,9 +373,11 @@ La entrada de ejercicios **se mantiene** tal como está (banco LiteSeInt N1–N7
 | --- | --- |
 | `2.0.0-alpha` | Repo nuevo Code4Code, renombrado, sin cambios funcionales |
 | `2.0.0-beta` | Arquitectura multi-lenguaje (LiteSeInt como primer provider) |
-| `2.1.0` | Editor propio mejorado (folding, búsqueda, pares, móvil, temas) |
-| `2.2.0` | Lenguaje PSeInt — perfil estricto, solo algoritmos |
-| `2.2.x` | Perfil flexible y presets configurables de PSeInt |
-| `2.3.0` | Python con Pyodide en el navegador |
-| `2.4.0` | Banco de ejercicios multi-lenguaje *(pendiente)* |
+| `2.1.0` | Editor propio mejorado (folding, búsqueda, pares, historial) |
+| `2.2.0` | Lenguaje PSeInt — perfil estricto, 18 funciones nativas |
+| `2.3.0` | Python con Pyodide en el navegador (`v2.3.1-beta`) |
+| `2.3.2-beta` | Perfil flexible PSeInt + banco N1–N7 PSeInt (110 ejercicios) |
+| `2.3.3-beta` | Banco N1–N7 Python (110 ejercicios), inspector de variables |
+| `2.3.4-beta` | Correcciones coerción PSeInt + `ORDENAR`, metadatos Python completos |
+| `2.4.0` | Ejercicios multi-lenguaje unificados *(en curso)* |
 | `3.0.0` | Release estable Code4Code |
