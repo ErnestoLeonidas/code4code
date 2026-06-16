@@ -425,6 +425,13 @@
       errores: 'Acceder a un índice fuera del rango dimensionado, olvidar Dimension antes de usar el arreglo, o invertir filas y columnas en una matriz.'
     },
     {
+      nombre: 'Ordenar (arreglos)',
+      sintaxis: 'Ordenar(arreglo)      // ordena todo el arreglo\nOrdenar(arreglo, n)   // ordena los primeros n elementos',
+      ejemplo: 'Algoritmo ordenar_ejemplo\n  Definir nums Como Entero\n  Definir i Como Entero\n  Dimension nums[5]\n  nums[1] <- 5\n  nums[2] <- 3\n  nums[3] <- 1\n  nums[4] <- 4\n  nums[5] <- 2\n  Ordenar(nums)\n  Para i <- 1 Hasta 5 Hacer\n    Escribir nums[i]\n  FinPara\nFinAlgoritmo',
+      descripcion: 'Ordena los elementos de un arreglo unidimensional en orden ascendente (numérico o lexicográfico). Modifica el arreglo en su lugar. El parámetro n limita cuántos elementos se ordenan desde el inicio.',
+      errores: 'Llamar Ordenar sobre una matriz 2D (solo funciona con arreglos 1D), o usar un nombre de variable que no fue declarado con Dimension.'
+    },
+    {
       nombre: 'SubProceso / FinSubProceso',
       sintaxis: 'SubProceso nombre(param1, param2)\n  instrucciones\nFinSubProceso\n\n// Con parámetro por referencia:\nSubProceso nombre(Por Referencia param)\n  instrucciones\nFinSubProceso',
       ejemplo: 'Algoritmo uso_subproceso\n  Llamar saludar("Ana")\nFinAlgoritmo\n\nSubProceso saludar(nombre)\n  Escribir "Hola, ", nombre\nFinSubProceso',
