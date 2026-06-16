@@ -14,6 +14,11 @@
   const EJERCICIOS_JSON_PATHS = [
     'json/pseint/N1.json',
     'json/pseint/N2.json',
+    'json/pseint/N3.json',
+    'json/pseint/N4.json',
+    'json/pseint/N5.json',
+    'json/pseint/N6.json',
+    'json/pseint/N7.json',
   ];
 
   const EJERCICIOS = [];
@@ -43,7 +48,8 @@
 
   function ejerciciosDesdeData(data, path) {
     const experience = data && data.experience ? data.experience : {};
-    const items = data && Array.isArray(data.exercises) ? data.exercises : [];
+    const items = data && (Array.isArray(data.ejercicios) ? data.ejercicios
+                         : Array.isArray(data.exercises)  ? data.exercises : []);
     return items.map((item) => normalizarEjercicio(item, experience, path));
   }
 

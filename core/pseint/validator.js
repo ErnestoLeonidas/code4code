@@ -85,7 +85,10 @@ function _parsearLadoIzqAsignar(texto) {
 function _parsearLeer(texto) {
   const m = texto.match(/^leer\s+(.+)$/i);
   if (!m) return [];
-  return m[1].split(',').map(function(n) { return n.trim().toLowerCase(); }).filter(Boolean);
+  return m[1].split(',').map(function(n) {
+    // Extraer nombre base sin índices (arr[i] → arr)
+    return n.trim().toLowerCase().replace(/\[.*$/, '');
+  }).filter(Boolean);
 }
 
 /**
@@ -93,12 +96,23 @@ function _parsearLeer(texto) {
  * Busca patrones "nombre(" que no sean keywords.
  * Devuelve array de nombres en minúsculas.
  */
+// Palabras que pueden aparecer seguidas de '(' sin ser funciones (operadores, etc.)
+var _KEYWORDS_NO_FUNCION = new Set([
+  'y', 'o', 'no', 'mod', 'div', 'si', 'mientras', 'para', 'segun', 'repetir',
+  'escribir', 'leer', 'definir', 'llamar', 'retornar', 'funcion', 'subproceso',
+]);
+
 function _extraerLlamadasFuncion(texto) {
+  // Eliminar strings entre comillas dobles para no detectar patrones dentro de ellos.
+  const sinStrings = texto.replace(/"(?:[^"\\]|\\.)*"/g, '""');
   const resultado = [];
   const re = /([\wáéíóúüñÁÉÍÓÚÜÑ_]+)\s*\(/gi;
   let m;
-  while ((m = re.exec(texto)) !== null) {
-    resultado.push(m[1].toLowerCase());
+  while ((m = re.exec(sinStrings)) !== null) {
+    const nombre = m[1].toLowerCase();
+    if (!_KEYWORDS_NO_FUNCION.has(nombre)) {
+      resultado.push(nombre);
+    }
   }
   return resultado;
 }
@@ -432,6 +446,15 @@ function _validarSubprocesos(subprocesos, ctx) {
     // Crear tabla local para este subproceso
     const tablaLocal = new TablaPSeInt();
 
+    // Registrar variable de retorno (sin tipo) para que el validador
+    // no la marque como "no definida". El tipo lo asigna el Definir
+    // explícito dentro del cuerpo, si existe, sin error de duplicado
+    // (el chequeo de duplicados solo aplica cuando tipo !== null).
+    if (sp.varRetorno) {
+      tablaLocal.definir(sp.varRetorno, null, sp.loc ? sp.loc.linea : 0);
+      tablaLocal.inicializar(sp.varRetorno);
+    }
+
     // Registrar parámetros si los hay
     if (sp.paramTexto) {
       const params = sp.paramTexto.split(',');
@@ -450,20 +473,50 @@ function _validarSubprocesos(subprocesos, ctx) {
       }
     }
 
-    // Pre-recolectar Definir/Dimension dentro del subproceso
-    const ctxLocal = {
-      errores: ctx.errores,   // compartir la lista global de errores
+    // Pre-recolectar Definir/Dimension para saber si el SP usa Definir y
+    // resolver arreglos (usa tablaLocal como tabla de pre-scan).
+    const ctxPreScan = {
+      errores: [],              // descartar errores del pre-scan
       tablaGlobal: tablaLocal,
-      hayDefinir: tablaLocal.variables.size > 0, // si tiene params, activa verificación
+      hayDefinir: tablaLocal.variables.size > 0,
       arreglosDimensionados: new Set(ctx.arreglosDimensionados),
       subprocesos: ctx.subprocesos,
       perfil: ctx.perfil || {},
     };
+    _recolectarDeclaraciones(sp.cuerpo, ctxPreScan);
+    if (ctx.hayDefinir) ctxPreScan.hayDefinir = true;
 
-    _recolectarDeclaraciones(sp.cuerpo, ctxLocal);
+    // Tabla limpia para la validación (igual que hace el cuerpo principal),
+    // pero con params y varRetorno ya registrados.
+    const tablaValidacion = new TablaPSeInt();
+    const paramsComoArreglos = new Set(ctxPreScan.arreglosDimensionados);
+    if (sp.varRetorno) {
+      tablaValidacion.definir(sp.varRetorno, null, sp.loc ? sp.loc.linea : 0);
+      tablaValidacion.inicializar(sp.varRetorno);
+    }
+    if (sp.paramTexto) {
+      const params = sp.paramTexto.split(',');
+      for (let j = 0; j < params.length; j++) {
+        const param = params[j].trim();
+        if (!param) continue;
+        const mParam = param.match(/([\wáéíóúüñÁÉÍÓÚÜÑ_]+)\s+como\s+(\S+)$/i);
+        const mSimple = param.match(/([\wáéíóúüñÁÉÍÓÚÜÑ_]+)$/i);
+        const nomParam = (mParam ? mParam[1] : mSimple ? mSimple[1] : '').toLowerCase();
+        if (mParam) tablaValidacion.definir(nomParam, mParam[2].toLowerCase(), sp.loc ? sp.loc.linea : 0);
+        else if (mSimple && nomParam) tablaValidacion.definir(nomParam, 'entero', sp.loc ? sp.loc.linea : 0);
+        // Los parámetros pueden ser arreglos pasados por referencia
+        if (nomParam) paramsComoArreglos.add(nomParam);
+      }
+    }
 
-    // Heredar el flag hayDefinir del contexto global si aplica
-    if (ctx.hayDefinir) ctxLocal.hayDefinir = true;
+    const ctxLocal = {
+      errores: ctx.errores,
+      tablaGlobal: tablaValidacion,
+      hayDefinir: ctxPreScan.hayDefinir,
+      arreglosDimensionados: paramsComoArreglos,
+      subprocesos: ctx.subprocesos,
+      perfil: ctx.perfil || {},
+    };
 
     _validarNodos(sp.cuerpo, ctxLocal, null);
   }

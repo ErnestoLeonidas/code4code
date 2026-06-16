@@ -525,6 +525,7 @@ function initLanguageSelect() {
       p.classList.toggle('active', p.dataset.val === '');
     });
     ejercicioSeleccionadoId = null;
+    cargarProgreso();
     poblarFiltroNivel();
     renderizarListaEjercicios();
     renderizarResumenProgreso();
@@ -2925,13 +2926,24 @@ const DOC_ERRORES_COMUNES = [
   },
 ];
 
-const PROGRESO_KEY = "code4code:exerciseProgress";
+const PROGRESO_KEY_LITESEINT = "code4code:exerciseProgress";
+const PROGRESO_KEYS = {
+  liteseint: PROGRESO_KEY_LITESEINT,
+  pseint:    "code4code:exerciseProgress:pseint",
+  python:    "code4code:exerciseProgress:python",
+};
 const ESTADOS_PROGRESO = ["pendiente", "en-curso", "completado"];
 const ESTADO_LABEL = {
   "pendiente": "Pendiente",
   "en-curso": "En curso",
   "completado": "Completado",
 };
+
+function progresoKeyActivo() {
+  const id = (window.Code4Code && window.Code4Code.registro)
+    ? (window.Code4Code.registro.activo() || {}).id : null;
+  return PROGRESO_KEYS[id] || PROGRESO_KEY_LITESEINT;
+}
 
 let progresoEjercicios = {};
 let ejercicioSeleccionadoId = null;
@@ -2955,7 +2967,7 @@ async function cargarBancoEjerciciosDesdeJson() {
 
 function cargarProgreso() {
   try {
-    const raw = lsGet(PROGRESO_KEY);
+    const raw = lsGet(progresoKeyActivo());
     progresoEjercicios = raw ? JSON.parse(raw) : {};
     if (typeof progresoEjercicios !== "object" || progresoEjercicios === null) {
       progresoEjercicios = {};
@@ -2967,7 +2979,7 @@ function cargarProgreso() {
 
 function guardarProgreso() {
   try {
-    lsSet(PROGRESO_KEY, JSON.stringify(progresoEjercicios));
+    lsSet(progresoKeyActivo(), JSON.stringify(progresoEjercicios));
   } catch (_) {
     /* ignorar */
   }

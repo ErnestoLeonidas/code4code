@@ -1351,6 +1351,142 @@ test('detener durante Leer marca la ejecucion como detenida', async () => {
   assert.deepStrictEqual(salida, []);
 });
 
+// =====================================================
+// Banco de ejercicios PSeInt (Fase 3 / Fase 5)
+// =====================================================
+
+function loadPSeIntEjercicios() {
+  const raiz = path.resolve(__dirname, '..');
+  const ctx = { console, setTimeout, clearTimeout, Promise };
+  vm.createContext(ctx);
+  const archivos = [
+    'core/pseint/tokenizer.js',
+    'core/pseint/ast.js',
+    'core/pseint/builtins.js',
+    'core/pseint/symbol-table.js',
+    'core/pseint/parser.js',
+    'core/pseint/validator.js',
+    'core/pseint/expression-evaluator.js',
+    'core/pseint/runtime.js',
+    'js/ejercicios-pseint-data.js',
+  ];
+  for (const rel of archivos) {
+    vm.runInContext(fs.readFileSync(path.join(raiz, rel), 'utf8'), ctx, { filename: rel });
+  }
+  const ejJsonPaths = [
+    'json/pseint/N1.json', 'json/pseint/N2.json', 'json/pseint/N3.json',
+    'json/pseint/N4.json', 'json/pseint/N5.json', 'json/pseint/N6.json',
+    'json/pseint/N7.json',
+  ];
+  const ejercicios = ejJsonPaths.flatMap((p) => {
+    const data = JSON.parse(fs.readFileSync(path.join(raiz, p), 'utf8'));
+    return ctx.EjerciciosPSeInt.ejerciciosDesdeData(data, p);
+  });
+  ctx.EjerciciosPSeInt.instalarBanco(ejercicios);
+  return ctx;
+}
+
+function loadPythonEjercicios() {
+  const raiz = path.resolve(__dirname, '..');
+  const ctx = { console, setTimeout, clearTimeout, Promise };
+  vm.createContext(ctx);
+  vm.runInContext(
+    fs.readFileSync(path.join(raiz, 'js/ejercicios-python-data.js'), 'utf8'), ctx,
+    { filename: 'ejercicios-python-data.js' });
+  const ejJsonPaths = [
+    'json/python/N1.json', 'json/python/N2.json', 'json/python/N3.json',
+    'json/python/N4.json', 'json/python/N5.json', 'json/python/N6.json',
+  ];
+  const ejercicios = ejJsonPaths.flatMap((p) => {
+    const data = JSON.parse(fs.readFileSync(path.join(raiz, p), 'utf8'));
+    return ctx.EjerciciosPython.ejerciciosDesdeData(data, p);
+  });
+  ctx.EjerciciosPython.instalarBanco(ejercicios);
+  return ctx;
+}
+
+test('banco PSeInt: carga 110 ejercicios de N1 a N7', () => {
+  const ctx = loadPSeIntEjercicios();
+  const ej = ctx.EjerciciosPSeInt.EJERCICIOS;
+  assert.strictEqual(ej.length, 110,
+    `se esperaban 110 ejercicios PSeInt, se obtuvieron ${ej.length}`);
+});
+
+test('banco PSeInt: IDs únicos y con prefijo ps-', () => {
+  const ctx = loadPSeIntEjercicios();
+  const vistos = new Set();
+  for (const e of ctx.EjerciciosPSeInt.EJERCICIOS) {
+    assert(!vistos.has(e.id), `ID duplicado: ${e.id}`);
+    assert(/^ps-/.test(e.id), `ID sin prefijo ps-: ${e.id}`);
+    vistos.add(e.id);
+  }
+});
+
+test('banco PSeInt: todos los adaptados pasan validarPSeInt', () => {
+  const ctx = loadPSeIntEjercicios();
+  const adaptados = ctx.EjerciciosPSeInt.listarAdaptados().filter((e) => e.codigoReferencia);
+  assert.ok(adaptados.length > 0, 'no hay ejercicios adaptados con codigoReferencia');
+  for (const e of adaptados) {
+    const errores = ctx.validarPSeInt(e.codigoReferencia, {});
+    assert.strictEqual(errores.length, 0,
+      `${e.id} tiene errores estáticos: ${JSON.stringify(errores.slice(0, 2))}`);
+  }
+});
+
+test('banco PSeInt: ejercicios no contienen sintaxis LiteSeInt prohibida', () => {
+  const ctx = loadPSeIntEjercicios();
+  for (const e of ctx.EjerciciosPSeInt.listarAdaptados()) {
+    const c = e.codigoReferencia || '';
+    assert(!/\bProceso\b/.test(c), `${e.id}: contiene "Proceso" (LiteSeInt)`);
+    assert(!/\bFinProceso\b/.test(c), `${e.id}: contiene "FinProceso" (LiteSeInt)`);
+    assert(!/\bDefinir\s+\w+\s+Como\s+Caracter\b/i.test(c),
+      `${e.id}: usa "Caracter" en lugar de "Cadena"`);
+  }
+});
+
+// =====================================================
+// Banco de ejercicios Python (Fase 4 / Fase 5)
+// =====================================================
+
+test('banco Python: carga 95 ejercicios de N1 a N6', () => {
+  const ctx = loadPythonEjercicios();
+  const ej = ctx.EjerciciosPython.EJERCICIOS;
+  assert.strictEqual(ej.length, 95,
+    `se esperaban 95 ejercicios Python, se obtuvieron ${ej.length}`);
+});
+
+test('banco Python: IDs únicos y con prefijo py-', () => {
+  const ctx = loadPythonEjercicios();
+  const vistos = new Set();
+  for (const e of ctx.EjerciciosPython.EJERCICIOS) {
+    assert(!vistos.has(e.id), `ID duplicado: ${e.id}`);
+    assert(/^py-/.test(e.id), `ID sin prefijo py-: ${e.id}`);
+    vistos.add(e.id);
+  }
+});
+
+test('banco Python: todos los adaptados tienen codigoReferencia', () => {
+  const ctx = loadPythonEjercicios();
+  const adaptados = ctx.EjerciciosPython.listarAdaptados();
+  assert.ok(adaptados.length > 0, 'no hay ejercicios Python adaptados');
+  for (const e of adaptados) {
+    assert(e.codigoReferencia && e.codigoReferencia.trim().length > 0,
+      `${e.id} no tiene codigoReferencia`);
+  }
+});
+
+test('banco Python: ejercicios no contienen sintaxis PSeInt o LiteSeInt', () => {
+  const ctx = loadPythonEjercicios();
+  for (const e of ctx.EjerciciosPython.listarAdaptados()) {
+    const c = e.codigoReferencia || '';
+    assert(!/\bAlgoritmo\b/.test(c), `${e.id}: contiene "Algoritmo" (PSeInt)`);
+    assert(!/\bFinAlgoritmo\b/.test(c), `${e.id}: contiene "FinAlgoritmo" (PSeInt)`);
+    assert(!/\bProceso\b/.test(c), `${e.id}: contiene "Proceso" (LiteSeInt)`);
+    assert(!/\bEscribir\b/.test(c), `${e.id}: contiene "Escribir" (PSeInt/LiteSeInt)`);
+    assert(!/\bLeer\b/.test(c), `${e.id}: contiene "Leer" (PSeInt/LiteSeInt)`);
+  }
+});
+
 (async () => {
   let fallas = 0;
 

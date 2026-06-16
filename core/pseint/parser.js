@@ -469,11 +469,13 @@ function parsearPSeInt(codigo, perfil) {
       let nombreSP = 'desconocido';
       let paramTexto = '';
 
-      // Con valor de retorno: SubProceso retorno <- Nombre(params)
-      const matchRetorno = lineaLimpia.match(/^(?:subproceso|funcion)\s+\w+\s*<-\s*(\w+)\s*\(([^)]*)\)/i);
+      // Con valor de retorno: SubProceso varRetorno <- Nombre(params)
+      let varRetorno = null;
+      const matchRetorno = lineaLimpia.match(/^(?:subproceso|funcion)\s+(\w+)\s*<-\s*(\w+)\s*\(([^)]*)\)/i);
       if (matchRetorno) {
-        nombreSP = matchRetorno[1].toLowerCase();
-        paramTexto = matchRetorno[2].trim();
+        varRetorno = matchRetorno[1].toLowerCase();
+        nombreSP = matchRetorno[2].toLowerCase();
+        paramTexto = matchRetorno[3].trim();
       } else {
         // Sin valor de retorno: SubProceso Nombre(params) o SubProceso Nombre()
         const matchSimple = lineaLimpia.match(/^(?:subproceso|funcion)\s+(\w+)\s*\(([^)]*)\)/i);
@@ -494,6 +496,7 @@ function parsearPSeInt(codigo, perfil) {
       dentroSubProceso = false;
 
       const spNodo = nodoSubProceso(nombreSP, paramTexto, cuerpSP, loc);
+      if (varRetorno) spNodo.varRetorno = varRetorno;
       subprocesos[nombreSP] = spNodo;
       continue;
     }

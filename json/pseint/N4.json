@@ -19,7 +19,14 @@
       "dificultad": "basico",
       "gradoAyuda": "guiado",
       "titulo": "Llenar y mostrar un arreglo de 5 elementos",
-      "conceptos": ["Dimension", "Para", "FinPara", "arreglo 1D", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "arreglo 1D",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "Declara un arreglo de 5 enteros. Pide al usuario que ingrese cada elemento usando un ciclo Para (índices del 1 al 5). Luego recorre el arreglo con otro ciclo Para y muestra cada elemento con su posición.",
       "entradaProcesoSalida": {
         "entrada": "5 números enteros ingresados por el usuario",
@@ -28,7 +35,7 @@
       },
       "salidaEsperada": "Ingrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nElemento[1] = 10\nElemento[2] = 20\nElemento[3] = 30\nElemento[4] = 40\nElemento[5] = 50",
       "pista": "Usa 'Dimension arr[5]' para declarar el arreglo. En PSeInt los índices comienzan en 1. Necesitas dos ciclos Para separados: uno para llenar y otro para mostrar.",
-      "codigoReferencia": "Algoritmo llenar_mostrar_arreglo\n  Definir arr[5] Como Entero\n  Definir i Como Entero\n\n  Para i <- 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Elemento[\", i, \"] = \", arr[i]\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo llenar_mostrar_arreglo\n  Definir arr Como Entero\n  Dimension arr[5]\n  Definir i Como Entero\n\n  Para i <- 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Elemento[\", i, \"] = \", arr[i]\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -40,7 +47,15 @@
       "dificultad": "basico",
       "gradoAyuda": "guiado",
       "titulo": "Suma de todos los elementos de un arreglo",
-      "conceptos": ["Dimension", "Para", "FinPara", "acumulador", "arreglo 1D", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "acumulador",
+        "arreglo 1D",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo pide el tamaño N del arreglo (máximo 20) y sus N elementos enteros. Calcula la suma de todos los elementos usando un ciclo Para y muestra el resultado.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero, 1-20) y N números enteros",
@@ -49,7 +64,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nLa suma de los elementos es: 150",
       "pista": "Declara 'Dimension arr[20]' para el tamaño máximo. Usa N como límite del ciclo, no 20. Inicializa suma <- 0 antes del segundo ciclo.",
-      "codigoReferencia": "Algoritmo suma_arreglo\n  Definir arr[20] Como Entero\n  Definir N, i, suma Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n\n  Escribir \"La suma de los elementos es: \", suma\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo suma_arreglo\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, suma Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n\n  Escribir \"La suma de los elementos es: \", suma\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -61,7 +76,15 @@
       "dificultad": "basico",
       "gradoAyuda": "con-pista",
       "titulo": "Promedio de elementos de un arreglo",
-      "conceptos": ["Dimension", "Para", "FinPara", "acumulador", "Real", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "acumulador",
+        "Real",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo pide el tamaño N y N números reales, los almacena en un arreglo, calcula su promedio y lo muestra. El promedio se calcula dividiendo la suma total entre N.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero) y N números reales",
@@ -70,7 +93,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nEl promedio es: 6.4",
       "pista": "Declara el arreglo y suma como Real para manejar decimales. Divide la suma entre N al final del segundo ciclo.",
-      "codigoReferencia": "Algoritmo promedio_arreglo\n  Definir arr[20] Como Real\n  Definir N, i Como Entero\n  Definir suma, promedio Como Real\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n\n  promedio <- suma / N\n  Escribir \"El promedio es: \", promedio\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo promedio_arreglo\n  Definir arr Como Real\n  Dimension arr[20]\n  Definir N, i Como Entero\n  Definir suma, promedio Como Real\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n\n  promedio <- suma / N\n  Escribir \"El promedio es: \", promedio\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -82,7 +105,15 @@
       "dificultad": "basico",
       "gradoAyuda": "con-pista",
       "titulo": "Encontrar el máximo de un arreglo",
-      "conceptos": ["Dimension", "Para", "FinPara", "Si", "maximo", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "maximo",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo pide N números enteros y los almacena en un arreglo. Luego recorre el arreglo buscando el elemento máximo y muestra su valor y su posición.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero) y N números enteros",
@@ -91,7 +122,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nMáximo: 95 en la posición 3",
       "pista": "Inicializa maximo <- arr[1] y posMax <- 1 antes del ciclo. Itera desde i = 2. Si arr[i] > maximo, actualiza ambas variables.",
-      "codigoReferencia": "Algoritmo maximo_arreglo\n  Definir arr[20] Como Entero\n  Definir N, i, maximo, posMax Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  maximo <- arr[1]\n  posMax <- 1\n  Para i <- 2 Hasta N Con Paso 1 Hacer\n    Si arr[i] > maximo Entonces\n      maximo <- arr[i]\n      posMax <- i\n    FinSi\n  FinPara\n\n  Escribir \"Máximo: \", maximo, \" en la posición \", posMax\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo maximo_arreglo\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, maximo, posMax Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  maximo <- arr[1]\n  posMax <- 1\n  Para i <- 2 Hasta N Con Paso 1 Hacer\n    Si arr[i] > maximo Entonces\n      maximo <- arr[i]\n      posMax <- i\n    FinSi\n  FinPara\n\n  Escribir \"Máximo: \", maximo, \" en la posición \", posMax\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -103,7 +134,15 @@
       "dificultad": "basico",
       "gradoAyuda": "con-pista",
       "titulo": "Encontrar el mínimo de un arreglo",
-      "conceptos": ["Dimension", "Para", "FinPara", "Si", "minimo", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "minimo",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo pide N números enteros y los almacena en un arreglo. Luego recorre el arreglo buscando el elemento mínimo y muestra su valor y su posición.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero) y N números enteros",
@@ -112,7 +151,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nMínimo: 3 en la posición 2",
       "pista": "Idéntico al ejercicio de máximo pero cambia la condición a arr[i] < minimo. Inicializa con el primer elemento del arreglo.",
-      "codigoReferencia": "Algoritmo minimo_arreglo\n  Definir arr[20] Como Entero\n  Definir N, i, minimo, posMin Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  minimo <- arr[1]\n  posMin <- 1\n  Para i <- 2 Hasta N Con Paso 1 Hacer\n    Si arr[i] < minimo Entonces\n      minimo <- arr[i]\n      posMin <- i\n    FinSi\n  FinPara\n\n  Escribir \"Mínimo: \", minimo, \" en la posición \", posMin\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo minimo_arreglo\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, minimo, posMin Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  minimo <- arr[1]\n  posMin <- 1\n  Para i <- 2 Hasta N Con Paso 1 Hacer\n    Si arr[i] < minimo Entonces\n      minimo <- arr[i]\n      posMin <- i\n    FinSi\n  FinPara\n\n  Escribir \"Mínimo: \", minimo, \" en la posición \", posMin\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -124,7 +163,16 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Contar positivos, negativos y ceros",
-      "conceptos": ["Dimension", "Para", "FinPara", "Si", "SiNo", "contadores", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "SiNo",
+        "contadores",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo pide N números enteros, los almacena en un arreglo y luego los clasifica contando cuántos son positivos (> 0), negativos (< 0) y ceros. Muestra los tres contadores.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero) y N números enteros",
@@ -133,7 +181,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nPositivos: 3\nNegativos: 1\nCeros: 1",
       "pista": "Inicializa los tres contadores en 0 antes del ciclo. Usa Si/SiNo anidado para determinar la categoría de cada elemento.",
-      "codigoReferencia": "Algoritmo contar_pos_neg_cero\n  Definir arr[20] Como Entero\n  Definir N, i, cntPos, cntNeg, cntCero Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  cntPos  <- 0\n  cntNeg  <- 0\n  cntCero <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] > 0 Entonces\n      cntPos <- cntPos + 1\n    SiNo\n      Si arr[i] < 0 Entonces\n        cntNeg <- cntNeg + 1\n      SiNo\n        cntCero <- cntCero + 1\n      FinSi\n    FinSi\n  FinPara\n\n  Escribir \"Positivos: \", cntPos\n  Escribir \"Negativos: \", cntNeg\n  Escribir \"Ceros: \", cntCero\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo contar_pos_neg_cero\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, cntPos, cntNeg, cntCero Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  cntPos  <- 0\n  cntNeg  <- 0\n  cntCero <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] > 0 Entonces\n      cntPos <- cntPos + 1\n    SiNo\n      Si arr[i] < 0 Entonces\n        cntNeg <- cntNeg + 1\n      SiNo\n        cntCero <- cntCero + 1\n      FinSi\n    FinSi\n  FinPara\n\n  Escribir \"Positivos: \", cntPos\n  Escribir \"Negativos: \", cntNeg\n  Escribir \"Ceros: \", cntCero\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -145,7 +193,16 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Búsqueda lineal en un arreglo",
-      "conceptos": ["Dimension", "Para", "FinPara", "Si", "Logico", "búsqueda", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "Logico",
+        "búsqueda",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo llena un arreglo de N enteros, luego pide un valor a buscar. Recorre el arreglo secuencialmente y reporta si el elemento fue encontrado y en qué posición (o que no existe).",
       "entradaProcesoSalida": {
         "entrada": "N enteros del arreglo y un valor a buscar",
@@ -154,7 +211,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \n¿Qué valor busca? \nElemento 30 encontrado en la posición 3.",
       "pista": "Usa una variable Logico 'encontrado <- Falso' y una variable 'posicion'. Al terminar el ciclo, usa Si encontrado para mostrar el resultado adecuado.",
-      "codigoReferencia": "Algoritmo busqueda_lineal\n  Definir arr[20] Como Entero\n  Definir N, i, buscado, posicion Como Entero\n  Definir encontrado Como Logico\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Escribir \"¿Qué valor busca? \"\n  Leer buscado\n\n  encontrado <- Falso\n  posicion   <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] = buscado Entonces\n      encontrado <- Verdadero\n      posicion   <- i\n    FinSi\n  FinPara\n\n  Si encontrado Entonces\n    Escribir \"Elemento \", buscado, \" encontrado en la posición \", posicion, \".\"\n  SiNo\n    Escribir \"El elemento \", buscado, \" no está en el arreglo.\"\n  FinSi\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo busqueda_lineal\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, buscado, posicion Como Entero\n  Definir encontrado Como Logico\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Escribir \"¿Qué valor busca? \"\n  Leer buscado\n\n  encontrado <- Falso\n  posicion   <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] = buscado Entonces\n      encontrado <- Verdadero\n      posicion   <- i\n    FinSi\n  FinPara\n\n  Si encontrado Entonces\n    Escribir \"Elemento \", buscado, \" encontrado en la posición \", posicion, \".\"\n  SiNo\n    Escribir \"El elemento \", buscado, \" no está en el arreglo.\"\n  FinSi\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -166,7 +223,15 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Invertir un arreglo",
-      "conceptos": ["Dimension", "Para", "FinPara", "variable auxiliar", "intercambio", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "variable auxiliar",
+        "intercambio",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo llena un arreglo de N enteros y luego lo invierte en su lugar: intercambia el primer elemento con el último, el segundo con el penúltimo, etc. Finalmente muestra el arreglo invertido.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero, máximo 20) y N números enteros",
@@ -175,7 +240,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nArreglo invertido:\n50 40 30 20 10",
       "pista": "El ciclo solo va hasta N DIV 2 (la mitad). Para intercambiar usa una variable auxiliar: aux <- arr[i]; arr[i] <- arr[N-i+1]; arr[N-i+1] <- aux.",
-      "codigoReferencia": "Algoritmo invertir_arreglo\n  Definir arr[20] Como Entero\n  Definir N, i, aux Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta N DIV 2 Con Paso 1 Hacer\n    aux          <- arr[i]\n    arr[i]       <- arr[N - i + 1]\n    arr[N-i+1]   <- aux\n  FinPara\n\n  Escribir \"Arreglo invertido:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir arr[i]\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo invertir_arreglo\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, aux Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta N DIV 2 Con Paso 1 Hacer\n    aux          <- arr[i]\n    arr[i]       <- arr[N - i + 1]\n    arr[N-i+1]   <- aux\n  FinPara\n\n  Escribir \"Arreglo invertido:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir arr[i]\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -187,7 +252,16 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Ordenar arreglo por selección",
-      "conceptos": ["Dimension", "Para", "FinPara", "ciclos anidados", "Si", "intercambio", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "ciclos anidados",
+        "Si",
+        "intercambio",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo llena un arreglo de N enteros y lo ordena de menor a mayor usando el algoritmo de selección: en cada pasada busca el mínimo del subarreglo no ordenado y lo coloca en su posición correcta. Muestra el arreglo ordenado.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero, máximo 20) y N números enteros",
@@ -196,7 +270,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nArreglo ordenado:\n5 12 25 33 78",
       "pista": "El ciclo exterior va de 1 a N-1. El interior va de i+1 a N buscando el índice del mínimo. Al salir del interior intercambia arr[i] con arr[posMin].",
-      "codigoReferencia": "Algoritmo ordenar_seleccion\n  Definir arr[20] Como Entero\n  Definir N, i, j, posMin, aux Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta N - 1 Con Paso 1 Hacer\n    posMin <- i\n    Para j <- i + 1 Hasta N Con Paso 1 Hacer\n      Si arr[j] < arr[posMin] Entonces\n        posMin <- j\n      FinSi\n    FinPara\n    aux          <- arr[i]\n    arr[i]       <- arr[posMin]\n    arr[posMin]  <- aux\n  FinPara\n\n  Escribir \"Arreglo ordenado:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir arr[i]\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo ordenar_seleccion\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, j, posMin, aux Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta N - 1 Con Paso 1 Hacer\n    posMin <- i\n    Para j <- i + 1 Hasta N Con Paso 1 Hacer\n      Si arr[j] < arr[posMin] Entonces\n        posMin <- j\n      FinSi\n    FinPara\n    aux          <- arr[i]\n    arr[i]       <- arr[posMin]\n    arr[posMin]  <- aux\n  FinPara\n\n  Escribir \"Arreglo ordenado:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir arr[i]\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -208,7 +282,17 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "Ordenar arreglo por burbuja",
-      "conceptos": ["Dimension", "Para", "FinPara", "ciclos anidados", "Si", "Logico", "intercambio", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "ciclos anidados",
+        "Si",
+        "Logico",
+        "intercambio",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo llena un arreglo de N enteros y lo ordena de menor a mayor usando el algoritmo de burbuja con optimización: si en una pasada no hubo ningún intercambio, el arreglo ya está ordenado y se detiene. Muestra el arreglo ordenado.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero, máximo 20) y N números enteros",
@@ -217,7 +301,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nArreglo ordenado:\n5 12 25 33 78",
       "pista": "Usa una variable Logico 'huboIntercambio'. El ciclo exterior continúa Mientras huboIntercambio sea Verdadero. Al inicio de cada pasada ponla en Falso y cámbiala a Verdadero si intercambias.",
-      "codigoReferencia": "Algoritmo ordenar_burbuja\n  Definir arr[20] Como Entero\n  Definir N, i, limite, aux Como Entero\n  Definir huboIntercambio Como Logico\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  limite <- N - 1\n  huboIntercambio <- Verdadero\n  Mientras huboIntercambio Hacer\n    huboIntercambio <- Falso\n    Para i <- 1 Hasta limite Con Paso 1 Hacer\n      Si arr[i] > arr[i + 1] Entonces\n        aux        <- arr[i]\n        arr[i]     <- arr[i + 1]\n        arr[i + 1] <- aux\n        huboIntercambio <- Verdadero\n      FinSi\n    FinPara\n    limite <- limite - 1\n  FinMientras\n\n  Escribir \"Arreglo ordenado:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir arr[i]\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo ordenar_burbuja\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, limite, aux Como Entero\n  Definir huboIntercambio Como Logico\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  limite <- N - 1\n  huboIntercambio <- Verdadero\n  Mientras huboIntercambio Hacer\n    huboIntercambio <- Falso\n    Para i <- 1 Hasta limite Con Paso 1 Hacer\n      Si arr[i] > arr[i + 1] Entonces\n        aux        <- arr[i]\n        arr[i]     <- arr[i + 1]\n        arr[i + 1] <- aux\n        huboIntercambio <- Verdadero\n      FinSi\n    FinPara\n    limite <- limite - 1\n  FinMientras\n\n  Escribir \"Arreglo ordenado:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir arr[i]\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -229,7 +313,14 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Unir dos arreglos en uno",
-      "conceptos": ["Dimension", "Para", "FinPara", "concatenación de arreglos", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "concatenación de arreglos",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo pide el tamaño y los elementos de dos arreglos de enteros (A con NA elementos y B con NB elementos). Crea un tercer arreglo C que contenga primero los elementos de A y luego los de B, y muestra C.",
       "entradaProcesoSalida": {
         "entrada": "NA, elementos de A, NB, elementos de B",
@@ -238,7 +329,7 @@
       },
       "salidaEsperada": "Tamaño del arreglo A: \nIngrese A[1]: \nIngrese A[2]: \nIngrese A[3]: \nTamaño del arreglo B: \nIngrese B[1]: \nIngrese B[2]: \nArreglo unido C:\n10 20 30 40 50",
       "pista": "Declara C con tamaño suficiente (por ejemplo, 40). Usa un primer Para para copiar A en C[1..NA]. Luego un segundo Para que coloca B en C[NA+1..NA+NB].",
-      "codigoReferencia": "Algoritmo unir_arreglos\n  Definir A[20] Como Entero\n  Definir B[20] Como Entero\n  Definir C[40] Como Entero\n  Definir NA, NB, i Como Entero\n\n  Escribir \"Tamaño del arreglo A: \"\n  Leer NA\n  Para i <- 1 Hasta NA Con Paso 1 Hacer\n    Escribir \"Ingrese A[\", i, \"]: \"\n    Leer A[i]\n  FinPara\n\n  Escribir \"Tamaño del arreglo B: \"\n  Leer NB\n  Para i <- 1 Hasta NB Con Paso 1 Hacer\n    Escribir \"Ingrese B[\", i, \"]: \"\n    Leer B[i]\n  FinPara\n\n  Para i <- 1 Hasta NA Con Paso 1 Hacer\n    C[i] <- A[i]\n  FinPara\n  Para i <- 1 Hasta NB Con Paso 1 Hacer\n    C[NA + i] <- B[i]\n  FinPara\n\n  Escribir \"Arreglo unido C:\"\n  Para i <- 1 Hasta NA + NB Con Paso 1 Hacer\n    Escribir C[i]\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo unir_arreglos\n  Definir A Como Entero\n  Dimension A[20]\n  Definir B Como Entero\n  Dimension B[20]\n  Definir C Como Entero\n  Dimension C[40]\n  Definir NA, NB, i Como Entero\n\n  Escribir \"Tamaño del arreglo A: \"\n  Leer NA\n  Para i <- 1 Hasta NA Con Paso 1 Hacer\n    Escribir \"Ingrese A[\", i, \"]: \"\n    Leer A[i]\n  FinPara\n\n  Escribir \"Tamaño del arreglo B: \"\n  Leer NB\n  Para i <- 1 Hasta NB Con Paso 1 Hacer\n    Escribir \"Ingrese B[\", i, \"]: \"\n    Leer B[i]\n  FinPara\n\n  Para i <- 1 Hasta NA Con Paso 1 Hacer\n    C[i] <- A[i]\n  FinPara\n  Para i <- 1 Hasta NB Con Paso 1 Hacer\n    C[NA + i] <- B[i]\n  FinPara\n\n  Escribir \"Arreglo unido C:\"\n  Para i <- 1 Hasta NA + NB Con Paso 1 Hacer\n    Escribir C[i]\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -250,7 +341,16 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "Filtrar elementos mayores que la media",
-      "conceptos": ["Dimension", "Para", "FinPara", "Si", "promedio", "filtrado", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "promedio",
+        "filtrado",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo llena un arreglo de N reales, calcula la media (promedio) y luego muestra únicamente los elementos que son estrictamente mayores que la media, junto con sus posiciones.",
       "entradaProcesoSalida": {
         "entrada": "N (Entero) y N números reales",
@@ -259,7 +359,7 @@
       },
       "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nMedia: 6\nElementos mayores que la media:\nPosición 2: 8\nPosición 4: 9\nPosición 5: 7",
       "pista": "Primero calcula la suma y la media en un ciclo. Luego en un segundo ciclo compara cada elemento con la media. Usa variables Real para evitar pérdida de precisión.",
-      "codigoReferencia": "Algoritmo filtrar_mayores_media\n  Definir arr[20] Como Real\n  Definir N, i Como Entero\n  Definir suma, media Como Real\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n  media <- suma / N\n\n  Escribir \"Media: \", media\n  Escribir \"Elementos mayores que la media:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] > media Entonces\n      Escribir \"Posición \", i, \": \", arr[i]\n    FinSi\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo filtrar_mayores_media\n  Definir arr Como Real\n  Dimension arr[20]\n  Definir N, i Como Entero\n  Definir suma, media Como Real\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n  media <- suma / N\n\n  Escribir \"Media: \", media\n  Escribir \"Elementos mayores que la media:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] > media Entonces\n      Escribir \"Posición \", i, \": \", arr[i]\n    FinSi\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -271,7 +371,16 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "Multiplicar matriz 2x2 por vector 2D",
-      "conceptos": ["Dimension", "Para", "FinPara", "matriz", "vector", "producto matriz-vector", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "matriz",
+        "vector",
+        "producto matriz-vector",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo lee una matriz de 2 filas y 2 columnas y un vector de 2 elementos. Calcula el producto matriz × vector (resultado: vector de 2 elementos) y muestra el vector resultante. Fórmula: res[i] = sum(mat[i][j] * vec[j]) para j de 1 a 2.",
       "entradaProcesoSalida": {
         "entrada": "Matriz 2x2 (4 enteros) y vector 2D (2 enteros)",
@@ -280,7 +389,7 @@
       },
       "salidaEsperada": "Ingrese mat[1][1]: \nIngrese mat[1][2]: \nIngrese mat[2][1]: \nIngrese mat[2][2]: \nIngrese vec[1]: \nIngrese vec[2]: \nResultado:\nres[1] = 11\nres[2] = 27",
       "pista": "Declara 'Dimension mat[2][2]', 'Dimension vec[2]' y 'Dimension res[2]'. El producto fila-columna se calcula acumulando con un ciclo Para j de 1 a 2.",
-      "codigoReferencia": "Algoritmo producto_matriz_vector\n  Definir mat[2][2] Como Entero\n  Definir vec[2] Como Entero\n  Definir res[2] Como Entero\n  Definir i, j Como Entero\n\n  Para i <- 1 Hasta 2 Con Paso 1 Hacer\n    Para j <- 1 Hasta 2 Con Paso 1 Hacer\n      Escribir \"Ingrese mat[\", i, \"][\", j, \"]: \"\n      Leer mat[i][j]\n    FinPara\n  FinPara\n\n  Para j <- 1 Hasta 2 Con Paso 1 Hacer\n    Escribir \"Ingrese vec[\", j, \"]: \"\n    Leer vec[j]\n  FinPara\n\n  Para i <- 1 Hasta 2 Con Paso 1 Hacer\n    res[i] <- 0\n    Para j <- 1 Hasta 2 Con Paso 1 Hacer\n      res[i] <- res[i] + mat[i][j] * vec[j]\n    FinPara\n  FinPara\n\n  Escribir \"Resultado:\"\n  Para i <- 1 Hasta 2 Con Paso 1 Hacer\n    Escribir \"res[\", i, \"] = \", res[i]\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo producto_matriz_vector\n  Definir mat Como Entero\n  Dimension mat[2][2]\n  Definir vec Como Entero\n  Dimension vec[2]\n  Definir res Como Entero\n  Dimension res[2]\n  Definir i, j Como Entero\n\n  Para i <- 1 Hasta 2 Con Paso 1 Hacer\n    Para j <- 1 Hasta 2 Con Paso 1 Hacer\n      Escribir \"Ingrese mat[\", i, \"][\", j, \"]: \"\n      Leer mat[i][j]\n    FinPara\n  FinPara\n\n  Para j <- 1 Hasta 2 Con Paso 1 Hacer\n    Escribir \"Ingrese vec[\", j, \"]: \"\n    Leer vec[j]\n  FinPara\n\n  Para i <- 1 Hasta 2 Con Paso 1 Hacer\n    res[i] <- 0\n    Para j <- 1 Hasta 2 Con Paso 1 Hacer\n      res[i] <- res[i] + mat[i][j] * vec[j]\n    FinPara\n  FinPara\n\n  Escribir \"Resultado:\"\n  Para i <- 1 Hasta 2 Con Paso 1 Hacer\n    Escribir \"res[\", i, \"] = \", res[i]\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -292,7 +401,16 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Suma de la diagonal principal de una matriz NxN",
-      "conceptos": ["Dimension", "Para", "FinPara", "matriz cuadrada", "diagonal", "acumulador", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "matriz cuadrada",
+        "diagonal",
+        "acumulador",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo pide el tamaño N de una matriz cuadrada (máximo 5x5), lee todos sus elementos enteros y calcula la suma de los elementos de la diagonal principal (aquellos donde fila = columna: mat[i][i]).",
       "entradaProcesoSalida": {
         "entrada": "N (Entero, 1-5) y N×N números enteros",
@@ -301,7 +419,7 @@
       },
       "salidaEsperada": "Tamaño N de la matriz (máx. 5): \nIngrese mat[1][1]: \nIngrese mat[1][2]: \nIngrese mat[1][3]: \nIngrese mat[2][1]: \n... (N×N entradas)\nSuma de la diagonal principal: 15",
       "pista": "Llena la matriz con dos ciclos Para anidados (filas y columnas). La diagonal principal son los elementos mat[i][i], accesibles con un solo ciclo Por i de 1 a N.",
-      "codigoReferencia": "Algoritmo suma_diagonal\n  Definir mat[5][5] Como Entero\n  Definir N, i, j, suma Como Entero\n\n  Escribir \"Tamaño N de la matriz (máx. 5): \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Para j <- 1 Hasta N Con Paso 1 Hacer\n      Escribir \"Ingrese mat[\", i, \"][\", j, \"]: \"\n      Leer mat[i][j]\n    FinPara\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + mat[i][i]\n  FinPara\n\n  Escribir \"Suma de la diagonal principal: \", suma\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo suma_diagonal\n  Definir mat Como Entero\n  Dimension mat[5][5]\n  Definir N, i, j, suma Como Entero\n\n  Escribir \"Tamaño N de la matriz (máx. 5): \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Para j <- 1 Hasta N Con Paso 1 Hacer\n      Escribir \"Ingrese mat[\", i, \"][\", j, \"]: \"\n      Leer mat[i][j]\n    FinPara\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + mat[i][i]\n  FinPara\n\n  Escribir \"Suma de la diagonal principal: \", suma\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -313,7 +431,15 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "Transponer una matriz 3x3",
-      "conceptos": ["Dimension", "Para", "FinPara", "matriz", "transpuesta", "Leer", "Escribir"],
+      "conceptos": [
+        "Dimension",
+        "Para",
+        "FinPara",
+        "matriz",
+        "transpuesta",
+        "Leer",
+        "Escribir"
+      ],
       "enunciado": "El algoritmo lee una matriz de 3x3 enteros y calcula su transpuesta: una nueva matriz donde las filas y columnas están intercambiadas (trans[j][i] = mat[i][j]). Muestra tanto la matriz original como la transpuesta.",
       "entradaProcesoSalida": {
         "entrada": "9 números enteros (matriz 3x3)",
@@ -322,7 +448,7 @@
       },
       "salidaEsperada": "Ingrese mat[1][1]: \nIngrese mat[1][2]: \n... (9 entradas)\nMatriz original:\n1 2 3\n4 5 6\n7 8 9\nMatriz transpuesta:\n1 4 7\n2 5 8\n3 6 9",
       "pista": "Declara dos matrices: 'Dimension mat[3][3]' y 'Dimension trans[3][3]'. La regla de transposición es trans[j][i] <- mat[i][j]. Para mostrar la matriz en filas usa Escribir SinSaltar dentro del ciclo de columnas y Escribir al finalizar cada fila.",
-      "codigoReferencia": "Algoritmo transponer_matriz\n  Definir mat[3][3] Como Entero\n  Definir trans[3][3] Como Entero\n  Definir i, j Como Entero\n\n  Para i <- 1 Hasta 3 Con Paso 1 Hacer\n    Para j <- 1 Hasta 3 Con Paso 1 Hacer\n      Escribir \"Ingrese mat[\", i, \"][\", j, \"]: \"\n      Leer mat[i][j]\n    FinPara\n  FinPara\n\n  Para i <- 1 Hasta 3 Con Paso 1 Hacer\n    Para j <- 1 Hasta 3 Con Paso 1 Hacer\n      trans[j][i] <- mat[i][j]\n    FinPara\n  FinPara\n\n  Escribir \"Matriz original:\"\n  Para i <- 1 Hasta 3 Con Paso 1 Hacer\n    Para j <- 1 Hasta 3 Con Paso 1 Hacer\n      Escribir mat[i][j], \" \"\n    FinPara\n  FinPara\n\n  Escribir \"Matriz transpuesta:\"\n  Para i <- 1 Hasta 3 Con Paso 1 Hacer\n    Para j <- 1 Hasta 3 Con Paso 1 Hacer\n      Escribir trans[i][j], \" \"\n    FinPara\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "Algoritmo transponer_matriz\n  Definir mat Como Entero\n  Dimension mat[3][3]\n  Definir trans Como Entero\n  Dimension trans[3][3]\n  Definir i, j Como Entero\n\n  Para i <- 1 Hasta 3 Con Paso 1 Hacer\n    Para j <- 1 Hasta 3 Con Paso 1 Hacer\n      Escribir \"Ingrese mat[\", i, \"][\", j, \"]: \"\n      Leer mat[i][j]\n    FinPara\n  FinPara\n\n  Para i <- 1 Hasta 3 Con Paso 1 Hacer\n    Para j <- 1 Hasta 3 Con Paso 1 Hacer\n      trans[j][i] <- mat[i][j]\n    FinPara\n  FinPara\n\n  Escribir \"Matriz original:\"\n  Para i <- 1 Hasta 3 Con Paso 1 Hacer\n    Para j <- 1 Hasta 3 Con Paso 1 Hacer\n      Escribir mat[i][j], \" \"\n    FinPara\n  FinPara\n\n  Escribir \"Matriz transpuesta:\"\n  Para i <- 1 Hasta 3 Con Paso 1 Hacer\n    Para j <- 1 Hasta 3 Con Paso 1 Hacer\n      Escribir trans[i][j], \" \"\n    FinPara\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     }

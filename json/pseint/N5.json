@@ -19,7 +19,12 @@
       "dificultad": "basico",
       "gradoAyuda": "guiado",
       "titulo": "SubProceso que imprime un saludo",
-      "conceptos": ["SubProceso", "FinSubProceso", "Llamar", "parámetros"],
+      "conceptos": [
+        "SubProceso",
+        "FinSubProceso",
+        "Llamar",
+        "parámetros"
+      ],
       "enunciado": "Define un SubProceso llamado Saludar que recibe un nombre (Cadena) y muestra en pantalla '¡Hola, [nombre]! Bienvenido al mundo de los subprocesos.'. Desde el algoritmo principal, lee un nombre e invoca el SubProceso con Llamar.",
       "entradaProcesoSalida": {
         "entrada": "Nombre del usuario (Cadena)",
@@ -40,7 +45,12 @@
       "dificultad": "basico",
       "gradoAyuda": "guiado",
       "titulo": "Función que devuelve el cuadrado de un número",
-      "conceptos": ["Funcion", "FinFuncion", "retorno", "parámetros"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "retorno",
+        "parámetros"
+      ],
       "enunciado": "Define una Funcion llamada Cuadrado que recibe un número entero y devuelve su cuadrado (n × n). Desde el algoritmo principal, lee un número, llama a la función y muestra el resultado.",
       "entradaProcesoSalida": {
         "entrada": "Un número entero n",
@@ -61,7 +71,14 @@
       "dificultad": "basico",
       "gradoAyuda": "con-pista",
       "titulo": "Función que calcula el factorial con Para",
-      "conceptos": ["Funcion", "FinFuncion", "Para", "FinPara", "factorial", "retorno"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "Para",
+        "FinPara",
+        "factorial",
+        "retorno"
+      ],
       "enunciado": "Define una Funcion llamada Factorial que recibe un entero n (n >= 0) y devuelve su factorial calculado de forma iterativa con un ciclo Para. Desde el algoritmo principal, lee un número, llama a la función y muestra '5! = 120'.",
       "entradaProcesoSalida": {
         "entrada": "Un número entero n >= 0",
@@ -82,7 +99,14 @@
       "dificultad": "basico",
       "gradoAyuda": "con-pista",
       "titulo": "SubProceso que imprime la tabla de multiplicar de N",
-      "conceptos": ["SubProceso", "FinSubProceso", "Llamar", "Para", "FinPara", "tabla de multiplicar"],
+      "conceptos": [
+        "SubProceso",
+        "FinSubProceso",
+        "Llamar",
+        "Para",
+        "FinPara",
+        "tabla de multiplicar"
+      ],
       "enunciado": "Define un SubProceso llamado TablaMultiplicar que recibe un entero n y muestra la tabla de multiplicar de ese número del 1 al 10 (una línea por resultado, formato 'n x i = resultado'). Desde el algoritmo principal, lee N e invoca el subproceso.",
       "entradaProcesoSalida": {
         "entrada": "Un número entero n",
@@ -103,7 +127,14 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Función que devuelve el máximo de dos números",
-      "conceptos": ["Funcion", "FinFuncion", "Si", "FinSi", "retorno", "máximo"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "Si",
+        "FinSi",
+        "retorno",
+        "máximo"
+      ],
       "enunciado": "Define una Funcion llamada Maximo que recibe dos enteros a y b, y devuelve el mayor de los dos. Si son iguales, devuelve cualquiera. Desde el algoritmo principal, lee dos números, llama a la función y muestra el resultado.",
       "entradaProcesoSalida": {
         "entrada": "Dos números enteros a y b",
@@ -124,7 +155,16 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Función que determina si un número es primo",
-      "conceptos": ["Funcion", "FinFuncion", "Logico", "Para", "FinPara", "Si", "FinSi", "número primo"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "Logico",
+        "Para",
+        "FinPara",
+        "Si",
+        "FinSi",
+        "número primo"
+      ],
       "enunciado": "Define una Funcion llamada EsPrimo que recibe un entero n (n >= 2) y devuelve Verdadero si es primo o Falso en caso contrario. Un número es primo si solo es divisible por 1 y por sí mismo. Desde el algoritmo principal, lee un número e informa si es primo.",
       "entradaProcesoSalida": {
         "entrada": "Un número entero n >= 2",
@@ -145,7 +185,13 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "SubProceso que intercambia dos variables (ByRef)",
-      "conceptos": ["SubProceso", "FinSubProceso", "ByRef", "paso por referencia", "intercambio"],
+      "conceptos": [
+        "SubProceso",
+        "FinSubProceso",
+        "ByRef",
+        "paso por referencia",
+        "intercambio"
+      ],
       "enunciado": "Define un SubProceso llamado Intercambiar que recibe dos enteros por referencia (ByRef a, ByRef b) e intercambia sus valores usando una variable auxiliar. Desde el algoritmo principal, lee dos números, invoca el subproceso y muestra los valores antes y después.",
       "entradaProcesoSalida": {
         "entrada": "Dos números enteros a y b",
@@ -166,7 +212,14 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Función que calcula la potencia de forma iterativa",
-      "conceptos": ["Funcion", "FinFuncion", "Para", "FinPara", "potencia", "iterativa"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "Para",
+        "FinPara",
+        "potencia",
+        "iterativa"
+      ],
       "enunciado": "Define una Funcion llamada Potencia que recibe dos enteros base y exponente (exponente >= 0) y devuelve el resultado de base elevado a exponente, calculado de forma iterativa con un ciclo Para. Desde el algoritmo principal, lee base y exponente y muestra el resultado.",
       "entradaProcesoSalida": {
         "entrada": "base (Entero) y exponente (Entero >= 0)",
@@ -187,7 +240,15 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "SubProceso que llena un arreglo con valores del usuario (ByRef)",
-      "conceptos": ["SubProceso", "FinSubProceso", "ByRef", "Dimension", "arreglo", "Para", "FinPara"],
+      "conceptos": [
+        "SubProceso",
+        "FinSubProceso",
+        "ByRef",
+        "Dimension",
+        "arreglo",
+        "Para",
+        "FinPara"
+      ],
       "enunciado": "Define un SubProceso LlenarArreglo que recibe por referencia un arreglo de enteros arr y su tamaño n, y pide al usuario que ingrese n valores para almacenarlos en el arreglo. Desde el algoritmo principal, declara un arreglo de 5 posiciones, llama al subproceso y luego muestra los valores ingresados.",
       "entradaProcesoSalida": {
         "entrada": "5 números enteros ingresados por el usuario",
@@ -196,7 +257,7 @@
       },
       "salidaEsperada": "Ingrese el valor 1: \nIngrese el valor 2: \nIngrese el valor 3: \nIngrese el valor 4: \nIngrese el valor 5: \nArreglo: 3 7 1 9 4",
       "pista": "Declara el arreglo en el algoritmo principal con Dimension arr(5). El SubProceso recibe el arreglo con ByRef para que los cambios sean visibles afuera.",
-      "codigoReferencia": "SubProceso LlenarArreglo(ByRef arr, n)\n  Definir i Como Entero\n  Para i <- 1 Hasta n Con Paso 1 Hacer\n    Escribir \"Ingrese el valor \", i, \": \"\n    Leer arr[i]\n  FinPara\nFinSubProceso\n\nAlgoritmo llenar_arreglo_byref\n  Definir arr Como Entero\n  Definir i Como Entero\n  Dimension arr(5)\n\n  Llamar LlenarArreglo(arr, 5)\n\n  Escribir \"Arreglo: \"\n  Para i <- 1 Hasta 5 Con Paso 1 Hacer\n    Escribir arr[i], \" \"\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "SubProceso LlenarArreglo(ByRef arr, n)\n  Definir i Como Entero\n  Para i <- 1 Hasta n Con Paso 1 Hacer\n    Escribir \"Ingrese el valor \", i, \": \"\n    Leer arr[i]\n  FinPara\nFinSubProceso\n\nAlgoritmo llenar_arreglo_byref\n  Definir arr Como Entero\n  Definir i Como Entero\n  Dimension arr[5]\n\n  Llamar LlenarArreglo(arr, 5)\n\n  Escribir \"Arreglo: \"\n  Para i <- 1 Hasta 5 Con Paso 1 Hacer\n    Escribir arr[i], \" \"\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -208,7 +269,15 @@
       "dificultad": "intermedio",
       "gradoAyuda": "practica",
       "titulo": "Función que devuelve la suma de un arreglo",
-      "conceptos": ["Funcion", "FinFuncion", "Dimension", "arreglo", "Para", "FinPara", "suma"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "Dimension",
+        "arreglo",
+        "Para",
+        "FinPara",
+        "suma"
+      ],
       "enunciado": "Define una Funcion SumaArreglo que recibe un arreglo de reales y su tamaño n, y devuelve la suma de todos sus elementos. Desde el algoritmo principal, crea un arreglo con 5 valores fijos, llama a la función y muestra la suma.",
       "entradaProcesoSalida": {
         "entrada": "(ninguna — valores fijos en el algoritmo principal)",
@@ -217,7 +286,7 @@
       },
       "salidaEsperada": "Suma del arreglo: 25",
       "pista": "Inicializa el acumulador en 0 antes del ciclo. Suma cada elemento arr[i] al acumulador en cada iteración del Para.",
-      "codigoReferencia": "Funcion resultado <- SumaArreglo(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- 0\n  Para i <- 1 Hasta n Con Paso 1 Hacer\n    resultado <- resultado + arr[i]\n  FinPara\nFinFuncion\n\nAlgoritmo suma_arreglo_funcion\n  Definir datos Como Real\n  Definir total Como Real\n  Dimension datos(5)\n\n  datos[1] <- 3\n  datos[2] <- 7\n  datos[3] <- 1\n  datos[4] <- 9\n  datos[5] <- 5\n\n  total <- SumaArreglo(datos, 5)\n\n  Escribir \"Suma del arreglo: \", total\nFinAlgoritmo",
+      "codigoReferencia": "Funcion resultado <- SumaArreglo(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- 0\n  Para i <- 1 Hasta n Con Paso 1 Hacer\n    resultado <- resultado + arr[i]\n  FinPara\nFinFuncion\n\nAlgoritmo suma_arreglo_funcion\n  Definir datos Como Real\n  Definir total Como Real\n  Dimension datos[5]\n\n  datos[1] <- 3\n  datos[2] <- 7\n  datos[3] <- 1\n  datos[4] <- 9\n  datos[5] <- 5\n\n  total <- SumaArreglo(datos, 5)\n\n  Escribir \"Suma del arreglo: \", total\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -229,7 +298,14 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "Función recursiva: factorial",
-      "conceptos": ["Funcion", "FinFuncion", "recursividad", "caso base", "caso recursivo", "factorial"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "recursividad",
+        "caso base",
+        "caso recursivo",
+        "factorial"
+      ],
       "enunciado": "Define una Funcion recursiva FactorialRec que calcule n! de forma recursiva: caso base n = 0 devuelve 1; caso recursivo devuelve n * FactorialRec(n - 1). Desde el algoritmo principal, lee un número n (>= 0) y muestra n! = resultado.",
       "entradaProcesoSalida": {
         "entrada": "Un número entero n >= 0",
@@ -250,7 +326,13 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "Función recursiva: Fibonacci de N",
-      "conceptos": ["Funcion", "FinFuncion", "recursividad", "Fibonacci", "caso base"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "recursividad",
+        "Fibonacci",
+        "caso base"
+      ],
       "enunciado": "Define una Funcion recursiva Fibonacci que devuelva el N-ésimo número de la sucesión de Fibonacci: Fibonacci(0) = 0, Fibonacci(1) = 1, Fibonacci(n) = Fibonacci(n-1) + Fibonacci(n-2) para n >= 2. Desde el algoritmo principal, lee N y muestra el resultado.",
       "entradaProcesoSalida": {
         "entrada": "Un número entero n >= 0",
@@ -271,7 +353,16 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "Función que cuenta vocales en una cadena",
-      "conceptos": ["Funcion", "FinFuncion", "Cadena", "LONGITUD", "SUBCADENA", "MINUSCULAS", "Para", "conteo"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "Cadena",
+        "LONGITUD",
+        "SUBCADENA",
+        "MINUSCULAS",
+        "Para",
+        "conteo"
+      ],
       "enunciado": "Define una Funcion ContarVocales que recibe una Cadena texto y devuelve la cantidad de vocales (a, e, i, o, u — mayúsculas o minúsculas) que contiene. Usa LONGITUD para recorrer la cadena y SUBCADENA para extraer cada carácter. Desde el algoritmo principal, lee una cadena y muestra cuántas vocales tiene.",
       "entradaProcesoSalida": {
         "entrada": "Una cadena de texto",
@@ -292,7 +383,18 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "SubProceso que ordena un arreglo por burbuja (ByRef)",
-      "conceptos": ["SubProceso", "FinSubProceso", "ByRef", "Dimension", "arreglo", "Para", "FinPara", "Si", "FinSi", "ordenamiento burbuja"],
+      "conceptos": [
+        "SubProceso",
+        "FinSubProceso",
+        "ByRef",
+        "Dimension",
+        "arreglo",
+        "Para",
+        "FinPara",
+        "Si",
+        "FinSi",
+        "ordenamiento burbuja"
+      ],
       "enunciado": "Define un SubProceso OrdenarBurbuja que recibe por referencia un arreglo de enteros arr y su tamaño n, y lo ordena de menor a mayor usando el algoritmo de burbuja. Desde el algoritmo principal, crea un arreglo con 6 valores desordenados, llama al subproceso y muestra el arreglo antes y después de ordenar.",
       "entradaProcesoSalida": {
         "entrada": "(ninguna — arreglo con valores fijos)",
@@ -301,7 +403,7 @@
       },
       "salidaEsperada": "Antes: 64 34 25 12 22 11\nDespués: 11 12 22 25 34 64",
       "pista": "El algoritmo de burbuja usa dos ciclos Para anidados. El ciclo externo va de 1 a n-1; el interno va de 1 a n-i. Si arr[j] > arr[j+1], intercambia los valores usando una variable auxiliar.",
-      "codigoReferencia": "SubProceso OrdenarBurbuja(ByRef arr, n)\n  Definir i, j, aux Como Entero\n  Para i <- 1 Hasta n - 1 Con Paso 1 Hacer\n    Para j <- 1 Hasta n - i Con Paso 1 Hacer\n      Si arr[j] > arr[j + 1] Entonces\n        aux        <- arr[j]\n        arr[j]     <- arr[j + 1]\n        arr[j + 1] <- aux\n      FinSi\n    FinPara\n  FinPara\nFinSubProceso\n\nAlgoritmo ordenamiento_burbuja\n  Definir datos Como Entero\n  Definir i Como Entero\n  Dimension datos(6)\n\n  datos[1] <- 64\n  datos[2] <- 34\n  datos[3] <- 25\n  datos[4] <- 12\n  datos[5] <- 22\n  datos[6] <- 11\n\n  Escribir \"Antes: \"\n  Para i <- 1 Hasta 6 Con Paso 1 Hacer\n    Escribir datos[i], \" \"\n  FinPara\n\n  Llamar OrdenarBurbuja(datos, 6)\n\n  Escribir \"Después: \"\n  Para i <- 1 Hasta 6 Con Paso 1 Hacer\n    Escribir datos[i], \" \"\n  FinPara\nFinAlgoritmo",
+      "codigoReferencia": "SubProceso OrdenarBurbuja(ByRef arr, n)\n  Definir i, j, aux Como Entero\n  Para i <- 1 Hasta n - 1 Con Paso 1 Hacer\n    Para j <- 1 Hasta n - i Con Paso 1 Hacer\n      Si arr[j] > arr[j + 1] Entonces\n        aux        <- arr[j]\n        arr[j]     <- arr[j + 1]\n        arr[j + 1] <- aux\n      FinSi\n    FinPara\n  FinPara\nFinSubProceso\n\nAlgoritmo ordenamiento_burbuja\n  Definir datos Como Entero\n  Definir i Como Entero\n  Dimension datos[6]\n\n  datos[1] <- 64\n  datos[2] <- 34\n  datos[3] <- 25\n  datos[4] <- 12\n  datos[5] <- 22\n  datos[6] <- 11\n\n  Escribir \"Antes: \"\n  Para i <- 1 Hasta 6 Con Paso 1 Hacer\n    Escribir datos[i], \" \"\n  FinPara\n\n  Llamar OrdenarBurbuja(datos, 6)\n\n  Escribir \"Después: \"\n  Para i <- 1 Hasta 6 Con Paso 1 Hacer\n    Escribir datos[i], \" \"\n  FinPara\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     },
@@ -313,7 +415,16 @@
       "dificultad": "avanzado",
       "gradoAyuda": "desafio",
       "titulo": "Media, mínimo y máximo de un arreglo usando tres funciones",
-      "conceptos": ["Funcion", "FinFuncion", "Dimension", "arreglo", "media", "mínimo", "máximo", "modularización"],
+      "conceptos": [
+        "Funcion",
+        "FinFuncion",
+        "Dimension",
+        "arreglo",
+        "media",
+        "mínimo",
+        "máximo",
+        "modularización"
+      ],
       "enunciado": "Crea tres funciones: Media(arr, n) que devuelve el promedio de los elementos, Minimo(arr, n) que devuelve el valor mínimo y Maximo(arr, n) que devuelve el valor máximo. Desde el algoritmo principal, lee 6 valores en un arreglo, llama a las tres funciones y muestra los tres resultados.",
       "entradaProcesoSalida": {
         "entrada": "6 números reales ingresados por el usuario",
@@ -322,7 +433,7 @@
       },
       "salidaEsperada": "Ingrese el valor 1: \nIngrese el valor 2: \nIngrese el valor 3: \nIngrese el valor 4: \nIngrese el valor 5: \nIngrese el valor 6: \nMedia: 5\nMínimo: 1\nMáximo: 9",
       "pista": "Cada función debe recorrer el arreglo con un Para. Para Media acumula la suma y divide por n. Para Minimo y Maximo inicializa el resultado con arr[1] y actualiza si encuentras un valor menor o mayor respectivamente.",
-      "codigoReferencia": "Funcion resultado <- Media(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- 0\n  Para i <- 1 Hasta n Con Paso 1 Hacer\n    resultado <- resultado + arr[i]\n  FinPara\n  resultado <- resultado / n\nFinFuncion\n\nFuncion resultado <- Minimo(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- arr[1]\n  Para i <- 2 Hasta n Con Paso 1 Hacer\n    Si arr[i] < resultado Entonces\n      resultado <- arr[i]\n    FinSi\n  FinPara\nFinFuncion\n\nFuncion resultado <- Maximo(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- arr[1]\n  Para i <- 2 Hasta n Con Paso 1 Hacer\n    Si arr[i] > resultado Entonces\n      resultado <- arr[i]\n    FinSi\n  FinPara\nFinFuncion\n\nAlgoritmo estadisticas_arreglo\n  Definir datos Como Real\n  Definir i Como Entero\n  Definir media, minimo, maximo Como Real\n  Dimension datos(6)\n\n  Para i <- 1 Hasta 6 Con Paso 1 Hacer\n    Escribir \"Ingrese el valor \", i, \": \"\n    Leer datos[i]\n  FinPara\n\n  media  <- Media(datos, 6)\n  minimo <- Minimo(datos, 6)\n  maximo <- Maximo(datos, 6)\n\n  Escribir \"Media: \", media\n  Escribir \"Mínimo: \", minimo\n  Escribir \"Máximo: \", maximo\nFinAlgoritmo",
+      "codigoReferencia": "Funcion resultado <- Media(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- 0\n  Para i <- 1 Hasta n Con Paso 1 Hacer\n    resultado <- resultado + arr[i]\n  FinPara\n  resultado <- resultado / n\nFinFuncion\n\nFuncion resultado <- Minimo(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- arr[1]\n  Para i <- 2 Hasta n Con Paso 1 Hacer\n    Si arr[i] < resultado Entonces\n      resultado <- arr[i]\n    FinSi\n  FinPara\nFinFuncion\n\nFuncion resultado <- Maximo(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- arr[1]\n  Para i <- 2 Hasta n Con Paso 1 Hacer\n    Si arr[i] > resultado Entonces\n      resultado <- arr[i]\n    FinSi\n  FinPara\nFinFuncion\n\nAlgoritmo estadisticas_arreglo\n  Definir datos Como Real\n  Definir i Como Entero\n  Definir media, minimo, maximo Como Real\n  Dimension datos[6]\n\n  Para i <- 1 Hasta 6 Con Paso 1 Hacer\n    Escribir \"Ingrese el valor \", i, \": \"\n    Leer datos[i]\n  FinPara\n\n  media  <- Media(datos, 6)\n  minimo <- Minimo(datos, 6)\n  maximo <- Maximo(datos, 6)\n\n  Escribir \"Media: \", media\n  Escribir \"Mínimo: \", minimo\n  Escribir \"Máximo: \", maximo\nFinAlgoritmo",
       "estadoAdaptacion": "adaptado",
       "lenguaje": "pseint"
     }

@@ -1,5 +1,33 @@
 # Changelog — Code4Code
 
+## [2.3.2-beta] - 2026-06-15
+
+### Fase 3b — Cierre
+
+- `core/pseint/expression-evaluator.js` + `core/pseint/provider.js` + `core/pseint/runtime.js`:
+  `indicesDesde0` activado en perfil flexible; los métodos `_get/_setElementoArreglo` del
+  `EvaluadorPSeInt` reciben el perfil y aplican lógica 0-based para arreglos 1D y 2D.
+  Prueba de runtime añadida (perfil flexible con `arr[0]`/`arr[2]`).
+- `core/pseint/provider.js`: nueva entrada de documentación "Perfil: Estricto vs Flexible"
+  en el panel de aprendizaje — explica diferencias de asignación (`<-` vs `=`),
+  declaración (`Definir` obligatorio u opcional) e índices de arreglo (1-based vs 0-based).
+- `tests/pseint-golden-tests.js`: 25 golden tests que ejecutan programas PSeInt completos
+  contra `RuntimePSeInt` y verifican la salida exacta. Cubre perfil estricto (hola mundo,
+  factorial, Fibonacci, arreglos, SubProceso, Funcion, Segun, funciones matemáticas y de
+  cadena, recursión, matriz 2D) y perfil flexible (asignación con `=`, variables auto-creadas,
+  índices 0-based).
+- `core/pseint/runtime.js`: corregido bug en `ejecutarSubproceso` — el constructor de
+  `TablaPSeInt` se extraía sin `new`, lanzando `TypeError` al invocar cualquier `SubProceso`.
+
+### Fase 4 — Validación Python
+
+- `core/python/worker.js`: agrega paso de validación de sintaxis con `compile()` Python
+  antes de ejecutar el programa; reporta `SyntaxError`/`IndentationError` con número de
+  línea preciso sin necesidad de arrancar la ejecución completa.
+- `core/python/provider.js`: 9 nuevas entradas de documentación en el panel de aprendizaje
+  (Métodos de cadena, Métodos de lista, Comprensión de listas, Diccionarios, try/except,
+  import math, f-strings, enumerate/zip).
+
 ## [2.3.1-beta] - 2026-06-15
 
 ### Fase 4 — Mejoras Python
