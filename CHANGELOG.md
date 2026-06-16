@@ -1,5 +1,25 @@
 # Changelog — Code4Code
 
+## [2.3.4-beta] - 2026-06-15
+
+### Fase 3a — Correcciones de coerción de tipos PSeInt
+
+- `core/pseint/symbol-table.js`: `coercionarValor` corregido en 3 casos:
+  - **Bug crítico**: `"Falso"` → `false` al coercer a `Logico` (antes devolvía `true`
+    porque `Boolean("Falso")` en JS es `true` para cualquier string no vacío).
+  - `"Verdadero"` → `true`, `"true"` → `true`, `"1"` → `true` al coercer a `Logico`.
+  - `true`/`false` → `"Verdadero"`/`"Falso"` al coercer a `Cadena`.
+  - `ENTERO`/`REAL`: lanzan error con mensaje claro si el valor no es numérico
+    (antes devolvían `NaN` silenciosamente).
+- `core/pseint/builtins.js`: `CONVERTIRATEXTO(Verdadero)` → `"Verdadero"`,
+  `CONVERTIRATEXTO(Falso)` → `"Falso"` (antes devolvía `"true"/"false"`).
+- `tests/pseint-runtime-tests.js`: 7 nuevos tests de coerción (total 24/24):
+  Real→Entero, "Falso"→false, "Verdadero"→true, bool→"Verdadero"/"Falso",
+  error en cadena no numérica, Escribir Logico, asignación Real→Entero.
+- `tests/pseint-golden-tests.js`: 5 nuevos golden tests (total 30/30): golden 26–30
+  cubren CONVERTIRATEXTO con Logico, CONVERTIRANUMERO, Leer Logico, truncado
+  Real→Entero en asignación, SUBCADENA+LONGITUD.
+
 ## [2.3.3-beta] - 2026-06-15
 
 ### Fase 4 — Banco Python N7 completo
