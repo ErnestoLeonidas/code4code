@@ -411,6 +411,28 @@ await t('perfil flexible: variables sin Definir se crean en el primer uso', asyn
     `esperaba ["13"], obtuvo ${JSON.stringify(t1)}; errores: ${JSON.stringify(errs)}`);
 });
 
+// 17. Perfil flexible: arreglo con índices desde 0
+await t('perfil flexible: arreglo con índices desde 0', async () => {
+  const rt = new RuntimePSeInt({ asignacionConIgual: true, indicesDesde0: true });
+  const mock = crearHostConInputs();
+  await rt.ejecutar(`
+    Algoritmo prueba
+      Definir arr Como Entero
+      Dimension arr[3]
+      arr[0] <- 10
+      arr[2] <- 30
+      Escribir arr[0]
+      Escribir arr[2]
+    FinAlgoritmo
+  `, mock.host);
+  const t1 = textos(mock.salida);
+  const errs = errores(mock.salida);
+  ok(
+    t1.length === 2 && t1[0] === '10' && t1[1] === '30',
+    `esperaba ["10","30"], obtuvo ${JSON.stringify(t1)}; errores: ${JSON.stringify(errs)}`
+  );
+});
+
 // ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------

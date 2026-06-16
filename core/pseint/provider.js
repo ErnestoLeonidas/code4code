@@ -44,8 +44,8 @@
 
   /** Perfiles disponibles. */
   var PERFILES = Object.freeze({
-    estricto: Object.freeze({ asignacionConIgual: false }),
-    flexible: Object.freeze({ asignacionConIgual: true })
+    estricto: Object.freeze({ asignacionConIgual: false, indicesDesde0: false }),
+    flexible: Object.freeze({ asignacionConIgual: true,  indicesDesde0: true  })
   });
 
   /**

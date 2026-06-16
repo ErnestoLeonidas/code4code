@@ -139,15 +139,17 @@ function _splitArgsPSeInt(str) {
 
 class EvaluadorPSeInt {
   /**
-   * @param {ScopeChainPSeInt} scopes   - cadena de scopes activa
-   * @param {object}           builtins - BUILTINS_PSEINT
+   * @param {ScopeChainPSeInt} scopes      - cadena de scopes activa
+   * @param {object}           builtins    - BUILTINS_PSEINT
    * @param {Map|object}       subprocesos - funciones/procedimientos del AST
+   * @param {object}           [perfil]    - perfil activo del provider
    */
-  constructor(scopes, builtins, subprocesos) {
+  constructor(scopes, builtins, subprocesos, perfil) {
     this._scopes      = scopes;
     this._builtins    = builtins;
     this._valores     = new Map(); // clave en minúsculas → valor JS actual
     this._subprocesos = subprocesos || {};
+    this._perfil      = Object.assign({ asignacionConIgual: false, indicesDesde0: false }, perfil || {});
   }
 
   // ── API pública ────────────────────────────────────────────────────────────
@@ -528,33 +530,68 @@ class EvaluadorPSeInt {
   }
 
   _getElementoArreglo(arr, indices, nombre) {
+    const desdesCero = this._perfil.indicesDesde0 === true;
     if (indices.length === 1) {
       const idx = indices[0];
-      if (idx < 1 || idx > arr.datos.length - 1) {
-        throw new Error(`Índice ${idx} fuera de rango en "${nombre}".`);
+      if (desdesCero) {
+        // Índices 0-based: válido de 0 a tamaño-1
+        const tam = arr.datos.length - 1; // initDatos reserva tamaño+1
+        if (idx < 0 || idx >= tam) {
+          throw new Error(`Índice ${idx} fuera de rango en "${nombre}" (0 a ${tam - 1}).`);
+        }
+        return arr.datos[idx + 1]; // el arreglo interno sigue siendo 1-based internamente
+      } else {
+        if (idx < 1 || idx > arr.datos.length - 1) {
+          throw new Error(`Índice ${idx} fuera de rango en "${nombre}".`);
+        }
+        return arr.datos[idx];
       }
-      return arr.datos[idx];
     } else if (indices.length === 2) {
       const [i, j] = indices;
-      if (i < 1 || i >= arr.datos.length) throw new Error(`Índice ${i} fuera de rango en "${nombre}".`);
-      if (j < 1 || j >= arr.datos[i].length) throw new Error(`Índice ${j} fuera de rango en "${nombre}".`);
-      return arr.datos[i][j];
+      if (desdesCero) {
+        const tamI = arr.datos.length - 1;
+        const tamJ = arr.datos[1].length - 1;
+        if (i < 0 || i >= tamI) throw new Error(`Índice ${i} fuera de rango en "${nombre}" (0 a ${tamI - 1}).`);
+        if (j < 0 || j >= tamJ) throw new Error(`Índice ${j} fuera de rango en "${nombre}" (0 a ${tamJ - 1}).`);
+        return arr.datos[i + 1][j + 1];
+      } else {
+        if (i < 1 || i >= arr.datos.length) throw new Error(`Índice ${i} fuera de rango en "${nombre}".`);
+        if (j < 1 || j >= arr.datos[i].length) throw new Error(`Índice ${j} fuera de rango en "${nombre}".`);
+        return arr.datos[i][j];
+      }
     }
     throw new Error(`Acceso a arreglo con ${indices.length} índices no soportado.`);
   }
 
   _setElementoArreglo(arr, indices, valor, nombre) {
+    const desdesCero = this._perfil.indicesDesde0 === true;
     if (indices.length === 1) {
       const idx = indices[0];
-      if (idx < 1 || idx > arr.datos.length - 1) {
-        throw new Error(`Índice ${idx} fuera de rango en "${nombre}".`);
+      if (desdesCero) {
+        const tam = arr.datos.length - 1;
+        if (idx < 0 || idx >= tam) {
+          throw new Error(`Índice ${idx} fuera de rango en "${nombre}" (0 a ${tam - 1}).`);
+        }
+        arr.datos[idx + 1] = valor;
+      } else {
+        if (idx < 1 || idx > arr.datos.length - 1) {
+          throw new Error(`Índice ${idx} fuera de rango en "${nombre}".`);
+        }
+        arr.datos[idx] = valor;
       }
-      arr.datos[idx] = valor;
     } else if (indices.length === 2) {
       const [i, j] = indices;
-      if (i < 1 || i >= arr.datos.length) throw new Error(`Índice ${i} fuera de rango en "${nombre}".`);
-      if (j < 1 || j >= arr.datos[i].length) throw new Error(`Índice ${j} fuera de rango en "${nombre}".`);
-      arr.datos[i][j] = valor;
+      if (desdesCero) {
+        const tamI = arr.datos.length - 1;
+        const tamJ = arr.datos[1].length - 1;
+        if (i < 0 || i >= tamI) throw new Error(`Índice ${i} fuera de rango en "${nombre}" (0 a ${tamI - 1}).`);
+        if (j < 0 || j >= tamJ) throw new Error(`Índice ${j} fuera de rango en "${nombre}" (0 a ${tamJ - 1}).`);
+        arr.datos[i + 1][j + 1] = valor;
+      } else {
+        if (i < 1 || i >= arr.datos.length) throw new Error(`Índice ${i} fuera de rango en "${nombre}".`);
+        if (j < 1 || j >= arr.datos[i].length) throw new Error(`Índice ${j} fuera de rango en "${nombre}".`);
+        arr.datos[i][j] = valor;
+      }
     } else {
       throw new Error(`Asignación a arreglo con ${indices.length} índices no soportada.`);
     }

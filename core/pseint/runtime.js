@@ -46,7 +46,7 @@ class RuntimePSeInt {
    *   perfil.asignacionConIgual = false  → perfil estricto (default)
    */
   constructor(perfil) {
-    this._perfil = Object.assign({ asignacionConIgual: false }, perfil || {});
+    this._perfil = Object.assign({ asignacionConIgual: false, indicesDesde0: false }, perfil || {});
   }
 
   // ── API pública ────────────────────────────────────────────────────────────
@@ -88,7 +88,7 @@ class RuntimePSeInt {
     // Estado de ejecución
     const scopes     = new ScopeChainPSeInt();
     const arreglos   = new Map();           // clave→ { datos, dimensiones }
-    const evaluador  = new EvaluadorPSeInt(scopes, BUILTINS_PSEINT, ast.subprocesos);
+    const evaluador  = new EvaluadorPSeInt(scopes, BUILTINS_PSEINT, ast.subprocesos, perfil);
     evaluador.setArreglos(arreglos);
 
     const callStack = [];   // para detectar recursión excesiva

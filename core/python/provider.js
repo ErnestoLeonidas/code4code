@@ -263,6 +263,54 @@
       ejemplo: 'nums = [1, 2, 3]\nnums.append(4)\nprint(nums[0])   # 1\nprint(len(nums)) # 4',
       descripcion: 'Colección ordenada y mutable. Los índices empiezan en 0. Usa append() para agregar.'
     },
+    {
+      nombre: 'Métodos de cadena',
+      sintaxis: 'cadena.upper()\ncadena.lower()\ncadena.strip()\ncadena.split(sep)\ncadena.replace(old, new)\nnew_sep.join(lista)',
+      ejemplo: 'txt = "  Hola Mundo  "\nprint(txt.strip())      # "Hola Mundo"\nprint(txt.lower())      # "  hola mundo  "\nprint("a,b,c".split(",")) # ["a","b","c"]\nprint("-".join(["a","b"])) # "a-b"',
+      descripcion: 'Operaciones comunes sobre cadenas. Las cadenas son inmutables: estos métodos devuelven una cadena nueva sin modificar la original.'
+    },
+    {
+      nombre: 'Métodos de lista',
+      sintaxis: 'lista.append(x)\nlista.insert(i, x)\nlista.remove(x)\nlista.pop(i)\nlista.sort()\nlista.reverse()',
+      ejemplo: 'nums = [3, 1, 4, 1, 5]\nnums.sort()\nprint(nums)           # [1, 1, 3, 4, 5]\nnums.append(9)\nprint(nums.pop())     # 9\nnums.remove(1)\nprint(nums)           # [1, 3, 4, 5]',
+      descripcion: 'Modifica la lista en su lugar. sort() y reverse() no devuelven nada (None). Para obtener una copia ordenada usa sorted(lista).'
+    },
+    {
+      nombre: 'Comprensión de listas',
+      sintaxis: '[expresion for var in iterable]\n[expresion for var in iterable if condicion]',
+      ejemplo: 'cuadrados = [x**2 for x in range(1, 6)]\nprint(cuadrados)   # [1, 4, 9, 16, 25]\npares = [x for x in range(10) if x % 2 == 0]\nprint(pares)       # [0, 2, 4, 6, 8]',
+      descripcion: 'Forma compacta de construir una lista aplicando una expresión a cada elemento de un iterable, con filtrado opcional.'
+    },
+    {
+      nombre: 'Diccionarios (dict)',
+      sintaxis: 'd = {clave: valor}\nd[clave] = valor\nd.get(clave, default)\nd.keys()  d.values()  d.items()',
+      ejemplo: 'persona = {"nombre": "Ana", "edad": 20}\npersona["ciudad"] = "Lima"\nprint(persona.get("edad"))     # 20\nprint(persona.get("país", "?")) # ?\nfor k, v in persona.items():\n    print(k, "->", v)',
+      descripcion: 'Colección de pares clave-valor. Las claves deben ser únicas e inmutables (cadenas o números). d.get(k, default) evita KeyError cuando la clave no existe.'
+    },
+    {
+      nombre: 'try / except',
+      sintaxis: 'try:\n    ...\nexcept TipoError as e:\n    ...\nfinally:\n    ...',
+      ejemplo: 'try:\n    n = int(input("Número: "))\n    print(10 / n)\nexcept ValueError:\n    print("Debes ingresar un número entero.")\nexcept ZeroDivisionError:\n    print("No se puede dividir por cero.")',
+      descripcion: 'Captura y maneja errores en tiempo de ejecución. finally (opcional) se ejecuta siempre, independientemente de si hubo error o no.'
+    },
+    {
+      nombre: 'import math',
+      sintaxis: 'import math\nmath.sqrt(x)\nmath.floor(x)  math.ceil(x)\nmath.pi  math.e\nmath.pow(x, y)  math.log(x)',
+      ejemplo: 'import math\nprint(math.sqrt(16))   # 4.0\nprint(math.floor(3.7)) # 3\nprint(math.ceil(3.2))  # 4\nprint(round(math.pi, 4)) # 3.1416',
+      descripcion: 'Biblioteca estándar de funciones matemáticas. math.sqrt devuelve float; usa int() si necesitas entero. Disponible sin instalación adicional.'
+    },
+    {
+      nombre: 'f-strings (formateo)',
+      sintaxis: 'f"texto {variable}"\nf"{valor:.2f}"   # 2 decimales\nf"{valor:>10}"  # alineado',
+      ejemplo: 'nombre = "Ana"\nedad = 20\nprint(f"Hola, {nombre}!")\nprint(f"Edad: {edad}")\npi = 3.14159\nprint(f"Pi ≈ {pi:.3f}")  # Pi ≈ 3.142\nnota = 8.5\nprint(f"Promedio: {nota:.1f}")',
+      descripcion: 'Forma moderna de insertar variables en cadenas. Más legible que str() + "+" y permite controlar el formato (decimales, ancho, etc.).'
+    },
+    {
+      nombre: 'enumerate / zip',
+      sintaxis: 'for i, v in enumerate(lista):\nfor a, b in zip(lista1, lista2):',
+      ejemplo: 'frutas = ["manzana", "pera", "uva"]\nfor i, f in enumerate(frutas, 1):\n    print(f"{i}. {f}")\n\nnotas = [8, 7, 9]\nfor fruta, nota in zip(frutas, notas):\n    print(fruta, nota)',
+      descripcion: 'enumerate(lista, start=1) da índice y valor a la vez. zip(a, b) empareja dos listas elemento a elemento, útil para recorrerlas en paralelo.'
+    },
   ];
 
   // ---------------------------------------------------------------------------
