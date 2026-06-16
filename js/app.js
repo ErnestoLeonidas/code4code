@@ -3127,10 +3127,60 @@ function renderizarDocsComandos() {
   });
 }
 
+function obtenerEjerciciosPorLenguajeId(id) {
+  if (id === "python") {
+    return window.EjerciciosPython ? window.EjerciciosPython.listarAdaptados() : [];
+  }
+  if (id === "pseint") {
+    return window.EjerciciosPSeInt ? window.EjerciciosPSeInt.listarAdaptados() : [];
+  }
+  if (!window.EjerciciosLiteSeInt) return [];
+  return window.EjerciciosLiteSeInt.listarAdaptados().filter(
+    (e) => NIVELES_VISIBLES.includes(e.nivelLiteSeInt),
+  );
+}
+
+function obtenerProgresoPorLenguajeId(id) {
+  try {
+    const raw = lsGet(PROGRESO_KEYS[id] || PROGRESO_KEY_LITESEINT);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return (typeof parsed === "object" && parsed !== null) ? parsed : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function renderizarProgresoComparado($cont) {
+  const $sec = $("<section>").addClass("learning-progreso-comparado");
+  $sec.append($("<div>").addClass("learning-doc-label").text("Progreso comparado por lenguaje"));
+
+  Code4Code.registro.lista().forEach((provider) => {
+    const ejercicios = obtenerEjerciciosPorLenguajeId(provider.id);
+    const progreso = obtenerProgresoPorLenguajeId(provider.id);
+    const total = ejercicios.length;
+    const completados = ejercicios.filter((e) => progreso[e.id] === "completado").length;
+    const pct = total > 0 ? Math.round((completados / total) * 100) : 0;
+
+    const $row = $("<div>").addClass("progreso-comparado-row");
+    $row.append($("<span>").addClass("progreso-comparado-lang").text(provider.nombre));
+    const $wrap = $("<div>").addClass("route-progress-wrap");
+    $wrap.append($("<div>").addClass("route-progress-text").text(`${completados} / ${total} completados`));
+    const $bar = $("<div>").addClass("route-progress-bar");
+    $bar.append($("<div>").addClass("route-progress-fill").css("width", `${pct}%`));
+    $wrap.append($bar);
+    $row.append($wrap);
+    $sec.append($row);
+  });
+
+  $cont.append($sec);
+}
+
 function renderizarRutaEstudiante() {
   const $cont = $("#learningViewRuta");
   if (!$cont.length) return;
   $cont.empty();
+
+  renderizarProgresoComparado($cont);
 
   const provider = Code4Code.registro.activo();
   if (provider.id !== 'liteseint') {

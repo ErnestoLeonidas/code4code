@@ -80,10 +80,14 @@ identifica en qué fase está el proyecto.
       `pista`, `entradaProcesoSalida`); inspector de variables Python; tracebacks
       mejorados; validación de sintaxis con `compile()` antes de ejecutar.
       Pendiente: testing de ejecución real (requiere browser), mejoras de rendimiento.
-- [x] Fase 5 — Ejercicios multi-lenguaje (inicio, `v2.3.5-beta`).
+- [ ] Fase 5 — Ejercicios multi-lenguaje (en curso, `v2.3.6-beta`).
       Implementado: progreso separado por lenguaje en `localStorage`; datos de
-      ejercicios PSeInt/Python cargados correctamente; 89 tests en suite total
-      validando los tres bancos (LiteSeInt 245 ejercicios, PSeInt 110, Python 110).
+      ejercicios PSeInt/Python cargados correctamente; vista de progreso
+      comparado por lenguaje en la pestaña Rutas (`renderizarProgresoComparado`
+      en `js/app.js`, visible sin cambiar de lenguaje activo); tests en suite
+      total validando los tres bancos (LiteSeInt 245 ejercicios, PSeInt 110,
+      Python 110). Pendiente: esquema de ejercicio multi-lenguaje unificado
+      (un enunciado, N soluciones por lenguaje).
       Pendiente: esquema multi-lenguaje (un enunciado, N soluciones), estadísticas
       comparadas por lenguaje.
 

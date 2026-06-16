@@ -1,5 +1,18 @@
 # Changelog — Code4Code
 
+## [2.3.6-beta] - 2026-06-16
+
+### Fase 5 — Vista de progreso comparado por lenguaje
+
+- `js/app.js`: nueva sección "Progreso comparado por lenguaje" al inicio de la
+  pestaña Rutas, visible sin importar el lenguaje activo. `renderizarProgresoComparado`
+  recorre `Code4Code.registro.lista()` y, para cada lenguaje, lee su propia clave
+  de progreso en `localStorage` (`obtenerProgresoPorLenguajeId`) y su banco de
+  ejercicios (`obtenerEjerciciosPorLenguajeId`) para mostrar completados/total
+  y una barra de progreso, sin necesidad de cambiar de lenguaje activo.
+- `css/styles.css`: estilos `.learning-progreso-comparado` y
+  `.progreso-comparado-row` reutilizando las barras de `.route-progress-bar`.
+
 ## [2.3.5-beta] - 2026-06-16
 
 ### Fase 3a — ORDENAR (ordenamiento de arreglos)

@@ -1972,6 +1972,26 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   background: var(--accent-bg);
 }
 
+.learning-progreso-comparado {
+  margin: 0 0 14px;
+  padding: 8px 10px 4px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.025);
+}
+
+.progreso-comparado-row {
+  margin: 0 0 8px;
+}
+
+.progreso-comparado-lang {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 3px;
+}
+
 /* ========================================
     EXERCISE BANK
     ======================================== */

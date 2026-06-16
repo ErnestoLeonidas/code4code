@@ -340,7 +340,8 @@ conecta la experiencia del estudiante entre lenguajes:
       obligatorios, ausencia de sintaxis cruzada entre lenguajes.
 - [ ] Esquema de ejercicio multi-lenguaje unificado (un enunciado, N soluciones):
       permitir asociar el mismo problema conceptual en varios lenguajes.
-- [ ] Vista de progreso comparado: cuántos ejercicios resueltos por lenguaje.
+- [x] Vista de progreso comparado: cuántos ejercicios resueltos por lenguaje
+      (sección en la pestaña Rutas, `renderizarProgresoComparado` en `js/app.js`).
 
 ### Fase 6 — Estabilización y release `v3.0.0`
 
