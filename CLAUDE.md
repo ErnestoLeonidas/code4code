@@ -62,7 +62,7 @@ identifica en qué fase está el proyecto.
       cambiar lenguaje, y suites de tests propias (tokenizer 25, builtins 61,
       parser 15, runtime 15, validator 17, contract-tests extendido a 33 pruebas).
       Pendiente (Fase 3b): golden tests y conversión implícita avanzada.
-- [x] Fase 3b — Perfil flexible y banco de ejercicios PSeInt completo (`v2.3.1-beta`).
+- [x] Fase 3b — Perfil flexible y banco de ejercicios PSeInt completo (`v2.3.2-beta`).
       Implementado: selector de perfil (presets *Estricto*/*Flexible*) visible solo en
       PSeInt, `configurarPerfil`/`obtenerPerfil` en el provider, elección persistida
       en `localStorage`; `Definir` opcional en modo flexible (auto-creación de variables
@@ -70,9 +70,11 @@ identifica en qué fase está el proyecto.
       en perfil flexible (`asignacionConIgual: true`); palabras opcionales `Entonces`
       y `Hacer` ya soportadas por el parser (se ignoran si no están); perfil embebido
       en el archivo descargado (`// Perfil: Estricto`) y detectado al importar;
-      banco N1–N7 completo en `json/pseint/` (95 ejercicios PSeInt en total).
-      Pendiente: golden tests por preset, `Dimension` base-0 en flexible.
-- [x] Fase 4 — Python con Pyodide (`core/python/`), funcional (`v2.3.1-beta`).
+      banco N1–N7 completo en `json/pseint/` (110 ejercicios PSeInt en total);
+      `Dimension` base-0 en perfil flexible; 25 golden tests de runtime;
+      documentación de perfiles en el panel de aprendizaje; 4 bugs corregidos en el
+      validador (strings, operadores Y/O, Leer con índices, scope de subprocesos).
+- [x] Fase 4 — Python con Pyodide (`core/python/`), funcional (`v2.3.2-beta`).
       Hecho: tokenizador Python (37 keywords + 22 builtins en autocompletado,
       `core/python/tokenizer.js`), Web Worker con Pyodide 0.26.2 (`core/python/worker.js`),
       bridge con RuntimeHost (`core/python/bridge.js`), provider completo con contrato
@@ -80,12 +82,18 @@ identifica en qué fase está el proyecto.
       opción Python en el selector de lenguaje, barra de símbolos táctiles adaptable,
       28 pruebas de tokenizador, 10 pruebas de contrato, banco N1–N6 en `json/python/`
       (95 ejercicios Python) con `js/ejercicios-python-data.js`; inspector de variables
-      Python (tras ejecución, el namespace del usuario aparece en el panel de variables);
-      tracebacks mejorados (mensaje corto con número de línea); documentación expandida
-      (18 comandos incluyendo métodos de string/lista, comprehensions, dict, try/except,
-      math, f-strings, enumerate/zip).
+      Python; tracebacks mejorados con número de línea; documentación expandida (27 entradas
+      incluyendo métodos de string/lista, comprehensions, dict, try/except, math, f-strings,
+      enumerate/zip); validación de sintaxis con `compile()` antes de ejecutar.
       Pendiente: testing de ejecución real (requiere browser), mejoras de rendimiento.
-- [ ] Fase 5 — Ejercicios multi-lenguaje.
+- [x] Fase 5 — Ejercicios multi-lenguaje (inicio, `v2.3.2-beta`).
+      Implementado: progreso separado por lenguaje en `localStorage`
+      (`code4code:exerciseProgress`, `:pseint`, `:python`), se recarga al cambiar
+      lenguaje; datos de ejercicios PSeInt/Python cargan correctamente (`data.ejercicios`,
+      paths N1-N7/N1-N6 completos); 8 nuevos tests en `run-tests.js` validando los
+      bancos PSeInt y Python (count, IDs, codigoReferencia, sintaxis). Total: 85 pruebas.
+      Pendiente: esquema multi-lenguaje (un enunciado, N soluciones), validación de
+      referencias cruzadas, estadísticas por lenguaje.
 
 ## Tareas típicas y dónde mirar
 
