@@ -281,10 +281,23 @@ function _validarNodo(nodo, ctx, tablaLocal) {
     }
 
     case 'Asignar': {
+      // Aviso de migración: en perfil estricto, = es comparador y no asignación
+      const textoNodo = nodo.texto || '';
+      if (ctx.perfil && ctx.perfil.asignacionConIgual === false) {
+        const usaFlecha = /\s*<-\s*/.test(textoNodo);
+        if (!usaFlecha) {
+          _agregarError(ctx, linea,
+            'En PSeInt (perfil estricto) la asignación se escribe con "<-", no con "=". ' +
+            'Ejemplo: x <- 5. El signo "=" siempre es un comparador.');
+        }
+      }
       const liz = _parsearLadoIzqAsignar(nodo.texto);
       if (liz) {
-        // Variable no definida (solo si hay al menos un Definir en el programa)
-        if (ctx.hayDefinir && !tabla.existeVariable(liz.nombre) && !ctx.tablaGlobal.existeVariable(liz.nombre)) {
+        // Variable no definida (solo si hay al menos un Definir en el programa
+        // Y estamos en perfil estricto — en perfil flexible las variables se
+        // crean automáticamente en el primer uso).
+        const perfilFlexible = ctx.perfil && ctx.perfil.asignacionConIgual === true;
+        if (!perfilFlexible && ctx.hayDefinir && !tabla.existeVariable(liz.nombre) && !ctx.tablaGlobal.existeVariable(liz.nombre)) {
           _agregarError(ctx, linea, 'Variable "' + liz.nombre + '" usada sin definir.');
         }
         // Asignación con índice pero sin Dimension
@@ -302,9 +315,10 @@ function _validarNodo(nodo, ctx, tablaLocal) {
 
     case 'Leer': {
       const vars = _parsearLeer(nodo.texto);
+      const perfilFlexibleLeer = ctx.perfil && ctx.perfil.asignacionConIgual === true;
       for (let j = 0; j < vars.length; j++) {
         const nombre = vars[j];
-        if (ctx.hayDefinir && !tabla.existeVariable(nombre) && !ctx.tablaGlobal.existeVariable(nombre)) {
+        if (!perfilFlexibleLeer && ctx.hayDefinir && !tabla.existeVariable(nombre) && !ctx.tablaGlobal.existeVariable(nombre)) {
           _agregarError(ctx, linea, 'Variable "' + nombre + '" usada sin definir.');
         }
         if (tabla.existeVariable(nombre)) {
@@ -443,6 +457,7 @@ function _validarSubprocesos(subprocesos, ctx) {
       hayDefinir: tablaLocal.variables.size > 0, // si tiene params, activa verificación
       arreglosDimensionados: new Set(ctx.arreglosDimensionados),
       subprocesos: ctx.subprocesos,
+      perfil: ctx.perfil || {},
     };
 
     _recolectarDeclaraciones(sp.cuerpo, ctxLocal);
@@ -605,6 +620,7 @@ function validarPSeInt(codigo, perfil) {
       hayDefinir: false,
       arreglosDimensionados: new Set(),
       subprocesos,
+      perfil: perfil || {},
     };
 
     // Primera pasada: recolectar declaraciones del cuerpo principal
@@ -626,6 +642,7 @@ function validarPSeInt(codigo, perfil) {
         hayDefinir: ctx.hayDefinir,
         arreglosDimensionados: ctx.arreglosDimensionados,
         subprocesos,
+        perfil: perfil || {},
       };
       _validarNodos(ast.cuerpo, ctxValidacion, null);
     }

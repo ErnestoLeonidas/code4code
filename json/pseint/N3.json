@@ -1,0 +1,393 @@
+{
+  "version": "1.0.0",
+  "lenguaje": "pseint",
+  "nivel": 3,
+  "experience": {
+    "id": "ps-3",
+    "label": "N3",
+    "titulo": "Estructuras de Repetición PSeInt",
+    "desc": "Uso de Para/FinPara, Mientras/FinMientras y Repetir/Hasta Que para resolver problemas iterativos.",
+    "color": "var(--accent3)",
+    "icon": "🔁"
+  },
+  "ejercicios": [
+    {
+      "id": "ps-n3-001",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-01",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Contar del 1 al 10",
+      "conceptos": ["Para", "FinPara", "Escribir", "contador"],
+      "enunciado": "Crea un algoritmo que muestre en pantalla los números del 1 al 10, uno por línea, usando un ciclo Para. Este es el ejercicio más básico de repetición: recorrer un rango fijo de valores.",
+      "entradaProcesoSalida": {
+        "entrada": "(ninguna — rango fijo)",
+        "proceso": "Para i <- 1 Hasta 10 Con Paso 1 Hacer: Escribir i",
+        "salida": "Los números del 1 al 10, uno por línea"
+      },
+      "salidaEsperada": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+      "pista": "Usa 'Para i <- 1 Hasta 10 Con Paso 1 Hacer' y dentro del bloque escribe el valor de i. Cierra con FinPara.",
+      "codigoReferencia": "Algoritmo contar_del_1_al_10\n  Definir i Como Entero\n\n  Para i <- 1 Hasta 10 Con Paso 1 Hacer\n    Escribir i\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-002",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-02",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Suma acumulada del 1 a N",
+      "conceptos": ["Para", "FinPara", "acumulador", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide un número entero positivo N y calcula la suma de todos los números desde 1 hasta N usando un ciclo Para con un acumulador. Muestra el resultado al final.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo N",
+        "proceso": "Para i <- 1 Hasta N: suma <- suma + i",
+        "salida": "\"La suma de 1 a 5 es: 15\""
+      },
+      "salidaEsperada": "Ingrese N: \nLa suma de 1 a 5 es: 15",
+      "pista": "Inicializa una variable suma <- 0 antes del ciclo. Dentro del Para, acumula con suma <- suma + i. Al salir, muestra suma.",
+      "codigoReferencia": "Algoritmo suma_acumulada\n  Definir N, i, suma Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + i\n  FinPara\n\n  Escribir \"La suma de 1 a \", N, \" es: \", suma\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-003",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Tabla de multiplicar",
+      "conceptos": ["Para", "FinPara", "Leer", "Escribir", "multiplicación"],
+      "enunciado": "El algoritmo pide un número entero y muestra su tabla de multiplicar del 1 al 10, con el formato: 'N x i = resultado'.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero N",
+        "proceso": "Para i <- 1 Hasta 10: Escribir N, \" x \", i, \" = \", N * i",
+        "salida": "Las 10 líneas de la tabla de multiplicar de N"
+      },
+      "salidaEsperada": "Ingrese el número: \n5 x 1 = 5\n5 x 2 = 10\n5 x 3 = 15\n5 x 4 = 20\n5 x 5 = 25\n5 x 6 = 30\n5 x 7 = 35\n5 x 8 = 40\n5 x 9 = 45\n5 x 10 = 50",
+      "pista": "El ciclo va de 1 a 10. Dentro del ciclo calcula N * i directamente en el Escribir. No hace falta variable extra para el producto.",
+      "codigoReferencia": "Algoritmo tabla_multiplicar\n  Definir N, i Como Entero\n\n  Escribir \"Ingrese el número: \"\n  Leer N\n\n  Para i <- 1 Hasta 10 Con Paso 1 Hacer\n    Escribir N, \" x \", i, \" = \", N * i\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-004",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Factorial con Para",
+      "conceptos": ["Para", "FinPara", "acumulador multiplicativo", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide un número entero no negativo N y calcula su factorial (N!) usando un ciclo Para. El factorial de 0 es 1. Muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero N >= 0",
+        "proceso": "factorial <- 1; Para i <- 1 Hasta N: factorial <- factorial * i",
+        "salida": "\"El factorial de 5 es: 120\""
+      },
+      "salidaEsperada": "Ingrese N: \nEl factorial de 5 es: 120",
+      "pista": "Inicializa factorial <- 1 (no cero). El ciclo multiplica acumulando: factorial <- factorial * i. Si N es 0, el ciclo no se ejecuta y el resultado es 1.",
+      "codigoReferencia": "Algoritmo calcular_factorial\n  Definir N, i, factorial Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  factorial <- 1\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    factorial <- factorial * i\n  FinPara\n\n  Escribir \"El factorial de \", N, \" es: \", factorial\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-005",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-05",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Potencia entera con Para",
+      "conceptos": ["Para", "FinPara", "acumulador multiplicativo", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide una base y un exponente entero no negativo, y calcula la potencia (base^exponente) multiplicando iterativamente, sin usar el operador ^. Si el exponente es 0, el resultado es 1.",
+      "entradaProcesoSalida": {
+        "entrada": "Base (Entero) y exponente (Entero >= 0)",
+        "proceso": "resultado <- 1; Para i <- 1 Hasta exponente: resultado <- resultado * base",
+        "salida": "\"2 elevado a 8 es: 256\""
+      },
+      "salidaEsperada": "Ingrese la base: \nIngrese el exponente: \n2 elevado a 8 es: 256",
+      "pista": "La potencia es la multiplicación repetida de la base. Inicializa resultado <- 1 y multiplica resultado * base en cada iteración.",
+      "codigoReferencia": "Algoritmo potencia_entera\n  Definir base, exponente, resultado, i Como Entero\n\n  Escribir \"Ingrese la base: \"\n  Leer base\n  Escribir \"Ingrese el exponente: \"\n  Leer exponente\n\n  resultado <- 1\n  Para i <- 1 Hasta exponente Con Paso 1 Hacer\n    resultado <- resultado * base\n  FinPara\n\n  Escribir base, \" elevado a \", exponente, \" es: \", resultado\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-006",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-06",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Números pares de 1 a N",
+      "conceptos": ["Para", "FinPara", "MOD", "Si", "FinSi", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide un número entero positivo N y muestra todos los números pares entre 1 y N (inclusive). Un número es par si su resto al dividir por 2 es cero (usando MOD).",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo N",
+        "proceso": "Para i <- 1 Hasta N: Si i MOD 2 = 0 Entonces Escribir i",
+        "salida": "Los números pares de 1 a N, uno por línea"
+      },
+      "salidaEsperada": "Ingrese N: \n2\n4\n6\n8\n10",
+      "pista": "Dentro del ciclo Para usa un Si para verificar si i MOD 2 = 0. Alternativa: usa el ciclo con Paso 2 comenzando en 2.",
+      "codigoReferencia": "Algoritmo numeros_pares\n  Definir N, i Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si i MOD 2 = 0 Entonces\n      Escribir i\n    FinSi\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-007",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-07",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Suma de dígitos con Mientras",
+      "conceptos": ["Mientras", "FinMientras", "MOD", "DIV", "acumulador", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide un número entero positivo y calcula la suma de sus dígitos usando un ciclo Mientras. En cada iteración extrae el último dígito con MOD 10 y lo acumula, luego elimina ese dígito con DIV 10.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo",
+        "proceso": "Mientras numero > 0: suma <- suma + (numero MOD 10); numero <- numero DIV 10",
+        "salida": "\"La suma de los dígitos de 1234 es: 10\""
+      },
+      "salidaEsperada": "Ingrese un número entero positivo: \nLa suma de los dígitos de 1234 es: 10",
+      "pista": "Usa numero MOD 10 para extraer el último dígito. Luego numero <- numero DIV 10 para eliminarlo. El ciclo continúa mientras numero > 0.",
+      "codigoReferencia": "Algoritmo suma_digitos_mientras\n  Definir numero, original, suma, digito Como Entero\n\n  Escribir \"Ingrese un número entero positivo: \"\n  Leer numero\n\n  original <- numero\n  suma <- 0\n  Mientras numero > 0 Hacer\n    digito <- numero MOD 10\n    suma   <- suma + digito\n    numero <- numero DIV 10\n  FinMientras\n\n  Escribir \"La suma de los dígitos de \", original, \" es: \", suma\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-008",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-08",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Contar dígitos de un número",
+      "conceptos": ["Mientras", "FinMientras", "DIV", "contador", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide un número entero positivo y cuenta cuántos dígitos tiene usando un ciclo Mientras. En cada iteración divide el número entre 10 (con DIV) e incrementa un contador.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo",
+        "proceso": "Mientras numero > 0: contador <- contador + 1; numero <- numero DIV 10",
+        "salida": "\"El número 4857 tiene 4 dígitos\""
+      },
+      "salidaEsperada": "Ingrese un número entero positivo: \nEl número 4857 tiene 4 dígitos.",
+      "pista": "Inicializa el contador en 0. Cada vez que divides por 10 (DIV) eliminas un dígito. El ciclo termina cuando el número llega a 0.",
+      "codigoReferencia": "Algoritmo contar_digitos\n  Definir numero, original, contador Como Entero\n\n  Escribir \"Ingrese un número entero positivo: \"\n  Leer numero\n\n  original  <- numero\n  contador  <- 0\n  Mientras numero > 0 Hacer\n    contador <- contador + 1\n    numero   <- numero DIV 10\n  FinMientras\n\n  Escribir \"El número \", original, \" tiene \", contador, \" dígitos.\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-009",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-09",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Invertir dígitos de un número",
+      "conceptos": ["Mientras", "FinMientras", "MOD", "DIV", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide un número entero positivo y construye el número que resulta de invertir el orden de sus dígitos. Por ejemplo: 1234 → 4321. Usa un ciclo Mientras para extraer dígitos de derecha a izquierda.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo",
+        "proceso": "Mientras numero > 0: invertido <- invertido * 10 + (numero MOD 10); numero <- numero DIV 10",
+        "salida": "\"El inverso de 1234 es: 4321\""
+      },
+      "salidaEsperada": "Ingrese un número entero positivo: \nEl inverso de 1234 es: 4321",
+      "pista": "Extrae el último dígito con MOD 10. Para agregar al número invertido: invertido <- invertido * 10 + digito. Luego elimina el dígito con DIV 10.",
+      "codigoReferencia": "Algoritmo invertir_digitos\n  Definir numero, original, invertido, digito Como Entero\n\n  Escribir \"Ingrese un número entero positivo: \"\n  Leer numero\n\n  original  <- numero\n  invertido <- 0\n  Mientras numero > 0 Hacer\n    digito    <- numero MOD 10\n    invertido <- invertido * 10 + digito\n    numero    <- numero DIV 10\n  FinMientras\n\n  Escribir \"El inverso de \", original, \" es: \", invertido\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-010",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-10",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Máximo de N números ingresados",
+      "conceptos": ["Mientras", "FinMientras", "Si", "FinSi", "maximo", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide cuántos números se desea ingresar (N) y luego lee N números reales, uno a uno, determinando cuál es el máximo. Muestra el valor máximo al finalizar.",
+      "entradaProcesoSalida": {
+        "entrada": "Cantidad N (Entero) y N números reales",
+        "proceso": "Leer el primero como máximo inicial; luego comparar cada siguiente con el máximo actual",
+        "salida": "\"El máximo ingresado es: 87\""
+      },
+      "salidaEsperada": "¿Cuántos números desea ingresar? \nIngrese el número 1: \nIngrese el número 2: \nIngrese el número 3: \nEl máximo ingresado es: 87",
+      "pista": "Lee el primer número y úsalo como máximo inicial. En el ciclo compara cada nuevo número: Si numero > maximo Entonces maximo <- numero.",
+      "codigoReferencia": "Algoritmo maximo_de_n\n  Definir N, i Como Entero\n  Definir numero, maximo Como Real\n\n  Escribir \"¿Cuántos números desea ingresar? \"\n  Leer N\n\n  Escribir \"Ingrese el número 1: \"\n  Leer maximo\n\n  i <- 2\n  Mientras i <= N Hacer\n    Escribir \"Ingrese el número \", i, \": \"\n    Leer numero\n    Si numero > maximo Entonces\n      maximo <- numero\n    FinSi\n    i <- i + 1\n  FinMientras\n\n  Escribir \"El máximo ingresado es: \", maximo\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-011",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-11",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Secuencia de Fibonacci hasta N términos",
+      "conceptos": ["Para", "FinPara", "Leer", "Escribir", "secuencia"],
+      "enunciado": "El algoritmo pide cuántos términos N de la sucesión de Fibonacci se desean mostrar y los imprime en pantalla, uno por línea. Los dos primeros términos son 0 y 1; cada siguiente es la suma de los dos anteriores.",
+      "entradaProcesoSalida": {
+        "entrada": "Número de términos N (Entero >= 1)",
+        "proceso": "Mantener a <- 0 y b <- 1; para cada término mostrar a y actualizar: aux <- b; b <- a + b; a <- aux",
+        "salida": "Los N primeros términos de Fibonacci, uno por línea"
+      },
+      "salidaEsperada": "¿Cuántos términos de Fibonacci? \n0\n1\n1\n2\n3\n5\n8",
+      "pista": "Usa dos variables: a (término actual) y b (siguiente). Tras mostrar a, calcula el nuevo b <- a + b y avanza a <- b_anterior. Necesitas una variable auxiliar para el intercambio.",
+      "codigoReferencia": "Algoritmo fibonacci\n  Definir N, i, a, b, aux Como Entero\n\n  Escribir \"¿Cuántos términos de Fibonacci? \"\n  Leer N\n\n  a <- 0\n  b <- 1\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir a\n    aux <- b\n    b   <- a + b\n    a   <- aux\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-012",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-12",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Primer múltiplo de K mayor que M",
+      "conceptos": ["Repetir", "Hasta Que", "MOD", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide dos enteros positivos K y M, y encuentra el primer múltiplo de K que sea estrictamente mayor que M. Usa un ciclo Repetir/Hasta Que para ir probando candidatos.",
+      "entradaProcesoSalida": {
+        "entrada": "K (Entero > 0) y M (Entero >= 0)",
+        "proceso": "candidato <- M; Repetir: candidato <- candidato + 1; Hasta Que candidato MOD K = 0",
+        "salida": "\"El primer múltiplo de 7 mayor que 20 es: 21\""
+      },
+      "salidaEsperada": "Ingrese K: \nIngrese M: \nEl primer múltiplo de 7 mayor que 20 es: 21",
+      "pista": "Comienza el candidato en M. Dentro del Repetir incrementa candidato en 1. La condición del Hasta Que es candidato MOD K = 0.",
+      "codigoReferencia": "Algoritmo primer_multiplo\n  Definir K, M, candidato Como Entero\n\n  Escribir \"Ingrese K: \"\n  Leer K\n  Escribir \"Ingrese M: \"\n  Leer M\n\n  candidato <- M\n  Repetir\n    candidato <- candidato + 1\n  Hasta Que candidato MOD K = 0\n\n  Escribir \"El primer múltiplo de \", K, \" mayor que \", M, \" es: \", candidato\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-013",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-13",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Adivina el número (con límite de intentos)",
+      "conceptos": ["Mientras", "FinMientras", "Si", "SiNo", "FinSi", "contador", "Logico", "Leer", "Escribir"],
+      "enunciado": "El algoritmo elige internamente el número secreto 42. El usuario tiene hasta 10 intentos para adivinarlo. En cada intento se indica si el número secreto es mayor o menor que el ingresado. Al finalizar se muestra si el usuario ganó o perdió.",
+      "entradaProcesoSalida": {
+        "entrada": "Hasta 10 números enteros ingresados por el usuario",
+        "proceso": "Mientras intentos < 10 Y no acertado: leer intento, comparar con secreto",
+        "salida": "Pistas en cada intento y mensaje final de victoria o derrota"
+      },
+      "salidaEsperada": "=== Adivina el número ===\nIngrese su intento (1/10): \nDemasiado bajo, intente de nuevo.\nIngrese su intento (2/10): \n¡Correcto! Adivinaste en 2 intentos.",
+      "pista": "Usa una variable Logico 'acertado' inicializada en Falso. El ciclo Mientras continúa mientras intentos < 10 Y acertado = Falso. Actualiza 'acertado <- Verdadero' cuando el intento coincide con el secreto.",
+      "codigoReferencia": "Algoritmo adivina_numero\n  Definir secreto, intento, intentos Como Entero\n  Definir acertado Como Logico\n\n  secreto   <- 42\n  intentos  <- 0\n  acertado  <- Falso\n\n  Escribir \"=== Adivina el número ===\"\n\n  Mientras intentos < 10 Y acertado = Falso Hacer\n    intentos <- intentos + 1\n    Escribir \"Ingrese su intento (\", intentos, \"/10): \"\n    Leer intento\n\n    Si intento = secreto Entonces\n      acertado <- Verdadero\n    SiNo\n      Si intento < secreto Entonces\n        Escribir \"Demasiado bajo, intente de nuevo.\"\n      SiNo\n        Escribir \"Demasiado alto, intente de nuevo.\"\n      FinSi\n    FinSi\n  FinMientras\n\n  Si acertado Entonces\n    Escribir \"¡Correcto! Adivinaste en \", intentos, \" intentos.\"\n  SiNo\n    Escribir \"Sin intentos. El número era: \", secreto\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-014",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-14",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Números primos entre 2 y N",
+      "conceptos": ["Para", "FinPara", "ciclos anidados", "MOD", "Si", "SiNo", "Logico", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide un número entero positivo N y muestra todos los números primos entre 2 y N. Para verificar si un número es primo, usa un ciclo interior que prueba divisores desde 2 hasta el número menos 1.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo N",
+        "proceso": "Para cada candidato de 2 a N: verificar si tiene divisores entre 2 y candidato-1",
+        "salida": "Los números primos entre 2 y N, uno por línea"
+      },
+      "salidaEsperada": "Ingrese N: \n2\n3\n5\n7\n11\n13",
+      "pista": "Usa una variable Logico 'esPrimo <- Verdadero'. El ciclo interior busca divisores: Si candidato MOD d = 0 Entonces esPrimo <- Falso. El ciclo interior va de 2 hasta candidato - 1.",
+      "codigoReferencia": "Algoritmo numeros_primos\n  Definir N, candidato, d Como Entero\n  Definir esPrimo Como Logico\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  Para candidato <- 2 Hasta N Con Paso 1 Hacer\n    esPrimo <- Verdadero\n    Para d <- 2 Hasta candidato - 1 Con Paso 1 Hacer\n      Si candidato MOD d = 0 Entonces\n        esPrimo <- Falso\n      FinSi\n    FinPara\n    Si esPrimo Entonces\n      Escribir candidato\n    FinSi\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-015",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-15",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Suma de múltiplos de 3 y 5 hasta N",
+      "conceptos": ["Para", "FinPara", "MOD", "Si", "acumulador", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide un número entero positivo N y calcula la suma de todos los enteros de 1 a N que sean múltiplos de 3 o de 5 (o de ambos). Muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo N",
+        "proceso": "Para i <- 1 Hasta N: Si (i MOD 3 = 0) O (i MOD 5 = 0): suma <- suma + i",
+        "salida": "\"Suma de múltiplos de 3 y 5 hasta 15: 60\""
+      },
+      "salidaEsperada": "Ingrese N: \nSuma de múltiplos de 3 y 5 hasta 15: 60",
+      "pista": "Usa el operador O para combinar las condiciones. El número 15, por ejemplo, es múltiplo de ambos y se cuenta una sola vez gracias al O.",
+      "codigoReferencia": "Algoritmo suma_multiplos\n  Definir N, i, suma Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si (i MOD 3 = 0) O (i MOD 5 = 0) Entonces\n      suma <- suma + i\n    FinSi\n  FinPara\n\n  Escribir \"Suma de múltiplos de 3 y 5 hasta \", N, \": \", suma\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-016",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-16",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Promedio de N notas con Mientras",
+      "conceptos": ["Mientras", "FinMientras", "acumulador", "contador", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide cuántas notas se desean ingresar (N) y luego lee N notas reales usando un ciclo Mientras. Calcula y muestra el promedio al finalizar.",
+      "entradaProcesoSalida": {
+        "entrada": "Cantidad N (Entero) y N notas reales",
+        "proceso": "Mientras i <= N: suma <- suma + nota; i <- i + 1; promedio <- suma / N",
+        "salida": "\"Promedio de las 4 notas: 5.75\""
+      },
+      "salidaEsperada": "¿Cuántas notas? \nIngrese la nota 1: \nIngrese la nota 2: \nIngrese la nota 3: \nIngrese la nota 4: \nPromedio de las 4 notas: 5.75",
+      "pista": "Declara suma <- 0 e i <- 1 antes del ciclo. Dentro del Mientras acumula la nota y luego incrementa i. Divide al salir del ciclo.",
+      "codigoReferencia": "Algoritmo promedio_notas_mientras\n  Definir N, i Como Entero\n  Definir nota, suma, promedio Como Real\n\n  Escribir \"¿Cuántas notas? \"\n  Leer N\n\n  suma <- 0\n  i    <- 1\n  Mientras i <= N Hacer\n    Escribir \"Ingrese la nota \", i, \": \"\n    Leer nota\n    suma <- suma + nota\n    i    <- i + 1\n  FinMientras\n\n  promedio <- suma / N\n  Escribir \"Promedio de las \", N, \" notas: \", promedio\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-017",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-17",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Validar entrada en rango [1, 100] con Repetir",
+      "conceptos": ["Repetir", "Hasta Que", "Si", "FinSi", "validación", "Leer", "Escribir"],
+      "enunciado": "El algoritmo solicita al usuario un número entero entre 1 y 100 inclusive. Si ingresa un valor fuera de rango, muestra un mensaje de error y vuelve a pedirlo. Repite hasta recibir un valor válido. Al final confirma el valor aceptado.",
+      "entradaProcesoSalida": {
+        "entrada": "Números enteros del usuario (hasta que ingrese uno en [1, 100])",
+        "proceso": "Repetir: Leer numero; Si fuera de rango: advertir; Hasta Que numero >= 1 Y numero <= 100",
+        "salida": "Mensajes de error hasta valor válido, luego confirmación"
+      },
+      "salidaEsperada": "Ingrese un número entre 1 y 100: \nError: valor fuera de rango. Intente de nuevo.\nIngrese un número entre 1 y 100: \nValor aceptado: 57",
+      "pista": "El ciclo Repetir siempre ejecuta el cuerpo al menos una vez. La condición del Hasta Que debe ser la condición de ÉXITO: numero >= 1 Y numero <= 100.",
+      "codigoReferencia": "Algoritmo validar_rango\n  Definir numero Como Entero\n\n  Repetir\n    Escribir \"Ingrese un número entre 1 y 100: \"\n    Leer numero\n    Si numero < 1 O numero > 100 Entonces\n      Escribir \"Error: valor fuera de rango. Intente de nuevo.\"\n    FinSi\n  Hasta Que numero >= 1 Y numero <= 100\n\n  Escribir \"Valor aceptado: \", numero\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n3-018",
+      "modulo": "N3",
+      "nivelLiteSeInt": 3,
+      "numero": "PS-N3-18",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "MCD por el algoritmo de Euclides",
+      "conceptos": ["Mientras", "FinMientras", "MOD", "Leer", "Escribir", "algoritmo clásico"],
+      "enunciado": "El algoritmo pide dos números enteros positivos A y B y calcula su Máximo Común Divisor (MCD) usando el algoritmo de Euclides: reemplaza repetidamente el par (A, B) por (B, A MOD B) hasta que B sea 0. El MCD es el valor de A al terminar.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos enteros positivos A y B",
+        "proceso": "Mientras B <> 0: aux <- B; B <- A MOD B; A <- aux; MCD <- A",
+        "salida": "\"El MCD de 48 y 18 es: 6\""
+      },
+      "salidaEsperada": "Ingrese el primer número (A): \nIngrese el segundo número (B): \nEl MCD de 48 y 18 es: 6",
+      "pista": "El algoritmo de Euclides repite: aux <- B; B <- A MOD B; A <- aux. La condición del Mientras es B <> 0. Al salir, A contiene el MCD.",
+      "codigoReferencia": "Algoritmo mcd_euclides\n  Definir A, B, aux Como Entero\n\n  Escribir \"Ingrese el primer número (A): \"\n  Leer A\n  Escribir \"Ingrese el segundo número (B): \"\n  Leer B\n\n  Mientras B <> 0 Hacer\n    aux <- B\n    B   <- A MOD B\n    A   <- aux\n  FinMientras\n\n  Escribir \"El MCD es: \", A\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    }
+  ]
+}

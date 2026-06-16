@@ -90,7 +90,7 @@ code4code/
 │       └── bridge.js           # input()/print() ↔ consola integrada
 ├── json/                       # ejercicios por lenguaje y nivel
 │   ├── liteseint/N1.json … N7.json
-│   ├── pseint/                 # pendiente
+│   ├── pseint/N1.json … N5.json  # en desarrollo (N6–N7 pendientes)
 │   └── python/                 # pendiente
 └── tests/
 ```
@@ -262,8 +262,8 @@ algoritmos, con **sistema de perfiles configurable** (D4). Las fuentes C++
       lenguaje; pruebas de integración en `tests/contract-tests.js`.
 - [ ] Suite de golden tests: programas de referencia ejecutados en PSeInt
       escritorio (perfil estricto) vs Code4Code comparando salida.
-- [ ] Documentación de comandos PSeInt en el panel de aprendizaje.
-- [ ] Aviso de migración bidireccional: detectar sintaxis PSeInt en modo
+- [x] Documentación de comandos PSeInt en el panel de aprendizaje.
+- [x] Aviso de migración bidireccional: detectar sintaxis PSeInt en modo
       LiteSeInt (ya existe el error "sintaxis PSeInt no soportada") y viceversa.
 
 #### 3b — Perfil flexible y presets `v2.2.x`
@@ -276,7 +276,7 @@ Opciones de perfil a relevar contra las fuentes C++ (lista inicial):
 - [ ] `Dimension` con base de índices configurable (desde 0 o desde 1).
 - [ ] Palabras opcionales en estructuras (`Entonces`, `Hacer`) según lo que
       permita el PSeInt real en modo flexible.
-- [ ] UI de perfil: selector con presets *Estricto* (default) y *Flexible*,
+- [x] UI de perfil: selector con presets *Estricto* (default) y *Flexible*,
       visible solo cuando el lenguaje activo es PSeInt; elección persistida.
 - [ ] El perfil activo se muestra junto al nombre del lenguaje y viaja en los
       metadatos del archivo descargado (comentario de cabecera), para que un
@@ -285,6 +285,10 @@ Opciones de perfil a relevar contra las fuentes C++ (lista inicial):
       contra PSeInt escritorio configurado con el perfil equivalente.
 - [ ] Documentación en el panel de aprendizaje: qué cambia entre perfiles y
       cuándo conviene cada uno.
+
+> **Banco de ejercicios PSeInt:** los niveles N1–N5 ya están en `json/pseint/`
+> (pronto N6–N7). Los ejercicios se cargan por lenguaje activo igual que el banco
+> LiteSeInt; progreso separado por lenguaje pendiente para la Fase 5.
 
 **Fuera de alcance de la Fase 3:** diagramas de flujo, exportación a otros
 lenguajes, ejecución paso a paso estilo depurador (puede volver en una fase

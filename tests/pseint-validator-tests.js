@@ -262,6 +262,90 @@ t('función builtin Azar es reconocida', function() {
   ok(errores.length === 0, 'Se esperaban 0 errores: ' + JSON.stringify(errores));
 });
 
+// 16. Aviso de migración: usar = para asignar en perfil estricto
+t('aviso de migración: = como asignación en perfil estricto genera error', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir x Como Entero',
+    '  x = 5',
+    '  Escribir x',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, { asignacionConIgual: false });
+  ok(hayError(errores, '<-'), 'Debe mencionar "<-" en el error de migración');
+  const errL3 = errores.filter(function(e) { return e.linea === 3; });
+  ok(errL3.length > 0, 'El error debe estar en línea 3');
+});
+
+// 17. Asignación con <- en perfil estricto → sin error de migración
+t('asignación con <- en perfil estricto no genera aviso', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir x Como Entero',
+    '  x <- 5',
+    '  Escribir x',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, { asignacionConIgual: false });
+  const avisoMigracion = errores.filter(function(e) {
+    return e.mensaje.indexOf('asignaci') >= 0 && e.mensaje.indexOf('<-') >= 0;
+  });
+  ok(avisoMigracion.length === 0, 'No debe haber aviso de migración con <-');
+});
+
+// 18. Perfil flexible: x = 5 NO genera error de migración
+t('perfil flexible: x = 5 no genera error de migración', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir x Como Entero',
+    '  x = 5',
+    '  Escribir x',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, { asignacionConIgual: true });
+  const avisoMigracion = errores.filter(function(e) {
+    return e.mensaje.indexOf('asignaci') >= 0 && e.mensaje.indexOf('<-') >= 0;
+  });
+  ok(avisoMigracion.length === 0,
+    'En perfil flexible no debe haber aviso de migración por usar =: ' +
+    JSON.stringify(avisoMigracion));
+});
+
+// 19. Perfil flexible: x = 5 sin Definir NO genera error de variable no definida
+t('perfil flexible: variable sin Definir no genera error de variable no definida', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  x = 5',
+    '  Escribir x',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, { asignacionConIgual: true });
+  const erroresVarNoDef = errores.filter(function(e) {
+    return e.mensaje.toLowerCase().indexOf('sin definir') >= 0;
+  });
+  ok(erroresVarNoDef.length === 0,
+    'En perfil flexible no debe haber error de variable sin definir: ' +
+    JSON.stringify(erroresVarNoDef));
+});
+
+// 20. Perfil flexible: asignar y luego usar variable sin Definir funciona (sin errores semánticos de variable)
+t('perfil flexible: asignar y usar variable sin Definir no genera errores de variable no definida', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  suma = 0',
+    '  suma = suma + 1',
+    '  Escribir suma',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, { asignacionConIgual: true });
+  const erroresVarNoDef = errores.filter(function(e) {
+    return e.mensaje.toLowerCase().indexOf('sin definir') >= 0;
+  });
+  ok(erroresVarNoDef.length === 0,
+    'En perfil flexible no debe haber errores de variable sin definir: ' +
+    JSON.stringify(erroresVarNoDef));
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 //  Resumen
 // ─────────────────────────────────────────────────────────────────────────────

@@ -460,12 +460,75 @@ function initLanguageSelect() {
     registro.activar(this.value);
   });
 
+  // ── Selector de perfil PSeInt ──────────────────────────────────────────
+  const $perfilWrap   = $("#perfilPSeIntWrap");
+  const $perfilSelect = $("#perfilPSeInt");
+
+  function actualizarVisibilidadPerfil(provider) {
+    if (provider.id === "pseint") {
+      $perfilWrap.show();
+    } else {
+      $perfilWrap.hide();
+    }
+  }
+
+  $perfilSelect.on("change", function () {
+    const preset = this.value;
+    const provider = registro.activo();
+    if (typeof provider.configurarPerfil === "function") {
+      provider.configurarPerfil(preset);
+    }
+    try { localStorage.setItem("code4code:perfilPSeInt", preset); } catch (e) { /* ignorar */ }
+  });
+
+  (function restaurarPerfilGuardado() {
+    try {
+      const guardado = localStorage.getItem("code4code:perfilPSeInt");
+      if (guardado && (guardado === "estricto" || guardado === "flexible")) {
+        $perfilSelect.val(guardado);
+        const provider = registro.activo();
+        if (provider.id === "pseint" && typeof provider.configurarPerfil === "function") {
+          provider.configurarPerfil(guardado);
+        }
+      }
+    } catch (e) { /* ignorar */ }
+  })();
+
+  // ── Panel stdin Python ─────────────────────────────────────────────────
+  function actualizarPanelPython(provider) {
+    var $stdinPanel = $("#pythonStdinPanel");
+    if (provider.id === "python") {
+      $stdinPanel.show();
+    } else {
+      $stdinPanel.hide();
+    }
+  }
+
+  actualizarVisibilidadPerfil(registro.activo());
+  actualizarPanelPython(registro.activo());
+
   registro.onCambio((provider) => {
     $select.val(provider.id);
     $("#inputImportarPsc").attr("accept", `${provider.extension},text/plain`);
-    // Fase 1: con un solo lenguaje registrado no hay más que refrescar.
-    // Al sumar lenguajes (Fase 3+) aquí se recargan plantilla, ejemplos,
-    // resaltado y banco de ejercicios del provider activo.
+    actualizarVisibilidadPerfil(provider);
+    actualizarPanelPython(provider);
+    actualizarBarraSimbolos(provider);
+    if (provider.id === "pseint" && typeof provider.configurarPerfil === "function") {
+      try {
+        const guardado = localStorage.getItem("code4code:perfilPSeInt");
+        const preset = (guardado === "estricto" || guardado === "flexible") ? guardado : "estricto";
+        provider.configurarPerfil(preset);
+        $perfilSelect.val(preset);
+      } catch (e) { /* ignorar */ }
+    }
+    document.querySelectorAll('#ejFiltroNivelGroup .ej-pill').forEach((p) => {
+      p.classList.toggle('active', p.dataset.val === '');
+    });
+    ejercicioSeleccionadoId = null;
+    poblarFiltroNivel();
+    renderizarListaEjercicios();
+    renderizarResumenProgreso();
+    renderizarAprendizajeIntegrado();
   });
 
   $("#inputImportarPsc").attr("accept", `${registro.activo().extension},text/plain`);
@@ -1132,6 +1195,7 @@ function actualizarLineas() {
 
   actualizarSyntaxHighlight();
   actualizarIndentGuides();
+  scheduleFoldLayerRender();
 }
 
 function resaltarLineaEjecutando(lineaIdx) {
@@ -1146,6 +1210,7 @@ $("#editor").on("scroll", function () {
   const hl = document.getElementById(NOMBRE_HIGHLIGHT_ID);
   if (hl) posicionarResalteNombre(hl);
   actualizarIndentGuides();
+  scheduleFoldLayerRender();
 });
 
 function getMirrorLayerContent(layerId) {
@@ -1480,6 +1545,81 @@ $("#editor").on("click keyup mouseup", function () {
 function actualizarSyntaxHighlight() {
   const html = Code4CodeHighlight.resaltarCodigo(providerActivo(), $("#editor").val());
   setMirrorLayerHTML("syntaxLayer", html);
+}
+
+// =========================================
+// 8a. CAPA DE PLEGADO VISUAL (fold layer)
+// =========================================
+// Dibuja rectángulos opacos sobre las líneas interiores de los bloques
+// plegados y un indicador "…" al final de la línea de apertura.
+// No modifica el textarea ni la capa de resaltado: solo añade/mueve
+// elementos absolutamente posicionados en #foldLayer.
+
+let _foldLayerPending = false;
+
+function renderFoldLayer() {
+  const editor = document.getElementById('editor');
+  const layer  = document.getElementById('foldLayer');
+  if (!editor || !layer) return;
+
+  const plegados  = editorFolding.plegados;
+  const plegables = editorFolding.plegables;
+
+  if (plegados.size === 0) {
+    layer.innerHTML = '';
+    return;
+  }
+
+  const metrics = getIndentGuideMetrics();
+  if (!metrics) return;
+
+  const texto      = editor.value;
+  const lineas     = texto.split('\n');
+  const scrollTop  = editor.scrollTop;
+  const scrollLeft = editor.scrollLeft;
+  const lh  = metrics.lineHeight;
+  const pt  = metrics.paddingTop;
+  const pl  = metrics.paddingLeft;
+  const cw  = metrics.charWidth;
+
+  let html = '';
+
+  plegados.forEach(function (lineaApertura) {
+    if (!plegables.has(lineaApertura)) return;
+    const bloque = plegables.get(lineaApertura);
+    const fin    = bloque.fin;
+
+    const primeraOculta = lineaApertura + 1;
+    const ultimaOculta  = fin - 1;
+    if (primeraOculta > ultimaOculta) return;
+
+    const topPx  = pt + primeraOculta * lh - scrollTop;
+    const altoPx = (ultimaOculta - primeraOculta + 1) * lh;
+    html += '<div class="fold-hidden-block" style="'
+          + 'top:'    + topPx.toFixed(2) + 'px;'
+          + 'height:' + altoPx.toFixed(2) + 'px'
+          + '"></div>';
+
+    const textoApertura = lineas[lineaApertura] || '';
+    const anchoTexto    = getVisualColumns(textoApertura, metrics.tabSize);
+    const ellipsisLeft  = pl + anchoTexto * cw - scrollLeft + 4;
+    const ellipsisTop   = pt + lineaApertura * lh - scrollTop;
+    html += '<div class="fold-ellipsis" style="'
+          + 'left:' + ellipsisLeft.toFixed(2) + 'px;'
+          + 'top:'  + ellipsisTop.toFixed(2) + 'px'
+          + '">…</div>';
+  });
+
+  layer.innerHTML = html;
+}
+
+function scheduleFoldLayerRender() {
+  if (_foldLayerPending) return;
+  _foldLayerPending = true;
+  requestAnimationFrame(function () {
+    _foldLayerPending = false;
+    renderFoldLayer();
+  });
 }
 
 // La usa también renderErrorUnderlines (sección 5); delega en el módulo
@@ -2770,7 +2910,17 @@ async function cargarBancoEjerciciosDesdeJson() {
   if (!window.EjerciciosLiteSeInt || !window.EjerciciosLiteSeInt.cargarDesdeJson) {
     throw new Error("No se cargó js/ejercicios-data.js antes de js/app.js.");
   }
-  await window.EjerciciosLiteSeInt.cargarDesdeJson();
+  if (!window.EjerciciosPSeInt || !window.EjerciciosPSeInt.cargarDesdeJson) {
+    throw new Error("No se cargó js/ejercicios-pseint-data.js antes de js/app.js.");
+  }
+  if (!window.EjerciciosPython || !window.EjerciciosPython.cargarDesdeJson) {
+    throw new Error("No se cargó js/ejercicios-python-data.js antes de js/app.js.");
+  }
+  await Promise.all([
+    window.EjerciciosLiteSeInt.cargarDesdeJson(),
+    window.EjerciciosPSeInt.cargarDesdeJson(),
+    window.EjerciciosPython.cargarDesdeJson(),
+  ]);
 }
 
 function cargarProgreso() {
@@ -2809,16 +2959,39 @@ function setEstadoEjercicio(id, estado) {
 }
 
 function ejerciciosVisibles() {
+  const provider = providerActivo();
+  if (provider.id === 'python') {
+    if (!window.EjerciciosPython) return [];
+    return window.EjerciciosPython.listarAdaptados();
+  }
+  if (provider.id === 'pseint') {
+    if (!window.EjerciciosPSeInt) return [];
+    return window.EjerciciosPSeInt.listarAdaptados();
+  }
   if (!window.EjerciciosLiteSeInt) return [];
   return window.EjerciciosLiteSeInt.listarAdaptados().filter(
     (e) => NIVELES_VISIBLES.includes(e.nivelLiteSeInt),
   );
 }
 
+function ejercicioPorId(id) {
+  if (window.EjerciciosPython) {
+    const e = window.EjerciciosPython.porId(id);
+    if (e) return e;
+  }
+  if (window.EjerciciosPSeInt) {
+    const e = window.EjerciciosPSeInt.porId(id);
+    if (e) return e;
+  }
+  if (window.EjerciciosLiteSeInt) {
+    return window.EjerciciosLiteSeInt.porId(id) || null;
+  }
+  return null;
+}
+
 function ejerciciosPorIds(ids) {
-  if (!window.EjerciciosLiteSeInt) return [];
   return ids
-    .map((id) => window.EjerciciosLiteSeInt.porId(id))
+    .map((id) => ejercicioPorId(id))
     .filter(Boolean)
     .filter((e) => e.estadoAdaptacion === "adaptado");
 }
@@ -2856,11 +3029,21 @@ function renderizarDocsComandos() {
   const $cont = $("#learningViewComandos");
   if (!$cont.length) return;
   $cont.empty();
-  $cont.append($("<p>").addClass("learning-doc-intro").text(
-    "Guía de comandos soportados por LiteSeInt: qué hace cada uno, cuándo usarlo, ejemplo mínimo, errores típicos y ejercicios para practicar.",
-  ));
 
-  DOC_COMANDOS.forEach((doc) => {
+  const provider = Code4Code.registro.activo();
+  let comandos;
+  let intro;
+  if (typeof provider.documentacion === 'function') {
+    const docData = provider.documentacion();
+    comandos = docData.comandos || [];
+    intro = `Guía de comandos de ${provider.nombre}: qué hace cada uno, cuándo usarlo, ejemplo mínimo y errores típicos.`;
+  } else {
+    comandos = DOC_COMANDOS;
+    intro = 'Guía de comandos soportados por LiteSeInt: qué hace cada uno, cuándo usarlo, ejemplo mínimo, errores típicos y ejercicios para practicar.';
+  }
+  $cont.append($("<p>").addClass("learning-doc-intro").text(intro));
+
+  comandos.forEach((doc) => {
     const $card = $("<article>").addClass("learning-doc-card");
 
     const $trigger = $("<button>")
@@ -2906,6 +3089,14 @@ function renderizarRutaEstudiante() {
   const $cont = $("#learningViewRuta");
   if (!$cont.length) return;
   $cont.empty();
+
+  const provider = Code4Code.registro.activo();
+  if (provider.id !== 'liteseint') {
+    $cont.append($("<p>").addClass("learning-doc-intro").text(
+      `La ruta de aprendizaje de ${provider.nombre} estará disponible próximamente.`
+    ));
+    return;
+  }
   $cont.append($("<p>").addClass("learning-doc-intro").text(
     "Ruta de N1 a N7. Cada nivel describe qué aprender, qué comandos usar y cuándo es momento de avanzar.",
   ));
@@ -2992,6 +3183,14 @@ function renderizarErroresComunes() {
   const $cont = $("#learningViewErrores");
   if (!$cont.length) return;
   $cont.empty();
+
+  const provider = Code4Code.registro.activo();
+  if (provider.id !== 'liteseint') {
+    $cont.append($("<p>").addClass("learning-doc-intro").text(
+      `La guía de errores comunes de ${provider.nombre} estará disponible próximamente.`
+    ));
+    return;
+  }
   $cont.append($("<p>").addClass("learning-doc-intro").text(
     "Guía de errores frecuentes: cómo reconocer el síntoma, por qué ocurre y cuál es la corrección más directa en el dialecto LiteSeInt.",
   ));
@@ -3048,6 +3247,13 @@ function initLearningTabs() {
   });
 }
 
+function campoNivel() {
+  const id = providerActivo().id;
+  if (id === 'python') return 'nivelPython';
+  if (id === 'pseint') return 'nivelPSeInt';
+  return 'nivelLiteSeInt';
+}
+
 function poblarFiltroNivel() {
   const group = document.getElementById('ejFiltroNivelGroup');
   if (!group) return;
@@ -3066,14 +3272,16 @@ function poblarFiltroNivel() {
   allBtn.textContent = 'Todo';
   group.appendChild(allBtn);
 
-  const presentes = new Set(ejerciciosVisibles().map((e) => e.nivelLiteSeInt));
-  for (const n of NIVELES_LITESEINT) {
-    if (!presentes.has(n.id)) continue;
+  const campo = campoNivel();
+  const visibles = ejerciciosVisibles();
+  const presentes = new Set(visibles.map((e) => e[campo]).filter((n) => n != null));
+  const niveles = [...presentes].sort((a, b) => a - b);
+  for (const n of niveles) {
     const btn = document.createElement('button');
-    btn.className = 'ej-pill' + (activeVal === String(n.id) ? ' active' : '');
+    btn.className = 'ej-pill' + (activeVal === String(n) ? ' active' : '');
     btn.dataset.filter = 'nivel';
-    btn.dataset.val = String(n.id);
-    btn.textContent = `N${n.id}`;
+    btn.dataset.val = String(n);
+    btn.textContent = `N${n}`;
     group.appendChild(btn);
   }
 }
@@ -3082,8 +3290,9 @@ function aplicarFiltros(lista) {
   const nivel = document.querySelector('#ejFiltroNivelGroup .ej-pill.active')?.dataset.val ?? '';
   const dif   = document.querySelector('#ejFiltroDifGroup .ej-pill.active')?.dataset.val ?? '';
   const estado = document.querySelector('#ejFiltroEstadoGroup .ej-pill.active')?.dataset.val ?? '';
+  const campo = campoNivel();
   return lista.filter((e) => {
-    if (nivel !== '' && String(e.nivelLiteSeInt) !== nivel) return false;
+    if (nivel !== '' && String(e[campo]) !== nivel) return false;
     if (dif   !== '' && e.dificultad !== dif) return false;
     if (estado !== '' && estadoEjercicio(e.id) !== estado) return false;
     return true;
@@ -3188,9 +3397,7 @@ function renderizarEstadoCargaEjercicios(mensaje) {
 function mostrarDetalleEjercicio(id) {
   const $det = $("#ejDetail");
   if (!$det.length) return;
-  const e = window.EjerciciosLiteSeInt
-    ? window.EjerciciosLiteSeInt.porId(id)
-    : null;
+  const e = ejercicioPorId(id);
   if (!e) {
     $det.html('<p class="ej-detail-empty">Selecciona un ejercicio para ver su enunciado.</p>');
     return;
@@ -3313,6 +3520,12 @@ function plantillaInicial(ejercicio) {
     .replace(/[^a-z0-9áéíóúüñ]+/g, "_")
     .replace(/^_+|_+$/g, "")
     .replace(/^[0-9]/, "p_$&") || "ejercicio";
+  if (providerActivo().id === 'python') {
+    return `# ${ejercicio.titulo}\n# Enunciado: revisa el panel de aprendizaje.\n\n`;
+  }
+  if (providerActivo().id === 'pseint') {
+    return `Algoritmo ${nombre}\n  // ${ejercicio.titulo}\n  // Enunciado: revisa el panel de aprendizaje.\n\n\nFinAlgoritmo`;
+  }
   return `Proceso ${nombre}\n  // ${ejercicio.titulo}\n  // Enunciado: revisa el panel de aprendizaje.\n\n\nFinProceso`;
 }
 
@@ -3525,21 +3738,83 @@ function inicializarResizeConsola() {
 // 12. INIT
 // =========================================
 
-function initBarraMovil() {
-  $(document).on("click", ".bm-btn", function () {
-    const editor = document.getElementById("editor");
+function actualizarBarraSimbolos(provider) {
+  var $btnFlecha = $(".sym-btn[data-sym='<-']");
+  if (provider && provider.id === "python") {
+    $btnFlecha.attr("data-sym", "=").text("=").attr("title", "Asignación Python");
+  } else {
+    $btnFlecha.attr("data-sym", "<-").html("&lt;-").attr("title", "Asignación");
+  }
+}
+
+function initBarraSimbolos() {
+  $(document).on("click", ".sym-btn", function (e) {
+    e.preventDefault();
+    var editor = document.getElementById("editor");
     if (!editor) return;
-    const texto = $(this).data("insert");
-    const cursorDentro = $(this).data("cursor-inside");
-    const inicio = editor.selectionStart;
-    const fin = editor.selectionEnd;
-    const valor = editor.value;
-    editor.value = valor.slice(0, inicio) + texto + valor.slice(fin);
-    const nuevaPos = cursorDentro ? inicio + 1 : inicio + texto.length;
-    editor.selectionStart = editor.selectionEnd = nuevaPos;
+
+    var sym = this.dataset.sym;
+    var start = editor.selectionStart;
+    var end   = editor.selectionEnd;
+    var val   = editor.value;
+
+    var insercion = sym;
+    var offset = sym.length;  // posición del cursor tras insertar
+
+    // Pares: insertar apertura+cierre, cursor en medio (o envolver selección)
+    if (sym === '"') {
+      if (start !== end) {
+        insercion = '"' + val.slice(start, end) + '"';
+        offset = insercion.length;
+      } else {
+        insercion = '""';
+        offset = 1;
+      }
+    } else if (sym === "(") {
+      if (start !== end) {
+        insercion = "(" + val.slice(start, end) + ")";
+        offset = insercion.length;
+      } else {
+        insercion = "()";
+        offset = 1;
+      }
+    } else if (sym === "[") {
+      if (start !== end) {
+        insercion = "[" + val.slice(start, end) + "]";
+        offset = insercion.length;
+      } else {
+        insercion = "[]";
+        offset = 1;
+      }
+    } else if (sym === "\n") {
+      // Nueva línea con la misma indentación que la línea actual
+      var lineaActual = val.lastIndexOf("\n", start - 1);
+      var textoLinea = val.slice(lineaActual + 1, start);
+      var indentMatch = textoLinea.match(/^(\s+)/);
+      var indent = indentMatch ? indentMatch[1] : "";
+      insercion = "\n" + indent;
+      offset = insercion.length;
+    }
+
+    // Insertar en el textarea con soporte de undo del navegador
     editor.focus();
+    editor.setSelectionRange(start, end);
+    var insertado = false;
+    if (document.execCommand) {
+      try {
+        insertado = document.execCommand("insertText", false, insercion);
+      } catch (err) {
+        insertado = false;
+      }
+    }
+    if (!insertado) {
+      // Fallback directo (no integra con undo nativo, pero activa el historial propio)
+      editor.value = val.slice(0, start) + insercion + val.slice(end);
+      editor.setSelectionRange(start + offset, start + offset);
+    }
+
+    // Disparar input para actualizar resaltado e historial propio
     editor.dispatchEvent(new Event("input", { bubbles: true }));
-    registrarHistorialEditor(editor);
   });
 }
 
@@ -3556,7 +3831,8 @@ $(document).ready(function () {
   actualizarLineas();
   initLanguageSelect();
   initTheme();
-  initBarraMovil();
+  initBarraSimbolos();
+  actualizarBarraSimbolos(typeof Code4Code !== "undefined" ? Code4Code.registro.activo() : null);
   restorePanelOrder();
   cargarAnchoLearningPanelPersistido();
   initPanelDrag();

@@ -1,0 +1,330 @@
+{
+  "version": "1.0.0",
+  "lenguaje": "pseint",
+  "nivel": 6,
+  "experience": {
+    "id": "ps-6",
+    "label": "N6",
+    "titulo": "Cadenas y Texto en PSeInt",
+    "desc": "Manejo de cadenas con LONGITUD, SUBCADENA, MAYUSCULAS, MINUSCULAS, CONCATENAR y recorrido carácter a carácter.",
+    "color": "var(--accent6)",
+    "icon": "🔤"
+  },
+  "ejercicios": [
+    {
+      "id": "ps-n6-001",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-01",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Longitud de una cadena",
+      "conceptos": ["LONGITUD", "Cadena", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide al usuario que ingrese una cadena de texto y muestra cuántos caracteres tiene usando la función LONGITUD().",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto ingresada por el usuario",
+        "proceso": "longitud <- LONGITUD(texto)",
+        "salida": "\"La cadena tiene [longitud] caracteres.\""
+      },
+      "salidaEsperada": "Ingrese una cadena: \nLa cadena tiene 5 caracteres.",
+      "pista": "La función LONGITUD(cadena) devuelve un número entero con la cantidad de caracteres. Recuerda declarar la variable cadena con tipo Cadena.",
+      "codigoReferencia": "Algoritmo longitud_cadena\n  Definir texto Como Cadena\n  Definir longitud Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  longitud <- LONGITUD(texto)\n\n  Escribir \"La cadena tiene \", longitud, \" caracteres.\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-002",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-02",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Convertir a mayúsculas y minúsculas",
+      "conceptos": ["MAYUSCULAS", "MINUSCULAS", "Cadena"],
+      "enunciado": "El algoritmo pide una cadena al usuario y la muestra en dos variantes: toda en mayúsculas y toda en minúsculas, usando las funciones MAYUSCULAS() y MINUSCULAS().",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "enMayusculas <- MAYUSCULAS(texto)\nenMinusculas <- MINUSCULAS(texto)",
+        "salida": "Cadena en mayúsculas y cadena en minúsculas en líneas separadas"
+      },
+      "salidaEsperada": "Ingrese una cadena: \nMayúsculas: HOLA MUNDO\nMinúsculas: hola mundo",
+      "pista": "MAYUSCULAS(cadena) convierte todos los caracteres a mayúsculas. MINUSCULAS(cadena) hace lo contrario. Ambas devuelven una nueva cadena sin modificar la original.",
+      "codigoReferencia": "Algoritmo mayusculas_minusculas\n  Definir texto, enMayusculas, enMinusculas Como Cadena\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  enMayusculas <- MAYUSCULAS(texto)\n  enMinusculas <- MINUSCULAS(texto)\n\n  Escribir \"Mayúsculas: \", enMayusculas\n  Escribir \"Minúsculas: \", enMinusculas\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-003",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Concatenar nombre y apellido",
+      "conceptos": ["CONCATENAR", "Cadena", "Leer", "Escribir"],
+      "enunciado": "El algoritmo pide el nombre y el apellido del usuario por separado, luego los une con un espacio en el medio y muestra el nombre completo en una sola línea.",
+      "entradaProcesoSalida": {
+        "entrada": "Nombre (Cadena) y Apellido (Cadena)",
+        "proceso": "nombreCompleto <- CONCATENAR(nombre, \" \", apellido)",
+        "salida": "\"Nombre completo: [nombreCompleto]\""
+      },
+      "salidaEsperada": "Ingrese su nombre: \nIngrese su apellido: \nNombre completo: Ana González",
+      "pista": "Puedes usar CONCATENAR(c1, c2, ...) para unir varias cadenas en una. También puedes usar el operador + entre cadenas.",
+      "codigoReferencia": "Algoritmo concatenar_nombre\n  Definir nombre, apellido, nombreCompleto Como Cadena\n\n  Escribir \"Ingrese su nombre: \"\n  Leer nombre\n  Escribir \"Ingrese su apellido: \"\n  Leer apellido\n\n  nombreCompleto <- CONCATENAR(nombre, \" \", apellido)\n\n  Escribir \"Nombre completo: \", nombreCompleto\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-004",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Primer y último carácter",
+      "conceptos": ["SUBCADENA", "LONGITUD", "Cadena"],
+      "enunciado": "El algoritmo pide una cadena y muestra cuál es su primer carácter y cuál es su último carácter, usando SUBCADENA() para extraer cada uno.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto (debe tener al menos 1 carácter)",
+        "proceso": "primero <- SUBCADENA(texto, 1, 1)\nultimo  <- SUBCADENA(texto, LONGITUD(texto), LONGITUD(texto))",
+        "salida": "\"Primer carácter: [primero]\"\n\"Último carácter: [ultimo]\""
+      },
+      "salidaEsperada": "Ingrese una cadena: \nPrimer carácter: H\nÚltimo carácter: a",
+      "pista": "SUBCADENA(cadena, i, j) extrae desde la posición i hasta j (índice base 1). El último carácter está en la posición LONGITUD(cadena).",
+      "codigoReferencia": "Algoritmo primer_ultimo_caracter\n  Definir texto, primero, ultimo Como Cadena\n  Definir largo Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  largo   <- LONGITUD(texto)\n  primero <- SUBCADENA(texto, 1, 1)\n  ultimo  <- SUBCADENA(texto, largo, largo)\n\n  Escribir \"Primer carácter: \", primero\n  Escribir \"Último carácter: \", ultimo\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-005",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-05",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Invertir una cadena",
+      "conceptos": ["SUBCADENA", "LONGITUD", "CONCATENAR", "Para", "Cadena"],
+      "enunciado": "El algoritmo lee una cadena y la muestra invertida. Por ejemplo, \"Hola\" se convierte en \"aloH\". Usa un bucle Para que recorra la cadena desde el último carácter hasta el primero, concatenando cada uno.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "Recorrer la cadena de atrás hacia adelante concatenando cada carácter",
+        "salida": "\"Cadena invertida: [invertida]\""
+      },
+      "salidaEsperada": "Ingrese una cadena: Hola\nCadena invertida: aloH",
+      "pista": "Usa Para i <- LONGITUD(texto) Hasta 1 Con Paso -1 Hacer para recorrer de derecha a izquierda. En cada iteración extrae SUBCADENA(texto, i, i) y concaténalo al resultado.",
+      "codigoReferencia": "Algoritmo invertir_cadena\n  Definir texto, invertida, caracter Como Cadena\n  Definir i, largo Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  largo     <- LONGITUD(texto)\n  invertida <- \"\"\n\n  Para i <- largo Hasta 1 Con Paso -1 Hacer\n    caracter  <- SUBCADENA(texto, i, i)\n    invertida <- CONCATENAR(invertida, caracter)\n  FinPara\n\n  Escribir \"Cadena invertida: \", invertida\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-006",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-06",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Contar vocales en una cadena",
+      "conceptos": ["SUBCADENA", "LONGITUD", "MINUSCULAS", "Para", "Si", "Cadena"],
+      "enunciado": "El algoritmo lee una cadena e imprime cuántas vocales (a, e, i, o, u) contiene, sin distinguir entre mayúsculas y minúsculas. Por ejemplo, \"Hola Mundo\" tiene 4 vocales.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "Recorrer cada carácter; si es vocal (en minúscula) incrementar el contador",
+        "salida": "\"Número de vocales: [contador]\""
+      },
+      "salidaEsperada": "Ingrese una cadena: Hola Mundo\nNúmero de vocales: 4",
+      "pista": "Convierte la cadena a minúsculas antes del bucle para simplificar la comparación. Luego compara cada carácter contra \"a\", \"e\", \"i\", \"o\", \"u\".",
+      "codigoReferencia": "Algoritmo contar_vocales\n  Definir texto, textMin, caracter Como Cadena\n  Definir i, largo, contador Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  textMin  <- MINUSCULAS(texto)\n  largo    <- LONGITUD(textMin)\n  contador <- 0\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(textMin, i, i)\n    Si caracter = \"a\" O caracter = \"e\" O caracter = \"i\" O caracter = \"o\" O caracter = \"u\" Entonces\n      contador <- contador + 1\n    FinSi\n  FinPara\n\n  Escribir \"Número de vocales: \", contador\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-007",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-07",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Verificar si una cadena es palíndromo",
+      "conceptos": ["SUBCADENA", "LONGITUD", "MINUSCULAS", "Para", "Si", "Logico", "Cadena"],
+      "enunciado": "El algoritmo lee una cadena y determina si es un palíndromo, es decir, si se lee igual de izquierda a derecha que de derecha a izquierda (sin distinguir mayúsculas). Por ejemplo, \"reconocer\" es palíndromo, \"Hola\" no lo es.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "Comparar el carácter en posición i con el de posición (largo - i + 1) para todo i hasta largo DIV 2",
+        "salida": "\"Es palíndromo.\" o \"No es palíndromo.\""
+      },
+      "salidaEsperada": "Ingrese una cadena: reconocer\nEs palíndromo.",
+      "pista": "Convierte la cadena a minúsculas. Luego, para cada i de 1 a largo DIV 2, compara SUBCADENA(t, i, i) con SUBCADENA(t, largo-i+1, largo-i+1). Si alguno difiere, no es palíndromo.",
+      "codigoReferencia": "Algoritmo verificar_palindromo\n  Definir texto, textMin, c1, c2 Como Cadena\n  Definir i, largo Como Entero\n  Definir esPalin Como Logico\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  textMin <- MINUSCULAS(texto)\n  largo   <- LONGITUD(textMin)\n  esPalin <- Verdadero\n\n  Para i <- 1 Hasta largo DIV 2 Con Paso 1 Hacer\n    c1 <- SUBCADENA(textMin, i, i)\n    c2 <- SUBCADENA(textMin, largo - i + 1, largo - i + 1)\n    Si c1 <> c2 Entonces\n      esPalin <- Falso\n    FinSi\n  FinPara\n\n  Si esPalin Entonces\n    Escribir \"Es palíndromo.\"\n  SiNo\n    Escribir \"No es palíndromo.\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-008",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-08",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Contar espacios en una cadena",
+      "conceptos": ["SUBCADENA", "LONGITUD", "Para", "Si", "Cadena"],
+      "enunciado": "El algoritmo lee una cadena y cuenta cuántos espacios en blanco contiene. Por ejemplo, \"Hola Mundo Cruel\" tiene 2 espacios.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "Recorrer cada carácter; si es espacio (' ') incrementar el contador",
+        "salida": "\"Número de espacios: [contador]\""
+      },
+      "salidaEsperada": "Ingrese una cadena: Hola Mundo Cruel\nNúmero de espacios: 2",
+      "pista": "Compara cada carácter con un espacio en blanco: Si caracter = \" \" Entonces ...",
+      "codigoReferencia": "Algoritmo contar_espacios\n  Definir texto, caracter Como Cadena\n  Definir i, largo, contador Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  largo    <- LONGITUD(texto)\n  contador <- 0\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(texto, i, i)\n    Si caracter = \" \" Entonces\n      contador <- contador + 1\n    FinSi\n  FinPara\n\n  Escribir \"Número de espacios: \", contador\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-009",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-09",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Extraer dominio de un correo electrónico",
+      "conceptos": ["SUBCADENA", "LONGITUD", "Para", "Si", "Cadena"],
+      "enunciado": "El algoritmo lee una dirección de correo electrónico simple (que contiene exactamente un '@') y extrae el dominio, es decir, la parte que va después del símbolo '@'. Por ejemplo, de 'alumno@universidad.cl' extrae 'universidad.cl'.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena con formato email (contiene '@')",
+        "proceso": "Buscar la posición de '@'; luego extraer SUBCADENA desde pos+1 hasta el final",
+        "salida": "\"Dominio: [dominio]\""
+      },
+      "salidaEsperada": "Ingrese el correo: alumno@universidad.cl\nDominio: universidad.cl",
+      "pista": "Recorre la cadena carácter a carácter buscando '@'. Cuando lo encuentres, guarda su posición. Luego usa SUBCADENA(email, posArroba+1, largo) para extraer el dominio.",
+      "codigoReferencia": "Algoritmo extraer_dominio\n  Definir email, caracter, dominio Como Cadena\n  Definir i, largo, posArroba Como Entero\n\n  Escribir \"Ingrese el correo: \"\n  Leer email\n\n  largo     <- LONGITUD(email)\n  posArroba <- 0\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(email, i, i)\n    Si caracter = \"@\" Entonces\n      posArroba <- i\n    FinSi\n  FinPara\n\n  Si posArroba > 0 Y posArroba < largo Entonces\n    dominio <- SUBCADENA(email, posArroba + 1, largo)\n    Escribir \"Dominio: \", dominio\n  SiNo\n    Escribir \"El correo no tiene formato válido.\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-010",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-10",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Reemplazar espacios por guiones bajos",
+      "conceptos": ["SUBCADENA", "LONGITUD", "CONCATENAR", "Para", "Si", "Cadena"],
+      "enunciado": "El algoritmo lee una cadena y genera una nueva cadena donde cada espacio en blanco fue reemplazado por un guión bajo '_'. Por ejemplo, 'Hola Mundo Cruel' se convierte en 'Hola_Mundo_Cruel'.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto con posibles espacios",
+        "proceso": "Recorrer cada carácter; si es espacio añadir '_', si no añadir el carácter original",
+        "salida": "\"Resultado: [resultado]\""
+      },
+      "salidaEsperada": "Ingrese una cadena: Hola Mundo Cruel\nResultado: Hola_Mundo_Cruel",
+      "pista": "Usa un Para que recorra la cadena. En cada posición, si el carácter es espacio concatena '_', si no concatena el carácter original.",
+      "codigoReferencia": "Algoritmo reemplazar_espacios\n  Definir texto, resultado, caracter Como Cadena\n  Definir i, largo Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  largo     <- LONGITUD(texto)\n  resultado <- \"\"\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(texto, i, i)\n    Si caracter = \" \" Entonces\n      resultado <- CONCATENAR(resultado, \"_\")\n    SiNo\n      resultado <- CONCATENAR(resultado, caracter)\n    FinSi\n  FinPara\n\n  Escribir \"Resultado: \", resultado\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-011",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-11",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Contar ocurrencias de un carácter",
+      "conceptos": ["SUBCADENA", "LONGITUD", "MINUSCULAS", "Para", "Si", "Cadena"],
+      "enunciado": "El algoritmo lee una cadena y un carácter a buscar, luego cuenta cuántas veces aparece ese carácter dentro de la cadena (sin distinguir mayúsculas de minúsculas). Por ejemplo, en 'banana' el carácter 'a' aparece 3 veces.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto y un carácter a buscar",
+        "proceso": "Recorrer cada posición; si SUBCADENA(texto,i,i) en minúscula = búsqueda en minúscula, incrementar contador",
+        "salida": "\"El carácter '[buscar]' aparece [contador] veces.\""
+      },
+      "salidaEsperada": "Ingrese una cadena: banana\nIngrese el carácter a buscar: a\nEl carácter 'a' aparece 3 veces.",
+      "pista": "Convierte tanto la cadena como el carácter buscado a minúsculas antes de comparar para hacer la búsqueda insensible a mayúsculas.",
+      "codigoReferencia": "Algoritmo contar_caracter\n  Definir texto, buscar, caracter Como Cadena\n  Definir i, largo, contador Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n  Escribir \"Ingrese el carácter a buscar: \"\n  Leer buscar\n\n  texto    <- MINUSCULAS(texto)\n  buscar   <- MINUSCULAS(buscar)\n  largo    <- LONGITUD(texto)\n  contador <- 0\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(texto, i, i)\n    Si caracter = buscar Entonces\n      contador <- contador + 1\n    FinSi\n  FinPara\n\n  Escribir \"El carácter '\", buscar, \"' aparece \", contador, \" veces.\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-012",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-12",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Verificar si empieza con mayúscula",
+      "conceptos": ["SUBCADENA", "MAYUSCULAS", "Si", "Cadena"],
+      "enunciado": "El algoritmo lee una cadena y determina si su primer carácter es una letra mayúscula (A-Z). Para esto compara el primer carácter con su versión en mayúscula; si son iguales, comenzó con mayúscula.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "primero <- SUBCADENA(texto,1,1)\nSi primero = MAYUSCULAS(primero) entonces empieza con mayúscula",
+        "salida": "\"Comienza con mayúscula.\" o \"No comienza con mayúscula.\""
+      },
+      "salidaEsperada": "Ingrese una cadena: Hola\nComienza con mayúscula.",
+      "pista": "Extrae el primer carácter con SUBCADENA(texto,1,1) y compáralo con MAYUSCULAS(primerCaracter). Si son iguales, es mayúscula.",
+      "codigoReferencia": "Algoritmo empieza_mayuscula\n  Definir texto, primero Como Cadena\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  primero <- SUBCADENA(texto, 1, 1)\n\n  Si primero = MAYUSCULAS(primero) Entonces\n    Escribir \"Comienza con mayúscula.\"\n  SiNo\n    Escribir \"No comienza con mayúscula.\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-013",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-13",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "titulo": "Capitalizar una cadena",
+      "conceptos": ["SUBCADENA", "LONGITUD", "MAYUSCULAS", "MINUSCULAS", "CONCATENAR", "Cadena"],
+      "enunciado": "El algoritmo lee una cadena y genera una nueva en formato capitalizado: la primera letra en mayúscula y el resto en minúsculas. Por ejemplo, 'hOLA MUNDO' se convierte en 'Hola mundo'.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto de al menos 1 carácter",
+        "proceso": "primera <- MAYUSCULAS(SUBCADENA(texto,1,1))\nresto   <- MINUSCULAS(SUBCADENA(texto,2,LONGITUD(texto)))\nresultado <- CONCATENAR(primera, resto)",
+        "salida": "\"Resultado: [resultado]\""
+      },
+      "salidaEsperada": "Ingrese una cadena: hOLA MUNDO\nResultado: Hola mundo",
+      "pista": "Extrae el primer carácter y conviértelo a mayúscula. Extrae el resto desde la posición 2 hasta el final y conviértelo a minúscula. Luego concaténalos.",
+      "codigoReferencia": "Algoritmo capitalizar\n  Definir texto, primera, resto, resultado Como Cadena\n  Definir largo Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  largo   <- LONGITUD(texto)\n  primera <- MAYUSCULAS(SUBCADENA(texto, 1, 1))\n\n  Si largo > 1 Entonces\n    resto <- MINUSCULAS(SUBCADENA(texto, 2, largo))\n  SiNo\n    resto <- \"\"\n  FinSi\n\n  resultado <- CONCATENAR(primera, resto)\n\n  Escribir \"Resultado: \", resultado\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-014",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-14",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Separar palabras de una cadena (split manual)",
+      "conceptos": ["SUBCADENA", "LONGITUD", "CONCATENAR", "Para", "Cadena", "Dimension"],
+      "enunciado": "El algoritmo lee una cadena con palabras separadas por espacios simples y extrae cada palabra almacenándolas en un arreglo. Al terminar muestra cuántas palabras encontró y lista cada una numerada. Por ejemplo, 'el gato duerme' produce 3 palabras.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena con palabras separadas por espacios",
+        "proceso": "Recorrer la cadena; acumular caracteres no-espacio en palabraActual; al encontrar espacio guardar en arreglo y resetear",
+        "salida": "Número de palabras y lista numerada de cada una"
+      },
+      "salidaEsperada": "Ingrese una cadena: el gato duerme\nPalabras encontradas: 3\n1: el\n2: gato\n3: duerme",
+      "pista": "Recorre carácter a carácter acumulando en una variable palabraActual. Cuando encuentres espacio (o llegues al final), guarda palabraActual en el arreglo y reinicia a \"\". Recuerda procesar la última palabra al salir del bucle.",
+      "codigoReferencia": "Algoritmo separar_palabras\n  Definir texto, caracter, palabraActual Como Cadena\n  Dimension palabras[50]\n  Definir palabras Como Cadena\n  Definir i, largo, numPalabras Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  largo         <- LONGITUD(texto)\n  palabraActual <- \"\"\n  numPalabras   <- 0\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(texto, i, i)\n    Si caracter = \" \" Entonces\n      Si LONGITUD(palabraActual) > 0 Entonces\n        numPalabras           <- numPalabras + 1\n        palabras[numPalabras] <- palabraActual\n        palabraActual         <- \"\"\n      FinSi\n    SiNo\n      palabraActual <- CONCATENAR(palabraActual, caracter)\n    FinSi\n  FinPara\n\n  Si LONGITUD(palabraActual) > 0 Entonces\n    numPalabras           <- numPalabras + 1\n    palabras[numPalabras] <- palabraActual\n  FinSi\n\n  Escribir \"Palabras encontradas: \", numPalabras\n  Para i <- 1 Hasta numPalabras Con Paso 1 Hacer\n    Escribir i, \": \", palabras[i]\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n6-015",
+      "modulo": "N6",
+      "nivelPSeInt": 6,
+      "numero": "PS-N6-15",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Cifrado César",
+      "conceptos": ["SUBCADENA", "LONGITUD", "CONCATENAR", "Para", "Mientras", "MOD", "Cadena"],
+      "enunciado": "Implementa el cifrado César: el algoritmo lee un texto (solo letras minúsculas a-z y espacios) y un desplazamiento N (1-25). Cada letra se desplaza N posiciones en el alfabeto de forma circular. Los espacios no se modifican. Por ejemplo, con N=3: 'abc xyz' se convierte en 'def abc'.",
+      "entradaProcesoSalida": {
+        "entrada": "Texto en minúsculas (letras y espacios) y desplazamiento N entero (1-25)",
+        "proceso": "Para cada carácter: si es espacio copiar; si es letra, buscar su posición en el alfabeto, sumar N, aplicar MOD 26 y tomar la letra resultante",
+        "salida": "\"Texto cifrado: [cifrado]\""
+      },
+      "salidaEsperada": "Ingrese el texto (minúsculas): abc xyz\nIngrese el desplazamiento (1-25): 3\nTexto cifrado: def abc",
+      "pista": "Crea una cadena con el alfabeto 'abcdefghijklmnopqrstuvwxyz'. Para cada letra, busca su posición en el alfabeto con un bucle, suma N, aplica (pos - 1 + N) MOD 26 + 1 y extrae la letra de esa posición.",
+      "codigoReferencia": "Algoritmo cifrado_cesar\n  Definir texto, cifrado, caracter, letraAlfabeto, alfabeto Como Cadena\n  Definir i, j, largo, N, posicion, nuevaPos Como Entero\n  Definir encontrado Como Logico\n\n  alfabeto <- \"abcdefghijklmnopqrstuvwxyz\"\n\n  Escribir \"Ingrese el texto (minúsculas): \"\n  Leer texto\n  Escribir \"Ingrese el desplazamiento (1-25): \"\n  Leer N\n\n  largo   <- LONGITUD(texto)\n  cifrado <- \"\"\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(texto, i, i)\n    Si caracter = \" \" Entonces\n      cifrado <- CONCATENAR(cifrado, \" \")\n    SiNo\n      posicion   <- 0\n      encontrado <- Falso\n      j          <- 1\n      Mientras j <= 26 Y NO encontrado Hacer\n        letraAlfabeto <- SUBCADENA(alfabeto, j, j)\n        Si letraAlfabeto = caracter Entonces\n          posicion   <- j\n          encontrado <- Verdadero\n        FinSi\n        j <- j + 1\n      FinMientras\n      nuevaPos <- (posicion - 1 + N) MOD 26 + 1\n      cifrado  <- CONCATENAR(cifrado, SUBCADENA(alfabeto, nuevaPos, nuevaPos))\n    FinSi\n  FinPara\n\n  Escribir \"Texto cifrado: \", cifrado\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    }
+  ]
+}

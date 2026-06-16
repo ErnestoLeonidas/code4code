@@ -1,28 +1,124 @@
 # Changelog — Code4Code
 
-## [2.2.0] - 2026-06-13
+## [2.3.0-beta] - 2026-06-14
 
-Cierre del primer hito de la **Fase 3 — Lenguaje PSeInt**: el provider PSeInt
-queda integrado en la UI; el estudiante puede seleccionar PSeInt en el selector
-de lenguaje y ejecutar algoritmos con el perfil estricto.
+### Fase 4 — Lenguaje Python (base funcional)
 
-### Agregado
+#### Agregado — Núcleo Python (`core/python/`)
+
+- `core/python/tokenizer.js`: tokenizador Python con 37 keywords (incluyendo builtins
+  educativos `print`, `input`, `range`, `len`, tipos), strings simples y dobles con
+  escape, comentarios `#`, operadores de 1 y 2 caracteres (`**`, `//`, `==`, `!=`,
+  `+=`, etc.), delimitadores `{}`, `[]`, `()`, `,`, `:`.
+- `core/python/worker.js`: Web Worker que carga Pyodide 0.26.2 desde CDN y ejecuta
+  código Python 3 de forma asíncrona; redirige `sys.stdout`, `sys.stderr` e `input()`
+  al hilo principal via `postMessage`; v1 usa cola de entradas pre-cargadas (sin
+  `SharedArrayBuffer`, compatible con GitHub Pages).
+- `core/python/bridge.js`: conecta el worker con el `RuntimeHost` de Code4Code;
+  lee entradas del textarea `#pythonStdin`; maneja mensajes de carga, salida, error
+  y fin.
+- `core/python/provider.js`: implementa el contrato `LanguageProvider` para Python:
+  `tokenizarLinea`, `reglasIndentacion`, `autocompletar`, `validar` (cadenas sin
+  cerrar), `ejecutar` (vía Pyodide Worker), `documentacion` (10 comandos).
+
+#### Agregado — UI Python
+
+- Opción `Python` en el selector de lenguaje.
+- Panel stdin (`#pythonStdinPanel`) en la consola: textarea donde el usuario escribe
+  las entradas antes de ejecutar (una por línea), solo visible cuando Python está activo.
+- Indicador de carga de Pyodide en la consola la primera vez que se activa.
+- Barra de símbolos táctiles renovada (`mobile-symbol-bar`): 11 botones con inserción
+  inteligente de pares (`""`, `()`, `[]`) y auto-indentación; adaptable al lenguaje
+  (muestra `=` en lugar de `<-` con Python activo).
+
+#### Agregado — Tests
+
+- `tests/python-tokenizer-tests.js`: 28 pruebas del tokenizador Python.
+- `tests/contract-tests.js`: extendido con 10 pruebas de integración del provider Python.
+
+#### Agregado — Banco de ejercicios Python
+
+- `json/python/N1.json`: 20 ejercicios básicos (variables, print, input, aritmética).
+- `json/python/N2.json`: 15 ejercicios de condicionales (if/elif/else).
+- `json/python/N3.json`: 15 ejercicios de bucles (for/while/range).
+- `json/python/N4.json`: 15 ejercicios de listas y colecciones.
+- `json/python/N5.json`: 15 ejercicios de funciones y recursión.
+- `json/python/N6.json`: 15 ejercicios de cadenas (métodos de string).
+- `js/ejercicios-python-data.js`: módulo de carga del banco Python (igual patrón
+  que LiteSeInt y PSeInt).
+
+### Fase 3b completada
+
+- `core/pseint/validator.js` + `core/pseint/runtime.js`: en perfil flexible,
+  las variables se crean automáticamente en el primer uso (sin `Definir` obligatorio);
+  la inferencia de tipo usa el valor asignado (`Entero`, `Real`, `Cadena`, `Logico`).
+- Banco de ejercicios PSeInt completo: N3 (18 bucles), N4 (15 arreglos), N5 (15
+  subprocesos), N6 (15 cadenas), N7 (12 integradores) — 95 ejercicios PSeInt en total.
+
+## [2.2.0-beta] - 2026-06-14
+
+Cierre del primer hito de la **Fase 3a — Lenguaje PSeInt** (perfil estricto):
+el núcleo PSeInt completo queda integrado en la UI; el estudiante puede
+seleccionar PSeInt en el selector de lenguaje y ejecutar algoritmos con el
+perfil estricto.
+
+### Agregado — Núcleo PSeInt (`core/pseint/`)
+
+- `core/pseint/tokenizer.js`: tokenizador PSeInt con 25 tipos de token,
+  `KEYWORDS` y `FUNCIONES_NATIVAS_SET`; distingue identificadores, literales,
+  operadores y palabras reservadas del dialecto.
+- `core/pseint/parser.js`: parser recursivo descendente que produce un AST con
+  todos los nodos de estructuras PSeInt (`Algoritmo`, `Asignar`, `Escribir`,
+  `Leer`, `Si/Sino`, `Segun`, `Mientras`, `Repetir/HastaQue`, `Para/ConPaso`,
+  `Dimension`, `SubProceso/Funcion`, `Llamar`).
+- `core/pseint/expression-evaluator.js`: evaluador de expresiones mediante el
+  algoritmo shunting-yard; soporta operadores aritméticos, relacionales y
+  lógicos con la precedencia de PSeInt, incluyendo `^` y `mod`.
+- `core/pseint/symbol-table.js`: tabla de símbolos con `TIPOS_PSEINT` y la
+  función `coercionarValor` para conversión de tipos básicos.
+- `core/pseint/builtins.js`: 18 funciones nativas (`RC`/`RAIZ`, `ABS`, `LN`,
+  `EXP`, `SEN`, `COS`, `TAN`, `ATAN`, `TRUNC`, `REDON`, `AZAR`, `ALEATORIO`,
+  `LONGITUD`, `SUBCADENA`, `CONCATENAR`, `MAYUSCULAS`, `MINUSCULAS`,
+  `CONVERTIRANUMERO`, `CONVERTIRATEXTO`).
+- `core/pseint/runtime.js`: intérprete asíncrono (`RuntimePSeInt`) que ejecuta
+  el AST instrucción a instrucción, comunicándose con el `RuntimeHost` de
+  Code4Code para I/O (`Escribir`/`Leer`), línea activa e inspector de variables.
+- `core/pseint/validator.js`: análisis semántico estático con mensajes de error
+  alineados al vocabulario de PSeInt; emite aviso de migración al detectar `=`
+  usado como asignación en lugar de `<-`.
 - `core/pseint/provider.js`: adapta el núcleo PSeInt al contrato `Code4Code`
   (`tokenizarLinea`, `reglasIndentacion`, `extraerVariables`, `autocompletar`,
   `validar`, `ejecutar`). El método `ejecutar` construye un puente entre la
-  interfaz simple de `RuntimePSeInt` y el `RuntimeHost` de Code4Code.
+  interfaz simple de `RuntimePSeInt` y el `RuntimeHost` de Code4Code. Incluye
+  documentación de los 18 comandos principales para el panel de aprendizaje.
+
+### Agregado — UI
+
 - `index.html`: carga los nueve scripts del núcleo PSeInt (tokenizer → provider)
   entre el provider LiteSeInt y el editor propio. Agrega la opción
   `<option value="pseint">PSeInt</option>` al selector de lenguaje.
-- `tests/contract-tests.js`: sección PSeInt con 11 pruebas nuevas (definición
-  del provider, integración completa con el núcleo real: plantilla, tokenizado,
-  reglas de indentación, autocompletado, validación y ejecución con Leer/Escribir).
+- Panel de aprendizaje: la pestaña "Comandos" muestra la documentación PSeInt
+  cuando ese lenguaje está activo; `onCambio` del registro refresca el panel
+  al cambiar de lenguaje. Las pestañas "Ruta" y "Errores" muestran un
+  placeholder para lenguajes que aún no tienen esa data.
+
+### Agregado — Tests
+
+- `tests/pseint-tokenizer-tests.js`: 25 pruebas del tokenizador PSeInt.
+- `tests/pseint-builtins-tests.js`: 61 pruebas de las 18 funciones nativas.
+- `tests/pseint-parser-tests.js`: 15 pruebas del parser y el AST generado.
+- `tests/pseint-runtime-tests.js`: 15 pruebas de ejecución del runtime
+  (asignaciones, estructuras de control, arreglos, subprocesos, I/O).
+- `tests/pseint-validator-tests.js`: 17 pruebas del validador estático.
+- `tests/contract-tests.js`: extendido a 33 pruebas; la sección PSeInt cubre
+  definición del provider, plantilla, tokenizado, reglas de indentación,
+  autocompletado, validación, ejecución con `Leer`/`Escribir` y documentación.
 
 ### Estado de Fase 3a
-Implementado: núcleo completo (tokenizer, AST, parser, builtins, symbol-table,
-validator, expression-evaluator, runtime), provider e integración en la UI.
-Pendiente: golden tests contra PSeInt escritorio, documentación en el panel de
-aprendizaje, aviso de migración bidireccional y conversión implícita de tipos avanzada.
+Implementado: núcleo completo (tokenizer, parser, expression-evaluator,
+symbol-table, builtins, runtime, validator), provider e integración en la UI.
+Pendiente (Fase 3b): golden tests contra PSeInt escritorio, aviso de migración
+bidireccional completo, conversión implícita de tipos avanzada y perfil flexible.
 
 ## [2.0.0-beta] - 2026-06-09
 

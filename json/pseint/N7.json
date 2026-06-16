@@ -1,0 +1,267 @@
+{
+  "version": "1.0.0",
+  "lenguaje": "pseint",
+  "nivel": 7,
+  "experience": {
+    "id": "ps-7",
+    "label": "N7",
+    "titulo": "Ejercicios Integradores Avanzados PSeInt",
+    "desc": "Problemas que combinan bucles, arreglos, funciones, subprocesos y cadenas en soluciones de múltiples pasos.",
+    "color": "var(--accent7)",
+    "icon": "🏆"
+  },
+  "ejercicios": [
+    {
+      "id": "ps-n7-001",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-01",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Calculadora con menú repetible",
+      "conceptos": ["Segun", "Mientras", "operadores aritméticos", "Leer", "Escribir"],
+      "enunciado": "El algoritmo muestra un menú de operaciones aritméticas (+, -, *, /) de forma repetida hasta que el usuario elija la opción 5 (Salir). En cada iteración pide dos números, realiza la operación elegida y muestra el resultado. Si el usuario elige división y el divisor es 0, muestra un mensaje de error.",
+      "entradaProcesoSalida": {
+        "entrada": "Opción del menú (1-5) y dos números reales en cada ciclo",
+        "proceso": "Mientras opcion <> 5: mostrar menú, leer opción y operandos, calcular con Segun y mostrar resultado",
+        "salida": "Resultados de cada operación hasta que el usuario elija Salir"
+      },
+      "salidaEsperada": "=== CALCULADORA ===\n1. Suma\n2. Resta\n3. Multiplicacion\n4. Division\n5. Salir\nElija opcion: \nIngrese primer numero: \nIngrese segundo numero: \nResultado: 15\n...\n¡Hasta luego!",
+      "pista": "Usa una variable opcion inicializada en 0. El bucle Mientras opcion <> 5 controla la repetición. Dentro del Segun, el caso 4 debe verificar que el segundo número no sea 0 antes de dividir.",
+      "codigoReferencia": "Algoritmo calculadora_menu\n  Definir a, b, resultado Como Real\n  Definir opcion Como Entero\n\n  opcion <- 0\n\n  Mientras opcion <> 5 Hacer\n    Escribir \"=== CALCULADORA ===\"\n    Escribir \"1. Suma\"\n    Escribir \"2. Resta\"\n    Escribir \"3. Multiplicacion\"\n    Escribir \"4. Division\"\n    Escribir \"5. Salir\"\n    Escribir \"Elija opcion: \"\n    Leer opcion\n\n    Si opcion <> 5 Entonces\n      Escribir \"Ingrese primer numero: \"\n      Leer a\n      Escribir \"Ingrese segundo numero: \"\n      Leer b\n\n      Segun opcion Hacer\n        1:\n          resultado <- a + b\n          Escribir \"Resultado: \", resultado\n        2:\n          resultado <- a - b\n          Escribir \"Resultado: \", resultado\n        3:\n          resultado <- a * b\n          Escribir \"Resultado: \", resultado\n        4:\n          Si b <> 0 Entonces\n            resultado <- a / b\n            Escribir \"Resultado: \", resultado\n          SiNo\n            Escribir \"Error: division por cero.\"\n          FinSi\n        De Otro Modo:\n          Escribir \"Opcion invalida.\"\n      FinSegun\n    FinSi\n  FinMientras\n\n  Escribir \"¡Hasta luego!\"\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-002",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-02",
+      "dificultad": "avanzado",
+      "gradoAyuda": "practica",
+      "titulo": "Estadísticas de notas del curso",
+      "conceptos": ["Dimension", "Para", "Leer", "promedio", "máximo", "mínimo", "contador condicional"],
+      "enunciado": "El algoritmo pide la cantidad N de estudiantes, lee N notas en un arreglo, y calcula y muestra: el promedio del curso, la nota más alta, la nota más baja, y cuántos estudiantes aprobaron (nota >= 4.0). Las notas van de 1.0 a 7.0.",
+      "entradaProcesoSalida": {
+        "entrada": "N (cantidad de estudiantes) y N notas reales",
+        "proceso": "Acumular suma, rastrear max y min, contar aprobados con bucle Para",
+        "salida": "Promedio, nota máxima, nota mínima y cantidad de aprobados"
+      },
+      "salidaEsperada": "¿Cuántos estudiantes? \nNota 1: \nNota 2: \nNota 3: \nPromedio: 5.17\nNota más alta: 6.5\nNota más baja: 4.0\nAprobados: 3",
+      "pista": "Inicializa max con un valor muy bajo (ej: 1.0) y min con un valor muy alto (ej: 7.0) antes del bucle. Actualiza ambos en cada iteración comparando con la nota leída.",
+      "codigoReferencia": "Algoritmo estadisticas_notas\n  Definir N, i, aprobados Como Entero\n  Definir nota, suma, promedio, maxNota, minNota Como Real\n\n  Escribir \"¿Cuántos estudiantes? \"\n  Leer N\n\n  Dimension notas[N]\n  Definir notas Como Real\n\n  suma      <- 0\n  maxNota   <- 1.0\n  minNota   <- 7.0\n  aprobados <- 0\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Nota \", i, \": \"\n    Leer nota\n    notas[i] <- nota\n    suma     <- suma + nota\n    Si nota > maxNota Entonces\n      maxNota <- nota\n    FinSi\n    Si nota < minNota Entonces\n      minNota <- nota\n    FinSi\n    Si nota >= 4.0 Entonces\n      aprobados <- aprobados + 1\n    FinSi\n  FinPara\n\n  promedio <- suma / N\n\n  Escribir \"Promedio: \", promedio\n  Escribir \"Nota más alta: \", maxNota\n  Escribir \"Nota más baja: \", minNota\n  Escribir \"Aprobados: \", aprobados\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-003",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-03",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Agenda simple de contactos",
+      "conceptos": ["Dimension", "Segun", "Mientras", "Para", "Cadena", "SubProceso"],
+      "enunciado": "El algoritmo implementa una agenda con un menú repetible que permite: 1) Agregar nombre, 2) Mostrar todos los contactos, 3) Buscar un contacto por nombre, 4) Salir. La agenda puede almacenar hasta 20 contactos. La búsqueda es insensible a mayúsculas.",
+      "entradaProcesoSalida": {
+        "entrada": "Opción del menú (1-4) y nombres según la operación elegida",
+        "proceso": "Mientras opcion <> 4: leer opción y ejecutar la operación con Segun",
+        "salida": "Lista de contactos o resultado de búsqueda según la opción"
+      },
+      "salidaEsperada": "=== AGENDA ===\n1. Agregar contacto\n2. Mostrar todos\n3. Buscar contacto\n4. Salir\nElija opcion: \nNombre: Ana\nContacto agregado.\n...\n1: Ana\n2: Luis\nContacto encontrado en posicion 1.",
+      "pista": "Usa dos arreglos paralelos si quieres guardar más datos (solo nombres aquí). Para la búsqueda, convierte ambas cadenas a MINUSCULAS antes de comparar. Lleva un contador de cuántos contactos hay actualmente.",
+      "codigoReferencia": "Algoritmo agenda_contactos\n  Dimension nombres[20]\n  Definir nombres Como Cadena\n  Definir opcion, total, i Como Entero\n  Definir nombreBuscar, nombreMin, buscarMin Como Cadena\n  Definir encontrado Como Logico\n\n  total  <- 0\n  opcion <- 0\n\n  Mientras opcion <> 4 Hacer\n    Escribir \"=== AGENDA ===\"\n    Escribir \"1. Agregar contacto\"\n    Escribir \"2. Mostrar todos\"\n    Escribir \"3. Buscar contacto\"\n    Escribir \"4. Salir\"\n    Escribir \"Elija opcion: \"\n    Leer opcion\n\n    Segun opcion Hacer\n      1:\n        Si total < 20 Entonces\n          Escribir \"Nombre: \"\n          Leer nombreBuscar\n          total         <- total + 1\n          nombres[total] <- nombreBuscar\n          Escribir \"Contacto agregado.\"\n        SiNo\n          Escribir \"Agenda llena.\"\n        FinSi\n      2:\n        Si total = 0 Entonces\n          Escribir \"La agenda está vacía.\"\n        SiNo\n          Para i <- 1 Hasta total Con Paso 1 Hacer\n            Escribir i, \": \", nombres[i]\n          FinPara\n        FinSi\n      3:\n        Escribir \"Nombre a buscar: \"\n        Leer nombreBuscar\n        buscarMin  <- MINUSCULAS(nombreBuscar)\n        encontrado <- Falso\n        Para i <- 1 Hasta total Con Paso 1 Hacer\n          nombreMin <- MINUSCULAS(nombres[i])\n          Si nombreMin = buscarMin Entonces\n            Escribir \"Contacto encontrado en posicion \", i, \".\"\n            encontrado <- Verdadero\n          FinSi\n        FinPara\n        Si NO encontrado Entonces\n          Escribir \"Contacto no encontrado.\"\n        FinSi\n      4:\n        Escribir \"¡Hasta luego!\"\n      De Otro Modo:\n        Escribir \"Opcion invalida.\"\n    FinSegun\n  FinMientras\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-004",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-04",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Pirámide de asteriscos",
+      "conceptos": ["Para anidado", "CONCATENAR", "Cadena", "Escribir"],
+      "enunciado": "El algoritmo pide al usuario el número N de filas y dibuja una pirámide de asteriscos centrada. La fila k tiene (2k-1) asteriscos precedidos de (N-k) espacios. Por ejemplo, con N=4:\n   *\n  ***\n ****** (error: debe ser *****)\n*******",
+      "entradaProcesoSalida": {
+        "entrada": "N: número de filas de la pirámide (Entero positivo)",
+        "proceso": "Para cada fila k de 1 a N: imprimir (N-k) espacios seguidos de (2k-1) asteriscos",
+        "salida": "Pirámide de N filas de asteriscos"
+      },
+      "salidaEsperada": "Ingrese el número de filas: 4\n   *\n  ***\n *****\n*******",
+      "pista": "Para cada fila k, construye la línea con dos bucles: el primero añade (N-k) espacios y el segundo añade (2*k-1) asteriscos. Luego usa Escribir para imprimir la línea completa.",
+      "codigoReferencia": "Algoritmo piramide_asteriscos\n  Definir N, k, j Como Entero\n  Definir linea Como Cadena\n\n  Escribir \"Ingrese el número de filas: \"\n  Leer N\n\n  Para k <- 1 Hasta N Con Paso 1 Hacer\n    linea <- \"\"\n    Para j <- 1 Hasta N - k Con Paso 1 Hacer\n      linea <- CONCATENAR(linea, \" \")\n    FinPara\n    Para j <- 1 Hasta 2 * k - 1 Con Paso 1 Hacer\n      linea <- CONCATENAR(linea, \"*\")\n    FinPara\n    Escribir linea\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-005",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-05",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "titulo": "Tabla de multiplicar completa",
+      "conceptos": ["Para anidado", "Escribir", "multiplicación"],
+      "enunciado": "El algoritmo pide al usuario un número N y muestra la tabla de multiplicar de todos los números del 1 al N. Para cada número i, muestra sus productos con 1 hasta N en formato 'i x j = resultado'.",
+      "entradaProcesoSalida": {
+        "entrada": "N: límite de la tabla de multiplicar (Entero positivo)",
+        "proceso": "Dos bucles anidados Para i de 1 a N y Para j de 1 a N: imprimir i x j = i*j",
+        "salida": "Todas las multiplicaciones desde 1x1 hasta NxN"
+      },
+      "salidaEsperada": "Ingrese N: 3\n--- Tabla del 1 ---\n1 x 1 = 1\n1 x 2 = 2\n1 x 3 = 3\n--- Tabla del 2 ---\n2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n--- Tabla del 3 ---\n3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9",
+      "pista": "El bucle externo Para i recorre del 1 al N (número cuya tabla se muestra). El bucle interno Para j recorre del 1 al N (multiplicador). Imprime un encabezado '--- Tabla del i ---' antes del bucle interno.",
+      "codigoReferencia": "Algoritmo tabla_multiplicar_completa\n  Definir N, i, j, producto Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"--- Tabla del \", i, \" ---\"\n    Para j <- 1 Hasta N Con Paso 1 Hacer\n      producto <- i * j\n      Escribir i, \" x \", j, \" = \", producto\n    FinPara\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-006",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-06",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Juego: Adivina el número",
+      "conceptos": ["Mientras", "Si", "Repetir", "variable aleatoria", "contador de intentos"],
+      "enunciado": "El algoritmo elige un número secreto entre 1 y 100 (usa 42 como valor fijo para poder verificar) y permite al usuario hasta 7 intentos para adivinarlo. Después de cada intento incorrecto indica si el número secreto es mayor o menor al ingresado. Al terminar muestra si ganó o perdió.",
+      "entradaProcesoSalida": {
+        "entrada": "Hasta 7 números enteros ingresados por el usuario",
+        "proceso": "Comparar cada intento con el número secreto; dar pistas mayor/menor; terminar al acertar o agotar intentos",
+        "salida": "Pistas en cada intento y mensaje de victoria o derrota al final"
+      },
+      "salidaEsperada": "=== ADIVINA EL NUMERO (1-100) ===\nIntento 1 de 7. Tu numero: \n¡Demasiado bajo!\nIntento 2 de 7. Tu numero: \n¡Demasiado alto!\nIntento 3 de 7. Tu numero: \n¡Correcto! Lo adivinaste en 3 intentos.",
+      "pista": "Usa una variable logica 'gano' inicializada en Falso. El bucle Mientras intento <= 7 Y NO gano controla el juego. Si el usuario acierta, asigna Verdadero a 'gano' y el bucle termina.",
+      "codigoReferencia": "Algoritmo adivina_numero\n  Definir secreto, intento, numero Como Entero\n  Definir gano Como Logico\n\n  secreto <- 42\n  intento <- 1\n  gano    <- Falso\n\n  Escribir \"=== ADIVINA EL NUMERO (1-100) ===\"\n\n  Mientras intento <= 7 Y NO gano Hacer\n    Escribir \"Intento \", intento, \" de 7. Tu numero: \"\n    Leer numero\n\n    Si numero = secreto Entonces\n      gano <- Verdadero\n      Escribir \"¡Correcto! Lo adivinaste en \", intento, \" intentos.\"\n    SiNo\n      Si numero < secreto Entonces\n        Escribir \"¡Demasiado bajo!\"\n      SiNo\n        Escribir \"¡Demasiado alto!\"\n      FinSi\n      intento <- intento + 1\n    FinSi\n  FinMientras\n\n  Si NO gano Entonces\n    Escribir \"¡Perdiste! El número era \", secreto, \".\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-007",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-07",
+      "dificultad": "avanzado",
+      "gradoAyuda": "practica",
+      "titulo": "Número perfecto",
+      "conceptos": ["Funcion", "Para", "MOD", "Entero"],
+      "enunciado": "Un número es perfecto si la suma de sus divisores propios (todos los divisores excepto él mismo) es igual al número. Por ejemplo, 6 es perfecto porque 1+2+3=6, y 28 también lo es (1+2+4+7+14=28). El algoritmo lee un número N y determina si es perfecto usando una función.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo N",
+        "proceso": "Función sumaDivisores: suma todos i de 1 a N-1 donde N MOD i = 0; si suma = N es perfecto",
+        "salida": "\"[N] es un número perfecto.\" o \"[N] no es un número perfecto.\""
+      },
+      "salidaEsperada": "Ingrese un número: 28\n28 es un número perfecto.",
+      "pista": "La función debe recorrer desde 1 hasta N-1 y acumular los divisores exactos (N MOD i = 0). El programa principal compara el resultado con N.",
+      "codigoReferencia": "Funcion suma <- sumaDivisores(n)\n  Definir i, suma Como Entero\n  suma <- 0\n  Para i <- 1 Hasta n - 1 Con Paso 1 Hacer\n    Si n MOD i = 0 Entonces\n      suma <- suma + i\n    FinSi\n  FinPara\nFinFuncion\n\nAlgoritmo numero_perfecto\n  Definir num, s Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer num\n\n  s <- sumaDivisores(num)\n\n  Si s = num Entonces\n    Escribir num, \" es un número perfecto.\"\n  SiNo\n    Escribir num, \" no es un número perfecto.\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-008",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-08",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Conversor de decimal a binario",
+      "conceptos": ["Mientras", "MOD", "DIV", "Dimension", "arreglo", "Entero"],
+      "enunciado": "El algoritmo lee un número entero positivo N en base 10 y lo convierte a su representación binaria (base 2). Usa el método de divisiones sucesivas: divide entre 2, guarda el resto en un arreglo, y al terminar muestra los restos en orden inverso. Por ejemplo, 13 en binario es 1101.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo N",
+        "proceso": "Mientras N > 0: guardar N MOD 2 en arreglo, N <- N DIV 2. Luego mostrar el arreglo al revés",
+        "salida": "\"Representación binaria: [bits]\""
+      },
+      "salidaEsperada": "Ingrese un número entero positivo: 13\nRepresentación binaria: 1101",
+      "pista": "Dimensiona el arreglo con tamaño suficiente (ej: 32). Lleva un contador de cuántos bits guardaste. Al terminar el Mientras, recorre el arreglo desde el último hasta el primero para mostrar los bits en el orden correcto.",
+      "codigoReferencia": "Algoritmo decimal_a_binario\n  Dimension bits[32]\n  Definir bits Como Entero\n  Definir num, pos, i Como Entero\n\n  Escribir \"Ingrese un número entero positivo: \"\n  Leer num\n\n  Si num = 0 Entonces\n    Escribir \"Representación binaria: 0\"\n  SiNo\n    pos <- 0\n\n    Mientras num > 0 Hacer\n      pos      <- pos + 1\n      bits[pos] <- num MOD 2\n      num      <- num DIV 2\n    FinMientras\n\n    Escribir \"Representación binaria: \"\n    Para i <- pos Hasta 1 Con Paso -1 Hacer\n      Escribir Sin Saltar bits[i]\n    FinPara\n    Escribir \"\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-009",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-09",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Frecuencia de dígitos en un número",
+      "conceptos": ["Mientras", "MOD", "DIV", "Dimension", "Para", "Entero"],
+      "enunciado": "El algoritmo lee un número entero positivo y cuenta cuántas veces aparece cada dígito (0 al 9) en él. Por ejemplo, en el número 1223345 el dígito 2 aparece 2 veces, el 3 aparece 2 veces, y los demás 1 vez cada uno.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero positivo",
+        "proceso": "Extraer cada dígito con MOD 10 y DIV 10; incrementar el contador en frecuencias[digito]",
+        "salida": "Lista de dígitos con su frecuencia (solo los que aparecen al menos una vez)"
+      },
+      "salidaEsperada": "Ingrese un número: 1223345\nDígito 1: 1 vez\nDígito 2: 2 veces\nDígito 3: 2 veces\nDígito 4: 1 vez\nDígito 5: 1 vez",
+      "pista": "Crea un arreglo frecuencias[0..9] inicializado en 0 (usa índices 1 a 10 si el lenguaje no permite índice 0, ajustando la posición). En cada iteración del Mientras, calcula digito <- num MOD 10, incrementa el contador y divide num entre 10.",
+      "codigoReferencia": "Algoritmo frecuencia_digitos\n  Dimension frec[10]\n  Definir frec Como Entero\n  Definir num, digito, i Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer num\n\n  Para i <- 1 Hasta 10 Con Paso 1 Hacer\n    frec[i] <- 0\n  FinPara\n\n  Mientras num > 0 Hacer\n    digito        <- num MOD 10\n    frec[digito + 1] <- frec[digito + 1] + 1\n    num           <- num DIV 10\n  FinMientras\n\n  Para i <- 1 Hasta 10 Con Paso 1 Hacer\n    Si frec[i] > 0 Entonces\n      Si frec[i] = 1 Entonces\n        Escribir \"Dígito \", i - 1, \": \", frec[i], \" vez\"\n      SiNo\n        Escribir \"Dígito \", i - 1, \": \", frec[i], \" veces\"\n      FinSi\n    FinSi\n  FinPara\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-010",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-10",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Ordenar arreglo y búsqueda binaria",
+      "conceptos": ["Dimension", "Para anidado", "burbuja", "Funcion", "búsqueda binaria"],
+      "enunciado": "El algoritmo lee N números enteros en un arreglo, los ordena con el método burbuja y luego permite al usuario buscar un valor usando búsqueda binaria (que devuelve el índice si lo encuentra, o -1 si no). Muestra el arreglo ordenado y el resultado de la búsqueda.",
+      "entradaProcesoSalida": {
+        "entrada": "N (cantidad de elementos), N números enteros, y el valor a buscar",
+        "proceso": "Ordenar con burbuja; luego ejecutar búsqueda binaria en el arreglo ordenado",
+        "salida": "Arreglo ordenado y posición donde se encontró el valor (o mensaje de no encontrado)"
+      },
+      "salidaEsperada": "¿Cuántos números? 5\nNúmero 1: 40\nNúmero 2: 10\nNúmero 3: 30\nNúmero 4: 20\nNúmero 5: 50\nArreglo ordenado: 10 20 30 40 50\n¿Qué número buscar? 30\nEncontrado en la posición 3.",
+      "pista": "La búsqueda binaria mantiene un rango [izq, der]. En cada paso calcula el centro como (izq+der) DIV 2, compara con el objetivo, y ajusta izq o der según si el objetivo es mayor o menor. Termina cuando izq > der (no encontrado) o encuentra el elemento.",
+      "codigoReferencia": "Funcion pos <- busquedaBinaria(arr, n, objetivo)\n  Definir izq, der, centro, pos Como Entero\n  Definir encontrado Como Logico\n  izq       <- 1\n  der       <- n\n  pos       <- -1\n  encontrado <- Falso\n  Mientras izq <= der Y NO encontrado Hacer\n    centro <- (izq + der) DIV 2\n    Si arr[centro] = objetivo Entonces\n      pos        <- centro\n      encontrado <- Verdadero\n    SiNo\n      Si objetivo < arr[centro] Entonces\n        der <- centro - 1\n      SiNo\n        izq <- centro + 1\n      FinSi\n    FinSi\n  FinMientras\nFinFuncion\n\nAlgoritmo ordenar_y_buscar\n  Definir N, i, j, aux, objetivo, resultado Como Entero\n  Dimension arr[100]\n  Definir arr Como Entero\n\n  Escribir \"¿Cuántos números? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Número \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta N - 1 Con Paso 1 Hacer\n    Para j <- 1 Hasta N - i Con Paso 1 Hacer\n      Si arr[j] > arr[j + 1] Entonces\n        aux        <- arr[j]\n        arr[j]     <- arr[j + 1]\n        arr[j + 1] <- aux\n      FinSi\n    FinPara\n  FinPara\n\n  Escribir \"Arreglo ordenado: \"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir Sin Saltar arr[i], \" \"\n  FinPara\n  Escribir \"\"\n\n  Escribir \"¿Qué número buscar? \"\n  Leer objetivo\n\n  resultado <- busquedaBinaria(arr, N, objetivo)\n\n  Si resultado = -1 Entonces\n    Escribir \"Número no encontrado.\"\n  SiNo\n    Escribir \"Encontrado en la posición \", resultado, \".\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-011",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-11",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Promedio de los primeros N números primos",
+      "conceptos": ["Funcion", "Mientras", "Para", "MOD", "Logico", "Real"],
+      "enunciado": "El algoritmo pide al usuario la cantidad N de números primos a considerar, encuentra los primeros N números primos usando una función esPrimo, los acumula y calcula su promedio. Por ejemplo, los primeros 5 primos son 2, 3, 5, 7, 11 y su promedio es 5.6.",
+      "entradaProcesoSalida": {
+        "entrada": "N: cantidad de números primos a incluir (Entero positivo)",
+        "proceso": "Recorrer números naturales desde 2; por cada primo encontrado (función esPrimo) acumular y contar; detenerse al llegar a N primos",
+        "salida": "Los N primos encontrados, su suma y su promedio"
+      },
+      "salidaEsperada": "¿Cuántos primos? 5\nPrimos: 2 3 5 7 11\nPromedio: 5.6",
+      "pista": "La función esPrimo recibe un entero y devuelve Verdadero si no tiene divisores entre 2 y raíz cuadrada del número. En el programa principal usa un Mientras cantidadEncontrada < N para seguir buscando desde el número actual.",
+      "codigoReferencia": "Funcion resultado <- esPrimo(n)\n  Definir i, resultado Como Entero\n  Definir primo Como Logico\n  primo <- Verdadero\n  Si n < 2 Entonces\n    primo <- Falso\n  SiNo\n    i <- 2\n    Mientras i * i <= n Y primo Hacer\n      Si n MOD i = 0 Entonces\n        primo <- Falso\n      FinSi\n      i <- i + 1\n    FinMientras\n  FinSi\n  Si primo Entonces\n    resultado <- 1\n  SiNo\n    resultado <- 0\n  FinSi\nFinFuncion\n\nAlgoritmo promedio_primos\n  Definir N, cantidad, num Como Entero\n  Definir suma, promedio Como Real\n\n  Escribir \"¿Cuántos primos? \"\n  Leer N\n\n  cantidad <- 0\n  num      <- 2\n  suma     <- 0\n\n  Escribir \"Primos: \"\n  Mientras cantidad < N Hacer\n    Si esPrimo(num) = 1 Entonces\n      suma     <- suma + num\n      cantidad <- cantidad + 1\n      Escribir Sin Saltar num, \" \"\n    FinSi\n    num <- num + 1\n  FinMientras\n  Escribir \"\"\n\n  promedio <- suma / N\n  Escribir \"Promedio: \", promedio\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n7-012",
+      "modulo": "N7",
+      "nivelPSeInt": 7,
+      "numero": "PS-N7-12",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "titulo": "Mini biblioteca con búsqueda por autor",
+      "conceptos": ["Dimension", "SubProceso", "Para", "Mientras", "Segun", "Cadena", "MINUSCULAS"],
+      "enunciado": "El algoritmo implementa una mini biblioteca con dos arreglos paralelos: títulos y autores (hasta 15 libros). El menú permite: 1) Agregar libro (título y autor), 2) Listar todos los libros, 3) Buscar libros por autor (muestra todos los libros de ese autor, sin distinguir mayúsculas), 4) Salir. Un SubProceso se encarga de mostrar el catálogo.",
+      "entradaProcesoSalida": {
+        "entrada": "Opción de menú (1-4), títulos y autores según la operación",
+        "proceso": "Mientras opcion <> 4: ejecutar operación con Segun; búsqueda por autor usa MINUSCULAS para comparar",
+        "salida": "Listado de libros o resultados de búsqueda según la opción"
+      },
+      "salidaEsperada": "=== MINI BIBLIOTECA ===\n1. Agregar libro\n2. Listar todos\n3. Buscar por autor\n4. Salir\nElija opcion: 1\nTítulo: Cien años de soledad\nAutor: García Márquez\nLibro agregado.\n...\n1. Cien años de soledad — García Márquez\nBúsqueda: garcia márquez\n-> Cien años de soledad (García Márquez)",
+      "pista": "Usa dos arreglos Cadena paralelos: titulos[15] y autores[15]. Un SubProceso 'mostrarCatalogo' recibe ambos arreglos y el total para listarlos. La búsqueda compara MINUSCULAS(autores[i]) con MINUSCULAS(nombreBuscado) en un bucle Para.",
+      "codigoReferencia": "SubProceso mostrarCatalogo(titulos, autores, total)\n  Definir i Como Entero\n  Si total = 0 Entonces\n    Escribir \"No hay libros registrados.\"\n  SiNo\n    Para i <- 1 Hasta total Con Paso 1 Hacer\n      Escribir i, \". \", titulos[i], \" — \", autores[i]\n    FinPara\n  FinSi\nFinSubProceso\n\nAlgoritmo mini_biblioteca\n  Dimension titulos[15]\n  Dimension autores[15]\n  Definir titulos Como Cadena\n  Definir autores Como Cadena\n  Definir opcion, total, i Como Entero\n  Definir tituloNuevo, autorNuevo, buscar, autorMin, buscarMin Como Cadena\n  Definir encontrado Como Logico\n\n  total  <- 0\n  opcion <- 0\n\n  Mientras opcion <> 4 Hacer\n    Escribir \"=== MINI BIBLIOTECA ===\"\n    Escribir \"1. Agregar libro\"\n    Escribir \"2. Listar todos\"\n    Escribir \"3. Buscar por autor\"\n    Escribir \"4. Salir\"\n    Escribir \"Elija opcion: \"\n    Leer opcion\n\n    Segun opcion Hacer\n      1:\n        Si total < 15 Entonces\n          Escribir \"Título: \"\n          Leer tituloNuevo\n          Escribir \"Autor: \"\n          Leer autorNuevo\n          total          <- total + 1\n          titulos[total] <- tituloNuevo\n          autores[total] <- autorNuevo\n          Escribir \"Libro agregado.\"\n        SiNo\n          Escribir \"La biblioteca está llena.\"\n        FinSi\n      2:\n        mostrarCatalogo(titulos, autores, total)\n      3:\n        Escribir \"Autor a buscar: \"\n        Leer buscar\n        buscarMin  <- MINUSCULAS(buscar)\n        encontrado <- Falso\n        Para i <- 1 Hasta total Con Paso 1 Hacer\n          autorMin <- MINUSCULAS(autores[i])\n          Si autorMin = buscarMin Entonces\n            Escribir \"-> \", titulos[i], \" (\", autores[i], \")\"\n            encontrado <- Verdadero\n          FinSi\n        FinPara\n        Si NO encontrado Entonces\n          Escribir \"No se encontraron libros de ese autor.\"\n        FinSi\n      4:\n        Escribir \"¡Hasta luego!\"\n      De Otro Modo:\n        Escribir \"Opcion invalida.\"\n    FinSegun\n  FinMientras\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    }
+  ]
+}

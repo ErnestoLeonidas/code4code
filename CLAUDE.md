@@ -49,8 +49,37 @@ identifica en qué fase está el proyecto.
       agrupación (`js/editor/history.js`) ya extraídos, con sus suites.
       `js/app.js` ya no usa `DocErrores` ni `LiteSeInt` directamente.
       Pendiente: núcleo del editor, gutter, folding, móvil, temas.
-- [ ] Fase 3 — Lenguaje PSeInt (`core/pseint/`), perfiles estricto/flexible.
-- [ ] Fase 4 — Python con Pyodide (`core/python/`), en Web Worker.
+- [x] Fase 3a — Lenguaje PSeInt, perfil estricto (`v2.2.0-beta`). Implementado:
+      diseño del objeto `perfil`, `Algoritmo/Proceso … FinAlgoritmo/FinProceso`,
+      asignación `<-` (y `=` como comparador), `Escribir`/`Escribir Sin Saltar`/
+      `Leer` multivariable, estructuras `Si/Sino`, `Segun`, `Mientras`,
+      `Repetir…HastaQue`, `Para…Con Paso`, arreglos `Dimension` 1D/2D,
+      `SubProceso`/`Funcion` con retorno y paso por referencia, 18 funciones
+      nativas, validador con mensajes PSeInt, aviso de migración bidireccional
+      (`=` vs `<-`, y detección de sintaxis cruzada entre lenguajes),
+      documentación de comandos PSeInt en el panel de aprendizaje,
+      provider registrado en `index.html`, `onCambio` refresca el panel al
+      cambiar lenguaje, y suites de tests propias (tokenizer 25, builtins 61,
+      parser 15, runtime 15, validator 17, contract-tests extendido a 33 pruebas).
+      Pendiente (Fase 3b): golden tests y conversión implícita avanzada.
+- [x] Fase 3b — Perfil flexible y banco de ejercicios PSeInt completo (`v2.3.0-beta`).
+      Implementado: selector de perfil (presets *Estricto*/*Flexible*) visible solo en
+      PSeInt, `configurarPerfil`/`obtenerPerfil` en el provider, elección persistida
+      en `localStorage`; `Definir` opcional en modo flexible (auto-creación de variables
+      en el primer uso con inferencia de tipo por valor asignado); banco N1–N7 completo
+      en `json/pseint/` (N3 18 bucles, N4 15 arreglos, N5 15 subprocesos, N6 15
+      cadenas, N7 12 integradores — 95 ejercicios PSeInt en total).
+      Pendiente: golden tests por preset.
+- [x] Fase 4 — Python con Pyodide (`core/python/`), base funcional (`v2.3.0-beta`).
+      Hecho: tokenizador Python (37 keywords, `core/python/tokenizer.js`), Web Worker
+      con Pyodide 0.26.2 (`core/python/worker.js`), bridge con RuntimeHost
+      (`core/python/bridge.js`), provider completo con contrato `LanguageProvider`
+      (`core/python/provider.js`), panel stdin `#pythonStdinPanel`, opción Python en
+      el selector de lenguaje, barra de símbolos táctiles adaptable al lenguaje,
+      28 pruebas de tokenizador, 10 pruebas de contrato, banco N1–N6 en
+      `json/python/` (95 ejercicios Python) con `js/ejercicios-python-data.js`.
+      Pendiente: testing de ejecución real (requiere browser), integración con
+      inspector de variables, mejoras de rendimiento.
 - [ ] Fase 5 — Ejercicios multi-lenguaje.
 
 ## Tareas típicas y dónde mirar

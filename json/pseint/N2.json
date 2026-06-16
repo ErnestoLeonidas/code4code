@@ -1,0 +1,330 @@
+{
+  "version": "1.0.0",
+  "lenguaje": "pseint",
+  "nivel": 2,
+  "experience": {
+    "id": "ps-2",
+    "label": "N2",
+    "titulo": "Estructuras Condicionales PSeInt",
+    "desc": "Uso de Si/FinSi, Si/SiNo/FinSi y Segun/FinSegun para tomar decisiones en algoritmos.",
+    "color": "var(--accent2)",
+    "icon": "🔀"
+  },
+  "ejercicios": [
+    {
+      "id": "ps-n2-001",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-01",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Mayor de edad",
+      "conceptos": ["Si", "SiNo", "FinSi", "comparación", "Logico"],
+      "enunciado": "El algoritmo pide la edad de una persona y determina si es mayor de edad (18 años o más) o menor de edad. Muestra un mensaje correspondiente en cada caso.",
+      "entradaProcesoSalida": {
+        "entrada": "Edad de la persona (Entero)",
+        "proceso": "Si edad >= 18 Entonces mostrar \"mayor de edad\" SiNo mostrar \"menor de edad\"",
+        "salida": "\"Es mayor de edad\" o \"Es menor de edad\""
+      },
+      "salidaEsperada": "Ingrese su edad: \nEs mayor de edad.",
+      "pista": "Usa Si ... Entonces ... SiNo ... FinSi. El operador >= significa 'mayor o igual que'.",
+      "codigoReferencia": "Algoritmo mayor_de_edad\n  Definir edad Como Entero\n\n  Escribir \"Ingrese su edad: \"\n  Leer edad\n\n  Si edad >= 18 Entonces\n    Escribir \"Es mayor de edad.\"\n  SiNo\n    Escribir \"Es menor de edad.\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-002",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-02",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Número positivo, negativo o cero",
+      "conceptos": ["Si", "SiNo", "FinSi", "condicional anidado"],
+      "enunciado": "El algoritmo pide un número entero y determina si es positivo (> 0), negativo (< 0) o cero, mostrando el mensaje correspondiente.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Si numero > 0 → positivo\nSiNo Si numero < 0 → negativo\nSiNo → cero",
+        "salida": "\"El número es positivo\", \"negativo\" o \"cero\""
+      },
+      "salidaEsperada": "Ingrese un número: \nEl número es positivo.",
+      "pista": "Puedes anidar condicionales: Si ... Entonces ... SiNo Si ... Entonces ... SiNo ... FinSi FinSi.",
+      "codigoReferencia": "Algoritmo positivo_negativo_cero\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer numero\n\n  Si numero > 0 Entonces\n    Escribir \"El número es positivo.\"\n  SiNo\n    Si numero < 0 Entonces\n      Escribir \"El número es negativo.\"\n    SiNo\n      Escribir \"El número es cero.\"\n    FinSi\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-003",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-03",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Máximo de dos números",
+      "conceptos": ["Si", "SiNo", "FinSi", "comparación", "máximo"],
+      "enunciado": "El algoritmo lee dos números reales y determina cuál es el mayor. Si son iguales, informa que son iguales.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números reales a y b",
+        "proceso": "Si a > b → a es el mayor\nSiNo Si a < b → b es el mayor\nSiNo → son iguales",
+        "salida": "\"El mayor es: [valor]\" o \"Los números son iguales\""
+      },
+      "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nEl mayor es: 15",
+      "pista": "Compara a con b. Recuerda también considerar el caso en que son iguales con un tercer bloque SiNo.",
+      "codigoReferencia": "Algoritmo maximo_dos\n  Definir a, b Como Real\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n\n  Si a > b Entonces\n    Escribir \"El mayor es: \", a\n  SiNo\n    Si a < b Entonces\n      Escribir \"El mayor es: \", b\n    SiNo\n      Escribir \"Los números son iguales.\"\n    FinSi\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-004",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-04",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Máximo de tres números",
+      "conceptos": ["Si", "SiNo", "FinSi", "condicional anidado", "máximo"],
+      "enunciado": "El algoritmo lee tres números reales y determina cuál es el mayor de los tres, mostrando ese valor en pantalla.",
+      "entradaProcesoSalida": {
+        "entrada": "Tres números reales a, b, c",
+        "proceso": "Comparar a, b, c para encontrar el mayor",
+        "salida": "\"El mayor de los tres es: [valor]\""
+      },
+      "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nIngrese el tercer número: \nEl mayor de los tres es: 25",
+      "pista": "Primero encuentra el máximo entre a y b, luego compara ese resultado con c.",
+      "codigoReferencia": "Algoritmo maximo_tres\n  Definir a, b, c, mayor Como Real\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n  Escribir \"Ingrese el tercer número: \"\n  Leer c\n\n  Si a >= b Entonces\n    mayor <- a\n  SiNo\n    mayor <- b\n  FinSi\n\n  Si c > mayor Entonces\n    mayor <- c\n  FinSi\n\n  Escribir \"El mayor de los tres es: \", mayor\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-005",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-05",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Clasificación de triángulo por lados",
+      "conceptos": ["Si", "SiNo", "FinSi", "Y", "operador lógico"],
+      "enunciado": "El algoritmo lee los tres lados de un triángulo (valores reales) y lo clasifica como: equilátero (tres lados iguales), isósceles (exactamente dos lados iguales) o escaleno (los tres lados distintos).",
+      "entradaProcesoSalida": {
+        "entrada": "Tres lados reales a, b, c",
+        "proceso": "Si a=b Y b=c → equilátero\nSi a=b O b=c O a=c → isósceles\nSiNo → escaleno",
+        "salida": "\"El triángulo es equilátero / isósceles / escaleno\""
+      },
+      "salidaEsperada": "Ingrese el lado a: \nIngrese el lado b: \nIngrese el lado c: \nEl triángulo es isósceles.",
+      "pista": "Primero verifica el caso más restrictivo (equilátero), luego el intermedio (isósceles), y por defecto será escaleno.",
+      "codigoReferencia": "Algoritmo clasificar_triangulo_lados\n  Definir a, b, c Como Real\n\n  Escribir \"Ingrese el lado a: \"\n  Leer a\n  Escribir \"Ingrese el lado b: \"\n  Leer b\n  Escribir \"Ingrese el lado c: \"\n  Leer c\n\n  Si (a = b) Y (b = c) Entonces\n    Escribir \"El triángulo es equilátero.\"\n  SiNo\n    Si (a = b) O (b = c) O (a = c) Entonces\n      Escribir \"El triángulo es isósceles.\"\n    SiNo\n      Escribir \"El triángulo es escaleno.\"\n    FinSi\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-006",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-06",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Calificación de nota",
+      "conceptos": ["Si", "SiNo", "FinSi", "rangos", "condicional anidado"],
+      "enunciado": "El algoritmo lee una nota (valor real entre 1.0 y 7.0) y muestra la calificación cualitativa: Sobresaliente (6.5–7.0), Bueno (5.0–6.4), Regular (4.0–4.9), Insuficiente (menor de 4.0).",
+      "entradaProcesoSalida": {
+        "entrada": "Nota real entre 1.0 y 7.0",
+        "proceso": "Comparar nota contra rangos en orden descendente",
+        "salida": "Calificación cualitativa correspondiente"
+      },
+      "salidaEsperada": "Ingrese la nota: \nCalificación: Bueno",
+      "pista": "Evalúa los rangos de mayor a menor. Con >= 6.5 es Sobresaliente, >= 5.0 es Bueno, >= 4.0 es Regular, de lo contrario Insuficiente.",
+      "codigoReferencia": "Algoritmo calificacion_nota\n  Definir nota Como Real\n\n  Escribir \"Ingrese la nota: \"\n  Leer nota\n\n  Si nota >= 6.5 Entonces\n    Escribir \"Calificación: Sobresaliente\"\n  SiNo\n    Si nota >= 5.0 Entonces\n      Escribir \"Calificación: Bueno\"\n    SiNo\n      Si nota >= 4.0 Entonces\n        Escribir \"Calificación: Regular\"\n      SiNo\n        Escribir \"Calificación: Insuficiente\"\n      FinSi\n    FinSi\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-007",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-07",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Calculadora simple con Segun",
+      "conceptos": ["Segun", "FinSegun", "De Otro Modo", "operaciones aritméticas"],
+      "enunciado": "El algoritmo pide dos números reales y un operador (+, -, *, /). Usando Segun, realiza la operación correspondiente y muestra el resultado. Si el operador no es válido, muestra un mensaje de error. Para la división, verifica que el divisor no sea cero.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos reales a y b, y un operador (Cadena)",
+        "proceso": "Segun operador Hacer cada caso aritmético",
+        "salida": "Resultado de la operación o mensaje de error"
+      },
+      "salidaEsperada": "Ingrese el primer número: \nIngrese el operador (+,-,*,/): \nIngrese el segundo número: \n5 + 3 = 8",
+      "pista": "En Segun, cada caso va con el valor entre comillas si es Cadena. Usa De Otro Modo para el caso por defecto.",
+      "codigoReferencia": "Algoritmo calculadora_simple\n  Definir a, b, resultado Como Real\n  Definir operador Como Cadena\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el operador (+,-,*,/): \"\n  Leer operador\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n\n  Segun operador Hacer\n    \"+\":\n      resultado <- a + b\n      Escribir a, \" + \", b, \" = \", resultado\n    \"-\":\n      resultado <- a - b\n      Escribir a, \" - \", b, \" = \", resultado\n    \"*\":\n      resultado <- a * b\n      Escribir a, \" * \", b, \" = \", resultado\n    \"/\":\n      Si b <> 0 Entonces\n        resultado <- a / b\n        Escribir a, \" / \", b, \" = \", resultado\n      SiNo\n        Escribir \"Error: división por cero.\"\n      FinSi\n    De Otro Modo:\n      Escribir \"Operador no válido.\"\n  FinSegun\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-008",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-08",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "titulo": "Día de la semana por número",
+      "conceptos": ["Segun", "FinSegun", "De Otro Modo", "Entero"],
+      "enunciado": "El algoritmo pide un número del 1 al 7 y muestra el nombre del día de la semana correspondiente (1 = Lunes, 2 = Martes, ..., 7 = Domingo). Si el número está fuera del rango, muestra un mensaje de error.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero del 1 al 7",
+        "proceso": "Segun numero Hacer: 1→Lunes, 2→Martes, ..., De Otro Modo→Error",
+        "salida": "Nombre del día o mensaje de error"
+      },
+      "salidaEsperada": "Ingrese un número del 1 al 7: \nEl día 3 es: Miércoles",
+      "pista": "Usa Segun numero Hacer con siete casos numéricos (1, 2, 3...) y un De Otro Modo al final.",
+      "codigoReferencia": "Algoritmo dia_semana\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número del 1 al 7: \"\n  Leer numero\n\n  Segun numero Hacer\n    1:\n      Escribir \"El día \", numero, \" es: Lunes\"\n    2:\n      Escribir \"El día \", numero, \" es: Martes\"\n    3:\n      Escribir \"El día \", numero, \" es: Miércoles\"\n    4:\n      Escribir \"El día \", numero, \" es: Jueves\"\n    5:\n      Escribir \"El día \", numero, \" es: Viernes\"\n    6:\n      Escribir \"El día \", numero, \" es: Sábado\"\n    7:\n      Escribir \"El día \", numero, \" es: Domingo\"\n    De Otro Modo:\n      Escribir \"Número inválido. Ingrese un valor entre 1 y 7.\"\n  FinSegun\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-009",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-09",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Nombre del mes por número",
+      "conceptos": ["Segun", "FinSegun", "De Otro Modo", "Entero"],
+      "enunciado": "El algoritmo pide un número del 1 al 12 y muestra el nombre del mes correspondiente. Si el número está fuera del rango, muestra un mensaje de error.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero del 1 al 12",
+        "proceso": "Segun numero Hacer: 1→Enero, 2→Febrero, ..., De Otro Modo→Error",
+        "salida": "Nombre del mes o mensaje de error"
+      },
+      "salidaEsperada": "Ingrese el número del mes: \nEl mes 9 es: Septiembre",
+      "pista": "Sigue el mismo patrón que el ejercicio del día de la semana, pero con 12 casos en lugar de 7.",
+      "codigoReferencia": "Algoritmo nombre_mes\n  Definir numero Como Entero\n\n  Escribir \"Ingrese el número del mes: \"\n  Leer numero\n\n  Segun numero Hacer\n    1:\n      Escribir \"El mes \", numero, \" es: Enero\"\n    2:\n      Escribir \"El mes \", numero, \" es: Febrero\"\n    3:\n      Escribir \"El mes \", numero, \" es: Marzo\"\n    4:\n      Escribir \"El mes \", numero, \" es: Abril\"\n    5:\n      Escribir \"El mes \", numero, \" es: Mayo\"\n    6:\n      Escribir \"El mes \", numero, \" es: Junio\"\n    7:\n      Escribir \"El mes \", numero, \" es: Julio\"\n    8:\n      Escribir \"El mes \", numero, \" es: Agosto\"\n    9:\n      Escribir \"El mes \", numero, \" es: Septiembre\"\n    10:\n      Escribir \"El mes \", numero, \" es: Octubre\"\n    11:\n      Escribir \"El mes \", numero, \" es: Noviembre\"\n    12:\n      Escribir \"El mes \", numero, \" es: Diciembre\"\n    De Otro Modo:\n      Escribir \"Número inválido. Ingrese un valor entre 1 y 12.\"\n  FinSegun\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-010",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-10",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "titulo": "Par o impar",
+      "conceptos": ["Si", "SiNo", "FinSi", "MOD", "par", "impar"],
+      "enunciado": "El algoritmo pide un número entero y determina si es par o impar usando el operador MOD. Muestra el resultado indicando el número ingresado.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Si numero MOD 2 = 0 → par, SiNo → impar",
+        "salida": "\"[numero] es par\" o \"[numero] es impar\""
+      },
+      "salidaEsperada": "Ingrese un número entero: \n7 es impar.",
+      "pista": "Un número es par cuando el resto de dividirlo por 2 es 0. Usa numero MOD 2 = 0 como condición.",
+      "codigoReferencia": "Algoritmo par_o_impar\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número entero: \"\n  Leer numero\n\n  Si numero MOD 2 = 0 Entonces\n    Escribir numero, \" es par.\"\n  SiNo\n    Escribir numero, \" es impar.\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-011",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-11",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Divisible por 3 y por 5",
+      "conceptos": ["Si", "SiNo", "FinSi", "MOD", "Y", "operador lógico"],
+      "enunciado": "El algoritmo pide un número entero y determina: si es divisible por 3 y por 5 simultáneamente, solo por 3, solo por 5, o por ninguno de los dos. Muestra el mensaje correspondiente.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Verificar divisibilidad con MOD y operadores Y / O",
+        "salida": "Mensaje indicando divisibilidad"
+      },
+      "salidaEsperada": "Ingrese un número: \n15 es divisible por 3 y por 5.",
+      "pista": "Verifica el caso más específico primero (divisible por ambos), luego los casos individuales, y por último el caso en que no es divisible por ninguno.",
+      "codigoReferencia": "Algoritmo divisible_3_5\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer numero\n\n  Si (numero MOD 3 = 0) Y (numero MOD 5 = 0) Entonces\n    Escribir numero, \" es divisible por 3 y por 5.\"\n  SiNo\n    Si numero MOD 3 = 0 Entonces\n      Escribir numero, \" es divisible solo por 3.\"\n    SiNo\n      Si numero MOD 5 = 0 Entonces\n        Escribir numero, \" es divisible solo por 5.\"\n      SiNo\n        Escribir numero, \" no es divisible por 3 ni por 5.\"\n      FinSi\n    FinSi\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-012",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-12",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Año bisiesto",
+      "conceptos": ["Si", "SiNo", "FinSi", "MOD", "Y", "O", "operador lógico"],
+      "enunciado": "El algoritmo pide un año y determina si es bisiesto. Un año es bisiesto si es divisible por 4, excepto los años centenarios (divisibles por 100) que solo son bisiestos si también son divisibles por 400.",
+      "entradaProcesoSalida": {
+        "entrada": "Un año entero positivo",
+        "proceso": "Bisiesto si (div 4 Y no div 100) O (div 400)",
+        "salida": "\"[año] es bisiesto\" o \"[año] no es bisiesto\""
+      },
+      "salidaEsperada": "Ingrese el año: \n2024 es bisiesto.",
+      "pista": "La regla completa: (divisible por 4 Y NO divisible por 100) O (divisible por 400). Agrupa bien las condiciones con paréntesis.",
+      "codigoReferencia": "Algoritmo anio_bisiesto\n  Definir anio Como Entero\n\n  Escribir \"Ingrese el año: \"\n  Leer anio\n\n  Si ((anio MOD 4 = 0) Y (anio MOD 100 <> 0)) O (anio MOD 400 = 0) Entonces\n    Escribir anio, \" es bisiesto.\"\n  SiNo\n    Escribir anio, \" no es bisiesto.\"\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-013",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-13",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "titulo": "Validar rango [1, 100]",
+      "conceptos": ["Si", "SiNo", "FinSi", "Y", "validación", "rango"],
+      "enunciado": "El algoritmo pide un número entero al usuario y valida si está dentro del rango [1, 100] (inclusive). Muestra si el número es válido o si está fuera del rango, indicando si es demasiado bajo o demasiado alto.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Verificar 1 <= numero <= 100",
+        "salida": "\"Número válido\", \"muy bajo\" o \"muy alto\""
+      },
+      "salidaEsperada": "Ingrese un número: \n50 está dentro del rango [1, 100]. ¡Válido!",
+      "pista": "Usa Si (numero >= 1) Y (numero <= 100) para la condición válida. Los otros casos son mutuamente excluyentes.",
+      "codigoReferencia": "Algoritmo validar_rango\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer numero\n\n  Si (numero >= 1) Y (numero <= 100) Entonces\n    Escribir numero, \" está dentro del rango [1, 100]. ¡Válido!\"\n  SiNo\n    Si numero < 1 Entonces\n      Escribir numero, \" es demasiado bajo (menor que 1).\"\n    SiNo\n      Escribir numero, \" es demasiado alto (mayor que 100).\"\n    FinSi\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-014",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-14",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "titulo": "Máximo y mínimo de tres números",
+      "conceptos": ["Si", "SiNo", "FinSi", "máximo", "mínimo", "variable auxiliar"],
+      "enunciado": "El algoritmo lee tres números reales y determina tanto el mayor como el menor de los tres, mostrando ambos resultados. Debe manejar correctamente el caso en que algunos números sean iguales.",
+      "entradaProcesoSalida": {
+        "entrada": "Tres números reales a, b, c",
+        "proceso": "Encontrar máximo y mínimo comparando los tres valores",
+        "salida": "\"Máximo: [valor]\" y \"Mínimo: [valor]\""
+      },
+      "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nIngrese el tercer número: \nMáximo: 30\nMínimo: 5",
+      "pista": "Busca el máximo y el mínimo de forma independiente usando variables auxiliares. Para el máximo, asume que el primero es el mayor y luego actualiza si encuentras uno mayor.",
+      "codigoReferencia": "Algoritmo maximo_minimo_tres\n  Definir a, b, c, mayor, menor Como Real\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n  Escribir \"Ingrese el tercer número: \"\n  Leer c\n\n  // Encontrar máximo\n  Si a >= b Entonces\n    mayor <- a\n  SiNo\n    mayor <- b\n  FinSi\n  Si c > mayor Entonces\n    mayor <- c\n  FinSi\n\n  // Encontrar mínimo\n  Si a <= b Entonces\n    menor <- a\n  SiNo\n    menor <- b\n  FinSi\n  Si c < menor Entonces\n    menor <- c\n  FinSi\n\n  Escribir \"Máximo: \", mayor\n  Escribir \"Mínimo: \", menor\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    },
+    {
+      "id": "ps-n2-015",
+      "modulo": "N2",
+      "nivelLiteSeInt": 2,
+      "numero": "PS-N2-15",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "titulo": "Clasificar triángulo por ángulos",
+      "conceptos": ["Si", "SiNo", "FinSi", "Y", "O", "suma de ángulos", "validación"],
+      "enunciado": "El algoritmo lee los tres ángulos internos de un triángulo (en grados). Primero verifica que la suma sea 180° y que todos sean positivos. Si es válido, clasifica el triángulo como: rectángulo (un ángulo de 90°), obtusángulo (un ángulo mayor de 90°) o acutángulo (todos menores de 90°).",
+      "entradaProcesoSalida": {
+        "entrada": "Tres ángulos reales ang1, ang2, ang3",
+        "proceso": "Validar suma = 180 y ángulos > 0\nClasificar por el ángulo mayor",
+        "salida": "Tipo de triángulo o mensaje de error"
+      },
+      "salidaEsperada": "Ingrese el ángulo 1: \nIngrese el ángulo 2: \nIngrese el ángulo 3: \nEl triángulo es rectángulo.",
+      "pista": "Valida primero la suma y que todos sean positivos. Luego, si algún ángulo es igual a 90 es rectángulo; si alguno es mayor a 90 es obtusángulo; si todos son menores a 90 es acutángulo.",
+      "codigoReferencia": "Algoritmo clasificar_triangulo_angulos\n  Definir ang1, ang2, ang3 Como Real\n\n  Escribir \"Ingrese el ángulo 1: \"\n  Leer ang1\n  Escribir \"Ingrese el ángulo 2: \"\n  Leer ang2\n  Escribir \"Ingrese el ángulo 3: \"\n  Leer ang3\n\n  Si (ang1 + ang2 + ang3 <> 180) O (ang1 <= 0) O (ang2 <= 0) O (ang3 <= 0) Entonces\n    Escribir \"Los ángulos no forman un triángulo válido.\"\n  SiNo\n    Si (ang1 = 90) O (ang2 = 90) O (ang3 = 90) Entonces\n      Escribir \"El triángulo es rectángulo.\"\n    SiNo\n      Si (ang1 > 90) O (ang2 > 90) O (ang3 > 90) Entonces\n        Escribir \"El triángulo es obtusángulo.\"\n      SiNo\n        Escribir \"El triángulo es acutángulo.\"\n      FinSi\n    FinSi\n  FinSi\nFinAlgoritmo",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "pseint"
+    }
+  ]
+}
