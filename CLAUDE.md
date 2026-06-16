@@ -80,8 +80,8 @@ identifica en qué fase está el proyecto.
       bridge con RuntimeHost (`core/python/bridge.js`), provider completo con contrato
       `LanguageProvider` (`core/python/provider.js`), panel stdin `#pythonStdinPanel`,
       opción Python en el selector de lenguaje, barra de símbolos táctiles adaptable,
-      28 pruebas de tokenizador, 10 pruebas de contrato, banco N1–N6 en `json/python/`
-      (95 ejercicios Python) con `js/ejercicios-python-data.js`; inspector de variables
+      28 pruebas de tokenizador, 10 pruebas de contrato, banco N1–N7 en `json/python/`
+      (110 ejercicios Python) con `js/ejercicios-python-data.js`; inspector de variables
       Python; tracebacks mejorados con número de línea; documentación expandida (27 entradas
       incluyendo métodos de string/lista, comprehensions, dict, try/except, math, f-strings,
       enumerate/zip); validación de sintaxis con `compile()` antes de ejecutar.

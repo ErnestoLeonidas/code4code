@@ -1396,6 +1396,7 @@ function loadPythonEjercicios() {
   const ejJsonPaths = [
     'json/python/N1.json', 'json/python/N2.json', 'json/python/N3.json',
     'json/python/N4.json', 'json/python/N5.json', 'json/python/N6.json',
+    'json/python/N7.json',
   ];
   const ejercicios = ejJsonPaths.flatMap((p) => {
     const data = JSON.parse(fs.readFileSync(path.join(raiz, p), 'utf8'));
@@ -1448,11 +1449,11 @@ test('banco PSeInt: ejercicios no contienen sintaxis LiteSeInt prohibida', () =>
 // Banco de ejercicios Python (Fase 4 / Fase 5)
 // =====================================================
 
-test('banco Python: carga 95 ejercicios de N1 a N6', () => {
+test('banco Python: carga 110 ejercicios de N1 a N7', () => {
   const ctx = loadPythonEjercicios();
   const ej = ctx.EjerciciosPython.EJERCICIOS;
-  assert.strictEqual(ej.length, 95,
-    `se esperaban 95 ejercicios Python, se obtuvieron ${ej.length}`);
+  assert.strictEqual(ej.length, 110,
+    `se esperaban 110 ejercicios Python, se obtuvieron ${ej.length}`);
 });
 
 test('banco Python: IDs únicos y con prefijo py-', () => {

@@ -19,6 +19,7 @@
     'json/python/N4.json',
     'json/python/N5.json',
     'json/python/N6.json',
+    'json/python/N7.json',
   ];
 
   const EJERCICIOS = [];

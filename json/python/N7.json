@@ -1,0 +1,307 @@
+{
+  "version": "1.0.0",
+  "lenguaje": "python",
+  "nivel": 7,
+  "ejercicios": [
+    {
+      "id": "py-n7-001",
+      "titulo": "Calculadora con diccionario de operaciones",
+      "enunciado": "Crea una calculadora que use un diccionario para mapear los operadores '+', '-', '*' y '/' a funciones lambda. Pide dos números y un operador al usuario; muestra el resultado o un mensaje de error si el operador no es válido.",
+      "nivelPython": 7,
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["diccionarios", "lambda", "try/except"],
+      "codigoReferencia": "operaciones = {\n    '+': lambda a, b: a + b,\n    '-': lambda a, b: a - b,\n    '*': lambda a, b: a * b,\n    '/': lambda a, b: a / b,\n}\na = float(input('Ingresa el primer número: '))\noperador = input('Ingresa el operador (+, -, *, /): ')\nb = float(input('Ingresa el segundo número: '))\nif operador not in operaciones:\n    print('Operador no válido.')\nelif operador == '/' and b == 0:\n    print('Error: división por cero.')\nelse:\n    resultado = operaciones[operador](a, b)\n    print(f'Resultado: {a} {operador} {b} = {resultado}')",
+      "salidaEsperada": "Ingresa el primer número: 10\nIngresa el operador (+, -, *, /): *\nIngresa el segundo número: 3\nResultado: 10.0 * 3.0 = 30.0",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números y un operador",
+        "proceso": "Usar diccionario de lambdas para calcular",
+        "salida": "Resultado de la operación"
+      },
+      "pista": "Guarda las operaciones como lambdas en un dict: {'+':{lambda a,b: a+b}, ...} y úsalas con operaciones[operador](a, b).",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-002",
+      "titulo": "Estadísticas de un conjunto de notas",
+      "enunciado": "Pide al usuario ingresar 5 notas separadas por espacios en una sola línea. Calcula e imprime: el promedio, la nota mínima, la nota máxima y cuántas notas están por encima del promedio.",
+      "nivelPython": 7,
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["listas", "comprensión de listas", "funciones nativas"],
+      "codigoReferencia": "entrada = input('Ingresa 5 notas separadas por espacios: ')\nnotas = [float(x) for x in entrada.split()]\npromedio = sum(notas) / len(notas)\nsobre_promedio = sum(1 for n in notas if n > promedio)\nprint(f'Promedio: {promedio:.1f}')\nprint(f'Mínima: {min(notas)}')\nprint(f'Máxima: {max(notas)}')\nprint(f'Sobre el promedio: {sobre_promedio}')",
+      "salidaEsperada": "Ingresa 5 notas separadas por espacios: 70 85 90 60 75\nPromedio: 76.0\nMínima: 60.0\nMáxima: 90.0\nSobre el promedio: 2",
+      "entradaProcesoSalida": {
+        "entrada": "5 notas en una línea separadas por espacios",
+        "proceso": "Calcular estadísticas de la lista",
+        "salida": "Promedio, mínima, máxima y cantidad sobre el promedio"
+      },
+      "pista": "Usa split() para separar la cadena y una comprensión de lista para convertir cada elemento a float.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-003",
+      "titulo": "Frecuencia de letras en un texto",
+      "enunciado": "Pide al usuario que ingrese una frase. Cuenta la frecuencia de cada letra (ignorando espacios y sin distinguir mayúsculas de minúsculas) usando un diccionario. Muestra cada letra y su frecuencia en orden descendente de frecuencia.",
+      "nivelPython": 7,
+      "dificultad": "intermedio",
+      "gradoAyuda": "con-pista",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["diccionarios", "sorted", "items"],
+      "codigoReferencia": "frase = input('Ingresa una frase: ').lower()\nfrecuencia = {}\nfor letra in frase:\n    if letra != ' ':\n        frecuencia[letra] = frecuencia.get(letra, 0) + 1\nfor letra, count in sorted(frecuencia.items(), key=lambda x: x[1], reverse=True):\n    print(f'{letra}: {count}')",
+      "salidaEsperada": "Ingresa una frase: hola mundo\no: 2\nl: 1\na: 1\nh: 1\nm: 1\nu: 1\nn: 1\nd: 1",
+      "entradaProcesoSalida": {
+        "entrada": "Una frase de texto",
+        "proceso": "Contar frecuencia de cada letra con un dict",
+        "salida": "Letras y sus frecuencias en orden descendente"
+      },
+      "pista": "Usa dict.get(clave, 0) + 1 para contar. Para ordenar usa sorted(dict.items(), key=lambda x: x[1], reverse=True).",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-004",
+      "titulo": "Ordenar palabras por longitud",
+      "enunciado": "Pide al usuario que ingrese varias palabras separadas por comas. Sepáralas en una lista y ordénalas primero por longitud (de menor a mayor) y, en caso de igual longitud, alfabéticamente. Muestra la lista ordenada.",
+      "nivelPython": 7,
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["listas", "sorted", "clave de ordenamiento"],
+      "codigoReferencia": "entrada = input('Ingresa palabras separadas por comas: ')\npalabras = [p.strip() for p in entrada.split(',')]\nordenadas = sorted(palabras, key=lambda p: (len(p), p))\nprint('Palabras ordenadas:')\nfor p in ordenadas:\n    print(p)",
+      "salidaEsperada": "Ingresa palabras separadas por comas: manzana, sol, luna, cielo, mar\nPalabras ordenadas:\nmar\nsol\ncielo\nluna\nmanzana",
+      "entradaProcesoSalida": {
+        "entrada": "Palabras separadas por comas",
+        "proceso": "Ordenar por (longitud, orden alfabético)",
+        "salida": "Lista ordenada"
+      },
+      "pista": "Usa sorted(lista, key=lambda p: (len(p), p)) para ordenar por dos criterios a la vez.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-005",
+      "titulo": "Juego: Adivina el número",
+      "enunciado": "Genera un número aleatorio entre 1 y 100. Pide al usuario que lo adivine en un bucle. Indica en cada intento si el número secreto es mayor o menor. Cuando adivine, muestra cuántos intentos necesitó.",
+      "nivelPython": 7,
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["random", "while", "control de flujo"],
+      "codigoReferencia": "import random\nsecreto = random.randint(1, 100)\nintentos = 0\nwhile True:\n    intento = int(input('Adivina el número (1-100): '))\n    intentos += 1\n    if intento < secreto:\n        print('Demasiado bajo.')\n    elif intento > secreto:\n        print('Demasiado alto.')\n    else:\n        print(f'¡Correcto! Lo adivinaste en {intentos} intento(s).')\n        break",
+      "salidaEsperada": "Adivina el número (1-100): 50\nDemasiado bajo.\nAdivina el número (1-100): 75\nDemasiado alto.\nAdivina el número (1-100): 63\n¡Correcto! Lo adivinaste en 3 intento(s).",
+      "entradaProcesoSalida": {
+        "entrada": "Intentos del usuario",
+        "proceso": "Comparar intento con secreto y contar intentos",
+        "salida": "Pistas y resultado final"
+      },
+      "pista": "Usa random.randint(1, 100) para el número secreto. Usa un while True con break al acertar.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-006",
+      "titulo": "Filtrar y transformar una lista",
+      "enunciado": "Pide al usuario 10 números enteros separados por espacios. Usa filter() para quedarte solo con los números pares y map() para elevarlos al cuadrado. Muestra la lista resultante.",
+      "nivelPython": 7,
+      "dificultad": "intermedio",
+      "gradoAyuda": "con-pista",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["map", "filter", "funciones de orden superior"],
+      "codigoReferencia": "entrada = input('Ingresa 10 números enteros separados por espacios: ')\nnumeros = list(map(int, entrada.split()))\npares = list(filter(lambda x: x % 2 == 0, numeros))\ncuadrados = list(map(lambda x: x ** 2, pares))\nprint('Pares al cuadrado:', cuadrados)",
+      "salidaEsperada": "Ingresa 10 números enteros separados por espacios: 1 2 3 4 5 6 7 8 9 10\nPares al cuadrado: [4, 16, 36, 64, 100]",
+      "entradaProcesoSalida": {
+        "entrada": "10 números enteros en una línea",
+        "proceso": "Filtrar pares, elevar al cuadrado",
+        "salida": "Lista de cuadrados de pares"
+      },
+      "pista": "Primero convierte con map(int, ...). Luego usa filter(lambda x: x%2==0, ...) y map(lambda x: x**2, ...).",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-007",
+      "titulo": "Mini agenda de contactos",
+      "enunciado": "Implementa una agenda simple con un diccionario donde las claves son nombres y los valores son teléfonos. El programa debe ofrecer en un bucle: agregar contacto, buscar contacto, listar todos y salir. Úsalo hasta que el usuario elija salir.",
+      "nivelPython": 7,
+      "dificultad": "intermedio",
+      "gradoAyuda": "con-pista",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["diccionarios", "while", "menú interactivo"],
+      "codigoReferencia": "agenda = {}\nwhile True:\n    opcion = input('1-Agregar 2-Buscar 3-Listar 4-Salir: ')\n    if opcion == '1':\n        nombre = input('Nombre: ')\n        telefono = input('Teléfono: ')\n        agenda[nombre] = telefono\n        print('Contacto agregado.')\n    elif opcion == '2':\n        nombre = input('Nombre a buscar: ')\n        if nombre in agenda:\n            print(f'Teléfono: {agenda[nombre]}')\n        else:\n            print('Contacto no encontrado.')\n    elif opcion == '3':\n        for nombre, tel in agenda.items():\n            print(f'{nombre}: {tel}')\n    elif opcion == '4':\n        print('Saliendo.')\n        break\n    else:\n        print('Opción no válida.')",
+      "salidaEsperada": "1-Agregar 2-Buscar 3-Listar 4-Salir: 1\nNombre: Ana\nTeléfono: 555-1234\nContacto agregado.\n1-Agregar 2-Buscar 3-Listar 4-Salir: 2\nNombre a buscar: Ana\nTeléfono: 555-1234\n1-Agregar 2-Buscar 3-Listar 4-Salir: 4\nSaliendo.",
+      "entradaProcesoSalida": {
+        "entrada": "Opción del menú y datos de contacto",
+        "proceso": "Gestionar diccionario de agenda",
+        "salida": "Mensajes de confirmación y datos"
+      },
+      "pista": "Usa un while True con break. El dict agenda usa nombre como clave y teléfono como valor. Usa agenda.items() para listar.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-008",
+      "titulo": "Comprensión de listas avanzada",
+      "enunciado": "Pide al usuario un número N. Genera una lista con los primeros N números que sean divisibles por 3 o por 5 (pero no por ambos a la vez). Usa una comprensión de lista con condición.",
+      "nivelPython": 7,
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["comprensión de listas", "operadores lógicos", "range"],
+      "codigoReferencia": "n = int(input('¿Cuántos números quieres? '))\nresultado = []\ni = 1\nwhile len(resultado) < n:\n    if (i % 3 == 0) != (i % 5 == 0):\n        resultado.append(i)\n    i += 1\nprint(resultado)",
+      "salidaEsperada": "¿Cuántos números quieres? 8\n[3, 5, 6, 9, 10, 12, 18, 20]",
+      "entradaProcesoSalida": {
+        "entrada": "N (cantidad de números a generar)",
+        "proceso": "Iterar y filtrar: divisible por 3 XOR por 5",
+        "salida": "Lista con los N primeros números que cumplen la condición"
+      },
+      "pista": "La condición XOR se expresa como (i%3==0) != (i%5==0). Genera números en orden con while hasta tener N en la lista.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-009",
+      "titulo": "Conversor de bases numéricas",
+      "enunciado": "Pide al usuario un número entero en decimal. Muestra su representación en binario (usando bin()), octal (usando oct()) y hexadecimal (usando hex()), sin el prefijo 0b/0o/0x.",
+      "nivelPython": 7,
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["funciones nativas", "formateo de cadenas", "bases numéricas"],
+      "codigoReferencia": "numero = int(input('Ingresa un número entero positivo: '))\nprint(f'Decimal:     {numero}')\nprint(f'Binario:     {bin(numero)[2:]}')\nprint(f'Octal:       {oct(numero)[2:]}')\nprint(f'Hexadecimal: {hex(numero)[2:].upper()}')",
+      "salidaEsperada": "Ingresa un número entero positivo: 255\nDecimal:     255\nBinario:     11111111\nOctal:       377\nHexadecimal: FF",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero en decimal",
+        "proceso": "Convertir a binario, octal y hexadecimal",
+        "salida": "Las cuatro representaciones"
+      },
+      "pista": "bin(), oct() y hex() devuelven cadenas con prefijo (0b, 0o, 0x). Usa [2:] para quitar el prefijo.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-010",
+      "titulo": "Verificar contraseña segura",
+      "enunciado": "Pide al usuario crear una contraseña. Valida que cumpla: al menos 8 caracteres, al menos una letra mayúscula, al menos una letra minúscula y al menos un dígito. Muestra qué reglas cumple y si la contraseña es válida.",
+      "nivelPython": 7,
+      "dificultad": "intermedio",
+      "gradoAyuda": "con-pista",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["métodos de cadena", "any()", "validación"],
+      "codigoReferencia": "clave = input('Ingresa una contraseña: ')\nreglas = {\n    'Al menos 8 caracteres': len(clave) >= 8,\n    'Una mayúscula': any(c.isupper() for c in clave),\n    'Una minúscula': any(c.islower() for c in clave),\n    'Un dígito': any(c.isdigit() for c in clave),\n}\nfor regla, cumple in reglas.items():\n    estado = 'OK' if cumple else 'X'\n    print(f'[{estado}] {regla}')\nif all(reglas.values()):\n    print('Contraseña válida.')\nelse:\n    print('Contraseña no válida.')",
+      "salidaEsperada": "Ingresa una contraseña: Hola123\n[X] Al menos 8 caracteres\n[OK] Una mayúscula\n[OK] Una minúscula\n[OK] Un dígito\nContraseña no válida.",
+      "entradaProcesoSalida": {
+        "entrada": "Una contraseña",
+        "proceso": "Evaluar cada regla de seguridad",
+        "salida": "Estado de cada regla y veredicto final"
+      },
+      "pista": "Usa any(c.isupper() for c in clave) para verificar mayúsculas. Guarda los resultados en un dict para facilitar la verificación.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-011",
+      "titulo": "Eliminar duplicados preservando orden",
+      "enunciado": "Pide al usuario una lista de números enteros separados por comas. Elimina los duplicados preservando el orden de primera aparición. Muestra la lista sin duplicados y cuántos elementos se eliminaron.",
+      "nivelPython": 7,
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["conjuntos", "listas", "orden"],
+      "codigoReferencia": "entrada = input('Ingresa números separados por comas: ')\nnumeros = [int(x.strip()) for x in entrada.split(',')]\nvistos = set()\nsin_dup = []\nfor n in numeros:\n    if n not in vistos:\n        vistos.add(n)\n        sin_dup.append(n)\neliminados = len(numeros) - len(sin_dup)\nprint(f'Sin duplicados: {sin_dup}')\nprint(f'Elementos eliminados: {eliminados}')",
+      "salidaEsperada": "Ingresa números separados por comas: 3, 1, 4, 1, 5, 9, 2, 6, 5, 3\nSin duplicados: [3, 1, 4, 5, 9, 2, 6]\nElementos eliminados: 3",
+      "entradaProcesoSalida": {
+        "entrada": "Lista de enteros separados por comas",
+        "proceso": "Usar set para rastrear vistos, mantener orden",
+        "salida": "Lista sin duplicados y cantidad eliminada"
+      },
+      "pista": "Usa un set() para rastrear los elementos ya vistos mientras iteras por la lista original.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-012",
+      "titulo": "Función con parámetros variables *args",
+      "enunciado": "Define una función suma_total(*args) que acepte cualquier cantidad de números y retorne su suma. Luego pide al usuario cuántos números quiere sumar, lee cada uno e imprime el total llamando a tu función.",
+      "nivelPython": 7,
+      "dificultad": "intermedio",
+      "gradoAyuda": "con-pista",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["*args", "funciones", "sum()"],
+      "codigoReferencia": "def suma_total(*args):\n    return sum(args)\n\nn = int(input('¿Cuántos números quieres sumar? '))\nnumeros = []\nfor i in range(n):\n    num = float(input(f'Número {i+1}: '))\n    numeros.append(num)\ntotal = suma_total(*numeros)\nprint(f'La suma de {n} número(s) es: {total}')",
+      "salidaEsperada": "¿Cuántos números quieres sumar? 3\nNúmero 1: 10\nNúmero 2: 20\nNúmero 3: 30\nLa suma de 3 número(s) es: 60.0",
+      "entradaProcesoSalida": {
+        "entrada": "Cantidad de números y cada número",
+        "proceso": "Recolectar números y llamar a suma_total(*lista)",
+        "salida": "Suma total"
+      },
+      "pista": "Define def suma_total(*args): return sum(args). Llámala con suma_total(*numeros) para desempaquetar la lista.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-013",
+      "titulo": "Contar palabras en un texto",
+      "enunciado": "Pide al usuario que ingrese un párrafo de texto. Cuenta la frecuencia de cada palabra (sin importar mayúsculas ni puntuación básica como puntos, comas y signos de exclamación). Muestra las 5 palabras más frecuentes.",
+      "nivelPython": 7,
+      "dificultad": "avanzado",
+      "gradoAyuda": "practica",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["diccionarios", "sorted", "procesamiento de texto"],
+      "codigoReferencia": "texto = input('Ingresa un párrafo: ').lower()\nfor ch in '.,!?;:':\n    texto = texto.replace(ch, '')\npalabras = texto.split()\nfrecuencia = {}\nfor p in palabras:\n    frecuencia[p] = frecuencia.get(p, 0) + 1\ntop5 = sorted(frecuencia.items(), key=lambda x: x[1], reverse=True)[:5]\nprint('Top 5 palabras:')\nfor palabra, count in top5:\n    print(f'  {palabra}: {count}')",
+      "salidaEsperada": "Ingresa un párrafo: el sol sale y el sol brilla, el sol es bello.\nTop 5 palabras:\n  el: 3\n  sol: 3\n  y: 1\n  sale: 1\n  brilla: 1",
+      "entradaProcesoSalida": {
+        "entrada": "Un párrafo de texto",
+        "proceso": "Normalizar, separar en palabras y contar",
+        "salida": "Las 5 palabras más frecuentes"
+      },
+      "pista": "Elimina puntuación con replace() en un bucle. Usa un dict para contar y sorted(dict.items(), key=lambda x: x[1], reverse=True)[:5] para el top 5.",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-014",
+      "titulo": "Mini inventario con listas de diccionarios",
+      "enunciado": "Crea un programa de inventario simple. Cada producto es un diccionario con 'nombre' y 'stock'. El programa debe: agregar productos, mostrar el inventario ordenado por stock y mostrar los productos con stock bajo (menor a 5). El menú se repite hasta que el usuario elija salir.",
+      "nivelPython": 7,
+      "dificultad": "avanzado",
+      "gradoAyuda": "practica",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["listas de diccionarios", "sorted", "filter"],
+      "codigoReferencia": "inventario = []\nwhile True:\n    opcion = input('1-Agregar 2-Ver inventario 3-Stock bajo 4-Salir: ')\n    if opcion == '1':\n        nombre = input('Nombre del producto: ')\n        stock = int(input('Stock inicial: '))\n        inventario.append({'nombre': nombre, 'stock': stock})\n        print('Producto agregado.')\n    elif opcion == '2':\n        ordenado = sorted(inventario, key=lambda p: p['stock'], reverse=True)\n        for p in ordenado:\n            print(f\"{p['nombre']}: {p['stock']} unidades\")\n    elif opcion == '3':\n        bajos = [p for p in inventario if p['stock'] < 5]\n        if bajos:\n            for p in bajos:\n                print(f\"Stock bajo: {p['nombre']} ({p['stock']} unidades)\")\n        else:\n            print('Sin productos con stock bajo.')\n    elif opcion == '4':\n        print('Saliendo.')\n        break\n    else:\n        print('Opción no válida.')",
+      "salidaEsperada": "1-Agregar 2-Ver inventario 3-Stock bajo 4-Salir: 1\nNombre del producto: Lápiz\nStock inicial: 3\nProducto agregado.\n1-Agregar 2-Ver inventario 3-Stock bajo 4-Salir: 3\nStock bajo: Lápiz (3 unidades)\n1-Agregar 2-Ver inventario 3-Stock bajo 4-Salir: 4\nSaliendo.",
+      "entradaProcesoSalida": {
+        "entrada": "Opción del menú y datos de producto",
+        "proceso": "Gestionar lista de diccionarios y filtrar",
+        "salida": "Inventario ordenado o productos con stock bajo"
+      },
+      "pista": "Usa sorted(inventario, key=lambda p: p['stock'], reverse=True) para ordenar. El filtro de stock bajo puede ser [p for p in inventario if p['stock'] < 5].",
+      "motivoExclusion": ""
+    },
+    {
+      "id": "py-n7-015",
+      "titulo": "Generador de tabla de multiplicar completa",
+      "enunciado": "Pide al usuario un número N (entre 2 y 10). Genera e imprime la tabla de multiplicar de 1 a N de forma formateada: cada fila es un número del 1 al N y cada columna es otro número del 1 al N. Usa comprensión de listas y str.join().",
+      "nivelPython": 7,
+      "dificultad": "desafio",
+      "gradoAyuda": "desafio",
+      "estadoAdaptacion": "adaptado",
+      "lenguaje": "python",
+      "conceptos": ["comprensión de listas", "join", "formato de cadenas"],
+      "codigoReferencia": "n = int(input(f'Ingresa un número entre 2 y 10: '))\nif n < 2 or n > 10:\n    print('Número fuera de rango.')\nelse:\n    cabecera = '   ' + ' '.join(f'{j:4}' for j in range(1, n + 1))\n    print(cabecera)\n    for i in range(1, n + 1):\n        fila = f'{i:2} |' + ' '.join(f'{i*j:4}' for j in range(1, n + 1))\n        print(fila)",
+      "salidaEsperada": "Ingresa un número entre 2 y 10: 4\n      1    2    3    4\n 1 |   1    2    3    4\n 2 |   2    4    6    8\n 3 |   3    6    9   12\n 4 |   4    8   12   16",
+      "entradaProcesoSalida": {
+        "entrada": "N entre 2 y 10",
+        "proceso": "Generar tabla NxN con formato alineado",
+        "salida": "Tabla de multiplicar formateada"
+      },
+      "pista": "Usa join() con una comprensión de lista para cada fila: ' '.join(f'{i*j:4}' for j in range(1, n+1)). Usa f'{valor:4}' para alinear columnas.",
+      "motivoExclusion": ""
+    }
+  ]
+}

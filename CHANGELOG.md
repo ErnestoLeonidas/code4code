@@ -1,5 +1,20 @@
 # Changelog — Code4Code
 
+## [2.3.3-beta] - 2026-06-15
+
+### Fase 4 — Banco Python N7 completo
+
+- `json/python/N7.json`: 15 ejercicios integradores Python de nivel avanzado. Cubren:
+  diccionarios de operaciones, estadísticas de listas, frecuencia de letras, `sorted` con
+  clave, juego "adivina el número" con `random`, `map()`/`filter()`, agenda con dict,
+  comprensión de lista avanzada (XOR de divisibilidad), conversor de bases numéricas,
+  validación de contraseña con `any()`, eliminación de duplicados con `set`, `*args`,
+  contador de palabras, inventario con lista de dicts y tabla de multiplicar formateada.
+- `js/ejercicios-python-data.js`: agrega `json/python/N7.json` a `EJERCICIOS_JSON_PATHS`.
+  El banco Python pasa de 95 a 110 ejercicios (N1–N7), igualando a PSeInt y LiteSeInt.
+- `tests/run-tests.js`: test "banco Python: carga 110 ejercicios de N1 a N7" actualizado.
+- `CLAUDE.md`: Fase 4 actualizada con banco N1–N7 (110 ejercicios).
+
 ## [2.3.2-beta] - 2026-06-15
 
 ### Fase 3b — Cierre
