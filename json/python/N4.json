@@ -13,7 +13,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 6):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nprint(\"Lista:\", lista)",
-      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nLista: [10, 20, 30, 40, 50]"
+      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nLista: [10, 20, 30, 40, 50]",
+      "numero": "PY-N4-01",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "append",
+        "for",
+        "input"
+      ],
+      "pista": "Crea lista = []. Usa un for con range(5) y lista.append(int(input(...))) en cada iteración.",
+      "entradaProcesoSalida": {
+        "entrada": "5 números, uno por iteración",
+        "proceso": "Agregar cada número a la lista con append",
+        "salida": "La lista completa"
+      }
     },
     {
       "id": "py-n4-002",
@@ -25,7 +39,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\ntotal = sum(lista)\nprint(\"Suma:\", total)",
-      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nSuma: 60"
+      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nSuma: 60",
+      "numero": "PY-N4-02",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "sum",
+        "append",
+        "for"
+      ],
+      "pista": "Después de llenar la lista, usa sum(lista) para obtener la suma de todos los elementos.",
+      "entradaProcesoSalida": {
+        "entrada": "N números del usuario",
+        "proceso": "Acumular en lista y calcular sum()",
+        "salida": "La suma de todos los elementos"
+      }
     },
     {
       "id": "py-n4-003",
@@ -37,7 +65,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = float(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\npromedio = sum(lista) / len(lista)\nprint(\"Promedio: {:.2f}\".format(promedio))",
-      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nPromedio: 5.67"
+      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nPromedio: 5.67",
+      "numero": "PY-N4-03",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "sum",
+        "len",
+        "promedio"
+      ],
+      "pista": "promedio = sum(lista) / len(lista). Primero llena la lista y luego aplica estas funciones.",
+      "entradaProcesoSalida": {
+        "entrada": "N números del usuario",
+        "proceso": "Calcular suma total y dividir entre cantidad",
+        "salida": "El promedio de los elementos"
+      }
     },
     {
       "id": "py-n4-004",
@@ -49,7 +91,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\nprint(\"El máximo es:\", max(lista))",
-      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl máximo es: 75"
+      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl máximo es: 75",
+      "numero": "PY-N4-04",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "max",
+        "append",
+        "funciones nativas"
+      ],
+      "pista": "Usa max(lista) para obtener el valor máximo de la lista. Python lo hace en una función.",
+      "entradaProcesoSalida": {
+        "entrada": "N números del usuario",
+        "proceso": "Llenar lista y aplicar max()",
+        "salida": "El valor máximo de la lista"
+      }
     },
     {
       "id": "py-n4-005",
@@ -61,7 +117,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\nprint(\"El mínimo es:\", min(lista))",
-      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl mínimo es: 5"
+      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl mínimo es: 5",
+      "numero": "PY-N4-05",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "min",
+        "append",
+        "funciones nativas"
+      ],
+      "pista": "Usa min(lista) para obtener el valor mínimo. Funciona igual que max() pero para el menor.",
+      "entradaProcesoSalida": {
+        "entrada": "N números del usuario",
+        "proceso": "Llenar lista y aplicar min()",
+        "salida": "El valor mínimo de la lista"
+      }
     },
     {
       "id": "py-n4-006",
@@ -73,7 +143,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\npositivos = 0\nnegativos = 0\nceros = 0\nfor x in lista:\n    if x > 0:\n        positivos += 1\n    elif x < 0:\n        negativos += 1\n    else:\n        ceros += 1\nprint(\"Positivos:\", positivos)\nprint(\"Negativos:\", negativos)\nprint(\"Ceros:\", ceros)",
-      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nNúmero 4: \nNúmero 5: \nPositivos: 3\nNegativos: 1\nCeros: 1"
+      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nNúmero 4: \nNúmero 5: \nPositivos: 3\nNegativos: 1\nCeros: 1",
+      "numero": "PY-N4-06",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "for",
+        "if",
+        "contadores",
+        "condicional"
+      ],
+      "pista": "Usa tres contadores: pos, neg, cero = 0, 0, 0. Por cada elemento, incrementa el contador correspondiente.",
+      "entradaProcesoSalida": {
+        "entrada": "Lista de números",
+        "proceso": "Clasificar cada número y contar positivos, negativos y ceros",
+        "salida": "Cantidad de positivos, negativos y ceros"
+      }
     },
     {
       "id": "py-n4-007",
@@ -85,7 +170,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 6):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nbuscar = int(input(\"Número a buscar: \"))\nif buscar in lista:\n    print(buscar, \"está en la lista.\")\nelse:\n    print(buscar, \"no está en la lista.\")",
-      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nNúmero a buscar: \n30 está en la lista."
+      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nNúmero a buscar: \n30 está en la lista.",
+      "numero": "PY-N4-07",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "for",
+        "in",
+        "búsqueda"
+      ],
+      "pista": "Usa \"if elemento in lista:\" para verificar si existe, o itera con for y compara.",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista y un elemento a buscar",
+        "proceso": "Recorrer la lista o usar \"in\"",
+        "salida": "\"Encontrado\" o \"No encontrado\""
+      }
     },
     {
       "id": "py-n4-008",
@@ -97,7 +196,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 6):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nprint(\"Lista original:\", lista)\nprint(\"Lista invertida:\", lista[::-1])",
-      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nLista original: [1, 2, 3, 4, 5]\nLista invertida: [5, 4, 3, 2, 1]"
+      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nLista original: [1, 2, 3, 4, 5]\nLista invertida: [5, 4, 3, 2, 1]",
+      "numero": "PY-N4-08",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "reverse",
+        "slicing",
+        "invertir"
+      ],
+      "pista": "Puedes usar lista[::-1] para obtener la inversa, o lista.reverse() para invertirla en su lugar.",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista de elementos",
+        "proceso": "Invertir el orden de la lista",
+        "salida": "La lista en orden inverso"
+      }
     },
     {
       "id": "py-n4-009",
@@ -109,7 +222,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 6):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nprint(\"Lista original:\", lista)\nlista.sort()\nprint(\"Lista ordenada:\", lista)",
-      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nLista original: [34, 7, 21, 3, 56]\nLista ordenada: [3, 7, 21, 34, 56]"
+      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nLista original: [34, 7, 21, 3, 56]\nLista ordenada: [3, 7, 21, 34, 56]",
+      "numero": "PY-N4-09",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "sort",
+        "sorted",
+        "ordenamiento"
+      ],
+      "pista": "Usa lista.sort() para ordenar en su lugar, o sorted(lista) para obtener una nueva lista ordenada.",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista de números",
+        "proceso": "Ordenar con sort() o sorted()",
+        "salida": "La lista en orden ascendente"
+      }
     },
     {
       "id": "py-n4-010",
@@ -121,7 +248,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 9):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nprint(\"Lista original:\", lista)\nsin_duplicados = sorted(list(set(lista)))\nprint(\"Sin duplicados:\", sin_duplicados)",
-      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nElemento 6: \nElemento 7: \nElemento 8: \nLista original: [3, 7, 3, 2, 7, 1, 2, 9]\nSin duplicados: [1, 2, 3, 7, 9]"
+      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nElemento 6: \nElemento 7: \nElemento 8: \nLista original: [3, 7, 3, 2, 7, 1, 2, 9]\nSin duplicados: [1, 2, 3, 7, 9]",
+      "numero": "PY-N4-10",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "set",
+        "duplicados",
+        "conversión"
+      ],
+      "pista": "Convierte a set para eliminar duplicados: list(set(lista)). El set no permite repetidos.",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista con posibles duplicados",
+        "proceso": "Convertir a set y volver a lista",
+        "salida": "La lista sin elementos repetidos"
+      }
     },
     {
       "id": "py-n4-011",
@@ -133,7 +274,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\ncuadrados = [i ** 2 for i in range(1, n + 1)]\nprint(\"Cuadrados del 1 al\", str(n) + \":\", cuadrados)",
-      "salidaEsperada": "Ingrese N: \nCuadrados del 1 al 5: [1, 4, 9, 16, 25]"
+      "salidaEsperada": "Ingrese N: \nCuadrados del 1 al 5: [1, 4, 9, 16, 25]",
+      "numero": "PY-N4-11",
+      "modulo": "N4",
+      "conceptos": [
+        "list comprehension",
+        "for",
+        "potencia",
+        "comprensión"
+      ],
+      "pista": "cuadrados = [x**2 for x in range(1, n+1)]. La comprensión de listas es muy compacta.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número N",
+        "proceso": "Generar cuadrados con list comprehension",
+        "salida": "Lista de los cuadrados de 1 a N"
+      }
     },
     {
       "id": "py-n4-012",
@@ -145,7 +300,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\npares = [x for x in lista if x % 2 == 0]\nprint(\"Lista original:\", lista)\nprint(\"Solo pares:\", pares)",
-      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nNúmero 4: \nNúmero 5: \nLista original: [1, 2, 3, 4, 5]\nSolo pares: [2, 4]"
+      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nNúmero 4: \nNúmero 5: \nLista original: [1, 2, 3, 4, 5]\nSolo pares: [2, 4]",
+      "numero": "PY-N4-12",
+      "modulo": "N4",
+      "conceptos": [
+        "list comprehension",
+        "if",
+        "filtro",
+        "par/impar"
+      ],
+      "pista": "pares = [x for x in lista if x % 2 == 0]. La condición if al final filtra los elementos.",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista de números",
+        "proceso": "Filtrar solo los pares con comprensión de lista",
+        "salida": "Lista de números pares"
+      }
     },
     {
       "id": "py-n4-013",
@@ -157,7 +326,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 7):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nx = int(input(\"Número a contar: \"))\nfrecuencia = lista.count(x)\nprint(x, \"aparece\", frecuencia, \"vez/veces en la lista.\")",
-      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nElemento 6: \nNúmero a contar: \n5 aparece 3 vez/veces en la lista."
+      "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nElemento 6: \nNúmero a contar: \n5 aparece 3 vez/veces en la lista.",
+      "numero": "PY-N4-13",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "count",
+        "for",
+        "frecuencia"
+      ],
+      "pista": "Usa lista.count(elemento) para contar cuántas veces aparece un elemento.",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista y un elemento",
+        "proceso": "Contar ocurrencias con count()",
+        "salida": "El número de veces que aparece el elemento"
+      }
     },
     {
       "id": "py-n4-014",
@@ -169,7 +352,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nlista1 = []\nfor i in range(1, 4):\n    num = int(input(\"Lista 1 - elemento \" + str(i) + \": \"))\n    lista1.append(num)\nlista2 = []\nfor i in range(1, 4):\n    num = int(input(\"Lista 2 - elemento \" + str(i) + \": \"))\n    lista2.append(num)\nunida = lista1 + lista2\nprint(\"Lista 1:\", lista1)\nprint(\"Lista 2:\", lista2)\nprint(\"Unión:\", unida)",
-      "salidaEsperada": "Lista 1 - elemento 1: \nLista 1 - elemento 2: \nLista 1 - elemento 3: \nLista 2 - elemento 1: \nLista 2 - elemento 2: \nLista 2 - elemento 3: \nLista 1: [1, 2, 3]\nLista 2: [4, 5, 6]\nUnión: [1, 2, 3, 4, 5, 6]"
+      "salidaEsperada": "Lista 1 - elemento 1: \nLista 1 - elemento 2: \nLista 1 - elemento 3: \nLista 2 - elemento 1: \nLista 2 - elemento 2: \nLista 2 - elemento 3: \nLista 1: [1, 2, 3]\nLista 2: [4, 5, 6]\nUnión: [1, 2, 3, 4, 5, 6]",
+      "numero": "PY-N4-14",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "concatenación",
+        "extend",
+        "+",
+        "unir listas"
+      ],
+      "pista": "Usa lista1 + lista2 o lista1.extend(lista2) para unir dos listas.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos listas",
+        "proceso": "Unir las listas con + o extend",
+        "salida": "Una lista combinada"
+      }
     },
     {
       "id": "py-n4-015",
@@ -181,7 +379,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = float(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\nmedia = sum(lista) / len(lista)\nsobre_media = [x for x in lista if x > media]\nprint(\"Media: {:.2f}\".format(media))\nprint(\"Elementos sobre la media:\", sobre_media)",
-      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nNúmero 4: \nNúmero 5: \nMedia: 5.00\nElementos sobre la media: [7.0, 8.0, 6.0]"
+      "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nNúmero 4: \nNúmero 5: \nMedia: 5.00\nElementos sobre la media: [7.0, 8.0, 6.0]",
+      "numero": "PY-N4-15",
+      "modulo": "N4",
+      "conceptos": [
+        "list",
+        "list comprehension",
+        "media",
+        "filtro"
+      ],
+      "pista": "media = sum(lista) / len(lista); resultado = [x for x in lista if x > media].",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista de números",
+        "proceso": "Calcular media y filtrar elementos mayores",
+        "salida": "Lista de elementos por encima de la media"
+      }
     }
   ]
 }

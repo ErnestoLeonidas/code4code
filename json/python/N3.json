@@ -13,7 +13,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nfor i in range(1, n + 1):\n    print(i)",
-      "salidaEsperada": "Ingrese N: \n1\n2\n3\n4\n5"
+      "salidaEsperada": "Ingrese N: \n1\n2\n3\n4\n5",
+      "numero": "PY-N3-01",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "bucle",
+        "print"
+      ],
+      "pista": "for i in range(1, n+1): print(i). El range empieza en 1 y va hasta n (inclusive).",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero N",
+        "proceso": "Iterar de 1 a N e imprimir cada valor",
+        "salida": "Los enteros del 1 al N, uno por línea"
+      }
     },
     {
       "id": "py-n3-002",
@@ -25,7 +39,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nsuma = 0\nfor i in range(1, n + 1):\n    suma += i\nprint(\"La suma de 1 a\", n, \"es:\", suma)",
-      "salidaEsperada": "Ingrese N: \nLa suma de 1 a 5 es: 15"
+      "salidaEsperada": "Ingrese N: \nLa suma de 1 a 5 es: 15",
+      "numero": "PY-N3-02",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "acumulador",
+        "suma"
+      ],
+      "pista": "Inicializa suma = 0 antes del bucle. Dentro del for: suma += i.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero N",
+        "proceso": "Acumular la suma de 1 a N con for",
+        "salida": "La suma de los primeros N números"
+      }
     },
     {
       "id": "py-n3-003",
@@ -37,7 +65,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nfor i in range(1, 11):\n    print(n, \"x\", i, \"=\", n * i)",
-      "salidaEsperada": "Ingrese N: \n5 x 1 = 5\n5 x 2 = 10\n5 x 3 = 15\n5 x 4 = 20\n5 x 5 = 25\n5 x 6 = 30\n5 x 7 = 35\n5 x 8 = 40\n5 x 9 = 45\n5 x 10 = 50"
+      "salidaEsperada": "Ingrese N: \n5 x 1 = 5\n5 x 2 = 10\n5 x 3 = 15\n5 x 4 = 20\n5 x 5 = 25\n5 x 6 = 30\n5 x 7 = 35\n5 x 8 = 40\n5 x 9 = 45\n5 x 10 = 50",
+      "numero": "PY-N3-03",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "multiplicación",
+        "tabla"
+      ],
+      "pista": "for i in range(1, 11): print(n, \"x\", i, \"=\", n*i). Itera del 1 al 10.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número N",
+        "proceso": "Calcular N×i para i de 1 a 10",
+        "salida": "La tabla de multiplicar de N"
+      }
     },
     {
       "id": "py-n3-004",
@@ -49,7 +91,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nfactorial = 1\nfor i in range(1, n + 1):\n    factorial *= i\nprint(str(n) + \"! =\", factorial)",
-      "salidaEsperada": "Ingrese N: \n5! = 120"
+      "salidaEsperada": "Ingrese N: \n5! = 120",
+      "numero": "PY-N3-04",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "acumulador",
+        "factorial"
+      ],
+      "pista": "Inicializa fact = 1. Dentro del for: fact *= i (para i en range(1, n+1)).",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero N",
+        "proceso": "Multiplicar acumulativamente de 1 a N",
+        "salida": "N! (factorial de N)"
+      }
     },
     {
       "id": "py-n3-005",
@@ -61,7 +117,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese la base N: \"))\ne = int(input(\"Ingrese el exponente E: \"))\nresultado = 1\nfor i in range(e):\n    resultado *= n\nprint(str(n) + \"^\" + str(e) + \" =\", resultado)",
-      "salidaEsperada": "Ingrese la base N: \nIngrese el exponente E: \n3^4 = 81"
+      "salidaEsperada": "Ingrese la base N: \nIngrese el exponente E: \n3^4 = 81",
+      "numero": "PY-N3-05",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "potencia",
+        "acumulador"
+      ],
+      "pista": "resultado = 1; for i in range(e): resultado *= n. Multiplica la base E veces.",
+      "entradaProcesoSalida": {
+        "entrada": "Base N y exponente E",
+        "proceso": "Multiplicar N por sí mismo E veces con for",
+        "salida": "N elevado a E"
+      }
     },
     {
       "id": "py-n3-006",
@@ -73,7 +143,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nprint(\"Números pares del 1 al\", str(n) + \":\")\nfor i in range(1, n + 1):\n    if i % 2 == 0:\n        print(i)",
-      "salidaEsperada": "Ingrese N: \nNúmeros pares del 1 al 10:\n2\n4\n6\n8\n10"
+      "salidaEsperada": "Ingrese N: \nNúmeros pares del 1 al 10:\n2\n4\n6\n8\n10",
+      "numero": "PY-N3-06",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "if",
+        "filtro",
+        "par/impar"
+      ],
+      "pista": "Usa range(2, n+1, 2) para generar solo pares, o agrega if i % 2 == 0 dentro del for.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número N",
+        "proceso": "Iterar y filtrar solo los números pares",
+        "salida": "Los números pares de 1 a N"
+      }
     },
     {
       "id": "py-n3-007",
@@ -85,7 +170,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese un número entero positivo: \"))\noriginal = n\nsuma = 0\nwhile n > 0:\n    suma += n % 10\n    n //= 10\nprint(\"Suma de dígitos de\", original, \":\", suma)",
-      "salidaEsperada": "Ingrese un número entero positivo: \nSuma de dígitos de 1234 : 10"
+      "salidaEsperada": "Ingrese un número entero positivo: \nSuma de dígitos de 1234 : 10",
+      "numero": "PY-N3-07",
+      "modulo": "N3",
+      "conceptos": [
+        "while",
+        "módulo",
+        "dígitos",
+        "acumulador"
+      ],
+      "pista": "Mientras n > 0: suma += n % 10; n //= 10. Extrae el último dígito con % 10.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Extraer y sumar dígitos con while",
+        "salida": "La suma de los dígitos"
+      }
     },
     {
       "id": "py-n3-008",
@@ -97,7 +196,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números va a ingresar? \"))\nmaximo = None\nfor i in range(1, n + 1):\n    num = int(input(\"Número \" + str(i) + \": \"))\n    if maximo is None or num > maximo:\n        maximo = num\nprint(\"El máximo es:\", maximo)",
-      "salidaEsperada": "¿Cuántos números va a ingresar? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl máximo es: 42"
+      "salidaEsperada": "¿Cuántos números va a ingresar? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl máximo es: 42",
+      "numero": "PY-N3-08",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "máximo",
+        "acumulador"
+      ],
+      "pista": "Inicia maximo con el primer número. Para cada siguiente, actualiza si es mayor.",
+      "entradaProcesoSalida": {
+        "entrada": "N números ingresados uno a uno",
+        "proceso": "Comparar cada número con el máximo actual",
+        "salida": "El mayor de todos los números"
+      }
     },
     {
       "id": "py-n3-009",
@@ -109,7 +222,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese la cantidad de términos: \"))\na, b = 0, 1\nresultados = []\nfor i in range(n):\n    resultados.append(a)\n    a, b = b, a + b\nprint(\", \".join(str(x) for x in resultados))",
-      "salidaEsperada": "Ingrese la cantidad de términos: \n0, 1, 1, 2, 3, 5, 8, 13, 21, 34"
+      "salidaEsperada": "Ingrese la cantidad de términos: \n0, 1, 1, 2, 3, 5, 8, 13, 21, 34",
+      "numero": "PY-N3-09",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "fibonacci",
+        "variables"
+      ],
+      "pista": "Inicia a=0, b=1. En cada iteración: print(a); a, b = b, a+b.",
+      "entradaProcesoSalida": {
+        "entrada": "Cantidad de términos N",
+        "proceso": "Calcular cada término como suma de los dos anteriores",
+        "salida": "Los primeros N términos de Fibonacci"
+      }
     },
     {
       "id": "py-n3-010",
@@ -121,7 +248,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nk = int(input(\"Ingrese K: \"))\nm = int(input(\"Ingrese M: \"))\nmultiplo = k\nwhile multiplo <= m:\n    multiplo += k\nprint(\"El primer múltiplo de\", k, \"mayor que\", m, \"es:\", multiplo)",
-      "salidaEsperada": "Ingrese K: \nIngrese M: \nEl primer múltiplo de 7 mayor que 30 es: 35"
+      "salidaEsperada": "Ingrese K: \nIngrese M: \nEl primer múltiplo de 7 mayor que 30 es: 35",
+      "numero": "PY-N3-10",
+      "modulo": "N3",
+      "conceptos": [
+        "while",
+        "múltiplos",
+        "incremento",
+        "condición"
+      ],
+      "pista": "Empieza en m+1 e incrementa hasta encontrar un número divisible por k: mult % k == 0.",
+      "entradaProcesoSalida": {
+        "entrada": "K (divisor) y M (valor de referencia)",
+        "proceso": "Buscar el primer múltiplo de K mayor que M",
+        "salida": "El primer múltiplo encontrado"
+      }
     },
     {
       "id": "py-n3-011",
@@ -133,7 +274,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nsecreto = 42\nintentos = 0\nadivino = False\nwhile not adivino:\n    intento = int(input(\"Adivina el número (1-100): \"))\n    intentos += 1\n    if intento < secreto:\n        print(\"Muy bajo\")\n    elif intento > secreto:\n        print(\"Muy alto\")\n    else:\n        adivino = True\nprint(\"¡Correcto! Lo lograste en\", intentos, \"intento(s).\")",
-      "salidaEsperada": "Adivina el número (1-100): \nMuy bajo\nAdivina el número (1-100): \nMuy alto\nAdivina el número (1-100): \n¡Correcto! Lo lograste en 3 intento(s)."
+      "salidaEsperada": "Adivina el número (1-100): \nMuy bajo\nAdivina el número (1-100): \nMuy alto\nAdivina el número (1-100): \n¡Correcto! Lo lograste en 3 intento(s).",
+      "numero": "PY-N3-11",
+      "modulo": "N3",
+      "conceptos": [
+        "while",
+        "random",
+        "break",
+        "condicional"
+      ],
+      "pista": "Genera el número secreto con random.randint(1, 10). Usa while True y break al acertar.",
+      "entradaProcesoSalida": {
+        "entrada": "Números ingresados en cada intento",
+        "proceso": "Comparar con número secreto hasta acertar",
+        "salida": "Mensaje de acierto y número de intentos"
+      }
     },
     {
       "id": "py-n3-012",
@@ -145,7 +300,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nprint(\"Números primos entre 2 y\", str(n) + \":\")\nfor i in range(2, n + 1):\n    es_primo = True\n    for j in range(2, i):\n        if i % j == 0:\n            es_primo = False\n            break\n    if es_primo:\n        print(i)",
-      "salidaEsperada": "Ingrese N: \nNúmeros primos entre 2 y 20:\n2\n3\n5\n7\n11\n13\n17\n19"
+      "salidaEsperada": "Ingrese N: \nNúmeros primos entre 2 y 20:\n2\n3\n5\n7\n11\n13\n17\n19",
+      "numero": "PY-N3-12",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "if",
+        "primo",
+        "condicional"
+      ],
+      "pista": "Para cada n, verifica si algún número de 2 a n//2 lo divide. Si no se divide, es primo.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número N",
+        "proceso": "Para cada número 2..N, verificar si es primo",
+        "salida": "Los números primos hasta N"
+      }
     },
     {
       "id": "py-n3-013",
@@ -157,7 +327,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nsuma = 0\nfor i in range(1, n + 1):\n    if i % 3 == 0 or i % 5 == 0:\n        suma += i\nprint(\"Suma de múltiplos de 3 y 5 hasta\", str(n) + \":\", suma)",
-      "salidaEsperada": "Ingrese N: \nSuma de múltiplos de 3 y 5 hasta 10: 33"
+      "salidaEsperada": "Ingrese N: \nSuma de múltiplos de 3 y 5 hasta 10: 33",
+      "numero": "PY-N3-13",
+      "modulo": "N3",
+      "conceptos": [
+        "for",
+        "range",
+        "módulo",
+        "acumulador",
+        "or"
+      ],
+      "pista": "Suma los i de 1 a N que cumplan i % 3 == 0 or i % 5 == 0.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número N",
+        "proceso": "Sumar múltiplos de 3 o de 5 hasta N",
+        "salida": "La suma de los múltiplos"
+      }
     },
     {
       "id": "py-n3-014",
@@ -169,7 +354,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese un número entre 1 y 100: \"))\nwhile n < 1 or n > 100:\n    print(\"Valor fuera de rango. Intente de nuevo.\")\n    n = int(input(\"Ingrese un número entre 1 y 100: \"))\nprint(\"Valor aceptado:\", n)",
-      "salidaEsperada": "Ingrese un número entre 1 y 100: \nValor fuera de rango. Intente de nuevo.\nIngrese un número entre 1 y 100: \nValor aceptado: 50"
+      "salidaEsperada": "Ingrese un número entre 1 y 100: \nValor fuera de rango. Intente de nuevo.\nIngrese un número entre 1 y 100: \nValor aceptado: 50",
+      "numero": "PY-N3-14",
+      "modulo": "N3",
+      "conceptos": [
+        "while",
+        "validación",
+        "input",
+        "condicional"
+      ],
+      "pista": "Usa while True; dentro lee el dato. Si es válido, break. Si no, muestra error y repite.",
+      "entradaProcesoSalida": {
+        "entrada": "Valor ingresado por el usuario (puede ser inválido)",
+        "proceso": "Repetir la solicitud mientras el dato sea inválido",
+        "salida": "El primer dato válido recibido"
+      }
     },
     {
       "id": "py-n3-015",
@@ -181,7 +380,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "# Python 3\na = int(input(\"Ingrese A: \"))\nb = int(input(\"Ingrese B: \"))\norig_a, orig_b = a, b\nwhile b != 0:\n    a, b = b, a % b\nprint(\"MCD(\", orig_a, \",\", orig_b, \") =\", a)",
-      "salidaEsperada": "Ingrese A: \nIngrese B: \nMCD( 48 , 18 ) = 6"
+      "salidaEsperada": "Ingrese A: \nIngrese B: \nMCD( 48 , 18 ) = 6",
+      "numero": "PY-N3-15",
+      "modulo": "N3",
+      "conceptos": [
+        "while",
+        "módulo",
+        "MCD",
+        "algoritmo de Euclides"
+      ],
+      "pista": "while b != 0: a, b = b, a % b. Al terminar, a contiene el MCD.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números enteros positivos",
+        "proceso": "Aplicar el algoritmo de Euclides iterativamente",
+        "salida": "El Máximo Común Divisor"
+      }
     }
   ]
 }

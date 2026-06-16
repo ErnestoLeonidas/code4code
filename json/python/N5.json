@@ -13,7 +13,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def saludar(nombre):\n    print(f'¡Hola, {nombre}! Bienvenido.')\n\nsaludar('Ana')",
-      "salidaEsperada": "¡Hola, Ana! Bienvenido."
+      "salidaEsperada": "¡Hola, Ana! Bienvenido.",
+      "numero": "PY-N5-01",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "función",
+        "parámetros",
+        "print"
+      ],
+      "pista": "Define def saludar(nombre): con el cuerpo de la función indentado. Llámala con saludar(\"Ana\").",
+      "entradaProcesoSalida": {
+        "entrada": "Nombre como argumento",
+        "proceso": "Llamar a la función con el nombre",
+        "salida": "Saludo personalizado"
+      }
     },
     {
       "id": "py-n5-002",
@@ -25,7 +39,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def cuadrado(n):\n    return n ** 2\n\nresultado = cuadrado(7)\nprint(f'El cuadrado de 7 es: {resultado}')",
-      "salidaEsperada": "El cuadrado de 7 es: 49"
+      "salidaEsperada": "El cuadrado de 7 es: 49",
+      "numero": "PY-N5-02",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "return",
+        "parámetros",
+        "potencia"
+      ],
+      "pista": "def cuadrado(n): return n ** 2. El return devuelve el resultado al lugar de la llamada.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número como argumento",
+        "proceso": "Calcular n² dentro de la función",
+        "salida": "El cuadrado del número"
+      }
     },
     {
       "id": "py-n5-003",
@@ -37,7 +65,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def factorial(n):\n    resultado = 1\n    for i in range(2, n + 1):\n        resultado *= i\n    return resultado\n\nprint(f'5! = {factorial(5)}')",
-      "salidaEsperada": "5! = 120"
+      "salidaEsperada": "5! = 120",
+      "numero": "PY-N5-03",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "factorial",
+        "acumulador"
+      ],
+      "pista": "def factorial(n): resultado=1; for i in range(1,n+1): resultado*=i; return resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Un entero N como argumento",
+        "proceso": "Calcular N! iterativamente",
+        "salida": "N! (factorial de N)"
+      }
     },
     {
       "id": "py-n5-004",
@@ -49,7 +92,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def es_par(n):\n    return n % 2 == 0\n\nprint(es_par(4))\nprint(es_par(7))",
-      "salidaEsperada": "True\nFalse"
+      "salidaEsperada": "True\nFalse",
+      "numero": "PY-N5-04",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "return",
+        "bool",
+        "módulo"
+      ],
+      "pista": "def es_par(n): return n % 2 == 0. Una expresión booleana puede devolverse directamente.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Verificar si n % 2 == 0",
+        "salida": "True si es par, False si es impar"
+      }
     },
     {
       "id": "py-n5-005",
@@ -61,7 +118,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def maximo(a, b):\n    if a >= b:\n        return a\n    return b\n\nprint(f'El mayor entre 12 y 8 es: {maximo(12, 8)}')",
-      "salidaEsperada": "El mayor entre 12 y 8 es: 12"
+      "salidaEsperada": "El mayor entre 12 y 8 es: 12",
+      "numero": "PY-N5-05",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "return",
+        "if/else",
+        "comparación"
+      ],
+      "pista": "def maximo(a, b): return a if a > b else b. Puedes usar una expresión condicional en línea.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números como argumentos",
+        "proceso": "Comparar y devolver el mayor",
+        "salida": "El máximo de los dos"
+      }
     },
     {
       "id": "py-n5-006",
@@ -73,7 +144,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def es_primo(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\nprint(es_primo(7))\nprint(es_primo(9))",
-      "salidaEsperada": "True\nFalse"
+      "salidaEsperada": "True\nFalse",
+      "numero": "PY-N5-06",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "primo",
+        "break"
+      ],
+      "pista": "Verifica divisores de 2 hasta n//2. Si alguno divide exactamente, retorna False. Si ninguno, True.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Verificar si tiene divisores distintos de 1 y sí mismo",
+        "salida": "True si es primo, False si no"
+      }
     },
     {
       "id": "py-n5-007",
@@ -85,7 +171,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def potencia(base, exp):\n    resultado = 1\n    for _ in range(exp):\n        resultado *= base\n    return resultado\n\nprint(f'3 elevado a la 4 es: {potencia(3, 4)}')",
-      "salidaEsperada": "3 elevado a la 4 es: 81"
+      "salidaEsperada": "3 elevado a la 4 es: 81",
+      "numero": "PY-N5-07",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "potencia",
+        "acumulador"
+      ],
+      "pista": "def potencia(base, exp): resultado=1; for _ in range(exp): resultado*=base; return resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Base y exponente como argumentos",
+        "proceso": "Multiplicar la base exp veces",
+        "salida": "base elevado a exp"
+      }
     },
     {
       "id": "py-n5-008",
@@ -97,7 +198,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def suma_lista(lista):\n    total = 0\n    for elemento in lista:\n        total += elemento\n    return total\n\nnumeros = [3, 7, 2, 9, 1]\nprint(f'La suma es: {suma_lista(numeros)}')",
-      "salidaEsperada": "La suma es: 22"
+      "salidaEsperada": "La suma es: 22",
+      "numero": "PY-N5-08",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "sum",
+        "listas"
+      ],
+      "pista": "def suma_lista(lst): total=0; for x in lst: total+=x; return total. O: return sum(lst).",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista de números",
+        "proceso": "Sumar todos los elementos",
+        "salida": "La suma total"
+      }
     },
     {
       "id": "py-n5-009",
@@ -109,7 +225,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(f'6! = {factorial(6)}')",
-      "salidaEsperada": "6! = 720"
+      "salidaEsperada": "6! = 720",
+      "numero": "PY-N5-09",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "recursión",
+        "caso base",
+        "factorial"
+      ],
+      "pista": "def factorial(n): return 1 if n <= 1 else n * factorial(n-1). El caso base es n == 0 o n == 1.",
+      "entradaProcesoSalida": {
+        "entrada": "Un entero N",
+        "proceso": "Llamarse a sí misma con n-1 hasta llegar al caso base",
+        "salida": "N!"
+      }
     },
     {
       "id": "py-n5-010",
@@ -121,7 +251,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def fibonacci(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    return fibonacci(n - 1) + fibonacci(n - 2)\n\nfor i in range(8):\n    print(fibonacci(i), end=' ')\nprint()",
-      "salidaEsperada": "0 1 1 2 3 5 8 13 "
+      "salidaEsperada": "0 1 1 2 3 5 8 13 ",
+      "numero": "PY-N5-10",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "recursión",
+        "fibonacci",
+        "caso base"
+      ],
+      "pista": "def fib(n): return n if n <= 1 else fib(n-1) + fib(n-2). Casos base: fib(0)=0, fib(1)=1.",
+      "entradaProcesoSalida": {
+        "entrada": "Un entero N",
+        "proceso": "Calcular fib(n) = fib(n-1) + fib(n-2) recursivamente",
+        "salida": "El N-ésimo número de Fibonacci"
+      }
     },
     {
       "id": "py-n5-011",
@@ -133,7 +277,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def contar_vocales(cadena):\n    vocales = 'aeiouAEIOU'\n    contador = 0\n    for caracter in cadena:\n        if caracter in vocales:\n            contador += 1\n    return contador\n\ntexto = 'Programación en Python'\nprint(f'Vocales en \"{texto}\": {contar_vocales(texto)}')",
-      "salidaEsperada": "Vocales en \"Programación en Python\": 7"
+      "salidaEsperada": "Vocales en \"Programación en Python\": 7",
+      "numero": "PY-N5-11",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "cadenas",
+        "conteo"
+      ],
+      "pista": "Recorre la cadena con for c in cadena y cuenta si c in \"aeiouAEIOU\".",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena",
+        "proceso": "Contar letras que son vocales",
+        "salida": "Número de vocales"
+      }
     },
     {
       "id": "py-n5-012",
@@ -145,7 +304,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def invertir_lista(lista):\n    invertida = []\n    for i in range(len(lista) - 1, -1, -1):\n        invertida.append(lista[i])\n    return invertida\n\noriginal = [1, 2, 3, 4, 5]\nprint(f'Original:  {original}')\nprint(f'Invertida: {invertir_lista(original)}')",
-      "salidaEsperada": "Original:  [1, 2, 3, 4, 5]\nInvertida: [5, 4, 3, 2, 1]"
+      "salidaEsperada": "Original:  [1, 2, 3, 4, 5]\nInvertida: [5, 4, 3, 2, 1]",
+      "numero": "PY-N5-12",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "listas",
+        "invertir"
+      ],
+      "pista": "Crea una nueva lista y agrega elementos de derecha a izquierda: for i in range(len(lst)-1, -1, -1).",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista",
+        "proceso": "Crear nueva lista con elementos en orden inverso",
+        "salida": "La lista invertida"
+      }
     },
     {
       "id": "py-n5-013",
@@ -157,7 +331,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def busqueda_binaria(lista, objetivo):\n    izquierda = 0\n    derecha = len(lista) - 1\n    while izquierda <= derecha:\n        medio = (izquierda + derecha) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izquierda = medio + 1\n        else:\n            derecha = medio - 1\n    return -1\n\nnumeros = [2, 5, 8, 12, 16, 23, 38, 45]\nindice = busqueda_binaria(numeros, 23)\nprint(f'El valor 23 está en el índice: {indice}')",
-      "salidaEsperada": "El valor 23 está en el índice: 5"
+      "salidaEsperada": "El valor 23 está en el índice: 5",
+      "numero": "PY-N5-13",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "while",
+        "búsqueda binaria",
+        "listas ordenadas"
+      ],
+      "pista": "Mantén izq y der. Calcula mid=(izq+der)//2. Compara lista[mid] con el objetivo y ajusta izq o der.",
+      "entradaProcesoSalida": {
+        "entrada": "Lista ordenada y elemento a buscar",
+        "proceso": "Dividir la búsqueda a la mitad en cada paso",
+        "salida": "Índice del elemento o -1 si no existe"
+      }
     },
     {
       "id": "py-n5-014",
@@ -169,7 +357,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def saludar(nombre, idioma='es'):\n    if idioma == 'es':\n        print(f'¡Hola, {nombre}!')\n    elif idioma == 'en':\n        print(f'Hello, {nombre}!')\n    else:\n        print(f'Hola, {nombre}!')\n\nsaludar('María')\nsaludar('John', idioma='en')",
-      "salidaEsperada": "¡Hola, María!\nHello, John!"
+      "salidaEsperada": "¡Hola, María!\nHello, John!",
+      "numero": "PY-N5-14",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "parámetros por defecto",
+        "return",
+        "valor predeterminado"
+      ],
+      "pista": "def saludar(nombre, saludo=\"Hola\"): ... El parámetro con = tiene valor por defecto.",
+      "entradaProcesoSalida": {
+        "entrada": "Nombre (obligatorio) y saludo (opcional)",
+        "proceso": "Combinar los parámetros en el mensaje",
+        "salida": "El saludo personalizado"
+      }
     },
     {
       "id": "py-n5-015",
@@ -181,7 +383,23 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def calcular_media(lista):\n    total = 0\n    for n in lista:\n        total += n\n    return total / len(lista)\n\ndef calcular_minimo(lista):\n    minimo = lista[0]\n    for n in lista[1:]:\n        if n < minimo:\n            minimo = n\n    return minimo\n\ndef calcular_maximo(lista):\n    maximo = lista[0]\n    for n in lista[1:]:\n        if n > maximo:\n            maximo = n\n    return maximo\n\nnumeros = [4, 8, 2, 15, 6, 11, 3]\nprint(f'Media:   {calcular_media(numeros)}')\nprint(f'Mínimo:  {calcular_minimo(numeros)}')\nprint(f'Máximo:  {calcular_maximo(numeros)}')",
-      "salidaEsperada": "Media:   7.0\nMínimo:  2\nMáximo:  15"
+      "salidaEsperada": "Media:   7.0\nMínimo:  2\nMáximo:  15",
+      "numero": "PY-N5-15",
+      "modulo": "N5",
+      "conceptos": [
+        "def",
+        "return",
+        "sum",
+        "min",
+        "max",
+        "len"
+      ],
+      "pista": "La función puede retornar múltiples valores: return media, minimo, maximo usando una tupla.",
+      "entradaProcesoSalida": {
+        "entrada": "Una lista de números",
+        "proceso": "Calcular media, mínimo y máximo",
+        "salida": "Los tres estadísticos en una línea"
+      }
     }
   ]
 }

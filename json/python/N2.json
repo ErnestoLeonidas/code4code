@@ -13,7 +13,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "edad = int(input(\"Ingresa tu edad: \"))\nif edad >= 18:\n    print(\"Eres mayor de edad.\")\nelse:\n    print(\"Eres menor de edad.\")",
-      "salidaEsperada": "Ingresa tu edad: \nEres mayor de edad."
+      "salidaEsperada": "Ingresa tu edad: \nEres mayor de edad.",
+      "numero": "PY-N2-01",
+      "modulo": "N2",
+      "conceptos": [
+        "if/else",
+        "comparación",
+        "int()",
+        "condicional"
+      ],
+      "pista": "Compara edad >= 18 con if/else para decidir el mensaje a mostrar.",
+      "entradaProcesoSalida": {
+        "entrada": "Edad del usuario",
+        "proceso": "Comparar si edad >= 18",
+        "salida": "\"Mayor de edad\" o \"Menor de edad\""
+      }
     },
     {
       "id": "py-n2-002",
@@ -25,7 +39,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "n = float(input(\"Ingresa un número: \"))\nif n > 0:\n    print(\"El número es positivo.\")\nelif n < 0:\n    print(\"El número es negativo.\")\nelse:\n    print(\"El número es cero.\")",
-      "salidaEsperada": "Ingresa un número: \nEl número es positivo."
+      "salidaEsperada": "Ingresa un número: \nEl número es positivo.",
+      "numero": "PY-N2-02",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "comparación",
+        "float()",
+        "condicional"
+      ],
+      "pista": "Usa if n > 0 / elif n < 0 / else para los tres casos. Convierte con float().",
+      "entradaProcesoSalida": {
+        "entrada": "Un número real",
+        "proceso": "Comparar con 0 para determinar signo",
+        "salida": "\"positivo\", \"negativo\" o \"cero\""
+      }
     },
     {
       "id": "py-n2-003",
@@ -37,7 +65,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = float(input(\"Ingresa el primer número: \"))\nb = float(input(\"Ingresa el segundo número: \"))\nif a > b:\n    print(f\"El mayor es: {a}\")\nelif b > a:\n    print(f\"El mayor es: {b}\")\nelse:\n    print(\"Los dos números son iguales.\")",
-      "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nEl mayor es: 9.0"
+      "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nEl mayor es: 9.0",
+      "numero": "PY-N2-03",
+      "modulo": "N2",
+      "conceptos": [
+        "if/else",
+        "comparación",
+        "máximo",
+        "condicional"
+      ],
+      "pista": "if a >= b: print(a) else: print(b). Compara los dos números directamente.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números",
+        "proceso": "Comparar para encontrar el mayor",
+        "salida": "El mayor de los dos"
+      }
     },
     {
       "id": "py-n2-004",
@@ -49,7 +91,20 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = float(input(\"Ingresa el primer número: \"))\nb = float(input(\"Ingresa el segundo número: \"))\nc = float(input(\"Ingresa el tercer número: \"))\nif a >= b and a >= c:\n    mayor = a\nelif b >= a and b >= c:\n    mayor = b\nelse:\n    mayor = c\nprint(f\"El mayor es: {mayor}\")",
-      "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nIngresa el tercer número: \nEl mayor es: 15.0"
+      "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nIngresa el tercer número: \nEl mayor es: 15.0",
+      "numero": "PY-N2-04",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "comparación encadenada",
+        "máximo"
+      ],
+      "pista": "Compara a vs b primero; si a es el mayor, compáralo con c. Si no, compara b con c.",
+      "entradaProcesoSalida": {
+        "entrada": "Tres números",
+        "proceso": "Comparaciones anidadas para hallar el mayor",
+        "salida": "El mayor de los tres"
+      }
     },
     {
       "id": "py-n2-005",
@@ -61,7 +116,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = float(input(\"Ingresa el lado a: \"))\nb = float(input(\"Ingresa el lado b: \"))\nc = float(input(\"Ingresa el lado c: \"))\nif a == b == c:\n    print(\"Triángulo equilátero.\")\nelif a == b or b == c or a == c:\n    print(\"Triángulo isósceles.\")\nelse:\n    print(\"Triángulo escaleno.\")",
-      "salidaEsperada": "Ingresa el lado a: \nIngresa el lado b: \nIngresa el lado c: \nTriángulo isósceles."
+      "salidaEsperada": "Ingresa el lado a: \nIngresa el lado b: \nIngresa el lado c: \nTriángulo isósceles.",
+      "numero": "PY-N2-05",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "and",
+        "comparación",
+        "triángulo"
+      ],
+      "pista": "Un triángulo equilátero tiene los 3 lados iguales; isósceles 2; escaleno ninguno. Usa == y and.",
+      "entradaProcesoSalida": {
+        "entrada": "Tres longitudes de lados",
+        "proceso": "Comparar lados para clasificar",
+        "salida": "Tipo de triángulo (equilátero/isósceles/escaleno)"
+      }
     },
     {
       "id": "py-n2-006",
@@ -73,7 +142,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "nota = int(input(\"Ingresa la nota (0-100): \"))\nif nota >= 90:\n    print(\"Sobresaliente\")\nelif nota >= 70:\n    print(\"Bueno\")\nelif nota >= 50:\n    print(\"Regular\")\nelse:\n    print(\"Insuficiente\")",
-      "salidaEsperada": "Ingresa la nota (0-100): \nBueno"
+      "salidaEsperada": "Ingresa la nota (0-100): \nBueno",
+      "numero": "PY-N2-06",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "comparación",
+        "rangos",
+        "calificación"
+      ],
+      "pista": "Define rangos: >=90 Sobresaliente, >=70 Bueno, >=60 Regular, <60 Insuficiente.",
+      "entradaProcesoSalida": {
+        "entrada": "Una calificación numérica",
+        "proceso": "Comparar contra rangos con if/elif",
+        "salida": "La categoría de la calificación"
+      }
     },
     {
       "id": "py-n2-007",
@@ -85,7 +168,20 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = float(input(\"Ingresa el primer número: \"))\nop = input(\"Ingresa el operador (+, -, *, /): \")\nb = float(input(\"Ingresa el segundo número: \"))\nif op == \"+\":\n    print(f\"Resultado: {a + b}\")\nelif op == \"-\":\n    print(f\"Resultado: {a - b}\")\nelif op == \"*\":\n    print(f\"Resultado: {a * b}\")\nelif op == \"/\":\n    if b == 0:\n        print(\"Error: división por cero.\")\n    else:\n        print(f\"Resultado: {a / b}\")\nelse:\n    print(\"Operador no reconocido.\")",
-      "salidaEsperada": "Ingresa el primer número: \nIngresa el operador (+, -, *, /): \nIngresa el segundo número: \nResultado: 15.0"
+      "salidaEsperada": "Ingresa el primer número: \nIngresa el operador (+, -, *, /): \nIngresa el segundo número: \nResultado: 15.0",
+      "numero": "PY-N2-07",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "operadores aritméticos",
+        "calculadora"
+      ],
+      "pista": "Lee el operador como cadena con input(). Usa elif para cada operación (+, -, *, /).",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números y un operador",
+        "proceso": "Seleccionar la operación con if/elif",
+        "salida": "El resultado de la operación"
+      }
     },
     {
       "id": "py-n2-008",
@@ -97,7 +193,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "n = int(input(\"Ingresa un número entero: \"))\nif n % 2 == 0:\n    print(f\"{n} es par.\")\nelse:\n    print(f\"{n} es impar.\")",
-      "salidaEsperada": "Ingresa un número entero: \n8 es par."
+      "salidaEsperada": "Ingresa un número entero: \n8 es par.",
+      "numero": "PY-N2-08",
+      "modulo": "N2",
+      "conceptos": [
+        "if/else",
+        "módulo",
+        "par/impar",
+        "int()"
+      ],
+      "pista": "Un número es par si n % 2 == 0. El operador % devuelve el resto de la división.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Verificar si el resto de dividir entre 2 es 0",
+        "salida": "\"Par\" o \"Impar\""
+      }
     },
     {
       "id": "py-n2-009",
@@ -109,7 +219,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "n = int(input(\"Ingresa un número entero: \"))\nif n % 3 == 0 and n % 5 == 0:\n    print(f\"{n} es divisible por 3 y por 5.\")\nelif n % 3 == 0:\n    print(f\"{n} es divisible solo por 3.\")\nelif n % 5 == 0:\n    print(f\"{n} es divisible solo por 5.\")\nelse:\n    print(f\"{n} no es divisible por 3 ni por 5.\")",
-      "salidaEsperada": "Ingresa un número entero: \n15 es divisible por 3 y por 5."
+      "salidaEsperada": "Ingresa un número entero: \n15 es divisible por 3 y por 5.",
+      "numero": "PY-N2-09",
+      "modulo": "N2",
+      "conceptos": [
+        "if",
+        "módulo",
+        "and",
+        "divisibilidad"
+      ],
+      "pista": "Usa n % 3 == 0 and n % 5 == 0. El operador and requiere que ambas condiciones sean True.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Verificar divisibilidad por 3 y por 5 simultáneamente",
+        "salida": "\"Sí\" o \"No\""
+      }
     },
     {
       "id": "py-n2-010",
@@ -121,7 +245,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "anio = int(input(\"Ingresa un año: \"))\nif anio % 4 == 0 and (anio % 100 != 0 or anio % 400 == 0):\n    print(f\"{anio} es un año bisiesto.\")\nelse:\n    print(f\"{anio} no es un año bisiesto.\")",
-      "salidaEsperada": "Ingresa un año: \n2024 es un año bisiesto."
+      "salidaEsperada": "Ingresa un año: \n2024 es un año bisiesto.",
+      "numero": "PY-N2-10",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "módulo",
+        "año bisiesto",
+        "condiciones compuestas"
+      ],
+      "pista": "Bisiesto: divisible por 4, excepto siglos (100), salvo que sean divisibles por 400.",
+      "entradaProcesoSalida": {
+        "entrada": "Un año",
+        "proceso": "Aplicar las reglas de año bisiesto",
+        "salida": "\"Bisiesto\" o \"No bisiesto\""
+      }
     },
     {
       "id": "py-n2-011",
@@ -133,7 +271,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "n = int(input(\"Ingresa un número entero: \"))\nif 1 <= n <= 100:\n    print(f\"{n} está dentro del rango [1, 100].\")\nelse:\n    print(f\"{n} está fuera del rango [1, 100].\")",
-      "salidaEsperada": "Ingresa un número entero: \n45 está dentro del rango [1, 100]."
+      "salidaEsperada": "Ingresa un número entero: \n45 está dentro del rango [1, 100].",
+      "numero": "PY-N2-11",
+      "modulo": "N2",
+      "conceptos": [
+        "if/else",
+        "comparación",
+        "rango",
+        "validación"
+      ],
+      "pista": "Combina dos condiciones: if 1 <= n <= 100. Python permite encadenar comparaciones así.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Verificar si está en el rango [1, 100]",
+        "salida": "\"Válido\" o \"Fuera de rango\""
+      }
     },
     {
       "id": "py-n2-012",
@@ -145,7 +297,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = float(input(\"Ingresa el primer número: \"))\nb = float(input(\"Ingresa el segundo número: \"))\nc = float(input(\"Ingresa el tercer número: \"))\nif a >= b and a >= c:\n    mayor = a\nelif b >= c:\n    mayor = b\nelse:\n    mayor = c\nif a <= b and a <= c:\n    menor = a\nelif b <= c:\n    menor = b\nelse:\n    menor = c\nprint(f\"El mayor es: {mayor}\")\nprint(f\"El menor es: {menor}\")",
-      "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nIngresa el tercer número: \nEl mayor es: 20.0\nEl menor es: 3.0"
+      "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nIngresa el tercer número: \nEl mayor es: 20.0\nEl menor es: 3.0",
+      "numero": "PY-N2-12",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "comparación",
+        "máximo",
+        "mínimo"
+      ],
+      "pista": "Busca el máximo con comparaciones y el mínimo de forma similar. Son dos procesos separados.",
+      "entradaProcesoSalida": {
+        "entrada": "Tres números",
+        "proceso": "Comparar para hallar el mayor y el menor",
+        "salida": "El máximo y el mínimo"
+      }
     },
     {
       "id": "py-n2-013",
@@ -157,7 +323,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = float(input(\"Ingresa el ángulo A (grados): \"))\nb = float(input(\"Ingresa el ángulo B (grados): \"))\nc = float(input(\"Ingresa el ángulo C (grados): \"))\nif a + b + c != 180:\n    print(\"Los ángulos no forman un triángulo válido.\")\nelif a == 90 or b == 90 or c == 90:\n    print(\"Triángulo rectángulo.\")\nelif a > 90 or b > 90 or c > 90:\n    print(\"Triángulo obtusángulo.\")\nelse:\n    print(\"Triángulo acutángulo.\")",
-      "salidaEsperada": "Ingresa el ángulo A (grados): \nIngresa el ángulo B (grados): \nIngresa el ángulo C (grados): \nTriángulo rectángulo."
+      "salidaEsperada": "Ingresa el ángulo A (grados): \nIngresa el ángulo B (grados): \nIngresa el ángulo C (grados): \nTriángulo rectángulo.",
+      "numero": "PY-N2-13",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "and",
+        "ángulos",
+        "triángulo"
+      ],
+      "pista": "Triángulo rectángulo: un ángulo == 90°. Obtusángulo: un ángulo > 90°. Acutángulo: todos < 90°.",
+      "entradaProcesoSalida": {
+        "entrada": "Tres ángulos del triángulo",
+        "proceso": "Clasificar según los ángulos",
+        "salida": "Tipo de triángulo (rectángulo/obtusángulo/acutángulo)"
+      }
     },
     {
       "id": "py-n2-014",
@@ -169,7 +349,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = float(input(\"Ingresa el extremo inferior: \"))\nb = float(input(\"Ingresa el extremo superior: \"))\nn = float(input(\"Ingresa el número a verificar: \"))\nif a <= n <= b:\n    print(f\"{n} está entre {a} y {b}.\")\nelse:\n    print(f\"{n} NO está entre {a} y {b}.\")",
-      "salidaEsperada": "Ingresa el extremo inferior: \nIngresa el extremo superior: \nIngresa el número a verificar: \n7.0 está entre 1.0 y 10.0."
+      "salidaEsperada": "Ingresa el extremo inferior: \nIngresa el extremo superior: \nIngresa el número a verificar: \n7.0 está entre 1.0 y 10.0.",
+      "numero": "PY-N2-14",
+      "modulo": "N2",
+      "conceptos": [
+        "if/else",
+        "comparación",
+        "rango",
+        "and"
+      ],
+      "pista": "Usa if a <= n <= b para verificar que n está entre a y b (inclusive).",
+      "entradaProcesoSalida": {
+        "entrada": "Un número y dos extremos",
+        "proceso": "Verificar si el número está en el rango",
+        "salida": "\"Dentro del rango\" o \"Fuera del rango\""
+      }
     },
     {
       "id": "py-n2-015",
@@ -181,7 +375,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "nota = int(input(\"Ingresa la nota (0-100): \"))\nif nota >= 97:\n    letra = \"A+\"\nelif nota >= 93:\n    letra = \"A\"\nelif nota >= 90:\n    letra = \"A-\"\nelif nota >= 87:\n    letra = \"B+\"\nelif nota >= 83:\n    letra = \"B\"\nelif nota >= 80:\n    letra = \"B-\"\nelif nota >= 77:\n    letra = \"C+\"\nelif nota >= 73:\n    letra = \"C\"\nelif nota >= 70:\n    letra = \"C-\"\nelif nota >= 60:\n    letra = \"D\"\nelse:\n    letra = \"F\"\nprint(f\"Calificación: {letra}\")",
-      "salidaEsperada": "Ingresa la nota (0-100): \nCalificación: B+"
+      "salidaEsperada": "Ingresa la nota (0-100): \nCalificación: B+",
+      "numero": "PY-N2-15",
+      "modulo": "N2",
+      "conceptos": [
+        "if/elif/else",
+        "comparación",
+        "rangos",
+        "calificación"
+      ],
+      "pista": "Agrega condiciones intermedias para asignar + (>=85) o - (<=64) dentro de cada letra.",
+      "entradaProcesoSalida": {
+        "entrada": "Una calificación numérica",
+        "proceso": "Clasificar con rangos más específicos",
+        "salida": "Calificación con signo (A+, A, B+, ...)"
+      }
     }
   ]
 }

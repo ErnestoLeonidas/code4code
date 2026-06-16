@@ -13,7 +13,20 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "print(\"Hola, mundo!\")",
-      "salidaEsperada": "Hola, mundo!"
+      "salidaEsperada": "Hola, mundo!",
+      "numero": "PY-N1-01",
+      "modulo": "N1",
+      "conceptos": [
+        "print",
+        "cadenas",
+        "hola mundo"
+      ],
+      "pista": "Usa print(\"...\") para mostrar texto en pantalla.",
+      "entradaProcesoSalida": {
+        "entrada": "Ninguna",
+        "proceso": "Llamar a print con el mensaje",
+        "salida": "Hola, mundo!"
+      }
     },
     {
       "id": "py-n1-002",
@@ -25,7 +38,20 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "print(\"Mi nombre es Ana\")",
-      "salidaEsperada": "Mi nombre es Ana"
+      "salidaEsperada": "Mi nombre es Ana",
+      "numero": "PY-N1-02",
+      "modulo": "N1",
+      "conceptos": [
+        "print",
+        "cadenas",
+        "literales"
+      ],
+      "pista": "print(\"Mi nombre es Ana\") imprime el texto tal como está escrito entre comillas.",
+      "entradaProcesoSalida": {
+        "entrada": "Ninguna",
+        "proceso": "Llamar a print con el nombre",
+        "salida": "Mi nombre es Ana"
+      }
     },
     {
       "id": "py-n1-003",
@@ -37,7 +63,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "n = 5\nprint(\"El número es:\", n)",
-      "salidaEsperada": "El número es: 5"
+      "salidaEsperada": "El número es: 5",
+      "numero": "PY-N1-03",
+      "modulo": "N1",
+      "conceptos": [
+        "variables",
+        "int",
+        "print",
+        "asignación"
+      ],
+      "pista": "Asigna edad = 20 y luego print(edad) para mostrar su valor.",
+      "entradaProcesoSalida": {
+        "entrada": "Ninguna",
+        "proceso": "Declarar variable y mostrarla",
+        "salida": "El valor de la variable"
+      }
     },
     {
       "id": "py-n1-004",
@@ -49,7 +89,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "nombre = \"Juan\"\nprint(\"Nombre:\", nombre)",
-      "salidaEsperada": "Nombre: Juan"
+      "salidaEsperada": "Nombre: Juan",
+      "numero": "PY-N1-04",
+      "modulo": "N1",
+      "conceptos": [
+        "variables",
+        "str",
+        "print",
+        "cadenas"
+      ],
+      "pista": "Asigna nombre = \"tu nombre\" y luego muéstrala con print(nombre).",
+      "entradaProcesoSalida": {
+        "entrada": "Ninguna",
+        "proceso": "Declarar variable cadena y mostrarla",
+        "salida": "El valor de la variable"
+      }
     },
     {
       "id": "py-n1-005",
@@ -61,7 +115,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "nombre = input(\"Ingresa tu nombre: \")\nprint(f\"Hola, {nombre}!\")",
-      "salidaEsperada": "Ingresa tu nombre: \nHola, Maria!"
+      "salidaEsperada": "Ingresa tu nombre: \nHola, Maria!",
+      "numero": "PY-N1-05",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "print",
+        "variables",
+        "cadenas"
+      ],
+      "pista": "nombre = input(\"Ingresa tu nombre: \") guarda lo que escribe el usuario.",
+      "entradaProcesoSalida": {
+        "entrada": "Nombre del usuario",
+        "proceso": "Leer con input() y mostrar saludo",
+        "salida": "Hola, [nombre]!"
+      }
     },
     {
       "id": "py-n1-006",
@@ -73,7 +141,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "n = int(input(\"Ingresa un número entero: \"))\ndoble = n * 2\nprint(f\"El doble de {n} es {doble}\")",
-      "salidaEsperada": "Ingresa un número entero: \nEl doble de 7 es 14"
+      "salidaEsperada": "Ingresa un número entero: \nEl doble de 7 es 14",
+      "numero": "PY-N1-06",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "int()",
+        "operadores",
+        "print"
+      ],
+      "pista": "Convierte la entrada a entero con int(input(...)). Luego multiplica por 2.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero",
+        "proceso": "Leer, convertir a int y multiplicar por 2",
+        "salida": "El doble del número"
+      }
     },
     {
       "id": "py-n1-007",
@@ -85,7 +167,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = int(input(\"Ingresa el primer número: \"))\nb = int(input(\"Ingresa el segundo número: \"))\nsuma = a + b\nprint(f\"La suma de {a} y {b} es: {suma}\")",
-      "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nLa suma de 5 y 3 es: 8"
+      "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nLa suma de 5 y 3 es: 8",
+      "numero": "PY-N1-07",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "int()",
+        "suma",
+        "print"
+      ],
+      "pista": "Lee dos números con int(input(...)) y súmalos. Muestra el resultado.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos números enteros",
+        "proceso": "Sumar ambos valores",
+        "salida": "La suma"
+      }
     },
     {
       "id": "py-n1-008",
@@ -97,7 +193,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "base = float(input(\"Ingresa la base: \"))\naltura = float(input(\"Ingresa la altura: \"))\narea = base * altura\nprint(f\"El área del rectángulo es: {area}\")",
-      "salidaEsperada": "Ingresa la base: \nIngresa la altura: \nEl área del rectángulo es: 15.0"
+      "salidaEsperada": "Ingresa la base: \nIngresa la altura: \nEl área del rectángulo es: 15.0",
+      "numero": "PY-N1-08",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "multiplicación",
+        "variables"
+      ],
+      "pista": "area = base * altura. Lee base y altura con float(input(...)).",
+      "entradaProcesoSalida": {
+        "entrada": "Base y altura del rectángulo",
+        "proceso": "Calcular base × altura",
+        "salida": "El área"
+      }
     },
     {
       "id": "py-n1-009",
@@ -109,7 +219,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "c = float(input(\"Ingresa la temperatura en Celsius: \"))\nf = c * 9 / 5 + 32\nprint(f\"{c} °C equivale a {f} °F\")",
-      "salidaEsperada": "Ingresa la temperatura en Celsius: \n100.0 °C equivale a 212.0 °F"
+      "salidaEsperada": "Ingresa la temperatura en Celsius: \n100.0 °C equivale a 212.0 °F",
+      "numero": "PY-N1-09",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "fórmula",
+        "conversión"
+      ],
+      "pista": "Fahrenheit = (Celsius × 9/5) + 32. Lee Celsius con float(input(...)).",
+      "entradaProcesoSalida": {
+        "entrada": "Temperatura en Celsius",
+        "proceso": "Aplicar fórmula de conversión",
+        "salida": "Temperatura en Fahrenheit"
+      }
     },
     {
       "id": "py-n1-010",
@@ -121,7 +245,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "n1 = float(input(\"Ingresa la nota 1: \"))\nn2 = float(input(\"Ingresa la nota 2: \"))\nn3 = float(input(\"Ingresa la nota 3: \"))\nprom = (n1 + n2 + n3) / 3\nprint(f\"Promedio: {prom}\")",
-      "salidaEsperada": "Ingresa la nota 1: \nIngresa la nota 2: \nIngresa la nota 3: \nPromedio: 5.5"
+      "salidaEsperada": "Ingresa la nota 1: \nIngresa la nota 2: \nIngresa la nota 3: \nPromedio: 5.5",
+      "numero": "PY-N1-10",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "promedio",
+        "división"
+      ],
+      "pista": "promedio = (n1 + n2 + n3) / 3. Usa float() para aceptar decimales.",
+      "entradaProcesoSalida": {
+        "entrada": "Tres notas numéricas",
+        "proceso": "Calcular la suma y dividir entre 3",
+        "salida": "El promedio"
+      }
     },
     {
       "id": "py-n1-011",
@@ -133,7 +271,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "peso = float(input(\"Ingresa tu peso en kg: \"))\ntalla = float(input(\"Ingresa tu talla en metros: \"))\nimc = peso / (talla ** 2)\nprint(f\"Tu IMC es: {imc:.2f}\")",
-      "salidaEsperada": "Ingresa tu peso en kg: \nIngresa tu talla en metros: \nTu IMC es: 22.86"
+      "salidaEsperada": "Ingresa tu peso en kg: \nIngresa tu talla en metros: \nTu IMC es: 22.86",
+      "numero": "PY-N1-11",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "fórmula",
+        "variables"
+      ],
+      "pista": "IMC = peso / (talla ** 2). Divide el peso (kg) entre la talla (m) al cuadrado.",
+      "entradaProcesoSalida": {
+        "entrada": "Peso (kg) y talla (m)",
+        "proceso": "Calcular IMC = peso / talla²",
+        "salida": "El IMC"
+      }
     },
     {
       "id": "py-n1-012",
@@ -145,7 +297,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "total = int(input(\"Ingresa el total de segundos: \"))\nminutos = total // 60\nsegs = total % 60\nprint(f\"{minutos} minutos y {segs} segundos\")",
-      "salidaEsperada": "Ingresa el total de segundos: \n2 minutos y 35 segundos"
+      "salidaEsperada": "Ingresa el total de segundos: \n2 minutos y 35 segundos",
+      "numero": "PY-N1-12",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "int()",
+        "módulo",
+        "división entera"
+      ],
+      "pista": "minutos = segundos // 60; resto = segundos % 60. Usa // para división entera y % para el resto.",
+      "entradaProcesoSalida": {
+        "entrada": "Total de segundos",
+        "proceso": "División entera y módulo para obtener minutos y segundos",
+        "salida": "Minutos y segundos"
+      }
     },
     {
       "id": "py-n1-013",
@@ -157,7 +323,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "precio_neto = float(input(\"Ingresa el precio neto: \"))\niva = precio_neto * 0.19\nprecio_final = precio_neto + iva\nprint(f\"Precio neto:   ${precio_neto}\")\nprint(f\"IVA (19%):     ${iva}\")\nprint(f\"Precio final:  ${precio_final}\")",
-      "salidaEsperada": "Ingresa el precio neto: \nPrecio neto:   $1000.0\nIVA (19%):     $190.0\nPrecio final:  $1190.0"
+      "salidaEsperada": "Ingresa el precio neto: \nPrecio neto:   $1000.0\nIVA (19%):     $190.0\nPrecio final:  $1190.0",
+      "numero": "PY-N1-13",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "porcentaje",
+        "variables"
+      ],
+      "pista": "precio_final = precio * 1.19. El IVA del 19% equivale a multiplicar por 1.19.",
+      "entradaProcesoSalida": {
+        "entrada": "Precio sin IVA",
+        "proceso": "Multiplicar por 1.19",
+        "salida": "Precio con IVA"
+      }
     },
     {
       "id": "py-n1-014",
@@ -169,7 +349,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "precio = float(input(\"Ingresa el precio original: \"))\nporcentaje = float(input(\"Ingresa el porcentaje de descuento: \"))\ndescuento = precio * (porcentaje / 100)\nprecio_final = precio - descuento\nprint(f\"Descuento aplicado: ${descuento}\")\nprint(f\"Precio final: ${precio_final}\")",
-      "salidaEsperada": "Ingresa el precio original: \nIngresa el porcentaje de descuento: \nDescuento aplicado: $200.0\nPrecio final: $800.0"
+      "salidaEsperada": "Ingresa el precio original: \nIngresa el porcentaje de descuento: \nDescuento aplicado: $200.0\nPrecio final: $800.0",
+      "numero": "PY-N1-14",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "porcentaje",
+        "operadores"
+      ],
+      "pista": "descuento = precio * (porcentaje / 100); precio_final = precio - descuento.",
+      "entradaProcesoSalida": {
+        "entrada": "Precio y porcentaje de descuento",
+        "proceso": "Calcular y restar el descuento",
+        "salida": "Precio final con descuento"
+      }
     },
     {
       "id": "py-n1-015",
@@ -181,7 +375,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "n = int(input(\"Ingresa un número: \"))\ncuadrado = n ** 2\ncubo = n ** 3\nprint(f\"{n} al cuadrado es: {cuadrado}\")\nprint(f\"{n} al cubo es: {cubo}\")",
-      "salidaEsperada": "Ingresa un número: \n4 al cuadrado es: 16\n4 al cubo es: 64"
+      "salidaEsperada": "Ingresa un número: \n4 al cuadrado es: 16\n4 al cubo es: 64",
+      "numero": "PY-N1-15",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "int()",
+        "potencias",
+        "operador **"
+      ],
+      "pista": "cuadrado = n ** 2; cubo = n ** 3. El operador ** calcula potencias en Python.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número entero N",
+        "proceso": "Calcular N² y N³",
+        "salida": "El cuadrado y el cubo de N"
+      }
     },
     {
       "id": "py-n1-016",
@@ -193,7 +401,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "a = int(input(\"Ingresa el valor de a: \"))\nb = int(input(\"Ingresa el valor de b: \"))\nprint(f\"Antes: a = {a}, b = {b}\")\naux = a\na = b\nb = aux\nprint(f\"Después: a = {a}, b = {b}\")",
-      "salidaEsperada": "Ingresa el valor de a: \nIngresa el valor de b: \nAntes: a = 5, b = 8\nDespués: a = 8, b = 5"
+      "salidaEsperada": "Ingresa el valor de a: \nIngresa el valor de b: \nAntes: a = 5, b = 8\nDespués: a = 8, b = 5",
+      "numero": "PY-N1-16",
+      "modulo": "N1",
+      "conceptos": [
+        "variables",
+        "variable auxiliar",
+        "intercambio",
+        "asignación"
+      ],
+      "pista": "Necesitas una variable temporal: aux = a; a = b; b = aux. En Python también puedes usar: a, b = b, a.",
+      "entradaProcesoSalida": {
+        "entrada": "Dos valores",
+        "proceso": "Intercambiar usando variable auxiliar",
+        "salida": "Los dos valores intercambiados"
+      }
     },
     {
       "id": "py-n1-017",
@@ -205,7 +427,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "numero = int(input(\"Ingresa un número de 2 cifras: \"))\ndecena = numero // 10\nunidad = numero % 10\nsuma = decena + unidad\nprint(f\"Dígitos: {decena}, {unidad} — Suma: {suma}\")",
-      "salidaEsperada": "Ingresa un número de 2 cifras: \nDígitos: 4, 7 — Suma: 11"
+      "salidaEsperada": "Ingresa un número de 2 cifras: \nDígitos: 4, 7 — Suma: 11",
+      "numero": "PY-N1-17",
+      "modulo": "N1",
+      "conceptos": [
+        "int()",
+        "módulo",
+        "división entera",
+        "dígitos"
+      ],
+      "pista": "Para un número de 2 cifras: unidades = n % 10; decenas = n // 10. Luego suma ambos.",
+      "entradaProcesoSalida": {
+        "entrada": "Un número de 2 cifras",
+        "proceso": "Extraer dígitos con // y % y sumarlos",
+        "salida": "La suma de los dígitos"
+      }
     },
     {
       "id": "py-n1-018",
@@ -217,7 +453,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "import math\nx1 = float(input(\"Ingresa x1: \"))\ny1 = float(input(\"Ingresa y1: \"))\nx2 = float(input(\"Ingresa x2: \"))\ny2 = float(input(\"Ingresa y2: \"))\ndistancia = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\nprint(f\"La distancia entre los puntos es: {distancia}\")",
-      "salidaEsperada": "Ingresa x1: \nIngresa y1: \nIngresa x2: \nIngresa y2: \nLa distancia entre los puntos es: 5.0"
+      "salidaEsperada": "Ingresa x1: \nIngresa y1: \nIngresa x2: \nIngresa y2: \nLa distancia entre los puntos es: 5.0",
+      "numero": "PY-N1-18",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "matemáticas",
+        "raíz cuadrada"
+      ],
+      "pista": "distancia = ((x2-x1)**2 + (y2-y1)**2) ** 0.5. Usa ** 0.5 para raíz cuadrada.",
+      "entradaProcesoSalida": {
+        "entrada": "Coordenadas de dos puntos (x1,y1) y (x2,y2)",
+        "proceso": "Aplicar fórmula de distancia euclidiana",
+        "salida": "La distancia entre los puntos"
+      }
     },
     {
       "id": "py-n1-019",
@@ -229,7 +479,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cuenta = float(input(\"Ingresa el total de la cuenta: \"))\npropina = cuenta * 0.15\ntotal = cuenta + propina\nprint(f\"Propina (15%): ${propina}\")\nprint(f\"Total a pagar: ${total}\")",
-      "salidaEsperada": "Ingresa el total de la cuenta: \nPropina (15%): $1500.0\nTotal a pagar: $11500.0"
+      "salidaEsperada": "Ingresa el total de la cuenta: \nPropina (15%): $1500.0\nTotal a pagar: $11500.0",
+      "numero": "PY-N1-19",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "porcentaje",
+        "variables"
+      ],
+      "pista": "propina = total * 0.15. La propina del 15% es el total multiplicado por 0.15.",
+      "entradaProcesoSalida": {
+        "entrada": "Total de la cuenta",
+        "proceso": "Calcular el 15% del total",
+        "salida": "Monto de la propina"
+      }
     },
     {
       "id": "py-n1-020",
@@ -241,7 +505,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "precio = float(input(\"Ingresa el precio del artículo: \"))\npagado = float(input(\"Ingresa el monto entregado: \"))\ncambio = pagado - precio\nprint(f\"El cambio es: ${cambio}\")",
-      "salidaEsperada": "Ingresa el precio del artículo: \nIngresa el monto entregado: \nEl cambio es: $500.0"
+      "salidaEsperada": "Ingresa el precio del artículo: \nIngresa el monto entregado: \nEl cambio es: $500.0",
+      "numero": "PY-N1-20",
+      "modulo": "N1",
+      "conceptos": [
+        "input",
+        "float()",
+        "sustracción",
+        "cambio"
+      ],
+      "pista": "cambio = pago - precio. Asegúrate de convertir ambos valores a float.",
+      "entradaProcesoSalida": {
+        "entrada": "Precio del producto y monto del pago",
+        "proceso": "Restar precio al pago",
+        "salida": "El cambio a devolver"
+      }
     }
   ]
 }

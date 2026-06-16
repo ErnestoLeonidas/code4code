@@ -1488,6 +1488,28 @@ test('banco Python: ejercicios no contienen sintaxis PSeInt o LiteSeInt', () => 
   }
 });
 
+test('banco Python: todos los ejercicios tienen numero, modulo y conceptos', () => {
+  const ctx = loadPythonEjercicios();
+  for (const e of ctx.EjerciciosPython.EJERCICIOS) {
+    assert(e.numero && /^PY-N\d-\d{2}$/.test(e.numero),
+      `${e.id}: numero inválido o ausente: ${e.numero}`);
+    assert(e.modulo && /^N\d$/.test(e.modulo),
+      `${e.id}: modulo inválido o ausente: ${e.modulo}`);
+    assert(Array.isArray(e.conceptos) && e.conceptos.length > 0,
+      `${e.id}: conceptos ausente o vacío`);
+  }
+});
+
+test('banco Python: todos los ejercicios adaptados tienen pista y entradaProcesoSalida', () => {
+  const ctx = loadPythonEjercicios();
+  for (const e of ctx.EjerciciosPython.listarAdaptados()) {
+    assert(e.pista && e.pista.trim().length > 0,
+      `${e.id}: pista ausente o vacía`);
+    assert(e.entradaProcesoSalida && e.entradaProcesoSalida.entrada,
+      `${e.id}: entradaProcesoSalida ausente o incompleta`);
+  }
+});
+
 (async () => {
   let fallas = 0;
 

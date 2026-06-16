@@ -13,7 +13,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nprint(f'La cadena tiene {len(cadena)} caracteres.')",
-      "salidaEsperada": "Ingresa una cadena: Python\nLa cadena tiene 6 caracteres."
+      "salidaEsperada": "Ingresa una cadena: Python\nLa cadena tiene 6 caracteres.",
+      "numero": "PY-N6-01",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "len",
+        "cadenas",
+        "input"
+      ],
+      "pista": "len(cadena) devuelve la cantidad de caracteres. Guarda la cadena con input().",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "Calcular longitud con len()",
+        "salida": "El número de caracteres"
+      }
     },
     {
       "id": "py-n6-002",
@@ -25,7 +39,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nprint(f'Mayúsculas: {cadena.upper()}')\nprint(f'Minúsculas: {cadena.lower()}')",
-      "salidaEsperada": "Ingresa una cadena: Hola Mundo\nMayúsculas: HOLA MUNDO\nMinúsculas: hola mundo"
+      "salidaEsperada": "Ingresa una cadena: Hola Mundo\nMayúsculas: HOLA MUNDO\nMinúsculas: hola mundo",
+      "numero": "PY-N6-02",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "upper",
+        "lower",
+        "métodos de cadena"
+      ],
+      "pista": "cadena.upper() convierte a mayúsculas; cadena.lower() a minúsculas.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "Aplicar .upper() y .lower()",
+        "salida": "La cadena en mayúsculas y en minúsculas"
+      }
     },
     {
       "id": "py-n6-003",
@@ -37,7 +65,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "nombre = input('Ingresa tu nombre: ')\napellido = input('Ingresa tu apellido: ')\nnombre_completo = nombre + ' ' + apellido\nprint(f'Nombre completo: {nombre_completo}')",
-      "salidaEsperada": "Ingresa tu nombre: Carlos\nIngresa tu apellido: López\nNombre completo: Carlos López"
+      "salidaEsperada": "Ingresa tu nombre: Carlos\nIngresa tu apellido: López\nNombre completo: Carlos López",
+      "numero": "PY-N6-03",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "concatenación",
+        "+",
+        "f-string"
+      ],
+      "pista": "Puedes unir con nombre + \" \" + apellido o con f\"{nombre} {apellido}\".",
+      "entradaProcesoSalida": {
+        "entrada": "Nombre y apellido por separado",
+        "proceso": "Concatenar con espacio entre medias",
+        "salida": "Nombre completo"
+      }
     },
     {
       "id": "py-n6-004",
@@ -49,7 +91,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "palabra = input('Ingresa una palabra: ')\nprint(f'Primer carácter: {palabra[0]}')\nprint(f'Último carácter: {palabra[-1]}')",
-      "salidaEsperada": "Ingresa una palabra: python\nPrimer carácter: p\nÚltimo carácter: n"
+      "salidaEsperada": "Ingresa una palabra: python\nPrimer carácter: p\nÚltimo carácter: n",
+      "numero": "PY-N6-04",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "indexación",
+        "cadenas",
+        "índices"
+      ],
+      "pista": "El primer carácter es cadena[0] y el último es cadena[-1] o cadena[len(cadena)-1].",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena",
+        "proceso": "Acceder a los índices 0 y -1",
+        "salida": "El primer y el último carácter"
+      }
     },
     {
       "id": "py-n6-005",
@@ -61,7 +117,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nprint(f'Original:  {cadena}')\nprint(f'Invertida: {cadena[::-1]}')",
-      "salidaEsperada": "Ingresa una cadena: murciélago\nOriginal:  murciélago\nInvertida: ogaléicrum"
+      "salidaEsperada": "Ingresa una cadena: murciélago\nOriginal:  murciélago\nInvertida: ogaléicrum",
+      "numero": "PY-N6-05",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "slicing",
+        "[::-1]",
+        "invertir cadena"
+      ],
+      "pista": "cadena[::-1] invierte la cadena con slicing. Los tres parámetros son inicio:fin:paso.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena",
+        "proceso": "Invertir con slicing [::-1]",
+        "salida": "La cadena en orden inverso"
+      }
     },
     {
       "id": "py-n6-006",
@@ -73,7 +143,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nvocales = 'aeiouAEIOU'\ncontador = 0\nfor caracter in cadena:\n    if caracter in vocales:\n        contador += 1\nprint(f'La cadena tiene {contador} vocales.')",
-      "salidaEsperada": "Ingresa una cadena: Educación\nLa cadena tiene 5 vocales."
+      "salidaEsperada": "Ingresa una cadena: Educación\nLa cadena tiene 5 vocales.",
+      "numero": "PY-N6-06",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "for",
+        "in",
+        "conteo",
+        "vocales"
+      ],
+      "pista": "for c in cadena: if c in \"aeiouAEIOU\": contador += 1.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "Recorrer e identificar vocales",
+        "salida": "Número de vocales"
+      }
     },
     {
       "id": "py-n6-007",
@@ -85,7 +170,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "palabra = input('Ingresa una palabra: ')\npalabra_lower = palabra.lower()\nif palabra_lower == palabra_lower[::-1]:\n    print(f'\"{palabra}\" es un palíndromo.')\nelse:\n    print(f'\"{palabra}\" no es un palíndromo.')",
-      "salidaEsperada": "Ingresa una palabra: radar\n\"radar\" es un palíndromo."
+      "salidaEsperada": "Ingresa una palabra: radar\n\"radar\" es un palíndromo.",
+      "numero": "PY-N6-07",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "slicing",
+        "palíndromo",
+        "comparación"
+      ],
+      "pista": "Un palíndromo es igual al revés: cadena == cadena[::-1]. Convierte a minúsculas antes de comparar.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena",
+        "proceso": "Comparar la cadena con su inversa",
+        "salida": "\"Es palíndromo\" o \"No es palíndromo\""
+      }
     },
     {
       "id": "py-n6-008",
@@ -97,7 +196,20 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "frase = input('Ingresa una frase: ')\nresultado = frase.replace(' ', '_')\nprint(f'Resultado: {resultado}')",
-      "salidaEsperada": "Ingresa una frase: aprender a programar\nResultado: aprender_a_programar"
+      "salidaEsperada": "Ingresa una frase: aprender a programar\nResultado: aprender_a_programar",
+      "numero": "PY-N6-08",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "replace",
+        "métodos de cadena"
+      ],
+      "pista": "cadena.replace(\" \", \"_\") reemplaza todos los espacios por guiones bajos.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena con espacios",
+        "proceso": "Reemplazar espacios con replace()",
+        "salida": "La cadena con guiones bajos"
+      }
     },
     {
       "id": "py-n6-009",
@@ -109,7 +221,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cadena = input('Ingresa una cadena: ')\ncaracter = input('Ingresa el carácter a buscar: ')\nconteo = cadena.count(caracter)\nprint(f'El carácter \"{caracter}\" aparece {conteo} vez/veces.')",
-      "salidaEsperada": "Ingresa una cadena: mississippi\nIngresa el carácter a buscar: s\nEl carácter \"s\" aparece 4 vez/veces."
+      "salidaEsperada": "Ingresa una cadena: mississippi\nIngresa el carácter a buscar: s\nEl carácter \"s\" aparece 4 vez/veces.",
+      "numero": "PY-N6-09",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "count",
+        "ocurrencias",
+        "métodos de cadena"
+      ],
+      "pista": "cadena.count(caracter) cuenta cuántas veces aparece el carácter en la cadena.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena y un carácter",
+        "proceso": "Contar ocurrencias con count()",
+        "salida": "El número de ocurrencias"
+      }
     },
     {
       "id": "py-n6-010",
@@ -121,7 +247,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "frase = input('Ingresa una frase: ')\nprint(f'En formato título: {frase.title()}')",
-      "salidaEsperada": "Ingresa una frase: el principito de antoine de saint-exupéry\nEn formato título: El Principito De Antoine De Saint-Exupéry"
+      "salidaEsperada": "Ingresa una frase: el principito de antoine de saint-exupéry\nEn formato título: El Principito De Antoine De Saint-Exupéry",
+      "numero": "PY-N6-10",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "title",
+        "capitalize",
+        "métodos de cadena"
+      ],
+      "pista": "cadena.title() pone en mayúscula la primera letra de cada palabra.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena de texto",
+        "proceso": "Aplicar .title() para formato título",
+        "salida": "La cadena con cada palabra capitalizada"
+      }
     },
     {
       "id": "py-n6-011",
@@ -133,7 +273,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nif cadena and cadena[0].isupper():\n    print('La cadena empieza con mayúscula.')\nelse:\n    print('La cadena no empieza con mayúscula.')",
-      "salidaEsperada": "Ingresa una cadena: Python es genial\nLa cadena empieza con mayúscula."
+      "salidaEsperada": "Ingresa una cadena: Python es genial\nLa cadena empieza con mayúscula.",
+      "numero": "PY-N6-11",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "isupper",
+        "indexación",
+        "condicional"
+      ],
+      "pista": "cadena[0].isupper() devuelve True si el primer carácter es mayúscula.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena",
+        "proceso": "Verificar si cadena[0] es mayúscula",
+        "salida": "\"Empieza con mayúscula\" o \"No empieza con mayúscula\""
+      }
     },
     {
       "id": "py-n6-012",
@@ -145,7 +299,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "frase = input('Ingresa una frase: ')\npalabras = frase.split()\nfor i, palabra in enumerate(palabras, 1):\n    print(f'{i}. {palabra}')",
-      "salidaEsperada": "Ingresa una frase: hola mundo Python\n1. hola\n2. mundo\n3. Python"
+      "salidaEsperada": "Ingresa una frase: hola mundo Python\n1. hola\n2. mundo\n3. Python",
+      "numero": "PY-N6-12",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "split",
+        "for",
+        "palabras"
+      ],
+      "pista": "cadena.split() separa por espacios en blanco y devuelve una lista de palabras.",
+      "entradaProcesoSalida": {
+        "entrada": "Una frase con varias palabras",
+        "proceso": "Separar con split() y recorrer la lista",
+        "salida": "Cada palabra en una línea separada"
+      }
     },
     {
       "id": "py-n6-013",
@@ -157,7 +325,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cadena = '   Hola, mundo!   '\nprint(f'Con espacios:    \"{cadena}\"')\nprint(f'Sin espacios:    \"{cadena.strip()}\"')",
-      "salidaEsperada": "Con espacios:    \"   Hola, mundo!   \"\nSin espacios:    \"Hola, mundo!\""
+      "salidaEsperada": "Con espacios:    \"   Hola, mundo!   \"\nSin espacios:    \"Hola, mundo!\"",
+      "numero": "PY-N6-13",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "strip",
+        "lstrip",
+        "rstrip",
+        "espacios"
+      ],
+      "pista": "cadena.strip() elimina espacios al principio y al final. También existen lstrip() y rstrip().",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena con espacios al inicio y/o final",
+        "proceso": "Aplicar .strip()",
+        "salida": "La cadena sin espacios extra"
+      }
     },
     {
       "id": "py-n6-014",
@@ -169,7 +352,22 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "def cifrado_cesar(texto, desplazamiento=3):\n    resultado = ''\n    for caracter in texto:\n        if caracter.isupper():\n            resultado += chr((ord(caracter) - ord('A') + desplazamiento) % 26 + ord('A'))\n        elif caracter.islower():\n            resultado += chr((ord(caracter) - ord('a') + desplazamiento) % 26 + ord('a'))\n        else:\n            resultado += caracter\n    return resultado\n\ntexto = 'Hola Mundo'\ncifrado = cifrado_cesar(texto)\nprint(f'Original: {texto}')\nprint(f'Cifrado:  {cifrado}')",
-      "salidaEsperada": "Original: Hola Mundo\nCifrado:  Krod Pxqgr"
+      "salidaEsperada": "Original: Hola Mundo\nCifrado:  Krod Pxqgr",
+      "numero": "PY-N6-14",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "ord",
+        "chr",
+        "cifrado",
+        "for"
+      ],
+      "pista": "ord(c) da el código ASCII del carácter y chr(n) lo convierte de vuelta. Suma el desplazamiento al código.",
+      "entradaProcesoSalida": {
+        "entrada": "Un texto y el desplazamiento",
+        "proceso": "Desplazar cada letra en el alfabeto",
+        "salida": "El texto cifrado"
+      }
     },
     {
       "id": "py-n6-015",
@@ -181,7 +379,21 @@
       "estadoAdaptacion": "adaptado",
       "lenguaje": "python",
       "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nif cadena.isdigit():\n    print(f'\"{cadena}\" es un número entero válido.')\nelse:\n    try:\n        float(cadena)\n        print(f'\"{cadena}\" es un número decimal válido.')\n    except ValueError:\n        print(f'\"{cadena}\" no es un número válido.')",
-      "salidaEsperada": "Ingresa una cadena: 3.14\n\"3.14\" es un número decimal válido."
+      "salidaEsperada": "Ingresa una cadena: 3.14\n\"3.14\" es un número decimal válido.",
+      "numero": "PY-N6-15",
+      "modulo": "N6",
+      "conceptos": [
+        "str",
+        "try/except",
+        "float",
+        "validación"
+      ],
+      "pista": "Intenta float(cadena) dentro de un try. Si lanza ValueError, la cadena no es numérica.",
+      "entradaProcesoSalida": {
+        "entrada": "Una cadena",
+        "proceso": "Intentar convertir a float con try/except",
+        "salida": "\"Es un número válido\" o \"No es un número\""
+      }
     }
   ]
 }
