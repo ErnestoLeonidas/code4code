@@ -1,5 +1,28 @@
 # Changelog — Code4Code
 
+## [2.3.1-beta] - 2026-06-15
+
+### Fase 4 — Mejoras Python
+
+- `core/python/worker.js`: inspector de variables — tras ejecutar extrae el namespace
+  del usuario (filtra privados, módulos y callables) y los envía como mensaje
+  `{tipo:'variables'}`; parseo de traceback mejorado extrae la última línea de
+  excepción con número de línea (`Línea N: NameError: ...`).
+- `core/python/bridge.js`: limpia el inspector al iniciar (`reiniciar`), mapea tipos
+  Python → contrato Code4Code (`int→entero`, `str→caracter`, `bool→logico`, `list→lista`),
+  llama `host.reportarVariables()` al terminar la ejecución.
+- `core/python/provider.js`: amplía `KEYWORDS_AUTOCOMPLETAR` con `abs`, `sum`, `max`,
+  `min`, `sorted`, `enumerate`, `zip`, `map`, `filter`, `any`, `all`, `isinstance`,
+  `open`, `round`, `pow` y más (total ~47 entradas).
+
+### Fase 3b — Metadatos de perfil PSeInt en archivo
+
+- `js/app.js` — descarga: antepone `// Perfil: Estricto` o `// Perfil: Flexible`
+  al contenido del `.psc` cuando el lenguaje activo es PSeInt.
+- `js/app.js` — importar: detecta la línea de perfil en la primera línea del `.psc`,
+  activa PSeInt si no lo estaba, configura el perfil y elimina la línea antes de
+  mostrar el contenido; los `.psc` sin comentario de perfil también activan PSeInt.
+
 ## [2.3.0-beta] - 2026-06-14
 
 ### Fase 4 — Lenguaje Python (base funcional)
