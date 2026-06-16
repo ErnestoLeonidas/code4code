@@ -240,6 +240,8 @@ const BUILTINS_PSEINT = {
   CONVERTIRATEXTO: {
     aridad: 1,
     fn: function(x) {
+      if (x === true)  return 'Verdadero';
+      if (x === false) return 'Falso';
       return String(x);
     },
   },

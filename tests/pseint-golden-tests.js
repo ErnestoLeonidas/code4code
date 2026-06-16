@@ -626,6 +626,88 @@ await t('golden 25 — Para con paso negativo (10 hasta 1 paso -2)', async () =>
   );
 });
 
+// 26. CONVERTIRATEXTO con booleano produce "Verdadero"/"Falso"
+await t('golden 26 — CONVERTIRATEXTO(Verdadero) = "Verdadero"', async () => {
+  const s = await ejecutar(`
+    Algoritmo convierte_texto
+      Definir b Como Logico
+      Definir s Como Cadena
+      b <- Verdadero
+      s <- CONVERTIRATEXTO(b)
+      Escribir s
+      b <- Falso
+      s <- CONVERTIRATEXTO(b)
+      Escribir s
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 2 && t1[0] === 'Verdadero' && t1[1] === 'Falso',
+    `esperaba ["Verdadero","Falso"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 27. CONVERTIRANUMERO convierte cadena a número
+await t('golden 27 — CONVERTIRANUMERO("42") = 42', async () => {
+  const s = await ejecutar(`
+    Algoritmo convierte_num
+      Definir n Como Entero
+      n <- CONVERTIRANUMERO("42")
+      Escribir n
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && Number(t1[0]) === 42,
+    `esperaba ["42"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 28. Leer variable Logico: usuario escribe "Falso" → false
+await t('golden 28 — Leer Logico: "Falso" → Falso, "Verdadero" → Verdadero', async () => {
+  const s = await ejecutar(`
+    Algoritmo leer_logico
+      Definir b Como Logico
+      Leer b
+      Si b Entonces
+        Escribir "era verdadero"
+      Sino
+        Escribir "era falso"
+      FinSi
+    FinAlgoritmo
+  `, ['Falso']);
+  const t1 = textos(s);
+  ok(t1.length === 1 && t1[0] === 'era falso',
+    `esperaba ["era falso"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 29. Asignación Real → Entero trunca
+await t('golden 29 — asignación implícita Real a Entero trunca (7.9 → 7)', async () => {
+  const s = await ejecutar(`
+    Algoritmo trunca_real
+      Definir n Como Entero
+      n <- 7.9
+      Escribir n
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && t1[0] === '7',
+    `esperaba ["7"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 30. SUBCADENA y LONGITUD en combinación
+await t('golden 30 — SUBCADENA y LONGITUD', async () => {
+  const s = await ejecutar(`
+    Algoritmo cadena_ops
+      Definir cad Como Cadena
+      Definir n Como Entero
+      cad <- "Hola Mundo"
+      n <- LONGITUD(cad)
+      Escribir n
+      Escribir SUBCADENA(cad, 1, 4)
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 2 && t1[0] === '10' && t1[1] === 'Hola',
+    `esperaba ["10","Hola"], obtuvo ${JSON.stringify(t1)}`);
+});
+
 // ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------
