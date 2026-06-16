@@ -346,6 +346,41 @@ t('perfil flexible: asignar y usar variable sin Definir no genera errores de var
     JSON.stringify(erroresVarNoDef));
 });
 
+// 21. Ordenar sobre arreglo no dimensionado genera error
+t('Ordenar sobre arreglo no dimensionado genera error', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir arr Como Entero',
+    '  Ordenar(arr)',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  const errOrdenar = errores.filter(function(e) {
+    return /ordenar/i.test(e.mensaje) || /no fue declarado con dimension/i.test(e.mensaje);
+  });
+  ok(errOrdenar.length >= 1,
+    'Ordenar sobre arreglo no dimensionado debe generar error; obtuvo: ' +
+    JSON.stringify(errores));
+});
+
+// 22. Ordenar sobre arreglo bien dimensionado es válido
+t('Ordenar sobre arreglo dimensionado es válido', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir arr Como Entero',
+    '  Dimension arr[5]',
+    '  Ordenar(arr)',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  const errOrdenar = errores.filter(function(e) {
+    return /ordenar/i.test(e.mensaje);
+  });
+  ok(errOrdenar.length === 0,
+    'Ordenar sobre arreglo dimensionado no debe generar error; obtuvo: ' +
+    JSON.stringify(errOrdenar));
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 //  Resumen
 // ─────────────────────────────────────────────────────────────────────────────
