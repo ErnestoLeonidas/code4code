@@ -433,6 +433,72 @@ await t('perfil flexible: arreglo con índices desde 0', async () => {
   );
 });
 
+// 18. coercionarValor — Real asignado a Entero se trunca
+await t('coercionarValor: Real a Entero trunca (3.9 → 3)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  const r = coercionarValor(3.9, TIPOS_PSEINT.ENTERO);
+  ok(r === 3, `esperaba 3, obtuvo ${r}`);
+});
+
+// 19. coercionarValor — Logico "Falso" → false (bug fix)
+await t('coercionarValor: "Falso" a Logico devuelve false', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  const r = coercionarValor('Falso', TIPOS_PSEINT.LOGICO);
+  ok(r === false, `esperaba false, obtuvo ${r}`);
+});
+
+// 20. coercionarValor — Logico "Verdadero" → true
+await t('coercionarValor: "Verdadero" a Logico devuelve true', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  const r = coercionarValor('Verdadero', TIPOS_PSEINT.LOGICO);
+  ok(r === true, `esperaba true, obtuvo ${r}`);
+});
+
+// 21. coercionarValor — booleano a Cadena da "Verdadero"/"Falso"
+await t('coercionarValor: true/false a Cadena dan "Verdadero"/"Falso"', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(true,  TIPOS_PSEINT.CADENA) === 'Verdadero', 'true → Verdadero');
+  ok(coercionarValor(false, TIPOS_PSEINT.CADENA) === 'Falso',     'false → Falso');
+});
+
+// 22. coercionarValor — cadena inválida a Entero lanza error
+await t('coercionarValor: cadena no numérica a Entero lanza error', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  let lanzó = false;
+  try { coercionarValor('abc', TIPOS_PSEINT.ENTERO); } catch (e) { lanzó = true; }
+  ok(lanzó, 'debía lanzar error');
+});
+
+// 23. Escribir booleano muestra "Verdadero"/"Falso"
+await t('Escribir Logico muestra "Verdadero"/"Falso"', async () => {
+  const s = await ejecutar(`
+    Algoritmo prueba
+      Definir b Como Logico
+      b <- Verdadero
+      Escribir b
+      b <- Falso
+      Escribir b
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 2 && t1[0] === 'Verdadero' && t1[1] === 'Falso',
+    `esperaba ["Verdadero","Falso"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 24. Asignación implícita Real → Entero trunca en runtime
+await t('Asignar Real a Entero trunca el valor', async () => {
+  const s = await ejecutar(`
+    Algoritmo prueba
+      Definir n Como Entero
+      n <- 7.9
+      Escribir n
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && t1[0] === '7',
+    `esperaba ["7"], obtuvo ${JSON.stringify(t1)}`);
+});
+
 // ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------

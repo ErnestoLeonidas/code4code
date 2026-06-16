@@ -226,15 +226,29 @@ class ScopeChainPSeInt {
  */
 function coercionarValor(valor, tipo) {
   switch (tipo) {
-    case TIPOS_PSEINT.ENTERO:
-      return Math.trunc(Number(valor));
-    case TIPOS_PSEINT.REAL:
-      return Number(valor);
+    case TIPOS_PSEINT.ENTERO: {
+      const n = Math.trunc(Number(valor));
+      if (isNaN(n)) throw new Error('No se puede convertir "' + valor + '" a Entero.');
+      return n;
+    }
+    case TIPOS_PSEINT.REAL: {
+      const n = Number(valor);
+      if (isNaN(n)) throw new Error('No se puede convertir "' + valor + '" a Real.');
+      return n;
+    }
     case TIPOS_PSEINT.CADENA:
+      if (valor === true)  return 'Verdadero';
+      if (valor === false) return 'Falso';
       return String(valor);
     case TIPOS_PSEINT.CARACTER:
       return String(valor)[0] || '';
     case TIPOS_PSEINT.LOGICO:
+      if (typeof valor === 'string') {
+        const v = valor.trim().toLowerCase();
+        if (v === 'verdadero' || v === 'true'  || v === '1') return true;
+        if (v === 'falso'     || v === 'false' || v === '0') return false;
+        throw new Error('Valor Logico inválido: "' + valor + '". Use Verdadero o Falso.');
+      }
       return Boolean(valor);
     default:
       throw new Error('coercionarValor: tipo desconocido "' + tipo + '".');
