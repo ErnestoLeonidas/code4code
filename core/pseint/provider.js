@@ -451,6 +451,14 @@
       ejemplo: 'Algoritmo cadenas\n  Definir nombre Como Cadena\n  nombre <- "Mundo"\n  Escribir "Largo: ", LONGITUD(nombre)\n  Escribir "Mayúsculas: ", MAYUSCULAS(nombre)\n  Escribir "Sub [2,4]: ", SUBCADENA(nombre, 2, 4)\n  Escribir CONCATENAR("Hola, ", nombre, "!")\nFinAlgoritmo',
       descripcion: 'Funciones para manipular cadenas de texto. Los índices de SUBCADENA comienzan en 1 (igual que los arreglos).',
       errores: 'SUBCADENA con índices fuera de rango (devuelve cadena vacía), CONVERTIRANUMERO con texto no numérico (lanza error en tiempo de ejecución).'
+    },
+    {
+      nombre: 'Perfil: Estricto vs Flexible',
+      sintaxis: '// Selector de perfil visible solo en modo PSeInt\n// (esquina superior del editor)\n\n─── Perfil ESTRICTO (por defecto) ────────\nAsignación:      solo <- (= siempre compara)\nDeclaración:     Definir obligatorio antes de usar\nÍndices:         arreglos desde 1\n\n─── Perfil FLEXIBLE ──────────────────────\nAsignación:      = también asigna (y <- también)\nDeclaración:     Definir opcional; la variable se\n                 crea en el primer uso con el tipo\n                 del valor asignado\nÍndices:         arreglos desde 0',
+      ejemplo: '// Estricto\nAlgoritmo estricto\n  Definir x Como Entero\n  x <- 5\n  Escribir x\nFinAlgoritmo\n\n// Flexible (mismo resultado)\nAlgoritmo flexible\n  x = 5\n  Escribir x\nFinAlgoritmo',
+      descripcion: 'Code4Code ofrece dos perfiles compatibles con PSeInt de escritorio. Estricto es el más usado en docencia: exige Definir y usa <- para asignar. Flexible relaja ambas restricciones para usuarios que vienen de otros lenguajes.',
+      detalle: 'En el perfil estricto, escribir `x = 5` es un error (= solo compara). En el flexible, `x = 5` asigna el valor 5 y crea la variable automáticamente como Entero. Los arreglos en perfil estricto usan índices desde 1; en flexible desde 0. El perfil que eliges se guarda automáticamente y viaja en el archivo .psc descargado.',
+      errores: 'Mezclar estilos en un mismo algoritmo (intentar usar <- en modo flexible donde ya usaste =, o escribir = en modo estricto). Pasar un archivo .psc de perfil estricto al flexible puede cambiar el comportamiento de los índices de arreglo.'
     }
   ];
 

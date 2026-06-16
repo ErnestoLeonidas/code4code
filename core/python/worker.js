@@ -99,7 +99,24 @@ self.onmessage = async function (e) {
       }
       configurarIO(entradas);
 
-      await pyodide.runPythonAsync(String(msg.codigo || ''));
+      // Verificación de sintaxis antes de ejecutar: da mensajes más claros.
+      var codigoPy = String(msg.codigo || '');
+      try {
+        pyodide.globals.set('_codigo_a_compilar', codigoPy);
+        pyodide.runPython("compile(_codigo_a_compilar, '<programa>', 'exec')");
+      } catch (syntaxErr) {
+        var smsg = String(syntaxErr);
+        var slinea = null;
+        var sm = smsg.match(/line (\d+)/);
+        if (sm) slinea = parseInt(sm[1], 10);
+        var slines = smsg.split('\n').filter(function (l) { return l.trim(); });
+        var slast = slines[slines.length - 1] || smsg;
+        var smensaje = slinea ? 'Línea ' + slinea + ': ' + slast.trim() : slast.trim();
+        self.postMessage({ tipo: 'error', mensaje: smensaje, linea: slinea });
+        return;
+      }
+
+      await pyodide.runPythonAsync(codigoPy);
 
       var varsPy = pyodide.runPython([
         'import types as _types',
