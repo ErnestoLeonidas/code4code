@@ -708,6 +708,24 @@ await t('golden 30 — SUBCADENA y LONGITUD', async () => {
     `esperaba ["10","Hola"], obtuvo ${JSON.stringify(t1)}`);
 });
 
+// 31. Segun con etiquetas de cadena (preservar capitalización)
+await t('golden 31 — Segun con etiquetas de cadena ("Hola", "mundo")', async () => {
+  const s = await ejecutar(`
+    Algoritmo segun_cadenas
+      Definir cad Como Cadena
+      cad <- "Hola"
+      Segun cad Hacer
+        "Hola": Escribir "coincide Hola"
+        "mundo": Escribir "coincide mundo"
+        De Otro Modo: Escribir "otro"
+      FinSegun
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && t1[0] === 'coincide Hola',
+    `esperaba ["coincide Hola"], obtuvo ${JSON.stringify(t1)}`);
+});
+
 // ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------

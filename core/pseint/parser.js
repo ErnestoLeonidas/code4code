@@ -358,7 +358,10 @@ function parsearPSeInt(codigo, perfil) {
           // Nota: aseguramos que la etiqueta no sea "De Otro Modo" (ya manejado arriba)
           const matchCaso = casoNorm.match(/^([^:]+):\s*(.*)$/);
           if (matchCaso) {
-            const valoresTexto = matchCaso[1].trim();
+            // Usar casoRaw para preservar capitalización de strings en las etiquetas
+            const casoStripped = _stripCommentPSeInt(casoRaw);
+            const matchCasoRaw = casoStripped.match(/^([^:]+):\s*(.*)$/);
+            const valoresTexto = (matchCasoRaw ? matchCasoRaw[1] : matchCaso[1]).trim();
             const valores = valoresTexto.split(',').map(function(v) { return v.trim(); });
             const casoLoc = locDeLinea(idx, casoRaw);
             idx++;
