@@ -364,6 +364,18 @@ function _validarNodo(nodo, ctx, tablaLocal) {
       break;
     }
 
+    case 'Ordenar': {
+      const mOrd = (nodo.texto || '').match(/^ordenar\s*\(\s*(\w+)/i);
+      if (mOrd) {
+        const nombre = mOrd[1];
+        if (!ctx.arreglosDimensionados.has(nombre.toLowerCase())) {
+          _agregarError(ctx, linea,
+            'Ordenar: "' + nombre + '" no fue declarado con Dimension.');
+        }
+      }
+      break;
+    }
+
     case 'Si': {
       _validarLlamadasEnExpresion(nodo.condicion, linea, ctx);
       if (nodo.entonces) _validarNodos(nodo.entonces, ctx, tablaLocal);
