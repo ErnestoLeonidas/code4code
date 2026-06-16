@@ -663,7 +663,11 @@ class RuntimePSeInt {
       const arreglosOuter = new Map(arreglos);
 
       // Nuevo scope para el subproceso
-      scopes._pilaScopes = [new (ScopeChainPSeInt)()._pilaScopes[0].constructor()];
+      // Usamos una instancia auxiliar para obtener la clase TablaPSeInt correcta
+      // (evita invocar el constructor de clase sin 'new', lo que lanzaría TypeError)
+      const _scopeAux = new ScopeChainPSeInt();
+      const TablaCtor = _scopeAux._pilaScopes[0].constructor;
+      scopes._pilaScopes = [new TablaCtor()];
       // Usamos push() para crear scope local
       scopes.push();
       evaluador._valores = new Map();
