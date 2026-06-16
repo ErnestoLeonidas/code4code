@@ -286,8 +286,9 @@ Opciones de perfil implementadas:
       `localStorage`.
 - [x] El perfil activo viaja en los metadatos del archivo descargado
       (`// Perfil: Estricto`) y se detecta al importar el `.psc`.
-- [ ] Golden tests duplicados por preset: cada programa de referencia se valida
-      en ambos modos Estricto y Flexible.
+- [x] Golden tests duplicados por preset: cada programa de referencia se valida
+      en ambos modos Estricto y Flexible (golden 34-37: suma acumulada y
+      acceso a arreglos en Estricto vs Flexible).
 - [x] Documentación en el panel de aprendizaje: diferencias entre perfiles
       incluidas en los comandos PSeInt.
 

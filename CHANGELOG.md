@@ -14,7 +14,17 @@
   aprendizaje con sintaxis, ejemplo ejecutable y descripción de errores.
 - `tests/pseint-golden-tests.js`: 2 nuevos golden tests (32 y 33) —
   ordenar arreglo numérico `[5,3,1,4,2] → [1,2,3,4,5]` y cadenas
-  `["manzana","cereza","banana"] → ["banana","cereza","manzana"]`. Total: 33/33.
+  `["manzana","cereza","banana"] → ["banana","cereza","manzana"]`.
+- `core/pseint/validator.js`: nuevo caso `Ordenar` — error si el arreglo no fue
+  declarado con `Dimension`. `tests/pseint-validator-tests.js`: 2 nuevas pruebas
+  (21 y 22). Total: 22/22.
+
+### Fase 3b — Golden tests duplicados por preset
+
+- `tests/pseint-golden-tests.js`: 4 nuevos golden tests (34-37) que ejecutan el
+  mismo programa en perfil Estricto y Flexible (suma acumulada con `Definir`/`<-`
+  vs sin `Definir`/`=`; acceso a arreglos en base 1 vs base 0 con
+  `indicesDesde0`). Total: 37/37.
 
 ### Fase 4 — Metadatos banco Python N1–N7
 
@@ -30,6 +40,8 @@
 - `ROADMAP.md`: actualizado al estado real v2.3.4-beta: Fase 3b y 4 marcadas como
   completas, Fase 5 in-progress con los tres bancos existentes. Tabla de versiones
   corregida.
+- `index.html`: versión visible corregida de `v2.2.0-beta` (desactualizada desde
+  varios hitos atrás) a `v2.3.5-beta`.
 
 ## [2.3.4-beta] - 2026-06-15
 

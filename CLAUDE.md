@@ -60,7 +60,7 @@ identifica en qué fase está el proyecto.
       coerción implícita de tipos, aviso de migración bidireccional, documentación
       de comandos PSeInt en el panel de aprendizaje, provider registrado en `index.html`,
       suites de tests propias (tokenizer 25, builtins 61, parser 15, runtime 24,
-      validator 20, golden tests 33, contract-tests 33 pruebas).
+      validator 22, golden tests 37, contract-tests 33 pruebas).
 - [x] Fase 3b — Perfil flexible y banco de ejercicios PSeInt completo (`v2.3.5-beta`).
       Implementado: selector de perfil (presets *Estricto*/*Flexible*) visible solo en
       PSeInt, `configurarPerfil`/`obtenerPerfil` en el provider, elección persistida
@@ -68,8 +68,9 @@ identifica en qué fase está el proyecto.
       en perfil flexible; palabras opcionales `Entonces` y `Hacer` en el parser;
       perfil embebido en el archivo descargado (`// Perfil: Estricto`) y detectado
       al importar; banco N1–N7 completo en `json/pseint/` (110 ejercicios);
-      `Dimension` base-0 en perfil flexible; documentación de perfiles en el panel.
-      Pendiente: golden tests duplicados por preset (mismo programa en Estricto y Flexible).
+      `Dimension` base-0 en perfil flexible; documentación de perfiles en el panel;
+      golden tests duplicados por preset (golden 34-37: mismo programa en
+      Estricto y Flexible).
 - [x] Fase 4 — Python con Pyodide (`core/python/`), funcional (`v2.3.5-beta`).
       Hecho: tokenizador Python (37 keywords + 22 builtins en autocompletado),
       Web Worker con Pyodide 0.26.2, bridge con RuntimeHost, provider completo,
