@@ -63,8 +63,8 @@ const KEYWORDS_PSEINT = new Set([
   'para', 'hasta', 'con', 'paso', 'finpara',
   // repetir
   'repetir', 'hastaque', 'que',
-  // definir
-  'definir', 'como', 'dimension',
+  // definir / arreglos
+  'definir', 'como', 'dimension', 'ordenar',
   // subprocesos
   'subproceso', 'finsubproceso', 'funcion', 'finfuncion', 'retornar', 'llamar',
   // operadores lógicos
