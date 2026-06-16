@@ -70,6 +70,10 @@
     'try', 'except', 'finally', 'raise',
     'with', 'as', 'pass', 'break', 'continue', 'yield',
     'lambda', 'is',
+    'abs', 'sum', 'max', 'min', 'sorted', 'enumerate', 'zip', 'map',
+    'filter', 'any', 'all', 'type', 'isinstance', 'hasattr', 'getattr',
+    'open', 'round', 'pow', 'divmod', 'reversed',
+    'append', 'extend', 'insert', 'remove', 'pop', 'sort',
   ];
 
   /**

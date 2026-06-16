@@ -8,7 +8,8 @@
  *   main → worker: { tipo: 'ejecutar', codigo: string, entradas: string[] }
  *   worker → main: { tipo: 'salida',  texto: string }
  *   worker → main: { tipo: 'fin' }
- *   worker → main: { tipo: 'error',  mensaje: string, linea: number|null }
+ *   worker → main: { tipo: 'error',     mensaje: string, linea: number|null }
+ *   worker → main: { tipo: 'variables', vars: object }
  *   main → worker: { tipo: 'detener' }
  *
  * Nota: en v1 el input() se sirve desde una cola pre-cargada (no interactivo).
@@ -100,16 +101,41 @@ self.onmessage = async function (e) {
 
       await pyodide.runPythonAsync(String(msg.codigo || ''));
 
+      var varsPy = pyodide.runPython([
+        'import types as _types',
+        '_result = {}',
+        'for _n, _v in list(globals().items()):',
+        '    if _n.startswith("_"): continue',
+        '    if isinstance(_v, _types.ModuleType): continue',
+        '    if callable(_v): continue',
+        '    try: _result[_n] = {"valor": repr(_v), "tipo": type(_v).__name__}',
+        '    except Exception: pass',
+        '_result',
+      ].join('\n'));
+      var _varsObj = varsPy.toJs ? varsPy.toJs({ dict_converter: Object.fromEntries }) : {};
+      if (!detenido) {
+        self.postMessage({ tipo: 'variables', vars: _varsObj });
+      }
+
       if (!detenido) {
         self.postMessage({ tipo: 'fin' });
       }
     } catch (err) {
       var linea = null;
       var mensaje = String(err);
-      // Intentar extraer el número de línea del traceback de Python
-      var m = mensaje.match(/line (\d+)/);
-      if (m) linea = parseInt(m[1], 10);
-      self.postMessage({ tipo: 'error', mensaje: mensaje, linea: linea });
+      var coincidencias = mensaje.match(/line (\d+)/g);
+      if (coincidencias && coincidencias.length) {
+        var ultimaMatch = coincidencias[coincidencias.length - 1].match(/\d+/);
+        if (ultimaMatch) linea = parseInt(ultimaMatch[0], 10);
+      }
+      var mensajeCorto = mensaje;
+      var lineasError = mensaje.split('\n').filter(function (l) { return l.trim().length > 0; });
+      var ultimaLinea = lineasError[lineasError.length - 1];
+      if (ultimaLinea && ultimaLinea.match(/^\w+Error:|^\w+Exception:|^SyntaxError:|^IndentationError:/)) {
+        mensajeCorto = ultimaLinea.trim();
+        if (linea) mensajeCorto = 'Línea ' + linea + ': ' + mensajeCorto;
+      }
+      self.postMessage({ tipo: 'error', mensaje: mensajeCorto, linea: linea });
     }
   }
 };

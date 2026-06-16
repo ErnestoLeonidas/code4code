@@ -20,6 +20,18 @@
 (function (raiz) {
   'use strict';
 
+  function mapearTipoPy(tipoPy) {
+    var mapa = {
+      'int':   'entero',
+      'float': 'real',
+      'str':   'caracter',
+      'bool':  'logico',
+      'list':  'lista',
+      'dict':  'dict',
+    };
+    return mapa[tipoPy] || tipoPy;
+  }
+
   var PythonWorkerBridge = {
     /**
      * Crea un bridge para una ejecución.
@@ -56,6 +68,23 @@
         } else if (msg.tipo === 'listo') {
           // Pyodide terminó de cargar por primera vez
           try { host.escribir('✓ Python listo\n', { tipo: 'salida' }); } catch (_) { /* detenido */ }
+
+        } else if (msg.tipo === 'variables') {
+          if (typeof host.reportarVariables === 'function') {
+            var vars = msg.vars || {};
+            Object.keys(vars).forEach(function (nombre) {
+              var info = vars[nombre];
+              host.reportarVariables({
+                evento: 'cambio',
+                variable: {
+                  nombre: nombre,
+                  valor: info.valor,
+                  tipo: mapearTipoPy(info.tipo),
+                  inicializada: true
+                }
+              });
+            });
+          }
         }
       };
 
@@ -82,6 +111,9 @@
                 .split('\n')
                 .filter(function (s) { return s.length > 0; });
             }
+          }
+          if (typeof host.reportarVariables === 'function') {
+            host.reportarVariables({ evento: 'reiniciar' });
           }
           worker.postMessage({ tipo: 'ejecutar', codigo: String(codigo || ''), entradas: entradas });
         },
