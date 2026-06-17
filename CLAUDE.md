@@ -84,10 +84,10 @@ identifica en qué fase está el proyecto.
       Implementado: progreso separado por lenguaje en `localStorage`; datos de
       ejercicios PSeInt/Python cargados correctamente; vista de progreso
       comparado por lenguaje en la pestaña Rutas (`renderizarProgresoComparado`);
-      mapa de equivalencias `json/multi/mapa.json` (55 entradas LiteSeInt/PSeInt/
-      Python, N1–N7) con cargador `js/ejercicios-multi-data.js` y botones "Ver en
-      otros lenguajes" en el panel de detalle del ejercicio; 6 pruebas del mapa en
-      suite total; bancos validados (LiteSeInt 245, PSeInt 110, Python 110 ejercicios).
+      mapa de equivalencias `json/multi/mapa.json` (74 entradas, N1–N7 completos)
+      con cargador `js/ejercicios-multi-data.js` y botones "Ver en otros lenguajes"
+      en el panel de detalle del ejercicio; 6 pruebas del mapa en suite total;
+      bancos validados (LiteSeInt 245, PSeInt 110, Python 110 ejercicios).
       Ruta modular N1–N7 para PSeInt y Python: tarjetas colapsables con conceptos,
       barra de progreso y enlaces a ejercicios agrupados por gradoAyuda
       (`renderizarRutaModular` en `js/app.js`). Constantes `MODULOS_ORDEN` y

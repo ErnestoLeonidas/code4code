@@ -350,9 +350,10 @@ conecta la experiencia del estudiante entre lenguajes:
 - [x] Validación estática de los bancos en `npm test`: IDs únicos, campos
       obligatorios, ausencia de sintaxis cruzada entre lenguajes.
 - [x] Esquema de ejercicio multi-lenguaje: mapa de equivalencias en
-      `json/multi/mapa.json` (55 entradas N1–N7) que asocia el mismo concepto en
-      varios lenguajes; `js/ejercicios-multi-data.js` como cargador; botones
-      "Ver en otros lenguajes" en el panel de detalle del ejercicio.
+      `json/multi/mapa.json` (74 entradas N1–N7, todos los módulos cubiertos) que
+      asocia el mismo concepto en varios lenguajes; `js/ejercicios-multi-data.js`
+      como cargador; botones "Ver en otros lenguajes" en el panel de detalle del
+      ejercicio.
 - [x] Vista de progreso comparado: cuántos ejercicios resueltos por lenguaje
       (sección en la pestaña Rutas, `renderizarProgresoComparado` en `js/app.js`).
 - [x] Ruta modular para PSeInt y Python: tarjetas N1–N7 colapsables con conceptos

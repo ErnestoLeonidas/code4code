@@ -1,9 +1,14 @@
 # Changelog — Code4Code
 
-## [2.3.8-beta] - 2026-06-16
+## [2.3.8-beta] - 2026-06-17
 
-### Fase 5 — Ruta modular para PSeInt y Python
+### Fase 5 — Ruta modular para PSeInt y Python + mapa multi-lenguaje ampliado
 
+- `json/multi/mapa.json`: ampliado de 55 a 74 entradas. Se completan N4 (arreglos/
+  listas: llenar, suma, max, min, búsqueda lineal, invertir, unir) y N5 (funciones:
+  saludo, cuadrado, factorial iterativo/recursivo, fibonacci recursivo, max, primo,
+  potencia, suma colección, vocales). Se agregan 2 entradas N7 (calculadora, conversor
+  decimal-binario). El mapa cubre ahora todos los módulos N1–N7.
 - `js/app.js`: nueva función `renderizarRutaModular(provider, $cont)` que muestra
   tarjetas N1–N7 colapsables para cualquier lenguaje con banco de ejercicios.
   Cada tarjeta lista: conceptos únicos del módulo (como badges), barra de progreso
@@ -12,6 +17,11 @@
   PSeInt y Python.
 - `js/app.js`: `MODULOS_ORDEN` y `MODULOS_TITULO` con títulos genéricos N1–N7
   usables por cualquier lenguaje (Entrada/salida, Condicionales, Ciclos, etc.).
+
+### Tests
+
+- `tests/pseint-runtime-tests.js`: 4 nuevas pruebas (44–47): REDON(.5), funciones
+  anidadas en expresión, precedencia booleana Y/O, y LN(EXP(1))≈1. Total: 47/47.
 
 ## [2.3.7-beta] - 2026-06-16
 
