@@ -823,7 +823,7 @@ function restaurarSnapshotEditor(snapshot) {
   ocultarAutocompletado();
   invalidarErroresVisuales();
   quitarResalteNombreInvalido();
-  actualizarLineas();
+  actualizarLineasInmediato();
   editor.focus();
 }
 
@@ -1202,6 +1202,10 @@ function renderErrorUnderlines(linea, errores) {
 // 6. LINE NUMBERS + OVERLAYS
 // =========================================
 
+// Timer para diferir el resaltado de sintaxis y las guías de indentación
+// (costosas) sin retrasar el render incremental del gutter.
+let _pendingSyntaxTimer = null;
+
 function actualizarLineas() {
   const texto = $("#editor").val();
   const lineas = texto.split("\n");
@@ -1224,6 +1228,23 @@ function actualizarLineas() {
     plegados:        editorFolding.plegados,
   });
 
+  // Diferir el resaltado y las guías 30 ms para reducir el trabajo por pulsación.
+  // En paste y en carga directa se ejecuta de inmediato (ver actualizarLineasInmediato).
+  if (_pendingSyntaxTimer !== null) clearTimeout(_pendingSyntaxTimer);
+  _pendingSyntaxTimer = setTimeout(() => {
+    _pendingSyntaxTimer = null;
+    actualizarSyntaxHighlight();
+    actualizarIndentGuides();
+    scheduleFoldLayerRender();
+  }, 30);
+}
+
+function actualizarLineasInmediato() {
+  if (_pendingSyntaxTimer !== null) {
+    clearTimeout(_pendingSyntaxTimer);
+    _pendingSyntaxTimer = null;
+  }
+  actualizarLineas();
   actualizarSyntaxHighlight();
   actualizarIndentGuides();
   scheduleFoldLayerRender();
@@ -1778,7 +1799,7 @@ function busquedaAplicarTexto(editor, texto, caret) {
   // Asignar .value no dispara "input": replicar el handler de input.
   if (errorVisualState.activo) invalidarErroresVisuales();
   quitarResalteNombreInvalido();
-  actualizarLineas();
+  actualizarLineasInmediato();
 }
 
 function busquedaReemplazarActiva() {
@@ -1870,7 +1891,7 @@ $("#editor").on("paste", function () {
     if (errorVisualState.activo) {
       invalidarErroresVisuales();
     }
-    actualizarLineas();
+    actualizarLineasInmediato();
   }, 10);
 });
 
