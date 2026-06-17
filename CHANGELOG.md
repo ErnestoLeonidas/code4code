@@ -2,16 +2,29 @@
 
 ## [2.3.6-beta] - 2026-06-16
 
-### Fase 5 — Vista de progreso comparado por lenguaje
+### Fase 3a — Coerción implícita de tipos PSeInt (completada)
 
-- `js/app.js`: nueva sección "Progreso comparado por lenguaje" al inicio de la
-  pestaña Rutas, visible sin importar el lenguaje activo. `renderizarProgresoComparado`
-  recorre `Code4Code.registro.lista()` y, para cada lenguaje, lee su propia clave
-  de progreso en `localStorage` (`obtenerProgresoPorLenguajeId`) y su banco de
-  ejercicios (`obtenerEjerciciosPorLenguajeId`) para mostrar completados/total
-  y una barra de progreso, sin necesidad de cambiar de lenguaje activo.
-- `css/styles.css`: estilos `.learning-progreso-comparado` y
-  `.progreso-comparado-row` reutilizando las barras de `.route-progress-bar`.
+- `core/pseint/symbol-table.js`: `coercionarValor` completado para todas las
+  combinaciones de tipos PSeInt (Entero, Real, Logico, Cadena, Caracter):
+  corrección de Logico→Caracter (`'V'`/`'F'` en vez de `'t'`/`'f'`), ramas
+  explícitas para Logico→Entero/Real, `parseFloat` en Cadena→Entero/Real.
+- `tests/pseint-runtime-tests.js`: 13 pruebas nuevas (25-37) cubriendo todas
+  las combinaciones de coerción. Total: 37/37.
+
+### Fase 5 — Mapa multi-lenguaje y vista de progreso comparado
+
+- `json/multi/mapa.json`: 32 entradas que asocian el mismo concepto en
+  LiteSeInt, PSeInt y Python (generadas por título normalizado).
+- `js/ejercicios-multi-data.js`: cargador del mapa con `buscarPorId`,
+  `listarPorModulo` y `porConcepto`; carga diferida desde JSON.
+- `js/app.js`: sección "Ver en otros lenguajes" en el panel de detalle cuando
+  existe equivalencia; al hacer clic cambia el lenguaje activo y selecciona
+  el ejercicio equivalente. Vista de progreso comparado en la pestaña Rutas
+  (`renderizarProgresoComparado`) muestra completados/total de los tres bancos.
+- `css/styles.css`: estilos `.ej-otros-lenguajes`, `.ej-otro-lenguaje-btn`,
+  `.learning-progreso-comparado`.
+- `tests/run-tests.js`: 6 pruebas del mapa (estructura, conteo mínimo, campos
+  obligatorios, lenguajes válidos, formato de IDs, IDs existentes en bancos).
 
 ## [2.3.5-beta] - 2026-06-16
 

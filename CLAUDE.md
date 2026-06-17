@@ -60,7 +60,9 @@ identifica en qué fase está el proyecto.
       coerción implícita de tipos, aviso de migración bidireccional, documentación
       de comandos PSeInt en el panel de aprendizaje, provider registrado en `index.html`,
       suites de tests propias (tokenizer 25, builtins 61, parser 15, runtime 24,
-      validator 22, golden tests 37, contract-tests 33 pruebas).
+      validator 22, golden tests 37, contract-tests 33 pruebas);
+      coerción implícita completada (13 pruebas runtime 25-37): Logico↔Entero/
+      Real/Cadena/Caracter, Cadena↔Entero/Real/Logico correcto.
 - [x] Fase 3b — Perfil flexible y banco de ejercicios PSeInt completo (`v2.3.5-beta`).
       Implementado: selector de perfil (presets *Estricto*/*Flexible*) visible solo en
       PSeInt, `configurarPerfil`/`obtenerPerfil` en el provider, elección persistida
@@ -80,14 +82,14 @@ identifica en qué fase está el proyecto.
       `pista`, `entradaProcesoSalida`); inspector de variables Python; tracebacks
       mejorados; validación de sintaxis con `compile()` antes de ejecutar.
       Pendiente: testing de ejecución real (requiere browser), mejoras de rendimiento.
-- [ ] Fase 5 — Ejercicios multi-lenguaje (en curso, `v2.3.6-beta`).
+- [x] Fase 5 — Ejercicios multi-lenguaje (`v2.3.6-beta`).
       Implementado: progreso separado por lenguaje en `localStorage`; datos de
       ejercicios PSeInt/Python cargados correctamente; vista de progreso
-      comparado por lenguaje en la pestaña Rutas (`renderizarProgresoComparado`
-      en `js/app.js`, visible sin cambiar de lenguaje activo); tests en suite
-      total validando los tres bancos (LiteSeInt 245 ejercicios, PSeInt 110,
-      Python 110). Pendiente: esquema de ejercicio multi-lenguaje unificado
-      (un enunciado, N soluciones por lenguaje).
+      comparado por lenguaje en la pestaña Rutas (`renderizarProgresoComparado`);
+      mapa de equivalencias `json/multi/mapa.json` (32 entradas LiteSeInt/PSeInt/
+      Python) con cargador `js/ejercicios-multi-data.js` y botones "Ver en otros
+      lenguajes" en el panel de detalle del ejercicio; 6 pruebas del mapa en suite
+      total; bancos validados (LiteSeInt 245, PSeInt 110, Python 110 ejercicios).
       Pendiente: esquema multi-lenguaje (un enunciado, N soluciones), estadísticas
       comparadas por lenguaje.
 

@@ -245,9 +245,9 @@ algoritmos, con **sistema de perfiles configurable** (D4). Las fuentes C++
 - [x] `Algoritmo|Proceso … FinAlgoritmo|FinProceso`.
 - [x] Asignación `<-` (y `=` como comparador en condiciones).
 - [x] `Escribir` / `Escribir Sin Saltar` / `Leer` multivariable.
-- [ ] Tipos PSeInt con conversión implícita (Fase 3a avanzada): los tipos
-      básicos están implementados pero la conversión implícita entre ellos
-      está parcialmente cubierta.
+- [x] Tipos PSeInt con conversión implícita (Fase 3a avanzada): coercionarValor
+      corregido y completado — Logico↔Entero/Real/Cadena/Caracter,
+      Cadena↔Entero/Real/Logico, con 13 pruebas nuevas (runtime tests 25-37).
 - [x] Estructuras: `Si/Sino`, `Segun`, `Mientras`, `Repetir…Hasta Que`,
       `Para … Con Paso`.
 - [x] Arreglos `Dimension` (1D/2D) con la semántica de índices de PSeInt.
@@ -338,8 +338,10 @@ conecta la experiencia del estudiante entre lenguajes:
       clave de progreso; el selector de lenguaje carga el banco correspondiente.
 - [x] Validación estática de los bancos en `npm test`: IDs únicos, campos
       obligatorios, ausencia de sintaxis cruzada entre lenguajes.
-- [ ] Esquema de ejercicio multi-lenguaje unificado (un enunciado, N soluciones):
-      permitir asociar el mismo problema conceptual en varios lenguajes.
+- [x] Esquema de ejercicio multi-lenguaje: mapa de equivalencias en
+      `json/multi/mapa.json` (32 entradas) que asocia el mismo concepto en
+      varios lenguajes; `js/ejercicios-multi-data.js` como cargador; botones
+      "Ver en otros lenguajes" en el panel de detalle del ejercicio.
 - [x] Vista de progreso comparado: cuántos ejercicios resueltos por lenguaje
       (sección en la pestaña Rutas, `renderizarProgresoComparado` en `js/app.js`).
 
