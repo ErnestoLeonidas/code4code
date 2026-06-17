@@ -382,6 +382,77 @@ t('Ordenar sobre arreglo dimensionado es válido', function() {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+//  Pruebas de casos límite (edge cases) — validador
+// ─────────────────────────────────────────────────────────────────────────────
+
+// 23. Funcion sin Retornar no debe generar error semántico (el validador es tolerante)
+t('Funcion sin Retornar explícito no genera error semántico', function() {
+  const codigo = [
+    'SubProceso SinRetorno(n Como Entero)',
+    '  Definir x Como Entero',
+    '  x <- n * 2',
+    '  Escribir x',
+    'FinSubProceso',
+    'Algoritmo test',
+    '  Llamar SinRetorno(5)',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  // El validador estático no exige Retornar; solo verifica semántica declarativa
+  const errRetorno = errores.filter(function(e) {
+    return /retornar/i.test(e.mensaje);
+  });
+  ok(errRetorno.length === 0,
+    'No debe haber error por ausencia de Retornar: ' + JSON.stringify(errRetorno));
+  ok(errores.length === 0,
+    'Programa completo correcto no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// 24. SubProceso con Dimension interna valida sin errores
+t('SubProceso con Dimension interna valida correctamente', function() {
+  const codigo = [
+    'SubProceso resultado <- SumaArr()',
+    '  Definir arr Como Entero',
+    '  Definir i Como Entero',
+    '  Definir acum Como Entero',
+    '  Dimension arr[3]',
+    '  arr[1] <- 10',
+    '  arr[2] <- 20',
+    '  arr[3] <- 30',
+    '  acum <- 0',
+    '  Para i <- 1 Hasta 3 Hacer',
+    '    acum <- acum + arr[i]',
+    '  FinPara',
+    '  Retornar acum',
+    'FinSubProceso',
+    'Algoritmo test',
+    '  Definir r Como Entero',
+    '  r <- SumaArr()',
+    '  Escribir r',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'SubProceso con Dimension interna no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// 25. Variable Logica: Definir flag Como Logico + flag <- Verdadero es válido
+t('Variable Logica: Definir flag Como Logico y asignación Verdadero son válidos', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir flag Como Logico',
+    '  flag <- Verdadero',
+    '  Escribir flag',
+    '  flag <- Falso',
+    '  Escribir flag',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Variable Logica con Verdadero/Falso no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 //  Resumen
 // ─────────────────────────────────────────────────────────────────────────────
 

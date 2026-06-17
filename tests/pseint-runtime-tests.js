@@ -604,6 +604,141 @@ await t('coercionarValor: Cadena a Caracter toma primer carácter', () => {
 });
 
 // ---------------------------------------------------------------------------
+//  Pruebas de casos límite (edge cases) — runtime
+// ---------------------------------------------------------------------------
+
+// 38. Función con Retornar anticipado en rama condicional (no al final del cuerpo)
+await t('SubProceso retorna anticipadamente en rama Si Entonces', async () => {
+  const s = await ejecutar(`
+    SubProceso res <- EsPositivo(n Como Entero)
+      Si n > 0 Entonces
+        Retornar 1
+      FinSi
+      Retornar 0
+    FinSubProceso
+    Algoritmo test
+      Definir r Como Entero
+      r <- EsPositivo(5)
+      Escribir r
+      r <- EsPositivo(-3)
+      Escribir r
+      r <- EsPositivo(0)
+      Escribir r
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(
+    t1.length === 3 && t1[0] === '1' && t1[1] === '0' && t1[2] === '0',
+    `esperaba ["1","0","0"], obtuvo ${JSON.stringify(t1)}`
+  );
+});
+
+// 39. SubProceso con Dimension interna: arreglo local dentro del subproceso
+await t('SubProceso usa Dimension interna y retorna suma de elementos', async () => {
+  const s = await ejecutar(`
+    SubProceso resultado <- SumaFija()
+      Definir local Como Entero
+      Definir i Como Entero
+      Definir acum Como Entero
+      Dimension local[3]
+      local[1] <- 10
+      local[2] <- 20
+      local[3] <- 30
+      acum <- 0
+      Para i <- 1 Hasta 3 Hacer
+        acum <- acum + local[i]
+      FinPara
+      Retornar acum
+    FinSubProceso
+    Algoritmo test
+      Definir r Como Entero
+      r <- SumaFija()
+      Escribir r
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && Number(t1[0]) === 60,
+    `esperaba ["60"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 40. Repetir…HastaQue ejecuta el cuerpo al menos una vez aunque la condición ya sea cierta
+await t('Repetir ejecuta el cuerpo al menos una vez aunque la condición inicial sea verdadera', async () => {
+  const s = await ejecutar(`
+    Algoritmo test
+      Definir x Como Entero
+      x <- 5
+      Repetir
+        x <- x + 1
+      Hasta Que x >= 1
+      Escribir x
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  // x comienza en 5 (>= 1 es verdadero), pero el cuerpo se ejecuta al menos una vez → x = 6
+  ok(t1.length === 1 && Number(t1[0]) === 6,
+    `esperaba ["6"] (cuerpo ejecutado al menos una vez), obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 41. Para con paso 3: 0, 3, 6, 9 (el 12 queda fuera porque 12 > 10)
+await t('Para i <- 0 Hasta 10 Con Paso 3 itera en 0, 3, 6, 9', async () => {
+  const s = await ejecutar(`
+    Algoritmo test
+      Definir i Como Entero
+      Para i <- 0 Hasta 10 Con Paso 3 Hacer
+        Escribir i
+      FinPara
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(
+    t1.length === 4 &&
+    t1[0] === '0' && t1[1] === '3' && t1[2] === '6' && t1[3] === '9',
+    `esperaba ["0","3","6","9"], obtuvo ${JSON.stringify(t1)}`
+  );
+});
+
+// 42. Operador MOD: 17 MOD 5 = 2  y  -7 MOD 3 no falla (sigue semántica JS: -1)
+await t('MOD: 17 MOD 5 = 2  y  -7 MOD 3 = -1 sin error', async () => {
+  const s1 = await ejecutar(`
+    Algoritmo test
+      Definir r Como Entero
+      r <- 17 MOD 5
+      Escribir r
+    FinAlgoritmo
+  `);
+  const t1 = textos(s1);
+  ok(t1.length === 1 && Number(t1[0]) === 2,
+    `17 MOD 5: esperaba 2, obtuvo ${JSON.stringify(t1)}`);
+
+  const s2 = await ejecutar(`
+    Algoritmo test
+      Definir r Como Entero
+      r <- -7 MOD 3
+      Escribir r
+    FinAlgoritmo
+  `);
+  const t2 = textos(s2);
+  const errs2 = errores(s2);
+  ok(errs2.length === 0, `-7 MOD 3 no debe producir error: ${JSON.stringify(errs2)}`);
+  ok(t2.length === 1 && Number(t2[0]) === -1,
+    `-7 MOD 3: esperaba -1, obtuvo ${JSON.stringify(t2)}`);
+});
+
+// 43. TRUNC con argumento negativo: trunca hacia cero, no hacia -∞ (Math.trunc, no Math.floor)
+await t('TRUNC(-2.9) = -2 (trunca hacia cero, no hacia menos infinito)', async () => {
+  const s = await ejecutar(`
+    Algoritmo test
+      Definir r Como Entero
+      r <- TRUNC(-2.9)
+      Escribir r
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && Number(t1[0]) === -2,
+    `esperaba ["-2"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------
 
