@@ -1,8 +1,26 @@
 {
   "version": "1.0.0",
   "generado": "2026-06-16",
-  "totalMapas": 32,
+  "totalMapas": 55,
   "mapas": [
+    {
+      "concepto": "Aplicar descuento porcentual",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-010",
+        "pseint": "ps-n1-013",
+        "python": "py-n1-014"
+      }
+    },
+    {
+      "concepto": "Área de un rectángulo",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-011",
+        "pseint": "ps-n1-007",
+        "python": "py-n1-008"
+      }
+    },
     {
       "concepto": "Calcular el IMC",
       "modulo": "N1",
@@ -12,19 +30,80 @@
       }
     },
     {
+      "concepto": "Calcular el vuelto / cambio",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-014",
+        "pseint": "ps-n1-020",
+        "python": "py-n1-020"
+      }
+    },
+    {
+      "concepto": "Calcular propina",
+      "modulo": "N1",
+      "ids": {
+        "pseint": "ps-n1-019",
+        "python": "py-n1-019"
+      }
+    },
+    {
       "concepto": "Celsius a Fahrenheit",
       "modulo": "N1",
       "ids": {
         "liteseint": "n1-009",
-        "python": "py-n1-009"
+        "python": "py-n1-009",
+        "pseint": "ps-n1-008"
       }
     },
     {
-      "concepto": "Hola mundo",
+      "concepto": "Convertir segundos a minutos",
+      "modulo": "N1",
+      "ids": {
+        "pseint": "ps-n1-011",
+        "python": "py-n1-012"
+      }
+    },
+    {
+      "concepto": "Cuadrado y cubo de un número",
+      "modulo": "N1",
+      "ids": {
+        "pseint": "ps-n1-014",
+        "python": "py-n1-015"
+      }
+    },
+    {
+      "concepto": "Declarar y mostrar una variable entera",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-003",
+        "pseint": "ps-n1-003",
+        "python": "py-n1-003"
+      }
+    },
+    {
+      "concepto": "Distancia entre dos puntos",
+      "modulo": "N1",
+      "ids": {
+        "pseint": "ps-n1-017",
+        "python": "py-n1-018"
+      }
+    },
+    {
+      "concepto": "Hola mundo / Saludo fijo",
       "modulo": "N1",
       "ids": {
         "pseint": "ps-n1-001",
-        "python": "py-n1-001"
+        "python": "py-n1-001",
+        "liteseint": "n1-001"
+      }
+    },
+    {
+      "concepto": "Intercambiar dos variables con auxiliar",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-016",
+        "pseint": "ps-n1-015",
+        "python": "py-n1-016"
       }
     },
     {
@@ -36,6 +115,14 @@
       }
     },
     {
+      "concepto": "Precio con IVA del 19%",
+      "modulo": "N1",
+      "ids": {
+        "pseint": "ps-n1-012",
+        "python": "py-n1-013"
+      }
+    },
+    {
       "concepto": "Promedio de tres notas",
       "modulo": "N1",
       "ids": {
@@ -44,11 +131,20 @@
       }
     },
     {
+      "concepto": "Suma de dígitos de un número",
+      "modulo": "N1",
+      "ids": {
+        "pseint": "ps-n1-016",
+        "python": "py-n1-017"
+      }
+    },
+    {
       "concepto": "Suma de dos números",
       "modulo": "N1",
       "ids": {
         "liteseint": "n1-006",
-        "pseint": "ps-n1-006"
+        "pseint": "ps-n1-006",
+        "python": "py-n1-007"
       }
     },
     {
@@ -68,11 +164,27 @@
       }
     },
     {
+      "concepto": "Calculadora simple",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-007",
+        "python": "py-n2-007"
+      }
+    },
+    {
       "concepto": "Clasificar triángulo por ángulos",
       "modulo": "N2",
       "ids": {
         "pseint": "ps-n2-015",
         "python": "py-n2-013"
+      }
+    },
+    {
+      "concepto": "Clasificar triángulo por lados",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-005",
+        "python": "py-n2-005"
       }
     },
     {
@@ -180,6 +292,22 @@
       }
     },
     {
+      "concepto": "Secuencia de Fibonacci hasta N términos",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-011",
+        "python": "py-n3-009"
+      }
+    },
+    {
+      "concepto": "Suma de dígitos con bucle",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-007",
+        "python": "py-n3-007"
+      }
+    },
+    {
       "concepto": "Suma de múltiplos de 3 y 5 hasta N",
       "modulo": "N3",
       "ids": {
@@ -188,11 +316,43 @@
       }
     },
     {
+      "concepto": "Tabla de multiplicar",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-003",
+        "python": "py-n3-003"
+      }
+    },
+    {
       "concepto": "Contar positivos, negativos y ceros",
       "modulo": "N4",
       "ids": {
         "pseint": "ps-n4-006",
         "python": "py-n4-006"
+      }
+    },
+    {
+      "concepto": "Filtrar elementos mayores que la media",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-012",
+        "python": "py-n4-015"
+      }
+    },
+    {
+      "concepto": "Promedio de elementos de un arreglo/lista",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-003",
+        "python": "py-n4-003"
+      }
+    },
+    {
+      "concepto": "Cifrado César",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-015",
+        "python": "py-n6-014"
       }
     },
     {
@@ -228,6 +388,14 @@
       }
     },
     {
+      "concepto": "Mayúsculas y minúsculas",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-002",
+        "python": "py-n6-002"
+      }
+    },
+    {
       "concepto": "Primer y último carácter",
       "modulo": "N6",
       "ids": {
@@ -252,11 +420,36 @@
       }
     },
     {
+      "concepto": "Agenda de contactos",
+      "modulo": "N7",
+      "ids": {
+        "pseint": "ps-n7-003",
+        "python": "py-n7-007"
+      }
+    },
+    {
+      "concepto": "Estadísticas de notas",
+      "modulo": "N7",
+      "ids": {
+        "liteseint": "n7-011",
+        "pseint": "ps-n7-002",
+        "python": "py-n7-002"
+      }
+    },
+    {
       "concepto": "Juego: Adivina el número",
       "modulo": "N7",
       "ids": {
         "pseint": "ps-n7-006",
         "python": "py-n7-005"
+      }
+    },
+    {
+      "concepto": "Tabla de multiplicar completa",
+      "modulo": "N7",
+      "ids": {
+        "pseint": "ps-n7-005",
+        "python": "py-n7-015"
       }
     }
   ]
