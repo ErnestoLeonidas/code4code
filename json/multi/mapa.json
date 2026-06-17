@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generado": "2026-06-16",
-  "totalMapas": 55,
+  "generado": "2026-06-17",
+  "totalMapas": 74,
   "mapas": [
     {
       "concepto": "Aplicar descuento porcentual",
@@ -324,7 +324,15 @@
       }
     },
     {
-      "concepto": "Contar positivos, negativos y ceros",
+      "concepto": "Búsqueda lineal en un arreglo / lista",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-007",
+        "python": "py-n4-007"
+      }
+    },
+    {
+      "concepto": "Contar positivos, negativos y ceros en arreglo",
       "modulo": "N4",
       "ids": {
         "pseint": "ps-n4-006",
@@ -340,11 +348,139 @@
       }
     },
     {
+      "concepto": "Invertir un arreglo / lista",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-008",
+        "python": "py-n4-008"
+      }
+    },
+    {
+      "concepto": "Llenar / Crear una colección de 5 elementos",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-001",
+        "python": "py-n4-001"
+      }
+    },
+    {
+      "concepto": "Máximo de un arreglo / lista",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-004",
+        "python": "py-n4-004"
+      }
+    },
+    {
+      "concepto": "Mínimo de un arreglo / lista",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-005",
+        "python": "py-n4-005"
+      }
+    },
+    {
       "concepto": "Promedio de elementos de un arreglo/lista",
       "modulo": "N4",
       "ids": {
         "pseint": "ps-n4-003",
         "python": "py-n4-003"
+      }
+    },
+    {
+      "concepto": "Suma de elementos de un arreglo / lista",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-002",
+        "python": "py-n4-002"
+      }
+    },
+    {
+      "concepto": "Unir dos arreglos / listas",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-011",
+        "python": "py-n4-014"
+      }
+    },
+    {
+      "concepto": "Contar vocales (con función/subproceso)",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-013",
+        "python": "py-n5-011"
+      }
+    },
+    {
+      "concepto": "Factorial iterativo (con función)",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-003",
+        "python": "py-n5-003"
+      }
+    },
+    {
+      "concepto": "Factorial recursivo",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-011",
+        "python": "py-n5-009"
+      }
+    },
+    {
+      "concepto": "Fibonacci recursivo",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-012",
+        "python": "py-n5-010"
+      }
+    },
+    {
+      "concepto": "Función cuadrado de un número",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-002",
+        "python": "py-n5-002"
+      }
+    },
+    {
+      "concepto": "Función es primo",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-006",
+        "python": "py-n5-006"
+      }
+    },
+    {
+      "concepto": "Función máximo de dos números",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-005",
+        "python": "py-n5-005"
+      }
+    },
+    {
+      "concepto": "Función potencia iterativa",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-008",
+        "python": "py-n5-007"
+      }
+    },
+    {
+      "concepto": "Función saludo",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-001",
+        "python": "py-n5-001"
+      }
+    },
+    {
+      "concepto": "Función suma de un arreglo / lista",
+      "modulo": "N5",
+      "ids": {
+        "pseint": "ps-n5-010",
+        "python": "py-n5-008"
       }
     },
     {
@@ -425,6 +561,22 @@
       "ids": {
         "pseint": "ps-n7-003",
         "python": "py-n7-007"
+      }
+    },
+    {
+      "concepto": "Calculadora con menú",
+      "modulo": "N7",
+      "ids": {
+        "pseint": "ps-n7-001",
+        "python": "py-n7-001"
+      }
+    },
+    {
+      "concepto": "Conversor de decimal a binario",
+      "modulo": "N7",
+      "ids": {
+        "pseint": "ps-n7-008",
+        "python": "py-n7-009"
       }
     },
     {
