@@ -738,6 +738,65 @@ await t('TRUNC(-2.9) = -2 (trunca hacia cero, no hacia menos infinito)', async (
     `esperaba ["-2"], obtuvo ${JSON.stringify(t1)}`);
 });
 
+// 44. REDON(2.5) = 3 y REDON(-2.5) = -2 (redondeo al entero más cercano)
+await t('REDON(2.5) = 3 y REDON(-2.5) = -2', async () => {
+  const s = await ejecutar(`
+    Algoritmo test
+      Definir a Como Entero
+      Definir b Como Entero
+      a <- REDON(2.5)
+      b <- REDON(-2.5)
+      Escribir a
+      Escribir b
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 2 && Number(t1[0]) === 3 && Number(t1[1]) === -2,
+    `esperaba ["3","-2"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 45. Llamada a función anidada en expresión: LONGITUD(MAYUSCULAS("hola")) = 4
+await t('LONGITUD(MAYUSCULAS("hola")) = 4 (función anidada en expresión)', async () => {
+  const s = await ejecutar(`
+    Algoritmo test
+      Definir n Como Entero
+      n <- LONGITUD(MAYUSCULAS("hola"))
+      Escribir n
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && Number(t1[0]) === 4,
+    `esperaba ["4"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 46. Precedencia Y antes de O: (A Y B) O C
+await t('Precedencia booleana: (Verdadero Y Falso) O Verdadero = Verdadero', async () => {
+  const s = await ejecutar(`
+    Algoritmo test
+      Definir r Como Logico
+      r <- Verdadero Y Falso O Verdadero
+      Escribir r
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && t1[0] === 'Verdadero',
+    `esperaba ["Verdadero"], obtuvo ${JSON.stringify(t1)}`);
+});
+
+// 47. LN y EXP: LN(EXP(1)) ≈ 1
+await t('LN(EXP(1)) ≈ 1 (funciones LN y EXP)', async () => {
+  const s = await ejecutar(`
+    Algoritmo test
+      Definir r Como Real
+      r <- TRUNC(LN(EXP(1)) * 100) / 100
+      Escribir r
+    FinAlgoritmo
+  `);
+  const t1 = textos(s);
+  ok(t1.length === 1 && Math.abs(Number(t1[0]) - 1) < 0.01,
+    `esperaba ≈ 1, obtuvo ${JSON.stringify(t1)}`);
+});
+
 // ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------
