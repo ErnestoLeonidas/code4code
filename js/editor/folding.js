@@ -34,15 +34,88 @@
   }
 
   /**
+   * Devuelve el nivel de sangría (número de espacios; tabs expandidos a 4)
+   * de una línea. Una línea vacía o en blanco devuelve Infinity para que
+   * nunca "cierre" un bloque abierto.
+   */
+  function nivelSangria(linea) {
+    var expandida = linea.replace(/\t/g, '    ');
+    if (expandida.trim() === '') return Infinity;
+    var espacios = 0;
+    while (espacios < expandida.length && expandida[espacios] === ' ') espacios++;
+    return espacios;
+  }
+
+  /**
+   * Modo indentación (Python): sin palabras clave de cierre; el fin del
+   * bloque se detecta cuando la sangría vuelve al nivel de la apertura o
+   * por debajo.  Solo se registra si hay al menos dos líneas de contenido
+   * dentro del bloque (fin > apertura + 1).
+   */
+  function calcularPlegablesIndentacion(lineas, reglas) {
+    var plegables = new Map();
+
+    for (var i = 0; i < lineas.length; i++) {
+      var linea = lineas[i];
+      var lineaTrimmed = linea.replace(/^\s+/, ''); // sin sangría inicial
+
+      // ¿Es una línea de apertura?
+      // Usamos startsWith (insensible a mayúsculas) porque las keywords Python
+      // pueden llevar espacios finales (ej. 'def ', 'for ') y coincideKeyword
+      // no las maneja bien al dividirlas en palabras.
+      var esApertura = false;
+      for (var a = 0; a < reglas.aperturas.length; a++) {
+        var kw = reglas.aperturas[a].trim().toLowerCase();
+        var prefijo = lineaTrimmed.toLowerCase();
+        // Coincide si la línea empieza con la keyword seguida de espacio,
+        // paréntesis, o dos puntos (para 'else:' / 'try:' etc.)
+        if (prefijo === kw || prefijo.indexOf(kw + ' ') === 0 ||
+            prefijo.indexOf(kw + '(') === 0 || prefijo.indexOf(kw + ':') === 0) {
+          esApertura = true;
+          break;
+        }
+      }
+      if (!esApertura) continue;
+
+      // Las aperturas Python terminan en ':' (ignorando espacios finales)
+      if (linea.trimRight().slice(-1) !== ':') continue;
+
+      var sangriaApertura = nivelSangria(linea);
+      var ultimaLinea = i; // rastrea la última línea perteneciente al bloque
+
+      for (var j = i + 1; j < lineas.length; j++) {
+        var sangria = nivelSangria(lineas[j]);
+        if (sangria <= sangriaApertura) break; // salida del bloque
+        ultimaLinea = j;
+      }
+
+      // Solo plegable si hay al menos una línea de contenido (no solo una)
+      if (ultimaLinea > i + 1) {
+        plegables.set(i, { fin: ultimaLinea, nivel: sangriaApertura });
+      }
+    }
+
+    return plegables;
+  }
+
+  /**
    * Analiza las líneas y devuelve un Map<lineaApertura, { fin, nivel }>
    * para todos los bloques que tienen apertura Y cierre con al menos una
    * línea de contenido entre ellos.
+   *
+   * Cuando `reglas.cierres` está vacío y `reglas.aperturas` tiene entradas,
+   * usa modo indentación (Python): detecta el fin del bloque por sangría.
    *
    * @param {string[]} lineas - Líneas del editor.
    * @param {{ aperturas: string[], cierres: string[] }} reglas
    * @returns {Map}
    */
   function calcularPlegables(lineas, reglas) {
+    // Modo indentación: sin cierres pero con aperturas (ej. Python)
+    if (reglas.cierres.length === 0 && reglas.aperturas.length > 0) {
+      return calcularPlegablesIndentacion(lineas, reglas);
+    }
+
     var plegables = new Map();
     var pila = [];
 

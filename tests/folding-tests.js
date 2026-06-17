@@ -135,5 +135,61 @@ t('crear devuelve instancia con plegados y plegables vacíos', () => {
   assert.equal(inst.plegables.size, 0);
 });
 
+// ── Modo indentación (Python) ─────────────────────────────────────────────────
+
+const reglasPython = {
+  aperturas: ['def ', 'class ', 'if ', 'elif ', 'else:', 'for ', 'while ', 'try:', 'except', 'finally:', 'with '],
+  cierres: []
+};
+
+t('Python: def detectado como plegable por indentación', () => {
+  const lineas = [
+    'def foo():',
+    '    x = 1',
+    '    y = 2',
+    '    return x + y'
+  ];
+  const p = Code4CodeFolding.calcularPlegables(lineas, reglasPython);
+  assert(p.has(0), 'def en línea 0 debe ser plegable');
+  assert.equal(p.get(0).fin, 3, 'fin del bloque en línea 3');
+});
+
+t('Python: for detectado como plegable por indentación', () => {
+  const lineas = [
+    'for i in range(10):',
+    '    print(i)',
+    '    suma += i',
+    'print("listo")'
+  ];
+  const p = Code4CodeFolding.calcularPlegables(lineas, reglasPython);
+  assert(p.has(0), 'for en línea 0 debe ser plegable');
+  assert.equal(p.get(0).fin, 2, 'fin del bloque en línea 2 (antes de print exterior)');
+});
+
+t('Python: bloque con una sola línea (pass) NO es plegable', () => {
+  const lineas = [
+    'def vacia():',
+    '    pass'
+  ];
+  const p = Code4CodeFolding.calcularPlegables(lineas, reglasPython);
+  assert.equal(p.size, 0, 'bloque de una línea no debe ser plegable');
+});
+
+t('Python: bloques anidados (def conteniendo for) detectados independientemente', () => {
+  const lineas = [
+    'def calcular(n):',
+    '    total = 0',
+    '    for i in range(n):',
+    '        total += i',
+    '        print(i)',
+    '    return total'
+  ];
+  const p = Code4CodeFolding.calcularPlegables(lineas, reglasPython);
+  assert(p.has(0), 'def en línea 0 debe ser plegable');
+  assert.equal(p.get(0).fin, 5, 'def abarca hasta línea 5');
+  assert(p.has(2), 'for en línea 2 debe ser plegable');
+  assert.equal(p.get(2).fin, 4, 'for abarca hasta línea 4');
+});
+
 if (fail === 0) console.log(`\n${ok + fail > 0 ? ok : 0}/${ok + fail} pruebas OK`);
 else { console.log(`\n${ok}/${ok + fail} pruebas OK — ${fail} FALLAS`); process.exit(1); }
