@@ -1,0 +1,263 @@
+{
+  "version": "1.0.0",
+  "generado": "2026-06-16",
+  "totalMapas": 32,
+  "mapas": [
+    {
+      "concepto": "Calcular el IMC",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-013",
+        "pseint": "ps-n1-010"
+      }
+    },
+    {
+      "concepto": "Celsius a Fahrenheit",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-009",
+        "python": "py-n1-009"
+      }
+    },
+    {
+      "concepto": "Hola mundo",
+      "modulo": "N1",
+      "ids": {
+        "pseint": "ps-n1-001",
+        "python": "py-n1-001"
+      }
+    },
+    {
+      "concepto": "Mostrar tres líneas de texto",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-002",
+        "pseint": "ps-n1-002"
+      }
+    },
+    {
+      "concepto": "Promedio de tres notas",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-008",
+        "pseint": "ps-n1-009"
+      }
+    },
+    {
+      "concepto": "Suma de dos números",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-006",
+        "pseint": "ps-n1-006"
+      }
+    },
+    {
+      "concepto": "Variables de distintos tipos",
+      "modulo": "N1",
+      "ids": {
+        "liteseint": "n1-004",
+        "pseint": "ps-n1-004"
+      }
+    },
+    {
+      "concepto": "Año bisiesto",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-012",
+        "python": "py-n2-010"
+      }
+    },
+    {
+      "concepto": "Clasificar triángulo por ángulos",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-015",
+        "python": "py-n2-013"
+      }
+    },
+    {
+      "concepto": "Divisible por 3 y por 5",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-011",
+        "python": "py-n2-009"
+      }
+    },
+    {
+      "concepto": "Máximo de dos números",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-003",
+        "python": "py-n2-003"
+      }
+    },
+    {
+      "concepto": "Máximo de tres números",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-004",
+        "python": "py-n2-004"
+      }
+    },
+    {
+      "concepto": "Máximo y mínimo de tres números",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-014",
+        "python": "py-n2-012"
+      }
+    },
+    {
+      "concepto": "Mayor de edad",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-001",
+        "python": "py-n2-001"
+      }
+    },
+    {
+      "concepto": "Número positivo, negativo o cero",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-002",
+        "python": "py-n2-002"
+      }
+    },
+    {
+      "concepto": "Par o impar",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-010",
+        "python": "py-n2-008"
+      }
+    },
+    {
+      "concepto": "Validar rango [1, 100]",
+      "modulo": "N2",
+      "ids": {
+        "pseint": "ps-n2-013",
+        "python": "py-n2-011"
+      }
+    },
+    {
+      "concepto": "Máximo de N números ingresados",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-010",
+        "python": "py-n3-008"
+      }
+    },
+    {
+      "concepto": "MCD por el algoritmo de Euclides",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-018",
+        "python": "py-n3-015"
+      }
+    },
+    {
+      "concepto": "Números pares de 1 a N",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-006",
+        "python": "py-n3-006"
+      }
+    },
+    {
+      "concepto": "Números primos entre 2 y N",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-014",
+        "python": "py-n3-012"
+      }
+    },
+    {
+      "concepto": "Primer múltiplo de K mayor que M",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-012",
+        "python": "py-n3-010"
+      }
+    },
+    {
+      "concepto": "Suma de múltiplos de 3 y 5 hasta N",
+      "modulo": "N3",
+      "ids": {
+        "pseint": "ps-n3-015",
+        "python": "py-n3-013"
+      }
+    },
+    {
+      "concepto": "Contar positivos, negativos y ceros",
+      "modulo": "N4",
+      "ids": {
+        "pseint": "ps-n4-006",
+        "python": "py-n4-006"
+      }
+    },
+    {
+      "concepto": "Concatenar nombre y apellido",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-003",
+        "python": "py-n6-003"
+      }
+    },
+    {
+      "concepto": "Contar ocurrencias de un carácter",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-011",
+        "python": "py-n6-009"
+      }
+    },
+    {
+      "concepto": "Contar vocales en una cadena",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-006",
+        "python": "py-n6-006"
+      }
+    },
+    {
+      "concepto": "Longitud de una cadena",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-001",
+        "python": "py-n6-001"
+      }
+    },
+    {
+      "concepto": "Primer y último carácter",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-004",
+        "python": "py-n6-004"
+      }
+    },
+    {
+      "concepto": "Reemplazar espacios por guiones bajos",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-010",
+        "python": "py-n6-008"
+      }
+    },
+    {
+      "concepto": "Verificar si empieza con mayúscula",
+      "modulo": "N6",
+      "ids": {
+        "pseint": "ps-n6-012",
+        "python": "py-n6-011"
+      }
+    },
+    {
+      "concepto": "Juego: Adivina el número",
+      "modulo": "N7",
+      "ids": {
+        "pseint": "ps-n7-006",
+        "python": "py-n7-005"
+      }
+    }
+  ]
+}

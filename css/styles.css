@@ -2518,6 +2518,35 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   box-shadow: 0 0 12px rgba(0,255,136,0.35);
 }
 
+.ej-otros-lenguajes {
+  margin: 10px 0 0;
+  padding: 7px 8px 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: rgba(255,255,255,0.02);
+}
+
+.ej-otros-lenguajes .ej-section-label {
+  margin: 0 0 5px;
+}
+
+.ej-otro-lenguaje-btn {
+  display: inline-block;
+  margin: 0 4px 4px 0;
+  padding: 2px 8px;
+  font-size: 10.5px;
+  border: 1px solid var(--accent-dim);
+  border-radius: 3px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.ej-otro-lenguaje-btn:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
 .ej-estado-control {
   display: flex;
   flex-wrap: wrap;

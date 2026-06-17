@@ -1510,6 +1510,88 @@ test('banco Python: todos los ejercicios adaptados tienen pista y entradaProceso
   }
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+//  Mapa multi-lenguaje (Fase 5)
+// ─────────────────────────────────────────────────────────────────────────────
+
+function loadMapa() {
+  const raw = require('fs').readFileSync(
+    require('path').join(__dirname, '../json/multi/mapa.json'), 'utf8');
+  return JSON.parse(raw);
+}
+
+test('mapa multi-lenguaje: estructura básica válida', () => {
+  const mapa = loadMapa();
+  assert(mapa.version && typeof mapa.version === 'string', 'falta campo version');
+  assert(Array.isArray(mapa.mapas), 'campo mapas debe ser array');
+  assert(mapa.totalMapas === mapa.mapas.length,
+    `totalMapas (${mapa.totalMapas}) no coincide con mapas.length (${mapa.mapas.length})`);
+});
+
+test('mapa multi-lenguaje: al menos 20 entradas', () => {
+  const { mapas } = loadMapa();
+  assert(mapas.length >= 20, `se esperaban >=20 mapas, hay ${mapas.length}`);
+});
+
+test('mapa multi-lenguaje: cada entrada tiene concepto, modulo e ids', () => {
+  const { mapas } = loadMapa();
+  for (const m of mapas) {
+    assert(m.concepto && m.concepto.trim().length > 0, `concepto vacío en: ${JSON.stringify(m)}`);
+    assert(m.modulo && /^N\d$/.test(m.modulo), `modulo inválido en: ${JSON.stringify(m)}`);
+    assert(m.ids && typeof m.ids === 'object' && Object.keys(m.ids).length >= 2,
+      `ids debe tener al menos 2 lenguajes en: ${JSON.stringify(m)}`);
+  }
+});
+
+test('mapa multi-lenguaje: lenguajes referenciados son válidos', () => {
+  const LANGS = new Set(['liteseint', 'pseint', 'python']);
+  const { mapas } = loadMapa();
+  for (const m of mapas) {
+    for (const lang of Object.keys(m.ids)) {
+      assert(LANGS.has(lang), `lenguaje desconocido "${lang}" en mapa "${m.concepto}"`);
+    }
+  }
+});
+
+test('mapa multi-lenguaje: IDs de ejercicios tienen el formato correcto por lenguaje', () => {
+  const { mapas } = loadMapa();
+  for (const m of mapas) {
+    if (m.ids.liteseint) {
+      assert(/^n\d+-\d+$/.test(m.ids.liteseint),
+        `ID liteseint inválido: ${m.ids.liteseint}`);
+    }
+    if (m.ids.pseint) {
+      assert(/^ps-n\d+-\d+$/.test(m.ids.pseint),
+        `ID pseint inválido: ${m.ids.pseint}`);
+    }
+    if (m.ids.python) {
+      assert(/^py-n\d+-\d+$/.test(m.ids.python),
+        `ID python inválido: ${m.ids.python}`);
+    }
+  }
+});
+
+test('mapa multi-lenguaje: IDs referenciados existen en sus bancos', () => {
+  const { mapas } = loadMapa();
+  const lsIds = new Set([1,2,3,4,5,6,7].flatMap(n => {
+    const d = require('../json/liteseint/N'+n+'.json');
+    return (d.exercises||d.ejercicios||[]).map(e=>e.id);
+  }));
+  const psIds = new Set([1,2,3,4,5,6,7].flatMap(n => {
+    const d = require('../json/pseint/N'+n+'.json');
+    return (d.ejercicios||[]).map(e=>e.id);
+  }));
+  const pyIds = new Set([1,2,3,4,5,6,7].flatMap(n => {
+    const d = require('../json/python/N'+n+'.json');
+    return (d.ejercicios||[]).map(e=>e.id);
+  }));
+  for (const m of mapas) {
+    if (m.ids.liteseint) assert(lsIds.has(m.ids.liteseint), `ID LiteSeInt no encontrado: ${m.ids.liteseint}`);
+    if (m.ids.pseint)    assert(psIds.has(m.ids.pseint),    `ID PSeInt no encontrado: ${m.ids.pseint}`);
+    if (m.ids.python)    assert(pyIds.has(m.ids.python),    `ID Python no encontrado: ${m.ids.python}`);
+  }
+});
+
 (async () => {
   let fallas = 0;
 

@@ -2958,11 +2958,15 @@ async function cargarBancoEjerciciosDesdeJson() {
   if (!window.EjerciciosPython || !window.EjerciciosPython.cargarDesdeJson) {
     throw new Error("No se cargó js/ejercicios-python-data.js antes de js/app.js.");
   }
-  await Promise.all([
+  const promesas = [
     window.EjerciciosLiteSeInt.cargarDesdeJson(),
     window.EjerciciosPSeInt.cargarDesdeJson(),
     window.EjerciciosPython.cargarDesdeJson(),
-  ]);
+  ];
+  if (window.EjerciciosMulti && window.EjerciciosMulti.cargarDesdeJson) {
+    promesas.push(window.EjerciciosMulti.cargarDesdeJson().catch(() => { /* opcional */ }));
+  }
+  await Promise.all(promesas);
 }
 
 function cargarProgreso() {
@@ -3583,6 +3587,35 @@ function mostrarDetalleEjercicio(id) {
     $se.append($("<p>").addClass("ej-section-label").text("Salida esperada"));
     $se.append($("<pre>").text(e.salidaEsperada));
     $det.append($se);
+  }
+
+  // Ver en otros lenguajes
+  if (window.EjerciciosMulti) {
+    const mapa = window.EjerciciosMulti.buscarPorId(e.id, providerActivo().id);
+    if (mapa) {
+      const $otros = $("<div>").addClass("ej-otros-lenguajes");
+      $otros.append($("<p>").addClass("ej-section-label").text("Este problema en otros lenguajes"));
+      let hayOtros = false;
+      const idsOtros = mapa.ids || {};
+      Object.keys(idsOtros).forEach((langId) => {
+        if (langId === providerActivo().id) return;
+        const targetId = idsOtros[langId];
+        const provider = Code4Code.registro.obtener(langId);
+        if (!provider) return;
+        hayOtros = true;
+        $otros.append(
+          $("<button>")
+            .addClass("ej-otro-lenguaje-btn")
+            .attr("type", "button")
+            .text(provider.nombre)
+            .on("click", () => {
+              Code4Code.registro.activar(langId);
+              seleccionarEjercicio(targetId);
+            }),
+        );
+      });
+      if (hayOtros) $det.append($otros);
+    }
   }
 
   // Estado del ejercicio
