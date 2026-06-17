@@ -40,29 +40,27 @@ identifica en qué fase está el proyecto.
       lectura retro-compatible, ejercicios en `json/liteseint/`
       (`v2.0.0-beta`). El resaltado y el autocompletado del editor siguen
       usando `DocErrores` directo: se migran al extraer el editor en Fase 2.
-- [ ] Fase 2 — Editor propio mejorado (extraer a `js/editor/`). En curso:
-      resaltado (`js/editor/highlight.js`) y datos de autocompletado
-      (`js/editor/autocomplete.js`) ya extraídos y dirigidos por el provider
-      activo, con suites propias en `tests/editor-tests.js` y
-      `tests/autocomplete-tests.js`. Pares/autocierre (`js/editor/pairs.js`),
-      búsqueda/reemplazo (`js/editor/search.js`) e historial undo/redo con
-      agrupación (`js/editor/history.js`) ya extraídos, con sus suites.
-      `js/app.js` ya no usa `DocErrores` ni `LiteSeInt` directamente.
-      Pendiente: núcleo del editor, gutter, folding, móvil, temas.
+- [x] Fase 2 — Editor propio mejorado (extraer a `js/editor/`). Completado:
+      resaltado (`js/editor/highlight.js`), autocompletado (`js/editor/autocomplete.js`),
+      pares/autocierre (`js/editor/pairs.js`), búsqueda/reemplazo (`js/editor/search.js`),
+      historial undo/redo con agrupación (`js/editor/history.js`), plegado por
+      keywords y por indentación Python (`js/editor/folding.js`), gutter con números
+      de línea y badges de error (`js/editor/gutter.js`). Barra de símbolos táctiles
+      adaptable por lenguaje. 6 temas CSS con selector cíclico. Debounce 30 ms en
+      resaltado. Suites: editor 12, autocomplete 10, pairs 20, search 13, history 21,
+      folding 19, gutter 12. `js/app.js` ya no usa `DocErrores` ni `LiteSeInt`.
+      Pendiente: núcleo del editor unificado (app.js aún gestiona el textarea directamente).
 - [x] Fase 3a — Lenguaje PSeInt, perfil estricto (`v2.3.5-beta`). Implementado:
       diseño del objeto `perfil`, `Algoritmo/Proceso … FinAlgoritmo/FinProceso`,
       asignación `<-` (y `=` como comparador), `Escribir`/`Escribir Sin Saltar`/
       `Leer` multivariable, estructuras `Si/Sino`, `Segun`, `Mientras`,
       `Repetir…HastaQue`, `Para…Con Paso`, arreglos `Dimension` 1D/2D,
       `SubProceso`/`Funcion` con retorno y paso por referencia, 19 funciones nativas
-      + instrucción procedimental `Ordenar(arr[, n])`, validador con mensajes PSeInt
-      (incluyendo caso `Ordenar` sobre arreglo no dimensionado), correcciones de
-      coerción implícita de tipos, aviso de migración bidireccional, documentación
-      de comandos PSeInt en el panel de aprendizaje, provider registrado en `index.html`,
-      suites de tests propias (tokenizer 25, builtins 61, parser 15, runtime 24,
-      validator 22, golden tests 37, contract-tests 33 pruebas);
-      coerción implícita completada (13 pruebas runtime 25-37): Logico↔Entero/
-      Real/Cadena/Caracter, Cadena↔Entero/Real/Logico correcto.
+      + instrucción procedimental `Ordenar(arr[, n])`, validador con mensajes PSeInt,
+      correcciones de coerción implícita de tipos (runtime 43/43, validator 25/25),
+      aviso de migración bidireccional, documentación de comandos PSeInt en el panel
+      de aprendizaje, provider registrado en `index.html`, suites de tests propias
+      (builtins 61, runtime 43, validator 25, golden tests 37, contract-tests incluidos).
 - [x] Fase 3b — Perfil flexible y banco de ejercicios PSeInt completo (`v2.3.5-beta`).
       Implementado: selector de perfil (presets *Estricto*/*Flexible*) visible solo en
       PSeInt, `configurarPerfil`/`obtenerPerfil` en el provider, elección persistida
@@ -86,10 +84,10 @@ identifica en qué fase está el proyecto.
       Implementado: progreso separado por lenguaje en `localStorage`; datos de
       ejercicios PSeInt/Python cargados correctamente; vista de progreso
       comparado por lenguaje en la pestaña Rutas (`renderizarProgresoComparado`);
-      mapa de equivalencias `json/multi/mapa.json` (32 entradas LiteSeInt/PSeInt/
-      Python) con cargador `js/ejercicios-multi-data.js` y botones "Ver en otros
-      lenguajes" en el panel de detalle del ejercicio; 6 pruebas del mapa en suite
-      total; bancos validados (LiteSeInt 245, PSeInt 110, Python 110 ejercicios).
+      mapa de equivalencias `json/multi/mapa.json` (55 entradas LiteSeInt/PSeInt/
+      Python, N1–N7) con cargador `js/ejercicios-multi-data.js` y botones "Ver en
+      otros lenguajes" en el panel de detalle del ejercicio; 6 pruebas del mapa en
+      suite total; bancos validados (LiteSeInt 245, PSeInt 110, Python 110 ejercicios).
       Pendiente: esquema multi-lenguaje (un enunciado, N soluciones), estadísticas
       comparadas por lenguaje.
 

@@ -350,7 +350,7 @@ conecta la experiencia del estudiante entre lenguajes:
 - [x] Validación estática de los bancos en `npm test`: IDs únicos, campos
       obligatorios, ausencia de sintaxis cruzada entre lenguajes.
 - [x] Esquema de ejercicio multi-lenguaje: mapa de equivalencias en
-      `json/multi/mapa.json` (32 entradas) que asocia el mismo concepto en
+      `json/multi/mapa.json` (55 entradas N1–N7) que asocia el mismo concepto en
       varios lenguajes; `js/ejercicios-multi-data.js` como cargador; botones
       "Ver en otros lenguajes" en el panel de detalle del ejercicio.
 - [x] Vista de progreso comparado: cuántos ejercicios resueltos por lenguaje
