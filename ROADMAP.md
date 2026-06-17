@@ -355,6 +355,10 @@ conecta la experiencia del estudiante entre lenguajes:
       "Ver en otros lenguajes" en el panel de detalle del ejercicio.
 - [x] Vista de progreso comparado: cuántos ejercicios resueltos por lenguaje
       (sección en la pestaña Rutas, `renderizarProgresoComparado` en `js/app.js`).
+- [x] Ruta modular para PSeInt y Python: tarjetas N1–N7 colapsables con conceptos
+      (badges), barra de progreso, y ejercicios agrupados por tipo (guiado/práctica/
+      desafío). Reemplaza el placeholder "próximamente" en la pestaña Rutas.
+      Implementado en `renderizarRutaModular` (genérico para cualquier lenguaje).
 
 ### Fase 6 — Estabilización y release `v3.0.0`
 

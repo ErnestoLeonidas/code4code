@@ -88,8 +88,11 @@ identifica en qué fase está el proyecto.
       Python, N1–N7) con cargador `js/ejercicios-multi-data.js` y botones "Ver en
       otros lenguajes" en el panel de detalle del ejercicio; 6 pruebas del mapa en
       suite total; bancos validados (LiteSeInt 245, PSeInt 110, Python 110 ejercicios).
-      Pendiente: esquema multi-lenguaje (un enunciado, N soluciones), estadísticas
-      comparadas por lenguaje.
+      Ruta modular N1–N7 para PSeInt y Python: tarjetas colapsables con conceptos,
+      barra de progreso y enlaces a ejercicios agrupados por gradoAyuda
+      (`renderizarRutaModular` en `js/app.js`). Constantes `MODULOS_ORDEN` y
+      `MODULOS_TITULO` reutilizables por cualquier lenguaje.
+      Pendiente: esquema multi-lenguaje unificado (un enunciado, N soluciones).
 
 ## Tareas típicas y dónde mirar
 

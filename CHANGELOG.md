@@ -1,5 +1,18 @@
 # Changelog — Code4Code
 
+## [2.3.8-beta] - 2026-06-16
+
+### Fase 5 — Ruta modular para PSeInt y Python
+
+- `js/app.js`: nueva función `renderizarRutaModular(provider, $cont)` que muestra
+  tarjetas N1–N7 colapsables para cualquier lenguaje con banco de ejercicios.
+  Cada tarjeta lista: conceptos únicos del módulo (como badges), barra de progreso
+  (completados/total), y enlaces a ejercicios "Para comenzar", "Para practicar" y
+  "Para desafiar". Reemplaza el mensaje "próximamente" en la pestaña Rutas para
+  PSeInt y Python.
+- `js/app.js`: `MODULOS_ORDEN` y `MODULOS_TITULO` con títulos genéricos N1–N7
+  usables por cualquier lenguaje (Entrada/salida, Condicionales, Ciclos, etc.).
+
 ## [2.3.7-beta] - 2026-06-16
 
 ### Fase 2 — Plegado de bloques Python por indentación

@@ -3200,6 +3200,80 @@ function renderizarProgresoComparado($cont) {
   $cont.append($sec);
 }
 
+const MODULOS_ORDEN = ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7'];
+const MODULOS_TITULO = {
+  N1: 'Entrada, salida y variables',
+  N2: 'Condicionales',
+  N3: 'Ciclos',
+  N4: 'Arreglos y colecciones',
+  N5: 'Subprogramas y funciones',
+  N6: 'Cadenas y datos',
+  N7: 'Integración y proyectos',
+};
+
+function renderizarRutaModular(provider, $cont) {
+  const todos = obtenerEjerciciosPorLenguajeId(provider.id);
+  const progreso = obtenerProgresoPorLenguajeId(provider.id);
+
+  MODULOS_ORDEN.forEach((mod) => {
+    const ejercicios = todos.filter((e) => e.modulo === mod);
+    if (!ejercicios.length) return;
+
+    const completados = ejercicios.filter((e) => progreso[e.id] === 'completado').length;
+    const pct = Math.round((completados / ejercicios.length) * 100);
+
+    const comenzar = ejercicios
+      .filter((e) => e.gradoAyuda === 'guiado' || e.gradoAyuda === 'con-pista')
+      .filter((e) => e.dificultad === 'basico')
+      .slice(0, 2);
+    const practicar = ejercicios.filter((e) => e.gradoAyuda === 'practica').slice(0, 2);
+    const desafiar = ejercicios.filter((e) => e.gradoAyuda === 'desafio').slice(0, 1);
+
+    const $card = $('<article>').addClass('learning-route-card');
+    $card.append($('<div>').addClass('learning-route-num').text(mod));
+
+    const $right = $('<div>').addClass('learning-route-right');
+    const $trigger = $('<button>').addClass('learning-route-trigger').attr('type', 'button');
+    $trigger.append($('<span>').text(MODULOS_TITULO[mod] || mod));
+    $trigger.append($('<span>').addClass('doc-chevron').text('▾'));
+    $trigger.on('click', () => $card.toggleClass('is-open'));
+    $right.append($trigger);
+
+    const $body = $('<div>').addClass('learning-route-body');
+
+    const conceptosUnicos = [...new Set(ejercicios.flatMap((e) => e.conceptos || []))].slice(0, 8);
+    if (conceptosUnicos.length) {
+      const $cmds = $('<div>').addClass('route-commands');
+      conceptosUnicos.forEach((c) => $cmds.append($('<span>').addClass('route-cmd-badge').text(c)));
+      $body.append($cmds);
+    }
+
+    const $prog = $('<div>').addClass('route-progress-wrap');
+    $prog.append($('<div>').addClass('route-progress-text').text(
+      `${completados} / ${ejercicios.length} completados`,
+    ));
+    const $bar = $('<div>').addClass('route-progress-bar');
+    $bar.append($('<div>').addClass('route-progress-fill').css('width', `${pct}%`));
+    $prog.append($bar);
+    $body.append($prog);
+
+    const agregarGrupo = (label, lista) => {
+      if (!lista.length) return;
+      const $recs = $('<div>').addClass('learning-doc-recs');
+      $recs.append($('<div>').addClass('learning-doc-label').text(label));
+      lista.forEach((e) => $recs.append(crearLinkEjercicio(e)));
+      $body.append($recs);
+    };
+    agregarGrupo('Para comenzar', comenzar);
+    agregarGrupo('Para practicar', practicar);
+    agregarGrupo('Para desafiar', desafiar);
+
+    $right.append($body);
+    $card.append($right);
+    $cont.append($card);
+  });
+}
+
 function renderizarRutaEstudiante() {
   const $cont = $("#learningViewRuta");
   if (!$cont.length) return;
@@ -3210,8 +3284,9 @@ function renderizarRutaEstudiante() {
   const provider = Code4Code.registro.activo();
   if (provider.id !== 'liteseint') {
     $cont.append($("<p>").addClass("learning-doc-intro").text(
-      `La ruta de aprendizaje de ${provider.nombre} estará disponible próximamente.`
+      `Ruta de N1 a N7 para ${provider.nombre}. Avanza módulo a módulo: comienza con los ejercicios guiados y desafíate con los de práctica libre.`,
     ));
+    renderizarRutaModular(provider, $cont);
     return;
   }
   $cont.append($("<p>").addClass("learning-doc-intro").text(
