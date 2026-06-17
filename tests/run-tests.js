@@ -1528,9 +1528,9 @@ test('mapa multi-lenguaje: estructura básica válida', () => {
     `totalMapas (${mapa.totalMapas}) no coincide con mapas.length (${mapa.mapas.length})`);
 });
 
-test('mapa multi-lenguaje: al menos 20 entradas', () => {
+test('mapa multi-lenguaje: al menos 50 entradas', () => {
   const { mapas } = loadMapa();
-  assert(mapas.length >= 20, `se esperaban >=20 mapas, hay ${mapas.length}`);
+  assert(mapas.length >= 50, `se esperaban >=50 mapas, hay ${mapas.length}`);
 });
 
 test('mapa multi-lenguaje: cada entrada tiene concepto, modulo e ids', () => {
