@@ -500,6 +500,110 @@ await t('Asignar Real a Entero trunca el valor', async () => {
 });
 
 // ---------------------------------------------------------------------------
+//  Pruebas de coerción implícita de tipos (cobertura completa)
+// ---------------------------------------------------------------------------
+
+// 25. Logico → Entero: Verdadero=1, Falso=0
+await t('coercionarValor: Logico a Entero (true→1, false→0)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(true,  TIPOS_PSEINT.ENTERO) === 1, 'true → 1');
+  ok(coercionarValor(false, TIPOS_PSEINT.ENTERO) === 0, 'false → 0');
+});
+
+// 26. Logico → Real: Verdadero=1.0, Falso=0.0
+await t('coercionarValor: Logico a Real (true→1, false→0)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(true,  TIPOS_PSEINT.REAL) === 1, 'true → 1.0');
+  ok(coercionarValor(false, TIPOS_PSEINT.REAL) === 0, 'false → 0.0');
+});
+
+// 27. Entero → Logico: 0=Falso, ≠0=Verdadero
+await t('coercionarValor: Entero a Logico (0→false, ≠0→true)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(0,  TIPOS_PSEINT.LOGICO) === false, '0 → false');
+  ok(coercionarValor(1,  TIPOS_PSEINT.LOGICO) === true,  '1 → true');
+  ok(coercionarValor(-3, TIPOS_PSEINT.LOGICO) === true,  '-3 → true');
+});
+
+// 28. Real → Logico: 0.0=Falso, ≠0.0=Verdadero
+await t('coercionarValor: Real a Logico (0.0→false, ≠0.0→true)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(0.0, TIPOS_PSEINT.LOGICO) === false, '0.0 → false');
+  ok(coercionarValor(1.5, TIPOS_PSEINT.LOGICO) === true,  '1.5 → true');
+});
+
+// 29. Cadena → Logico: variantes de mayúsculas/minúsculas
+await t('coercionarValor: Cadena a Logico (Verdadero/VERDADERO/Falso/FALSO)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor('VERDADERO', TIPOS_PSEINT.LOGICO) === true,  'VERDADERO → true');
+  ok(coercionarValor('FALSO',     TIPOS_PSEINT.LOGICO) === false, 'FALSO → false');
+  ok(coercionarValor('verdadero', TIPOS_PSEINT.LOGICO) === true,  'verdadero → true');
+  ok(coercionarValor('falso',     TIPOS_PSEINT.LOGICO) === false, 'falso → false');
+});
+
+// 30. Cadena inválida → Logico lanza error
+await t('coercionarValor: cadena inválida a Logico lanza error', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  let lanzó = false;
+  try { coercionarValor('si', TIPOS_PSEINT.LOGICO); } catch (e) { lanzó = true; }
+  ok(lanzó, 'debía lanzar error para "si"');
+});
+
+// 31. Entero → Cadena: representación de texto
+await t('coercionarValor: Entero a Cadena (42→"42", -5→"-5", 0→"0")', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(42, TIPOS_PSEINT.CADENA)  === '42',  '42 → "42"');
+  ok(coercionarValor(-5, TIPOS_PSEINT.CADENA)  === '-5',  '-5 → "-5"');
+  ok(coercionarValor(0,  TIPOS_PSEINT.CADENA)  === '0',   '0 → "0"');
+});
+
+// 32. Real → Cadena: representación de texto
+await t('coercionarValor: Real a Cadena (3.14→"3.14")', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(3.14, TIPOS_PSEINT.CADENA) === '3.14', '3.14 → "3.14"');
+});
+
+// 33. Cadena → Entero: parseFloat y trunca; cadena inválida lanza
+await t('coercionarValor: Cadena numérica a Entero ("7.9"→7, "3"→3)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor('7.9', TIPOS_PSEINT.ENTERO) === 7,  '"7.9" → 7');
+  ok(coercionarValor('3',   TIPOS_PSEINT.ENTERO) === 3,  '"3" → 3');
+  ok(coercionarValor('-5',  TIPOS_PSEINT.ENTERO) === -5, '"-5" → -5');
+});
+
+// 34. Cadena → Real: parseFloat; cadena inválida lanza
+await t('coercionarValor: Cadena numérica a Real ("3.14"→3.14, "-1.5"→-1.5)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor('3.14', TIPOS_PSEINT.REAL) === 3.14,  '"3.14" → 3.14');
+  ok(coercionarValor('-1.5', TIPOS_PSEINT.REAL) === -1.5, '"-1.5" → -1.5');
+  let lanzó = false;
+  try { coercionarValor('abc', TIPOS_PSEINT.REAL); } catch (e) { lanzó = true; }
+  ok(lanzó, '"abc" → lanza error');
+});
+
+// 35. Real → Entero con valores negativos (Math.trunc, no floor)
+await t('coercionarValor: Real negativo a Entero trunca hacia cero (-3.9→-3)', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(-3.9, TIPOS_PSEINT.ENTERO) === -3, '-3.9 → -3 (trunc, no floor)');
+  ok(coercionarValor(-0.1, TIPOS_PSEINT.ENTERO) === 0,  '-0.1 → 0');
+});
+
+// 36. Logico → Caracter: 'V' para Verdadero, 'F' para Falso
+await t('coercionarValor: Logico a Caracter da "V"/"F" (no "t"/"f")', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor(true,  TIPOS_PSEINT.CARACTER) === 'V', 'true → "V"');
+  ok(coercionarValor(false, TIPOS_PSEINT.CARACTER) === 'F', 'false → "F"');
+});
+
+// 37. Cadena → Caracter: primer carácter
+await t('coercionarValor: Cadena a Caracter toma primer carácter', () => {
+  const { coercionarValor, TIPOS_PSEINT } = expSymbolTable;
+  ok(coercionarValor('hola', TIPOS_PSEINT.CARACTER) === 'h', '"hola" → "h"');
+  ok(coercionarValor('a',    TIPOS_PSEINT.CARACTER) === 'a', '"a" → "a"');
+  ok(coercionarValor('',     TIPOS_PSEINT.CARACTER) === '',  '"" → ""');
+});
+
+// ---------------------------------------------------------------------------
 //  Resumen
 // ---------------------------------------------------------------------------
 

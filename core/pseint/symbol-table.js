@@ -220,28 +220,66 @@ class ScopeChainPSeInt {
 
 /**
  * Convierte un valor JS al tipo PSeInt dado.
+ *
+ * Tabla de conversiones implícitas soportadas:
+ *   Entero  ← Real (trunca), Logico (0/1), Cadena numérica (parseFloat→trunc)
+ *   Real    ← Entero, Logico (0.0/1.0), Cadena numérica (parseFloat)
+ *   Logico  ← Entero/Real (0↔Falso, ≠0↔Verdadero), Cadena "Verdadero"/"Falso"
+ *   Cadena  ← Entero/Real (String), Logico ("Verdadero"/"Falso"), Caracter
+ *   Caracter← Cadena (primer carácter), Logico ("V"/"F", primer char de la cadena PSeInt)
+ *
  * @param {*} valor
  * @param {string} tipo — uno de TIPOS_PSEINT
  * @returns {number|string|boolean}
  */
 function coercionarValor(valor, tipo) {
   switch (tipo) {
+
     case TIPOS_PSEINT.ENTERO: {
-      const n = Math.trunc(Number(valor));
-      if (isNaN(n)) throw new Error('No se puede convertir "' + valor + '" a Entero.');
-      return n;
+      // Logico: true → 1, false → 0
+      if (typeof valor === 'boolean') return valor ? 1 : 0;
+      // Cadena: convertir vía parseFloat para soportar "3.9" → 3
+      if (typeof valor === 'string') {
+        const n = Math.trunc(parseFloat(valor));
+        if (isNaN(n)) throw new Error('No se puede convertir "' + valor + '" a Entero.');
+        return n;
+      }
+      // Number (Real → Entero: trunca)
+      const ne = Math.trunc(Number(valor));
+      if (isNaN(ne)) throw new Error('No se puede convertir "' + valor + '" a Entero.');
+      return ne;
     }
+
     case TIPOS_PSEINT.REAL: {
-      const n = Number(valor);
-      if (isNaN(n)) throw new Error('No se puede convertir "' + valor + '" a Real.');
-      return n;
+      // Logico: true → 1.0, false → 0.0
+      if (typeof valor === 'boolean') return valor ? 1 : 0;
+      // Cadena: parseFloat (más estricto que Number para espacios intermedios)
+      if (typeof valor === 'string') {
+        const n = parseFloat(valor);
+        if (isNaN(n)) throw new Error('No se puede convertir "' + valor + '" a Real.');
+        return n;
+      }
+      // Entero → Real
+      const nr = Number(valor);
+      if (isNaN(nr)) throw new Error('No se puede convertir "' + valor + '" a Real.');
+      return nr;
     }
+
     case TIPOS_PSEINT.CADENA:
+      // Logico → "Verdadero" / "Falso" (no "true"/"false" de JS)
       if (valor === true)  return 'Verdadero';
       if (valor === false) return 'Falso';
+      // Entero/Real/Caracter → representación de texto
       return String(valor);
-    case TIPOS_PSEINT.CARACTER:
+
+    case TIPOS_PSEINT.CARACTER: {
+      // Logico: coercionar primero a su representación PSeInt y tomar primer char
+      if (valor === true)  return 'V';
+      if (valor === false) return 'F';
+      // Cadena/Entero/Real: primer carácter de la representación en texto
       return String(valor)[0] || '';
+    }
+
     case TIPOS_PSEINT.LOGICO:
       if (typeof valor === 'string') {
         const v = valor.trim().toLowerCase();
@@ -249,7 +287,9 @@ function coercionarValor(valor, tipo) {
         if (v === 'falso'     || v === 'false' || v === '0') return false;
         throw new Error('Valor Logico inválido: "' + valor + '". Use Verdadero o Falso.');
       }
+      // Entero/Real: 0 → Falso, cualquier otro número → Verdadero
       return Boolean(valor);
+
     default:
       throw new Error('coercionarValor: tipo desconocido "' + tipo + '".');
   }
