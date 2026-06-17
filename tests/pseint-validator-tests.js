@@ -452,6 +452,56 @@ t('Variable Logica: Definir flag Como Logico y asignación Verdadero son válido
     'Variable Logica con Verdadero/Falso no debe generar errores: ' + JSON.stringify(errores));
 });
 
+// 26. Variable de Para sin Definir explícito es válida (Para crea la variable implícitamente)
+t('Para loop sin Definir iterador no genera error de variable no definida', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Para i <- 1 Hasta 5 Hacer',
+    '    Escribir i',
+    '  FinPara',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Para sin Definir iterador no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// 27. SubProceso que llama a otro SubProceso → válido
+t('SubProceso que llama a otro SubProceso declarado es válido', function() {
+  const codigo = [
+    'SubProceso Saludar()',
+    '  Escribir "Hola"',
+    'FinSubProceso',
+    'SubProceso DosSaludos()',
+    '  Llamar Saludar()',
+    '  Llamar Saludar()',
+    'FinSubProceso',
+    'Algoritmo test',
+    '  Llamar DosSaludos()',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'SubProceso que llama a otro SubProceso no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// 28. Mientras con variable definida previamente → válido
+t('Mientras con variable de control definida previamente es válido', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir n Como Entero',
+    '  n <- 0',
+    '  Mientras n < 5 Hacer',
+    '    n <- n + 1',
+    '  FinMientras',
+    '  Escribir n',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Mientras con variable de control no debe generar errores: ' + JSON.stringify(errores));
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 //  Resumen
 // ─────────────────────────────────────────────────────────────────────────────
