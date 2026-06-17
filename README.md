@@ -16,13 +16,14 @@ La ruta del estudiante recorre tres lenguajes dentro del mismo entorno:
 
 ## Estado actual
 
-- Versión: `v2.3.6-beta`
+- Versión: `v2.3.8-beta`
 - Los tres lenguajes son funcionales: LiteSeInt (Fases 0–1), PSeInt con perfiles
   Estricto/Flexible (Fases 3a–3b) y Python vía Pyodide (Fase 4).
 - Editor propio sin dependencias externas: resaltado, autocompletado, pares/autocierre,
-  búsqueda/reemplazo, historial undo/redo, gutter y folding (Fase 2, en curso).
-- Vista de progreso comparado por los tres lenguajes en la pestaña Rutas (Fase 5,
-  en curso).
+  búsqueda/reemplazo, historial undo/redo, gutter, folding, 6 temas y barra de símbolos
+  táctiles (Fase 2, completa).
+- Rutas N1–N7 por módulo para PSeInt y Python: tarjetas colapsables con conceptos,
+  barra de progreso y ejercicios agrupados (Fase 5, en curso).
 
 ## Funcionalidad
 
