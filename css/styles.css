@@ -550,6 +550,7 @@ body::before {
   outline: none;
 }
 .search-input:focus { border-color: var(--accent); }
+.search-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .search-count {
   color: var(--text-secondary); font-size: 11px; white-space: nowrap;
   min-width: 56px; text-align: right;
@@ -926,6 +927,7 @@ body::before {
 .console-input-field:focus {
   border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,255,136,0.1);
 }
+.console-input-field:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 .console-input-send {
   background: linear-gradient(135deg, var(--accent) 0%, #00cc6a 100%);
@@ -1142,6 +1144,7 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   outline: none;
   box-sizing: border-box;
 }
+.ns-edit-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 /* ========================================
     AUTOCOMPLETE
@@ -2476,6 +2479,7 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   text-transform: uppercase;
   outline: none;
 }
+.ej-pista summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
 .ej-pista p {
   margin: 6px 0 2px 0;
@@ -3597,4 +3601,26 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
 
 .python-stdin-input:focus {
   border-color: var(--accent);
+}
+.python-stdin-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ========================================
+    ACCESIBILIDAD — skip link (WCAG 2.4.1)
+    ======================================== */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 12px;
+  background: var(--accent);
+  color: var(--bg-primary, var(--bg-deep));
+  z-index: 9999;
+  border-radius: 0 0 4px 0;
+  font-size: 12px;
+  font-family: var(--font-code);
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
 }

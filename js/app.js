@@ -4129,6 +4129,9 @@ $(document).ready(function () {
   $("#learningPanelToggle").on("click", function (e) {
     e.stopPropagation();
     $("#learningPanel").toggleClass("collapsed");
+    // Actualizar aria-expanded para lectores de pantalla (WCAG 4.1.2)
+    const expandido = !$("#learningPanel").hasClass("collapsed");
+    $("#learningPanelToggle").attr("aria-expanded", expandido ? "true" : "false");
   });
 
   // Consola redimensionable

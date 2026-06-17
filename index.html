@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body data-theme="hacker">
+  <!-- Enlace de saltar al contenido principal (accesibilidad: WCAG 2.4.1) -->
+  <a href="#editor" class="skip-link">Saltar al editor</a>
   <div class="app-shell">
     <!-- ========== HEADER ========== -->
     <header class="app-header">
@@ -62,7 +64,7 @@
           </nav>
           <div class="lph-actions">
             <button class="btn-toggle-ej-lista" id="btnToggleEjListaHeader" title="Ocultar lista de ejercicios" aria-label="Ocultar lista de ejercicios">◀</button>
-            <button class="learning-panel-toggle" id="learningPanelToggle" aria-label="Mostrar u ocultar panel de ejercicios">▾</button>
+            <button class="learning-panel-toggle" id="learningPanelToggle" aria-label="Mostrar u ocultar panel de ejercicios" aria-expanded="true">▾</button>
           </div>
         </div>
         <div class="learning-panel-body" id="learningPanelBody">
@@ -210,6 +212,8 @@
               <textarea
                 id="editor"
                 spellcheck="false"
+                aria-label="Editor de código"
+                aria-describedby="statusText"
               ></textarea>
             </div>
             <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
@@ -275,14 +279,14 @@
             </div>
           </div>
           <div class="console-view active" id="consolaView">
-            <div id="consola"></div>
+            <div id="consola" role="log" aria-label="Salida del programa" aria-live="polite"></div>
             <!-- Panel de entrada estándar para Python (solo visible cuando Python está activo) -->
             <div id="pythonStdinPanel" style="display:none">
               <div class="python-stdin-label">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M8 9l4-4 4 4"/><path d="M16 15l-4 4-4-4"/></svg>
                 stdin — entradas del programa (una por línea)
               </div>
-              <textarea id="pythonStdin" class="python-stdin-input" placeholder="Si tu programa usa input(), escribe aquí las entradas (una por línea) antes de ejecutar." rows="3" spellcheck="false"></textarea>
+              <textarea id="pythonStdin" class="python-stdin-input" placeholder="Si tu programa usa input(), escribe aquí las entradas (una por línea) antes de ejecutar." rows="3" spellcheck="false" aria-label="Entradas estándar (stdin)"></textarea>
             </div>
           </div>
           <div class="console-view" id="variablesView">
