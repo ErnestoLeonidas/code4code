@@ -222,11 +222,17 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
       (`pairs.alNuevaLinea` según `reglasIndentacion()` del provider), y
       `Tab`/`Shift+Tab` sobre selección múltiple de líneas (existente
       desde 1.x, conservado).
-- [ ] Mejoras móviles: scroll/teclado virtual, botones táctiles de símbolos
-      frecuentes (`<-`, `==`, `[]`).
-- [ ] Temas claro/oscuro del editor.
-- [ ] Rendimiento: render incremental por línea (solo repintar líneas cambiadas)
-      para soportar archivos largos sin lag.
+- [x] Mejoras móviles: barra de símbolos táctiles (`<-`, `==`, `[]`, `()`,
+      `""`, `:`, `!=`, `↵`, `⇥`) adaptable por lenguaje (Python usa `=`
+      en lugar de `<-`), gestionada por `actualizarBarraSimbolos`.
+      Pendiente: scroll con teclado virtual en iOS/Android (requiere browser).
+- [x] Temas claro/oscuro del editor: 6 temas implementados en CSS
+      (Hacker/default, Ocean, Sunset, Papel/light, Noche, Día/day) con
+      selector cíclico en la cabecera (`btnTheme`, `cycleTheme` en app.js)
+      y persistencia en `localStorage`.
+- [x] Rendimiento: `actualizarSyntaxHighlight` e `actualizarIndentGuides` diferidos
+      30 ms via `_pendingSyntaxTimer` en `actualizarLineas`; undo/redo y
+      search/replace usan `actualizarLineasInmediato` para render síncrono.
 - [x] Suite de tests del editor en Node: resaltado (editor-tests 12/12),
       autocompletado (autocomplete-tests 10/10), pares (pairs-tests 20/20),
       búsqueda (search-tests 13/13), historial (history-tests 21/21),
@@ -354,7 +360,9 @@ conecta la experiencia del estudiante entre lenguajes:
 
 - [ ] Auditoría de rendimiento (tiempo de carga por lenguaje, memoria,
       tamaño de Pyodide en conexiones lentas).
-- [ ] Accesibilidad del editor y la consola (teclado, lectores de pantalla).
+- [x] Accesibilidad del editor y la consola: skip-link (WCAG 2.4.1), aria-live
+      en consola (WCAG 4.1.3), aria-label en editor/stdin/lenguaje, aria-expanded
+      en panel toggle (WCAG 4.1.2), :focus-visible en inputs (WCAG 2.4.7).
 - [x] README alineado al estado real v2.3.6-beta (todos los lenguajes
       funcionales, conteos correctos, estructura de proyecto actualizada).
 - [ ] Pruebas del flujo completo de estudiante en escritorio y móvil con los
