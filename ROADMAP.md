@@ -208,7 +208,10 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
 - [x] Búsqueda y reemplazo (`Ctrl+F` / `Ctrl+H`) con resaltado de coincidencias:
       `js/editor/search.js` + capa espejo `searchLayer`, con suite
       `tests/search-tests.js`. Los reemplazos respetan la plantilla protegida.
-- [ ] Plegado de bloques (`Si/FinSi`, `Para/FinPara`, `def:`/indentación en Python).
+- [x] Plegado de bloques: LiteSeInt/PSeInt por pares apertura/cierre (keyword),
+      Python por indentación (líneas que terminan en `:` cierran cuando baja la
+      sangría). `js/editor/folding.js` + 4 nuevas pruebas Python en
+      `tests/folding-tests.js`. Total folding: 19/19.
 - [x] Historial undo/redo robusto con agrupación de ediciones (no solo `Ctrl+Z`
       simple) y `Ctrl+Shift+Z`/`Ctrl+Y`: `js/editor/history.js` (módulo puro)
       agrupa tecleos/borrados contiguos en un solo paso y rompe el grupo al
@@ -224,8 +227,10 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
 - [ ] Temas claro/oscuro del editor.
 - [ ] Rendimiento: render incremental por línea (solo repintar líneas cambiadas)
       para soportar archivos largos sin lag.
-- [ ] Suite de tests del editor (documento, undo, indentación, folding) en Node
-      *(en curso: resaltado y autocompletado ya tienen suites propias)*.
+- [x] Suite de tests del editor en Node: resaltado (editor-tests 12/12),
+      autocompletado (autocomplete-tests 10/10), pares (pairs-tests 20/20),
+      búsqueda (search-tests 13/13), historial (history-tests 21/21),
+      plegado (folding-tests 19/19), gutter (gutter-tests 12/12).
 
 **Criterio de salida:** checklist de regresión cero completo + pruebas manuales
 del flujo estudiante en escritorio y móvil.
@@ -350,7 +355,8 @@ conecta la experiencia del estudiante entre lenguajes:
 - [ ] Auditoría de rendimiento (tiempo de carga por lenguaje, memoria,
       tamaño de Pyodide en conexiones lentas).
 - [ ] Accesibilidad del editor y la consola (teclado, lectores de pantalla).
-- [ ] README/CHANGELOG/EJERCICIOS alineados al estado real.
+- [x] README alineado al estado real v2.3.6-beta (todos los lenguajes
+      funcionales, conteos correctos, estructura de proyecto actualizada).
 - [ ] Pruebas del flujo completo de estudiante en escritorio y móvil con los
       tres lenguajes.
 

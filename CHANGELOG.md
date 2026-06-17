@@ -1,5 +1,22 @@
 # Changelog — Code4Code
 
+## [2.3.7-beta] - 2026-06-16
+
+### Fase 2 — Plegado de bloques Python por indentación
+
+- `js/editor/folding.js`: nuevo modo de plegado por indentación — cuando
+  `reglas.cierres` es vacío (Python), las líneas que terminan en `:` abren
+  un bloque que se cierra en la primera línea con sangría ≤ a la de apertura.
+  El modo por palabras clave (LiteSeInt/PSeInt) queda inalterado.
+- `tests/folding-tests.js`: 4 nuevas pruebas Python (def, for, bloque de una
+  línea no plegable, bloques anidados). Total: 19/19.
+
+### Docs
+
+- `README.md`: reescrito al estado real v2.3.6→2.3.7-beta — los tres lenguajes
+  como funcionales, conteos correctos (245+110+110 ejercicios), estructura de
+  proyecto actual con `js/editor/` y 16 suites de tests, Pyodide documentado.
+
 ## [2.3.6-beta] - 2026-06-16
 
 ### Fase 3a — Coerción implícita de tipos PSeInt (completada)
