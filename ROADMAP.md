@@ -348,8 +348,18 @@ Objetivo: escribir y ejecutar Python 3 real en el mismo entorno, sin backend.
       básico en el editor propio (`core/python/tokenizer.js`, `provider.js`).
 - [x] Pyodide 0.26.2 en un **Web Worker** con carga diferida (`core/python/worker.js`):
       indicador de progreso visible; caché HTTP del CDN de pyodide.org.
-- [x] `bridge.js`: `print()` → consola integrada; `input()` → panel `#pythonStdinPanel`
-      con entrada inline (patrón de reanudación asíncrona de Pyodide).
+- [x] `bridge.js`: `print()` → consola integrada; `input()` → **entrada inline
+      interactiva** en la consola (como una terminal real), reemplazando el
+      antiguo panel `#pythonStdinPanel` precargado. El worker transforma
+      `input(` → `await __input__(` y vuelve `async` las funciones que lo usan;
+      la ejecución se pausa con una Promise hasta que el usuario responde.
+- [x] Salida tipo terminal: el bridge **bufferiza stdout y emite una línea de
+      consola por cada `\n`** (Python escribe en fragmentos: el texto y el salto
+      llegan por separado, y `end=""` no emite salto). Así cada renglón es una
+      línea real del programa, sin líneas en blanco espurias. La consola usa
+      `white-space: pre-wrap` + `tab-size: 8`, de modo que **tabulaciones y
+      alineación (`\t`, tablas) se ven correctamente**. Suite
+      `tests/python-bridge-tests.js` (6 pruebas).
 - [x] Manejo de errores: tracebacks de Python reducidos a "error en línea N" con
       mensaje corto, badge visual en el editor.
 - [x] Botón Detener: termina el Worker de Pyodide (recreado en la próxima ejecución).

@@ -949,7 +949,15 @@ body::before {
   background: var(--accent);
 }
 
-.console-line { padding: 2px 0; animation: fadeInLine 0.15s ease; }
+.console-line {
+  padding: 2px 0; animation: fadeInLine 0.15s ease;
+  /* Preservar espacios, tabulaciones y alineación de la salida (tablas,
+     texto separado por \t, etc.). pre-wrap conserva el whitespace pero deja
+     que las líneas largas se ajusten. tab-size 8 imita una consola real. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 8;
+}
 
 @keyframes fadeInLine {
   from { opacity: 0; transform: translateX(-5px); }

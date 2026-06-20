@@ -63,6 +63,37 @@
   var _hostActual = null;
 
   /**
+   * Buffer de stdout de Python. print() escribe en fragmentos (el texto y el
+   * "\n" llegan en mensajes separados, y end="" no emite salto). Acumulamos
+   * y emitimos a la consola UNA línea por cada "\n", para que cada renglón de
+   * la consola corresponda a una línea real del programa (como en una terminal)
+   * y las tabulaciones/espacios se conserven dentro de cada línea.
+   */
+  var _bufferSalida = '';
+
+  /** Emite a la consola todas las líneas completas (terminadas en \n) del buffer. */
+  function _emitirLineasCompletas(host) {
+    if (!host) return;
+    var idx;
+    while ((idx = _bufferSalida.indexOf('\n')) !== -1) {
+      var linea = _bufferSalida.slice(0, idx);
+      _bufferSalida = _bufferSalida.slice(idx + 1);
+      try { host.escribir(linea, { tipo: 'salida' }); } catch (_) { /* detenido */ }
+    }
+  }
+
+  /** Vacía el buffer: emite líneas completas y la línea parcial pendiente (sin \n). */
+  function _flushSalida(host) {
+    _emitirLineasCompletas(host);
+    if (_bufferSalida.length > 0) {
+      if (host) {
+        try { host.escribir(_bufferSalida, { tipo: 'salida' }); } catch (_) { /* detenido */ }
+      }
+      _bufferSalida = '';
+    }
+  }
+
+  /**
    * Registra los manejadores de mensajes y errores en el worker.
    * Se llaman con el host de la ejecución que inició el mensaje.
    */
@@ -72,12 +103,14 @@
       var host = _hostActual;
 
       if (msg.tipo === 'salida') {
-        if (host) {
-          try { host.escribir(String(msg.texto), { tipo: 'salida' }); } catch (_) { /* detenido */ }
-        }
+        // Acumular y emitir por líneas completas (conserva tabs y alineación)
+        _bufferSalida += String(msg.texto);
+        _emitirLineasCompletas(host);
 
       } else if (msg.tipo === 'entrada_solicitada') {
-        // Python llamó a input() — pausar y pedir entrada inline al usuario
+        // Python llamó a input() — vaciar el prompt pendiente (sin \n) y
+        // pedir entrada inline al usuario
+        _flushSalida(host);
         if (host && typeof host.leer === 'function') {
           var workerRef = _workerActual;
           host.leer(msg.prompt || '').then(function (valor) {
@@ -89,7 +122,9 @@
         }
 
       } else if (msg.tipo === 'error') {
-        // Error de Python (SyntaxError, NameError, etc.)
+        // Error de Python (SyntaxError, NameError, etc.): primero vaciar la
+        // salida pendiente para conservar el orden.
+        _flushSalida(host);
         if (host) {
           var meta = { tipo: 'error' };
           if (typeof msg.linea === 'number') meta.linea = msg.linea;
@@ -98,7 +133,9 @@
         }
 
       } else if (msg.tipo === 'fin') {
-        // El programa Python terminó con éxito; el worker vuelve a estar disponible
+        // El programa Python terminó con éxito; vaciar la última línea sin \n
+        // (p. ej. print(..., end="")) y liberar el worker.
+        _flushSalida(host);
         _estadoWorker = 'idle';
         _hostActual = null;
         if (host) {
@@ -186,7 +223,6 @@
         /**
          * Envía el código al worker para ejecutarlo.
          * Reutiliza el worker si Pyodide ya está cargado ('idle').
-         * Lee las entradas del textarea #pythonStdin si existe.
          *
          * @param {string} codigo
          */
@@ -194,6 +230,7 @@
           if (host && typeof host.reportarVariables === 'function') {
             host.reportarVariables({ evento: 'reiniciar' });
           }
+          _bufferSalida = '';
 
           var worker = _obtenerWorker();
           _hostActual = host;
@@ -208,6 +245,8 @@
          */
         detener: function () {
           _hostActual = null;
+          // Vaciar lo que quede en el buffer antes de cortar
+          _flushSalida(host);
           if (_workerActual) {
             _workerActual.postMessage({ tipo: 'detener' });
             // Terminar el worker de forma inmediata para liberar recursos
@@ -215,7 +254,7 @@
             _workerActual = null;
           }
           _estadoWorker = 'dead';
-          try { host.escribir('\n[Ejecución detenida]', { tipo: 'salida' }); } catch (_) { /* host ya detenido */ }
+          try { host.escribir('[Ejecución detenida]', { tipo: 'salida' }); } catch (_) { /* host ya detenido */ }
         }
       };
     },
