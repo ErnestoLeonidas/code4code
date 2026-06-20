@@ -55,7 +55,12 @@ Todo dentro del mismo editor, la misma consola y el mismo banco de ejercicios.
 PSeInt es software **GPL**. Usar las fuentes C++ (`pseint-fuentes-para-estudio`)
 como **especificación de comportamiento** es distinto a **derivar código** de ellas.
 Si se traduce/porta código C++, Code4Code debería licenciarse como GPL. Definir la
-postura antes de iniciar la Fase 3. **Estado: pendiente.**
+postura antes de iniciar la Fase 3.
+
+**Estado: parcialmente resuelto.** La Fase 3 se implementó como **reimplementación
+limpia desde el comportamiento observado** (no se portó código C++), por lo que la
+obligación de GPL por derivación no aplica al núcleo PSeInt. Queda **pendiente** la
+elección formal de licencia del repositorio (definir antes del tag `v3.0.0`).
 
 ---
 
@@ -89,9 +94,10 @@ code4code/
 │       ├── provider.js         # carga diferida de Pyodide en un Web Worker
 │       └── bridge.js           # input()/print() ↔ consola integrada
 ├── json/                       # ejercicios por lenguaje y nivel
-│   ├── liteseint/N1.json … N7.json
-│   ├── pseint/N1.json … N5.json  # en desarrollo (N6–N7 pendientes)
-│   └── python/                 # pendiente
+│   ├── liteseint/N1.json … N7.json   # 245 ejercicios
+│   ├── pseint/N1.json … N7.json      # 110 ejercicios
+│   ├── python/N1.json … N7.json      # 110 ejercicios
+│   └── multi/mapa.json               # 74 equivalencias N1–N7 entre lenguajes
 └── tests/
 ```
 
@@ -361,17 +367,64 @@ conecta la experiencia del estudiante entre lenguajes:
       desafío). Reemplaza el placeholder "próximamente" en la pestaña Rutas.
       Implementado en `renderizarRutaModular` (genérico para cualquier lenguaje).
 
+**Pendiente de la Fase 5:**
+
+- [ ] **Esquema multi-lenguaje unificado** (*un enunciado, N soluciones*). Hoy
+      cada lenguaje tiene su banco propio y `json/multi/mapa.json` los enlaza
+      *a posteriori* por concepto. El objetivo es un formato de ejercicio único
+      con un enunciado compartido y una `codigoReferencia`/`entradaProcesoSalida`
+      por lenguaje, para no duplicar enunciados y mantener la equivalencia por
+      construcción. Migración incremental: el mapa actual sigue sirviendo como
+      puente hasta que el esquema unificado esté validado en `npm test`.
+
 ### Fase 6 — Estabilización y release `v3.0.0`
 
 - [ ] Auditoría de rendimiento (tiempo de carga por lenguaje, memoria,
-      tamaño de Pyodide en conexiones lentas).
+      tamaño de Pyodide en conexiones lentas). *Requiere browser.*
 - [x] Accesibilidad del editor y la consola: skip-link (WCAG 2.4.1), aria-live
       en consola (WCAG 4.1.3), aria-label en editor/stdin/lenguaje, aria-expanded
       en panel toggle (WCAG 4.1.2), :focus-visible en inputs (WCAG 2.4.7).
 - [x] README alineado al estado real v2.3.6-beta (todos los lenguajes
       funcionales, conteos correctos, estructura de proyecto actualizada).
 - [ ] Pruebas del flujo completo de estudiante en escritorio y móvil con los
-      tres lenguajes.
+      tres lenguajes. *Requiere browser.*
+- [ ] **CI: `npm test` en cada push/PR** (GitHub Actions, Node, sin build).
+      Refuerza la regla de oro #1 automáticamente; no introduce build step del
+      producto (la app sigue sirviéndose estática). Único ítem de Fase 6 que se
+      puede cerrar sin browser.
+- [ ] Tag de release `v3.0.0` y publicación de GitHub Pages (ver Fase 0).
+
+> **Resumen de lo que queda para el release.** Casi todo lo abierto requiere un
+> entorno con navegador (auditoría de rendimiento, flujo completo, ejecución real
+> de Pyodide) o una acción de despliegue (GitHub Pages, archivar el repo
+> LiteSeInt). El trabajo de código pendiente sin browser es: el **esquema
+> multi-lenguaje unificado** (Fase 5), las **mejoras del Worker de Python**
+> (Fase 4) y el **CI**. Las ideas para después del 3.0 viven en el *Backlog*.
+
+### Backlog — Ideas post-3.0 (propuestas, sin comprometer)
+
+Ordenadas por valor/esfuerzo estimado. Son propuestas para discutir, no
+compromisos de alcance.
+
+- [ ] **Autocorrección por salida esperada.** Los tres bancos ya guardan
+      `entradaProcesoSalida`, pero hoy el progreso se marca a mano
+      (`pendiente`/`en-curso`/`completado`). Ejecutar la solución del estudiante
+      con la entrada del ejercicio y comparar con la salida esperada permitiría
+      marcar *Completado* automáticamente y dar feedback. Era "fuera de alcance
+      post-1.0" en LiteSeInt; ahora los metadatos lo habilitan. **Alto valor.**
+- [ ] **Exportar/importar progreso local.** El progreso vive solo en
+      `localStorage`; un export/import a JSON (los tres lenguajes) mitiga el
+      riesgo de pérdida al limpiar el navegador o cambiar de equipo. **Bajo
+      esfuerzo.**
+- [ ] **PWA + Service Worker.** Cacheo de Pyodide y de la app para uso offline;
+      mitiga el riesgo del peso de Pyodide (~6–10 MB) en conexiones lentas y
+      encaja con el principio "100% client-side, sin instalación".
+- [ ] **Diagrama Nassi-Shneiderman para PSeInt.** Hoy el diagrama NS es solo de
+      LiteSeInt (`core/diagram-mapper.js` sobre su AST). El contrato del provider
+      ya lo prevé como capacidad opcional ("PSeInt: variables sí, NS después").
+- [ ] **Modo paso a paso / depurador.** Ejecución instrucción a instrucción con
+      inspección de variables; diferido desde LiteSeInt 1.x. Alto valor
+      pedagógico, esfuerzo alto (requiere runtime pausable en los tres núcleos).
 
 ---
 
@@ -402,5 +455,9 @@ conecta la experiencia del estudiante entre lenguajes:
 | `2.3.2-beta` | Perfil flexible PSeInt + banco N1–N7 PSeInt (110 ejercicios) |
 | `2.3.3-beta` | Banco N1–N7 Python (110 ejercicios), inspector de variables |
 | `2.3.4-beta` | Correcciones coerción PSeInt + `ORDENAR`, metadatos Python completos |
-| `2.4.0` | Ejercicios multi-lenguaje unificados *(en curso)* |
-| `3.0.0` | Release estable Code4Code |
+| `2.3.5-beta` | `ORDENAR`, golden por preset, metadatos Python, mapa multi inicial |
+| `2.3.6-beta` | Coerción PSeInt completa, mapa multi-lenguaje + progreso comparado |
+| `2.3.7-beta` | Plegado Python por indentación, README al estado real |
+| `2.3.8-beta` | Ruta modular N1–N7 (PSeInt/Python), mapa 74 entradas *(actual)* |
+| `2.4.0` | Esquema de ejercicio multi-lenguaje unificado (un enunciado, N soluciones) |
+| `3.0.0` | Release estable Code4Code (CI, auditoría de rendimiento, QA flujo completo) |
