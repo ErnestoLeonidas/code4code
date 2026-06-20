@@ -128,14 +128,17 @@
    * intermedios del provider), agrega un nivel extra con la unidad de
    * indentación del editor. No toca nada más de la línea.
    * @param {{aperturas: string[], cierres: string[], intermedios: string[]}} reglas
+   * @param {string} [unidad] - unidad de indentación a añadir al abrir bloque
+   *        (por defecto dos espacios; Python pasa cuatro).
    * @returns {{valor: string, selStart: number, selEnd: number}}
    */
-  function alNuevaLinea(valor, selStart, selEnd, reglas) {
+  function alNuevaLinea(valor, selStart, selEnd, reglas, unidad) {
     valor = String(valor);
+    var unidadIndent = unidad || UNIDAD_INDENTACION;
     var inicioLinea = valor.lastIndexOf('\n', selStart - 1) + 1;
     var linea = valor.substring(inicioLinea, selStart);
     var indent = (linea.match(/^[ \t]*/) || [''])[0];
-    var extra = abreBloque(linea, reglas) ? UNIDAD_INDENTACION : '';
+    var extra = abreBloque(linea, reglas) ? unidadIndent : '';
     var insercion = '\n' + indent + extra;
     var caret = selStart + insercion.length;
     return {

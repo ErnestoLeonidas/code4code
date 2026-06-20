@@ -499,6 +499,11 @@ function initLanguageSelect() {
   function actualizarLangEditor(provider) {
     const $panel = document.querySelector(".editor-panel");
     if ($panel) $panel.setAttribute("data-lang", provider.id);
+    // El tab-size cambia con el lenguaje (Python = 4): forzar re-medición
+    // de las métricas de las guías de indentación.
+    if (typeof scheduleIndentGuideRender === "function") {
+      scheduleIndentGuideRender({ remeasure: true });
+    }
   }
 
   actualizarVisibilidadPerfil(registro.activo());
@@ -1785,8 +1790,8 @@ function busquedaAnterior() {
 // Zona editable de la plantilla: tras "Proceso " y antes del
 // "\nFinProceso" final (misma protección que el handler beforeinput).
 function busquedaEsReemplazable(c, valor) {
-  const lastNL = valor.lastIndexOf("\nFinProceso");
-  return lastNL >= 0 && c.inicio >= PROCESO_PREFIX_LEN && c.fin <= lastNL;
+  const { min, max } = zonaEditable(valor);
+  return c.inicio >= min && c.fin <= max;
 }
 
 function busquedaAplicarTexto(editor, texto, caret) {
@@ -1900,18 +1905,42 @@ function getLineIndices(texto, selStart, selEnd) {
   return { lineIdxStart, lineIdxEnd };
 }
 
+/**
+ * Unidad de indentación según el lenguaje activo. Python usa 4 espacios
+ * (su convención); LiteSeInt y PSeInt usan 2, como hasta 1.x.
+ */
+function unidadIndentacion() {
+  return providerActivo().id === "python" ? "    " : "  ";
+}
+
+/**
+ * Límites de la zona editable del documento.
+ * - LiteSeInt protege el encabezado "Proceso " y el "FinProceso" final
+ *   (plantilla inmutable): solo se edita entre ambos.
+ * - PSeInt y Python no tienen plantilla protegida: todo el documento es
+ *   editable. Se detecta por la ausencia de "\nFinProceso", igual que el
+ *   handler `beforeinput`.
+ * @returns {{min:number, max:number, protegida:boolean}}
+ */
+function zonaEditable(v) {
+  const lastNL = String(v).lastIndexOf("\nFinProceso");
+  if (lastNL < 0) return { min: 0, max: v.length, protegida: false };
+  return { min: PROCESO_PREFIX_LEN, max: lastNL, protegida: true };
+}
+
 function insertarTabEnCaret(editor) {
   const s = editor.selectionStart;
   const en = editor.selectionEnd;
   const v = editor.value;
-  const lastNL = v.lastIndexOf("\nFinProceso");
+  const { min, max } = zonaEditable(v);
 
-  if (s < PROCESO_PREFIX_LEN || s > lastNL || en > lastNL) return;
+  if (s < min || s > max || en > max) return;
 
   registrarHistorialEditor(editor);
 
-  editor.value = v.substring(0, s) + "  " + v.substring(en);
-  editor.selectionStart = editor.selectionEnd = s + 2;
+  const ind = unidadIndentacion();
+  editor.value = v.substring(0, s) + ind + v.substring(en);
+  editor.selectionStart = editor.selectionEnd = s + ind.length;
   actualizarLineas();
 }
 
@@ -1919,18 +1948,21 @@ function tabularLineas(editor) {
   const s = editor.selectionStart;
   const en = editor.selectionEnd;
   const v = editor.value;
-  const lastNL = v.lastIndexOf("\nFinProceso");
+  const z = zonaEditable(v);
 
-  if (s < PROCESO_PREFIX_LEN || s > lastNL || en > lastNL) return;
+  if (s < z.min || s > z.max || en > z.max) return;
   const { lineIdxStart, lineIdxEnd } = getLineIndices(v, s, en);
   const lineas = v.split("\n");
-  const firstProcLine = 1;
-  const lastProcLine = lineas.length - 2;
+  const firstProcLine = z.protegida ? 1 : 0;
+  const lastProcLine = z.protegida ? lineas.length - 2 : lineas.length - 1;
 
   const startIdx = Math.max(lineIdxStart, firstProcLine);
   const endIdx = Math.min(lineIdxEnd, lastProcLine);
   if (startIdx > endIdx) return;
   registrarHistorialEditor(editor);
+
+  const ind = unidadIndentacion();
+  const indLen = ind.length;
 
   let positionCounter = 0;
   let offsetInStartLine = 0,
@@ -1942,7 +1974,7 @@ function tabularLineas(editor) {
   }
 
   for (let i = startIdx; i <= endIdx; i++) {
-    lineas[i] = "  " + lineas[i];
+    lineas[i] = ind + lineas[i];
   }
 
   positionCounter = 0;
@@ -1953,13 +1985,13 @@ function tabularLineas(editor) {
       newSelStart =
         positionCounter +
         offsetInStartLine +
-        (i >= startIdx && i <= endIdx ? 2 : 0);
+        (i >= startIdx && i <= endIdx ? indLen : 0);
     }
     if (i === lineIdxEnd) {
       newSelEnd =
         positionCounter +
         offsetInEndLine +
-        (i >= startIdx && i <= endIdx ? 2 : 0);
+        (i >= startIdx && i <= endIdx ? indLen : 0);
     }
     positionCounter += lineas[i].length + 1;
   }
@@ -1974,17 +2006,20 @@ function destabularLineas(editor) {
   const s = editor.selectionStart;
   const en = editor.selectionEnd;
   const v = editor.value;
-  const lastNL = v.lastIndexOf("\nFinProceso");
+  const z = zonaEditable(v);
 
-  if (s < PROCESO_PREFIX_LEN || s > lastNL || en > lastNL) return;
+  if (s < z.min || s > z.max || en > z.max) return;
 
   const { lineIdxStart, lineIdxEnd } = getLineIndices(v, s, en);
   const lineas = v.split("\n");
-  const firstProcLine = 1;
-  const lastProcLine = lineas.length - 2;
+  const firstProcLine = z.protegida ? 1 : 0;
+  const lastProcLine = z.protegida ? lineas.length - 2 : lineas.length - 1;
 
   const startIdx = Math.max(lineIdxStart, firstProcLine);
   const endIdx = Math.min(lineIdxEnd, lastProcLine);
+
+  const ind = unidadIndentacion();
+  const indLen = ind.length;
 
   let positionCounter = 0;
   let offsetInStartLine = 0,
@@ -1998,14 +2033,23 @@ function destabularLineas(editor) {
   const removalsPerLine = new Array(lineas.length).fill(0);
   let huboCambio = false;
   for (let i = startIdx; i <= endIdx; i++) {
-    if (lineas[i].startsWith("  ")) {
-      lineas[i] = lineas[i].substring(2);
-      removalsPerLine[i] = 2;
+    if (lineas[i].startsWith(ind)) {
+      lineas[i] = lineas[i].substring(indLen);
+      removalsPerLine[i] = indLen;
       huboCambio = true;
     } else if (lineas[i].startsWith("\t")) {
       lineas[i] = lineas[i].substring(1);
       removalsPerLine[i] = 1;
       huboCambio = true;
+    } else {
+      // Quitar hasta indLen espacios sueltos al inicio (indentación parcial)
+      const m = lineas[i].match(/^ {1,}/);
+      if (m) {
+        const k = Math.min(m[0].length, indLen);
+        lineas[i] = lineas[i].substring(k);
+        removalsPerLine[i] = k;
+        huboCambio = true;
+      }
     }
   }
 
@@ -2115,11 +2159,11 @@ function manejarParesEIndentacion(editor, e) {
   const s = editor.selectionStart;
   const en = editor.selectionEnd;
   const v = editor.value;
-  const lastNL = v.lastIndexOf("\nFinProceso");
+  const z = zonaEditable(v);
 
-  // Zona protegida: nunca editar antes del prefijo "Proceso " ni desde
-  // el "\nFinProceso" final (réplica de la comprobación de tabularLineas).
-  if (s < PROCESO_PREFIX_LEN || s > lastNL || en > lastNL) return;
+  // Zona protegida (solo LiteSeInt): nunca editar antes del prefijo
+  // "Proceso " ni desde el "\nFinProceso" final. PSeInt/Python: todo editable.
+  if (s < z.min || s > z.max || en > z.max) return;
 
   let resultado = null;
   if (e.key === "(" || e.key === '"') {
@@ -2129,11 +2173,11 @@ function manejarParesEIndentacion(editor, e) {
   } else if (e.key === "Backspace") {
     // El borrado del par elimina también el carácter previo al caret:
     // exigir que ese carácter siga dentro de la zona editable.
-    if (s - 1 < PROCESO_PREFIX_LEN) return;
+    if (s - 1 < z.min) return;
     resultado = Code4CodePairs.alBorrarAtras(v, s, en);
   } else if (e.key === "Enter") {
     resultado = Code4CodePairs.alNuevaLinea(
-      v, s, en, providerActivo().reglasIndentacion());
+      v, s, en, providerActivo().reglasIndentacion(), unidadIndentacion());
   }
 
   if (!resultado) return;

@@ -151,6 +151,26 @@ prueba('enter en medio de la línea reemplaza la selección', () => {
   igual(r, { valor: '  ab\n  d', selStart: 7, selEnd: 7 });
 });
 
+// ---- unidad de indentación configurable (Python = 4 espacios) ----
+
+prueba('alNuevaLinea con unidad de 4 espacios indenta el bloque a 4', () => {
+  const v = '  Si x';
+  const r = Pairs.alNuevaLinea(v, v.length, v.length, REGLAS, '    ');
+  igual(r.valor, '  Si x\n      '); // 2 de la línea + 4 del nuevo nivel
+});
+
+prueba('alNuevaLinea sin unidad mantiene 2 espacios (compatibilidad)', () => {
+  const v = '  Si x';
+  const r = Pairs.alNuevaLinea(v, v.length, v.length, REGLAS);
+  igual(r.valor, '  Si x\n    '); // 2 + 2
+});
+
+prueba('alNuevaLinea con unidad de 4: línea sin apertura solo conserva indent', () => {
+  const v = '    x = 1';
+  const r = Pairs.alNuevaLinea(v, v.length, v.length, REGLAS, '    ');
+  igual(r.valor, '    x = 1\n    '); // conserva los 4, no añade nivel
+});
+
 // ---- integración con el provider LiteSeInt real ----
 prueba('las reglas reales del provider LiteSeInt indentan Si y Sino', () => {
   // Carga fiel al navegador: cada archivo como script separado, en el

@@ -248,6 +248,18 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
       `cadena`…), por lo que todo el código Python se mostraba sin color
       (caía a `sh-plain`). El mapeo quedó alineado con LiteSeInt/PSeInt y los
       paréntesis ahora reciben color de profundidad.
+- [x] Indentación y tabulaciones por lenguaje. **Corrige dos bugs:** (1) las
+      capas espejo (resaltado, búsqueda, errores) no definían `tab-size`, así
+      que usaban el default 8 mientras el textarea usaba 2 → el código coloreado
+      se desalineaba con el texto real ante cualquier tab literal; ahora todas
+      comparten `--tab-size` (2 por defecto, 4 en Python). (2) `tabularLineas`,
+      `insertarTabEnCaret`, `destabularLineas` y `manejarParesEIndentacion`
+      bloqueaban toda edición cuando no existía `\nFinProceso` (la plantilla
+      protegida es exclusiva de LiteSeInt), por lo que Tab, Shift+Tab,
+      auto-indentación en Enter y autocierre de pares **no funcionaban en PSeInt
+      ni Python**. Ahora `zonaEditable()` trata el documento completo como
+      editable en esos lenguajes y `unidadIndentacion()` da 4 espacios en Python
+      (2 en el resto); `pairs.alNuevaLinea` acepta la unidad como parámetro.
 - [x] Rendimiento: `actualizarSyntaxHighlight` e `actualizarIndentGuides` diferidos
       30 ms via `_pendingSyntaxTimer` en `actualizarLineas`; undo/redo y
       search/replace usan `actualizarLineasInmediato` para render síncrono.
