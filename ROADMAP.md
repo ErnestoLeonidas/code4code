@@ -57,10 +57,11 @@ como **especificación de comportamiento** es distinto a **derivar código** de 
 Si se traduce/porta código C++, Code4Code debería licenciarse como GPL. Definir la
 postura antes de iniciar la Fase 3.
 
-**Estado: parcialmente resuelto.** La Fase 3 se implementó como **reimplementación
-limpia desde el comportamiento observado** (no se portó código C++), por lo que la
-obligación de GPL por derivación no aplica al núcleo PSeInt. Queda **pendiente** la
-elección formal de licencia del repositorio (definir antes del tag `v3.0.0`).
+**Estado: cerrado.** La Fase 3 se implementó como **reimplementación limpia desde
+el comportamiento observado** (no se portó código C++), por lo que la obligación
+de GPL por derivación no aplica al núcleo PSeInt. La licencia formal del repositorio
+es **MIT** (ver `LICENSE`); el archivo incluye una nota explícita sobre la
+independencia respecto a PSeInt.
 
 ---
 
