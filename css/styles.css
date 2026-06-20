@@ -1995,6 +1995,34 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   margin: 0 0 3px;
 }
 
+.progreso-acciones {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-progreso-accion {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-family: var(--font-code);
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.4px;
+}
+
+.btn-progreso-accion:hover {
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--accent) 0%, #00cc6a 100%);
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(0,255,136,0.2);
+}
+
 /* ========================================
     EXERCISE BANK
     ======================================== */

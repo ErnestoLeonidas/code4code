@@ -3175,6 +3175,99 @@ function obtenerProgresoPorLenguajeId(id) {
   }
 }
 
+// ---- Exportar/importar progreso ----
+
+/**
+ * Exporta el progreso de todos los lenguajes a un archivo JSON descargable.
+ */
+function exportarProgreso() {
+  const datos = {
+    version: "1",
+    fecha: new Date().toISOString(),
+    progreso: {},
+  };
+  Object.keys(PROGRESO_KEYS).forEach((id) => {
+    datos.progreso[id] = obtenerProgresoPorLenguajeId(id);
+  });
+  const blob = new Blob([JSON.stringify(datos, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "progreso-code4code.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/**
+ * Importa progreso desde un archivo JSON (merge: solo sobreescribe los ejercicios
+ * que vienen en el JSON, conserva el resto del progreso local).
+ * @param {File} file
+ */
+function importarProgresoDesdeArchivo(file) {
+  if (!file) return;
+  if (!/\.json$/i.test(file.name)) {
+    mostrarAlertaImportacion(
+      "warning",
+      "Archivo no compatible",
+      "Selecciona un archivo .json exportado desde Code4Code.",
+    );
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    let datos;
+    try {
+      datos = JSON.parse(String(reader.result || ""));
+    } catch (_) {
+      mostrarAlertaImportacion("error", "Archivo inválido", "El archivo no tiene formato JSON válido.");
+      return;
+    }
+    if (!datos || typeof datos.progreso !== "object" || datos.progreso === null) {
+      mostrarAlertaImportacion(
+        "error",
+        "Formato incorrecto",
+        "El archivo no contiene un campo \"progreso\" válido.",
+      );
+      return;
+    }
+    let totalImportados = 0;
+    Object.keys(PROGRESO_KEYS).forEach((id) => {
+      const bloque = datos.progreso[id];
+      if (!bloque || typeof bloque !== "object") return;
+      const actual = obtenerProgresoPorLenguajeId(id);
+      let modificado = false;
+      Object.keys(bloque).forEach((ejId) => {
+        const estado = bloque[ejId];
+        if (!ESTADOS_PROGRESO.includes(estado)) return;
+        actual[ejId] = estado;
+        totalImportados++;
+        modificado = true;
+      });
+      if (modificado) {
+        lsSet(PROGRESO_KEYS[id], JSON.stringify(actual));
+      }
+    });
+    // Recargar progreso del lenguaje activo en memoria
+    cargarProgreso();
+    // Refrescar vistas de ejercicios y ruta
+    renderizarRutaEstudiante();
+    renderizarListaEjercicios();
+    mostrarAlertaImportacion(
+      "success",
+      "Progreso importado",
+      `Se importaron ${totalImportados} estado(s) de ejercicios.`,
+    );
+  };
+  reader.onerror = () => {
+    mostrarAlertaImportacion(
+      "error",
+      "No se pudo leer el archivo",
+      "Intenta con otro archivo .json.",
+    );
+  };
+  reader.readAsText(file);
+}
+
 function renderizarProgresoComparado($cont) {
   const $sec = $("<section>").addClass("learning-progreso-comparado");
   $sec.append($("<div>").addClass("learning-doc-label").text("Progreso comparado por lenguaje"));
@@ -3196,6 +3289,33 @@ function renderizarProgresoComparado($cont) {
     $row.append($wrap);
     $sec.append($row);
   });
+
+  // Botones de exportar e importar progreso
+  const $acciones = $("<div>").addClass("progreso-acciones");
+
+  const $btnExportar = $("<button>")
+    .addClass("btn-progreso-accion")
+    .attr({
+      type: "button",
+      title: "Descargar el progreso de todos los lenguajes como archivo JSON",
+    })
+    .text("↓ Exportar progreso");
+  $btnExportar.on("click", exportarProgreso);
+
+  const $btnImportar = $("<button>")
+    .addClass("btn-progreso-accion")
+    .attr({
+      type: "button",
+      title: "Cargar un archivo JSON de progreso y combinar con el progreso actual",
+    })
+    .text("↑ Importar progreso");
+  $btnImportar.on("click", () => {
+    const input = document.getElementById("inputImportarProgreso");
+    if (input) input.click();
+  });
+
+  $acciones.append($btnExportar).append($btnImportar);
+  $sec.append($acciones);
 
   $cont.append($sec);
 }
@@ -4159,6 +4279,11 @@ $(document).ready(function () {
   $("#inputImportarPsc").on("change", function () {
     const file = this.files && this.files[0];
     importarArchivoPsc(file);
+    this.value = "";
+  });
+  $("#inputImportarProgreso").on("change", function () {
+    const file = this.files && this.files[0];
+    importarProgresoDesdeArchivo(file);
     this.value = "";
   });
   $("#btnTheme").on("click", cycleTheme);
