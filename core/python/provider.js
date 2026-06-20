@@ -35,25 +35,28 @@
 
   /**
    * Mapa de tipos del tokenizador → tipos genéricos del contrato del provider.
-   * Los tipos genéricos son los que consume js/editor/highlight.js.
+   * Los tipos genéricos son los que consume js/editor/highlight.js
+   * (CLASE_POR_TIPO). DEBEN coincidir con el vocabulario en español del
+   * contrato — igual que los providers LiteSeInt y PSeInt — o el resaltado
+   * cae a 'sh-plain' (sin color).
    */
   var MAPA_TOKENS = {
-    KEYWORD:         'keyword',
-    STRING:          'string',
-    STRING_UNCLOSED: 'string',
-    NUMBER:          'number',
-    COMMENT:         'comment',
-    IDENTIFIER:      'plain',
-    OPERATOR:        'operator',
-    LPAREN:          'plain',
-    RPAREN:          'plain',
-    LBRACKET:        'plain',
-    RBRACKET:        'plain',
-    LBRACE:          'plain',
-    RBRACE:          'plain',
-    COLON:           'plain',
-    COMMA:           'plain',
-    UNKNOWN:         'plain',
+    KEYWORD:         'palabra-clave',
+    STRING:          'cadena',
+    STRING_UNCLOSED: 'cadena',
+    NUMBER:          'numero',
+    COMMENT:         'comentario',
+    IDENTIFIER:      'identificador',
+    OPERATOR:        'operador',
+    LPAREN:          'parentesis-abre',
+    RPAREN:          'parentesis-cierra',
+    LBRACKET:        'plano',
+    RBRACKET:        'plano',
+    LBRACE:          'plano',
+    RBRACE:          'plano',
+    COLON:           'plano',
+    COMMA:           'plano',
+    UNKNOWN:         'plano',
   };
 
   /**
@@ -105,10 +108,10 @@
     tokenizarLinea: function (linea) {
       var nucleo = nucleoTokenizer();
       if (!nucleo || typeof nucleo.tokenizarLinea !== 'function') {
-        return { tokens: [{ tipo: 'plain', texto: String(linea) }] };
+        return { tokens: [{ tipo: 'plano', texto: String(linea) }] };
       }
       var tokens = nucleo.tokenizarLinea(String(linea)).map(function (tk) {
-        return { tipo: MAPA_TOKENS[tk.tipo] || 'plain', texto: tk.valor };
+        return { tipo: MAPA_TOKENS[tk.tipo] || 'plano', texto: tk.valor };
       });
       return { tokens: tokens };
     },

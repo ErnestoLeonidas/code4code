@@ -494,12 +494,21 @@ function initLanguageSelect() {
     } catch (e) { /* ignorar */ }
   })();
 
+  // Marca el lenguaje activo en el editor para el resaltado por lenguaje
+  // (p. ej. la paleta ayu de Python en css/styles.css).
+  function actualizarLangEditor(provider) {
+    const $panel = document.querySelector(".editor-panel");
+    if ($panel) $panel.setAttribute("data-lang", provider.id);
+  }
+
   actualizarVisibilidadPerfil(registro.activo());
+  actualizarLangEditor(registro.activo());
 
   registro.onCambio((provider) => {
     $select.val(provider.id);
     $("#inputImportarPsc").attr("accept", `${provider.extension},text/plain`);
     actualizarVisibilidadPerfil(provider);
+    actualizarLangEditor(provider);
     actualizarBarraSimbolos(provider);
     if (provider.id === "pseint" && typeof provider.configurarPerfil === "function") {
       try {

@@ -534,6 +534,51 @@ body::before {
 .syntax-highlight-layer .sh-bracket-1 { color: var(--bracket-1); font-weight: 500; }
 .syntax-highlight-layer .sh-bracket-2 { color: var(--bracket-2); font-weight: 500; }
 
+/* ======================================================================
+   Paleta ayu para Python (theme ayu de VSCode — github.com/ayu-theme)
+   ----------------------------------------------------------------------
+   Cuando el lenguaje activo es Python, el editor adopta los colores del
+   tema ayu con independencia del tema global elegido: ayu Mirage sobre
+   temas oscuros y ayu Light sobre temas claros (papel/día). El override
+   se limita a .editor-panel para no alterar la consola ni los paneles.
+   ====================================================================== */
+.editor-panel[data-lang="python"] {
+  --bg-editor:       #242936; /* editor.background (mirage) */
+  --text-primary:    #cccac2; /* editor.foreground          */
+  --syntax-keyword:  #ffa659; /* keyword                    */
+  --syntax-string:   #d5ff80; /* string                     */
+  --syntax-number:   #dfbfff; /* constant.numeric           */
+  --syntax-comment:  #6e7c8f; /* comment                    */
+  --syntax-variable: #ffcd66; /* entity.name.function       */
+  --syntax-assign:   #f29e74; /* keyword.operator           */
+  --bracket-0: #ffcd66;
+  --bracket-1: #73d0ff;
+  --bracket-2: #dfbfff;
+}
+.editor-panel[data-lang="python"] .syntax-highlight-layer .sh-operator {
+  color: #f29e74; /* keyword.operator (mirage) */
+}
+
+/* Variante ayu Light cuando hay un tema claro activo */
+[data-theme="papel"] .editor-panel[data-lang="python"],
+[data-theme="dia"]   .editor-panel[data-lang="python"] {
+  --bg-editor:       #fcfcfc;
+  --text-primary:    #5c6166;
+  --syntax-keyword:  #fa8532;
+  --syntax-string:   #86b300;
+  --syntax-number:   #a37acc;
+  --syntax-comment:  #adaeb1;
+  --syntax-variable: #eba400;
+  --syntax-assign:   #f2a191;
+  --bracket-0: #eba400;
+  --bracket-1: #55b4d4;
+  --bracket-2: #a37acc;
+}
+[data-theme="papel"] .editor-panel[data-lang="python"] .syntax-highlight-layer .sh-operator,
+[data-theme="dia"]   .editor-panel[data-lang="python"] .syntax-highlight-layer .sh-operator {
+  color: #f2a191;
+}
+
 /* ---- Search bar y capa de coincidencias (Fase 2) ---- */
 .search-bar {
   display: flex; flex-direction: column; gap: 4px;

@@ -237,6 +237,17 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
       (Hacker/default, Ocean, Sunset, Papel/light, Noche, Día/day) con
       selector cíclico en la cabecera (`btnTheme`, `cycleTheme` en app.js)
       y persistencia en `localStorage`.
+- [x] Resaltado por lenguaje con paleta dedicada — **Python usa los colores
+      del tema ayu de VSCode** (github.com/ayu-theme): ayu Mirage sobre temas
+      oscuros y ayu Light sobre temas claros (papel/día). Implementado con
+      `data-lang="python"` en `.editor-panel` (lo fija `actualizarLangEditor`
+      en app.js) y un bloque de overrides de `--syntax-*`/`--bg-editor` en
+      `css/styles.css`, sin tocar consola ni paneles. **Corrige de paso un bug:**
+      el provider Python emitía tipos de token en inglés (`keyword`, `string`…)
+      que no coincidían con el vocabulario del contrato (`palabra-clave`,
+      `cadena`…), por lo que todo el código Python se mostraba sin color
+      (caía a `sh-plain`). El mapeo quedó alineado con LiteSeInt/PSeInt y los
+      paréntesis ahora reciben color de profundidad.
 - [x] Rendimiento: `actualizarSyntaxHighlight` e `actualizarIndentGuides` diferidos
       30 ms via `_pendingSyntaxTimer` en `actualizarLineas`; undo/redo y
       search/replace usan `actualizarLineasInmediato` para render síncrono.

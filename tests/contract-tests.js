@@ -582,18 +582,26 @@ async function main() {
   await prueba('Python integración: tokenizarLinea reconoce keywords Python', () => {
     const r = proveedorPy.tokenizarLinea('if x > 0:');
     const tipos = r.tokens.map((t) => t.tipo);
-    asegurar(tipos.indexOf('keyword') !== -1, 'tipos: ' + tipos.join(','));
-    asegurar(tipos.indexOf('operator') !== -1, 'falta operator: ' + tipos.join(','));
-    asegurar(tipos.indexOf('colon') !== -1 || tipos.indexOf('plain') !== -1,
-      'falta colon/plain al final: ' + tipos.join(','));
+    // Los tipos genéricos deben estar en el vocabulario del contrato (español),
+    // igual que LiteSeInt/PSeInt, o el resaltado del editor no aplica color.
+    asegurar(tipos.indexOf('palabra-clave') !== -1, 'tipos: ' + tipos.join(','));
+    asegurar(tipos.indexOf('operador') !== -1, 'falta operador: ' + tipos.join(','));
+    asegurar(tipos.indexOf('plano') !== -1, 'falta plano (:) al final: ' + tipos.join(','));
   });
 
   await prueba('Python integración: tokenizarLinea reconoce string y comentario', () => {
     const r = proveedorPy.tokenizarLinea('print("hola")  # saludo');
     const tipos = r.tokens.map((t) => t.tipo);
-    asegurar(tipos.indexOf('keyword') !== -1, 'falta keyword: ' + tipos.join(','));
-    asegurar(tipos.indexOf('string') !== -1, 'falta string: ' + tipos.join(','));
-    asegurar(tipos.indexOf('comment') !== -1, 'falta comment: ' + tipos.join(','));
+    asegurar(tipos.indexOf('palabra-clave') !== -1, 'falta palabra-clave (print): ' + tipos.join(','));
+    asegurar(tipos.indexOf('cadena') !== -1, 'falta cadena: ' + tipos.join(','));
+    asegurar(tipos.indexOf('comentario') !== -1, 'falta comentario: ' + tipos.join(','));
+  });
+
+  await prueba('Python integración: tokenizarLinea colorea paréntesis', () => {
+    const r = proveedorPy.tokenizarLinea('print("hola")');
+    const tipos = r.tokens.map((t) => t.tipo);
+    asegurar(tipos.indexOf('parentesis-abre') !== -1, 'falta parentesis-abre: ' + tipos.join(','));
+    asegurar(tipos.indexOf('parentesis-cierra') !== -1, 'falta parentesis-cierra: ' + tipos.join(','));
   });
 
   await prueba('Python integración: reglasIndentacion incluye def e if', () => {
