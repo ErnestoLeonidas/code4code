@@ -39,11 +39,18 @@ const PythonWorkerBridge = require(path.join(__dirname, '..', 'core', 'python', 
 
 function crearHostFalso() {
   const lineas = [];
+  const lineasActivas = [];
   return {
     lineas,
+    lineasActivas,
     escribir(texto, meta) { lineas.push({ texto: String(texto), meta: meta || {} }); },
     reportarVariables() {},
-    reportarError() {},
+    reportarError(error) {
+      const meta = { tipo: 'error' };
+      if (error && typeof error.linea === 'number') meta.linea = error.linea;
+      this.escribir(error && error.message ? error.message : error, meta);
+    },
+    contarPaso(linea) { lineasActivas.push(linea); },
     finalizar() { this.finalizado = true; },
     leer() { return Promise.resolve(''); },
   };
@@ -127,6 +134,16 @@ prueba('error vacía el buffer pendiente antes del mensaje de error', () => {
   const textos = host.lineas.map((l) => l.texto);
   igual(textos, ['salida previa', 'a medias', 'Línea 2: ValueError'],
     'la salida pendiente debe aparecer antes del error');
+  igual(host.lineas[2].meta.linea, 1, 'la línea Python 1-based debe convertirse a índice 0-based');
+});
+
+prueba('linea_activa del worker alimenta el debugger con índice 0-based', () => {
+  const host = crearHostFalso();
+  const b = PythonWorkerBridge.crear(host);
+  b.ejecutar('codigo');
+  workerCreado.emitir({ tipo: 'linea_activa', linea: 3 });
+  workerCreado.emitir({ tipo: 'linea_activa', linea: 1 });
+  igual(host.lineasActivas, [2, 0]);
 });
 
 console.log('\n' + (total - fallas) + '/' + total + ' pruebas OK');

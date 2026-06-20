@@ -645,6 +645,44 @@ async function main() {
     asegurar(errores[0].tipo === 'error', 'tipo incorrecto: ' + errores[0].tipo);
   });
 
+  await prueba('Python integración: extraerVariables alimenta resaltado semántico básico', () => {
+    const vars = proveedorPy.extraerVariables('n = 1\nfor i in range(n):\n    total = i');
+    asegurar(vars.indexOf('n') !== -1, 'falta n: ' + vars.join(','));
+    asegurar(vars.indexOf('i') !== -1, 'falta i: ' + vars.join(','));
+    asegurar(vars.indexOf('total') !== -1, 'falta total: ' + vars.join(','));
+  });
+
+  await prueba('Python integración: validar detecta dos puntos faltantes', () => {
+    const errores = proveedorPy.validar('for i in range(3)\n    print(i)');
+    asegurar(errores.some((e) => /dos puntos/.test(e.mensaje)),
+      'faltó error de dos puntos: ' + JSON.stringify(errores));
+  });
+
+  await prueba('Python integración: validar detecta bloque sin indentación', () => {
+    const errores = proveedorPy.validar('if True:\nprint("mal")');
+    asegurar(errores.some((e) => /bloque indentado/.test(e.mensaje)),
+      'faltó error de indentación: ' + JSON.stringify(errores));
+  });
+
+  await prueba('Python integración: validar detecta asignación dentro de condición', () => {
+    const errores = proveedorPy.validar('if n = 2:\n    print(n)');
+    asegurar(errores.some((e) => /==/.test(e.mensaje)),
+      'faltó error de comparación: ' + JSON.stringify(errores));
+  });
+
+  await prueba('Python integración: validar acepta diccionarios multilínea', () => {
+    const codigo = [
+      'operaciones = {',
+      "    '+': lambda a, b: a + b,",
+      "    '-': lambda a, b: a - b,",
+      '}',
+      "print(operaciones['+'](2, 3))",
+    ].join('\n');
+    const errores = proveedorPy.validar(codigo);
+    asegurar(errores.length === 0, 'diccionario válido no debe fallar: ' +
+      JSON.stringify(errores));
+  });
+
   await prueba('Python integración: ejecutar devuelve { detener: Function } sin bridge', () => {
     // En Node no hay PythonWorkerBridge, el provider lo detecta y devuelve el stub.
     const host = ctxPy.Code4Code.crearRuntimeHost({

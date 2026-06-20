@@ -47,6 +47,16 @@ function asegurarIgual(real, esperado, mensaje) {
   }
 }
 
+function textoDesdeHtmlResaltado(html) {
+  return String(html)
+    .replace(/<span class="[^"]+">/g, '')
+    .replace(/<\/span>/g, '')
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
+}
+
 /**
  * Carga capa multi-lenguaje + núcleo LiteSeInt + provider + highlight en
  * un contexto aislado, cada archivo como script separado y en el mismo
@@ -70,6 +80,25 @@ function cargarEditorEnContexto() {
     'core/liteseint/runtime.js',
     'core/liteseint/diagram-mapper.js',
     'core/liteseint/provider.js',
+    'js/editor/highlight.js'
+  ].forEach((rel) => {
+    vm.runInContext(fs.readFileSync(path.join(raizRepo, rel), 'utf8'), ctx, {
+      filename: rel
+    });
+  });
+  return ctx;
+}
+
+function cargarEditorPythonEnContexto() {
+  const raizRepo = path.join(__dirname, '..');
+  const ctx = { console, setTimeout, clearTimeout, Promise };
+  vm.createContext(ctx);
+  [
+    'core/language-provider.js',
+    'core/language-registry.js',
+    'core/runtime-host.js',
+    'core/python/tokenizer.js',
+    'core/python/provider.js',
     'js/editor/highlight.js'
   ].forEach((rel) => {
     vm.runInContext(fs.readFileSync(path.join(raizRepo, rel), 'utf8'), ctx, {
@@ -224,6 +253,25 @@ function main() {
       '\n\n\n\n\n\n\n\n\n' +
       '<span class="sh-keyword">FinProceso</span>'
     );
+  });
+
+  const ctxPy = cargarEditorPythonEnContexto();
+  const ResaltadorPy = ctxPy.Code4CodeHighlight;
+  const providerPy = ctxPy.Code4Code.registro.activo();
+  const resaltarPy = (codigo) => ResaltadorPy.resaltarCodigo(providerPy, codigo);
+
+  prueba('Python conserva espacios, tabulaciones e indentación en el resaltado', () => {
+    const codigo = [
+      'for i in range(2, n + 1):',
+      '    if i % 2 == 0:',
+      '\tprint(i)'
+    ].join('\n');
+    const html = resaltarPy(codigo);
+    asegurarIgual(textoDesdeHtmlResaltado(html), codigo);
+    asegurar(html.indexOf('<span class="sh-plain">    </span>') !== -1,
+      'falta indentación de 4 espacios en HTML: ' + html);
+    asegurar(html.indexOf('<span class="sh-plain">\t</span>') !== -1,
+      'falta tab literal en HTML: ' + html);
   });
 
   console.log('\n' + (total - fallas) + '/' + total + ' pruebas OK');

@@ -57,6 +57,13 @@ function configurarIO() {
     self.postMessage({ tipo: 'entrada_solicitada', prompt: String(prompt) });
   });
 
+  pyodide.globals.set('_debug_linea_activa', function (linea) {
+    var n = Number(linea);
+    if (Number.isFinite(n)) {
+      self.postMessage({ tipo: 'linea_activa', linea: n });
+    }
+  });
+
   pyodide.runPython([
     'import sys, io, builtins',
     'import js as _js_mod',
@@ -93,6 +100,21 @@ function configurarIO() {
     'builtins.input = lambda *a, **kw: (_ for _ in ()).throw(',
     '    RuntimeError("Llamada a input() no transformada — posible uso dinámico no soportado")',
     ')',
+    '',
+    '# ── trazador de líneas para el debugger pedagógico ───────────',
+    'def _code4code_trace(frame, event, arg):',
+    '    if event == "line" and frame.f_code.co_filename == "<programa>":',
+    '        try:',
+    '            _debug_linea_activa(frame.f_lineno)',
+    '        except Exception:',
+    '            pass',
+    '    return _code4code_trace',
+    '',
+    'def _code4code_start_trace():',
+    '    sys.settrace(_code4code_trace)',
+    '',
+    'def _code4code_stop_trace():',
+    '    sys.settrace(None)',
   ].join('\n'));
 }
 
@@ -278,7 +300,8 @@ function parsearError(textoError) {
   var PATRON_SISTEMA = /\/lib\/python[\d.]+\/|\/usr\/lib\/|pyodide\/|site-packages\//;
   var lineasUsuario = lineas.filter(function (l) {
     if (l.match(/^\s*File\s+"/)) {
-      return l.indexOf('<string>') !== -1 && !PATRON_SISTEMA.test(l);
+      return (l.indexOf('<string>') !== -1 || l.indexOf('<programa>') !== -1) &&
+        !PATRON_SISTEMA.test(l);
     }
     return true;
   });
@@ -355,7 +378,12 @@ self.onmessage = async function (e) {
       // Transformar para input() interactivo (null = sin input, ejecutar tal cual)
       var codigoEjecutar = _transformarInputInteractivo(codigoOriginal) || codigoOriginal;
 
-      await pyodide.runPythonAsync(codigoEjecutar);
+      pyodide.runPython('_code4code_start_trace()');
+      try {
+        await pyodide.runPythonAsync(codigoEjecutar, { filename: '<programa>' });
+      } finally {
+        pyodide.runPython('_code4code_stop_trace()');
+      }
 
       // Inspector de variables tras la ejecución
       var varsPy = pyodide.runPython([

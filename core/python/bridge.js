@@ -7,7 +7,7 @@
  * Traduce los mensajes del worker a las llamadas del contrato del host:
  *   salida              → host.escribir()
  *   entrada_solicitada  → host.leer(prompt) → envía 'entrada' al worker
- *   error               → host.escribir() + host.reportarError()
+ *   error               → host.reportarError()
  *   fin                 → host.finalizar()
  *   cargando            → host.escribir() (solo la primera vez)
  *   listo               → actualiza estado interno a 'idle'
@@ -41,6 +41,12 @@
       'dict':  'dict',
     };
     return mapa[tipoPy] || tipoPy;
+  }
+
+  function lineaPythonAIndice(linea) {
+    return typeof linea === 'number' && isFinite(linea)
+      ? Math.max(0, linea - 1)
+      : null;
   }
 
   // ---------------------------------------------------------------------------
@@ -126,10 +132,10 @@
         // salida pendiente para conservar el orden.
         _flushSalida(host);
         if (host) {
-          var meta = { tipo: 'error' };
-          if (typeof msg.linea === 'number') meta.linea = msg.linea;
-          try { host.escribir(String(msg.mensaje), meta); } catch (_) { /* detenido */ }
-          host.reportarError({ message: String(msg.mensaje), linea: msg.linea || null });
+          host.reportarError({
+            message: String(msg.mensaje),
+            linea: lineaPythonAIndice(msg.linea)
+          });
         }
 
       } else if (msg.tipo === 'fin') {
@@ -172,6 +178,13 @@
             });
           });
         }
+      } else if (msg.tipo === 'linea_activa') {
+        if (host && typeof host.contarPaso === 'function') {
+          var lineaIdx = lineaPythonAIndice(msg.linea);
+          if (lineaIdx !== null) {
+            try { host.contarPaso(lineaIdx); } catch (_) { /* detenido */ }
+          }
+        }
       }
     };
 
@@ -182,7 +195,6 @@
       _workerActual = null;
       _hostActual = null;
       if (host) {
-        try { host.escribir(msg, { tipo: 'error' }); } catch (_) { /* detenido */ }
         host.reportarError({ message: msg, linea: null });
       }
     };

@@ -28,6 +28,7 @@ const TK_PYTHON = Object.freeze({
   RBRACE:          'RBRACE',
   COLON:           'COLON',
   COMMA:           'COMMA',
+  DOT:             'DOT',
   UNKNOWN:         'UNKNOWN',
 });
 
@@ -159,6 +160,9 @@ function tokenizarLineaPython(linea) {
 
     // ── Coma ──
     if (c === ',') { tokens.push({ tipo: TK_PYTHON.COMMA, valor: c, inicio, fin: i + 1 }); i++; continue; }
+
+    // ── Punto (atributos/métodos: texto.strip()) ──
+    if (c === '.') { tokens.push({ tipo: TK_PYTHON.DOT, valor: c, inicio, fin: i + 1 }); i++; continue; }
 
     // ── Identificador o keyword ──
     if (esInicioIdentificadorPython(c)) {

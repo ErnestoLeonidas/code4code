@@ -1174,8 +1174,15 @@ function renderErrorUnderlines(linea, errores) {
 
   const errorMap = new Array(linea.length).fill(false);
   for (const err of errores) {
-    const start = Math.max(0, err.columnaInicio);
-    const end = Math.min(linea.length, err.columnaFin);
+    let start = Number.isFinite(err.columnaInicio)
+      ? Math.max(0, err.columnaInicio)
+      : Math.max(0, linea.search(/\S|$/));
+    let end = Number.isFinite(err.columnaFin)
+      ? Math.min(linea.length, err.columnaFin)
+      : linea.length;
+    if (end <= start) {
+      end = Math.min(linea.length, start + 1);
+    }
     for (let i = start; i < end; i++) {
       errorMap[i] = true;
     }
@@ -2305,19 +2312,41 @@ function setEstado(estado, texto) {
 
 function validarYDecorar() {
   const codigo = $("#editor").val();
-  const errores = providerActivo().validar(codigo);
+  const provider = providerActivo();
+  const errores = provider.validar(codigo);
   if (errores.length > 0) {
-    aplicarErroresVisuales(agruparErroresPorLinea(errores));
+    aplicarErroresVisuales(agruparErroresPorLinea(errores, provider));
   } else {
     invalidarErroresVisuales();
   }
 }
 
-function agruparErroresPorLinea(errores) {
+function indiceLineaError(err, provider) {
+  if (!err || typeof err.linea !== "number") return null;
+  if (typeof err.lineaIndice === "number") return Math.max(0, err.lineaIndice);
+
+  // LiteSeInt ya reporta índices 0-based. PSeInt y Python reportan número
+  // humano de línea (1-based) desde sus validadores estáticos.
+  const id = provider && provider.id;
+  if (id === "pseint" || id === "python") {
+    return Math.max(0, err.linea - 1);
+  }
+  return Math.max(0, err.linea);
+}
+
+function normalizarErrorParaUI(err, provider) {
+  const copia = Object.assign({}, err);
+  copia.linea = indiceLineaError(err, provider);
+  return copia;
+}
+
+function agruparErroresPorLinea(errores, provider) {
   const porLinea = new Map();
   for (const err of errores) {
-    if (!porLinea.has(err.linea)) porLinea.set(err.linea, []);
-    porLinea.get(err.linea).push(err);
+    const normalizado = normalizarErrorParaUI(err, provider);
+    if (normalizado.linea === null) continue;
+    if (!porLinea.has(normalizado.linea)) porLinea.set(normalizado.linea, []);
+    porLinea.get(normalizado.linea).push(normalizado);
   }
   return porLinea;
 }
@@ -2338,12 +2367,14 @@ function ejecutar() {
 
   if (errores.length > 0) {
     for (const err of errores) {
+      const lineaIdx = indiceLineaError(err, provider);
+      const lineaMostrar = lineaIdx === null ? "?" : String(lineaIdx + 1);
       consolaImprimir(
-        `Error en línea ${err.linea + 1}: ${err.mensaje}`,
+        `Error en línea ${lineaMostrar}: ${err.mensaje}`,
         "error",
       );
     }
-    aplicarErroresVisuales(agruparErroresPorLinea(errores));
+    aplicarErroresVisuales(agruparErroresPorLinea(errores, provider));
     setEstado("error", "Error");
     return;
   }

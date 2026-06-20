@@ -254,6 +254,17 @@ prueba('a, b, c → [IDENTIFIER, COMMA, IDENTIFIER, COMMA, IDENTIFIER]', functio
   ]);
 });
 
+prueba('nombre.strip() → el punto se tokeniza como DOT', function () {
+  const tks = tokenizarLinea('nombre.strip()');
+  igual(tiposValores(tks), [
+    { tipo: TK.IDENTIFIER, valor: 'nombre' },
+    { tipo: TK.DOT,        valor: '.' },
+    { tipo: TK.IDENTIFIER, valor: 'strip' },
+    { tipo: TK.LPAREN,     valor: '(' },
+    { tipo: TK.RPAREN,     valor: ')' },
+  ]);
+});
+
 // ── 23. Posiciones inicio/fin correctas ──
 prueba('tokens llevan inicio y fin correctos', function () {
   const tks = tokenizarLinea('x = 5');
@@ -294,7 +305,7 @@ prueba('TK contiene todos los tipos de token requeridos', function () {
     'KEYWORD', 'IDENTIFIER', 'STRING', 'STRING_UNCLOSED', 'NUMBER',
     'COMMENT', 'OPERATOR',
     'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET', 'LBRACE', 'RBRACE',
-    'COLON', 'COMMA',
+    'COLON', 'COMMA', 'DOT',
   ];
   for (const tipo of requeridos) {
     asegurar(TK[tipo] === tipo, 'falta o incorrecto tipo de token: ' + tipo);

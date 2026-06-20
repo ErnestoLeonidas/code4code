@@ -56,6 +56,7 @@
     RBRACE:          'plano',
     COLON:           'plano',
     COMMA:           'plano',
+    DOT:             'plano',
     UNKNOWN:         'plano',
   };
 
@@ -78,6 +79,235 @@
     'open', 'round', 'pow', 'divmod', 'reversed',
     'append', 'extend', 'insert', 'remove', 'pop', 'sort',
   ];
+
+  function crearError(linea, columnaInicio, columnaFin, mensaje, tipo) {
+    return {
+      linea: linea + 1,
+      columnaInicio: Math.max(0, columnaInicio || 0),
+      columnaFin: Math.max(
+        Math.max(0, columnaInicio || 0) + 1,
+        columnaFin || columnaInicio || 1
+      ),
+      mensaje: mensaje,
+      tipo: tipo || 'error'
+    };
+  }
+
+  function tokensPython(nucleo, linea) {
+    if (!nucleo || typeof nucleo.tokenizarLinea !== 'function') return [];
+    return nucleo.tokenizarLinea(String(linea || ''));
+  }
+
+  function codigoSinComentario(nucleo, linea) {
+    var texto = String(linea || '');
+    var tokens = tokensPython(nucleo, texto);
+    for (var i = 0; i < tokens.length; i++) {
+      if (tokens[i].tipo === nucleo.TK.COMMENT) {
+        return texto.substring(0, tokens[i].inicio);
+      }
+    }
+    return texto;
+  }
+
+  function anchoIndentacion(linea) {
+    var col = 0;
+    for (var i = 0; i < linea.length; i++) {
+      var c = linea.charAt(i);
+      if (c === ' ') {
+        col++;
+      } else if (c === '\t') {
+        col += 4 - (col % 4);
+      } else {
+        break;
+      }
+    }
+    return { columnas: col, caracteres: i };
+  }
+
+  function tipoBloquePython(textoTrim) {
+    if (/^(for|while)\b/.test(textoTrim)) return 'loop';
+    if (/^def\b/.test(textoTrim)) return 'def';
+    if (/^class\b/.test(textoTrim)) return 'class';
+    if (/^(try|except|finally)\b/.test(textoTrim)) return 'try';
+    if (/^(if|elif|else)\b/.test(textoTrim)) return 'if';
+    return 'block';
+  }
+
+  function requiereDosPuntos(textoTrim) {
+    return /^(if|elif|else|for|while|def|class|try|except|finally|with)\b/.test(textoTrim);
+  }
+
+  function condicionConAsignacion(textoTrim) {
+    if (!/^(if|elif|while)\b/.test(textoTrim)) return false;
+    var condicion = textoTrim.replace(/:\s*$/, '');
+    return /(^|[^=!<>])=([^=]|$)/.test(condicion);
+  }
+
+  function dentroDeTipo(pila, tipo) {
+    for (var i = pila.length - 1; i >= 0; i--) {
+      if (pila[i].tipo === tipo) return true;
+    }
+    return false;
+  }
+
+  function validarIndentacionYSintaxis(nucleo, codigo, errores) {
+    var lineas = String(codigo || '').split('\n');
+    var pila = [{ indent: 0, tipo: 'module' }];
+    var esperaIndent = null;
+    var pares = {
+      LPAREN: 'RPAREN',
+      LBRACKET: 'RBRACKET',
+      LBRACE: 'RBRACE'
+    };
+    var cierres = {
+      RPAREN: 'LPAREN',
+      RBRACKET: 'LBRACKET',
+      RBRACE: 'LBRACE'
+    };
+    var pilaPares = [];
+
+    for (var idx = 0; idx < lineas.length; idx++) {
+      var linea = lineas[idx];
+      var sinComentario = codigoSinComentario(nucleo, linea);
+      var textoDerecha = sinComentario.replace(/[ \t\r]+$/, '');
+      var textoTrim = textoDerecha.trim();
+      var tokens = tokensPython(nucleo, linea);
+      var enContinuacion = pilaPares.length > 0;
+
+      for (var t = 0; t < tokens.length; t++) {
+        var tk = tokens[t];
+        if (tk.tipo === nucleo.TK.STRING_UNCLOSED) {
+          errores.push(crearError(idx, tk.inicio, tk.fin,
+            'Cadena de texto sin cerrar.'));
+        } else if (tk.tipo === nucleo.TK.UNKNOWN) {
+          errores.push(crearError(idx, tk.inicio, tk.fin,
+            'Carácter no válido en Python: "' + tk.valor + '".'));
+        } else if (pares[tk.tipo]) {
+          pilaPares.push({ tipo: tk.tipo, cierre: pares[tk.tipo], linea: idx,
+            columna: tk.inicio });
+        } else if (cierres[tk.tipo]) {
+          var abierto = pilaPares.pop();
+          if (!abierto || abierto.tipo !== cierres[tk.tipo]) {
+            errores.push(crearError(idx, tk.inicio, tk.fin,
+              'Cierre sin apertura correspondiente: "' + tk.valor + '".'));
+          }
+        }
+      }
+
+      if (!textoTrim) continue;
+      if (enContinuacion) continue;
+
+      var indent = anchoIndentacion(linea);
+      if (esperaIndent) {
+        if (indent.columnas <= esperaIndent.indent) {
+          errores.push(crearError(esperaIndent.linea, esperaIndent.columna,
+            esperaIndent.columna + 1,
+            'Se esperaba un bloque indentado después de ":".'));
+        } else {
+          pila.push({ indent: indent.columnas, tipo: esperaIndent.tipo });
+        }
+        esperaIndent = null;
+      } else {
+        while (pila.length > 1 && indent.columnas < pila[pila.length - 1].indent) {
+          pila.pop();
+        }
+        if (indent.columnas > pila[pila.length - 1].indent) {
+          errores.push(crearError(idx, 0, indent.caracteres,
+            'Indentación inesperada. La línea anterior no abre un bloque.'));
+        } else if (indent.columnas !== pila[pila.length - 1].indent) {
+          errores.push(crearError(idx, 0, indent.caracteres,
+            'La dedentación no coincide con ningún nivel de indentación anterior.'));
+        }
+      }
+
+      if (requiereDosPuntos(textoTrim) && !/:$/.test(textoTrim)) {
+        errores.push(crearError(idx, Math.max(0, textoDerecha.length - 1),
+          textoDerecha.length,
+          'Faltan dos puntos ":" al final del bloque.'));
+      }
+
+      if (condicionConAsignacion(textoTrim)) {
+        var colAsignacion = textoDerecha.search(/(^|[^=!<>])=([^=]|$)/);
+        errores.push(crearError(idx, Math.max(0, colAsignacion),
+          Math.max(0, colAsignacion) + 1,
+          'En una condición usa "==" para comparar; "=" asigna valores.'));
+      }
+
+      if (/^print\s+[^(\s]/.test(textoTrim)) {
+        errores.push(crearError(idx, linea.indexOf('print'),
+          linea.indexOf('print') + 5,
+          'En Python 3 usa print(...) con paréntesis.'));
+      }
+
+      if (/^(break|continue)\b/.test(textoTrim) && !dentroDeTipo(pila, 'loop')) {
+        errores.push(crearError(idx, linea.indexOf(textoTrim),
+          linea.indexOf(textoTrim) + textoTrim.split(/\s+/)[0].length,
+          '"' + textoTrim.split(/\s+/)[0] + '" solo puede usarse dentro de un ciclo.'));
+      }
+
+      if (/^return\b/.test(textoTrim) && !dentroDeTipo(pila, 'def')) {
+        errores.push(crearError(idx, linea.indexOf('return'),
+          linea.indexOf('return') + 6,
+          '"return" solo puede usarse dentro de una función.'));
+      }
+
+      if (/:$/.test(textoTrim) && requiereDosPuntos(textoTrim)) {
+        esperaIndent = {
+          indent: indent.columnas,
+          tipo: tipoBloquePython(textoTrim),
+          linea: idx,
+          columna: Math.max(0, textoDerecha.length - 1)
+        };
+      }
+    }
+
+    if (esperaIndent) {
+      errores.push(crearError(esperaIndent.linea, esperaIndent.columna,
+        esperaIndent.columna + 1,
+        'Se esperaba un bloque indentado después de ":".'));
+    }
+
+    while (pilaPares.length > 0) {
+      var par = pilaPares.pop();
+      errores.push(crearError(par.linea, par.columna, par.columna + 1,
+        'Apertura sin cierre correspondiente.'));
+    }
+  }
+
+  function extraerVariablesPython(codigo) {
+    var nucleo = nucleoTokenizer();
+    if (!nucleo) return [];
+    var encontrados = Object.create(null);
+    var lineas = String(codigo || '').split('\n');
+
+    function agregar(nombre) {
+      if (nombre) encontrados[nombre] = true;
+    }
+
+    lineas.forEach(function (linea) {
+      var tokens = tokensPython(nucleo, linea);
+      for (var i = 0; i < tokens.length; i++) {
+        var tk = tokens[i];
+        var sig = tokens[i + 1];
+        var ant = tokens[i - 1];
+        if (tk.tipo !== nucleo.TK.IDENTIFIER) continue;
+
+        if (ant && ant.valor === 'def') {
+          agregar(tk.valor);
+        } else if (ant && ant.valor === 'class') {
+          agregar(tk.valor);
+        } else if (sig && sig.tipo === nucleo.TK.OPERATOR && sig.valor === '=') {
+          agregar(tk.valor);
+        } else if (ant && ant.valor === 'for') {
+          agregar(tk.valor);
+        } else if (ant && ant.valor === 'as') {
+          agregar(tk.valor);
+        }
+      }
+    });
+
+    return Object.keys(encontrados);
+  }
 
   /**
    * Acceso defensivo al tokenizador Python.
@@ -107,13 +337,37 @@
      */
     tokenizarLinea: function (linea) {
       var nucleo = nucleoTokenizer();
+      var texto = String(linea);
       if (!nucleo || typeof nucleo.tokenizarLinea !== 'function') {
-        return { tokens: [{ tipo: 'plano', texto: String(linea) }] };
+        return { tokens: [{ tipo: 'plano', texto: texto }] };
       }
-      var tokens = nucleo.tokenizarLinea(String(linea)).map(function (tk) {
-        return { tipo: MAPA_TOKENS[tk.tipo] || 'plano', texto: tk.valor };
+      var cursor = 0;
+      var tokens = [];
+      nucleo.tokenizarLinea(texto).forEach(function (tk) {
+        var inicio = typeof tk.inicio === 'number' ? tk.inicio : cursor;
+        var fin = typeof tk.fin === 'number'
+          ? tk.fin
+          : inicio + String(tk.valor || '').length;
+
+        if (inicio > cursor) {
+          tokens.push({ tipo: 'plano', texto: texto.substring(cursor, inicio) });
+        }
+
+        tokens.push({
+          tipo: MAPA_TOKENS[tk.tipo] || 'plano',
+          texto: tk.valor,
+          nucleo: tk
+        });
+        cursor = Math.max(cursor, fin);
       });
+      if (cursor < texto.length) {
+        tokens.push({ tipo: 'plano', texto: texto.substring(cursor) });
+      }
       return { tokens: tokens };
+    },
+
+    extraerVariables: function (codigo) {
+      return extraerVariablesPython(codigo);
     },
 
     /**
@@ -145,20 +399,7 @@
       var nucleo = nucleoTokenizer();
       if (!nucleo) return errores;
 
-      var lineas = String(codigo || '').split('\n');
-      lineas.forEach(function (linea, idx) {
-        var tokens = nucleo.tokenizarLinea(linea);
-        var tieneStringUnclosed = tokens.some(function (t) {
-          return t.tipo === nucleo.TK.STRING_UNCLOSED;
-        });
-        if (tieneStringUnclosed) {
-          errores.push({
-            linea: idx + 1,
-            mensaje: 'Cadena de texto sin cerrar.',
-            tipo: 'error'
-          });
-        }
-      });
+      validarIndentacionYSintaxis(nucleo, codigo, errores);
       return errores;
     },
 
