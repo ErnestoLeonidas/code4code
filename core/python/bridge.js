@@ -5,11 +5,12 @@
  * RuntimeHost de Code4Code (core/runtime-host.js).
  *
  * Traduce los mensajes del worker a las llamadas del contrato del host:
- *   salida    → host.escribir()
- *   error     → host.escribir() + host.reportarError()
- *   fin       → host.finalizar()
- *   cargando  → host.escribir() (solo si Pyodide aún no estaba listo)
- *   listo     → actualiza estado interno a 'idle'
+ *   salida              → host.escribir()
+ *   entrada_solicitada  → host.leer(prompt) → envía 'entrada' al worker
+ *   error               → host.escribir() + host.reportarError()
+ *   fin                 → host.finalizar()
+ *   cargando            → host.escribir() (solo la primera vez)
+ *   listo               → actualiza estado interno a 'idle'
  *
  * Reutilización del worker: el worker se crea una sola vez y se reutiliza
  * entre ejecuciones normales. Solo se crea un worker nuevo si fue terminado
@@ -21,9 +22,6 @@
  *   'idle'      — Pyodide listo, sin ejecución en curso
  *   'running'   — hay un programa ejecutándose
  *   'dead'      — el worker fue terminado con terminate()
- *
- * Para pasar entradas al worker, lee el textarea #pythonStdin si existe en
- * el DOM (primera versión no interactiva: todas las entradas van de antemano).
  *
  * Exporta PythonWorkerBridge como global de window (navegador) y como
  * módulo CommonJS (Node / tests de integración).
@@ -74,9 +72,20 @@
       var host = _hostActual;
 
       if (msg.tipo === 'salida') {
-        // Salida normal del programa Python
         if (host) {
           try { host.escribir(String(msg.texto), { tipo: 'salida' }); } catch (_) { /* detenido */ }
+        }
+
+      } else if (msg.tipo === 'entrada_solicitada') {
+        // Python llamó a input() — pausar y pedir entrada inline al usuario
+        if (host && typeof host.leer === 'function') {
+          var workerRef = _workerActual;
+          host.leer(msg.prompt || '').then(function (valor) {
+            // Solo enviar si el worker no fue reemplazado ni detenido
+            if (workerRef && _workerActual === workerRef && _estadoWorker === 'running') {
+              workerRef.postMessage({ tipo: 'entrada', valor: String(valor) });
+            }
+          }).catch(function () { /* ejecución detenida antes de que el usuario respondiera */ });
         }
 
       } else if (msg.tipo === 'error') {
@@ -182,16 +191,6 @@
          * @param {string} codigo
          */
         ejecutar: function (codigo) {
-          var entradas = [];
-          // Leer el textarea de stdin si existe en el DOM (solo navegador)
-          if (typeof document !== 'undefined') {
-            var stdinEl = document.getElementById('pythonStdin');
-            if (stdinEl && stdinEl.value) {
-              entradas = stdinEl.value
-                .split('\n')
-                .filter(function (s) { return s.length > 0; });
-            }
-          }
           if (host && typeof host.reportarVariables === 'function') {
             host.reportarVariables({ evento: 'reiniciar' });
           }
@@ -199,7 +198,7 @@
           var worker = _obtenerWorker();
           _hostActual = host;
           _estadoWorker = 'running';
-          worker.postMessage({ tipo: 'ejecutar', codigo: String(codigo || ''), entradas: entradas });
+          worker.postMessage({ tipo: 'ejecutar', codigo: String(codigo || '') });
         },
 
         /**

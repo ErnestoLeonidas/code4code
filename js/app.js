@@ -494,24 +494,12 @@ function initLanguageSelect() {
     } catch (e) { /* ignorar */ }
   })();
 
-  // ── Panel stdin Python ─────────────────────────────────────────────────
-  function actualizarPanelPython(provider) {
-    var $stdinPanel = $("#pythonStdinPanel");
-    if (provider.id === "python") {
-      $stdinPanel.show();
-    } else {
-      $stdinPanel.hide();
-    }
-  }
-
   actualizarVisibilidadPerfil(registro.activo());
-  actualizarPanelPython(registro.activo());
 
   registro.onCambio((provider) => {
     $select.val(provider.id);
     $("#inputImportarPsc").attr("accept", `${provider.extension},text/plain`);
     actualizarVisibilidadPerfil(provider);
-    actualizarPanelPython(provider);
     actualizarBarraSimbolos(provider);
     if (provider.id === "pseint" && typeof provider.configurarPerfil === "function") {
       try {
