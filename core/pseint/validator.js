@@ -273,6 +273,12 @@ function _validarNodo(nodo, ctx, tablaLocal) {
           continue;
         }
         vistos.add(nombre);
+        // Tipo desconocido
+        if (parsed.tipo && !_TIPOS_PSEINT_SET.has(parsed.tipo)) {
+          _agregarError(ctx, linea,
+            'Tipo "' + parsed.tipo + '" no es válido en PSeInt. ' +
+            'Tipos válidos: Entero, Real, Cadena, Caracter, Logico.');
+        }
         // Duplicado respecto a la tabla actual
         if (tabla.existeVariable(nombre) && tabla.obtenerTipo(nombre) !== null) {
           _agregarError(ctx, linea, 'Variable "' + nombre + '" ya estaba definida (declaración duplicada).');

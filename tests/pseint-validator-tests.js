@@ -586,6 +586,44 @@ t('Definir con tipos Cadena y Caracter no genera errores', function() {
     'Tipos Cadena y Caracter son válidos en Definir: ' + JSON.stringify(errores));
 });
 
+// 34. Definir con tipo inválido genera error
+t('Definir con tipo inválido genera error descriptivo', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir x Como String',
+    '  x <- "hola"',
+    '  Escribir x',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length > 0, 'Se esperaba error por tipo "String" no válido');
+  ok(hayError(errores, 'string'), 'El error debe mencionar el tipo inválido');
+  ok(hayError(errores, 'entero') || hayError(errores, 'válido'),
+    'El error debe sugerir tipos válidos');
+});
+
+// 35. Todos los tipos válidos en Definir no generan error
+t('todos los tipos PSeInt (Entero, Real, Cadena, Caracter, Logico) son válidos', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir a Como Entero',
+    '  Definir b Como Real',
+    '  Definir c Como Cadena',
+    '  Definir d Como Caracter',
+    '  Definir e Como Logico',
+    '  a <- 1',
+    '  b <- 2.5',
+    '  c <- "hola"',
+    '  d <- "A"',
+    '  e <- Verdadero',
+    '  Escribir a, b, c, d, e',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Todos los tipos PSeInt válidos no deben generar error: ' + JSON.stringify(errores));
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 //  Resumen
 // ─────────────────────────────────────────────────────────────────────────────
