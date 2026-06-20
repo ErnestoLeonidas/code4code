@@ -5,9 +5,22 @@
  * RuntimeHost de Code4Code (core/runtime-host.js).
  *
  * Traduce los mensajes del worker a las llamadas del contrato del host:
- *   salida  → host.escribir()
- *   error   → host.escribir() + host.reportarError()
- *   fin     → host.finalizar()
+ *   salida    → host.escribir()
+ *   error     → host.escribir() + host.reportarError()
+ *   fin       → host.finalizar()
+ *   cargando  → host.escribir() (solo si Pyodide aún no estaba listo)
+ *   listo     → actualiza estado interno a 'idle'
+ *
+ * Reutilización del worker: el worker se crea una sola vez y se reutiliza
+ * entre ejecuciones normales. Solo se crea un worker nuevo si fue terminado
+ * con terminate() (estado 'dead') o si nunca existió.
+ *
+ * Estados del worker gestionados por el bridge:
+ *   'sin-crear' — nunca se ha creado un worker
+ *   'cargando'  — el worker existe pero Pyodide aún no terminó de cargar
+ *   'idle'      — Pyodide listo, sin ejecución en curso
+ *   'running'   — hay un programa ejecutándose
+ *   'dead'      — el worker fue terminado con terminate()
  *
  * Para pasar entradas al worker, lee el textarea #pythonStdin si existe en
  * el DOM (primera versión no interactiva: todas las entradas van de antemano).
@@ -32,71 +45,138 @@
     return mapa[tipoPy] || tipoPy;
   }
 
+  // ---------------------------------------------------------------------------
+  // Estado compartido del worker entre ejecuciones
+  // ---------------------------------------------------------------------------
+
+  /** @type {Worker|null} Instancia actual del worker (reutilizable). */
+  var _workerActual = null;
+
+  /**
+   * Estado del ciclo de vida del worker.
+   * 'sin-crear' | 'cargando' | 'idle' | 'running' | 'dead'
+   */
+  var _estadoWorker = 'sin-crear';
+
+  /**
+   * Host activo durante la ejecución en curso.
+   * Se asigna al iniciar ejecutar() y se limpia al recibir 'fin' o 'error'.
+   */
+  var _hostActual = null;
+
+  /**
+   * Registra los manejadores de mensajes y errores en el worker.
+   * Se llaman con el host de la ejecución que inició el mensaje.
+   */
+  function _configurarMensajesWorker(worker) {
+    worker.onmessage = function (e) {
+      var msg = e.data;
+      var host = _hostActual;
+
+      if (msg.tipo === 'salida') {
+        // Salida normal del programa Python
+        if (host) {
+          try { host.escribir(String(msg.texto), { tipo: 'salida' }); } catch (_) { /* detenido */ }
+        }
+
+      } else if (msg.tipo === 'error') {
+        // Error de Python (SyntaxError, NameError, etc.)
+        if (host) {
+          var meta = { tipo: 'error' };
+          if (typeof msg.linea === 'number') meta.linea = msg.linea;
+          try { host.escribir(String(msg.mensaje), meta); } catch (_) { /* detenido */ }
+          host.reportarError({ message: String(msg.mensaje), linea: msg.linea || null });
+        }
+
+      } else if (msg.tipo === 'fin') {
+        // El programa Python terminó con éxito; el worker vuelve a estar disponible
+        _estadoWorker = 'idle';
+        _hostActual = null;
+        if (host) {
+          try { host.finalizar(); } catch (_) { /* ya finalizado */ }
+        }
+
+      } else if (msg.tipo === 'cargando') {
+        // Pyodide aún no estaba cacheado, se está descargando por primera vez
+        _estadoWorker = 'cargando';
+        if (host) {
+          try { host.escribir('⏳ ' + msg.mensaje, { tipo: 'salida' }); } catch (_) { /* detenido */ }
+        }
+
+      } else if (msg.tipo === 'listo') {
+        // Pyodide terminó de cargar; el worker pasa a idle (ya está ejecutando)
+        // Nota: después de 'listo' vendrán 'salida'/'error'/'fin' del programa actual.
+        if (host) {
+          try { host.escribir('✓ Python listo\n', { tipo: 'salida' }); } catch (_) { /* detenido */ }
+        }
+
+      } else if (msg.tipo === 'variables') {
+        if (host && typeof host.reportarVariables === 'function') {
+          var vars = msg.vars || {};
+          Object.keys(vars).forEach(function (nombre) {
+            var info = vars[nombre];
+            host.reportarVariables({
+              evento: 'cambio',
+              variable: {
+                nombre: nombre,
+                valor: info.valor,
+                tipo: mapearTipoPy(info.tipo),
+                inicializada: true
+              }
+            });
+          });
+        }
+      }
+    };
+
+    worker.onerror = function (e) {
+      var host = _hostActual;
+      var msg = e.message || 'Error en el worker Python';
+      _estadoWorker = 'dead';
+      _workerActual = null;
+      _hostActual = null;
+      if (host) {
+        try { host.escribir(msg, { tipo: 'error' }); } catch (_) { /* detenido */ }
+        host.reportarError({ message: msg, linea: null });
+      }
+    };
+  }
+
+  /**
+   * Devuelve el worker listo para enviar un mensaje de ejecución.
+   * - Si el worker está 'idle' (Pyodide ya cargado), lo reutiliza.
+   * - Si el worker está 'dead' o 'sin-crear', crea uno nuevo.
+   *
+   * @returns {Worker}
+   */
+  function _obtenerWorker() {
+    if (_estadoWorker === 'idle' && _workerActual) {
+      return _workerActual;
+    }
+    // Crear worker nuevo
+    var worker = new Worker('core/python/worker.js'); // eslint-disable-line no-undef
+    _configurarMensajesWorker(worker);
+    _workerActual = worker;
+    _estadoWorker = 'cargando'; // cambiará a 'idle' al recibir 'listo'
+    return worker;
+  }
+
   var PythonWorkerBridge = {
     /**
      * Crea un bridge para una ejecución.
+     *
+     * A diferencia de la versión anterior, el bridge ya no tiene un worker
+     * propio: gestiona el worker compartido del módulo. Esto permite
+     * reutilizar Pyodide entre ejecuciones sin recarga.
      *
      * @param {object} host  - RuntimeHost de Code4Code (crearRuntimeHost())
      * @returns {{ ejecutar: function(string), detener: function() }}
      */
     crear: function (host) {
-      // La ruta al worker es relativa al documento (index.html en la raíz).
-      var worker = new Worker('core/python/worker.js'); // eslint-disable-line no-undef
-
-      worker.onmessage = function (e) {
-        var msg = e.data;
-
-        if (msg.tipo === 'salida') {
-          // Salida normal del programa Python
-          try { host.escribir(String(msg.texto), { tipo: 'salida' }); } catch (_) { /* detenido */ }
-
-        } else if (msg.tipo === 'error') {
-          // Error de Python (SyntaxError, NameError, etc.)
-          var meta = { tipo: 'error' };
-          if (typeof msg.linea === 'number') meta.linea = msg.linea;
-          try { host.escribir(String(msg.mensaje), meta); } catch (_) { /* detenido */ }
-          host.reportarError({ message: String(msg.mensaje), linea: msg.linea || null });
-
-        } else if (msg.tipo === 'fin') {
-          // El programa Python terminó con éxito
-          host.finalizar();
-
-        } else if (msg.tipo === 'cargando') {
-          // Pyodide aún no estaba cacheado, se está descargando
-          try { host.escribir('⏳ ' + msg.mensaje, { tipo: 'salida' }); } catch (_) { /* detenido */ }
-
-        } else if (msg.tipo === 'listo') {
-          // Pyodide terminó de cargar por primera vez
-          try { host.escribir('✓ Python listo\n', { tipo: 'salida' }); } catch (_) { /* detenido */ }
-
-        } else if (msg.tipo === 'variables') {
-          if (typeof host.reportarVariables === 'function') {
-            var vars = msg.vars || {};
-            Object.keys(vars).forEach(function (nombre) {
-              var info = vars[nombre];
-              host.reportarVariables({
-                evento: 'cambio',
-                variable: {
-                  nombre: nombre,
-                  valor: info.valor,
-                  tipo: mapearTipoPy(info.tipo),
-                  inicializada: true
-                }
-              });
-            });
-          }
-        }
-      };
-
-      worker.onerror = function (e) {
-        var msg = e.message || 'Error en el worker Python';
-        try { host.escribir(msg, { tipo: 'error' }); } catch (_) { /* detenido */ }
-        host.reportarError({ message: msg, linea: null });
-      };
-
       return {
         /**
          * Envía el código al worker para ejecutarlo.
+         * Reutiliza el worker si Pyodide ya está cargado ('idle').
          * Lee las entradas del textarea #pythonStdin si existe.
          *
          * @param {string} codigo
@@ -112,22 +192,41 @@
                 .filter(function (s) { return s.length > 0; });
             }
           }
-          if (typeof host.reportarVariables === 'function') {
+          if (host && typeof host.reportarVariables === 'function') {
             host.reportarVariables({ evento: 'reiniciar' });
           }
+
+          var worker = _obtenerWorker();
+          _hostActual = host;
+          _estadoWorker = 'running';
           worker.postMessage({ tipo: 'ejecutar', codigo: String(codigo || ''), entradas: entradas });
         },
 
         /**
          * Detiene la ejecución terminando el worker.
+         * Marca el estado como 'dead' para que la siguiente ejecución
+         * cree un worker nuevo.
          */
         detener: function () {
-          worker.postMessage({ tipo: 'detener' });
-          // Terminar el worker de forma inmediata para liberar recursos
-          worker.terminate();
+          _hostActual = null;
+          if (_workerActual) {
+            _workerActual.postMessage({ tipo: 'detener' });
+            // Terminar el worker de forma inmediata para liberar recursos
+            _workerActual.terminate();
+            _workerActual = null;
+          }
+          _estadoWorker = 'dead';
           try { host.escribir('\n[Ejecución detenida]', { tipo: 'salida' }); } catch (_) { /* host ya detenido */ }
         }
       };
+    },
+
+    /**
+     * Expone el estado interno para diagnóstico / tests.
+     * @returns {'sin-crear'|'cargando'|'idle'|'running'|'dead'}
+     */
+    estadoWorker: function () {
+      return _estadoWorker;
     }
   };
 

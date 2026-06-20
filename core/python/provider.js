@@ -164,6 +164,9 @@
      * En entornos sin Worker/Pyodide (Node/tests) notifica el error y
      * devuelve el objeto de control requerido por el contrato.
      *
+     * Mejora 3: si el worker ya tiene Pyodide cargado ('idle'), no se
+     * muestra el indicador de carga, ya que la ejecución comienza de inmediato.
+     *
      * @param {string} codigo
      * @param {object} host  - RuntimeHost de Code4Code
      * @returns {{ detener: function }}
@@ -177,6 +180,18 @@
       }
 
       host.iniciar();
+
+      // Informar al usuario solo si Pyodide aún no está listo.
+      // El worker enviará { tipo: 'cargando' } + { tipo: 'listo' } si es la primera vez.
+      // Si el worker ya está en 'idle', no habrá mensaje de carga.
+      var estadoActual = typeof PythonWorkerBridge.estadoWorker === 'function'
+        ? PythonWorkerBridge.estadoWorker()
+        : 'sin-crear';
+      if (estadoActual !== 'idle') {
+        // Se mostrará el aviso real cuando el worker envíe { tipo: 'cargando' }
+        // (ver bridge.js). No duplicamos el mensaje aquí.
+      }
+
       var bridge = PythonWorkerBridge.crear(host);
       bridge.ejecutar(codigo);
       return {
