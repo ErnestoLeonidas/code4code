@@ -502,6 +502,90 @@ t('Mientras con variable de control definida previamente es válido', function()
     'Mientras con variable de control no debe generar errores: ' + JSON.stringify(errores));
 });
 
+// 29. Segun con variable y casos → válido
+t('Segun con variable y casos correctos es válido', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir opcion Como Entero',
+    '  Leer opcion',
+    '  Segun opcion Hacer',
+    '    1: Escribir "uno"',
+    '    2: Escribir "dos"',
+    '    De Otro Modo: Escribir "otro"',
+    '  FinSegun',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Segun bien formado no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// 30. Repetir/HastaQue válido
+t('Repetir/HastaQue bien formado es válido', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir n Como Entero',
+    '  n <- 0',
+    '  Repetir',
+    '    n <- n + 1',
+    '  Hasta Que n >= 5',
+    '  Escribir n',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Repetir/HastaQue bien formado no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// 31. Leer con múltiples variables
+t('Leer con varias variables separadas por coma es válido', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir a, b, c Como Entero',
+    '  Leer a, b, c',
+    '  Escribir a + b + c',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Leer con múltiples variables no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// 32. Funcion con variable de retorno y Retornar explícito
+t('Funcion con variable de retorno y Retornar es válida', function() {
+  const codigo = [
+    'Funcion resultado <- Cuadrado(n Como Entero)',
+    '  Definir resultado Como Real',
+    '  resultado <- n * n',
+    '  Retornar resultado',
+    'FinFuncion',
+    'Algoritmo test',
+    '  Definir r Como Real',
+    '  r <- Cuadrado(7)',
+    '  Escribir r',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Funcion con Retornar no debe generar errores: ' + JSON.stringify(errores));
+});
+
+// 33. Tipos Cadena y Caracter en Definir son reconocidos
+t('Definir con tipos Cadena y Caracter no genera errores', function() {
+  const codigo = [
+    'Algoritmo test',
+    '  Definir nombre Como Cadena',
+    '  Definir inicial Como Caracter',
+    '  Leer nombre',
+    '  Leer inicial',
+    '  Escribir nombre, " (", inicial, ")"',
+    'FinAlgoritmo',
+  ].join('\n');
+  const errores = validarPSeInt(codigo, {});
+  ok(errores.length === 0,
+    'Tipos Cadena y Caracter son válidos en Definir: ' + JSON.stringify(errores));
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 //  Resumen
 // ─────────────────────────────────────────────────────────────────────────────
