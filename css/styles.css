@@ -544,50 +544,52 @@ body::before {
 .syntax-highlight-layer .sh-bracket-2 { color: var(--bracket-2); font-weight: 500; }
 
 /* ======================================================================
-   Paleta ayu para Python (theme ayu de VSCode — github.com/ayu-theme)
+   Paleta ayu Mirage para Python (theme ayu de VSCode — github.com/ayu-theme)
    ----------------------------------------------------------------------
-   Cuando el lenguaje activo es Python, el editor adopta los colores del
-   tema ayu con independencia del tema global elegido: ayu Mirage sobre
-   temas oscuros y ayu Light sobre temas claros (papel/día). El override
-   se limita a .editor-panel para no alterar la consola ni los paneles.
+   Cuando el lenguaje activo es Python el editor adopta el tema ayu Mirage
+   COMPLETO (superficie + sintaxis) con independencia del tema global, para
+   un look coherente como en VSCode. Los selectores van prefijados con
+   .editor-panel[data-lang="python"] y, donde algún tema fija el color en el
+   elemento (no en variable), apuntan al elemento concreto con mayor
+   especificidad para ganar siempre. Solo afecta al editor, no a la consola
+   ni a los paneles.
    ====================================================================== */
 .editor-panel[data-lang="python"] {
   --tab-size:        4;       /* convención de indentación de Python */
-  --bg-editor:       #242936; /* editor.background (mirage) */
-  --text-primary:    #cccac2; /* editor.foreground          */
-  --syntax-keyword:  #ffa659; /* keyword                    */
-  --syntax-string:   #d5ff80; /* string                     */
-  --syntax-number:   #dfbfff; /* constant.numeric           */
-  --syntax-comment:  #6e7c8f; /* comment                    */
-  --syntax-variable: #ffcd66; /* entity.name.function       */
-  --syntax-assign:   #f29e74; /* keyword.operator           */
+  --bg-editor:       #242936; /* editor.background           */
+  --text-primary:    #cccac2; /* editor.foreground           */
+  --line-number:     #707a8c80;/* editorLineNumber.foreground */
+  --border-color:    #171b24; /* editorWidget.border         */
+  --syntax-keyword:  #ffa659; /* keyword                     */
+  --syntax-string:   #d5ff80; /* string                      */
+  --syntax-number:   #dfbfff; /* constant.numeric            */
+  --syntax-comment:  #6e7c8f; /* comment                     */
+  --syntax-variable: #ffcd66; /* entity.name.function        */
+  --syntax-assign:   #f29e74; /* keyword.operator            */
   --bracket-0: #ffcd66;
   --bracket-1: #73d0ff;
   --bracket-2: #dfbfff;
 }
 .editor-panel[data-lang="python"] .syntax-highlight-layer .sh-operator {
-  color: #f29e74; /* keyword.operator (mirage) */
+  color: #f29e74; /* keyword.operator */
 }
-
-/* Variante ayu Light cuando hay un tema claro activo */
-[data-theme="papel"] .editor-panel[data-lang="python"],
-[data-theme="dia"]   .editor-panel[data-lang="python"] {
-  --bg-editor:       #fcfcfc;
-  --text-primary:    #5c6166;
-  --syntax-keyword:  #fa8532;
-  --syntax-string:   #86b300;
-  --syntax-number:   #a37acc;
-  --syntax-comment:  #adaeb1;
-  --syntax-variable: #eba400;
-  --syntax-assign:   #f2a191;
-  --bracket-0: #eba400;
-  --bracket-1: #55b4d4;
-  --bracket-2: #a37acc;
+/* Superficie del editor: fondo, gutter y wrapper en el mismo tono ayu para
+   que no haya costuras entre el código y la columna de números. */
+.editor-panel[data-lang="python"] .editor-wrapper,
+.editor-panel[data-lang="python"] .editor-bg-layer,
+.editor-panel[data-lang="python"] .line-numbers {
+  background: #242936;
 }
-[data-theme="papel"] .editor-panel[data-lang="python"] .syntax-highlight-layer .sh-operator,
-[data-theme="dia"]   .editor-panel[data-lang="python"] .syntax-highlight-layer .sh-operator {
-  color: #f2a191;
+.editor-panel[data-lang="python"] .line-numbers {
+  border-right-color: #1f2430;
 }
+/* Cursor (editorCursor.foreground), selección (editor.selectionBackground)
+   y línea activa (editor.lineHighlightBackground) de ayu Mirage. */
+.editor-panel[data-lang="python"] #editor { caret-color: #ffcc66; }
+.editor-panel[data-lang="python"] #editor::selection { background: #409fff40; }
+/* Guías de indentación (editorIndentGuide). */
+.editor-panel[data-lang="python"] .indent-guide { background: #707a8c3b; }
+.editor-panel[data-lang="python"] .indent-guide.active { background: #707a8c70; }
 
 /* ---- Search bar y capa de coincidencias (Fase 2) ---- */
 .search-bar {
