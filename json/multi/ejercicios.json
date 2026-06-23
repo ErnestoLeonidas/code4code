@@ -1,0 +1,3395 @@
+{
+  "version": "2.0.0",
+  "generado": "2026-06-23",
+  "descripcion": "Ejercicios multi-lenguaje unificados: un enunciado compartido con soluciones en cada lenguaje.",
+  "total": 74,
+  "ejercicios": [
+    {
+      "id": "mu-n1-001",
+      "concepto": "Aplicar descuento porcentual",
+      "modulo": "N1",
+      "titulo": "Precio con descuento",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "input",
+        "float()",
+        "porcentaje",
+        "operadores",
+        "Leer",
+        "Real",
+        "-",
+        "*",
+        "/",
+        "fórmula",
+        "asignación <-",
+        "Escribir",
+        "descuento"
+      ],
+      "enunciado": "El programa pide el precio original de un producto y el porcentaje de descuento. Calcula el monto del descuento y el precio final, mostrando ambos resultados.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-010",
+          "codigoReferencia": "Proceso precio_descuento\n  Definir precio, pct, descuento, final Como Real\n\n  Escribir \"Precio original ($):\"\n  Leer precio\n  Escribir \"Descuento (%):\"\n  Leer pct\n\n  descuento = precio * pct / 100\n  final     = precio - descuento\n\n  Escribir \"Descuento: $\", descuento\n  Escribir \"Precio final: $\", final\nFinProceso",
+          "salidaEsperada": "Precio original ($):\nDescuento (%):\nDescuento: $3000\nPrecio final: $17000",
+          "pista": "El descuento se calcula como precio * pct / 100. Guarda el resultado intermedio para mostrarlo.",
+          "entradaProcesoSalida": {
+            "entrada": "Precio original (Real)\nPorcentaje de descuento en % (Real)",
+            "proceso": "descuento = precio * pct / 100\nfinal = precio - descuento",
+            "salida": "\"Descuento: $\" + descuento\n\"Precio final: $\" + final"
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-013",
+          "codigoReferencia": "Algoritmo descuento_porcentual\n  Definir precio, porcentaje, descuento, precioFinal Como Real\n\n  Escribir \"Ingrese el precio original: \"\n  Leer precio\n  Escribir \"Ingrese el porcentaje de descuento: \"\n  Leer porcentaje\n\n  descuento   <- precio * (porcentaje / 100)\n  precioFinal <- precio - descuento\n\n  Escribir \"Descuento aplicado: $\", descuento\n  Escribir \"Precio final: $\", precioFinal\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el precio original: \nIngrese el porcentaje de descuento: \nDescuento aplicado: $200\nPrecio final: $800",
+          "pista": "Divide el porcentaje por 100 para obtener la fracción decimal. Luego multiplica por el precio para el monto.",
+          "entradaProcesoSalida": {
+            "entrada": "Precio original (Real) y porcentaje de descuento (Real)",
+            "proceso": "descuento <- precio * (porcentaje / 100)\nprecioFinal <- precio - descuento",
+            "salida": "Monto de descuento y precio final"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-014",
+          "codigoReferencia": "precio = float(input(\"Ingresa el precio original: \"))\nporcentaje = float(input(\"Ingresa el porcentaje de descuento: \"))\ndescuento = precio * (porcentaje / 100)\nprecio_final = precio - descuento\nprint(f\"Descuento aplicado: ${descuento}\")\nprint(f\"Precio final: ${precio_final}\")",
+          "salidaEsperada": "Ingresa el precio original: \nIngresa el porcentaje de descuento: \nDescuento aplicado: $200.0\nPrecio final: $800.0",
+          "pista": "descuento = precio * (porcentaje / 100); precio_final = precio - descuento.",
+          "entradaProcesoSalida": {
+            "entrada": "Precio y porcentaje de descuento",
+            "proceso": "Calcular y restar el descuento",
+            "salida": "Precio final con descuento"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-002",
+      "concepto": "Área de un rectángulo",
+      "modulo": "N1",
+      "titulo": "Área y perímetro del rectángulo",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "input",
+        "float()",
+        "multiplicación",
+        "variables",
+        "Leer",
+        "Real",
+        "*",
+        "+",
+        "fórmula",
+        "geometría",
+        "asignación <-",
+        "Escribir"
+      ],
+      "enunciado": "El programa pide la base y la altura de un rectángulo (valores reales), calcula el área (base × altura) y muestra el resultado.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-011",
+          "codigoReferencia": "Proceso rectangulo\n  Definir ancho, alto, area, perimetro Como Real\n\n  Escribir \"Ancho (m):\"\n  Leer ancho\n  Escribir \"Alto (m):\"\n  Leer alto\n\n  area      = ancho * alto\n  perimetro = 2 * (ancho + alto)\n\n  Escribir \"Área: \", area, \" m²\"\n  Escribir \"Perímetro: \", perimetro, \" m\"\nFinProceso",
+          "salidaEsperada": "Ancho (m):\nAlto (m):\nÁrea: 24 m²\nPerímetro: 20 m",
+          "pista": "Los paréntesis en 2 * (ancho + alto) son necesarios: sin ellos solo se multiplicaría alto por 2.",
+          "entradaProcesoSalida": {
+            "entrada": "Ancho del rectángulo (Real)\nAlto del rectángulo (Real)",
+            "proceso": "area = ancho * alto\nperimetro = 2 * (ancho + alto)",
+            "salida": "\"Área: \" + area + \" m²\"\n\"Perímetro: \" + perimetro + \" m\""
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-007",
+          "codigoReferencia": "Algoritmo area_rectangulo\n  Definir base, altura, area Como Real\n\n  Escribir \"Ingrese la base: \"\n  Leer base\n  Escribir \"Ingrese la altura: \"\n  Leer altura\n\n  area <- base * altura\n\n  Escribir \"El área del rectángulo es: \", area\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese la base: \nIngrese la altura: \nEl área del rectángulo es: 15",
+          "pista": "Usa variables de tipo Real para permitir decimales. El operador de multiplicación es *.",
+          "entradaProcesoSalida": {
+            "entrada": "Base y altura del rectángulo (Real)",
+            "proceso": "area <- base * altura",
+            "salida": "\"El área del rectángulo es: [area]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-008",
+          "codigoReferencia": "base = float(input(\"Ingresa la base: \"))\naltura = float(input(\"Ingresa la altura: \"))\narea = base * altura\nprint(f\"El área del rectángulo es: {area}\")",
+          "salidaEsperada": "Ingresa la base: \nIngresa la altura: \nEl área del rectángulo es: 15.0",
+          "pista": "area = base * altura. Lee base y altura con float(input(...)).",
+          "entradaProcesoSalida": {
+            "entrada": "Base y altura del rectángulo",
+            "proceso": "Calcular base × altura",
+            "salida": "El área"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-003",
+      "concepto": "Calcular el IMC",
+      "modulo": "N1",
+      "titulo": "Calcular el IMC",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "^",
+        "/",
+        "fórmula",
+        "asignación <-",
+        "Escribir",
+        "división"
+      ],
+      "enunciado": "Lee el peso en kg y la estatura en metros. Calcula el IMC usando IMC = peso / estatura². Muestra el resultado.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-013",
+          "codigoReferencia": "Proceso calcular_imc\n  Definir peso, estatura, imc Como Real\n\n  Escribir \"Peso (kg):\"\n  Leer peso\n  Escribir \"Estatura (m):\"\n  Leer estatura\n\n  imc = peso / (estatura ^ 2)\n\n  Escribir \"Tu IMC es: \", imc\nFinProceso",
+          "salidaEsperada": "Peso (kg):\nEstatura (m):\nTu IMC es: 25",
+          "pista": "Los paréntesis en (estatura ^ 2) aseguran que la potencia se calcula antes de la división.",
+          "entradaProcesoSalida": {
+            "entrada": "Peso en kg (Real)\nEstatura en metros (Real)",
+            "proceso": "imc = peso / (estatura ^ 2)",
+            "salida": "\"Tu IMC es: \" + imc"
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-010",
+          "codigoReferencia": "Algoritmo calcular_imc\n  Definir peso, talla, imc Como Real\n\n  Escribir \"Ingrese su peso en kg: \"\n  Leer peso\n  Escribir \"Ingrese su talla en metros: \"\n  Leer talla\n\n  imc <- peso / (talla * talla)\n\n  Escribir \"Su IMC es: \", imc\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese su peso en kg: \nIngrese su talla en metros: \nSu IMC es: 22.86",
+          "pista": "Para elevar al cuadrado multiplica la variable por sí misma: talla * talla.",
+          "entradaProcesoSalida": {
+            "entrada": "Peso en kg (Real) y talla en metros (Real)",
+            "proceso": "imc <- peso / (talla * talla)",
+            "salida": "\"Su IMC es: [imc]\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-004",
+      "concepto": "Calcular el vuelto / cambio",
+      "modulo": "N1",
+      "titulo": "Calcular el vuelto",
+      "dificultad": "intermedio",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "input",
+        "float()",
+        "sustracción",
+        "cambio",
+        "Leer",
+        "Entero",
+        "-",
+        "asignación",
+        "Real",
+        "asignación <-",
+        "Escribir",
+        "resta"
+      ],
+      "enunciado": "El programa pide el precio de un artículo y el monto que entrega el cliente. Calcula y muestra el cambio que debe recibir el cliente (cambio = pagado - precio).",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-014",
+          "codigoReferencia": "Proceso vuelto\n  Definir precio, pagado, vuelto Como Entero\n\n  Escribir \"Precio del producto ($):\"\n  Leer precio\n  Escribir \"Monto pagado ($):\"\n  Leer pagado\n\n  vuelto = pagado - precio\n\n  Escribir \"Su vuelto es: $\", vuelto\nFinProceso",
+          "salidaEsperada": "Precio del producto ($):\nMonto pagado ($):\nSu vuelto es: $1500",
+          "pista": "La resta es directa: vuelto = pagado - precio. Guarda el resultado en una variable antes de mostrarlo.",
+          "entradaProcesoSalida": {
+            "entrada": "Precio del producto (Entero)\nMonto pagado (Entero)",
+            "proceso": "vuelto = pagado - precio",
+            "salida": "\"Su vuelto es: $\" + vuelto"
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-020",
+          "codigoReferencia": "Algoritmo vuelto_compra\n  Definir precio, montoEntregado, vuelto Como Real\n\n  Escribir \"Ingrese el precio del artículo: \"\n  Leer precio\n  Escribir \"Ingrese el monto entregado: \"\n  Leer montoEntregado\n\n  vuelto <- montoEntregado - precio\n\n  Escribir \"El vuelto es: $\", vuelto\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el precio del artículo: \nIngrese el monto entregado: \nEl vuelto es: $500",
+          "pista": "El vuelto es simplemente la diferencia entre lo que entrega el cliente y el precio del artículo.",
+          "entradaProcesoSalida": {
+            "entrada": "Precio del artículo (Real) y monto entregado (Real)",
+            "proceso": "vuelto <- montoEntregado - precio",
+            "salida": "\"El vuelto es: $[vuelto]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-020",
+          "codigoReferencia": "precio = float(input(\"Ingresa el precio del artículo: \"))\npagado = float(input(\"Ingresa el monto entregado: \"))\ncambio = pagado - precio\nprint(f\"El cambio es: ${cambio}\")",
+          "salidaEsperada": "Ingresa el precio del artículo: \nIngresa el monto entregado: \nEl cambio es: $500.0",
+          "pista": "cambio = pago - precio. Asegúrate de convertir ambos valores a float.",
+          "entradaProcesoSalida": {
+            "entrada": "Precio del producto y monto del pago",
+            "proceso": "Restar precio al pago",
+            "salida": "El cambio a devolver"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-005",
+      "concepto": "Calcular propina",
+      "modulo": "N1",
+      "titulo": "Calcular propina 15%",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "input",
+        "float()",
+        "porcentaje",
+        "variables",
+        "Leer",
+        "Real",
+        "asignación <-",
+        "Escribir"
+      ],
+      "enunciado": "El programa pide el total de la cuenta de un restaurante, calcula la propina del 15% y muestra el monto de la propina y el total a pagar (cuenta + propina).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n1-019",
+          "codigoReferencia": "Algoritmo calcular_propina\n  Definir cuenta, porcentaje, propina, totalAPagar Como Real\n\n  Escribir \"Ingrese el total de la cuenta: \"\n  Leer cuenta\n  Escribir \"Ingrese el porcentaje de propina: \"\n  Leer porcentaje\n\n  propina      <- cuenta * (porcentaje / 100)\n  totalAPagar  <- cuenta + propina\n\n  Escribir \"Propina: $\", propina\n  Escribir \"Total a pagar: $\", totalAPagar\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el total de la cuenta: \nIngrese el porcentaje de propina: \nPropina: $1500\nTotal a pagar: $11500",
+          "pista": "Divide el porcentaje por 100 para convertirlo a decimal antes de multiplicar por la cuenta.",
+          "entradaProcesoSalida": {
+            "entrada": "Total de la cuenta (Real) y porcentaje de propina (Real)",
+            "proceso": "propina <- cuenta * (porcentaje / 100)\ntotalAPagar <- cuenta + propina",
+            "salida": "Monto de propina y total a pagar"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-019",
+          "codigoReferencia": "cuenta = float(input(\"Ingresa el total de la cuenta: \"))\npropina = cuenta * 0.15\ntotal = cuenta + propina\nprint(f\"Propina (15%): ${propina}\")\nprint(f\"Total a pagar: ${total}\")",
+          "salidaEsperada": "Ingresa el total de la cuenta: \nPropina (15%): $1500.0\nTotal a pagar: $11500.0",
+          "pista": "propina = total * 0.15. La propina del 15% es el total multiplicado por 0.15.",
+          "entradaProcesoSalida": {
+            "entrada": "Total de la cuenta",
+            "proceso": "Calcular el 15% del total",
+            "salida": "Monto de la propina"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-006",
+      "concepto": "Celsius a Fahrenheit",
+      "modulo": "N1",
+      "titulo": "Celsius a Fahrenheit",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "input",
+        "float()",
+        "fórmula",
+        "conversión",
+        "Leer",
+        "Real",
+        "*",
+        "/",
+        "+",
+        "asignación <-",
+        "Escribir"
+      ],
+      "enunciado": "El programa pide una temperatura en grados Celsius y la convierte a Fahrenheit usando la fórmula F = C * 9/5 + 32. Muestra ambos valores.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-009",
+          "codigoReferencia": "Proceso celsius_fahrenheit\n  Definir celsius, fahrenheit Como Real\n\n  Escribir \"Temperatura en Celsius:\"\n  Leer celsius\n\n  fahrenheit = celsius * 9 / 5 + 32\n\n  Escribir celsius, \"°C equivale a \", fahrenheit, \"°F\"\nFinProceso",
+          "salidaEsperada": "Temperatura en Celsius:\n100°C equivale a 212°F",
+          "pista": "No necesitas paréntesis: * y / tienen mayor precedencia que +, así que la fórmula funciona directo.",
+          "entradaProcesoSalida": {
+            "entrada": "Temperatura en Celsius (Real)",
+            "proceso": "fahrenheit = celsius * 9 / 5 + 32",
+            "salida": "celsius + \"°C equivale a \" + fahrenheit + \"°F\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-009",
+          "codigoReferencia": "c = float(input(\"Ingresa la temperatura en Celsius: \"))\nf = c * 9 / 5 + 32\nprint(f\"{c} °C equivale a {f} °F\")",
+          "salidaEsperada": "Ingresa la temperatura en Celsius: \n100.0 °C equivale a 212.0 °F",
+          "pista": "Fahrenheit = (Celsius × 9/5) + 32. Lee Celsius con float(input(...)).",
+          "entradaProcesoSalida": {
+            "entrada": "Temperatura en Celsius",
+            "proceso": "Aplicar fórmula de conversión",
+            "salida": "Temperatura en Fahrenheit"
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-008",
+          "codigoReferencia": "Algoritmo celsius_a_fahrenheit\n  Definir celsius, fahrenheit Como Real\n\n  Escribir \"Ingrese la temperatura en Celsius: \"\n  Leer celsius\n\n  fahrenheit <- (celsius * 9 / 5) + 32\n\n  Escribir celsius, \" °C equivale a \", fahrenheit, \" °F\"\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese la temperatura en Celsius: \n100 °C equivale a 212 °F",
+          "pista": "Aplica la fórmula matemática directamente en la asignación. Recuerda el orden de las operaciones.",
+          "entradaProcesoSalida": {
+            "entrada": "Temperatura en Celsius (Real)",
+            "proceso": "fahrenheit <- (celsius * 9 / 5) + 32",
+            "salida": "\"[celsius] °C equivale a [fahrenheit] °F\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-007",
+      "concepto": "Convertir segundos a minutos",
+      "modulo": "N1",
+      "titulo": "Segundos a minutos y segundos",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "input",
+        "int()",
+        "módulo",
+        "división entera",
+        "Leer",
+        "Entero",
+        "asignación <-",
+        "Escribir",
+        "MOD"
+      ],
+      "enunciado": "El programa pide un total de segundos (entero), lo convierte a minutos y segundos restantes usando división entera (//) y módulo (%), y muestra el resultado en formato \"X minutos y Y segundos\".",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n1-011",
+          "codigoReferencia": "Algoritmo segundos_a_minutos\n  Definir totalSegundos, minutos, restoSegundos Como Entero\n\n  Escribir \"Ingrese el total de segundos: \"\n  Leer totalSegundos\n\n  minutos       <- totalSegundos DIV 60\n  restoSegundos <- totalSegundos MOD 60\n\n  Escribir minutos, \" minutos y \", restoSegundos, \" segundos\"\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el total de segundos: \n2 minutos y 35 segundos",
+          "pista": "Usa DIV para la división entera (cuántas veces cabe 60) y MOD para el resto (los segundos sobrantes).",
+          "entradaProcesoSalida": {
+            "entrada": "Total de segundos (Entero)",
+            "proceso": "minutos <- totalSegundos DIV 60\nrestoSegundos <- totalSegundos MOD 60",
+            "salida": "\"2 minutos y 35 segundos\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-012",
+          "codigoReferencia": "total = int(input(\"Ingresa el total de segundos: \"))\nminutos = total // 60\nsegs = total % 60\nprint(f\"{minutos} minutos y {segs} segundos\")",
+          "salidaEsperada": "Ingresa el total de segundos: \n2 minutos y 35 segundos",
+          "pista": "minutos = segundos // 60; resto = segundos % 60. Usa // para división entera y % para el resto.",
+          "entradaProcesoSalida": {
+            "entrada": "Total de segundos",
+            "proceso": "División entera y módulo para obtener minutos y segundos",
+            "salida": "Minutos y segundos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-008",
+      "concepto": "Cuadrado y cubo de un número",
+      "modulo": "N1",
+      "titulo": "Cuadrado y cubo de N",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "input",
+        "int()",
+        "potencias",
+        "operador **",
+        "Leer",
+        "Entero",
+        "asignación <-",
+        "Escribir",
+        "potencia"
+      ],
+      "enunciado": "El programa pide un número entero al usuario y calcula su cuadrado (n**2) y su cubo (n**3), mostrando ambos resultados en líneas separadas.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n1-014",
+          "codigoReferencia": "Algoritmo potencias\n  Definir n, cuadrado, cubo Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer n\n\n  cuadrado <- n * n\n  cubo     <- n * n * n\n\n  Escribir n, \" al cuadrado es: \", cuadrado\n  Escribir n, \" al cubo es: \", cubo\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número: \n4 al cuadrado es: 16\n4 al cubo es: 64",
+          "pista": "Multiplica el número por sí mismo para el cuadrado, y el resultado anterior por el número para el cubo.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero n",
+            "proceso": "cuadrado <- n * n\ncubo <- n * n * n",
+            "salida": "\"4 al cuadrado es: 16\"\n\"4 al cubo es: 64\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-015",
+          "codigoReferencia": "n = int(input(\"Ingresa un número: \"))\ncuadrado = n ** 2\ncubo = n ** 3\nprint(f\"{n} al cuadrado es: {cuadrado}\")\nprint(f\"{n} al cubo es: {cubo}\")",
+          "salidaEsperada": "Ingresa un número: \n4 al cuadrado es: 16\n4 al cubo es: 64",
+          "pista": "cuadrado = n ** 2; cubo = n ** 3. El operador ** calcula potencias en Python.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero N",
+            "proceso": "Calcular N² y N³",
+            "salida": "El cuadrado y el cubo de N"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-009",
+      "concepto": "Declarar y mostrar una variable entera",
+      "modulo": "N1",
+      "titulo": "Declarar y mostrar una variable entera",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "variables",
+        "int",
+        "print",
+        "asignación",
+        "Definir",
+        "Entero",
+        "Escribir",
+        "asignación <-"
+      ],
+      "enunciado": "Crea una variable entera llamada n con el valor 5 y muéstrala en pantalla con la etiqueta \"El número es:\".",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-003",
+          "codigoReferencia": "Proceso mostrar_edad\n  Definir edad Como Entero\n\n  edad = 20\n\n  Escribir \"Mi edad es: \", edad\nFinProceso",
+          "salidaEsperada": "Mi edad es: 20",
+          "pista": "En LiteSeInt el operador de asignación es =. Declara la variable con Definir antes de usarla.",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna — valor asignado en el código)",
+            "proceso": "edad = 20",
+            "salida": "\"Mi edad es: 20\""
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-003",
+          "codigoReferencia": "Algoritmo mostrar_edad\n  Definir edad Como Entero\n\n  edad <- 20\n\n  Escribir \"Mi edad es: \", edad\nFinAlgoritmo",
+          "salidaEsperada": "Mi edad es: 20",
+          "pista": "En PSeInt el operador de asignación es <- (flecha). Declara la variable con 'Definir edad Como Entero' antes de usarla.",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna — valor asignado en el código)",
+            "proceso": "edad <- 20",
+            "salida": "\"Mi edad es: 20\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-003",
+          "codigoReferencia": "n = 5\nprint(\"El número es:\", n)",
+          "salidaEsperada": "El número es: 5",
+          "pista": "Asigna edad = 20 y luego print(edad) para mostrar su valor.",
+          "entradaProcesoSalida": {
+            "entrada": "Ninguna",
+            "proceso": "Declarar variable y mostrarla",
+            "salida": "El valor de la variable"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-010",
+      "concepto": "Distancia entre dos puntos",
+      "modulo": "N1",
+      "titulo": "Distancia euclidiana entre 2 puntos",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "input",
+        "float()",
+        "matemáticas",
+        "raíz cuadrada",
+        "Leer",
+        "Real",
+        "asignación <-",
+        "Escribir",
+        "potencia"
+      ],
+      "enunciado": "El programa lee las coordenadas (x1, y1) y (x2, y2) de dos puntos en el plano y calcula la distancia euclidiana usando math.sqrt y el operador **. Muestra el resultado.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n1-017",
+          "codigoReferencia": "Algoritmo distancia_puntos\n  Definir x1, y1, x2, y2, distancia Como Real\n\n  Escribir \"Ingrese x1: \"\n  Leer x1\n  Escribir \"Ingrese y1: \"\n  Leer y1\n  Escribir \"Ingrese x2: \"\n  Leer x2\n  Escribir \"Ingrese y2: \"\n  Leer y2\n\n  distancia <- RC( (x2 - x1)^2 + (y2 - y1)^2 )\n\n  Escribir \"La distancia entre los puntos es: \", distancia\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese x1: \nIngrese y1: \nIngrese x2: \nIngrese y2: \nLa distancia entre los puntos es: 5",
+          "pista": "En PSeInt la raíz cuadrada se calcula con RC(). El operador ^ eleva a potencia: (x2-x1)^2.",
+          "entradaProcesoSalida": {
+            "entrada": "Coordenadas x1, y1, x2, y2 (Real)",
+            "proceso": "distancia <- RC( (x2-x1)^2 + (y2-y1)^2 )",
+            "salida": "\"La distancia entre los puntos es: [distancia]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-018",
+          "codigoReferencia": "import math\nx1 = float(input(\"Ingresa x1: \"))\ny1 = float(input(\"Ingresa y1: \"))\nx2 = float(input(\"Ingresa x2: \"))\ny2 = float(input(\"Ingresa y2: \"))\ndistancia = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\nprint(f\"La distancia entre los puntos es: {distancia}\")",
+          "salidaEsperada": "Ingresa x1: \nIngresa y1: \nIngresa x2: \nIngresa y2: \nLa distancia entre los puntos es: 5.0",
+          "pista": "distancia = ((x2-x1)**2 + (y2-y1)**2) ** 0.5. Usa ** 0.5 para raíz cuadrada.",
+          "entradaProcesoSalida": {
+            "entrada": "Coordenadas de dos puntos (x1,y1) y (x2,y2)",
+            "proceso": "Aplicar fórmula de distancia euclidiana",
+            "salida": "La distancia entre los puntos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-011",
+      "concepto": "Hola mundo / Saludo fijo",
+      "modulo": "N1",
+      "titulo": "Mostrar un saludo fijo",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "print",
+        "cadenas",
+        "hola mundo",
+        "Escribir",
+        "Proceso",
+        "Algoritmo",
+        "FinAlgoritmo"
+      ],
+      "enunciado": "Escribe un programa que muestre el mensaje \"Hola, mundo!\" en la pantalla. Es el ejercicio más simple posible: una sola instrucción de salida.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n1-001",
+          "codigoReferencia": "Algoritmo hola_mundo\n  Escribir \"Hola, mundo!\"\nFinAlgoritmo",
+          "salidaEsperada": "Hola, mundo!",
+          "pista": "Todo algoritmo PSeInt comienza con 'Algoritmo nombre' y termina con 'FinAlgoritmo'. La instrucción Escribir muestra texto en consola.",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna — no se lee ningún dato)",
+            "proceso": "No hay cálculo. Solo mostrar texto fijo.",
+            "salida": "\"Hola, mundo!\" impreso en pantalla"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-001",
+          "codigoReferencia": "print(\"Hola, mundo!\")",
+          "salidaEsperada": "Hola, mundo!",
+          "pista": "Usa print(\"...\") para mostrar texto en pantalla.",
+          "entradaProcesoSalida": {
+            "entrada": "Ninguna",
+            "proceso": "Llamar a print con el mensaje",
+            "salida": "Hola, mundo!"
+          }
+        },
+        "liteseint": {
+          "idOriginal": "n1-001",
+          "codigoReferencia": "Proceso saludo\n  Escribir \"Hola, mundo!\"\nFinProceso",
+          "salidaEsperada": "Hola, mundo!",
+          "pista": "Escribir muestra texto en consola. Las cadenas de texto van entre comillas dobles.",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna — no se lee ningún dato)",
+            "proceso": "No hay cálculo. Solo mostrar texto fijo.",
+            "salida": "\"Hola, mundo!\" impreso en pantalla"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-012",
+      "concepto": "Intercambiar dos variables con auxiliar",
+      "modulo": "N1",
+      "titulo": "Intercambiar dos variables",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "variables",
+        "variable auxiliar",
+        "intercambio",
+        "asignación",
+        "Leer",
+        "Entero",
+        "Definir",
+        "asignación <-",
+        "Escribir"
+      ],
+      "enunciado": "El programa lee dos números enteros a y b, intercambia sus valores usando una variable auxiliar y muestra los valores antes y después del intercambio.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-016",
+          "codigoReferencia": "Proceso intercambio\n  Definir a, b, aux Como Entero\n\n  Escribir \"Ingresa A:\"\n  Leer a\n  Escribir \"Ingresa B:\"\n  Leer b\n  Escribir \"Antes  → A: \", a, \"  B: \", b\n\n  aux = a\n  a   = b\n  b   = aux\n\n  Escribir \"Después → A: \", a, \"  B: \", b\nFinProceso",
+          "salidaEsperada": "Ingresa A:\nIngresa B:\nAntes  → A: 10  B: 25\nDespués → A: 25  B: 10",
+          "pista": "Si haces a = b directamente, pierdes el valor original de a. Necesitas una tercera variable (aux) para guardar ese valor temporalmente.",
+          "entradaProcesoSalida": {
+            "entrada": "Número A (Entero)\nNúmero B (Entero)",
+            "proceso": "aux = a; a = b; b = aux",
+            "salida": "Valores antes y después del intercambio"
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-015",
+          "codigoReferencia": "Algoritmo intercambiar_variables\n  Definir a, b, aux Como Entero\n\n  Escribir \"Ingrese el valor de a: \"\n  Leer a\n  Escribir \"Ingrese el valor de b: \"\n  Leer b\n\n  Escribir \"Antes: a = \", a, \", b = \", b\n\n  aux <- a\n  a   <- b\n  b   <- aux\n\n  Escribir \"Después: a = \", a, \", b = \", b\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el valor de a: \nIngrese el valor de b: \nAntes: a = 5, b = 8\nDespués: a = 8, b = 5",
+          "pista": "Sin una variable auxiliar perderías uno de los valores al sobreescribir. Guarda a en aux antes de modificarla.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números enteros a y b",
+            "proceso": "aux <- a\na <- b\nb <- aux",
+            "salida": "Valores antes y después del intercambio"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-016",
+          "codigoReferencia": "a = int(input(\"Ingresa el valor de a: \"))\nb = int(input(\"Ingresa el valor de b: \"))\nprint(f\"Antes: a = {a}, b = {b}\")\naux = a\na = b\nb = aux\nprint(f\"Después: a = {a}, b = {b}\")",
+          "salidaEsperada": "Ingresa el valor de a: \nIngresa el valor de b: \nAntes: a = 5, b = 8\nDespués: a = 8, b = 5",
+          "pista": "Necesitas una variable temporal: aux = a; a = b; b = aux. En Python también puedes usar: a, b = b, a.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos valores",
+            "proceso": "Intercambiar usando variable auxiliar",
+            "salida": "Los dos valores intercambiados"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-013",
+      "concepto": "Mostrar tres líneas de texto",
+      "modulo": "N1",
+      "titulo": "Mostrar tres líneas de texto",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "Escribir",
+        "Algoritmo"
+      ],
+      "enunciado": "Crea un programa que muestre tres líneas de texto fijo: tu nombre, tu carrera y el nombre de la asignatura. Cada dato debe aparecer en una línea separada.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-002",
+          "codigoReferencia": "Proceso mis_datos\n  Escribir \"Nombre: Ana González\"\n  Escribir \"Carrera: Analista Programador\"\n  Escribir \"Asignatura: Fundamentos de Programación\"\nFinProceso",
+          "salidaEsperada": "Nombre: Ana González\nCarrera: Analista Programador\nAsignatura: Fundamentos de Programación",
+          "pista": "Cada Escribir produce una nueva línea. Puedes concatenar texto y variables separando con comas.",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna)",
+            "proceso": "Tres instrucciones Escribir independientes.",
+            "salida": "Tres líneas de texto en consola"
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-002",
+          "codigoReferencia": "Algoritmo mis_datos\n  Escribir \"Nombre: Ana González\"\n  Escribir \"Carrera: Analista Programador\"\n  Escribir \"Asignatura: Fundamentos de Programación\"\nFinAlgoritmo",
+          "salidaEsperada": "Nombre: Ana González\nCarrera: Analista Programador\nAsignatura: Fundamentos de Programación",
+          "pista": "Cada instrucción Escribir produce una nueva línea automáticamente.",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna)",
+            "proceso": "Tres instrucciones Escribir independientes.",
+            "salida": "Tres líneas de texto en consola"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-014",
+      "concepto": "Precio con IVA del 19%",
+      "modulo": "N1",
+      "titulo": "Precio con IVA 19%",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "input",
+        "float()",
+        "porcentaje",
+        "variables",
+        "Leer",
+        "Real",
+        "asignación <-",
+        "Escribir"
+      ],
+      "enunciado": "El programa pide el precio neto de un producto, calcula el IVA (19%) y muestra el precio neto, el monto del IVA y el precio final con IVA incluido.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n1-012",
+          "codigoReferencia": "Algoritmo precio_con_iva\n  Definir precioNeto, iva, precioFinal Como Real\n\n  Escribir \"Ingrese el precio neto: \"\n  Leer precioNeto\n\n  iva         <- precioNeto * 0.19\n  precioFinal <- precioNeto + iva\n\n  Escribir \"Precio neto:   $\", precioNeto\n  Escribir \"IVA (19%):     $\", iva\n  Escribir \"Precio final:  $\", precioFinal\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el precio neto: \nPrecio neto:   $1000\nIVA (19%):     $190\nPrecio final:  $1190",
+          "pista": "El 19% se expresa como 0.19 en la multiplicación. Calcula el IVA primero y luego súmalo al neto.",
+          "entradaProcesoSalida": {
+            "entrada": "Precio neto (Real)",
+            "proceso": "iva <- precioNeto * 0.19\nprecioFinal <- precioNeto + iva",
+            "salida": "Precio neto, monto IVA y precio final"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-013",
+          "codigoReferencia": "precio_neto = float(input(\"Ingresa el precio neto: \"))\niva = precio_neto * 0.19\nprecio_final = precio_neto + iva\nprint(f\"Precio neto:   ${precio_neto}\")\nprint(f\"IVA (19%):     ${iva}\")\nprint(f\"Precio final:  ${precio_final}\")",
+          "salidaEsperada": "Ingresa el precio neto: \nPrecio neto:   $1000.0\nIVA (19%):     $190.0\nPrecio final:  $1190.0",
+          "pista": "precio_final = precio * 1.19. El IVA del 19% equivale a multiplicar por 1.19.",
+          "entradaProcesoSalida": {
+            "entrada": "Precio sin IVA",
+            "proceso": "Multiplicar por 1.19",
+            "salida": "Precio con IVA"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-015",
+      "concepto": "Promedio de tres notas",
+      "modulo": "N1",
+      "titulo": "Promedio de tres notas",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "Leer",
+        "Real",
+        "+",
+        "/",
+        "paréntesis",
+        "asignación <-",
+        "Escribir",
+        "promedio"
+      ],
+      "enunciado": "Lee tres notas de un alumno (reales entre 1.0 y 7.0) y calcula su promedio. Recuerda usar paréntesis para agrupar la suma antes de dividir.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-008",
+          "codigoReferencia": "Proceso promedio_notas\n  Definir n1, n2, n3, promedio Como Real\n\n  Escribir \"Ingresa la primera nota:\"\n  Leer n1\n  Escribir \"Ingresa la segunda nota:\"\n  Leer n2\n  Escribir \"Ingresa la tercera nota:\"\n  Leer n3\n\n  promedio = (n1 + n2 + n3) / 3\n\n  Escribir \"Promedio: \", promedio\nFinProceso",
+          "salidaEsperada": "Ingresa la primera nota:\nIngresa la segunda nota:\nIngresa la tercera nota:\nPromedio: 5.5",
+          "pista": "Sin paréntesis, n1 + n2 + n3 / 3 calcula primero n3 / 3, lo que da un resultado equivocado.",
+          "entradaProcesoSalida": {
+            "entrada": "n1, n2, n3 (reales)",
+            "proceso": "promedio = (n1 + n2 + n3) / 3",
+            "salida": "\"Promedio: [valor]\""
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-009",
+          "codigoReferencia": "Algoritmo promedio_notas\n  Definir nota1, nota2, nota3, promedio Como Real\n\n  Escribir \"Ingrese la nota 1: \"\n  Leer nota1\n  Escribir \"Ingrese la nota 2: \"\n  Leer nota2\n  Escribir \"Ingrese la nota 3: \"\n  Leer nota3\n\n  promedio <- (nota1 + nota2 + nota3) / 3\n\n  Escribir \"Promedio: \", promedio\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese la nota 1: \nIngrese la nota 2: \nIngrese la nota 3: \nPromedio: 5.5",
+          "pista": "Suma las tres notas y divide por 3. Para que el resultado sea Real, asegúrate de que las variables sean tipo Real.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres notas reales nota1, nota2, nota3",
+            "proceso": "promedio <- (nota1 + nota2 + nota3) / 3",
+            "salida": "\"Promedio: [promedio]\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-016",
+      "concepto": "Suma de dígitos de un número",
+      "modulo": "N1",
+      "titulo": "Suma de dígitos de número de 2 cifras",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "int()",
+        "módulo",
+        "división entera",
+        "dígitos",
+        "Leer",
+        "Entero",
+        "asignación <-",
+        "Escribir",
+        "MOD",
+        "DIV"
+      ],
+      "enunciado": "El programa lee un número entero de exactamente 2 cifras (10–99) y calcula la suma de sus dígitos usando división entera (//) y módulo (%). Por ejemplo, para 47: 4 + 7 = 11.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n1-016",
+          "codigoReferencia": "Algoritmo suma_digitos\n  Definir numero, centenas, decenas, unidades, suma Como Entero\n\n  Escribir \"Ingrese un número de 3 cifras: \"\n  Leer numero\n\n  centenas  <- numero DIV 100\n  decenas   <- (numero MOD 100) DIV 10\n  unidades  <- numero MOD 10\n  suma      <- centenas + decenas + unidades\n\n  Escribir \"Dígitos: \", centenas, \", \", decenas, \", \", unidades, \" — Suma: \", suma\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número de 3 cifras: \nDígitos: 2, 3, 4 — Suma: 9",
+          "pista": "Las centenas se obtienen con DIV 100. Las decenas con (numero MOD 100) DIV 10. Las unidades con MOD 10.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero de 3 cifras (Entero)",
+            "proceso": "centenas <- numero DIV 100\ndecenas <- (numero MOD 100) DIV 10\nunidades <- numero MOD 10\nsuma <- centenas + decenas + unidades",
+            "salida": "\"Dígitos: 2, 3, 4 — Suma: 9\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-017",
+          "codigoReferencia": "numero = int(input(\"Ingresa un número de 2 cifras: \"))\ndecena = numero // 10\nunidad = numero % 10\nsuma = decena + unidad\nprint(f\"Dígitos: {decena}, {unidad} — Suma: {suma}\")",
+          "salidaEsperada": "Ingresa un número de 2 cifras: \nDígitos: 4, 7 — Suma: 11",
+          "pista": "Para un número de 2 cifras: unidades = n % 10; decenas = n // 10. Luego suma ambos.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número de 2 cifras",
+            "proceso": "Extraer dígitos con // y % y sumarlos",
+            "salida": "La suma de los dígitos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-017",
+      "concepto": "Suma de dos números",
+      "modulo": "N1",
+      "titulo": "Suma de dos números",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "input",
+        "int()",
+        "suma",
+        "print",
+        "Leer",
+        "Entero",
+        "asignación",
+        "+",
+        "asignación <-",
+        "Escribir"
+      ],
+      "enunciado": "El programa pide dos números enteros al usuario, calcula su suma y muestra el resultado con el formato \"La suma de [a] y [b] es: [suma]\".",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-006",
+          "codigoReferencia": "Proceso suma\n  Definir a, b, total Como Entero\n\n  Escribir \"Ingresa el primer número:\"\n  Leer a\n  Escribir \"Ingresa el segundo número:\"\n  Leer b\n\n  total = a + b\n\n  Escribir \"La suma es: \", total\nFinProceso",
+          "salidaEsperada": "Ingresa el primer número:\nIngresa el segundo número:\nLa suma es: 12",
+          "pista": "Define las variables antes de leerlas. Lee cada número en una instrucción separada.",
+          "entradaProcesoSalida": {
+            "entrada": "a, b (enteros)",
+            "proceso": "suma = a + b",
+            "salida": "\"La suma es: [suma]\""
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-006",
+          "codigoReferencia": "Algoritmo suma_dos_numeros\n  Definir a, b, suma Como Entero\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n\n  suma <- a + b\n\n  Escribir \"La suma de \", a, \" y \", b, \" es: \", suma\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nLa suma de 5 y 3 es: 8",
+          "pista": "Declara tres variables: dos para los operandos y una para el resultado. Asigna la suma con suma <- a + b.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números enteros a y b",
+            "proceso": "suma <- a + b",
+            "salida": "\"La suma de 5 y 3 es: 8\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n1-007",
+          "codigoReferencia": "a = int(input(\"Ingresa el primer número: \"))\nb = int(input(\"Ingresa el segundo número: \"))\nsuma = a + b\nprint(f\"La suma de {a} y {b} es: {suma}\")",
+          "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nLa suma de 5 y 3 es: 8",
+          "pista": "Lee dos números con int(input(...)) y súmalos. Muestra el resultado.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números enteros",
+            "proceso": "Sumar ambos valores",
+            "salida": "La suma"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n1-018",
+      "concepto": "Variables de distintos tipos",
+      "modulo": "N1",
+      "titulo": "Variables de distintos tipos",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "Definir",
+        "Entero",
+        "Real",
+        "Caracter",
+        "Cadena"
+      ],
+      "enunciado": "Declara tres variables: nombre (Caracter), edad (Entero) y altura (Real). Asígnales valores fijos y muéstralos con etiquetas descriptivas.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n1-004",
+          "codigoReferencia": "Proceso tipos_datos\n  Definir nombre Como Caracter\n  Definir edad Como Entero\n  Definir altura Como Real\n\n  nombre = \"Pedro\"\n  edad   = 21\n  altura = 1.75\n\n  Escribir \"Nombre: \", nombre\n  Escribir \"Edad: \", edad\n  Escribir \"Altura: \", altura, \" m\"\nFinProceso",
+          "salidaEsperada": "Nombre: Pedro\nEdad: 21\nAltura: 1.75 m",
+          "pista": "Los tres tipos básicos son Entero (sin decimales), Real (con decimales) y Caracter (texto).",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna — valores asignados en código)",
+            "proceso": "nombre = \"Pedro\"\nedad = 21\naltura = 1.75",
+            "salida": "Tres líneas mostrando cada variable con su etiqueta"
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n1-004",
+          "codigoReferencia": "Algoritmo tipos_datos\n  Definir nombre Como Cadena\n  Definir edad Como Entero\n  Definir altura Como Real\n\n  nombre <- \"Pedro\"\n  edad   <- 21\n  altura <- 1.75\n\n  Escribir \"Nombre: \", nombre\n  Escribir \"Edad: \", edad\n  Escribir \"Altura: \", altura, \" m\"\nFinAlgoritmo",
+          "salidaEsperada": "Nombre: Pedro\nEdad: 21\nAltura: 1.75 m",
+          "pista": "Los tipos básicos en PSeInt son Entero, Real y Cadena. Usa <- para asignar valores.",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna — valores asignados en código)",
+            "proceso": "nombre <- \"Pedro\"\nedad <- 21\naltura <- 1.75",
+            "salida": "Tres líneas mostrando cada variable con su etiqueta"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-001",
+      "concepto": "Año bisiesto",
+      "modulo": "N2",
+      "titulo": "Año bisiesto",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "if/elif/else",
+        "módulo",
+        "año bisiesto",
+        "condiciones compuestas",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "MOD",
+        "Y",
+        "O",
+        "operador lógico"
+      ],
+      "enunciado": "El programa pide un año y determina si es bisiesto. Un año es bisiesto si es divisible por 4, excepto los múltiplos de 100, que solo lo son si también son múltiplos de 400.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-012",
+          "codigoReferencia": "Algoritmo anio_bisiesto\n  Definir anio Como Entero\n\n  Escribir \"Ingrese el año: \"\n  Leer anio\n\n  Si ((anio MOD 4 = 0) Y (anio MOD 100 <> 0)) O (anio MOD 400 = 0) Entonces\n    Escribir anio, \" es bisiesto.\"\n  SiNo\n    Escribir anio, \" no es bisiesto.\"\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el año: \n2024 es bisiesto.",
+          "pista": "La regla completa: (divisible por 4 Y NO divisible por 100) O (divisible por 400). Agrupa bien las condiciones con paréntesis.",
+          "entradaProcesoSalida": {
+            "entrada": "Un año entero positivo",
+            "proceso": "Bisiesto si (div 4 Y no div 100) O (div 400)",
+            "salida": "\"[año] es bisiesto\" o \"[año] no es bisiesto\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-010",
+          "codigoReferencia": "anio = int(input(\"Ingresa un año: \"))\nif anio % 4 == 0 and (anio % 100 != 0 or anio % 400 == 0):\n    print(f\"{anio} es un año bisiesto.\")\nelse:\n    print(f\"{anio} no es un año bisiesto.\")",
+          "salidaEsperada": "Ingresa un año: \n2024 es un año bisiesto.",
+          "pista": "Bisiesto: divisible por 4, excepto siglos (100), salvo que sean divisibles por 400.",
+          "entradaProcesoSalida": {
+            "entrada": "Un año",
+            "proceso": "Aplicar las reglas de año bisiesto",
+            "salida": "\"Bisiesto\" o \"No bisiesto\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-002",
+      "concepto": "Calculadora simple",
+      "modulo": "N2",
+      "titulo": "Calculadora simple con if/elif",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "if/elif/else",
+        "operadores aritméticos",
+        "calculadora",
+        "Segun",
+        "FinSegun",
+        "De Otro Modo",
+        "operaciones aritméticas"
+      ],
+      "enunciado": "El programa pide dos números y un operador (+, -, *, /) al usuario y realiza la operación correspondiente. Si el operador es desconocido, muestra un mensaje de error. En la división, verifica que el divisor no sea cero.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-007",
+          "codigoReferencia": "Algoritmo calculadora_simple\n  Definir a, b, resultado Como Real\n  Definir operador Como Cadena\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el operador (+,-,*,/): \"\n  Leer operador\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n\n  Segun operador Hacer\n    \"+\":\n      resultado <- a + b\n      Escribir a, \" + \", b, \" = \", resultado\n    \"-\":\n      resultado <- a - b\n      Escribir a, \" - \", b, \" = \", resultado\n    \"*\":\n      resultado <- a * b\n      Escribir a, \" * \", b, \" = \", resultado\n    \"/\":\n      Si b <> 0 Entonces\n        resultado <- a / b\n        Escribir a, \" / \", b, \" = \", resultado\n      SiNo\n        Escribir \"Error: división por cero.\"\n      FinSi\n    De Otro Modo:\n      Escribir \"Operador no válido.\"\n  FinSegun\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el primer número: \nIngrese el operador (+,-,*,/): \nIngrese el segundo número: \n5 + 3 = 8",
+          "pista": "En Segun, cada caso va con el valor entre comillas si es Cadena. Usa De Otro Modo para el caso por defecto.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos reales a y b, y un operador (Cadena)",
+            "proceso": "Segun operador Hacer cada caso aritmético",
+            "salida": "Resultado de la operación o mensaje de error"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-007",
+          "codigoReferencia": "a = float(input(\"Ingresa el primer número: \"))\nop = input(\"Ingresa el operador (+, -, *, /): \")\nb = float(input(\"Ingresa el segundo número: \"))\nif op == \"+\":\n    print(f\"Resultado: {a + b}\")\nelif op == \"-\":\n    print(f\"Resultado: {a - b}\")\nelif op == \"*\":\n    print(f\"Resultado: {a * b}\")\nelif op == \"/\":\n    if b == 0:\n        print(\"Error: división por cero.\")\n    else:\n        print(f\"Resultado: {a / b}\")\nelse:\n    print(\"Operador no reconocido.\")",
+          "salidaEsperada": "Ingresa el primer número: \nIngresa el operador (+, -, *, /): \nIngresa el segundo número: \nResultado: 15.0",
+          "pista": "Lee el operador como cadena con input(). Usa elif para cada operación (+, -, *, /).",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números y un operador",
+            "proceso": "Seleccionar la operación con if/elif",
+            "salida": "El resultado de la operación"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-003",
+      "concepto": "Clasificar triángulo por ángulos",
+      "modulo": "N2",
+      "titulo": "Clasificar triángulo por ángulos",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "if/elif/else",
+        "and",
+        "ángulos",
+        "triángulo",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "Y",
+        "O",
+        "suma de ángulos",
+        "validación"
+      ],
+      "enunciado": "El programa pide los tres ángulos internos de un triángulo (en grados). Si algún ángulo es 90° es rectángulo, si alguno supera los 90° es obtusángulo, y si todos son menores de 90° es acutángulo. Primero verifica que los ángulos sumen 180°.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-015",
+          "codigoReferencia": "Algoritmo clasificar_triangulo_angulos\n  Definir ang1, ang2, ang3 Como Real\n\n  Escribir \"Ingrese el ángulo 1: \"\n  Leer ang1\n  Escribir \"Ingrese el ángulo 2: \"\n  Leer ang2\n  Escribir \"Ingrese el ángulo 3: \"\n  Leer ang3\n\n  Si (ang1 + ang2 + ang3 <> 180) O (ang1 <= 0) O (ang2 <= 0) O (ang3 <= 0) Entonces\n    Escribir \"Los ángulos no forman un triángulo válido.\"\n  SiNo\n    Si (ang1 = 90) O (ang2 = 90) O (ang3 = 90) Entonces\n      Escribir \"El triángulo es rectángulo.\"\n    SiNo\n      Si (ang1 > 90) O (ang2 > 90) O (ang3 > 90) Entonces\n        Escribir \"El triángulo es obtusángulo.\"\n      SiNo\n        Escribir \"El triángulo es acutángulo.\"\n      FinSi\n    FinSi\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el ángulo 1: \nIngrese el ángulo 2: \nIngrese el ángulo 3: \nEl triángulo es rectángulo.",
+          "pista": "Valida primero la suma y que todos sean positivos. Luego, si algún ángulo es igual a 90 es rectángulo; si alguno es mayor a 90 es obtusángulo; si todos son menores a 90 es acutángulo.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres ángulos reales ang1, ang2, ang3",
+            "proceso": "Validar suma = 180 y ángulos > 0\nClasificar por el ángulo mayor",
+            "salida": "Tipo de triángulo o mensaje de error"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-013",
+          "codigoReferencia": "a = float(input(\"Ingresa el ángulo A (grados): \"))\nb = float(input(\"Ingresa el ángulo B (grados): \"))\nc = float(input(\"Ingresa el ángulo C (grados): \"))\nif a + b + c != 180:\n    print(\"Los ángulos no forman un triángulo válido.\")\nelif a == 90 or b == 90 or c == 90:\n    print(\"Triángulo rectángulo.\")\nelif a > 90 or b > 90 or c > 90:\n    print(\"Triángulo obtusángulo.\")\nelse:\n    print(\"Triángulo acutángulo.\")",
+          "salidaEsperada": "Ingresa el ángulo A (grados): \nIngresa el ángulo B (grados): \nIngresa el ángulo C (grados): \nTriángulo rectángulo.",
+          "pista": "Triángulo rectángulo: un ángulo == 90°. Obtusángulo: un ángulo > 90°. Acutángulo: todos < 90°.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres ángulos del triángulo",
+            "proceso": "Clasificar según los ángulos",
+            "salida": "Tipo de triángulo (rectángulo/obtusángulo/acutángulo)"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-004",
+      "concepto": "Clasificar triángulo por lados",
+      "modulo": "N2",
+      "titulo": "Clasificar triángulo por lados",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "if/elif/else",
+        "and",
+        "comparación",
+        "triángulo",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "Y",
+        "operador lógico"
+      ],
+      "enunciado": "El programa pide los tres lados de un triángulo y determina si es equilátero (tres lados iguales), isósceles (dos lados iguales) o escaleno (todos diferentes).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-005",
+          "codigoReferencia": "Algoritmo clasificar_triangulo_lados\n  Definir a, b, c Como Real\n\n  Escribir \"Ingrese el lado a: \"\n  Leer a\n  Escribir \"Ingrese el lado b: \"\n  Leer b\n  Escribir \"Ingrese el lado c: \"\n  Leer c\n\n  Si (a = b) Y (b = c) Entonces\n    Escribir \"El triángulo es equilátero.\"\n  SiNo\n    Si (a = b) O (b = c) O (a = c) Entonces\n      Escribir \"El triángulo es isósceles.\"\n    SiNo\n      Escribir \"El triángulo es escaleno.\"\n    FinSi\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el lado a: \nIngrese el lado b: \nIngrese el lado c: \nEl triángulo es isósceles.",
+          "pista": "Primero verifica el caso más restrictivo (equilátero), luego el intermedio (isósceles), y por defecto será escaleno.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres lados reales a, b, c",
+            "proceso": "Si a=b Y b=c → equilátero\nSi a=b O b=c O a=c → isósceles\nSiNo → escaleno",
+            "salida": "\"El triángulo es equilátero / isósceles / escaleno\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-005",
+          "codigoReferencia": "a = float(input(\"Ingresa el lado a: \"))\nb = float(input(\"Ingresa el lado b: \"))\nc = float(input(\"Ingresa el lado c: \"))\nif a == b == c:\n    print(\"Triángulo equilátero.\")\nelif a == b or b == c or a == c:\n    print(\"Triángulo isósceles.\")\nelse:\n    print(\"Triángulo escaleno.\")",
+          "salidaEsperada": "Ingresa el lado a: \nIngresa el lado b: \nIngresa el lado c: \nTriángulo isósceles.",
+          "pista": "Un triángulo equilátero tiene los 3 lados iguales; isósceles 2; escaleno ninguno. Usa == y and.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres longitudes de lados",
+            "proceso": "Comparar lados para clasificar",
+            "salida": "Tipo de triángulo (equilátero/isósceles/escaleno)"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-005",
+      "concepto": "Divisible por 3 y por 5",
+      "modulo": "N2",
+      "titulo": "Divisible por 3 y por 5",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "if",
+        "módulo",
+        "and",
+        "divisibilidad",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "MOD",
+        "Y",
+        "operador lógico"
+      ],
+      "enunciado": "El programa pide un número entero y determina si es divisible por 3 y por 5 al mismo tiempo, solo por 3, solo por 5 o por ninguno. Usa el operador and.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-011",
+          "codigoReferencia": "Algoritmo divisible_3_5\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer numero\n\n  Si (numero MOD 3 = 0) Y (numero MOD 5 = 0) Entonces\n    Escribir numero, \" es divisible por 3 y por 5.\"\n  SiNo\n    Si numero MOD 3 = 0 Entonces\n      Escribir numero, \" es divisible solo por 3.\"\n    SiNo\n      Si numero MOD 5 = 0 Entonces\n        Escribir numero, \" es divisible solo por 5.\"\n      SiNo\n        Escribir numero, \" no es divisible por 3 ni por 5.\"\n      FinSi\n    FinSi\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número: \n15 es divisible por 3 y por 5.",
+          "pista": "Verifica el caso más específico primero (divisible por ambos), luego los casos individuales, y por último el caso en que no es divisible por ninguno.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Verificar divisibilidad con MOD y operadores Y / O",
+            "salida": "Mensaje indicando divisibilidad"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-009",
+          "codigoReferencia": "n = int(input(\"Ingresa un número entero: \"))\nif n % 3 == 0 and n % 5 == 0:\n    print(f\"{n} es divisible por 3 y por 5.\")\nelif n % 3 == 0:\n    print(f\"{n} es divisible solo por 3.\")\nelif n % 5 == 0:\n    print(f\"{n} es divisible solo por 5.\")\nelse:\n    print(f\"{n} no es divisible por 3 ni por 5.\")",
+          "salidaEsperada": "Ingresa un número entero: \n15 es divisible por 3 y por 5.",
+          "pista": "Usa n % 3 == 0 and n % 5 == 0. El operador and requiere que ambas condiciones sean True.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Verificar divisibilidad por 3 y por 5 simultáneamente",
+            "salida": "\"Sí\" o \"No\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-006",
+      "concepto": "Máximo de dos números",
+      "modulo": "N2",
+      "titulo": "Máximo de dos números",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "if/else",
+        "comparación",
+        "máximo",
+        "condicional",
+        "Si",
+        "SiNo",
+        "FinSi"
+      ],
+      "enunciado": "El programa pide dos números reales al usuario y muestra cuál es el mayor. Si son iguales, indica que son iguales.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-003",
+          "codigoReferencia": "Algoritmo maximo_dos\n  Definir a, b Como Real\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n\n  Si a > b Entonces\n    Escribir \"El mayor es: \", a\n  SiNo\n    Si a < b Entonces\n      Escribir \"El mayor es: \", b\n    SiNo\n      Escribir \"Los números son iguales.\"\n    FinSi\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nEl mayor es: 15",
+          "pista": "Compara a con b. Recuerda también considerar el caso en que son iguales con un tercer bloque SiNo.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números reales a y b",
+            "proceso": "Si a > b → a es el mayor\nSiNo Si a < b → b es el mayor\nSiNo → son iguales",
+            "salida": "\"El mayor es: [valor]\" o \"Los números son iguales\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-003",
+          "codigoReferencia": "a = float(input(\"Ingresa el primer número: \"))\nb = float(input(\"Ingresa el segundo número: \"))\nif a > b:\n    print(f\"El mayor es: {a}\")\nelif b > a:\n    print(f\"El mayor es: {b}\")\nelse:\n    print(\"Los dos números son iguales.\")",
+          "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nEl mayor es: 9.0",
+          "pista": "if a >= b: print(a) else: print(b). Compara los dos números directamente.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números",
+            "proceso": "Comparar para encontrar el mayor",
+            "salida": "El mayor de los dos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-007",
+      "concepto": "Máximo de tres números",
+      "modulo": "N2",
+      "titulo": "Máximo de tres números",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "if/elif/else",
+        "comparación encadenada",
+        "máximo",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "condicional anidado"
+      ],
+      "enunciado": "El programa pide tres números reales al usuario y muestra cuál es el mayor de los tres.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-004",
+          "codigoReferencia": "Algoritmo maximo_tres\n  Definir a, b, c, mayor Como Real\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n  Escribir \"Ingrese el tercer número: \"\n  Leer c\n\n  Si a >= b Entonces\n    mayor <- a\n  SiNo\n    mayor <- b\n  FinSi\n\n  Si c > mayor Entonces\n    mayor <- c\n  FinSi\n\n  Escribir \"El mayor de los tres es: \", mayor\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nIngrese el tercer número: \nEl mayor de los tres es: 25",
+          "pista": "Primero encuentra el máximo entre a y b, luego compara ese resultado con c.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres números reales a, b, c",
+            "proceso": "Comparar a, b, c para encontrar el mayor",
+            "salida": "\"El mayor de los tres es: [valor]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-004",
+          "codigoReferencia": "a = float(input(\"Ingresa el primer número: \"))\nb = float(input(\"Ingresa el segundo número: \"))\nc = float(input(\"Ingresa el tercer número: \"))\nif a >= b and a >= c:\n    mayor = a\nelif b >= a and b >= c:\n    mayor = b\nelse:\n    mayor = c\nprint(f\"El mayor es: {mayor}\")",
+          "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nIngresa el tercer número: \nEl mayor es: 15.0",
+          "pista": "Compara a vs b primero; si a es el mayor, compáralo con c. Si no, compara b con c.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres números",
+            "proceso": "Comparaciones anidadas para hallar el mayor",
+            "salida": "El mayor de los tres"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-008",
+      "concepto": "Máximo y mínimo de tres números",
+      "modulo": "N2",
+      "titulo": "Máximo y mínimo de tres números",
+      "dificultad": "intermedio",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "if/elif/else",
+        "comparación",
+        "máximo",
+        "mínimo",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "variable auxiliar"
+      ],
+      "enunciado": "El programa pide tres números reales y muestra cuál es el mayor y cuál es el menor de los tres.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-014",
+          "codigoReferencia": "Algoritmo maximo_minimo_tres\n  Definir a, b, c, mayor, menor Como Real\n\n  Escribir \"Ingrese el primer número: \"\n  Leer a\n  Escribir \"Ingrese el segundo número: \"\n  Leer b\n  Escribir \"Ingrese el tercer número: \"\n  Leer c\n\n  // Encontrar máximo\n  Si a >= b Entonces\n    mayor <- a\n  SiNo\n    mayor <- b\n  FinSi\n  Si c > mayor Entonces\n    mayor <- c\n  FinSi\n\n  // Encontrar mínimo\n  Si a <= b Entonces\n    menor <- a\n  SiNo\n    menor <- b\n  FinSi\n  Si c < menor Entonces\n    menor <- c\n  FinSi\n\n  Escribir \"Máximo: \", mayor\n  Escribir \"Mínimo: \", menor\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nIngrese el tercer número: \nMáximo: 30\nMínimo: 5",
+          "pista": "Busca el máximo y el mínimo de forma independiente usando variables auxiliares. Para el máximo, asume que el primero es el mayor y luego actualiza si encuentras uno mayor.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres números reales a, b, c",
+            "proceso": "Encontrar máximo y mínimo comparando los tres valores",
+            "salida": "\"Máximo: [valor]\" y \"Mínimo: [valor]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-012",
+          "codigoReferencia": "a = float(input(\"Ingresa el primer número: \"))\nb = float(input(\"Ingresa el segundo número: \"))\nc = float(input(\"Ingresa el tercer número: \"))\nif a >= b and a >= c:\n    mayor = a\nelif b >= c:\n    mayor = b\nelse:\n    mayor = c\nif a <= b and a <= c:\n    menor = a\nelif b <= c:\n    menor = b\nelse:\n    menor = c\nprint(f\"El mayor es: {mayor}\")\nprint(f\"El menor es: {menor}\")",
+          "salidaEsperada": "Ingresa el primer número: \nIngresa el segundo número: \nIngresa el tercer número: \nEl mayor es: 20.0\nEl menor es: 3.0",
+          "pista": "Busca el máximo con comparaciones y el mínimo de forma similar. Son dos procesos separados.",
+          "entradaProcesoSalida": {
+            "entrada": "Tres números",
+            "proceso": "Comparar para hallar el mayor y el menor",
+            "salida": "El máximo y el mínimo"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-009",
+      "concepto": "Mayor de edad",
+      "modulo": "N2",
+      "titulo": "Mayor de edad",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "if/else",
+        "comparación",
+        "int()",
+        "condicional",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "Logico"
+      ],
+      "enunciado": "El programa pide la edad del usuario y muestra si es mayor de edad (18 o más) o menor de edad. Usa una estructura if / else.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-001",
+          "codigoReferencia": "Algoritmo mayor_de_edad\n  Definir edad Como Entero\n\n  Escribir \"Ingrese su edad: \"\n  Leer edad\n\n  Si edad >= 18 Entonces\n    Escribir \"Es mayor de edad.\"\n  SiNo\n    Escribir \"Es menor de edad.\"\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese su edad: \nEs mayor de edad.",
+          "pista": "Usa Si ... Entonces ... SiNo ... FinSi. El operador >= significa 'mayor o igual que'.",
+          "entradaProcesoSalida": {
+            "entrada": "Edad de la persona (Entero)",
+            "proceso": "Si edad >= 18 Entonces mostrar \"mayor de edad\" SiNo mostrar \"menor de edad\"",
+            "salida": "\"Es mayor de edad\" o \"Es menor de edad\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-001",
+          "codigoReferencia": "edad = int(input(\"Ingresa tu edad: \"))\nif edad >= 18:\n    print(\"Eres mayor de edad.\")\nelse:\n    print(\"Eres menor de edad.\")",
+          "salidaEsperada": "Ingresa tu edad: \nEres mayor de edad.",
+          "pista": "Compara edad >= 18 con if/else para decidir el mensaje a mostrar.",
+          "entradaProcesoSalida": {
+            "entrada": "Edad del usuario",
+            "proceso": "Comparar si edad >= 18",
+            "salida": "\"Mayor de edad\" o \"Menor de edad\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-010",
+      "concepto": "Número positivo, negativo o cero",
+      "modulo": "N2",
+      "titulo": "Número positivo, negativo o cero",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "if/elif/else",
+        "comparación",
+        "float()",
+        "condicional",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "condicional anidado"
+      ],
+      "enunciado": "El programa pide un número real al usuario y determina si es positivo, negativo o cero, mostrando el resultado correspondiente.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-002",
+          "codigoReferencia": "Algoritmo positivo_negativo_cero\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer numero\n\n  Si numero > 0 Entonces\n    Escribir \"El número es positivo.\"\n  SiNo\n    Si numero < 0 Entonces\n      Escribir \"El número es negativo.\"\n    SiNo\n      Escribir \"El número es cero.\"\n    FinSi\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número: \nEl número es positivo.",
+          "pista": "Puedes anidar condicionales: Si ... Entonces ... SiNo Si ... Entonces ... SiNo ... FinSi FinSi.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Si numero > 0 → positivo\nSiNo Si numero < 0 → negativo\nSiNo → cero",
+            "salida": "\"El número es positivo\", \"negativo\" o \"cero\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-002",
+          "codigoReferencia": "n = float(input(\"Ingresa un número: \"))\nif n > 0:\n    print(\"El número es positivo.\")\nelif n < 0:\n    print(\"El número es negativo.\")\nelse:\n    print(\"El número es cero.\")",
+          "salidaEsperada": "Ingresa un número: \nEl número es positivo.",
+          "pista": "Usa if n > 0 / elif n < 0 / else para los tres casos. Convierte con float().",
+          "entradaProcesoSalida": {
+            "entrada": "Un número real",
+            "proceso": "Comparar con 0 para determinar signo",
+            "salida": "\"positivo\", \"negativo\" o \"cero\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-011",
+      "concepto": "Par o impar",
+      "modulo": "N2",
+      "titulo": "Par o impar",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "if/else",
+        "módulo",
+        "par/impar",
+        "int()",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "MOD",
+        "par",
+        "impar"
+      ],
+      "enunciado": "El programa pide un número entero al usuario y determina si es par o impar usando el operador módulo (%).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-010",
+          "codigoReferencia": "Algoritmo par_o_impar\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número entero: \"\n  Leer numero\n\n  Si numero MOD 2 = 0 Entonces\n    Escribir numero, \" es par.\"\n  SiNo\n    Escribir numero, \" es impar.\"\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número entero: \n7 es impar.",
+          "pista": "Un número es par cuando el resto de dividirlo por 2 es 0. Usa numero MOD 2 = 0 como condición.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Si numero MOD 2 = 0 → par, SiNo → impar",
+            "salida": "\"[numero] es par\" o \"[numero] es impar\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-008",
+          "codigoReferencia": "n = int(input(\"Ingresa un número entero: \"))\nif n % 2 == 0:\n    print(f\"{n} es par.\")\nelse:\n    print(f\"{n} es impar.\")",
+          "salidaEsperada": "Ingresa un número entero: \n8 es par.",
+          "pista": "Un número es par si n % 2 == 0. El operador % devuelve el resto de la división.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Verificar si el resto de dividir entre 2 es 0",
+            "salida": "\"Par\" o \"Impar\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n2-012",
+      "concepto": "Validar rango [1, 100]",
+      "modulo": "N2",
+      "titulo": "Validar rango [1, 100]",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "if/else",
+        "comparación",
+        "rango",
+        "validación",
+        "Si",
+        "SiNo",
+        "FinSi",
+        "Y"
+      ],
+      "enunciado": "El programa pide un número entero al usuario y verifica si está dentro del rango válido de 1 a 100 (inclusive). Muestra un mensaje indicando si el número es válido o está fuera de rango.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n2-013",
+          "codigoReferencia": "Algoritmo validar_rango\n  Definir numero Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer numero\n\n  Si (numero >= 1) Y (numero <= 100) Entonces\n    Escribir numero, \" está dentro del rango [1, 100]. ¡Válido!\"\n  SiNo\n    Si numero < 1 Entonces\n      Escribir numero, \" es demasiado bajo (menor que 1).\"\n    SiNo\n      Escribir numero, \" es demasiado alto (mayor que 100).\"\n    FinSi\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número: \n50 está dentro del rango [1, 100]. ¡Válido!",
+          "pista": "Usa Si (numero >= 1) Y (numero <= 100) para la condición válida. Los otros casos son mutuamente excluyentes.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Verificar 1 <= numero <= 100",
+            "salida": "\"Número válido\", \"muy bajo\" o \"muy alto\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n2-011",
+          "codigoReferencia": "n = int(input(\"Ingresa un número entero: \"))\nif 1 <= n <= 100:\n    print(f\"{n} está dentro del rango [1, 100].\")\nelse:\n    print(f\"{n} está fuera del rango [1, 100].\")",
+          "salidaEsperada": "Ingresa un número entero: \n45 está dentro del rango [1, 100].",
+          "pista": "Combina dos condiciones: if 1 <= n <= 100. Python permite encadenar comparaciones así.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Verificar si está en el rango [1, 100]",
+            "salida": "\"Válido\" o \"Fuera de rango\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-001",
+      "concepto": "Máximo de N números ingresados",
+      "modulo": "N3",
+      "titulo": "Máximo de N números ingresados",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "for",
+        "range",
+        "máximo",
+        "acumulador",
+        "Mientras",
+        "FinMientras",
+        "Si",
+        "FinSi",
+        "maximo",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario cuántos números desea ingresar (N) y luego lee N valores enteros uno por uno. Al finalizar, muestra el mayor de todos los valores ingresados.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-010",
+          "codigoReferencia": "Algoritmo maximo_de_n\n  Definir N, i Como Entero\n  Definir numero, maximo Como Real\n\n  Escribir \"¿Cuántos números desea ingresar? \"\n  Leer N\n\n  Escribir \"Ingrese el número 1: \"\n  Leer maximo\n\n  i <- 2\n  Mientras i <= N Hacer\n    Escribir \"Ingrese el número \", i, \": \"\n    Leer numero\n    Si numero > maximo Entonces\n      maximo <- numero\n    FinSi\n    i <- i + 1\n  FinMientras\n\n  Escribir \"El máximo ingresado es: \", maximo\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos números desea ingresar? \nIngrese el número 1: \nIngrese el número 2: \nIngrese el número 3: \nEl máximo ingresado es: 87",
+          "pista": "Lee el primer número y úsalo como máximo inicial. En el ciclo compara cada nuevo número: Si numero > maximo Entonces maximo <- numero.",
+          "entradaProcesoSalida": {
+            "entrada": "Cantidad N (Entero) y N números reales",
+            "proceso": "Leer el primero como máximo inicial; luego comparar cada siguiente con el máximo actual",
+            "salida": "\"El máximo ingresado es: 87\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-008",
+          "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números va a ingresar? \"))\nmaximo = None\nfor i in range(1, n + 1):\n    num = int(input(\"Número \" + str(i) + \": \"))\n    if maximo is None or num > maximo:\n        maximo = num\nprint(\"El máximo es:\", maximo)",
+          "salidaEsperada": "¿Cuántos números va a ingresar? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl máximo es: 42",
+          "pista": "Inicia maximo con el primer número. Para cada siguiente, actualiza si es mayor.",
+          "entradaProcesoSalida": {
+            "entrada": "N números ingresados uno a uno",
+            "proceso": "Comparar cada número con el máximo actual",
+            "salida": "El mayor de todos los números"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-002",
+      "concepto": "MCD por el algoritmo de Euclides",
+      "modulo": "N3",
+      "titulo": "MCD por el algoritmo de Euclides",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "while",
+        "módulo",
+        "MCD",
+        "algoritmo de Euclides",
+        "Mientras",
+        "FinMientras",
+        "MOD",
+        "Leer",
+        "Escribir",
+        "algoritmo clásico"
+      ],
+      "enunciado": "Pide al usuario dos números enteros positivos A y B. Calcula su Máximo Común Divisor (MCD) usando el algoritmo de Euclides con un bucle while: mientras B no sea cero, reemplaza A por B y B por el resto de A % B. Al terminar, A contiene el MCD.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-018",
+          "codigoReferencia": "Algoritmo mcd_euclides\n  Definir A, B, aux Como Entero\n\n  Escribir \"Ingrese el primer número (A): \"\n  Leer A\n  Escribir \"Ingrese el segundo número (B): \"\n  Leer B\n\n  Mientras B <> 0 Hacer\n    aux <- B\n    B   <- A MOD B\n    A   <- aux\n  FinMientras\n\n  Escribir \"El MCD es: \", A\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el primer número (A): \nIngrese el segundo número (B): \nEl MCD de 48 y 18 es: 6",
+          "pista": "El algoritmo de Euclides repite: aux <- B; B <- A MOD B; A <- aux. La condición del Mientras es B <> 0. Al salir, A contiene el MCD.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos enteros positivos A y B",
+            "proceso": "Mientras B <> 0: aux <- B; B <- A MOD B; A <- aux; MCD <- A",
+            "salida": "\"El MCD de 48 y 18 es: 6\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-015",
+          "codigoReferencia": "# Python 3\na = int(input(\"Ingrese A: \"))\nb = int(input(\"Ingrese B: \"))\norig_a, orig_b = a, b\nwhile b != 0:\n    a, b = b, a % b\nprint(\"MCD(\", orig_a, \",\", orig_b, \") =\", a)",
+          "salidaEsperada": "Ingrese A: \nIngrese B: \nMCD( 48 , 18 ) = 6",
+          "pista": "while b != 0: a, b = b, a % b. Al terminar, a contiene el MCD.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números enteros positivos",
+            "proceso": "Aplicar el algoritmo de Euclides iterativamente",
+            "salida": "El Máximo Común Divisor"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-003",
+      "concepto": "Números pares de 1 a N",
+      "modulo": "N3",
+      "titulo": "Números pares de 1 a N",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "for",
+        "range",
+        "if",
+        "filtro",
+        "par/impar",
+        "Para",
+        "FinPara",
+        "MOD",
+        "Si",
+        "FinSi",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario un número entero positivo N e imprime todos los números pares entre 1 y N (inclusive). Usa un bucle for y el operador módulo para verificar si el número es par (i % 2 == 0).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-006",
+          "codigoReferencia": "Algoritmo numeros_pares\n  Definir N, i Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si i MOD 2 = 0 Entonces\n      Escribir i\n    FinSi\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese N: \n2\n4\n6\n8\n10",
+          "pista": "Dentro del ciclo Para usa un Si para verificar si i MOD 2 = 0. Alternativa: usa el ciclo con Paso 2 comenzando en 2.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero positivo N",
+            "proceso": "Para i <- 1 Hasta N: Si i MOD 2 = 0 Entonces Escribir i",
+            "salida": "Los números pares de 1 a N, uno por línea"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-006",
+          "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nprint(\"Números pares del 1 al\", str(n) + \":\")\nfor i in range(1, n + 1):\n    if i % 2 == 0:\n        print(i)",
+          "salidaEsperada": "Ingrese N: \nNúmeros pares del 1 al 10:\n2\n4\n6\n8\n10",
+          "pista": "Usa range(2, n+1, 2) para generar solo pares, o agrega if i % 2 == 0 dentro del for.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número N",
+            "proceso": "Iterar y filtrar solo los números pares",
+            "salida": "Los números pares de 1 a N"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-004",
+      "concepto": "Números primos entre 2 y N",
+      "modulo": "N3",
+      "titulo": "Números primos entre 2 y N",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "for",
+        "range",
+        "if",
+        "primo",
+        "condicional",
+        "Para",
+        "FinPara",
+        "ciclos anidados",
+        "MOD",
+        "Si",
+        "SiNo",
+        "Logico",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario un número entero N mayor o igual a 2. Muestra todos los números primos entre 2 y N (inclusive). Para cada candidato i, verifica que ningún entero j en range(2, i) lo divida exactamente.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-014",
+          "codigoReferencia": "Algoritmo numeros_primos\n  Definir N, candidato, d Como Entero\n  Definir esPrimo Como Logico\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  Para candidato <- 2 Hasta N Con Paso 1 Hacer\n    esPrimo <- Verdadero\n    Para d <- 2 Hasta candidato - 1 Con Paso 1 Hacer\n      Si candidato MOD d = 0 Entonces\n        esPrimo <- Falso\n      FinSi\n    FinPara\n    Si esPrimo Entonces\n      Escribir candidato\n    FinSi\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese N: \n2\n3\n5\n7\n11\n13",
+          "pista": "Usa una variable Logico 'esPrimo <- Verdadero'. El ciclo interior busca divisores: Si candidato MOD d = 0 Entonces esPrimo <- Falso. El ciclo interior va de 2 hasta candidato - 1.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero positivo N",
+            "proceso": "Para cada candidato de 2 a N: verificar si tiene divisores entre 2 y candidato-1",
+            "salida": "Los números primos entre 2 y N, uno por línea"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-012",
+          "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nprint(\"Números primos entre 2 y\", str(n) + \":\")\nfor i in range(2, n + 1):\n    es_primo = True\n    for j in range(2, i):\n        if i % j == 0:\n            es_primo = False\n            break\n    if es_primo:\n        print(i)",
+          "salidaEsperada": "Ingrese N: \nNúmeros primos entre 2 y 20:\n2\n3\n5\n7\n11\n13\n17\n19",
+          "pista": "Para cada n, verifica si algún número de 2 a n//2 lo divide. Si no se divide, es primo.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número N",
+            "proceso": "Para cada número 2..N, verificar si es primo",
+            "salida": "Los números primos hasta N"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-005",
+      "concepto": "Primer múltiplo de K mayor que M",
+      "modulo": "N3",
+      "titulo": "Primer múltiplo de K mayor que M",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "while",
+        "múltiplos",
+        "incremento",
+        "condición",
+        "Repetir",
+        "Hasta Que",
+        "MOD",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario dos enteros positivos K y M. Usa un bucle while para encontrar el primer múltiplo de K que sea estrictamente mayor que M y muéstralo.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-012",
+          "codigoReferencia": "Algoritmo primer_multiplo\n  Definir K, M, candidato Como Entero\n\n  Escribir \"Ingrese K: \"\n  Leer K\n  Escribir \"Ingrese M: \"\n  Leer M\n\n  candidato <- M\n  Repetir\n    candidato <- candidato + 1\n  Hasta Que candidato MOD K = 0\n\n  Escribir \"El primer múltiplo de \", K, \" mayor que \", M, \" es: \", candidato\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese K: \nIngrese M: \nEl primer múltiplo de 7 mayor que 20 es: 21",
+          "pista": "Comienza el candidato en M. Dentro del Repetir incrementa candidato en 1. La condición del Hasta Que es candidato MOD K = 0.",
+          "entradaProcesoSalida": {
+            "entrada": "K (Entero > 0) y M (Entero >= 0)",
+            "proceso": "candidato <- M; Repetir: candidato <- candidato + 1; Hasta Que candidato MOD K = 0",
+            "salida": "\"El primer múltiplo de 7 mayor que 20 es: 21\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-010",
+          "codigoReferencia": "# Python 3\nk = int(input(\"Ingrese K: \"))\nm = int(input(\"Ingrese M: \"))\nmultiplo = k\nwhile multiplo <= m:\n    multiplo += k\nprint(\"El primer múltiplo de\", k, \"mayor que\", m, \"es:\", multiplo)",
+          "salidaEsperada": "Ingrese K: \nIngrese M: \nEl primer múltiplo de 7 mayor que 30 es: 35",
+          "pista": "Empieza en m+1 e incrementa hasta encontrar un número divisible por k: mult % k == 0.",
+          "entradaProcesoSalida": {
+            "entrada": "K (divisor) y M (valor de referencia)",
+            "proceso": "Buscar el primer múltiplo de K mayor que M",
+            "salida": "El primer múltiplo encontrado"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-006",
+      "concepto": "Secuencia de Fibonacci hasta N términos",
+      "modulo": "N3",
+      "titulo": "Serie de Fibonacci hasta N términos",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "for",
+        "range",
+        "fibonacci",
+        "variables",
+        "Para",
+        "FinPara",
+        "Leer",
+        "Escribir",
+        "secuencia"
+      ],
+      "enunciado": "Pide al usuario cuántos términos N de la serie de Fibonacci desea ver. Imprime los primeros N términos separados por comas. La serie comienza: 0, 1, 1, 2, 3, 5, 8, …",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-011",
+          "codigoReferencia": "Algoritmo fibonacci\n  Definir N, i, a, b, aux Como Entero\n\n  Escribir \"¿Cuántos términos de Fibonacci? \"\n  Leer N\n\n  a <- 0\n  b <- 1\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir a\n    aux <- b\n    b   <- a + b\n    a   <- aux\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos términos de Fibonacci? \n0\n1\n1\n2\n3\n5\n8",
+          "pista": "Usa dos variables: a (término actual) y b (siguiente). Tras mostrar a, calcula el nuevo b <- a + b y avanza a <- b_anterior. Necesitas una variable auxiliar para el intercambio.",
+          "entradaProcesoSalida": {
+            "entrada": "Número de términos N (Entero >= 1)",
+            "proceso": "Mantener a <- 0 y b <- 1; para cada término mostrar a y actualizar: aux <- b; b <- a + b; a <- aux",
+            "salida": "Los N primeros términos de Fibonacci, uno por línea"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-009",
+          "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese la cantidad de términos: \"))\na, b = 0, 1\nresultados = []\nfor i in range(n):\n    resultados.append(a)\n    a, b = b, a + b\nprint(\", \".join(str(x) for x in resultados))",
+          "salidaEsperada": "Ingrese la cantidad de términos: \n0, 1, 1, 2, 3, 5, 8, 13, 21, 34",
+          "pista": "Inicia a=0, b=1. En cada iteración: print(a); a, b = b, a+b.",
+          "entradaProcesoSalida": {
+            "entrada": "Cantidad de términos N",
+            "proceso": "Calcular cada término como suma de los dos anteriores",
+            "salida": "Los primeros N términos de Fibonacci"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-007",
+      "concepto": "Suma de dígitos con bucle",
+      "modulo": "N3",
+      "titulo": "Suma de dígitos con while",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "while",
+        "módulo",
+        "dígitos",
+        "acumulador",
+        "Mientras",
+        "FinMientras",
+        "MOD",
+        "DIV",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario un número entero positivo y calcula la suma de sus dígitos usando un bucle while. En cada iteración extrae el dígito menos significativo con n % 10 y reduce el número con n //= 10.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-007",
+          "codigoReferencia": "Algoritmo suma_digitos_mientras\n  Definir numero, original, suma, digito Como Entero\n\n  Escribir \"Ingrese un número entero positivo: \"\n  Leer numero\n\n  original <- numero\n  suma <- 0\n  Mientras numero > 0 Hacer\n    digito <- numero MOD 10\n    suma   <- suma + digito\n    numero <- numero DIV 10\n  FinMientras\n\n  Escribir \"La suma de los dígitos de \", original, \" es: \", suma\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número entero positivo: \nLa suma de los dígitos de 1234 es: 10",
+          "pista": "Usa numero MOD 10 para extraer el último dígito. Luego numero <- numero DIV 10 para eliminarlo. El ciclo continúa mientras numero > 0.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero positivo",
+            "proceso": "Mientras numero > 0: suma <- suma + (numero MOD 10); numero <- numero DIV 10",
+            "salida": "\"La suma de los dígitos de 1234 es: 10\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-007",
+          "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese un número entero positivo: \"))\noriginal = n\nsuma = 0\nwhile n > 0:\n    suma += n % 10\n    n //= 10\nprint(\"Suma de dígitos de\", original, \":\", suma)",
+          "salidaEsperada": "Ingrese un número entero positivo: \nSuma de dígitos de 1234 : 10",
+          "pista": "Mientras n > 0: suma += n % 10; n //= 10. Extrae el último dígito con % 10.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Extraer y sumar dígitos con while",
+            "salida": "La suma de los dígitos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-008",
+      "concepto": "Suma de múltiplos de 3 y 5 hasta N",
+      "modulo": "N3",
+      "titulo": "Suma de múltiplos de 3 y 5 hasta N",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "for",
+        "range",
+        "módulo",
+        "acumulador",
+        "or",
+        "Para",
+        "FinPara",
+        "MOD",
+        "Si",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario un entero positivo N. Calcula y muestra la suma de todos los enteros entre 1 y N (inclusive) que sean múltiplos de 3 o de 5 (o de ambos).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-015",
+          "codigoReferencia": "Algoritmo suma_multiplos\n  Definir N, i, suma Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si (i MOD 3 = 0) O (i MOD 5 = 0) Entonces\n      suma <- suma + i\n    FinSi\n  FinPara\n\n  Escribir \"Suma de múltiplos de 3 y 5 hasta \", N, \": \", suma\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese N: \nSuma de múltiplos de 3 y 5 hasta 15: 60",
+          "pista": "Usa el operador O para combinar las condiciones. El número 15, por ejemplo, es múltiplo de ambos y se cuenta una sola vez gracias al O.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero positivo N",
+            "proceso": "Para i <- 1 Hasta N: Si (i MOD 3 = 0) O (i MOD 5 = 0): suma <- suma + i",
+            "salida": "\"Suma de múltiplos de 3 y 5 hasta 15: 60\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-013",
+          "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nsuma = 0\nfor i in range(1, n + 1):\n    if i % 3 == 0 or i % 5 == 0:\n        suma += i\nprint(\"Suma de múltiplos de 3 y 5 hasta\", str(n) + \":\", suma)",
+          "salidaEsperada": "Ingrese N: \nSuma de múltiplos de 3 y 5 hasta 10: 33",
+          "pista": "Suma los i de 1 a N que cumplan i % 3 == 0 or i % 5 == 0.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número N",
+            "proceso": "Sumar múltiplos de 3 o de 5 hasta N",
+            "salida": "La suma de los múltiplos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n3-009",
+      "concepto": "Tabla de multiplicar",
+      "modulo": "N3",
+      "titulo": "Tabla de multiplicar de N",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "for",
+        "range",
+        "multiplicación",
+        "tabla",
+        "Para",
+        "FinPara",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario un número entero N e imprime su tabla de multiplicar del 1 al 10. Cada línea debe tener el formato: 'N x i = resultado'.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n3-003",
+          "codigoReferencia": "Algoritmo tabla_multiplicar\n  Definir N, i Como Entero\n\n  Escribir \"Ingrese el número: \"\n  Leer N\n\n  Para i <- 1 Hasta 10 Con Paso 1 Hacer\n    Escribir N, \" x \", i, \" = \", N * i\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el número: \n5 x 1 = 5\n5 x 2 = 10\n5 x 3 = 15\n5 x 4 = 20\n5 x 5 = 25\n5 x 6 = 30\n5 x 7 = 35\n5 x 8 = 40\n5 x 9 = 45\n5 x 10 = 50",
+          "pista": "El ciclo va de 1 a 10. Dentro del ciclo calcula N * i directamente en el Escribir. No hace falta variable extra para el producto.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero N",
+            "proceso": "Para i <- 1 Hasta 10: Escribir N, \" x \", i, \" = \", N * i",
+            "salida": "Las 10 líneas de la tabla de multiplicar de N"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n3-003",
+          "codigoReferencia": "# Python 3\nn = int(input(\"Ingrese N: \"))\nfor i in range(1, 11):\n    print(n, \"x\", i, \"=\", n * i)",
+          "salidaEsperada": "Ingrese N: \n5 x 1 = 5\n5 x 2 = 10\n5 x 3 = 15\n5 x 4 = 20\n5 x 5 = 25\n5 x 6 = 30\n5 x 7 = 35\n5 x 8 = 40\n5 x 9 = 45\n5 x 10 = 50",
+          "pista": "for i in range(1, 11): print(n, \"x\", i, \"=\", n*i). Itera del 1 al 10.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número N",
+            "proceso": "Calcular N×i para i de 1 a 10",
+            "salida": "La tabla de multiplicar de N"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-001",
+      "concepto": "Búsqueda lineal en un arreglo / lista",
+      "modulo": "N4",
+      "titulo": "Buscar elemento en lista",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "list",
+        "for",
+        "in",
+        "búsqueda",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "Logico",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario 5 números enteros para llenar una lista. Luego pide un número a buscar. Usa el operador 'in' para verificar si el elemento está en la lista e informa el resultado.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-007",
+          "codigoReferencia": "Algoritmo busqueda_lineal\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, buscado, posicion Como Entero\n  Definir encontrado Como Logico\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Escribir \"¿Qué valor busca? \"\n  Leer buscado\n\n  encontrado <- Falso\n  posicion   <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] = buscado Entonces\n      encontrado <- Verdadero\n      posicion   <- i\n    FinSi\n  FinPara\n\n  Si encontrado Entonces\n    Escribir \"Elemento \", buscado, \" encontrado en la posición \", posicion, \".\"\n  SiNo\n    Escribir \"El elemento \", buscado, \" no está en el arreglo.\"\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \n¿Qué valor busca? \nElemento 30 encontrado en la posición 3.",
+          "pista": "Usa una variable Logico 'encontrado <- Falso' y una variable 'posicion'. Al terminar el ciclo, usa Si encontrado para mostrar el resultado adecuado.",
+          "entradaProcesoSalida": {
+            "entrada": "N enteros del arreglo y un valor a buscar",
+            "proceso": "Para i <- 1 Hasta N: Si arr[i] = buscado → encontrado <- Verdadero; posicion <- i",
+            "salida": "\"Elemento 30 encontrado en la posición 3\" o \"No encontrado\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-007",
+          "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 6):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nbuscar = int(input(\"Número a buscar: \"))\nif buscar in lista:\n    print(buscar, \"está en la lista.\")\nelse:\n    print(buscar, \"no está en la lista.\")",
+          "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nNúmero a buscar: \n30 está en la lista.",
+          "pista": "Usa \"if elemento in lista:\" para verificar si existe, o itera con for y compara.",
+          "entradaProcesoSalida": {
+            "entrada": "Una lista y un elemento a buscar",
+            "proceso": "Recorrer la lista o usar \"in\"",
+            "salida": "\"Encontrado\" o \"No encontrado\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-002",
+      "concepto": "Contar positivos, negativos y ceros en arreglo",
+      "modulo": "N4",
+      "titulo": "Contar positivos, negativos y ceros",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "list",
+        "for",
+        "if",
+        "contadores",
+        "condicional",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "SiNo",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario N números enteros y almacénalos en una lista. Recorre la lista y cuenta cuántos son positivos, cuántos negativos y cuántos ceros. Muestra los tres contadores.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-006",
+          "codigoReferencia": "Algoritmo contar_pos_neg_cero\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, cntPos, cntNeg, cntCero Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  cntPos  <- 0\n  cntNeg  <- 0\n  cntCero <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] > 0 Entonces\n      cntPos <- cntPos + 1\n    SiNo\n      Si arr[i] < 0 Entonces\n        cntNeg <- cntNeg + 1\n      SiNo\n        cntCero <- cntCero + 1\n      FinSi\n    FinSi\n  FinPara\n\n  Escribir \"Positivos: \", cntPos\n  Escribir \"Negativos: \", cntNeg\n  Escribir \"Ceros: \", cntCero\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nPositivos: 3\nNegativos: 1\nCeros: 1",
+          "pista": "Inicializa los tres contadores en 0 antes del ciclo. Usa Si/SiNo anidado para determinar la categoría de cada elemento.",
+          "entradaProcesoSalida": {
+            "entrada": "N (Entero) y N números enteros",
+            "proceso": "Para cada elemento: Si > 0 → cntPos++; Si < 0 → cntNeg++; SiNo → cntCero++",
+            "salida": "Positivos: X, Negativos: Y, Ceros: Z"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-006",
+          "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\npositivos = 0\nnegativos = 0\nceros = 0\nfor x in lista:\n    if x > 0:\n        positivos += 1\n    elif x < 0:\n        negativos += 1\n    else:\n        ceros += 1\nprint(\"Positivos:\", positivos)\nprint(\"Negativos:\", negativos)\nprint(\"Ceros:\", ceros)",
+          "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nNúmero 4: \nNúmero 5: \nPositivos: 3\nNegativos: 1\nCeros: 1",
+          "pista": "Usa tres contadores: pos, neg, cero = 0, 0, 0. Por cada elemento, incrementa el contador correspondiente.",
+          "entradaProcesoSalida": {
+            "entrada": "Lista de números",
+            "proceso": "Clasificar cada número y contar positivos, negativos y ceros",
+            "salida": "Cantidad de positivos, negativos y ceros"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-003",
+      "concepto": "Filtrar elementos mayores que la media",
+      "modulo": "N4",
+      "titulo": "Segunda lista con elementos mayores que la media",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "list",
+        "list comprehension",
+        "media",
+        "filtro",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "promedio",
+        "filtrado",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario N números reales y guárdalos en una lista. Calcula la media (promedio) de la lista. Crea una segunda lista con todos los elementos que sean estrictamente mayores que la media. Muestra la media y la segunda lista.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-012",
+          "codigoReferencia": "Algoritmo filtrar_mayores_media\n  Definir arr Como Real\n  Dimension arr[20]\n  Definir N, i Como Entero\n  Definir suma, media Como Real\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n  media <- suma / N\n\n  Escribir \"Media: \", media\n  Escribir \"Elementos mayores que la media:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Si arr[i] > media Entonces\n      Escribir \"Posición \", i, \": \", arr[i]\n    FinSi\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nMedia: 6\nElementos mayores que la media:\nPosición 2: 8\nPosición 4: 9\nPosición 5: 7",
+          "pista": "Primero calcula la suma y la media en un ciclo. Luego en un segundo ciclo compara cada elemento con la media. Usa variables Real para evitar pérdida de precisión.",
+          "entradaProcesoSalida": {
+            "entrada": "N (Entero) y N números reales",
+            "proceso": "Calcular media; Para cada arr[i]: Si arr[i] > media → mostrar",
+            "salida": "La media y los elementos que la superan con sus posiciones"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-015",
+          "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = float(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\nmedia = sum(lista) / len(lista)\nsobre_media = [x for x in lista if x > media]\nprint(\"Media: {:.2f}\".format(media))\nprint(\"Elementos sobre la media:\", sobre_media)",
+          "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nNúmero 4: \nNúmero 5: \nMedia: 5.00\nElementos sobre la media: [7.0, 8.0, 6.0]",
+          "pista": "media = sum(lista) / len(lista); resultado = [x for x in lista if x > media].",
+          "entradaProcesoSalida": {
+            "entrada": "Una lista de números",
+            "proceso": "Calcular media y filtrar elementos mayores",
+            "salida": "Lista de elementos por encima de la media"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-004",
+      "concepto": "Invertir un arreglo / lista",
+      "modulo": "N4",
+      "titulo": "Invertir lista",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "list",
+        "reverse",
+        "slicing",
+        "invertir",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "variable auxiliar",
+        "intercambio",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario 5 números enteros y guárdalos en una lista. Muestra la lista original y luego su versión invertida usando el método lista.reverse() o la notación de slicing lista[::-1].",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-008",
+          "codigoReferencia": "Algoritmo invertir_arreglo\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, aux Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta N DIV 2 Con Paso 1 Hacer\n    aux          <- arr[i]\n    arr[i]       <- arr[N - i + 1]\n    arr[N-i+1]   <- aux\n  FinPara\n\n  Escribir \"Arreglo invertido:\"\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir arr[i]\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nArreglo invertido:\n50 40 30 20 10",
+          "pista": "El ciclo solo va hasta N DIV 2 (la mitad). Para intercambiar usa una variable auxiliar: aux <- arr[i]; arr[i] <- arr[N-i+1]; arr[N-i+1] <- aux.",
+          "entradaProcesoSalida": {
+            "entrada": "N (Entero, máximo 20) y N números enteros",
+            "proceso": "Para i <- 1 Hasta N DIV 2: intercambiar arr[i] con arr[N-i+1]",
+            "salida": "El arreglo original y el arreglo invertido"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-008",
+          "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 6):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nprint(\"Lista original:\", lista)\nprint(\"Lista invertida:\", lista[::-1])",
+          "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nLista original: [1, 2, 3, 4, 5]\nLista invertida: [5, 4, 3, 2, 1]",
+          "pista": "Puedes usar lista[::-1] para obtener la inversa, o lista.reverse() para invertirla en su lugar.",
+          "entradaProcesoSalida": {
+            "entrada": "Una lista de elementos",
+            "proceso": "Invertir el orden de la lista",
+            "salida": "La lista en orden inverso"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-005",
+      "concepto": "Llenar / Crear una colección de 5 elementos",
+      "modulo": "N4",
+      "titulo": "Crear lista de 5 elementos y mostrarla",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "list",
+        "append",
+        "for",
+        "input",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "arreglo 1D",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario 5 números enteros, uno por uno, y almacénalos en una lista usando append. Al terminar, muestra la lista completa.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-001",
+          "codigoReferencia": "Algoritmo llenar_mostrar_arreglo\n  Definir arr Como Entero\n  Dimension arr[5]\n  Definir i Como Entero\n\n  Para i <- 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  Para i <- 1 Hasta 5 Con Paso 1 Hacer\n    Escribir \"Elemento[\", i, \"] = \", arr[i]\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nElemento[1] = 10\nElemento[2] = 20\nElemento[3] = 30\nElemento[4] = 40\nElemento[5] = 50",
+          "pista": "Usa 'Dimension arr[5]' para declarar el arreglo. En PSeInt los índices comienzan en 1. Necesitas dos ciclos Para separados: uno para llenar y otro para mostrar.",
+          "entradaProcesoSalida": {
+            "entrada": "5 números enteros ingresados por el usuario",
+            "proceso": "Para i <- 1 Hasta 5: Leer arr[i]; Para i <- 1 Hasta 5: Escribir arr[i]",
+            "salida": "Cada elemento del arreglo con su posición"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-001",
+          "codigoReferencia": "# Python 3\nlista = []\nfor i in range(1, 6):\n    num = int(input(\"Elemento \" + str(i) + \": \"))\n    lista.append(num)\nprint(\"Lista:\", lista)",
+          "salidaEsperada": "Elemento 1: \nElemento 2: \nElemento 3: \nElemento 4: \nElemento 5: \nLista: [10, 20, 30, 40, 50]",
+          "pista": "Crea lista = []. Usa un for con range(5) y lista.append(int(input(...))) en cada iteración.",
+          "entradaProcesoSalida": {
+            "entrada": "5 números, uno por iteración",
+            "proceso": "Agregar cada número a la lista con append",
+            "salida": "La lista completa"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-006",
+      "concepto": "Máximo de un arreglo / lista",
+      "modulo": "N4",
+      "titulo": "Máximo de una lista",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "list",
+        "max",
+        "append",
+        "funciones nativas",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "maximo",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario N números enteros, guárdalos en una lista y muestra el valor máximo usando la función max(lista).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-004",
+          "codigoReferencia": "Algoritmo maximo_arreglo\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, maximo, posMax Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  maximo <- arr[1]\n  posMax <- 1\n  Para i <- 2 Hasta N Con Paso 1 Hacer\n    Si arr[i] > maximo Entonces\n      maximo <- arr[i]\n      posMax <- i\n    FinSi\n  FinPara\n\n  Escribir \"Máximo: \", maximo, \" en la posición \", posMax\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nMáximo: 95 en la posición 3",
+          "pista": "Inicializa maximo <- arr[1] y posMax <- 1 antes del ciclo. Itera desde i = 2. Si arr[i] > maximo, actualiza ambas variables.",
+          "entradaProcesoSalida": {
+            "entrada": "N (Entero) y N números enteros",
+            "proceso": "maximo <- arr[1]; posMáximo <- 1; Para i <- 2 Hasta N: Si arr[i] > maximo → actualizar",
+            "salida": "\"Máximo: 95 en la posición 3\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-004",
+          "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\nprint(\"El máximo es:\", max(lista))",
+          "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl máximo es: 75",
+          "pista": "Usa max(lista) para obtener el valor máximo de la lista. Python lo hace en una función.",
+          "entradaProcesoSalida": {
+            "entrada": "N números del usuario",
+            "proceso": "Llenar lista y aplicar max()",
+            "salida": "El valor máximo de la lista"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-007",
+      "concepto": "Mínimo de un arreglo / lista",
+      "modulo": "N4",
+      "titulo": "Mínimo de una lista",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "list",
+        "min",
+        "append",
+        "funciones nativas",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "Si",
+        "minimo",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario N números enteros, guárdalos en una lista y muestra el valor mínimo usando la función min(lista).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-005",
+          "codigoReferencia": "Algoritmo minimo_arreglo\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, minimo, posMin Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  minimo <- arr[1]\n  posMin <- 1\n  Para i <- 2 Hasta N Con Paso 1 Hacer\n    Si arr[i] < minimo Entonces\n      minimo <- arr[i]\n      posMin <- i\n    FinSi\n  FinPara\n\n  Escribir \"Mínimo: \", minimo, \" en la posición \", posMin\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nMínimo: 3 en la posición 2",
+          "pista": "Idéntico al ejercicio de máximo pero cambia la condición a arr[i] < minimo. Inicializa con el primer elemento del arreglo.",
+          "entradaProcesoSalida": {
+            "entrada": "N (Entero) y N números enteros",
+            "proceso": "minimo <- arr[1]; posMin <- 1; Para i <- 2 Hasta N: Si arr[i] < minimo → actualizar",
+            "salida": "\"Mínimo: 3 en la posición 2\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-005",
+          "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\nprint(\"El mínimo es:\", min(lista))",
+          "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nEl mínimo es: 5",
+          "pista": "Usa min(lista) para obtener el valor mínimo. Funciona igual que max() pero para el menor.",
+          "entradaProcesoSalida": {
+            "entrada": "N números del usuario",
+            "proceso": "Llenar lista y aplicar min()",
+            "salida": "El valor mínimo de la lista"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-008",
+      "concepto": "Promedio de elementos de un arreglo/lista",
+      "modulo": "N4",
+      "titulo": "Promedio de elementos de una lista",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "list",
+        "sum",
+        "len",
+        "promedio",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "acumulador",
+        "Real",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario N números reales, almacénalos en una lista y calcula su promedio como sum(lista) / len(lista). Muestra el resultado con dos decimales.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-003",
+          "codigoReferencia": "Algoritmo promedio_arreglo\n  Definir arr Como Real\n  Dimension arr[20]\n  Definir N, i Como Entero\n  Definir suma, promedio Como Real\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n\n  promedio <- suma / N\n  Escribir \"El promedio es: \", promedio\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nEl promedio es: 6.4",
+          "pista": "Declara el arreglo y suma como Real para manejar decimales. Divide la suma entre N al final del segundo ciclo.",
+          "entradaProcesoSalida": {
+            "entrada": "N (Entero) y N números reales",
+            "proceso": "suma <- suma de arr[i]; promedio <- suma / N",
+            "salida": "\"El promedio es: 6.4\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-003",
+          "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = float(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\npromedio = sum(lista) / len(lista)\nprint(\"Promedio: {:.2f}\".format(promedio))",
+          "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nPromedio: 5.67",
+          "pista": "promedio = sum(lista) / len(lista). Primero llena la lista y luego aplica estas funciones.",
+          "entradaProcesoSalida": {
+            "entrada": "N números del usuario",
+            "proceso": "Calcular suma total y dividir entre cantidad",
+            "salida": "El promedio de los elementos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-009",
+      "concepto": "Suma de elementos de un arreglo / lista",
+      "modulo": "N4",
+      "titulo": "Suma de elementos de una lista",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "list",
+        "sum",
+        "append",
+        "for",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "acumulador",
+        "arreglo 1D",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Dado el siguiente programa que ya crea una lista de N números ingresados por el usuario, calcula y muestra la suma de todos sus elementos usando la función sum(lista).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-002",
+          "codigoReferencia": "Algoritmo suma_arreglo\n  Definir arr Como Entero\n  Dimension arr[20]\n  Definir N, i, suma Como Entero\n\n  Escribir \"¿Cuántos elementos? \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Ingrese el elemento \", i, \": \"\n    Leer arr[i]\n  FinPara\n\n  suma <- 0\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    suma <- suma + arr[i]\n  FinPara\n\n  Escribir \"La suma de los elementos es: \", suma\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos elementos? \nIngrese el elemento 1: \nIngrese el elemento 2: \nIngrese el elemento 3: \nIngrese el elemento 4: \nIngrese el elemento 5: \nLa suma de los elementos es: 150",
+          "pista": "Declara 'Dimension arr[20]' para el tamaño máximo. Usa N como límite del ciclo, no 20. Inicializa suma <- 0 antes del segundo ciclo.",
+          "entradaProcesoSalida": {
+            "entrada": "N (Entero, 1-20) y N números enteros",
+            "proceso": "Para i <- 1 Hasta N: suma <- suma + arr[i]",
+            "salida": "\"La suma de los elementos es: 150\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-002",
+          "codigoReferencia": "# Python 3\nn = int(input(\"¿Cuántos números? \"))\nlista = []\nfor i in range(n):\n    num = int(input(\"Número \" + str(i + 1) + \": \"))\n    lista.append(num)\ntotal = sum(lista)\nprint(\"Suma:\", total)",
+          "salidaEsperada": "¿Cuántos números? \nNúmero 1: \nNúmero 2: \nNúmero 3: \nSuma: 60",
+          "pista": "Después de llenar la lista, usa sum(lista) para obtener la suma de todos los elementos.",
+          "entradaProcesoSalida": {
+            "entrada": "N números del usuario",
+            "proceso": "Acumular en lista y calcular sum()",
+            "salida": "La suma de todos los elementos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n4-010",
+      "concepto": "Unir dos arreglos / listas",
+      "modulo": "N4",
+      "titulo": "Unir dos listas",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "list",
+        "concatenación",
+        "extend",
+        "+",
+        "unir listas",
+        "Dimension",
+        "Para",
+        "FinPara",
+        "concatenación de arreglos",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario 3 números para llenar la primera lista y otros 3 para llenar la segunda. Une ambas listas usando el operador + y muestra la lista resultante.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n4-011",
+          "codigoReferencia": "Algoritmo unir_arreglos\n  Definir A Como Entero\n  Dimension A[20]\n  Definir B Como Entero\n  Dimension B[20]\n  Definir C Como Entero\n  Dimension C[40]\n  Definir NA, NB, i Como Entero\n\n  Escribir \"Tamaño del arreglo A: \"\n  Leer NA\n  Para i <- 1 Hasta NA Con Paso 1 Hacer\n    Escribir \"Ingrese A[\", i, \"]: \"\n    Leer A[i]\n  FinPara\n\n  Escribir \"Tamaño del arreglo B: \"\n  Leer NB\n  Para i <- 1 Hasta NB Con Paso 1 Hacer\n    Escribir \"Ingrese B[\", i, \"]: \"\n    Leer B[i]\n  FinPara\n\n  Para i <- 1 Hasta NA Con Paso 1 Hacer\n    C[i] <- A[i]\n  FinPara\n  Para i <- 1 Hasta NB Con Paso 1 Hacer\n    C[NA + i] <- B[i]\n  FinPara\n\n  Escribir \"Arreglo unido C:\"\n  Para i <- 1 Hasta NA + NB Con Paso 1 Hacer\n    Escribir C[i]\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "Tamaño del arreglo A: \nIngrese A[1]: \nIngrese A[2]: \nIngrese A[3]: \nTamaño del arreglo B: \nIngrese B[1]: \nIngrese B[2]: \nArreglo unido C:\n10 20 30 40 50",
+          "pista": "Declara C con tamaño suficiente (por ejemplo, 40). Usa un primer Para para copiar A en C[1..NA]. Luego un segundo Para que coloca B en C[NA+1..NA+NB].",
+          "entradaProcesoSalida": {
+            "entrada": "NA, elementos de A, NB, elementos de B",
+            "proceso": "Copiar A en C[1..NA]; copiar B en C[NA+1..NA+NB]",
+            "salida": "El arreglo C con todos los elementos unidos"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n4-014",
+          "codigoReferencia": "# Python 3\nlista1 = []\nfor i in range(1, 4):\n    num = int(input(\"Lista 1 - elemento \" + str(i) + \": \"))\n    lista1.append(num)\nlista2 = []\nfor i in range(1, 4):\n    num = int(input(\"Lista 2 - elemento \" + str(i) + \": \"))\n    lista2.append(num)\nunida = lista1 + lista2\nprint(\"Lista 1:\", lista1)\nprint(\"Lista 2:\", lista2)\nprint(\"Unión:\", unida)",
+          "salidaEsperada": "Lista 1 - elemento 1: \nLista 1 - elemento 2: \nLista 1 - elemento 3: \nLista 2 - elemento 1: \nLista 2 - elemento 2: \nLista 2 - elemento 3: \nLista 1: [1, 2, 3]\nLista 2: [4, 5, 6]\nUnión: [1, 2, 3, 4, 5, 6]",
+          "pista": "Usa lista1 + lista2 o lista1.extend(lista2) para unir dos listas.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos listas",
+            "proceso": "Unir las listas con + o extend",
+            "salida": "Una lista combinada"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-001",
+      "concepto": "Contar vocales (con función/subproceso)",
+      "modulo": "N5",
+      "titulo": "Contar vocales en una cadena",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "cadenas",
+        "conteo",
+        "Funcion",
+        "FinFuncion",
+        "Cadena",
+        "LONGITUD",
+        "SUBCADENA",
+        "MINUSCULAS",
+        "Para"
+      ],
+      "enunciado": "Define una función contar_vocales(cadena) que recorra la cadena carácter por carácter y cuente cuántas vocales contiene (a, e, i, o, u, en mayúsculas y minúsculas). Pruébala con la cadena 'Programación en Python'.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-013",
+          "codigoReferencia": "Funcion resultado <- ContarVocales(texto)\n  Definir i, resultado Como Entero\n  Definir caracter Como Cadena\n  resultado <- 0\n  Para i <- 1 Hasta LONGITUD(texto) Con Paso 1 Hacer\n    caracter <- MINUSCULAS(SUBCADENA(texto, i, i))\n    Si caracter = \"a\" O caracter = \"e\" O caracter = \"i\" O caracter = \"o\" O caracter = \"u\" Entonces\n      resultado <- resultado + 1\n    FinSi\n  FinPara\nFinFuncion\n\nAlgoritmo contar_vocales\n  Definir cadena Como Cadena\n  Definir cantidad Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer cadena\n\n  cantidad <- ContarVocales(cadena)\n\n  Escribir \"La cadena '\", cadena, \"' tiene \", cantidad, \" vocales.\"\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese una cadena: \nLa cadena 'Algoritmo' tiene 4 vocales.",
+          "pista": "Usa SUBCADENA(texto, i, i) para extraer el carácter en la posición i. Conviértelo a minúsculas con MINUSCULAS antes de comparar. Compara con 'a', 'e', 'i', 'o', 'u' usando Si con condiciones O.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto",
+            "proceso": "ContarVocales(texto): recorre cada carácter y cuenta los que son vocales",
+            "salida": "\"La cadena 'Algoritmo' tiene 4 vocales.\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-011",
+          "codigoReferencia": "def contar_vocales(cadena):\n    vocales = 'aeiouAEIOU'\n    contador = 0\n    for caracter in cadena:\n        if caracter in vocales:\n            contador += 1\n    return contador\n\ntexto = 'Programación en Python'\nprint(f'Vocales en \"{texto}\": {contar_vocales(texto)}')",
+          "salidaEsperada": "Vocales en \"Programación en Python\": 7",
+          "pista": "Recorre la cadena con for c in cadena y cuenta si c in \"aeiouAEIOU\".",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena",
+            "proceso": "Contar letras que son vocales",
+            "salida": "Número de vocales"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-002",
+      "concepto": "Factorial iterativo (con función)",
+      "modulo": "N5",
+      "titulo": "Factorial iterativo",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "factorial",
+        "acumulador",
+        "Funcion",
+        "FinFuncion",
+        "Para",
+        "FinPara",
+        "retorno"
+      ],
+      "enunciado": "Define una función factorial(n) que calcule el factorial de n usando un bucle for. No uses recursión. Imprime el resultado para n = 5.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-003",
+          "codigoReferencia": "Funcion resultado <- Factorial(n)\n  Definir i, resultado Como Entero\n  resultado <- 1\n  Para i <- 1 Hasta n Con Paso 1 Hacer\n    resultado <- resultado * i\n  FinPara\nFinFuncion\n\nAlgoritmo factorial_iterativo\n  Definir num, res Como Entero\n\n  Escribir \"Ingrese un número (>= 0): \"\n  Leer num\n\n  res <- Factorial(num)\n\n  Escribir num, \"! = \", res\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número (>= 0): \n5! = 120",
+          "pista": "Inicializa una variable acumuladora en 1 antes del ciclo. Usa Para i <- 1 Hasta n Con Paso 1 y multiplica el acumulador por i en cada iteración.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero n >= 0",
+            "proceso": "Factorial(n): acumula el producto de 1 a n con un Para",
+            "salida": "\"5! = 120\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-003",
+          "codigoReferencia": "def factorial(n):\n    resultado = 1\n    for i in range(2, n + 1):\n        resultado *= i\n    return resultado\n\nprint(f'5! = {factorial(5)}')",
+          "salidaEsperada": "5! = 120",
+          "pista": "def factorial(n): resultado=1; for i in range(1,n+1): resultado*=i; return resultado.",
+          "entradaProcesoSalida": {
+            "entrada": "Un entero N como argumento",
+            "proceso": "Calcular N! iterativamente",
+            "salida": "N! (factorial de N)"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-003",
+      "concepto": "Factorial recursivo",
+      "modulo": "N5",
+      "titulo": "Factorial recursivo",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "def",
+        "recursión",
+        "caso base",
+        "factorial",
+        "Funcion",
+        "FinFuncion",
+        "recursividad",
+        "caso recursivo"
+      ],
+      "enunciado": "Define una función factorial(n) usando recursión: el caso base es n <= 1 (retorna 1) y el caso recursivo multiplica n por factorial(n - 1). Imprime el resultado para n = 6.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-011",
+          "codigoReferencia": "Funcion resultado <- FactorialRec(n)\n  Si n = 0 Entonces\n    resultado <- 1\n  SiNo\n    resultado <- n * FactorialRec(n - 1)\n  FinSi\nFinFuncion\n\nAlgoritmo factorial_recursivo\n  Definir num, res Como Entero\n\n  Escribir \"Ingrese un número (>= 0): \"\n  Leer num\n\n  res <- FactorialRec(num)\n\n  Escribir num, \"! = \", res\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número (>= 0): \n6! = 720",
+          "pista": "La recursividad requiere siempre un caso base para detener las llamadas. Aquí el caso base es n = 0 (o n = 1). Sin caso base, la función se llamaría a sí misma infinitamente.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero n >= 0",
+            "proceso": "FactorialRec(n): si n = 0 retorna 1; si no, retorna n * FactorialRec(n-1)",
+            "salida": "\"6! = 720\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-009",
+          "codigoReferencia": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(f'6! = {factorial(6)}')",
+          "salidaEsperada": "6! = 720",
+          "pista": "def factorial(n): return 1 if n <= 1 else n * factorial(n-1). El caso base es n == 0 o n == 1.",
+          "entradaProcesoSalida": {
+            "entrada": "Un entero N",
+            "proceso": "Llamarse a sí misma con n-1 hasta llegar al caso base",
+            "salida": "N!"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-004",
+      "concepto": "Fibonacci recursivo",
+      "modulo": "N5",
+      "titulo": "Fibonacci recursivo",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "def",
+        "recursión",
+        "fibonacci",
+        "caso base",
+        "Funcion",
+        "FinFuncion",
+        "recursividad"
+      ],
+      "enunciado": "Define una función fibonacci(n) de forma recursiva: fibonacci(0) = 0, fibonacci(1) = 1, y para n > 1 retorna fibonacci(n-1) + fibonacci(n-2). Imprime los primeros 8 términos de la secuencia (del 0 al 7).",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-012",
+          "codigoReferencia": "Funcion resultado <- Fibonacci(n)\n  Si n = 0 Entonces\n    resultado <- 0\n  SiNo\n    Si n = 1 Entonces\n      resultado <- 1\n    SiNo\n      resultado <- Fibonacci(n - 1) + Fibonacci(n - 2)\n    FinSi\n  FinSi\nFinFuncion\n\nAlgoritmo fibonacci_recursivo\n  Definir n, res Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer n\n\n  res <- Fibonacci(n)\n\n  Escribir \"Fibonacci(\", n, \") = \", res\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese N: \nFibonacci(8) = 21",
+          "pista": "La sucesión de Fibonacci tiene dos casos base: Fibonacci(0) = 0 y Fibonacci(1) = 1. Para cualquier otro n, el resultado es la suma de los dos términos anteriores. Ojo: para N grandes la versión recursiva es lenta.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero n >= 0",
+            "proceso": "Fibonacci(n): caso base 0 ó 1; caso recursivo suma los dos anteriores",
+            "salida": "\"Fibonacci(8) = 21\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-010",
+          "codigoReferencia": "def fibonacci(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    return fibonacci(n - 1) + fibonacci(n - 2)\n\nfor i in range(8):\n    print(fibonacci(i), end=' ')\nprint()",
+          "salidaEsperada": "0 1 1 2 3 5 8 13 ",
+          "pista": "def fib(n): return n if n <= 1 else fib(n-1) + fib(n-2). Casos base: fib(0)=0, fib(1)=1.",
+          "entradaProcesoSalida": {
+            "entrada": "Un entero N",
+            "proceso": "Calcular fib(n) = fib(n-1) + fib(n-2) recursivamente",
+            "salida": "El N-ésimo número de Fibonacci"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-005",
+      "concepto": "Función cuadrado de un número",
+      "modulo": "N5",
+      "titulo": "Función cuadrado",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "def",
+        "return",
+        "parámetros",
+        "potencia",
+        "Funcion",
+        "FinFuncion",
+        "retorno"
+      ],
+      "enunciado": "Define una función cuadrado(n) que reciba un número entero y retorne su cuadrado (n²). Imprime el resultado al llamarla con el valor 7.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-002",
+          "codigoReferencia": "Funcion resultado <- Cuadrado(n)\n  resultado <- n * n\nFinFuncion\n\nAlgoritmo cuadrado_funcion\n  Definir num, res Como Entero\n\n  Escribir \"Ingrese un número: \"\n  Leer num\n\n  res <- Cuadrado(num)\n\n  Escribir \"El cuadrado de \", num, \" es: \", res\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número: \nEl cuadrado de 5 es: 25",
+          "pista": "Una Funcion retorna un valor asignando al nombre de la función: 'Cuadrado <- n * n'. Se llama asignando su resultado: 'resultado <- Cuadrado(n)'.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero n",
+            "proceso": "Cuadrado(n) <- n * n",
+            "salida": "\"El cuadrado de 5 es: 25\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-002",
+          "codigoReferencia": "def cuadrado(n):\n    return n ** 2\n\nresultado = cuadrado(7)\nprint(f'El cuadrado de 7 es: {resultado}')",
+          "salidaEsperada": "El cuadrado de 7 es: 49",
+          "pista": "def cuadrado(n): return n ** 2. El return devuelve el resultado al lugar de la llamada.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número como argumento",
+            "proceso": "Calcular n² dentro de la función",
+            "salida": "El cuadrado del número"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-006",
+      "concepto": "Función es primo",
+      "modulo": "N5",
+      "titulo": "Función es_primo",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "primo",
+        "break",
+        "Funcion",
+        "FinFuncion",
+        "Logico",
+        "Para",
+        "FinPara",
+        "Si",
+        "FinSi",
+        "número primo"
+      ],
+      "enunciado": "Define una función es_primo(n) que retorne True si n es un número primo y False en caso contrario. Un número primo es mayor que 1 y solo divisible por 1 y por sí mismo. Pruébala con los valores 7 y 9.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-006",
+          "codigoReferencia": "Funcion resultado <- EsPrimo(n)\n  Definir i Como Entero\n  Definir resultado Como Logico\n  resultado <- Verdadero\n  Para i <- 2 Hasta n - 1 Con Paso 1 Hacer\n    Si n MOD i = 0 Entonces\n      resultado <- Falso\n    FinSi\n  FinPara\nFinFuncion\n\nAlgoritmo verificar_primo\n  Definir num Como Entero\n  Definir esPrimo Como Logico\n\n  Escribir \"Ingrese un número (>= 2): \"\n  Leer num\n\n  esPrimo <- EsPrimo(num)\n\n  Si esPrimo Entonces\n    Escribir num, \" es un número primo.\"\n  SiNo\n    Escribir num, \" no es un número primo.\"\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número (>= 2): \n7 es un número primo.",
+          "pista": "Inicializa una variable Logica esPrimoFlag en Verdadero. Recorre con Para desde 2 hasta n-1: si n MOD i = 0, asigna Falso a la bandera. Al terminar el ciclo, retorna la bandera.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero n >= 2",
+            "proceso": "EsPrimo(n): verifica si algún número entre 2 y n-1 divide a n",
+            "salida": "\"7 es un número primo.\" o \"8 no es un número primo.\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-006",
+          "codigoReferencia": "def es_primo(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\nprint(es_primo(7))\nprint(es_primo(9))",
+          "salidaEsperada": "True\nFalse",
+          "pista": "Verifica divisores de 2 hasta n//2. Si alguno divide exactamente, retorna False. Si ninguno, True.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero",
+            "proceso": "Verificar si tiene divisores distintos de 1 y sí mismo",
+            "salida": "True si es primo, False si no"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-007",
+      "concepto": "Función máximo de dos números",
+      "modulo": "N5",
+      "titulo": "Función maximo",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "def",
+        "return",
+        "if/else",
+        "comparación",
+        "Funcion",
+        "FinFuncion",
+        "Si",
+        "FinSi",
+        "retorno",
+        "máximo"
+      ],
+      "enunciado": "Define una función maximo(a, b) que retorne el mayor de dos números. No uses la función built-in max(). Imprime el resultado llamándola con los valores 12 y 8.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-005",
+          "codigoReferencia": "Funcion resultado <- Maximo(a, b)\n  Si a >= b Entonces\n    resultado <- a\n  SiNo\n    resultado <- b\n  FinSi\nFinFuncion\n\nAlgoritmo maximo_dos_numeros\n  Definir x, y, max Como Entero\n\n  Escribir \"Ingrese el primer número: \"\n  Leer x\n  Escribir \"Ingrese el segundo número: \"\n  Leer y\n\n  max <- Maximo(x, y)\n\n  Escribir \"El máximo entre \", x, \" y \", y, \" es: \", max\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el primer número: \nIngrese el segundo número: \nEl máximo entre 7 y 4 es: 7",
+          "pista": "Dentro de la función usa Si para comparar a y b. Asigna al nombre de la función según cuál sea mayor.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números enteros a y b",
+            "proceso": "Maximo(a, b): Si a >= b retorna a, SiNo retorna b",
+            "salida": "\"El máximo entre 7 y 4 es: 7\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-005",
+          "codigoReferencia": "def maximo(a, b):\n    if a >= b:\n        return a\n    return b\n\nprint(f'El mayor entre 12 y 8 es: {maximo(12, 8)}')",
+          "salidaEsperada": "El mayor entre 12 y 8 es: 12",
+          "pista": "def maximo(a, b): return a if a > b else b. Puedes usar una expresión condicional en línea.",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números como argumentos",
+            "proceso": "Comparar y devolver el mayor",
+            "salida": "El máximo de los dos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-008",
+      "concepto": "Función potencia iterativa",
+      "modulo": "N5",
+      "titulo": "Función potencia iterativa",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "potencia",
+        "acumulador",
+        "Funcion",
+        "FinFuncion",
+        "Para",
+        "FinPara",
+        "iterativa"
+      ],
+      "enunciado": "Define una función potencia(base, exp) que calcule base elevado a exp usando un bucle for, sin usar el operador **. Imprime el resultado de 3 elevado a la 4.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-008",
+          "codigoReferencia": "Funcion resultado <- Potencia(base, exponente)\n  Definir i, resultado Como Entero\n  resultado <- 1\n  Para i <- 1 Hasta exponente Con Paso 1 Hacer\n    resultado <- resultado * base\n  FinPara\nFinFuncion\n\nAlgoritmo calcular_potencia\n  Definir b, e, res Como Entero\n\n  Escribir \"Ingrese la base: \"\n  Leer b\n  Escribir \"Ingrese el exponente: \"\n  Leer e\n\n  res <- Potencia(b, e)\n\n  Escribir b, \" ^ \", e, \" = \", res\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese la base: \nIngrese el exponente: \n2 ^ 8 = 256",
+          "pista": "Inicializa el resultado en 1 y usa un ciclo Para desde 1 hasta el exponente, multiplicando el resultado por la base en cada paso. Si el exponente es 0, el ciclo no se ejecuta y el resultado queda en 1.",
+          "entradaProcesoSalida": {
+            "entrada": "base (Entero) y exponente (Entero >= 0)",
+            "proceso": "Potencia(base, exp): multiplica base por sí misma exp veces",
+            "salida": "\"2 ^ 8 = 256\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-007",
+          "codigoReferencia": "def potencia(base, exp):\n    resultado = 1\n    for _ in range(exp):\n        resultado *= base\n    return resultado\n\nprint(f'3 elevado a la 4 es: {potencia(3, 4)}')",
+          "salidaEsperada": "3 elevado a la 4 es: 81",
+          "pista": "def potencia(base, exp): resultado=1; for _ in range(exp): resultado*=base; return resultado.",
+          "entradaProcesoSalida": {
+            "entrada": "Base y exponente como argumentos",
+            "proceso": "Multiplicar la base exp veces",
+            "salida": "base elevado a exp"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-009",
+      "concepto": "Función saludo",
+      "modulo": "N5",
+      "titulo": "Función saludar",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "def",
+        "función",
+        "parámetros",
+        "print",
+        "SubProceso",
+        "FinSubProceso",
+        "Llamar"
+      ],
+      "enunciado": "Define una función llamada saludar(nombre) que imprima en pantalla el mensaje '¡Hola, [nombre]! Bienvenido.' Luego llámala con el nombre 'Ana'.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-001",
+          "codigoReferencia": "SubProceso Saludar(nombre)\n  Escribir \"¡Hola, \", nombre, \"! Bienvenido al mundo de los subprocesos.\"\nFinSubProceso\n\nAlgoritmo saludo_con_subproceso\n  Definir nombreUsuario Como Cadena\n\n  Escribir \"Ingrese su nombre: \"\n  Leer nombreUsuario\n\n  Llamar Saludar(nombreUsuario)\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese su nombre: \n¡Hola, Ana! Bienvenido al mundo de los subprocesos.",
+          "pista": "Un SubProceso se define fuera del Algoritmo principal con 'SubProceso nombre(param)' y se termina con 'FinSubProceso'. Se invoca desde el algoritmo principal con 'Llamar nombre(args)'.",
+          "entradaProcesoSalida": {
+            "entrada": "Nombre del usuario (Cadena)",
+            "proceso": "SubProceso Saludar(nombre): muestra el saludo con el nombre recibido",
+            "salida": "\"¡Hola, Ana! Bienvenido al mundo de los subprocesos.\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-001",
+          "codigoReferencia": "def saludar(nombre):\n    print(f'¡Hola, {nombre}! Bienvenido.')\n\nsaludar('Ana')",
+          "salidaEsperada": "¡Hola, Ana! Bienvenido.",
+          "pista": "Define def saludar(nombre): con el cuerpo de la función indentado. Llámala con saludar(\"Ana\").",
+          "entradaProcesoSalida": {
+            "entrada": "Nombre como argumento",
+            "proceso": "Llamar a la función con el nombre",
+            "salida": "Saludo personalizado"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n5-010",
+      "concepto": "Función suma de un arreglo / lista",
+      "modulo": "N5",
+      "titulo": "Función suma_lista",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "def",
+        "for",
+        "return",
+        "sum",
+        "listas",
+        "Funcion",
+        "FinFuncion",
+        "Dimension",
+        "arreglo",
+        "Para",
+        "FinPara",
+        "suma"
+      ],
+      "enunciado": "Define una función suma_lista(lista) que recorra una lista de números con un bucle for y retorne la suma de todos sus elementos, sin usar la función built-in sum(). Pruébala con la lista [3, 7, 2, 9, 1].",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n5-010",
+          "codigoReferencia": "Funcion resultado <- SumaArreglo(arr, n)\n  Definir i Como Entero\n  Definir resultado Como Real\n  resultado <- 0\n  Para i <- 1 Hasta n Con Paso 1 Hacer\n    resultado <- resultado + arr[i]\n  FinPara\nFinFuncion\n\nAlgoritmo suma_arreglo_funcion\n  Definir datos Como Real\n  Definir total Como Real\n  Dimension datos[5]\n\n  datos[1] <- 3\n  datos[2] <- 7\n  datos[3] <- 1\n  datos[4] <- 9\n  datos[5] <- 5\n\n  total <- SumaArreglo(datos, 5)\n\n  Escribir \"Suma del arreglo: \", total\nFinAlgoritmo",
+          "salidaEsperada": "Suma del arreglo: 25",
+          "pista": "Inicializa el acumulador en 0 antes del ciclo. Suma cada elemento arr[i] al acumulador en cada iteración del Para.",
+          "entradaProcesoSalida": {
+            "entrada": "(ninguna — valores fijos en el algoritmo principal)",
+            "proceso": "SumaArreglo(arr, n): acumula arr[1] + arr[2] + ... + arr[n]",
+            "salida": "\"Suma del arreglo: 25\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n5-008",
+          "codigoReferencia": "def suma_lista(lista):\n    total = 0\n    for elemento in lista:\n        total += elemento\n    return total\n\nnumeros = [3, 7, 2, 9, 1]\nprint(f'La suma es: {suma_lista(numeros)}')",
+          "salidaEsperada": "La suma es: 22",
+          "pista": "def suma_lista(lst): total=0; for x in lst: total+=x; return total. O: return sum(lst).",
+          "entradaProcesoSalida": {
+            "entrada": "Una lista de números",
+            "proceso": "Sumar todos los elementos",
+            "salida": "La suma total"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-001",
+      "concepto": "Cifrado César",
+      "modulo": "N6",
+      "titulo": "Cifrado César simple",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "str",
+        "ord",
+        "chr",
+        "cifrado",
+        "for",
+        "SUBCADENA",
+        "LONGITUD",
+        "CONCATENAR",
+        "Para",
+        "Mientras",
+        "MOD",
+        "Cadena"
+      ],
+      "enunciado": "Implementa un cifrado César que desplace cada letra del alfabeto en 3 posiciones hacia adelante (A→D, B→E, ..., Z→C). Usa las funciones ord() y chr() junto con el módulo 26 para manejar el retorno al inicio del alfabeto. Solo cifra letras (mayúsculas y minúsculas); los demás caracteres se copian sin cambios. Pruébalo con la cadena 'Hola Mundo'.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-015",
+          "codigoReferencia": "Algoritmo cifrado_cesar\n  Definir texto, cifrado, caracter, letraAlfabeto, alfabeto Como Cadena\n  Definir i, j, largo, N, posicion, nuevaPos Como Entero\n  Definir encontrado Como Logico\n\n  alfabeto <- \"abcdefghijklmnopqrstuvwxyz\"\n\n  Escribir \"Ingrese el texto (minúsculas): \"\n  Leer texto\n  Escribir \"Ingrese el desplazamiento (1-25): \"\n  Leer N\n\n  largo   <- LONGITUD(texto)\n  cifrado <- \"\"\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(texto, i, i)\n    Si caracter = \" \" Entonces\n      cifrado <- CONCATENAR(cifrado, \" \")\n    SiNo\n      posicion   <- 0\n      encontrado <- Falso\n      j          <- 1\n      Mientras j <= 26 Y NO encontrado Hacer\n        letraAlfabeto <- SUBCADENA(alfabeto, j, j)\n        Si letraAlfabeto = caracter Entonces\n          posicion   <- j\n          encontrado <- Verdadero\n        FinSi\n        j <- j + 1\n      FinMientras\n      nuevaPos <- (posicion - 1 + N) MOD 26 + 1\n      cifrado  <- CONCATENAR(cifrado, SUBCADENA(alfabeto, nuevaPos, nuevaPos))\n    FinSi\n  FinPara\n\n  Escribir \"Texto cifrado: \", cifrado\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese el texto (minúsculas): abc xyz\nIngrese el desplazamiento (1-25): 3\nTexto cifrado: def abc",
+          "pista": "Crea una cadena con el alfabeto 'abcdefghijklmnopqrstuvwxyz'. Para cada letra, busca su posición en el alfabeto con un bucle, suma N, aplica (pos - 1 + N) MOD 26 + 1 y extrae la letra de esa posición.",
+          "entradaProcesoSalida": {
+            "entrada": "Texto en minúsculas (letras y espacios) y desplazamiento N entero (1-25)",
+            "proceso": "Para cada carácter: si es espacio copiar; si es letra, buscar su posición en el alfabeto, sumar N, aplicar MOD 26 y tomar la letra resultante",
+            "salida": "\"Texto cifrado: [cifrado]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-014",
+          "codigoReferencia": "def cifrado_cesar(texto, desplazamiento=3):\n    resultado = ''\n    for caracter in texto:\n        if caracter.isupper():\n            resultado += chr((ord(caracter) - ord('A') + desplazamiento) % 26 + ord('A'))\n        elif caracter.islower():\n            resultado += chr((ord(caracter) - ord('a') + desplazamiento) % 26 + ord('a'))\n        else:\n            resultado += caracter\n    return resultado\n\ntexto = 'Hola Mundo'\ncifrado = cifrado_cesar(texto)\nprint(f'Original: {texto}')\nprint(f'Cifrado:  {cifrado}')",
+          "salidaEsperada": "Original: Hola Mundo\nCifrado:  Krod Pxqgr",
+          "pista": "ord(c) da el código ASCII del carácter y chr(n) lo convierte de vuelta. Suma el desplazamiento al código.",
+          "entradaProcesoSalida": {
+            "entrada": "Un texto y el desplazamiento",
+            "proceso": "Desplazar cada letra en el alfabeto",
+            "salida": "El texto cifrado"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-002",
+      "concepto": "Concatenar nombre y apellido",
+      "modulo": "N6",
+      "titulo": "Concatenar nombre y apellido",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "str",
+        "concatenación",
+        "+",
+        "f-string",
+        "CONCATENAR",
+        "Cadena",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario su nombre y su apellido en dos entradas separadas. Luego concatena ambos usando el operador + y el método .join(), e imprime el nombre completo en formato 'Nombre Apellido'.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-003",
+          "codigoReferencia": "Algoritmo concatenar_nombre\n  Definir nombre, apellido, nombreCompleto Como Cadena\n\n  Escribir \"Ingrese su nombre: \"\n  Leer nombre\n  Escribir \"Ingrese su apellido: \"\n  Leer apellido\n\n  nombreCompleto <- CONCATENAR(nombre, \" \", apellido)\n\n  Escribir \"Nombre completo: \", nombreCompleto\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese su nombre: \nIngrese su apellido: \nNombre completo: Ana González",
+          "pista": "Puedes usar CONCATENAR(c1, c2, ...) para unir varias cadenas en una. También puedes usar el operador + entre cadenas.",
+          "entradaProcesoSalida": {
+            "entrada": "Nombre (Cadena) y Apellido (Cadena)",
+            "proceso": "nombreCompleto <- CONCATENAR(nombre, \" \", apellido)",
+            "salida": "\"Nombre completo: [nombreCompleto]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-003",
+          "codigoReferencia": "nombre = input('Ingresa tu nombre: ')\napellido = input('Ingresa tu apellido: ')\nnombre_completo = nombre + ' ' + apellido\nprint(f'Nombre completo: {nombre_completo}')",
+          "salidaEsperada": "Ingresa tu nombre: Carlos\nIngresa tu apellido: López\nNombre completo: Carlos López",
+          "pista": "Puedes unir con nombre + \" \" + apellido o con f\"{nombre} {apellido}\".",
+          "entradaProcesoSalida": {
+            "entrada": "Nombre y apellido por separado",
+            "proceso": "Concatenar con espacio entre medias",
+            "salida": "Nombre completo"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-003",
+      "concepto": "Contar ocurrencias de un carácter",
+      "modulo": "N6",
+      "titulo": "Contar ocurrencias de un carácter",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "str",
+        "count",
+        "ocurrencias",
+        "métodos de cadena",
+        "SUBCADENA",
+        "LONGITUD",
+        "MINUSCULAS",
+        "Para",
+        "Si",
+        "Cadena"
+      ],
+      "enunciado": "Pide al usuario una cadena y luego un carácter a buscar. Usa el método .count(caracter) para contar cuántas veces aparece ese carácter en la cadena e imprime el resultado.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-011",
+          "codigoReferencia": "Algoritmo contar_caracter\n  Definir texto, buscar, caracter Como Cadena\n  Definir i, largo, contador Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n  Escribir \"Ingrese el carácter a buscar: \"\n  Leer buscar\n\n  texto    <- MINUSCULAS(texto)\n  buscar   <- MINUSCULAS(buscar)\n  largo    <- LONGITUD(texto)\n  contador <- 0\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(texto, i, i)\n    Si caracter = buscar Entonces\n      contador <- contador + 1\n    FinSi\n  FinPara\n\n  Escribir \"El carácter '\", buscar, \"' aparece \", contador, \" veces.\"\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese una cadena: banana\nIngrese el carácter a buscar: a\nEl carácter 'a' aparece 3 veces.",
+          "pista": "Convierte tanto la cadena como el carácter buscado a minúsculas antes de comparar para hacer la búsqueda insensible a mayúsculas.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto y un carácter a buscar",
+            "proceso": "Recorrer cada posición; si SUBCADENA(texto,i,i) en minúscula = búsqueda en minúscula, incrementar contador",
+            "salida": "\"El carácter '[buscar]' aparece [contador] veces.\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-009",
+          "codigoReferencia": "cadena = input('Ingresa una cadena: ')\ncaracter = input('Ingresa el carácter a buscar: ')\nconteo = cadena.count(caracter)\nprint(f'El carácter \"{caracter}\" aparece {conteo} vez/veces.')",
+          "salidaEsperada": "Ingresa una cadena: mississippi\nIngresa el carácter a buscar: s\nEl carácter \"s\" aparece 4 vez/veces.",
+          "pista": "cadena.count(caracter) cuenta cuántas veces aparece el carácter en la cadena.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena y un carácter",
+            "proceso": "Contar ocurrencias con count()",
+            "salida": "El número de ocurrencias"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-004",
+      "concepto": "Contar vocales en una cadena",
+      "modulo": "N6",
+      "titulo": "Contar vocales en una cadena",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "str",
+        "for",
+        "in",
+        "conteo",
+        "vocales",
+        "SUBCADENA",
+        "LONGITUD",
+        "MINUSCULAS",
+        "Para",
+        "Si",
+        "Cadena"
+      ],
+      "enunciado": "Pide al usuario una cadena de texto. Recorre cada carácter con un bucle for y cuenta cuántas vocales contiene (a, e, i, o, u, mayúsculas y minúsculas). Imprime el conteo.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-006",
+          "codigoReferencia": "Algoritmo contar_vocales\n  Definir texto, textMin, caracter Como Cadena\n  Definir i, largo, contador Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  textMin  <- MINUSCULAS(texto)\n  largo    <- LONGITUD(textMin)\n  contador <- 0\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(textMin, i, i)\n    Si caracter = \"a\" O caracter = \"e\" O caracter = \"i\" O caracter = \"o\" O caracter = \"u\" Entonces\n      contador <- contador + 1\n    FinSi\n  FinPara\n\n  Escribir \"Número de vocales: \", contador\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese una cadena: Hola Mundo\nNúmero de vocales: 4",
+          "pista": "Convierte la cadena a minúsculas antes del bucle para simplificar la comparación. Luego compara cada carácter contra \"a\", \"e\", \"i\", \"o\", \"u\".",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto",
+            "proceso": "Recorrer cada carácter; si es vocal (en minúscula) incrementar el contador",
+            "salida": "\"Número de vocales: [contador]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-006",
+          "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nvocales = 'aeiouAEIOU'\ncontador = 0\nfor caracter in cadena:\n    if caracter in vocales:\n        contador += 1\nprint(f'La cadena tiene {contador} vocales.')",
+          "salidaEsperada": "Ingresa una cadena: Educación\nLa cadena tiene 5 vocales.",
+          "pista": "for c in cadena: if c in \"aeiouAEIOU\": contador += 1.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto",
+            "proceso": "Recorrer e identificar vocales",
+            "salida": "Número de vocales"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-005",
+      "concepto": "Longitud de una cadena",
+      "modulo": "N6",
+      "titulo": "Longitud de una cadena",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "str",
+        "len",
+        "cadenas",
+        "input",
+        "LONGITUD",
+        "Cadena",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Pide al usuario que ingrese una cadena de texto. Usa la función len() para calcular su longitud e imprime cuántos caracteres tiene.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-001",
+          "codigoReferencia": "Algoritmo longitud_cadena\n  Definir texto Como Cadena\n  Definir longitud Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  longitud <- LONGITUD(texto)\n\n  Escribir \"La cadena tiene \", longitud, \" caracteres.\"\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese una cadena: \nLa cadena tiene 5 caracteres.",
+          "pista": "La función LONGITUD(cadena) devuelve un número entero con la cantidad de caracteres. Recuerda declarar la variable cadena con tipo Cadena.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto ingresada por el usuario",
+            "proceso": "longitud <- LONGITUD(texto)",
+            "salida": "\"La cadena tiene [longitud] caracteres.\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-001",
+          "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nprint(f'La cadena tiene {len(cadena)} caracteres.')",
+          "salidaEsperada": "Ingresa una cadena: Python\nLa cadena tiene 6 caracteres.",
+          "pista": "len(cadena) devuelve la cantidad de caracteres. Guarda la cadena con input().",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto",
+            "proceso": "Calcular longitud con len()",
+            "salida": "El número de caracteres"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-006",
+      "concepto": "Mayúsculas y minúsculas",
+      "modulo": "N6",
+      "titulo": "Mayúsculas y minúsculas",
+      "dificultad": "basico",
+      "gradoAyuda": "guiado",
+      "conceptos": [
+        "str",
+        "upper",
+        "lower",
+        "métodos de cadena",
+        "MAYUSCULAS",
+        "MINUSCULAS",
+        "Cadena"
+      ],
+      "enunciado": "Pide al usuario una cadena de texto. Imprime la cadena convertida a mayúsculas usando .upper() y luego la misma cadena en minúsculas usando .lower().",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-002",
+          "codigoReferencia": "Algoritmo mayusculas_minusculas\n  Definir texto, enMayusculas, enMinusculas Como Cadena\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  enMayusculas <- MAYUSCULAS(texto)\n  enMinusculas <- MINUSCULAS(texto)\n\n  Escribir \"Mayúsculas: \", enMayusculas\n  Escribir \"Minúsculas: \", enMinusculas\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese una cadena: \nMayúsculas: HOLA MUNDO\nMinúsculas: hola mundo",
+          "pista": "MAYUSCULAS(cadena) convierte todos los caracteres a mayúsculas. MINUSCULAS(cadena) hace lo contrario. Ambas devuelven una nueva cadena sin modificar la original.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto",
+            "proceso": "enMayusculas <- MAYUSCULAS(texto)\nenMinusculas <- MINUSCULAS(texto)",
+            "salida": "Cadena en mayúsculas y cadena en minúsculas en líneas separadas"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-002",
+          "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nprint(f'Mayúsculas: {cadena.upper()}')\nprint(f'Minúsculas: {cadena.lower()}')",
+          "salidaEsperada": "Ingresa una cadena: Hola Mundo\nMayúsculas: HOLA MUNDO\nMinúsculas: hola mundo",
+          "pista": "cadena.upper() convierte a mayúsculas; cadena.lower() a minúsculas.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto",
+            "proceso": "Aplicar .upper() y .lower()",
+            "salida": "La cadena en mayúsculas y en minúsculas"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-007",
+      "concepto": "Primer y último carácter",
+      "modulo": "N6",
+      "titulo": "Primer y último carácter",
+      "dificultad": "basico",
+      "gradoAyuda": "con-pista",
+      "conceptos": [
+        "str",
+        "indexación",
+        "cadenas",
+        "índices",
+        "SUBCADENA",
+        "LONGITUD",
+        "Cadena"
+      ],
+      "enunciado": "Pide al usuario una palabra. Accede al primer carácter usando el índice [0] y al último usando el índice [-1]. Imprime ambos caracteres con una descripción.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-004",
+          "codigoReferencia": "Algoritmo primer_ultimo_caracter\n  Definir texto, primero, ultimo Como Cadena\n  Definir largo Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  largo   <- LONGITUD(texto)\n  primero <- SUBCADENA(texto, 1, 1)\n  ultimo  <- SUBCADENA(texto, largo, largo)\n\n  Escribir \"Primer carácter: \", primero\n  Escribir \"Último carácter: \", ultimo\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese una cadena: \nPrimer carácter: H\nÚltimo carácter: a",
+          "pista": "SUBCADENA(cadena, i, j) extrae desde la posición i hasta j (índice base 1). El último carácter está en la posición LONGITUD(cadena).",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto (debe tener al menos 1 carácter)",
+            "proceso": "primero <- SUBCADENA(texto, 1, 1)\nultimo  <- SUBCADENA(texto, LONGITUD(texto), LONGITUD(texto))",
+            "salida": "\"Primer carácter: [primero]\"\n\"Último carácter: [ultimo]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-004",
+          "codigoReferencia": "palabra = input('Ingresa una palabra: ')\nprint(f'Primer carácter: {palabra[0]}')\nprint(f'Último carácter: {palabra[-1]}')",
+          "salidaEsperada": "Ingresa una palabra: python\nPrimer carácter: p\nÚltimo carácter: n",
+          "pista": "El primer carácter es cadena[0] y el último es cadena[-1] o cadena[len(cadena)-1].",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena",
+            "proceso": "Acceder a los índices 0 y -1",
+            "salida": "El primer y el último carácter"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-008",
+      "concepto": "Reemplazar espacios por guiones bajos",
+      "modulo": "N6",
+      "titulo": "Reemplazar espacios por guiones bajos",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "str",
+        "replace",
+        "métodos de cadena",
+        "SUBCADENA",
+        "LONGITUD",
+        "CONCATENAR",
+        "Para",
+        "Si",
+        "Cadena"
+      ],
+      "enunciado": "Pide al usuario una frase con varias palabras separadas por espacios. Usa el método .replace(' ', '_') para reemplazar todos los espacios por guiones bajos e imprime el resultado.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-010",
+          "codigoReferencia": "Algoritmo reemplazar_espacios\n  Definir texto, resultado, caracter Como Cadena\n  Definir i, largo Como Entero\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  largo     <- LONGITUD(texto)\n  resultado <- \"\"\n\n  Para i <- 1 Hasta largo Con Paso 1 Hacer\n    caracter <- SUBCADENA(texto, i, i)\n    Si caracter = \" \" Entonces\n      resultado <- CONCATENAR(resultado, \"_\")\n    SiNo\n      resultado <- CONCATENAR(resultado, caracter)\n    FinSi\n  FinPara\n\n  Escribir \"Resultado: \", resultado\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese una cadena: Hola Mundo Cruel\nResultado: Hola_Mundo_Cruel",
+          "pista": "Usa un Para que recorra la cadena. En cada posición, si el carácter es espacio concatena '_', si no concatena el carácter original.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto con posibles espacios",
+            "proceso": "Recorrer cada carácter; si es espacio añadir '_', si no añadir el carácter original",
+            "salida": "\"Resultado: [resultado]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-008",
+          "codigoReferencia": "frase = input('Ingresa una frase: ')\nresultado = frase.replace(' ', '_')\nprint(f'Resultado: {resultado}')",
+          "salidaEsperada": "Ingresa una frase: aprender a programar\nResultado: aprender_a_programar",
+          "pista": "cadena.replace(\" \", \"_\") reemplaza todos los espacios por guiones bajos.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena con espacios",
+            "proceso": "Reemplazar espacios con replace()",
+            "salida": "La cadena con guiones bajos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n6-009",
+      "concepto": "Verificar si empieza con mayúscula",
+      "modulo": "N6",
+      "titulo": "Verificar si empieza con mayúscula",
+      "dificultad": "basico",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "str",
+        "isupper",
+        "indexación",
+        "condicional",
+        "SUBCADENA",
+        "MAYUSCULAS",
+        "Si",
+        "Cadena"
+      ],
+      "enunciado": "Pide al usuario una cadena de texto. Verifica si el primer carácter es una letra mayúscula usando s[0].isupper(). Imprime un mensaje indicando si la cadena empieza o no con mayúscula.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n6-012",
+          "codigoReferencia": "Algoritmo empieza_mayuscula\n  Definir texto, primero Como Cadena\n\n  Escribir \"Ingrese una cadena: \"\n  Leer texto\n\n  primero <- SUBCADENA(texto, 1, 1)\n\n  Si primero = MAYUSCULAS(primero) Entonces\n    Escribir \"Comienza con mayúscula.\"\n  SiNo\n    Escribir \"No comienza con mayúscula.\"\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese una cadena: Hola\nComienza con mayúscula.",
+          "pista": "Extrae el primer carácter con SUBCADENA(texto,1,1) y compáralo con MAYUSCULAS(primerCaracter). Si son iguales, es mayúscula.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena de texto",
+            "proceso": "primero <- SUBCADENA(texto,1,1)\nSi primero = MAYUSCULAS(primero) entonces empieza con mayúscula",
+            "salida": "\"Comienza con mayúscula.\" o \"No comienza con mayúscula.\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n6-011",
+          "codigoReferencia": "cadena = input('Ingresa una cadena: ')\nif cadena and cadena[0].isupper():\n    print('La cadena empieza con mayúscula.')\nelse:\n    print('La cadena no empieza con mayúscula.')",
+          "salidaEsperada": "Ingresa una cadena: Python es genial\nLa cadena empieza con mayúscula.",
+          "pista": "cadena[0].isupper() devuelve True si el primer carácter es mayúscula.",
+          "entradaProcesoSalida": {
+            "entrada": "Una cadena",
+            "proceso": "Verificar si cadena[0] es mayúscula",
+            "salida": "\"Empieza con mayúscula\" o \"No empieza con mayúscula\""
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n7-001",
+      "concepto": "Agenda de contactos",
+      "modulo": "N7",
+      "titulo": "Mini agenda de contactos",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "diccionarios",
+        "while",
+        "menú interactivo",
+        "Dimension",
+        "Segun",
+        "Mientras",
+        "Para",
+        "Cadena",
+        "SubProceso"
+      ],
+      "enunciado": "Implementa una agenda simple con un diccionario donde las claves son nombres y los valores son teléfonos. El programa debe ofrecer en un bucle: agregar contacto, buscar contacto, listar todos y salir. Úsalo hasta que el usuario elija salir.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n7-003",
+          "codigoReferencia": "Algoritmo agenda_contactos\n  Dimension nombres[20]\n  Definir nombres Como Cadena\n  Definir opcion, total, i Como Entero\n  Definir nombreBuscar, nombreMin, buscarMin Como Cadena\n  Definir encontrado Como Logico\n\n  total  <- 0\n  opcion <- 0\n\n  Mientras opcion <> 4 Hacer\n    Escribir \"=== AGENDA ===\"\n    Escribir \"1. Agregar contacto\"\n    Escribir \"2. Mostrar todos\"\n    Escribir \"3. Buscar contacto\"\n    Escribir \"4. Salir\"\n    Escribir \"Elija opcion: \"\n    Leer opcion\n\n    Segun opcion Hacer\n      1:\n        Si total < 20 Entonces\n          Escribir \"Nombre: \"\n          Leer nombreBuscar\n          total         <- total + 1\n          nombres[total] <- nombreBuscar\n          Escribir \"Contacto agregado.\"\n        SiNo\n          Escribir \"Agenda llena.\"\n        FinSi\n      2:\n        Si total = 0 Entonces\n          Escribir \"La agenda está vacía.\"\n        SiNo\n          Para i <- 1 Hasta total Con Paso 1 Hacer\n            Escribir i, \": \", nombres[i]\n          FinPara\n        FinSi\n      3:\n        Escribir \"Nombre a buscar: \"\n        Leer nombreBuscar\n        buscarMin  <- MINUSCULAS(nombreBuscar)\n        encontrado <- Falso\n        Para i <- 1 Hasta total Con Paso 1 Hacer\n          nombreMin <- MINUSCULAS(nombres[i])\n          Si nombreMin = buscarMin Entonces\n            Escribir \"Contacto encontrado en posicion \", i, \".\"\n            encontrado <- Verdadero\n          FinSi\n        FinPara\n        Si NO encontrado Entonces\n          Escribir \"Contacto no encontrado.\"\n        FinSi\n      4:\n        Escribir \"¡Hasta luego!\"\n      De Otro Modo:\n        Escribir \"Opcion invalida.\"\n    FinSegun\n  FinMientras\nFinAlgoritmo",
+          "salidaEsperada": "=== AGENDA ===\n1. Agregar contacto\n2. Mostrar todos\n3. Buscar contacto\n4. Salir\nElija opcion: \nNombre: Ana\nContacto agregado.\n...\n1: Ana\n2: Luis\nContacto encontrado en posicion 1.",
+          "pista": "Usa dos arreglos paralelos si quieres guardar más datos (solo nombres aquí). Para la búsqueda, convierte ambas cadenas a MINUSCULAS antes de comparar. Lleva un contador de cuántos contactos hay actualmente.",
+          "entradaProcesoSalida": {
+            "entrada": "Opción del menú (1-4) y nombres según la operación elegida",
+            "proceso": "Mientras opcion <> 4: leer opción y ejecutar la operación con Segun",
+            "salida": "Lista de contactos o resultado de búsqueda según la opción"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n7-007",
+          "codigoReferencia": "agenda = {}\nwhile True:\n    opcion = input('1-Agregar 2-Buscar 3-Listar 4-Salir: ')\n    if opcion == '1':\n        nombre = input('Nombre: ')\n        telefono = input('Teléfono: ')\n        agenda[nombre] = telefono\n        print('Contacto agregado.')\n    elif opcion == '2':\n        nombre = input('Nombre a buscar: ')\n        if nombre in agenda:\n            print(f'Teléfono: {agenda[nombre]}')\n        else:\n            print('Contacto no encontrado.')\n    elif opcion == '3':\n        for nombre, tel in agenda.items():\n            print(f'{nombre}: {tel}')\n    elif opcion == '4':\n        print('Saliendo.')\n        break\n    else:\n        print('Opción no válida.')",
+          "salidaEsperada": "1-Agregar 2-Buscar 3-Listar 4-Salir: 1\nNombre: Ana\nTeléfono: 555-1234\nContacto agregado.\n1-Agregar 2-Buscar 3-Listar 4-Salir: 2\nNombre a buscar: Ana\nTeléfono: 555-1234\n1-Agregar 2-Buscar 3-Listar 4-Salir: 4\nSaliendo.",
+          "pista": "Usa un while True con break. El dict agenda usa nombre como clave y teléfono como valor. Usa agenda.items() para listar.",
+          "entradaProcesoSalida": {
+            "entrada": "Opción del menú y datos de contacto",
+            "proceso": "Gestionar diccionario de agenda",
+            "salida": "Mensajes de confirmación y datos"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n7-002",
+      "concepto": "Calculadora con menú",
+      "modulo": "N7",
+      "titulo": "Calculadora con diccionario de operaciones",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "diccionarios",
+        "lambda",
+        "try/except",
+        "Segun",
+        "Mientras",
+        "operadores aritméticos",
+        "Leer",
+        "Escribir"
+      ],
+      "enunciado": "Crea una calculadora que use un diccionario para mapear los operadores '+', '-', '*' y '/' a funciones lambda. Pide dos números y un operador al usuario; muestra el resultado o un mensaje de error si el operador no es válido.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n7-001",
+          "codigoReferencia": "Algoritmo calculadora_menu\n  Definir a, b, resultado Como Real\n  Definir opcion Como Entero\n\n  opcion <- 0\n\n  Mientras opcion <> 5 Hacer\n    Escribir \"=== CALCULADORA ===\"\n    Escribir \"1. Suma\"\n    Escribir \"2. Resta\"\n    Escribir \"3. Multiplicacion\"\n    Escribir \"4. Division\"\n    Escribir \"5. Salir\"\n    Escribir \"Elija opcion: \"\n    Leer opcion\n\n    Si opcion <> 5 Entonces\n      Escribir \"Ingrese primer numero: \"\n      Leer a\n      Escribir \"Ingrese segundo numero: \"\n      Leer b\n\n      Segun opcion Hacer\n        1:\n          resultado <- a + b\n          Escribir \"Resultado: \", resultado\n        2:\n          resultado <- a - b\n          Escribir \"Resultado: \", resultado\n        3:\n          resultado <- a * b\n          Escribir \"Resultado: \", resultado\n        4:\n          Si b <> 0 Entonces\n            resultado <- a / b\n            Escribir \"Resultado: \", resultado\n          SiNo\n            Escribir \"Error: division por cero.\"\n          FinSi\n        De Otro Modo:\n          Escribir \"Opcion invalida.\"\n      FinSegun\n    FinSi\n  FinMientras\n\n  Escribir \"¡Hasta luego!\"\nFinAlgoritmo",
+          "salidaEsperada": "=== CALCULADORA ===\n1. Suma\n2. Resta\n3. Multiplicacion\n4. Division\n5. Salir\nElija opcion: \nIngrese primer numero: \nIngrese segundo numero: \nResultado: 15\n...\n¡Hasta luego!",
+          "pista": "Usa una variable opcion inicializada en 0. El bucle Mientras opcion <> 5 controla la repetición. Dentro del Segun, el caso 4 debe verificar que el segundo número no sea 0 antes de dividir.",
+          "entradaProcesoSalida": {
+            "entrada": "Opción del menú (1-5) y dos números reales en cada ciclo",
+            "proceso": "Mientras opcion <> 5: mostrar menú, leer opción y operandos, calcular con Segun y mostrar resultado",
+            "salida": "Resultados de cada operación hasta que el usuario elija Salir"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n7-001",
+          "codigoReferencia": "operaciones = {\n    '+': lambda a, b: a + b,\n    '-': lambda a, b: a - b,\n    '*': lambda a, b: a * b,\n    '/': lambda a, b: a / b,\n}\na = float(input('Ingresa el primer número: '))\noperador = input('Ingresa el operador (+, -, *, /): ')\nb = float(input('Ingresa el segundo número: '))\nif operador not in operaciones:\n    print('Operador no válido.')\nelif operador == '/' and b == 0:\n    print('Error: división por cero.')\nelse:\n    resultado = operaciones[operador](a, b)\n    print(f'Resultado: {a} {operador} {b} = {resultado}')",
+          "salidaEsperada": "Ingresa el primer número: 10\nIngresa el operador (+, -, *, /): *\nIngresa el segundo número: 3\nResultado: 10.0 * 3.0 = 30.0",
+          "pista": "Guarda las operaciones como lambdas en un dict: {'+':{lambda a,b: a+b}, ...} y úsalas con operaciones[operador](a, b).",
+          "entradaProcesoSalida": {
+            "entrada": "Dos números y un operador",
+            "proceso": "Usar diccionario de lambdas para calcular",
+            "salida": "Resultado de la operación"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n7-003",
+      "concepto": "Conversor de decimal a binario",
+      "modulo": "N7",
+      "titulo": "Conversor de bases numéricas",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "funciones nativas",
+        "formateo de cadenas",
+        "bases numéricas",
+        "Mientras",
+        "MOD",
+        "DIV",
+        "Dimension",
+        "arreglo",
+        "Entero"
+      ],
+      "enunciado": "Pide al usuario un número entero en decimal. Muestra su representación en binario (usando bin()), octal (usando oct()) y hexadecimal (usando hex()), sin el prefijo 0b/0o/0x.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n7-008",
+          "codigoReferencia": "Algoritmo decimal_a_binario\n  Dimension bits[32]\n  Definir bits Como Entero\n  Definir num, pos, i Como Entero\n\n  Escribir \"Ingrese un número entero positivo: \"\n  Leer num\n\n  Si num = 0 Entonces\n    Escribir \"Representación binaria: 0\"\n  SiNo\n    pos <- 0\n\n    Mientras num > 0 Hacer\n      pos      <- pos + 1\n      bits[pos] <- num MOD 2\n      num      <- num DIV 2\n    FinMientras\n\n    Escribir \"Representación binaria: \"\n    Para i <- pos Hasta 1 Con Paso -1 Hacer\n      Escribir Sin Saltar bits[i]\n    FinPara\n    Escribir \"\"\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese un número entero positivo: 13\nRepresentación binaria: 1101",
+          "pista": "Dimensiona el arreglo con tamaño suficiente (ej: 32). Lleva un contador de cuántos bits guardaste. Al terminar el Mientras, recorre el arreglo desde el último hasta el primero para mostrar los bits en el orden correcto.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero positivo N",
+            "proceso": "Mientras N > 0: guardar N MOD 2 en arreglo, N <- N DIV 2. Luego mostrar el arreglo al revés",
+            "salida": "\"Representación binaria: [bits]\""
+          }
+        },
+        "python": {
+          "idOriginal": "py-n7-009",
+          "codigoReferencia": "numero = int(input('Ingresa un número entero positivo: '))\nprint(f'Decimal:     {numero}')\nprint(f'Binario:     {bin(numero)[2:]}')\nprint(f'Octal:       {oct(numero)[2:]}')\nprint(f'Hexadecimal: {hex(numero)[2:].upper()}')",
+          "salidaEsperada": "Ingresa un número entero positivo: 255\nDecimal:     255\nBinario:     11111111\nOctal:       377\nHexadecimal: FF",
+          "pista": "bin(), oct() y hex() devuelven cadenas con prefijo (0b, 0o, 0x). Usa [2:] para quitar el prefijo.",
+          "entradaProcesoSalida": {
+            "entrada": "Un número entero en decimal",
+            "proceso": "Convertir a binario, octal y hexadecimal",
+            "salida": "Las cuatro representaciones"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n7-004",
+      "concepto": "Estadísticas de notas",
+      "modulo": "N7",
+      "titulo": "Registro de notas del semestre",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "listas",
+        "comprensión de listas",
+        "funciones nativas",
+        "Menú",
+        "Mientras",
+        "Contador",
+        "Acumulador",
+        "Promedio",
+        "Si-Entonces",
+        "Dimension",
+        "Para",
+        "Leer",
+        "máximo",
+        "mínimo",
+        "contador condicional"
+      ],
+      "enunciado": "Pide al usuario ingresar 5 notas separadas por espacios en una sola línea. Calcula e imprime: el promedio, la nota mínima, la nota máxima y cuántas notas están por encima del promedio.",
+      "lenguajes": {
+        "liteseint": {
+          "idOriginal": "n7-011",
+          "codigoReferencia": "Proceso RegistroNotas\n  Definir N, contador, nota Como Entero\n  Definir totalNotas, promedio Como Real\n  Definir evaluacion Como Caracter\n  Definir opcion Como Entero\n\n  N          = 0\n  contador   = 0\n  totalNotas = 0\n  promedio   = 0\n  opcion     = 0\n\n  Escribir \"Registro de notas\"\n  Mientras opcion <> 3 Hacer\n    Escribir \"--- MENÚ ---\"\n    Escribir \"1. Registrar notas\"\n    Escribir \"2. Mostrar análisis del promedio\"\n    Escribir \"3. Salir\"\n    Escribir \"Ingrese una opción:\"\n    Leer opcion\n    Si opcion == 1 Entonces\n      Escribir \"Cantidad de notas: (mínimo 3):\"\n      Leer N\n      Mientras N < 3 Hacer\n        Escribir \"El valor debe ser mayor o igual a 3. Ingrese nuevamente:\"\n        Leer N\n      FinMientras\n      contador = 1\n      Mientras contador <= N Hacer\n        Escribir \"Nombre de la evaluación:\"\n        Leer evaluacion\n        Escribir \"Nota obtenida (1-7):\"\n        Leer nota\n\n        totalNotas = totalNotas + nota\n        contador   = contador + 1\n      FinMientras\n      Escribir \"Registro completado.\"\n    Sino\n      Si opcion == 2 Entonces\n        Si N > 0 Entonces\n          promedio = totalNotas / N\n\n          Escribir \"Promedio: \", promedio\n          Si promedio >= 4 Entonces\n            Escribir \"Semestre aprobado\"\n          Sino\n            Escribir \"Semestre en riesgo de reprobación\"\n          FinSi\n        Sino\n          Escribir \"No hay notas registradas.\"\n        FinSi\n      Sino\n        Si opcion == 3 Entonces\n          Escribir \"Fin del registro\"\n        Sino\n          Escribir \"Opción no válida. Intente nuevamente.\"\n        FinSi\n      FinSi\n    FinSi\n  FinMientras\nFinProceso",
+          "salidaEsperada": "--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis del promedio\n3. Salir\nIngrese una opción:\n> 1\nCantidad de notas (mínimo 3):\n> 3\nNombre de la evaluación:\n> Certamen 1\nNota obtenida (1-7):\n> 5\nNombre de la evaluación:\n> Certamen 2\nNota obtenida (1-7):\n> 4\nNombre de la evaluación:\n> Examen\nNota obtenida (1-7):\n> 3\nRegistro completado.\n--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis del promedio\n3. Salir\nIngrese una opción:\n> 2\nPromedio: 4\nSemestre aprobado\n--- MENÚ ---\n1. Registrar notas\n2. Mostrar análisis del promedio\n3. Salir\nIngrese una opción:\n> 3\nFin del registro",
+          "pista": "El promedio se calcula dividiendo el acumulador por N. Protege siempre la división verificando que N > 0 antes de dividir para evitar errores en tiempo de ejecución.",
+          "entradaProcesoSalida": {
+            "entrada": "N, contador (Entero)\ntotalNotas, promedio (Real)\nevaluacion (Caracter)\nnota (Entero)",
+            "proceso": "Mientras opcion <> 3\n  Op1: acumular notas\n  Op2: promedio ← total/N; Si >=4 → aprobado SiNo reprobación\n  Op3: Fin",
+            "salida": "Promedio + evaluación"
+          }
+        },
+        "pseint": {
+          "idOriginal": "ps-n7-002",
+          "codigoReferencia": "Algoritmo estadisticas_notas\n  Definir N, i, aprobados Como Entero\n  Definir nota, suma, promedio, maxNota, minNota Como Real\n\n  Escribir \"¿Cuántos estudiantes? \"\n  Leer N\n\n  Dimension notas[N]\n  Definir notas Como Real\n\n  suma      <- 0\n  maxNota   <- 1.0\n  minNota   <- 7.0\n  aprobados <- 0\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"Nota \", i, \": \"\n    Leer nota\n    notas[i] <- nota\n    suma     <- suma + nota\n    Si nota > maxNota Entonces\n      maxNota <- nota\n    FinSi\n    Si nota < minNota Entonces\n      minNota <- nota\n    FinSi\n    Si nota >= 4.0 Entonces\n      aprobados <- aprobados + 1\n    FinSi\n  FinPara\n\n  promedio <- suma / N\n\n  Escribir \"Promedio: \", promedio\n  Escribir \"Nota más alta: \", maxNota\n  Escribir \"Nota más baja: \", minNota\n  Escribir \"Aprobados: \", aprobados\nFinAlgoritmo",
+          "salidaEsperada": "¿Cuántos estudiantes? \nNota 1: \nNota 2: \nNota 3: \nPromedio: 5.17\nNota más alta: 6.5\nNota más baja: 4.0\nAprobados: 3",
+          "pista": "Inicializa max con un valor muy bajo (ej: 1.0) y min con un valor muy alto (ej: 7.0) antes del bucle. Actualiza ambos en cada iteración comparando con la nota leída.",
+          "entradaProcesoSalida": {
+            "entrada": "N (cantidad de estudiantes) y N notas reales",
+            "proceso": "Acumular suma, rastrear max y min, contar aprobados con bucle Para",
+            "salida": "Promedio, nota máxima, nota mínima y cantidad de aprobados"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n7-002",
+          "codigoReferencia": "entrada = input('Ingresa 5 notas separadas por espacios: ')\nnotas = [float(x) for x in entrada.split()]\npromedio = sum(notas) / len(notas)\nsobre_promedio = sum(1 for n in notas if n > promedio)\nprint(f'Promedio: {promedio:.1f}')\nprint(f'Mínima: {min(notas)}')\nprint(f'Máxima: {max(notas)}')\nprint(f'Sobre el promedio: {sobre_promedio}')",
+          "salidaEsperada": "Ingresa 5 notas separadas por espacios: 70 85 90 60 75\nPromedio: 76.0\nMínima: 60.0\nMáxima: 90.0\nSobre el promedio: 2",
+          "pista": "Usa split() para separar la cadena y una comprensión de lista para convertir cada elemento a float.",
+          "entradaProcesoSalida": {
+            "entrada": "5 notas en una línea separadas por espacios",
+            "proceso": "Calcular estadísticas de la lista",
+            "salida": "Promedio, mínima, máxima y cantidad sobre el promedio"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n7-005",
+      "concepto": "Juego: Adivina el número",
+      "modulo": "N7",
+      "titulo": "Juego: Adivina el número",
+      "dificultad": "avanzado",
+      "gradoAyuda": "desafio",
+      "conceptos": [
+        "random",
+        "while",
+        "control de flujo",
+        "Mientras",
+        "Si",
+        "Repetir",
+        "variable aleatoria",
+        "contador de intentos"
+      ],
+      "enunciado": "Genera un número aleatorio entre 1 y 100. Pide al usuario que lo adivine en un bucle. Indica en cada intento si el número secreto es mayor o menor. Cuando adivine, muestra cuántos intentos necesitó.",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n7-006",
+          "codigoReferencia": "Algoritmo adivina_numero\n  Definir secreto, intento, numero Como Entero\n  Definir gano Como Logico\n\n  secreto <- 42\n  intento <- 1\n  gano    <- Falso\n\n  Escribir \"=== ADIVINA EL NUMERO (1-100) ===\"\n\n  Mientras intento <= 7 Y NO gano Hacer\n    Escribir \"Intento \", intento, \" de 7. Tu numero: \"\n    Leer numero\n\n    Si numero = secreto Entonces\n      gano <- Verdadero\n      Escribir \"¡Correcto! Lo adivinaste en \", intento, \" intentos.\"\n    SiNo\n      Si numero < secreto Entonces\n        Escribir \"¡Demasiado bajo!\"\n      SiNo\n        Escribir \"¡Demasiado alto!\"\n      FinSi\n      intento <- intento + 1\n    FinSi\n  FinMientras\n\n  Si NO gano Entonces\n    Escribir \"¡Perdiste! El número era \", secreto, \".\"\n  FinSi\nFinAlgoritmo",
+          "salidaEsperada": "=== ADIVINA EL NUMERO (1-100) ===\nIntento 1 de 7. Tu numero: \n¡Demasiado bajo!\nIntento 2 de 7. Tu numero: \n¡Demasiado alto!\nIntento 3 de 7. Tu numero: \n¡Correcto! Lo adivinaste en 3 intentos.",
+          "pista": "Usa una variable logica 'gano' inicializada en Falso. El bucle Mientras intento <= 7 Y NO gano controla el juego. Si el usuario acierta, asigna Verdadero a 'gano' y el bucle termina.",
+          "entradaProcesoSalida": {
+            "entrada": "Hasta 7 números enteros ingresados por el usuario",
+            "proceso": "Comparar cada intento con el número secreto; dar pistas mayor/menor; terminar al acertar o agotar intentos",
+            "salida": "Pistas en cada intento y mensaje de victoria o derrota al final"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n7-005",
+          "codigoReferencia": "import random\nsecreto = random.randint(1, 100)\nintentos = 0\nwhile True:\n    intento = int(input('Adivina el número (1-100): '))\n    intentos += 1\n    if intento < secreto:\n        print('Demasiado bajo.')\n    elif intento > secreto:\n        print('Demasiado alto.')\n    else:\n        print(f'¡Correcto! Lo adivinaste en {intentos} intento(s).')\n        break",
+          "salidaEsperada": "Adivina el número (1-100): 50\nDemasiado bajo.\nAdivina el número (1-100): 75\nDemasiado alto.\nAdivina el número (1-100): 63\n¡Correcto! Lo adivinaste en 3 intento(s).",
+          "pista": "Usa random.randint(1, 100) para el número secreto. Usa un while True con break al acertar.",
+          "entradaProcesoSalida": {
+            "entrada": "Intentos del usuario",
+            "proceso": "Comparar intento con secreto y contar intentos",
+            "salida": "Pistas y resultado final"
+          }
+        }
+      }
+    },
+    {
+      "id": "mu-n7-006",
+      "concepto": "Tabla de multiplicar completa",
+      "modulo": "N7",
+      "titulo": "Generador de tabla de multiplicar completa",
+      "dificultad": "intermedio",
+      "gradoAyuda": "practica",
+      "conceptos": [
+        "comprensión de listas",
+        "join",
+        "formato de cadenas",
+        "Para anidado",
+        "Escribir",
+        "multiplicación"
+      ],
+      "enunciado": "Pide al usuario un número N (entre 2 y 10). Genera e imprime la tabla de multiplicar de 1 a N de forma formateada: cada fila es un número del 1 al N y cada columna es otro número del 1 al N. Usa comprensión de listas y str.join().",
+      "lenguajes": {
+        "pseint": {
+          "idOriginal": "ps-n7-005",
+          "codigoReferencia": "Algoritmo tabla_multiplicar_completa\n  Definir N, i, j, producto Como Entero\n\n  Escribir \"Ingrese N: \"\n  Leer N\n\n  Para i <- 1 Hasta N Con Paso 1 Hacer\n    Escribir \"--- Tabla del \", i, \" ---\"\n    Para j <- 1 Hasta N Con Paso 1 Hacer\n      producto <- i * j\n      Escribir i, \" x \", j, \" = \", producto\n    FinPara\n  FinPara\nFinAlgoritmo",
+          "salidaEsperada": "Ingrese N: 3\n--- Tabla del 1 ---\n1 x 1 = 1\n1 x 2 = 2\n1 x 3 = 3\n--- Tabla del 2 ---\n2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n--- Tabla del 3 ---\n3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9",
+          "pista": "El bucle externo Para i recorre del 1 al N (número cuya tabla se muestra). El bucle interno Para j recorre del 1 al N (multiplicador). Imprime un encabezado '--- Tabla del i ---' antes del bucle interno.",
+          "entradaProcesoSalida": {
+            "entrada": "N: límite de la tabla de multiplicar (Entero positivo)",
+            "proceso": "Dos bucles anidados Para i de 1 a N y Para j de 1 a N: imprimir i x j = i*j",
+            "salida": "Todas las multiplicaciones desde 1x1 hasta NxN"
+          }
+        },
+        "python": {
+          "idOriginal": "py-n7-015",
+          "codigoReferencia": "n = int(input(f'Ingresa un número entre 2 y 10: '))\nif n < 2 or n > 10:\n    print('Número fuera de rango.')\nelse:\n    cabecera = '   ' + ' '.join(f'{j:4}' for j in range(1, n + 1))\n    print(cabecera)\n    for i in range(1, n + 1):\n        fila = f'{i:2} |' + ' '.join(f'{i*j:4}' for j in range(1, n + 1))\n        print(fila)",
+          "salidaEsperada": "Ingresa un número entre 2 y 10: 4\n      1    2    3    4\n 1 |   1    2    3    4\n 2 |   2    4    6    8\n 3 |   3    6    9   12\n 4 |   4    8   12   16",
+          "pista": "Usa join() con una comprensión de lista para cada fila: ' '.join(f'{i*j:4}' for j in range(1, n+1)). Usa f'{valor:4}' para alinear columnas.",
+          "entradaProcesoSalida": {
+            "entrada": "N entre 2 y 10",
+            "proceso": "Generar tabla NxN con formato alineado",
+            "salida": "Tabla de multiplicar formateada"
+          }
+        }
+      }
+    }
+  ]
+}

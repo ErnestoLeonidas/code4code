@@ -1592,6 +1592,95 @@ test('mapa multi-lenguaje: IDs referenciados existen en sus bancos', () => {
   }
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+//  Esquema multi-lenguaje unificado (Fase 5)
+// ─────────────────────────────────────────────────────────────────────────────
+
+function loadUnificados() {
+  const raw = require('fs').readFileSync(
+    require('path').join(__dirname, '../json/multi/ejercicios.json'), 'utf8');
+  return JSON.parse(raw);
+}
+
+test('unificados: estructura básica válida', () => {
+  const d = loadUnificados();
+  assert(d.version && typeof d.version === 'string', 'falta campo version');
+  assert(Array.isArray(d.ejercicios), 'campo ejercicios debe ser array');
+  assert(d.total === d.ejercicios.length,
+    `total (${d.total}) != ejercicios.length (${d.ejercicios.length})`);
+});
+
+test('unificados: al menos 70 ejercicios', () => {
+  const { ejercicios } = loadUnificados();
+  assert(ejercicios.length >= 70, `se esperaban >=70 unificados, hay ${ejercicios.length}`);
+});
+
+test('unificados: campos obligatorios presentes en cada ejercicio', () => {
+  const { ejercicios } = loadUnificados();
+  for (const e of ejercicios) {
+    assert(e.id && /^mu-n\d+-\d+$/.test(e.id), `id inválido: ${e.id}`);
+    assert(e.concepto && e.concepto.trim().length > 0, `concepto vacío en ${e.id}`);
+    assert(e.modulo && /^N\d$/.test(e.modulo), `modulo inválido en ${e.id}`);
+    assert(e.enunciado && e.enunciado.trim().length > 10, `enunciado vacío en ${e.id}`);
+    assert(e.lenguajes && typeof e.lenguajes === 'object', `lenguajes ausente en ${e.id}`);
+  }
+});
+
+test('unificados: cada ejercicio tiene al menos 2 lenguajes', () => {
+  const { ejercicios } = loadUnificados();
+  for (const e of ejercicios) {
+    const n = Object.keys(e.lenguajes || {}).length;
+    assert(n >= 2, `${e.id} tiene solo ${n} lenguaje(s)`);
+  }
+});
+
+test('unificados: lenguajes válidos y cada uno tiene idOriginal y codigoReferencia', () => {
+  const LANGS = new Set(['liteseint', 'pseint', 'python']);
+  const { ejercicios } = loadUnificados();
+  for (const e of ejercicios) {
+    for (const [lang, datos] of Object.entries(e.lenguajes || {})) {
+      assert(LANGS.has(lang), `lenguaje desconocido "${lang}" en ${e.id}`);
+      assert(datos.idOriginal, `falta idOriginal en ${e.id}/${lang}`);
+      assert(datos.codigoReferencia && datos.codigoReferencia.trim().length > 0,
+        `codigoReferencia vacío en ${e.id}/${lang}`);
+    }
+  }
+});
+
+test('unificados: idOriginal referencia ejercicios existentes en los bancos', () => {
+  const { ejercicios } = loadUnificados();
+  const path = require('path');
+  const bancos = {};
+  for (const lang of ['liteseint', 'pseint', 'python']) {
+    bancos[lang] = new Set();
+    for (let n = 1; n <= 7; n++) {
+      try {
+        const d = require(path.join(__dirname, `../json/${lang}/N${n}.json`));
+        const lista = d.exercises || d.ejercicios || [];
+        lista.forEach(e => bancos[lang].add(e.id));
+      } catch (_) { /* nivel inexistente */ }
+    }
+  }
+  for (const e of ejercicios) {
+    for (const [lang, datos] of Object.entries(e.lenguajes || {})) {
+      assert(bancos[lang] && bancos[lang].has(datos.idOriginal),
+        `idOriginal "${datos.idOriginal}" no existe en banco ${lang} (ejercicio ${e.id})`);
+    }
+  }
+});
+
+test('unificados: IDs únicos y concepto único por ejercicio', () => {
+  const { ejercicios } = loadUnificados();
+  const ids = new Set();
+  const conceptos = new Set();
+  for (const e of ejercicios) {
+    assert(!ids.has(e.id), `id duplicado: ${e.id}`);
+    assert(!conceptos.has(e.concepto.toLowerCase()), `concepto duplicado: "${e.concepto}"`);
+    ids.add(e.id);
+    conceptos.add(e.concepto.toLowerCase());
+  }
+});
+
 (async () => {
   let fallas = 0;
 
