@@ -69,6 +69,8 @@ function cargarAppEnContexto() {
     'core/liteseint/parser.js',
     'core/liteseint/expression-evaluator.js',
     'core/liteseint/runtime.js',
+    'js/editor/ayudas.js',
+    'core/liteseint/ayudas-data.js',
     'core/liteseint/provider.js'
   ];
   for (const rel of scripts) {
@@ -349,6 +351,20 @@ async function main() {
       'errores: ' + JSON.stringify(errores));
   });
 
+  await prueba('integración: catalogoAyudas de LiteSeInt expone símbolos con firma', () => {
+    asegurar(typeof proveedorReal.catalogoAyudas === 'function',
+      'el provider LiteSeInt debe exponer catalogoAyudas()');
+    const simbolos = proveedorReal.catalogoAyudas();
+    asegurar(Array.isArray(simbolos) && simbolos.length > 10,
+      'catalogoAyudas debe traer varios símbolos: ' + (simbolos && simbolos.length));
+    const escribir = simbolos.find((s) => s.nombre === 'Escribir');
+    asegurar(escribir && escribir.firma && escribir.descripcion,
+      'Escribir debe tener firma y descripción');
+    const abs = simbolos.find((s) => s.nombre === 'Abs');
+    asegurar(abs && Array.isArray(abs.params) && abs.params.length === 1,
+      'Abs debe declarar su parámetro para la ayuda de firma');
+  });
+
   // ---- provider PSeInt (definición, sin núcleo) ----
   await prueba('PSeInt: la definición del provider cumple el contrato', () => {
     const mod = require(path.join(__dirname, '..', 'core', 'pseint', 'provider.js'));
@@ -378,6 +394,8 @@ async function main() {
       'core/pseint/validator.js',
       'core/pseint/expression-evaluator.js',
       'core/pseint/runtime.js',
+      'js/editor/ayudas.js',
+      'core/pseint/ayudas-data.js',
       'core/pseint/provider.js',
     ];
     for (const rel of scripts) {
@@ -532,6 +550,20 @@ async function main() {
     const perfilDesconocido = proveedorPS.obtenerPerfil();
     asegurar(perfilDesconocido.asignacionConIgual === false,
       'preset desconocido debe caer en estricto');
+  });
+
+  await prueba('PSeInt integración: catalogoAyudas expone funciones nativas con firma', () => {
+    asegurar(typeof proveedorPS.catalogoAyudas === 'function',
+      'el provider PSeInt debe exponer catalogoAyudas()');
+    const simbolos = proveedorPS.catalogoAyudas();
+    asegurar(Array.isArray(simbolos) && simbolos.length > 20,
+      'catalogoAyudas debe traer muchos símbolos: ' + (simbolos && simbolos.length));
+    const rc = simbolos.find((s) => s.nombre === 'RC');
+    asegurar(rc && rc.firma && Array.isArray(rc.params) && rc.params.length === 1,
+      'RC debe tener firma y un parámetro');
+    const aleatorio = simbolos.find((s) => s.nombre === 'ALEATORIO');
+    asegurar(aleatorio && aleatorio.params.length === 2,
+      'ALEATORIO debe declarar sus dos parámetros');
   });
 
   // ---- provider Python (definición, con tokenizador real en Node) ----

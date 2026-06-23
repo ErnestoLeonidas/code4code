@@ -36,6 +36,12 @@
     return typeof DocErrores !== 'undefined' ? DocErrores : null;
   }
 
+  /** Catálogo de símbolos para las ayudas de código (core/liteseint/ayudas-data.js). */
+  function simbolosAyuda() {
+    return (typeof AyudasLiteSeInt !== 'undefined' && AyudasLiteSeInt.SIMBOLOS_LITESEINT)
+      ? AyudasLiteSeInt.SIMBOLOS_LITESEINT : [];
+  }
+
   /** Plantilla protegida del editor (idéntica a la estructura base v1.x). */
   var PLANTILLA = 'Proceso nombre_proceso\n\n\n\n\n\n\n\n\nFinProceso';
 
@@ -241,6 +247,14 @@
           vistos[clave] = true;
           return true;
         });
+      },
+
+      /**
+       * Catálogo de símbolos para las ayudas de código (hover, firma).
+       * Lo consume js/editor/ayudas.js. Ver core/liteseint/ayudas-data.js.
+       */
+      catalogoAyudas: function () {
+        return simbolosAyuda();
       }
     };
   }

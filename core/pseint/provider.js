@@ -39,6 +39,12 @@
     return typeof DocErroresPSeInt !== 'undefined' ? DocErroresPSeInt : null;
   }
 
+  /** Catálogo de símbolos para las ayudas de código (core/pseint/ayudas-data.js). */
+  function simbolosAyuda() {
+    return (typeof AyudasPSeInt !== 'undefined' && AyudasPSeInt.SIMBOLOS_PSEINT)
+      ? AyudasPSeInt.SIMBOLOS_PSEINT : [];
+  }
+
   /** Plantilla inicial del editor para PSeInt. */
   var PLANTILLA = 'Algoritmo nombre_algoritmo\n\n\n\n\n\nFinAlgoritmo';
 
@@ -301,6 +307,14 @@
         return {
           comandos: DOC_COMANDOS_PSEINT
         };
+      },
+
+      /**
+       * Catálogo de símbolos para las ayudas de código (hover, firma).
+       * Lo consume js/editor/ayudas.js. Ver core/pseint/ayudas-data.js.
+       */
+      catalogoAyudas: function () {
+        return simbolosAyuda();
       }
     };
   }

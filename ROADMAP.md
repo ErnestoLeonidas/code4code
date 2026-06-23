@@ -265,18 +265,22 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
       indentación) usa los colores de ayu Mirage con suficiente especificidad
       para ganar a los temas globales, evitando costuras entre el código y la
       columna de números.
-- [~] **Ayudas de código multilenguaje (estilo Pylance).** Módulo puro y
+- [x] **Ayudas de código multilenguaje (estilo Pylance).** Módulo puro y
       reutilizable `js/editor/ayudas.js` (`Code4CodeAyudas`): `crearCatalogo`,
       `buscar`, `completar`, `palabraEn` (identificador bajo el cursor, para
       hover) y `contextoLlamada` (función y argumento actual, para ayuda de
       firma). Cada provider expone su catálogo con `provider.catalogoAyudas()`;
-      el catálogo Python vive en `core/python/ayudas-data.js` (≈33 símbolos con
-      firma, descripción, parámetros, retorno y ejemplo en español). El
-      autocompletado de Python ya viene enriquecido (firma + descripción).
-      Suite `tests/ayudas-tests.js` (16). **Pendiente (en curso, agente):** la
-      UI de hover de documentación y ayuda de firma en `js/app.js`/CSS, y los
-      catálogos `ayudas-data.js` de LiteSeInt y PSeInt (misma forma de dato).
-      Referencia de contenido: github.com/microsoft/pylance-release.
+      catálogos en `core/<lenguaje>/ayudas-data.js` con la misma forma de dato
+      (nombre, tipo, firma, descripción, params, retorno, ejemplo en español):
+      **Python** (~33 símbolos), **LiteSeInt** (~40) y **PSeInt** (~55, con las
+      20 funciones nativas). UI en `js/app.js`/CSS: **hover de documentación**
+      (símbolo bajo el cursor) y **ayuda de firma** (parámetro activo resaltado),
+      genéricas para cualquier lenguaje con catálogo. El autocompletado de Python
+      sale enriquecido con firma + descripción. Suites: `tests/ayudas-tests.js`
+      (16) + integración en `tests/contract-tests.js`. Referencia de contenido:
+      github.com/microsoft/pylance-release.
+      *Pendiente menor:* enriquecer también el dropdown de autocompletado de
+      LiteSeInt/PSeInt con la descripción del catálogo (hoy solo Python).
 - [x] Rendimiento: `actualizarSyntaxHighlight` e `actualizarIndentGuides` diferidos
       30 ms via `_pendingSyntaxTimer` en `actualizarLineas`; undo/redo y
       search/replace usan `actualizarLineasInmediato` para render síncrono.
