@@ -260,6 +260,23 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
       ni Python**. Ahora `zonaEditable()` trata el documento completo como
       editable en esos lenguajes y `unidadIndentacion()` da 4 espacios en Python
       (2 en el resto); `pairs.alNuevaLinea` acepta la unidad como parámetro.
+- [x] Editor Python con paleta ayu **Mirage completa**: además de la sintaxis,
+      la superficie (fondo, gutter, wrapper, cursor, selección, guías de
+      indentación) usa los colores de ayu Mirage con suficiente especificidad
+      para ganar a los temas globales, evitando costuras entre el código y la
+      columna de números.
+- [~] **Ayudas de código multilenguaje (estilo Pylance).** Módulo puro y
+      reutilizable `js/editor/ayudas.js` (`Code4CodeAyudas`): `crearCatalogo`,
+      `buscar`, `completar`, `palabraEn` (identificador bajo el cursor, para
+      hover) y `contextoLlamada` (función y argumento actual, para ayuda de
+      firma). Cada provider expone su catálogo con `provider.catalogoAyudas()`;
+      el catálogo Python vive en `core/python/ayudas-data.js` (≈33 símbolos con
+      firma, descripción, parámetros, retorno y ejemplo en español). El
+      autocompletado de Python ya viene enriquecido (firma + descripción).
+      Suite `tests/ayudas-tests.js` (16). **Pendiente (en curso, agente):** la
+      UI de hover de documentación y ayuda de firma en `js/app.js`/CSS, y los
+      catálogos `ayudas-data.js` de LiteSeInt y PSeInt (misma forma de dato).
+      Referencia de contenido: github.com/microsoft/pylance-release.
 - [x] Rendimiento: `actualizarSyntaxHighlight` e `actualizarIndentGuides` diferidos
       30 ms via `_pendingSyntaxTimer` en `actualizarLineas`; undo/redo y
       search/replace usan `actualizarLineasInmediato` para render síncrono.
