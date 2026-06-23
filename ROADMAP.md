@@ -428,13 +428,13 @@ conecta la experiencia del estudiante entre lenguajes:
 
 **Pendiente de la Fase 5:**
 
-- [ ] **Esquema multi-lenguaje unificado** (*un enunciado, N soluciones*). Hoy
-      cada lenguaje tiene su banco propio y `json/multi/mapa.json` los enlaza
-      *a posteriori* por concepto. El objetivo es un formato de ejercicio único
-      con un enunciado compartido y una `codigoReferencia`/`entradaProcesoSalida`
-      por lenguaje, para no duplicar enunciados y mantener la equivalencia por
-      construcción. Migración incremental: el mapa actual sigue sirviendo como
-      puente hasta que el esquema unificado esté validado en `npm test`.
+- [x] **Esquema multi-lenguaje unificado** (*un enunciado, N soluciones*).
+      `json/multi/ejercicios.json` con 74 ejercicios unificados (9 con 3 lenguajes,
+      65 con 2). Enunciado compartido neutro + `codigoReferencia`/`entradaProcesoSalida`
+      por lenguaje. API extendida en `EjerciciosMulti`: `ejercicioUnificadoPorId`,
+      `ejerciciosUnificadosPorModulo`. Sección "Comparar soluciones" en el detalle
+      del ejercicio. 7 pruebas en `run-tests.js` (total 100/100). El `mapa.json`
+      legado sigue funcionando como puente para retrocompatibilidad.
 
 ### Fase 6 — Estabilización y release `v3.0.0`
 
@@ -518,6 +518,7 @@ compromisos de alcance.
 | `2.3.6-beta` | Coerción PSeInt completa, mapa multi-lenguaje + progreso comparado |
 | `2.3.7-beta` | Plegado Python por indentación, README al estado real |
 | `2.3.8-beta` | Ruta modular N1–N7 (PSeInt/Python), mapa 74 entradas |
-| `2.3.9-beta` | Autocompletado enriquecido LiteSeInt/PSeInt, CI GitHub Actions *(actual)* |
+| `2.3.9-beta` | Autocompletado enriquecido LiteSeInt/PSeInt, CI GitHub Actions |
+| `2.4.0` | Esquema multi-lenguaje unificado (ejercicios.json, 74 ejercicios) *(actual)* |
 | `2.4.0` | Esquema de ejercicio multi-lenguaje unificado (un enunciado, N soluciones) |
 | `3.0.0` | Release estable Code4Code (CI, auditoría de rendimiento, QA flujo completo) |

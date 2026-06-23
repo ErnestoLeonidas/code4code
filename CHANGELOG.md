@@ -1,5 +1,34 @@
 # Changelog — Code4Code
 
+## [2.4.0-beta] - 2026-06-22
+
+### Fase 5 — Esquema multi-lenguaje unificado (`v2.4.0`)
+
+- `json/multi/ejercicios.json`: 74 ejercicios unificados generados con
+  `scripts/generar-unificados.js`. Cada entrada tiene: `id` (`mu-nX-NNN`),
+  `concepto`, `modulo`, `titulo`, `dificultad`, `gradoAyuda`, `conceptos`,
+  `enunciado` compartido (preferentemente el de Python, más neutro), y un mapa
+  `lenguajes` con `codigoReferencia`, `salidaEsperada`, `pista`,
+  `entradaProcesoSalida` e `idOriginal` por cada lenguaje disponible.
+  9 ejercicios cubren los 3 lenguajes; 65 cubren 2 lenguajes.
+- `scripts/generar-unificados.js`: script de migración one-time. No es build
+  step: el JSON resultante se versiona como archivo estático.
+- `js/ejercicios-multi-data.js`: API extendida con `ejercicioUnificadoPorId(id, lang)`
+  y `ejerciciosUnificadosPorModulo(modulo)`; carga `json/multi/ejercicios.json` en
+  paralelo con `mapa.json` (falla silenciosamente si no existe); índice lazy por
+  `idOriginal`. La API legada queda intacta (`buscarPorId`, `MAPAS`, etc.).
+- `js/app.js`: nueva sección colapsable "Comparar soluciones en otros lenguajes"
+  en el panel de detalle del ejercicio, que muestra el `codigoReferencia` de los
+  lenguajes alternativos cuando existen datos unificados.
+- `css/styles.css`: estilos para `.ej-comparar-soluciones`, `.ej-comp-lang-label`
+  y `.ej-comp-codigo` (bloque de código con scroll horizontal, altura máx. 180 px).
+
+### Tests
+
+- `tests/run-tests.js`: 7 nuevas pruebas del esquema unificado (estructura básica,
+  mínimo 70 entradas, campos obligatorios, ≥ 2 lenguajes por ejercicio, `idOriginal`
+  referenciando ejercicios reales, IDs y conceptos únicos). Total: 100/100.
+
 ## [2.3.9-beta] - 2026-06-22
 
 ### Fase 2 — Autocompletado enriquecido en LiteSeInt y PSeInt
