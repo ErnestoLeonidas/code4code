@@ -363,6 +363,9 @@ function providerActivo() {
 let controlEjecucion = null;
 
 function crearHostDeEjecucion() {
+  // Acumula las líneas de salida normal para la autocorrección al finalizar.
+  const _lineasSalida = [];
+
   return Code4Code.crearRuntimeHost({
     escribir(texto, meta) {
       const tipo = meta && meta.tipo;
@@ -384,6 +387,7 @@ function crearHostDeEjecucion() {
         consolaImprimir(texto, "input-echo");
       } else {
         consolaImprimir(texto, "output");
+        _lineasSalida.push(String(texto));
       }
     },
 
@@ -419,6 +423,7 @@ function crearHostDeEjecucion() {
           consolaImprimir("Fin de ejecución", "system");
           setEstado("", "Listo");
           finalizarEjecucionUI();
+          verificarAutocorreccion(_lineasSalida.join("\n"));
           break;
         case "detenido":
           setEstado("", "Detenido");
@@ -438,6 +443,24 @@ function finalizarEjecucionUI() {
   limpiarEjecucionHighlight();
   $("#btnEjecutar").prop("disabled", false);
   $("#btnDetener").hide();
+}
+
+function verificarAutocorreccion(salidaReal) {
+  if (!ejercicioSeleccionadoId) return;
+  const ejercicio = ejercicioPorId(ejercicioSeleccionadoId);
+  if (!ejercicio || !ejercicio.salidaEsperada) return;
+  if (estadoEjercicio(ejercicioSeleccionadoId) === "completado") return;
+
+  // Normalizar: eliminar espacios al final de cada línea y del total.
+  const norm = (s) => String(s).split("\n").map((l) => l.trimEnd()).join("\n").trimEnd();
+  if (norm(salidaReal) !== norm(ejercicio.salidaEsperada)) return;
+
+  setEstadoEjercicio(ejercicioSeleccionadoId, "completado");
+  renderizarListaEjercicios();
+  renderizarResumenProgreso();
+  renderizarRutaEstudiante();
+  mostrarDetalleEjercicio(ejercicioSeleccionadoId);
+  consolaImprimir("✓ ¡Salida correcta! Ejercicio marcado como completado.", "system");
 }
 
 // =========================================

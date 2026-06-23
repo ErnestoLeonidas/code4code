@@ -465,16 +465,15 @@ conecta la experiencia del estudiante entre lenguajes:
 Ordenadas por valor/esfuerzo estimado. Son propuestas para discutir, no
 compromisos de alcance.
 
-- [ ] **Autocorrección por salida esperada.** Los tres bancos ya guardan
-      `entradaProcesoSalida`, pero hoy el progreso se marca a mano
-      (`pendiente`/`en-curso`/`completado`). Ejecutar la solución del estudiante
-      con la entrada del ejercicio y comparar con la salida esperada permitiría
-      marcar *Completado* automáticamente y dar feedback. Era "fuera de alcance
-      post-1.0" en LiteSeInt; ahora los metadatos lo habilitan. **Alto valor.**
-- [ ] **Exportar/importar progreso local.** El progreso vive solo en
-      `localStorage`; un export/import a JSON (los tres lenguajes) mitiga el
-      riesgo de pérdida al limpiar el navegador o cambiar de equipo. **Bajo
-      esfuerzo.**
+- [x] **Autocorrección por salida esperada.** Al finalizar la ejecución,
+      `verificarAutocorreccion()` en `js/app.js` compara la salida acumulada con
+      `salidaEsperada` del ejercicio activo (normalización por `trimEnd` por línea);
+      si coincide, marca automáticamente *Completado* y muestra mensaje en consola.
+      Funciona en los tres lenguajes. Limitación conocida: `Escribir Sin Saltar`
+      en PSeInt N7 puede no coincidir (caso raro).
+- [x] **Exportar/importar progreso local.** Implementado en `js/app.js`
+      (`exportarProgreso` / `importarProgresoDesdeArchivo`): exporta JSON con los
+      tres lenguajes y lo reimporta sin sobrescribir lo no incluido.
 - [ ] **PWA + Service Worker.** Cacheo de Pyodide y de la app para uso offline;
       mitiga el riesgo del peso de Pyodide (~6–10 MB) en conexiones lentas y
       encaja con el principio "100% client-side, sin instalación".

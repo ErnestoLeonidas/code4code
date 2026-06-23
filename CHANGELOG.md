@@ -1,5 +1,23 @@
 # Changelog — Code4Code
 
+## [2.4.1-beta] - 2026-06-22
+
+### Backlog — Autocorrección por salida esperada
+
+- `js/app.js` — nueva función `verificarAutocorreccion(salidaReal)`: al terminar
+  la ejecución con éxito, compara la salida acumulada con `salidaEsperada` del
+  ejercicio activo. Normalización: `trimEnd` por línea + `trimEnd` del total.
+  Si coincide y el ejercicio aún no era *Completado*, lo marca automáticamente,
+  refresca lista, progreso y ruta, y muestra `"✓ ¡Salida correcta! Ejercicio
+  marcado como completado."` en la consola.
+- `crearHostDeEjecucion()` acumula las líneas de salida normal (`tipo: 'salida'`
+  / sin tipo) en closure `_lineasSalida`; llama a `verificarAutocorreccion`
+  al finalizar. Errores y mensajes de sistema no se acumulan.
+- Funciona en los tres lenguajes (LiteSeInt, PSeInt, Python). Limitación
+  conocida: `Escribir Sin Saltar` en PSeInt N7 puede no hacer coincidir.
+- Backlog: `Exportar/importar progreso local` marcado como completado en ROADMAP
+  (ya estaba implementado desde Fase 5 en `exportarProgreso`/`importarProgresoDesdeArchivo`).
+
 ## [2.4.0-beta] - 2026-06-22
 
 ### Fase 5 — Esquema multi-lenguaje unificado (`v2.4.0`)
