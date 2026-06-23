@@ -318,6 +318,21 @@
     return typeof DocErroresPython !== 'undefined' ? DocErroresPython : null;
   }
 
+  /** Lista de símbolos para las ayudas de código (core/python/ayudas-data.js). */
+  function simbolosAyuda() {
+    return (typeof AyudasPython !== 'undefined' && AyudasPython.SIMBOLOS_PYTHON)
+      ? AyudasPython.SIMBOLOS_PYTHON : [];
+  }
+
+  /** Catálogo indexado (js/editor/ayudas.js), construido una sola vez. */
+  var _catalogo = null;
+  function catalogoIndexado() {
+    if (_catalogo) return _catalogo;
+    if (typeof Code4CodeAyudas === 'undefined') return null;
+    _catalogo = Code4CodeAyudas.crearCatalogo(simbolosAyuda());
+    return _catalogo;
+  }
+
   var definicion = {
     id: ID,
     nombre: 'Python',
@@ -379,11 +394,39 @@
     autocompletar: function (ctx) {
       var prefijo = (ctx && ctx.prefijo || '').toLowerCase();
       if (prefijo.length < 2) return [];
-      return KEYWORDS_AUTOCOMPLETAR.filter(function (k) {
-        return k.toLowerCase().startsWith(prefijo) && k.toLowerCase() !== prefijo;
-      }).map(function (k) {
-        return { texto: k, tipo: 'keyword' };
+
+      var res = [];
+      var vistos = Object.create(null);
+
+      // 1) Candidatos del catálogo de ayudas: incluyen firma y descripción
+      //    (degrada a [] si el módulo de ayudas no está cargado).
+      var cat = catalogoIndexado();
+      if (cat) {
+        Code4CodeAyudas.completar(cat, prefijo).forEach(function (c) {
+          vistos[c.texto.toLowerCase()] = true;
+          res.push(c);
+        });
+      }
+
+      // 2) Keywords restantes que el catálogo no cubre (sin docs).
+      KEYWORDS_AUTOCOMPLETAR.forEach(function (k) {
+        var kl = k.toLowerCase();
+        if (kl.indexOf(prefijo) === 0 && kl !== prefijo && !vistos[kl]) {
+          vistos[kl] = true;
+          res.push({ texto: k, tipo: 'keyword' });
+        }
       });
+
+      return res;
+    },
+
+    /**
+     * Catálogo de símbolos para las ayudas de código (autocompletado
+     * enriquecido, hover y ayuda de firma). Lo consume js/editor/ayudas.js.
+     * @returns {Array<object>} lista de símbolos (ver core/python/ayudas-data.js)
+     */
+    catalogoAyudas: function () {
+      return simbolosAyuda();
     },
 
     /**

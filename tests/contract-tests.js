@@ -549,7 +549,9 @@ async function main() {
       'core/language-provider.js',
       'core/language-registry.js',
       'core/runtime-host.js',
+      'js/editor/ayudas.js',
       'core/python/tokenizer.js',
+      'core/python/ayudas-data.js',
       'core/python/provider.js',
     ];
     for (const rel of scripts) {
@@ -628,6 +630,27 @@ async function main() {
     const candidatos = proveedorPy.autocompletar({ prefijo: 'd' });
     asegurar(Array.isArray(candidatos) && candidatos.length === 0,
       'prefijo de 1 carácter debe devolver vacío');
+  });
+
+  await prueba('Python integración: autocompletar enriquece con firma y descripción', () => {
+    const candidatos = proveedorPy.autocompletar({ prefijo: 'pri' });
+    const print = candidatos.find((c) => c.texto === 'print');
+    asegurar(print, 'debe sugerir print para prefijo "pri"');
+    asegurar(print.detalle && print.detalle.indexOf('print(') === 0,
+      'print debe traer su firma como detalle: ' + JSON.stringify(print));
+    asegurar(print.descripcion && print.descripcion.length > 0,
+      'print debe traer descripción');
+  });
+
+  await prueba('Python integración: catalogoAyudas expone símbolos con firma', () => {
+    asegurar(typeof proveedorPy.catalogoAyudas === 'function',
+      'el provider debe exponer catalogoAyudas()');
+    const simbolos = proveedorPy.catalogoAyudas();
+    asegurar(Array.isArray(simbolos) && simbolos.length > 10,
+      'catalogoAyudas debe traer varios símbolos');
+    const len = simbolos.find((s) => s.nombre === 'len');
+    asegurar(len && len.firma && len.descripcion,
+      'len debe tener firma y descripción en el catálogo');
   });
 
   await prueba('Python integración: validar devuelve array vacío para código correcto', () => {
