@@ -288,6 +288,10 @@ Mejoras nuevas (orden sugerido por valor/esfuerzo):
       autocompletado (autocomplete-tests 10/10), pares (pairs-tests 20/20),
       búsqueda (search-tests 13/13), historial (history-tests 21/21),
       plegado (folding-tests 19/19), gutter (gutter-tests 12/12).
+- [x] **Autocompletado enriquecido en LiteSeInt y PSeInt.** `contextoDesdePosicion`
+      expone `prefijo`; los providers LiteSeInt y PSeInt usan `Code4CodeAyudas.completar`
+      cuando el catálogo está cargado (firma + descripción en el dropdown).
+      Bug corregido de paso: PSeInt antes devolvía todos los keywords sin filtrar.
 
 **Criterio de salida:** checklist de regresión cero completo + pruebas manuales
 del flujo estudiante en escritorio y móvil.
@@ -443,7 +447,7 @@ conecta la experiencia del estudiante entre lenguajes:
       funcionales, conteos correctos, estructura de proyecto actualizada).
 - [ ] Pruebas del flujo completo de estudiante en escritorio y móvil con los
       tres lenguajes. *Requiere browser.*
-- [ ] **CI: `npm test` en cada push/PR** (GitHub Actions, Node, sin build).
+- [x] **CI: `npm test` en cada push/PR** (GitHub Actions, Node, sin build).
       Refuerza la regla de oro #1 automáticamente; no introduce build step del
       producto (la app sigue sirviéndose estática). Único ítem de Fase 6 que se
       puede cerrar sin browser.
@@ -513,6 +517,7 @@ compromisos de alcance.
 | `2.3.5-beta` | `ORDENAR`, golden por preset, metadatos Python, mapa multi inicial |
 | `2.3.6-beta` | Coerción PSeInt completa, mapa multi-lenguaje + progreso comparado |
 | `2.3.7-beta` | Plegado Python por indentación, README al estado real |
-| `2.3.8-beta` | Ruta modular N1–N7 (PSeInt/Python), mapa 74 entradas *(actual)* |
+| `2.3.8-beta` | Ruta modular N1–N7 (PSeInt/Python), mapa 74 entradas |
+| `2.3.9-beta` | Autocompletado enriquecido LiteSeInt/PSeInt, CI GitHub Actions *(actual)* |
 | `2.4.0` | Esquema de ejercicio multi-lenguaje unificado (un enunciado, N soluciones) |
 | `3.0.0` | Release estable Code4Code (CI, auditoría de rendimiento, QA flujo completo) |

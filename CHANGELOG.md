@@ -1,5 +1,27 @@
 # Changelog — Code4Code
 
+## [2.3.9-beta] - 2026-06-22
+
+### Fase 2 — Autocompletado enriquecido en LiteSeInt y PSeInt
+
+- `js/editor/autocomplete.js`: `contextoDesdePosicion` ahora incluye el campo
+  `prefijo` (identificador inmediatamente anterior al cursor) para que los
+  providers puedan usarlo directamente sin re-extraerlo.
+- `core/liteseint/provider.js`: `autocompletar` usa `Code4CodeAyudas.completar()`
+  cuando el catálogo está cargado (añade `firma` y `descripcion` al dropdown, como
+  ya hacía Python). Sin catálogo, conserva el comportamiento v1.x exacto.
+- `core/pseint/provider.js`: igual que LiteSeInt. Además corrige un bug previo:
+  antes devolvía TODOS los keywords sin filtrar por prefijo.
+- Python ya usaba `ctx.prefijo`; con el campo ahora presente en el contexto,
+  el autocompletado enriquecido funciona también para Python.
+- Tests: `autocomplete-tests.js` verifica el nuevo campo `prefijo`; `contract-tests.js`
+  adapta las aserciones de PSeInt al nuevo filtrado y al tipo `'función'` del catálogo.
+
+### Fase 6 — CI con GitHub Actions
+
+- `.github/workflows/ci.yml`: ejecuta `npm test` en cada push/PR a `main` sobre
+  ubuntu-latest con Node 22. Cierra el único ítem de Fase 6 sin requerir navegador.
+
 ## [2.3.8-beta] - 2026-06-17
 
 ### Fase 5 — Ruta modular para PSeInt y Python + mapa multi-lenguaje ampliado
