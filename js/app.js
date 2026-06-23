@@ -515,6 +515,7 @@ function initLanguageSelect() {
     actualizarVisibilidadPerfil(provider);
     actualizarLangEditor(provider);
     actualizarBarraSimbolos(provider);
+    resetCatalogoAyudas();
     if (provider.id === "pseint" && typeof provider.configurarPerfil === "function") {
       try {
         const guardado = localStorage.getItem("code4code:perfilPSeInt");
@@ -2226,12 +2227,21 @@ function mostrarAutocompletado() {
   acIndice = 0;
 
   candidatos.forEach((item, idx) => {
+    const badge = escapeHtml(item.detalle || item.tipo || "");
+    let html =
+      `<div class="autocomplete-item-fila">` +
+      `<span>${escapeHtml(item.texto)}</span>` +
+      `<span class="kw-badge">${badge}</span>` +
+      `</div>`;
+    // Segunda línea: descripción del símbolo (cuando el catálogo la aporta).
+    if (item.descripcion) {
+      html += `<div class="autocomplete-desc">${escapeHtml(item.descripcion)}</div>`;
+    }
     const $it = $("<div>")
       .addClass("autocomplete-item")
+      .toggleClass("tiene-desc", !!item.descripcion)
       .attr("data-texto", item.texto)
-      .html(
-        `<span>${item.texto}</span><span class="kw-badge">${item.detalle || item.tipo}</span>`,
-      )
+      .html(html)
       .on("click", () => {
         insertarAutocompletado(item.texto);
         ocultarAutocompletado();
@@ -2299,6 +2309,254 @@ function ocultarAutocompletado() {
 $(document).on("click", function (e) {
   if (!$(e.target).closest("#editor, #autocompleteDropdown").length)
     ocultarAutocompletado();
+});
+
+// =========================================
+// 9b. AYUDAS DE CÓDIGO (hover de documentación y ayuda de firma)
+// =========================================
+//
+// Cableado genérico de las "ayudas de código" estilo Pylance sobre la
+// lógica pura de js/editor/ayudas.js. Funciona con cualquier lenguaje cuyo
+// provider implemente `catalogoAyudas()`. El catálogo del lenguaje activo se
+// construye una sola vez y se cachea por `provider.id`; la caché se invalida
+// al cambiar de lenguaje (ver el `registro.onCambio` del bloque de ejecución).
+
+let _catalogoAyudasCache = null;     // { id, catalogo } del lenguaje activo
+let _hoverAyudaTimer = null;
+
+/**
+ * Catálogo de ayudas del provider activo (cacheado por id). Devuelve null si
+ * el lenguaje no expone `catalogoAyudas()` o si el módulo de ayudas no está
+ * cargado.
+ */
+function catalogoAyudasActivo() {
+  if (typeof Code4CodeAyudas === "undefined") return null;
+  const prov = providerActivo();
+  if (!prov || typeof prov.catalogoAyudas !== "function") return null;
+  if (_catalogoAyudasCache && _catalogoAyudasCache.id === prov.id) {
+    return _catalogoAyudasCache.catalogo;
+  }
+  const catalogo = Code4CodeAyudas.crearCatalogo(prov.catalogoAyudas());
+  _catalogoAyudasCache = { id: prov.id, catalogo };
+  return catalogo;
+}
+
+/** Invalida la caché del catálogo (al cambiar de lenguaje). */
+function resetCatalogoAyudas() {
+  _catalogoAyudasCache = null;
+  ocultarHoverAyuda();
+  ocultarAyudaFirma();
+}
+
+/**
+ * Offset de carácter bajo un punto de la pantalla dentro del textarea.
+ * Devuelve null si el navegador no soporta la API o el punto no cae sobre
+ * el editor.
+ */
+function offsetDesdePunto(x, y) {
+  const editor = document.getElementById("editor");
+  if (!editor) return null;
+  let nodo = null;
+  let offset = null;
+  if (document.caretPositionFromPoint) {          // Firefox
+    const p = document.caretPositionFromPoint(x, y);
+    if (!p) return null;
+    nodo = p.offsetNode;
+    offset = p.offset;
+  } else if (document.caretRangeFromPoint) {       // Chrome/Safari
+    const r = document.caretRangeFromPoint(x, y);
+    if (!r) return null;
+    nodo = r.startContainer;
+    offset = r.startOffset;
+  } else {
+    return null;
+  }
+  // Verificar que el punto cae sobre el textarea (o dentro del área de código).
+  const objetivo = nodo && nodo.nodeType === 1 ? nodo : nodo && nodo.parentNode;
+  if (nodo !== editor && objetivo !== editor &&
+      !(objetivo && objetivo.closest && objetivo.closest(".editor-code-area"))) {
+    return null;
+  }
+  return offset;
+}
+
+// --- Hover de documentación -------------------------------------------------
+
+function ocultarHoverAyuda() {
+  $("#codeHoverTooltip").removeClass("visible");
+}
+
+/**
+ * Construye el contenido del tooltip de hover para un símbolo del catálogo.
+ * Todo el texto se escapa antes de inyectarse.
+ */
+function pintarHoverAyuda(simbolo, x, y) {
+  const $tt = $("#codeHoverTooltip");
+  let html = "";
+  if (simbolo.firma) {
+    html += `<div class="ayuda-firma">${escapeHtml(simbolo.firma)}</div>`;
+  } else {
+    html += `<div class="ayuda-firma">${escapeHtml(simbolo.nombre)}</div>`;
+  }
+  if (simbolo.tipo) {
+    html += `<span class="ayuda-tipo">${escapeHtml(simbolo.tipo)}</span>`;
+  }
+  if (simbolo.descripcion) {
+    html += `<div class="ayuda-descripcion">${escapeHtml(simbolo.descripcion)}</div>`;
+  }
+  if (simbolo.ejemplo) {
+    html += `<div class="ayuda-ejemplo">${escapeHtml(simbolo.ejemplo)}</div>`;
+  }
+  $tt.html(html);
+
+  // Posicionar cerca del puntero (position: fixed → coordenadas de viewport),
+  // evitando salir por el borde derecho/inferior.
+  $tt.addClass("visible");
+  const ancho = $tt.outerWidth();
+  const alto = $tt.outerHeight();
+  let left = x + 14;
+  let top = y + 18;
+  if (left + ancho > window.innerWidth - 8) left = Math.max(8, x - ancho - 10);
+  if (top + alto > window.innerHeight - 8) top = Math.max(8, y - alto - 10);
+  $tt.css({ left: left + "px", top: top + "px" });
+}
+
+function procesarHoverAyuda(x, y) {
+  const cat = catalogoAyudasActivo();
+  if (!cat) { ocultarHoverAyuda(); return; }
+  const editor = document.getElementById("editor");
+  if (!editor) { ocultarHoverAyuda(); return; }
+  const offset = offsetDesdePunto(x, y);
+  if (offset == null) { ocultarHoverAyuda(); return; }
+  const info = Code4CodeAyudas.palabraEn(editor.value, offset);
+  if (!info) { ocultarHoverAyuda(); return; }
+  const simbolo = Code4CodeAyudas.buscar(cat, info.palabra);
+  if (!simbolo) { ocultarHoverAyuda(); return; }
+  pintarHoverAyuda(simbolo, x, y);
+}
+
+$("#editor").on("mousemove", function (e) {
+  const x = e.clientX;
+  const y = e.clientY;
+  if (_hoverAyudaTimer) clearTimeout(_hoverAyudaTimer);
+  _hoverAyudaTimer = setTimeout(() => procesarHoverAyuda(x, y), 270);
+});
+
+$("#editor").on("mouseleave", function () {
+  if (_hoverAyudaTimer) clearTimeout(_hoverAyudaTimer);
+  ocultarHoverAyuda();
+});
+
+// Escribir o desplazar el editor oculta el tooltip (quedaría desfasado).
+$("#editor").on("input keydown scroll", function () {
+  if (_hoverAyudaTimer) clearTimeout(_hoverAyudaTimer);
+  ocultarHoverAyuda();
+});
+
+// --- Ayuda de firma (signature help) ---------------------------------------
+
+function ocultarAyudaFirma() {
+  $("#signatureHelp").removeClass("visible");
+}
+
+/**
+ * Resalta el parámetro activo dentro de la firma. Si encuentra el nombre del
+ * parámetro como palabra en la firma, lo envuelve en `.param-activo`; si no,
+ * devuelve la firma escapada tal cual.
+ */
+function firmaConParamResaltado(firma, nombreParam) {
+  const firmaEsc = escapeHtml(firma);
+  if (!nombreParam) return firmaEsc;
+  const nombreEsc = escapeHtml(nombreParam);
+  // Coincidencia como palabra completa (evita resaltar subcadenas).
+  const re = new RegExp("\\b" + nombreEsc.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b");
+  return firmaEsc.replace(re, `<span class="param-activo">${nombreEsc}</span>`);
+}
+
+function pintarAyudaFirma(simbolo, argIndice) {
+  const $sh = $("#signatureHelp");
+  const params = Array.isArray(simbolo.params) ? simbolo.params : [];
+  const paramActivo = (argIndice >= 0 && argIndice < params.length)
+    ? params[argIndice] : null;
+
+  let html =
+    `<div class="ayuda-firma">` +
+    firmaConParamResaltado(simbolo.firma || simbolo.nombre,
+      paramActivo ? paramActivo.nombre : null) +
+    `</div>`;
+  if (paramActivo && paramActivo.descripcion) {
+    html += `<div class="ayuda-param-desc">` +
+      `<span class="param-activo">${escapeHtml(paramActivo.nombre)}</span>: ` +
+      `${escapeHtml(paramActivo.descripcion)}</div>`;
+  }
+  $sh.html(html);
+  $sh.addClass("visible");
+  posicionarAyudaFirma();
+}
+
+/**
+ * Coloca el popup de firma a la altura/columna del cursor, encima de la línea
+ * para no tapar lo que se escribe. Replica el patrón de posicionarDropdown.
+ */
+function posicionarAyudaFirma() {
+  const editor = document.getElementById("editor");
+  const $sh = $("#signatureHelp");
+  const cursorPos = editor.selectionStart;
+  const txt = editor.value.substring(0, cursorPos);
+  const lineas = txt.split("\n");
+  const lnIdx = lineas.length - 1;
+  const col = lineas[lineas.length - 1].length;
+  const wrEl = document.querySelector(".editor-wrapper");
+  const wr = wrEl.getBoundingClientRect();
+  const metrics = getIndentGuideMetrics();
+  const gutter = document.getElementById("lineNumbers");
+  const lineHeight = metrics ? metrics.lineHeight : 21.45;
+  const paddingTop = metrics ? metrics.paddingTop : 8;
+  const paddingLeft = metrics ? metrics.paddingLeft : 16;
+  const charWidth = metrics ? metrics.charWidth : 7.8;
+  const gutterWidth = gutter ? gutter.offsetWidth : 45;
+  const alto = $sh.outerHeight() || 40;
+
+  // Coordenadas relativas al wrapper → a viewport (position: fixed).
+  const relTopLinea = lnIdx * lineHeight + paddingTop - editor.scrollTop;
+  const relLeft = col * charWidth + gutterWidth + paddingLeft - editor.scrollLeft;
+
+  let top = wr.top + relTopLinea - alto - 4;     // encima de la línea actual
+  if (top < wr.top + 2) top = wr.top + relTopLinea + lineHeight + 4; // si no cabe, debajo
+  let left = wr.left + relLeft;
+  const ancho = $sh.outerWidth() || 200;
+  if (left + ancho > window.innerWidth - 8) left = Math.max(8, window.innerWidth - ancho - 8);
+
+  $sh.css({ top: top + "px", left: left + "px" });
+}
+
+function procesarAyudaFirma() {
+  // No competir con el dropdown de autocompletado: si está visible, ocultar.
+  if ($("#autocompleteDropdown").hasClass("visible")) { ocultarAyudaFirma(); return; }
+  const cat = catalogoAyudasActivo();
+  if (!cat) { ocultarAyudaFirma(); return; }
+  const editor = document.getElementById("editor");
+  if (!editor) { ocultarAyudaFirma(); return; }
+  const ctx = Code4CodeAyudas.contextoLlamada(editor.value, editor.selectionStart);
+  if (!ctx) { ocultarAyudaFirma(); return; }
+  const simbolo = Code4CodeAyudas.buscar(cat, ctx.nombre);
+  if (!simbolo) { ocultarAyudaFirma(); return; }
+  pintarAyudaFirma(simbolo, ctx.argIndice);
+}
+
+$("#editor").on("input keyup click", procesarAyudaFirma);
+
+$("#editor").on("keydown", function (e) {
+  if (e.key === "Escape") ocultarAyudaFirma();
+});
+
+$("#editor").on("blur", function () {
+  ocultarAyudaFirma();
+  ocultarHoverAyuda();
+});
+
+$("#editor").on("scroll", function () {
+  if ($("#signatureHelp").hasClass("visible")) posicionarAyudaFirma();
 });
 
 // =========================================

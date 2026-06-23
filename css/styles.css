@@ -1236,6 +1236,68 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   letter-spacing: 0.5px;
 }
 
+/* Item del dropdown con dos líneas (texto + firma arriba, descripción abajo) */
+.autocomplete-item.tiene-desc {
+  flex-direction: column; align-items: stretch; gap: 2px;
+}
+.autocomplete-item .autocomplete-item-fila {
+  display: flex; align-items: center; gap: 8px;
+}
+.autocomplete-desc {
+  font-size: 10.5px; color: var(--text-secondary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 280px;
+}
+.autocomplete-item.selected .autocomplete-desc { color: var(--text-primary); }
+
+/* ========================================
+    AYUDAS DE CÓDIGO (hover de documentación y ayuda de firma)
+    ======================================== */
+.code-hover-tooltip,
+.signature-help {
+  display: none; position: fixed; z-index: 600;
+  background: var(--bg-panel); border: 1px solid var(--border-color);
+  border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  color: var(--text-primary); padding: 8px 10px;
+  font-size: 11.5px; line-height: 1.45; pointer-events: none;
+}
+.code-hover-tooltip.visible,
+.signature-help.visible { display: block; }
+
+.code-hover-tooltip { max-width: 340px; }
+
+.code-hover-tooltip .ayuda-firma,
+.signature-help .ayuda-firma {
+  font-family: var(--font-code); font-size: 12px; color: var(--accent);
+  font-weight: 600; white-space: pre-wrap; word-break: break-word;
+  margin-bottom: 4px;
+}
+.code-hover-tooltip .ayuda-tipo {
+  display: inline-block; font-size: 9px; padding: 1px 5px;
+  border-radius: 3px; background: rgba(255,255,255,0.05);
+  color: var(--text-secondary); letter-spacing: 0.5px; margin-bottom: 5px;
+}
+.code-hover-tooltip .ayuda-descripcion,
+.signature-help .ayuda-descripcion {
+  color: var(--text-primary); margin-bottom: 5px;
+}
+.code-hover-tooltip .ayuda-ejemplo {
+  font-family: var(--font-code); font-size: 11px; color: var(--text-secondary);
+  background: rgba(0,0,0,0.25); border: 1px solid var(--border-color);
+  border-radius: 4px; padding: 5px 7px; white-space: pre-wrap;
+  word-break: break-word; margin-top: 4px;
+}
+
+.signature-help { max-width: 360px; }
+/* Parámetro activo de la firma: resaltado con el color de acento */
+.signature-help .param-activo {
+  color: var(--accent); font-weight: 700;
+}
+.signature-help .ayuda-param-desc {
+  color: var(--text-secondary); font-size: 11px; margin-top: 3px;
+}
+.signature-help .ayuda-param-desc .param-activo { font-weight: 700; }
+
 /* ========================================
     EXAMPLES DROPDOWN
     ======================================== */
