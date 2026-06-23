@@ -42,6 +42,14 @@
       ? AyudasLiteSeInt.SIMBOLOS_LITESEINT : [];
   }
 
+  var _catalogo = null;
+  function catalogoIndexado() {
+    if (_catalogo) return _catalogo;
+    if (typeof Code4CodeAyudas === 'undefined') return null;
+    _catalogo = Code4CodeAyudas.crearCatalogo(simbolosAyuda());
+    return _catalogo;
+  }
+
   /** Plantilla protegida del editor (idéntica a la estructura base v1.x). */
   var PLANTILLA = 'Proceso nombre_proceso\n\n\n\n\n\n\n\n\nFinProceso';
 
@@ -222,31 +230,46 @@
         var entorno = DocErrores.cursorContext(linea, columna - 1);
         if (entorno.inString || entorno.inComment) return [];
 
-        // Prefijo: caracteres de palabra hacia atrás desde el cursor.
-        var ini = columna - 1;
-        while (ini >= 0 && /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(linea[ini])) ini--;
-        ini++;
-        var palabra = linea.substring(ini, columna);
-        if (palabra.length < 2) return [];
+        // Prefijo: usar ctx.prefijo (inyectado por autocomplete.js) o extraer.
+        var prefijo = (contexto && contexto.prefijo) || (function () {
+          var ini = columna - 1;
+          while (ini >= 0 && /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(linea[ini])) ini--;
+          return linea.substring(ini + 1, columna);
+        })();
+        if (prefijo.length < 2) return [];
+        var prefijoLower = prefijo.toLowerCase();
 
-        // Mismo orden que v1.x: palabras reservadas y luego variables.
-        var candidatos = LiteSeInt.PALABRAS_RESERVADAS.map(function (p) {
-          return { texto: p.texto, tipo: 'palabra-clave', detalle: p.tipo };
-        }).concat(
-          DocErrores.extraerVariablesDelCodigo(codigo).map(function (v) {
-            return { texto: v, tipo: 'variable' };
-          })
-        );
+        var res = [];
+        var vistos = Object.create(null);
 
-        var prefijo = palabra.toLowerCase();
-        var vistos = {};
-        return candidatos.filter(function (c) {
-          var clave = c.texto.toLowerCase();
-          if (clave === prefijo || clave.indexOf(prefijo) !== 0) return false;
-          if (Object.prototype.hasOwnProperty.call(vistos, clave)) return false;
-          vistos[clave] = true;
-          return true;
+        // 1) Catálogo enriquecido con firma y descripción (cuando está cargado).
+        var cat = catalogoIndexado();
+        if (cat) {
+          Code4CodeAyudas.completar(cat, prefijoLower).forEach(function (c) {
+            vistos[c.texto.toLowerCase()] = true;
+            res.push(c);
+          });
+        } else {
+          // Sin catálogo: mismo comportamiento que v1.x (palabras reservadas con detalle).
+          LiteSeInt.PALABRAS_RESERVADAS.forEach(function (p) {
+            var kl = p.texto.toLowerCase();
+            if (kl.indexOf(prefijoLower) === 0 && kl !== prefijoLower && !vistos[kl]) {
+              vistos[kl] = true;
+              res.push({ texto: p.texto, tipo: 'palabra-clave', detalle: p.tipo });
+            }
+          });
+        }
+
+        // 2) Variables del código (siempre, no están en el catálogo de ayudas).
+        DocErrores.extraerVariablesDelCodigo(codigo).forEach(function (v) {
+          var vl = v.toLowerCase();
+          if (vl.indexOf(prefijoLower) === 0 && vl !== prefijoLower && !vistos[vl]) {
+            vistos[vl] = true;
+            res.push({ texto: v, tipo: 'variable' });
+          }
         });
+
+        return res;
       },
 
       /**

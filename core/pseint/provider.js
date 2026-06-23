@@ -45,6 +45,14 @@
       ? AyudasPSeInt.SIMBOLOS_PSEINT : [];
   }
 
+  var _catalogo = null;
+  function catalogoIndexado() {
+    if (_catalogo) return _catalogo;
+    if (typeof Code4CodeAyudas === 'undefined') return null;
+    _catalogo = Code4CodeAyudas.crearCatalogo(simbolosAyuda());
+    return _catalogo;
+  }
+
   /** Plantilla inicial del editor para PSeInt. */
   var PLANTILLA = 'Algoritmo nombre_algoritmo\n\n\n\n\n\nFinAlgoritmo';
 
@@ -184,20 +192,51 @@
         var nucleo = nucleoDocErroresPSeInt();
         if (!nucleo) return [];
 
-        var palabras = [];
+        var linea = String((contexto && contexto.linea) || '');
+        var columna = contexto && typeof contexto.columna === 'number'
+          ? contexto.columna : linea.length;
+
+        // Prefijo: usar ctx.prefijo (inyectado por autocomplete.js) o extraer.
+        var prefijo = (contexto && contexto.prefijo) || (function () {
+          var ini = columna - 1;
+          while (ini >= 0 && /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(linea[ini])) ini--;
+          return linea.substring(ini + 1, columna);
+        })();
+        if (prefijo.length < 2) return [];
+        var prefijoLower = prefijo.toLowerCase();
+
+        var res = [];
+        var vistos = Object.create(null);
+
+        // 1) Catálogo enriquecido con firma y descripción (cuando está cargado).
+        var cat = catalogoIndexado();
+        if (cat) {
+          Code4CodeAyudas.completar(cat, prefijoLower).forEach(function (c) {
+            vistos[c.texto.toLowerCase()] = true;
+            res.push(c);
+          });
+        }
+
+        // 2) Keywords sin catálogo (o los que el catálogo no cubra).
         nucleo.KEYWORDS_PSEINT.forEach(function (kw) {
-          // Capitalizar primera letra para mostrarlo en el popup igual
-          // que aparece en el código PSeInt.
+          var kl = kw.toLowerCase();
+          if (kl.indexOf(prefijoLower) !== 0 || kl === prefijoLower) return;
+          if (vistos[kl]) return;
+          vistos[kl] = true;
           var cap = kw.charAt(0).toUpperCase() + kw.slice(1);
-          palabras.push({ texto: cap, tipo: 'keyword' });
+          res.push({ texto: cap, tipo: 'keyword' });
         });
 
-        var funciones = [];
+        // 3) Funciones nativas (en mayúsculas, con paréntesis).
         nucleo.FUNCIONES_NATIVAS_SET.forEach(function (fn) {
-          funciones.push({ texto: fn.toUpperCase() + '()', tipo: 'funcion' });
+          var fl = fn.toLowerCase();
+          if (fl.indexOf(prefijoLower) !== 0 || fl === prefijoLower) return;
+          if (vistos[fl]) return;
+          vistos[fl] = true;
+          res.push({ texto: fn.toUpperCase() + '()', tipo: 'funcion' });
         });
 
-        return palabras.concat(funciones);
+        return res;
       },
 
       /**

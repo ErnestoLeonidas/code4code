@@ -93,13 +93,14 @@ async function main() {
       'el provider LiteSeInt debe implementar autocompletar()');
   });
 
-  await prueba('contextoDesdePosicion calcula línea completa y columna 0-based', () => {
+  await prueba('contextoDesdePosicion calcula línea, columna, prefijo y código', () => {
     const codigo = 'Proceso p\n  Escr y mas\nFinProceso';
     const cursor = codigo.indexOf('Escr') + 4; // tras "Escr"
     const contexto = ctx.Code4CodeAutocomplete.contextoDesdePosicion(codigo, cursor);
     asegurar(contexto.linea === '  Escr y mas', 'línea: "' + contexto.linea + '"');
     asegurar(contexto.columna === 6, 'columna: ' + contexto.columna);
     asegurar(contexto.codigo === codigo, 'debe conservar el código completo');
+    asegurar(contexto.prefijo === 'Escr', 'prefijo: "' + contexto.prefijo + '"');
   });
 
   await prueba('sugiere palabras reservadas por prefijo (insensible a mayúsculas)', () => {

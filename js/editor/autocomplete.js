@@ -33,10 +33,20 @@
     var antes = texto.substring(0, pos);
     var ultimoSalto = antes.lastIndexOf('\n');
     var indiceLinea = antes.split('\n').length - 1;
+    var linea = texto.split('\n')[indiceLinea] || '';
+    var columna = pos - (ultimoSalto + 1);
+
+    // Prefijo genérico: caracteres de identificador inmediatamente antes del cursor.
+    var iniPref = columna - 1;
+    while (iniPref >= 0 && /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(linea[iniPref])) iniPref--;
+    iniPref++;
+    var prefijo = linea.substring(iniPref, columna);
+
     return {
-      linea: texto.split('\n')[indiceLinea] || '',
-      columna: pos - (ultimoSalto + 1),
-      codigo: texto
+      linea: linea,
+      columna: columna,
+      codigo: texto,
+      prefijo: prefijo
     };
   }
 

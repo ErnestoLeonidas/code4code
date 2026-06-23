@@ -448,15 +448,24 @@ async function main() {
       'falta Sino en intermedios');
   });
 
-  await prueba('PSeInt integración: autocompletar devuelve palabras clave y funciones', () => {
-    const candidatos = proveedorPS.autocompletar({});
-    asegurar(Array.isArray(candidatos) && candidatos.length > 0, 'candidatos vacíos');
+  await prueba('PSeInt integración: autocompletar filtra por prefijo y devuelve keywords y funciones', () => {
+    // Prefijo corto o vacío → sin candidatos
+    asegurar(proveedorPS.autocompletar({}).length === 0, 'prefijo vacío debe dar []');
+    asegurar(proveedorPS.autocompletar({ prefijo: 'E' }).length === 0, 'prefijo de 1 char debe dar []');
+
+    // Prefijo válido → candidatos filtrados con los tipos correctos
+    const candidatos = proveedorPS.autocompletar({ prefijo: 'Es' });
+    asegurar(Array.isArray(candidatos) && candidatos.length > 0, 'candidatos vacíos para "Es"');
     const tipos = candidatos.map((c) => c.tipo);
-    asegurar(tipos.indexOf('keyword') !== -1, 'faltan keywords');
-    asegurar(tipos.indexOf('funcion') !== -1, 'faltan funciones nativas');
-    // Verificar que hay funciones con paréntesis y keywords con capitalización
-    const fns = candidatos.filter((c) => c.tipo === 'funcion');
-    asegurar(fns.some((f) => f.texto.indexOf('()') !== -1), 'funciones sin paréntesis');
+    asegurar(tipos.indexOf('keyword') !== -1, 'faltan keywords para "Es"');
+
+    // Funciones nativas (prefijo diferente): enriquecidas con firma cuando el catálogo está
+    const candidatosFn = proveedorPS.autocompletar({ prefijo: 'Ra' });
+    const fns = candidatosFn.filter((c) => c.tipo === 'funcion' || c.tipo === 'función');
+    asegurar(fns.length > 0, 'deben haber funciones para prefijo "Ra"');
+    // Con catálogo: la firma viaja en `detalle`; sin catálogo: el texto lleva '()'
+    asegurar(fns.some((f) => f.texto.indexOf('(') !== -1 || (f.detalle && f.detalle.indexOf('(') !== -1)),
+      'funciones deben tener paréntesis en texto o en detalle');
   });
 
   await prueba('PSeInt integración: validar acepta un programa correcto', () => {
