@@ -2706,6 +2706,46 @@ details[open] .inspector-array-chevron { transform: rotate(90deg); }
   color: var(--bg-primary);
 }
 
+/* Comparar soluciones multi-lenguaje (Fase 5 — esquema unificado) */
+.ej-comparar-soluciones {
+  margin: 10px 0 0;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: rgba(255,255,255,0.02);
+}
+
+.ej-comparar-soluciones > summary {
+  padding: 5px 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.ej-comparar-soluciones > summary:hover {
+  color: var(--text-primary);
+}
+
+.ej-comp-lang-label {
+  margin: 6px 8px 2px;
+  font-size: 10.5px;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.ej-comp-codigo {
+  margin: 0 8px 8px;
+  padding: 6px 8px;
+  font-size: 10.5px;
+  font-family: var(--font-mono, monospace);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  white-space: pre;
+  overflow-x: auto;
+  max-height: 180px;
+}
+
 .ej-estado-control {
   display: flex;
   flex-wrap: wrap;

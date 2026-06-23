@@ -4137,14 +4137,19 @@ function mostrarDetalleEjercicio(id) {
 
   // Ver en otros lenguajes
   if (window.EjerciciosMulti) {
-    const mapa = window.EjerciciosMulti.buscarPorId(e.id, providerActivo().id);
+    const langActivo = providerActivo().id;
+    const mapa = window.EjerciciosMulti.buscarPorId(e.id, langActivo);
+    const eu = window.EjerciciosMulti.ejercicioUnificadoPorId
+      ? window.EjerciciosMulti.ejercicioUnificadoPorId(e.id, langActivo)
+      : null;
+
     if (mapa) {
       const $otros = $("<div>").addClass("ej-otros-lenguajes");
       $otros.append($("<p>").addClass("ej-section-label").text("Este problema en otros lenguajes"));
       let hayOtros = false;
       const idsOtros = mapa.ids || {};
       Object.keys(idsOtros).forEach((langId) => {
-        if (langId === providerActivo().id) return;
+        if (langId === langActivo) return;
         const targetId = idsOtros[langId];
         const provider = Code4Code.registro.obtener(langId);
         if (!provider) return;
@@ -4161,6 +4166,22 @@ function mostrarDetalleEjercicio(id) {
         );
       });
       if (hayOtros) $det.append($otros);
+    }
+
+    // Comparar soluciones (solo cuando hay datos unificados con ≥ 2 lenguajes)
+    if (eu && eu.lenguajes && Object.keys(eu.lenguajes).length >= 2) {
+      const NOMBRE_LANG = { liteseint: 'LiteSeInt', pseint: 'PSeInt', python: 'Python' };
+      const $comp = $("<details>").addClass("ej-comparar-soluciones");
+      $comp.append($("<summary>").text("Comparar soluciones en otros lenguajes"));
+      Object.keys(eu.lenguajes).forEach((langId) => {
+        if (langId === langActivo) return;
+        const datos = eu.lenguajes[langId];
+        if (!datos.codigoReferencia) return;
+        const nombre = NOMBRE_LANG[langId] || langId;
+        $comp.append($("<p>").addClass("ej-comp-lang-label").text(nombre));
+        $comp.append($("<pre>").addClass("ej-comp-codigo").text(datos.codigoReferencia));
+      });
+      $det.append($comp);
     }
   }
 
