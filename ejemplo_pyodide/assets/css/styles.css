@@ -1,0 +1,144 @@
+:root {
+  --app-dark: #10141f;
+  --app-dark-2: #161c2b;
+  --app-border: rgba(255, 255, 255, 0.12);
+}
+
+body {
+  min-height: 100vh;
+}
+
+.hero-section {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(13, 110, 253, 0.35), transparent 32%),
+    linear-gradient(135deg, var(--app-dark), var(--app-dark-2));
+  padding-top: 4rem;
+}
+
+.text-light-emphasis {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.terminal-card {
+  background: #06080d;
+  border: 1px solid var(--app-border);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.terminal-header span {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.terminal-card pre {
+  color: #dbeafe;
+  padding: 1.25rem;
+  font-size: 0.95rem;
+  min-height: 260px;
+  white-space: pre-wrap;
+}
+
+.feature-card {
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.10) !important;
+}
+
+.status-box {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.9rem 1rem;
+}
+
+.CodeMirror {
+  height: 430px;
+  font-size: 0.95rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.console-output {
+  background: #070b12;
+  color: #d1e7dd;
+  min-height: 260px;
+  max-height: 420px;
+  overflow: auto;
+  padding: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 4;
+}
+
+.code-panel {
+  background: #0b1020;
+  color: #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+}
+
+.code-panel code {
+  color: #e5e7eb;
+}
+
+.marimo-frame {
+  display: none;
+  width: 100%;
+  height: 680px;
+  border: 0;
+  background: white;
+}
+
+.fallback-box {
+  min-height: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffffff, #f1f5f9);
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 2rem;
+  }
+
+  .CodeMirror {
+    height: 360px;
+  }
+
+  .marimo-frame,
+  .fallback-box {
+    min-height: 520px;
+    height: 520px;
+  }
+}
+
+.marimo-snippet-wrapper {
+  min-height: 720px;
+}
+
+.marimo-snippet-wrapper iframe {
+  width: 100%;
+  min-height: 720px;
+  border: 0;
+  border-radius: 0.75rem;
+}

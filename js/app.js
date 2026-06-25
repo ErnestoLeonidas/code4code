@@ -96,6 +96,8 @@ function applyTheme(theme) {
   const nameEl = document.getElementById('themeName');
   if (nameEl) nameEl.textContent = theme.label;
   lsSet(THEME_KEY, theme.id);
+  // CodeMirror lee variables CSS para su tema; refrescar tras el cambio.
+  if (typeof Code4CodeCM !== 'undefined') Code4CodeCM.refrescar();
 }
 
 function cycleTheme() {
@@ -522,6 +524,27 @@ function initLanguageSelect() {
   function actualizarLangEditor(provider) {
     const $panel = document.querySelector(".editor-panel");
     if ($panel) $panel.setAttribute("data-lang", provider.id);
+
+    // Python usa CodeMirror como superficie de edición; el resto de lenguajes
+    // sigue con el editor propio (textarea + capas). La consola y la ejecución
+    // no cambian: CodeMirror solo reemplaza la edición, no la salida.
+    if (typeof Code4CodeCM !== "undefined" && Code4CodeCM.disponible()) {
+      if (provider.id === "python") {
+        if (Code4CodeCM.activar()) {
+          Code4CodeCM.sincronizarDesdeTextarea();
+          Code4CodeCM.refrescar();
+        }
+      } else if (Code4CodeCM.activo()) {
+        Code4CodeCM.desactivar();
+        // Repintar las capas del editor propio con el contenido actual.
+        if (typeof actualizarLineasInmediato === "function") {
+          actualizarLineasInmediato();
+        } else if (typeof actualizarLineas === "function") {
+          actualizarLineas();
+        }
+      }
+    }
+
     // El tab-size cambia con el lenguaje (Python = 4): forzar re-medición
     // de las métricas de las guías de indentación.
     if (typeof scheduleIndentGuideRender === "function") {
@@ -1240,6 +1263,15 @@ function renderErrorUnderlines(linea, errores) {
 let _pendingSyntaxTimer = null;
 
 function actualizarLineas() {
+  // Con CodeMirror activo (Python) la superficie de edición es de CM: basta
+  // con propagar el contenido del textarea hacia CM (escrituras programáticas
+  // como plantillas/ejemplos/importar) y omitir el repintado de las capas
+  // propias, que están ocultas.
+  if (typeof Code4CodeCM !== "undefined" && Code4CodeCM.activo()) {
+    Code4CodeCM.sincronizarDesdeTextarea();
+    return;
+  }
+
   const texto = $("#editor").val();
   const lineas = texto.split("\n");
 
@@ -1278,6 +1310,8 @@ function actualizarLineasInmediato() {
     _pendingSyntaxTimer = null;
   }
   actualizarLineas();
+  // Con CodeMirror activo no hay capas propias que repintar.
+  if (typeof Code4CodeCM !== "undefined" && Code4CodeCM.activo()) return;
   actualizarSyntaxHighlight();
   actualizarIndentGuides();
   scheduleFoldLayerRender();
@@ -4259,7 +4293,12 @@ function reemplazarEditorConfirmando(nuevoCodigo, mensaje, siempreConfirmar = fa
     if (typeof opciones.afterReplace === "function") {
       opciones.afterReplace(editor);
     }
-    editor.focus();
+    // Con CodeMirror activo el foco y el caret van a CM, no al textarea oculto.
+    if (typeof Code4CodeCM !== "undefined" && Code4CodeCM.activo()) {
+      Code4CodeCM.enfocar();
+    } else {
+      editor.focus();
+    }
   };
 
   if (opciones.omitirConfirmacion) {
@@ -4469,6 +4508,17 @@ function initBarraSimbolos() {
     if (!editor) return;
 
     var sym = this.dataset.sym;
+
+    // Con CodeMirror activo (Python) la inserción va por CM, que conserva la
+    // selección/cursor y su propio historial de undo.
+    if (typeof Code4CodeCM !== "undefined" && Code4CodeCM.activo()) {
+      if (sym === '"')      { Code4CodeCM.insertarTexto('"', '"'); return; }
+      if (sym === "(")      { Code4CodeCM.insertarTexto("(", ")"); return; }
+      if (sym === "[")      { Code4CodeCM.insertarTexto("[", "]"); return; }
+      Code4CodeCM.insertarTexto(sym);
+      return;
+    }
+
     var start = editor.selectionStart;
     var end   = editor.selectionEnd;
     var val   = editor.value;
@@ -4577,6 +4627,7 @@ $(document).ready(function () {
   if (window.ResizeObserver) {
     resizeObserver = new ResizeObserver(() => {
       actualizarIndentGuides({ remeasure: true });
+      if (typeof Code4CodeCM !== "undefined") Code4CodeCM.refrescar();
     });
     resizeObserver.observe(editor);
     const editorArea = editor.parentElement;
@@ -4585,6 +4636,7 @@ $(document).ready(function () {
 
   window.addEventListener("resize", () => {
     actualizarIndentGuides({ remeasure: true });
+    if (typeof Code4CodeCM !== "undefined") Code4CodeCM.refrescar();
     const panel = document.querySelector('.learning-panel');
     if (panel && !mobileConsoleQuery.matches) {
       aplicarAnchoLearningPanel(panel.getBoundingClientRect().width, { autoColapsar: true });

@@ -591,6 +591,100 @@ body::before {
 .editor-panel[data-lang="python"] .indent-guide { background: #707a8c3b; }
 .editor-panel[data-lang="python"] .indent-guide.active { background: #707a8c70; }
 
+/* ======================================================================
+   CODEMIRROR (editor de Python)
+   ----------------------------------------------------------------------
+   Cuando el lenguaje activo es Python, CodeMirror gobierna la superficie de
+   edición (ver js/editor/codemirror-python.js). El textarea propio queda
+   oculto (CM lo mantiene sincronizado) y se ocultan también las capas del
+   editor propio para no solaparse con el lienzo de CodeMirror.
+
+   El tema "cm-s-c4c" no fija colores absolutos: consume las MISMAS variables
+   que el editor propio, por lo que hereda la paleta ayu de Python y respeta
+   cualquiera de los 6 temas globales.
+   ====================================================================== */
+.editor-panel.cm-active .line-numbers,
+.editor-panel.cm-active .editor-bg-layer,
+.editor-panel.cm-active .fold-layer,
+.editor-panel.cm-active .indent-guide-layer,
+.editor-panel.cm-active .editor-line-overlays,
+.editor-panel.cm-active .search-highlight-layer,
+.editor-panel.cm-active .error-decoration-layer,
+.editor-panel.cm-active .syntax-highlight-layer {
+  display: none !important;
+}
+
+/* CodeMirror ocupa todo el área de código. */
+.editor-panel.cm-active .editor-code-area .CodeMirror {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  z-index: 5;
+}
+
+.editor-panel .CodeMirror {
+  background: var(--bg-editor);
+  color: var(--text-primary);
+  font-family: var(--font-code);
+  font-size: 12px;
+  line-height: var(--line-height-val);
+  direction: ltr;
+}
+
+/* Gutter de números (CodeMirror) al mismo tono que el editor. */
+.editor-panel .CodeMirror-gutters {
+  background: var(--bg-editor);
+  border-right: 1px solid var(--border-color);
+}
+.editor-panel .CodeMirror-linenumber {
+  color: var(--line-number);
+}
+
+/* Cursor, selección y línea activa con el acento ayu de Python. */
+.editor-panel .CodeMirror-cursor {
+  border-left: 1px solid #ffcc66;
+}
+.editor-panel .CodeMirror-selected {
+  background: #409fff40;
+}
+.editor-panel .CodeMirror-focused .CodeMirror-selected {
+  background: #409fff55;
+}
+.editor-panel .CodeMirror-line::selection,
+.editor-panel .CodeMirror-line > span::selection,
+.editor-panel .CodeMirror-line > span > span::selection {
+  background: #409fff55;
+}
+.editor-panel .CodeMirror-matchingbracket {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+/* Barra de scroll fina, coherente con el resto del editor. */
+.editor-panel .CodeMirror-scroll { scrollbar-width: thin; }
+.editor-panel .CodeMirror-vscrollbar,
+.editor-panel .CodeMirror-hscrollbar { scrollbar-width: thin; }
+
+/* ---- Tema cm-s-c4c: tokens del modo Python ---- */
+.cm-s-c4c .CodeMirror-gutters { background: var(--bg-editor); border: none; }
+.cm-s-c4c .cm-keyword   { color: var(--syntax-keyword); }
+.cm-s-c4c .cm-builtin   { color: var(--syntax-variable); }
+.cm-s-c4c .cm-def       { color: var(--syntax-variable); }
+.cm-s-c4c .cm-variable  { color: var(--text-primary); }
+.cm-s-c4c .cm-variable-2 { color: var(--text-primary); }
+.cm-s-c4c .cm-variable-3,
+.cm-s-c4c .cm-type      { color: var(--bracket-1); }
+.cm-s-c4c .cm-property  { color: var(--bracket-1); }
+.cm-s-c4c .cm-string,
+.cm-s-c4c .cm-string-2  { color: var(--syntax-string); }
+.cm-s-c4c .cm-number    { color: var(--syntax-number); }
+.cm-s-c4c .cm-atom      { color: var(--syntax-number); }
+.cm-s-c4c .cm-comment   { color: var(--syntax-comment); font-style: italic; }
+.cm-s-c4c .cm-operator  { color: var(--syntax-assign); }
+.cm-s-c4c .cm-meta      { color: var(--syntax-keyword); }
+.cm-s-c4c .cm-bracket   { color: var(--bracket-0); }
+.cm-s-c4c .cm-error     { color: var(--state-error, #ff6b6b); }
+
 /* ---- Search bar y capa de coincidencias (Fase 2) ---- */
 .search-bar {
   display: flex; flex-direction: column; gap: 4px;

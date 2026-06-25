@@ -1,5 +1,39 @@
 # Changelog — Code4Code
 
+## [2.4.2-beta] - 2026-06-24
+
+### Editor CodeMirror para Python (basado en `ejemplo_pyodide`)
+
+- `js/editor/codemirror-python.js` — nuevo controlador `Code4CodeCM`. Cuando el
+  lenguaje activo es **Python**, CodeMirror 5 gobierna la superficie de edición
+  (como en `ejemplo_pyodide/`); LiteSeInt y PSeInt siguen con el editor propio.
+- **La consola y la ejecución no cambian**: CodeMirror solo reemplaza la
+  *edición*, no la salida. El `#editor` (textarea) sigue siendo la fuente de
+  verdad del código —`cm.save()` lo sincroniza en cada cambio— por lo que
+  `ejecutar()`, `validar()`, importar/exportar y el banco de ejercicios leen
+  `$("#editor").val()` sin tocar nada. La salida sigue fluyendo por el host →
+  `#consola` (bridge + worker Pyodide intactos).
+- **El tema se mantiene**: el tema `cm-s-c4c` (en `css/styles.css`) no fija
+  colores absolutos; consume las mismas variables que el editor propio
+  (`--bg-editor`, `--syntax-*`, `--bracket-*`, `--text-primary`…), de modo que
+  CodeMirror hereda la paleta ayu Mirage de Python y respeta los 6 temas.
+- `index.html` — carga CodeMirror 5.65.16 (CSS + core + modo `python`) por CDN y
+  el nuevo módulo antes de `js/app.js`.
+- `css/styles.css` — `.editor-panel.cm-active` oculta las capas del editor
+  propio (números, plegado, guías, resaltado, decoraciones) y dimensiona CM para
+  ocupar el área de código; tema `cm-s-c4c` con el mapeo de tokens de Python.
+- `js/app.js` — cableado: `actualizarLangEditor` activa/desactiva CM al cambiar
+  de lenguaje; `actualizarLineas`/`actualizarLineasInmediato` sincronizan
+  textarea→CM y omiten el repintado propio con CM activo; `applyTheme` refresca
+  CM; la barra de símbolos táctiles inserta vía CM; `reemplazarEditorConfirmando`
+  enfoca CM; el `ResizeObserver` refresca CM.
+- Verificado en Chrome headless (CDP): CM activo solo en Python, fondo
+  `#242936` y tokens ayu correctos (keyword `#ffa659`, builtin/def `#ffcd66`,
+  string `#d5ff80`, comment `#6e7c8f`), textarea sincronizado, ejecución real
+  con salida en la consola del proyecto (`producto: 42`, bucle `for`), cambio de
+  tema sin romper CM y restauración del editor propio al salir de Python.
+- Suite `npm test` en verde (sin regresiones).
+
 ## [2.4.1-beta] - 2026-06-22
 
 ### Backlog — Autocorrección por salida esperada
