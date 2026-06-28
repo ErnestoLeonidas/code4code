@@ -1,0 +1,20 @@
+{
+  "name": "Code4Code — Plataforma de aprendizaje de programación",
+  "short_name": "Code4Code",
+  "description": "Aprende a programar con LiteSeInt, PSeInt y Python en tu navegador, sin instalación.",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#1a1b2e",
+  "background_color": "#1a1b2e",
+  "categories": ["education"],
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

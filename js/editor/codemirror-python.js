@@ -32,6 +32,7 @@
   var _cm = null;          // instancia de CodeMirror o null
   var _activo = false;     // ¿CodeMirror gobierna el editor ahora?
   var _syncing = false;    // guarda contra bucles de sincronización
+  var _lineaActivaCM = -1; // índice 0-based de la línea activa en ejecución
 
   function _panel() {
     return document.querySelector('.editor-panel');
@@ -77,6 +78,7 @@
       indentWithTabs: false,
       lineWrapping: true,
       viewportMargin: Infinity,
+      gutters: ['CodeMirror-linenumbers', 'cm-c4c-errors'],
       extraKeys: {
         'Ctrl-Enter': _ejecutarDesdeCM,
         'Cmd-Enter': _ejecutarDesdeCM,
@@ -118,6 +120,7 @@
     try { _cm.toTextArea(); } finally { _syncing = false; }
     _cm = null;
     _activo = false;
+    _lineaActivaCM = -1;
     if (panel) panel.classList.remove('cm-active');
   }
 
@@ -172,6 +175,57 @@
     return true;
   }
 
+  // ── Gutter de errores ─────────────────────────────────────────────────────
+
+  /** Limpia todos los marcadores de error del gutter de CM. Idempotente. */
+  function limpiarErrores() {
+    if (!_activo || !_cm) return;
+    _cm.clearGutter('cm-c4c-errors');
+  }
+
+  /**
+   * Muestra errores en el gutter de CM.
+   * @param {Array<{linea: number, mensaje: string}>} errores  Numeración 1-based.
+   */
+  function mostrarErrores(errores) {
+    if (!_activo || !_cm) return;
+    _cm.clearGutter('cm-c4c-errors');
+    if (!errores || errores.length === 0) return;
+    for (var i = 0; i < errores.length; i++) {
+      var err = errores[i];
+      if (!err || typeof err.linea !== 'number') continue;
+      var lineaIdx = err.linea - 1;
+      if (lineaIdx < 0) continue;
+      var badge = document.createElement('span');
+      badge.className = 'cm-c4c-error-badge';
+      badge.textContent = '!';
+      badge.title = err.mensaje || '';
+      _cm.setGutterMarker(lineaIdx, 'cm-c4c-errors', badge);
+    }
+  }
+
+  // ── Resaltado de línea activa durante ejecución ───────────────────────────
+
+  /**
+   * Resalta la línea activa (1-based) en CM. 0 o negativo = solo quitar.
+   * @param {number} linea
+   */
+  function marcarLineaActiva(linea) {
+    if (!_activo || !_cm) return;
+    if (_lineaActivaCM >= 0) {
+      _cm.removeLineClass(_lineaActivaCM, 'background', 'cm-c4c-linea-activa');
+    }
+    _lineaActivaCM = (linea > 0) ? linea - 1 : -1;
+    if (_lineaActivaCM >= 0) {
+      _cm.addLineClass(_lineaActivaCM, 'background', 'cm-c4c-linea-activa');
+    }
+  }
+
+  /** Elimina el resaltado de línea activa en CM. */
+  function limpiarLineaActiva() {
+    marcarLineaActiva(0);
+  }
+
   function _ejecutarDesdeCM() {
     var btn = document.getElementById('btnEjecutar');
     if (btn && !btn.disabled) btn.click();
@@ -187,6 +241,10 @@
     refrescar: refrescar,
     enfocar: enfocar,
     insertarTexto: insertarTexto,
+    limpiarErrores: limpiarErrores,
+    mostrarErrores: mostrarErrores,
+    marcarLineaActiva: marcarLineaActiva,
+    limpiarLineaActiva: limpiarLineaActiva,
   };
 
   raiz.Code4CodeCM = Code4CodeCM;

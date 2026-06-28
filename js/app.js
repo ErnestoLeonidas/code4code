@@ -710,7 +710,16 @@ function switchConsoleView(view) {
   const onConsola = view === 'consola';
   $('#consolaTabActions').toggle(onConsola);
   if (view === 'diagrama' && typeof LiteSeIntDiagramaUI !== 'undefined') {
-    LiteSeIntDiagramaUI.refrescarDiagrama($('#editor').val());
+    const _provActivo = providerActivo();
+    if (_provActivo && typeof _provActivo.diagramaNS === 'function') {
+      const _datos = _provActivo.diagramaNS($('#editor').val());
+      LiteSeIntDiagramaUI.refrescarConDatos(
+        _datos,
+        _datos ? undefined : 'El código no pudo convertirse en diagrama.'
+      );
+    } else {
+      LiteSeIntDiagramaUI.refrescarDiagrama($('#editor').val());
+    }
   }
 }
 
@@ -1158,9 +1167,15 @@ function invalidarErroresVisuales() {
     $(".line-overlay").removeClass("has-error");
   }
   setMirrorLayerHTML("errorDecoLayer", "");
+  if (typeof Code4CodeCM !== 'undefined' && Code4CodeCM.activo() && typeof Code4CodeCM.limpiarErrores === 'function') {
+    Code4CodeCM.limpiarErrores();
+  }
 }
 
 function limpiarEjecucionHighlight() {
+  if (typeof Code4CodeCM !== 'undefined' && typeof Code4CodeCM.limpiarLineaActiva === 'function') {
+    Code4CodeCM.limpiarLineaActiva();
+  }
   // Delega en el módulo gutter; cae al selector jQuery como respaldo.
   if (typeof Code4CodeGutter !== 'undefined' && Code4CodeGutter._filaAnterior.length) {
     Code4CodeGutter.limpiarEjecucion();
@@ -1182,6 +1197,14 @@ function aplicarErroresVisuales(erroresPorLinea) {
   }
 
   renderizarSubrayados();
+
+  if (typeof Code4CodeCM !== 'undefined' && Code4CodeCM.activo()) {
+    var _erroresCM = [];
+    for (const [_lineaIdx, _erroresLinea] of erroresPorLinea) {
+      _erroresCM.push({ linea: _lineaIdx + 1, mensaje: _erroresLinea.map((e) => e.mensaje).join('\n') });
+    }
+    Code4CodeCM.mostrarErrores(_erroresCM);
+  }
 }
 
 function marcarErrorLinea(lineaIdx, mensaje) {
@@ -1318,6 +1341,10 @@ function actualizarLineasInmediato() {
 }
 
 function resaltarLineaEjecutando(lineaIdx) {
+  if (typeof Code4CodeCM !== 'undefined' && Code4CodeCM.activo()) {
+    Code4CodeCM.marcarLineaActiva(lineaIdx != null ? lineaIdx + 1 : 0);
+    return;
+  }
   Code4CodeGutter.marcarLineaEjecutando(lineaIdx);
 }
 

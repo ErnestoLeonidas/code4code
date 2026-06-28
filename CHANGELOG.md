@@ -1,5 +1,63 @@
 # Changelog — Code4Code
 
+## [2.4.3-beta] - 2026-06-28
+
+### PWA — Soporte offline (Backlog)
+
+- `manifest.json` — manifiesto PWA: name "Code4Code", display standalone, tema
+  `#1a1b2e`/`#6c6ce4`, ícono SVG escalable en `icons/icon.svg`.
+- `service-worker.js` — Service Worker con dos estrategias diferenciadas:
+  *Cache-First* para el shell de la app (todos los recursos locales: HTML, CSS,
+  JS, JSON de ejercicios) y *Network-First con fallback* para CDNs pesados
+  (Pyodide en `cdn.jsdelivr.net/pyodide` y CodeMirror en `cdnjs.cloudflare.com`).
+  Versión `c4c-v2.4.3`; limpia cachés antiguas al activar. Estrategia general
+  Cache-First para otros CDNs (Bootstrap, fuentes, jQuery).
+- `index.html` — añade `<link rel="manifest">`, `<meta name="theme-color">`,
+  metas Apple PWA y registro del SW via `navigator.serviceWorker.register`.
+- `icons/icon.svg` — ícono escalable con el logo C4/Code4Code en la paleta ayu.
+
+### Mejoras CodeMirror: gutter de errores y línea activa en ejecución
+
+- `js/editor/codemirror-python.js` — nuevas funciones en `Code4CodeCM`:
+  - `limpiarErrores()` / `mostrarErrores([{linea, mensaje}])`: badges de error
+    (`cm-c4c-error-badge`) en gutter `cm-c4c-errors` de CM; opción `gutters`
+    ampliada en `fromTextArea`.
+  - `marcarLineaActiva(linea)` / `limpiarLineaActiva()`: resaltado de línea
+    activa con `addLineClass`/`removeLineClass` usando `cm-c4c-linea-activa`.
+    Variable `_lineaActivaCM` evita acumular clases; se resetea en `desactivar()`.
+- `css/styles.css` — `.cm-c4c-error-badge` (badge rojo 14×14 px) y
+  `.cm-c4c-linea-activa` (fondo `--exec-highlight-bg`).
+- `js/app.js` — cableado: `invalidarErroresVisuales` llama `limpiarErrores()`;
+  `aplicarErroresVisuales` llama `mostrarErrores()`; `resaltarLineaEjecutando`
+  delega a `marcarLineaActiva()`; `limpiarEjecucionHighlight` llama `limpiarLineaActiva()`.
+- `tests/codemirror-tests.js` — 8 pruebas Node (mock de CM, sin DOM real).
+- `package.json` — `codemirror-tests.js` añadido al comando `npm test`.
+
+### Diagrama Nassi-Shneiderman para PSeInt (Backlog)
+
+- `core/pseint/diagram-mapper.js` — nuevo módulo `DiagramaMapperPSeInt` con función
+  `mapear(ast)`. Convierte un nodo `Programa` del parser PSeInt en un árbol
+  `DiagramaNodo` compatible con `js/diagram.js`. Adaptaciones PSeInt vs. LiteSeInt:
+  `Programa.nombreAlgoritmo`, `Para.texto` (cabecera completa), `Segun.variable`,
+  `SubProceso.nombre`+`paramTexto`. Nodos soportados: Definir, Asignar, Dimension,
+  Retornar, Ordenar (Leaf), Leer/Escribir (Io), Llamar (Leaf), Si/Sino (Si+SiRama),
+  Mientras (BucleMientras), Repetir/HastaQue (BucleRepetir), Para (BuclePara),
+  Segun+casos (Segun+CasoRama), SubProceso (bloque colapsado).
+- `core/pseint/provider.js` — método `diagramaNS(codigo)`: parsea con el perfil
+  activo y llama `DiagramaMapperPSeInt.mapear()`; devuelve `null` ante errores.
+  `DIAGRAMA_NS` añadido a `capacidades`. `nucleoMapper()` como acceso defensivo.
+  Footer del IIFE actualizado para compatibilidad con contextos vm de tests.
+- `js/diagram.js` — nueva función pública `refrescarConDatos(datos, mensaje)`:
+  renderiza un árbol DiagramaNodo externo sin el parser de LiteSeInt. Expuesta
+  en `window.LiteSeIntDiagramaUI`.
+- `js/app.js` — `switchConsoleView` detecta si el provider activo tiene `diagramaNS`;
+  si es así, llama `refrescarConDatos()` en lugar de `refrescarDiagrama()`.
+- `index.html` — carga `core/pseint/diagram-mapper.js` antes del provider.
+- `tests/pseint-diagram-tests.js` — 11 pruebas Node: forma del módulo, programa
+  mínimo, Si/Sino, Mientras, Para, Repetir/HastaQue, Segun, SubProceso, tipos
+  Leaf/Io, error en AST inválido, `diagramaNS` retorna null para código inválido.
+- `package.json` — `pseint-diagram-tests.js` añadido al comando `npm test`.
+
 ## [2.4.2-beta] - 2026-06-24
 
 ### Editor CodeMirror para Python (basado en `ejemplo_pyodide`)

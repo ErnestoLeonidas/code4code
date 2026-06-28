@@ -685,6 +685,27 @@ body::before {
 .cm-s-c4c .cm-bracket   { color: var(--bracket-0); }
 .cm-s-c4c .cm-error     { color: var(--state-error, #ff6b6b); }
 
+/* ---- Gutter de errores CM (v2.4.3-beta) ---- */
+.cm-c4c-error-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--state-error, #ff4757);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+/* ---- Línea activa durante ejecución (CM, v2.4.3-beta) ---- */
+.cm-c4c-linea-activa { background: var(--exec-highlight-bg) !important; }
+
 /* ---- Search bar y capa de coincidencias (Fase 2) ---- */
 .search-bar {
   display: flex; flex-direction: column; gap: 4px;

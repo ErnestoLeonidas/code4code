@@ -356,8 +356,30 @@
     contenedor.appendChild(svg);
   }
 
+  /**
+   * Renderiza un árbol DiagramaNodo pre-construido por un provider externo
+   * (resultado de provider.diagramaNS()). No requiere el parser de LiteSeInt.
+   * @param {object|null} datos  — { raiz: DiagramaNodo, version: number }
+   * @param {string}     [mensaje] — texto cuando datos es null
+   */
+  function refrescarConDatos(datos, mensaje) {
+    var contenedor = document.getElementById('diagramaView');
+    if (!contenedor) return;
+    contenedor.innerHTML = '';
+    contenedor.style.position = 'relative';
+    if (!datos || !datos.raiz) {
+      contenedor.innerHTML = '<div class="inspector-placeholder">' +
+        (mensaje || 'No se pudo generar el diagrama.') + '</div>';
+      return;
+    }
+    var W = contenedor.clientWidth || 400;
+    var svg = _crearSVG(datos, W, null);
+    contenedor.appendChild(svg);
+  }
+
   window.LiteSeIntDiagramaUI = {
     inicializarDiagrama: inicializarDiagrama,
     refrescarDiagrama:   refrescarDiagrama,
+    refrescarConDatos:   refrescarConDatos,
   };
 })();

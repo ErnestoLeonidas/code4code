@@ -53,6 +53,11 @@
     return _catalogo;
   }
 
+  /** Acceso defensivo al mapeador de diagrama NS PSeInt. */
+  function nucleoMapper() {
+    return typeof DiagramaMapperPSeInt !== 'undefined' ? DiagramaMapperPSeInt : null;
+  }
+
   /** Plantilla inicial del editor para PSeInt. */
   var PLANTILLA = 'Algoritmo nombre_algoritmo\n\n\n\n\n\nFinAlgoritmo';
 
@@ -102,6 +107,7 @@
       extension: '.psc',
       capacidades: [
         Code4Code.CAPACIDADES.INSPECTOR_VARIABLES,
+        Code4Code.CAPACIDADES.DIAGRAMA_NS,
         Code4Code.CAPACIDADES.EJERCICIOS,
         Code4Code.CAPACIDADES.DOCUMENTACION
       ],
@@ -352,6 +358,25 @@
        * Catálogo de símbolos para las ayudas de código (hover, firma).
        * Lo consume js/editor/ayudas.js. Ver core/pseint/ayudas-data.js.
        */
+      /**
+       * Genera la estructura del diagrama Nassi-Shneiderman desde código PSeInt.
+       * Devuelve null si el código no se puede parsear o el mapeador no está cargado.
+       * @param {string} codigo
+       * @returns {{ raiz: object, version: number } | null}
+       */
+      diagramaNS: function (codigo) {
+        if (typeof parsearPSeInt !== 'function') return null;
+        var mapper = nucleoMapper();
+        if (!mapper) return null;
+        var resultado = parsearPSeInt(String(codigo || ''), _perfilActivo);
+        if (!resultado || !resultado.ast || resultado.errores.length > 0) return null;
+        try {
+          return mapper.mapear(resultado.ast);
+        } catch (e) {
+          return null;
+        }
+      },
+
       catalogoAyudas: function () {
         return simbolosAyuda();
       }
@@ -534,4 +559,4 @@
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = { definicion: definicion };
   }
-})(typeof window !== 'undefined' ? window : globalThis);
+})(typeof window !== 'undefined' ? window : typeof globalThis !== 'undefined' ? globalThis : this);
